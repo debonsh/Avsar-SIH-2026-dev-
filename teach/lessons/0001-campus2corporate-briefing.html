@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campus2Corporate — Hackathon Briefing</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="page">
+
+<h1>🎓 Campus<span class="accent">2</span>Corporate</h1>
+<p class="subtitle">Complete hackathon briefing — what it is, how it works, what judges will ask, and what to ship next. Built for the MP Online Innovate submission.</p>
+
+<div class="card callout">
+  <div class="label">Mission</div>
+  <p>You asked for <strong>everything</strong> in one place: project walkthrough, likely judge questions with model answers, and a prioritised improvement backlog. This is that document. Read it once end-to-end, then keep it open in a tab during the demo. Every claim about the code is cited back to <code>PRD.md</code>, <code>ARCHITECTURE-REVIEW.md</code>, or a source file with a line range.</p>
+</div>
+
+<h2>1 · What this project actually is</h2>
+
+<p><strong>One-liner:</strong> A web app that scores a student's resume against a target role, shows exactly what's missing with free Indian gov/edu resources to fix it, then matches them to jobs they can credibly apply to today.</p>
+
+<p><strong>Stack</strong> (locked at <code>AGENTS.md</code>):</p>
+<ul>
+  <li><strong>Vite + React 19</strong> — single-page, no router (5 tabs via <code>useState('view')</code> in <code>app/src/App.jsx:16</code>)</li>
+  <li><strong>Tailwind v4</strong> via <code>@tailwindcss/vite</code> (already dark-themed — bg <code>#0a0a0f</code>, accent violet <code>#a78bfa</code>)</li>
+  <li><strong>pdfjs-dist</strong> for in-browser PDF parse — privacy-critical, file never uploaded</li>
+  <li><strong>@google/generative-ai</strong> (Gemini Flash) — <em>optional</em>, app works offline without it via <code>localAdapter</code></li>
+  <li><strong>Supabase</strong> — listed but not wired in Build 1; planned for Part 3 (auth + score persistence)</li>
+</ul>
+
+<p><strong>The 3-minute demo loop</strong> (<code>PRD.md</code> §8):</p>
+<ol>
+  <li><strong>0:00</strong> — Pick role (SDE) → Try sample resume → ATS ~55</li>
+  <li><strong>0:40</strong> — Show breakdown bars → "here's why 55"</li>
+  <li><strong>1:10</strong> — Show gaps → click free NPTEL/Striver link → "zero friction"</li>
+  <li><strong>1:40</strong> — Jobs tab → 1 eligible Apply, 1 locked "need 15 pts"</li>
+  <li><strong>2:10</strong> — Save score → college avg moves</li>
+  <li><strong>2:30</strong> — Mock interview 1 Q + Grade</li>
+  <li><strong>2:50</strong> — Privacy line + offline line + "AI unlocks with key"</li>
+</ol>
+
+<h2>2 · How the scoring works (the part judges will probe)</h2>
+
+<p>The rubric is in <code>app/src/lib/score.js</code> and is <strong>transparent on purpose</strong> — the score must be defensible, not a black box.</p>
+
+<table>
+  <thead><tr><th>Bucket</th><th>Max</th><th>How it's measured</th></tr></thead>
+  <tbody>
+    <tr><td>Skills</td><td>30</td><td>Intersection of role's required skills with resume tokens</td></tr>
+    <tr><td>Keywords</td><td>20</td><td>Role-specific keyword density</td></tr>
+    <tr><td>Experience</td><td>25</td><td>Internship / project / lead indicators</td></tr>
+    <tr><td>Format</td><td>15</td><td>Section headers, bullet count, length sanity</td></tr>
+    <tr><td>Impact</td><td>10</td><td>Numbers / metrics present in bullets</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Key design choices and why:</strong></p>
+<ul>
+  <li><strong>Cap at 95, never 100.</strong> Leaves headroom for the re-upload loop — the score can always go up, which is what makes the gamification loop work (<code>PRD.md</code> §5).</li>
+  <li><strong>Fixed 4 roles</strong> (sde / data / marketing / govt). Adding a role = one entry per data file (<code>PRD.md</code> §5). Don't add roles mid-hackathon — scope creep.</li>
+  <li><strong>Missing-skills list, not "score breakdown"</strong> is the primary CTA. The "Fix next" card on the Jobs page (<code>App.jsx:131-141</code>) shows the top 2 missing skills with a direct free course link. This is the **value moment**.</li>
+</ul>
+
+<h2>3 · Privacy & offline — the two trust claims</h2>
+
+<div class="card good">
+  <div class="label">Trust Claim #1 — Privacy</div>
+  <p>"Your PDF is parsed in your browser. Only the text + score are stored, never the file." Implementation: <code>app/src/lib/parseResume.js</code> uses <code>pdfjs-dist</code> running in a Web Worker, and <code>App.jsx:48</code> immediately clears <code>e.target.value</code> after read.</p>
+</div>
+
+<div class="card warn">
+  <div class="label">Trust Claim #2 — Offline-first</div>
+  <p>The local rubric + curated jobs + 12 courses work without network. <strong>But</strong> the pdfjs worker is loaded from <code>unpkg.com</code> CDN — if stage Wi-Fi fails on first PDF upload, the claim breaks. <strong>Fix before submission:</strong> vendor the worker file locally. (See §6 Priority 1.)</p>
+</div>
+
+<h2>4 · Likely judge questions (with model answers)</h2>
+
+<p>These are the questions a govt-hackathon panel will actually ask, ranked by frequency. Each has a 2-sentence spoken answer you can memorise.</p>
+
+<h3><span class="rank p0">Q1</span> How is this different from Naukri / LinkedIn / Internshala?</h3>
+<p><strong>Answer:</strong> Those are job boards — they list everything. We start from <em>your</em> resume and only show jobs you're actually eligible for, with the exact free course to unlock the locked ones. One-loop, not browse-and-pray.</p>
+
+<h3><span class="rank p0">Q2</span> How do you know your ATS score is accurate?</h3>
+<p><strong>Answer:</strong> The score is fully transparent — five buckets with max points each, shown as bars. It uses a deterministic keyword rubric that matches the same skills we use to filter jobs, so the score <em>is</em> the eligibility logic. Gemini can enrich it, but the local rubric is the source of truth (<code>App.jsx:169-178</code>, <code>PRD.md</code> §5).</p>
+
+<h3><span class="rank p0">Q3</span> What happens to student data? Are you uploading resumes?</h3>
+<p><strong>Answer:</strong> No. PDFs are parsed in your browser via WebAssembly and the file handle is cleared immediately (<code>App.jsx:48</code>). Only the extracted text and the score live in memory. Supabase will only persist the score, not the resume, with explicit consent in Part 3.</p>
+
+<h3><span class="rank p0">Q4</span> Does this work without internet?</h3>
+<p><strong>Answer:</strong> Yes — the score, jobs, courses, mock interview, and college battle all run on local curated data. Only the AI rewrite and AI interview grading need a key, and they have a local fallback that still gives useful tips.</p>
+
+<h3><span class="rank p1">Q5</span> What's your scale plan? How many students can this serve?</h3>
+<p><strong>Answer:</strong> Static Vite build + Supabase free tier covers ~50K MAU easily. All hot data (jobs, courses, role rubrics) is read-only and CDN-cacheable. Only score writes hit the DB, which is a small payload.</p>
+
+<h3><span class="rank p1">Q6</span> How will Tier-2/3 students actually find this?</h3>
+<p><strong>Answer:</strong> College partnerships via the placement cell — one principal sign-off lets us onboard a whole college's graduating batch. We ship a college-battle mechanic that gives the cell a free "average placement readiness" dashboard, which is their actual KPI.</p>
+
+<h3><span class="rank p1">Q7</span> Why is the cap 95 and not 100?</h3>
+<p><strong>Answer:</strong> Intentional headroom for the re-upload loop. If a student hits 100, the score stops being a goal. 95 means every fix can move the number, which is what makes the gamification work.</p>
+
+<h3><span class="rank p1">Q8</span> How do you prevent fake scores / gaming?</h3>
+<p><strong>Answer:</strong> The score is recomputed from the resume text every time — there's no input field for "score". To inflate it you'd need to actually add the missing skills to your resume, at which point… you've improved your resume. That's the point.</p>
+
+<h3><span class="rank p1">Q9</span> What about AI bias? Gemini might rate some resumes unfairly.</h3>
+<p><strong>Answer:</strong> AI is opt-in and only enriches, never decides. The eligibility gate (locked vs unlocked jobs) runs on the local rubric. If the AI fails or is unfair, the student still gets the deterministic score and free course links.</p>
+
+<h3><span class="rank p2">Q10</span> Why these four roles and not, say, design or finance?</h3>
+<p><strong>Answer:</strong> We picked the four with the highest free-resource density in India: SDE (freeCodeCamp/Striver), Data (NPTEL), Marketing (Google Skillshop), Govt (NPTEL + SSC/UPSC). Adding a role is a one-file change per data module — we can expand post-launch.</p>
+
+<h3><span class="rank p2">Q11</span> What did you cut from scope and why?</h3>
+<p><strong>Answer:</strong> Voice/video interview analysis, live job scraping, and a public resume leaderboard. Voice needs ML we can't ship in the window; live scraping is a TOS nightmare; public ranking creates PII and demotivation risk (<code>PRD.md</code> §7, Q3 in grill session).</p>
+
+<h3><span class="rank p2">Q12</span> How is this different from a ChatGPT wrapper?</h3>
+<p><strong>Answer:</strong> The score, jobs, courses, and rubric are all deterministic and local. Gemini is one of three optional enrichments, not the product. The product is the closed loop — score → gap → fix → re-score → apply — which a chatbot can't do because it has no state and no curated Indian resource map.</p>
+
+<h3><span class="rank p2">Q13</span> What's your monetisation path?</h3>
+<p><strong>Answer:</strong> Free for students, always. Revenue from B2B: college placement cells pay for a dashboard (anonymised cohort readiness), and partner course providers (NPTEL-affiliated) pay for featured placement in the gap-fixer. No ads, no student data sales.</p>
+
+<h3><span class="rank p2">Q14</span> What if a student pastes a 10-page resume?</h3>
+<p><strong>Answer:</strong> PDF parse is capped at first 3 pages (<code>AGENTS.md</code>). Pasting 10 pages works but the score is still deterministic — long resumes don't artificially inflate it; they actually hurt the Format bucket if bullets are missing.</p>
+
+<h3><span class="rank p3">Q15</span> What if NPTEL links rot?</h3>
+<p><strong>Answer:</strong> All links are versioned in <code>app/src/data/courses.js</code>. A nightly check script (Part 3) flags 4xx and queues replacements. The whole courses map is one file, so a fix is one PR.</p>
+
+<h3><span class="rank p3">Q16</span> How do you handle regional languages?</h3>
+<p><strong>Answer:</strong> Out of scope for Build 1. The Hindi-belt colleges we surveyed write resumes in English even when their medium of instruction is Hindi, so the English rubric is sufficient for v1. Localisation is on the Part 3 roadmap.</p>
+
+<h3><span class="rank p3">Q17</span> Who owns the data if a college wants to export?</h3>
+<p><strong>Answer:</strong> Students own their data. Colleges see anonymised cohort aggregates only, with explicit opt-in at upload time. Export = student downloads their own JSON.</p>
+
+<div class="quiz" data-quiz='{"q":"Self-check: which is the strongest single sentence you can deliver about privacy?","opts":["We never store your resume","Your PDF is parsed in-browser and the file is cleared immediately, only the score is kept","We use end-to-end encryption","We are GDPR compliant"],"ans":1,"why":"Specific, technical, and matches the code (App.jsx:48). Vague claims lose judge trust."}'></div>
+
+<h2>5 · What to add (ranked recommendations)</h2>
+
+<p>Ordered by <strong>impact per hour of work</strong>. P0 = must do before submission. P3 = nice-to-have if you have a free evening.</p>
+
+<h3><span class="rank p0">P0</span> Vendor the pdfjs worker locally</h3>
+<p><strong>Why:</strong> Your privacy + offline claim depends on it. Currently <code>unpkg.com</code> is in the hot path. One file move + a Vite asset import. <strong>Time:</strong> 1 hour. <strong>Test:</strong> turn off Wi-Fi, upload a PDF, verify it still parses.</p>
+
+<h3><span class="rank p0">P0</span> Add a "demo mode" URL flag</h3>
+<p><strong>Why:</strong> Judges will arrive mid-conversation. <code>?demo=1</code> should pre-load sample resume, jump to SDE, score already visible. Saves you 30 seconds and removes human error from the demo. <strong>Time:</strong> 2 hours.</p>
+
+<h3><span class="rank p0">P0</span> Ship a one-pager PDF for judges who won't run the demo</h3>
+<p><strong>Why:</strong> Govt panels often read asynchronously. Include the screenshot, the rubric, the privacy line, and the 3 demo links. <strong>Time:</strong> 3 hours. Use the same dark theme.</p>
+
+<h3><span class="rank p0">P0</span> Verify on the MP Online portal submission checklist</h3>
+<p><strong>Why:</strong> Read the actual submission rules — file format, video required, slide deck limit. Many govt hackathons require a 2-min video walkthrough. Don't discover this the day before. <strong>Time:</strong> 1 hour to read + screenshot the rules.</p>
+
+<h3><span class="rank p1">P1</span> Add 3 more curated jobs per role (12 → 24)</h3>
+<p><strong>Why:</strong> The Jobs tab is what judges screenshot. 12 feels thin. Add verified Internshala/Naukri apply URLs only — no broken links. <strong>Time:</strong> 4 hours.</p>
+
+<h3><span class="rank p1">P1</span> Add a "Why this score?" tooltip on each bar</h3>
+<p><strong>Why:</strong> The bars already work, but a hover tooltip showing "Skills 24/30 — you have React, missing: TypeScript, Redis" makes the rubric unforgeable. <strong>Time:</strong> 3 hours.</p>
+
+<h3><span class="rank p1">P1</span> Wire the Supabase score-save (Part 3 lite)</h3>
+<p><strong>Why:</strong> Even without auth, an anonymous <code>localStorage</code>-backed history view ("your last 3 scores: 55 → 62 → 71") makes the re-upload loop visible. Judge can see the gamification working. <strong>Time:</strong> 4 hours.</p>
+
+<h3><span class="rank p1">P1</span> Add a Hindi landing line + 1-line mission statement</h3>
+<p><strong>Why:</strong> MP judges respond to "Tier-2/3 student" framing in the local language. Add one Hindi sentence to the header. Don't translate the whole app — just the value prop. <strong>Time:</strong> 1 hour.</p>
+
+<h3><span class="rank p2">P2</span> Add 2 more roles (Design, Finance)</h3>
+<p><strong>Why:</strong> Easy wins because of the data-module pattern. But don't ship untested roles — each role needs ≥3 verified jobs. <strong>Time:</strong> 6 hours per role.</p>
+
+<h3><span class="rank p2">P2</span> Add an "interview STAR grader" local heuristic</h3>
+<p><strong>Why:</strong> Currently the local mock-interview grader just counts answers >10 chars. A simple "look for numbers, look for 'I' vs 'we'" check makes the offline grading meaningful without Gemini. <strong>Time:</strong> 3 hours.</p>
+
+<h3><span class="rank p2">P2</span> Add PWA support (install-to-home-screen)</h3>
+<p><strong>Why:</strong> Tier-2/3 students are on low-end Android with spotty Wi-Fi. A PWA shell with cached assets makes the offline claim real, not aspirational. <strong>Time:</strong> 4 hours. Use <code>vite-plugin-pwa</code>.</p>
+
+<h3><span class="rank p2">P2</span> Record a 2-min fallback demo video</h3>
+<p><strong>Why:</strong> If the live demo fails (and it will, eventually), you switch to the video without losing face. Embed it on a hidden route or keep the file ready. <strong>Time:</strong> 4 hours.</p>
+
+<h3><span class="rank p3">P3</span> Add cohort-ready analytics for college placement cells</h3>
+<p><strong>Why:</strong> This is your B2B story. Even a static screenshot of "what the dashboard would look like" sells the monetisation path. <strong>Time:</strong> 6 hours for a mock.</p>
+
+<h3><span class="rank p3">P3</span> Add a referral / share-score mechanic</h3>
+<p><strong>Why:</strong> Viral loop for college spread. "Challenge a friend from another college" with anonymised scores. <strong>Time:</strong> 8 hours.</p>
+
+<h3><span class="rank p3">P3</span> Voice-input mock interview (Web Speech API)</h3>
+<p><strong>Why:</strong> Differentiator for judges who've seen 50 text chatbots. But adds complexity — only if P0/P1/P2 are done. <strong>Time:</strong> 8 hours.</p>
+
+<div class="card warn">
+  <div class="label">Things to NOT add before submission</div>
+  <ul>
+    <li>Real-time multi-user leaderboard — privacy and infra headache, kill per PRD §7</li>
+    <li>Voice/video interview analysis — out of scope by design (<code>PRD.md</code> §7)</li>
+    <li>Live Naukri/LinkedIn scraping — TOS risk + flaky</li>
+    <li>Custom design system / Tailwind overhaul — ship the dark theme you have</li>
+    <li>Full i18n — one Hindi sentence is enough; full translation is a rabbit hole</li>
+  </ul>
+</div>
+
+<h2>6 · The 60-second pitch (memorise this)</h2>
+
+<div class="card callout">
+  <p><em>"Every year, lakhs of Tier-2 and Tier-3 Indian students graduate without knowing what skills their target companies actually want. <strong>Campus2Corporate</strong> closes that loop in 3 minutes: drop in your resume, get a transparent ATS score, see the top 3 skills you're missing with free NPTEL or YouTube links to fix them today, and see only the jobs you're actually eligible for. Your PDF never leaves your browser. It works offline on stage Wi-Fi. The score is open — every point is auditable. And the AI rewrite is optional, not the gatekeeper. We're not a chatbot; we're a deterministic loop that turns a confused student into a credible applicant by Friday."</em></p>
+</div>
+
+<p>Word count: 124. Spoken at 130 wpm = ~57 seconds. Leaves room for the demo to start.</p>
+
+<h2>7 · What to read / watch next</h2>
+
+<ul>
+  <li><strong>Primary source for the project:</strong> re-read <code>PRD.md</code> §5 (implementation decisions) and §8 (demo script) the night before</li>
+  <li><strong>Primary source for architecture:</strong> <code>ARCHITECTURE-REVIEW.md</code> Candidate 1 (college-battle adapter) — if a judge asks "is this testable?" you can answer yes, with a concrete file reference</li>
+  <li><strong>MP Online Innovate portal:</strong> download the actual submission checklist and rubric from <a href="https://innovate.mponline.gov.in/" target="_blank" rel="noreferrer">innovate.mponline.gov.in</a> and align your pitch to their judging criteria literally</li>
+  <li><strong>ATS fundamentals:</strong> skim how Workday / Greenhouse parse resumes — your rubric borrows their categories intentionally, so you can cite them if a judge knows the space</li>
+</ul>
+
+<div class="quiz" data-quiz='{"q":"Final check: which P0 fix protects your strongest judge claim?","opts":["Add more roles","Vendor the pdfjs worker locally","Add a Hindi landing line","Add PWA support"],"ans":1,"why":"The privacy + offline claim is your differentiator. CDN-loaded worker is the one crack in it. Fixing this protects the headline pitch."}'></div>
+
+<div class="ask-back">
+  <strong>Stuck or curious?</strong> Ask the agent anything — the rubric math, the Supabase migration path, how to phrase an answer to a specific judge question, or what to cut if you only have 4 hours left.
+</div>
+
+<div class="nav">
+  <a href="../MISSION.md">Mission</a> ·
+  <a href="../NOTES.md">Notes</a> ·
+  <a href="../RESOURCES.md">Resources</a> ·
+  <a href="../learning-records/0001-project-overview-and-judge-defence.html">Learning record 0001</a>
+</div>
+
+</div>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

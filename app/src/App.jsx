@@ -1,0 +1,727 @@
+import { useEffect, useMemo, useState } from "react";
+import {
+  ArrowRight, ArrowUpRight, BellRing, BookOpen, Bookmark, Briefcase,
+  CheckCircle2, Circle, CircleCheck, ExternalLink, FileText, Flame, Gauge,
+  GraduationCap, Hammer, Lock, MapPin, Mic, RotateCcw, Search, ShieldCheck,
+  Sparkles, Sprout, Trophy,
+} from "lucide-react";
+import { ROLES, scoreResume } from "./lib/score";
+import { matchJobs } from "./data/jobs";
+import { coursesFor, PROJECT_IDEAS } from "./data/courses";
+import { COLLEGES, recomputeCollegeAvg } from "./data/colleges";
+import { INTERVIEW_QS } from "./data/interview";
+import { SAMPLE_RESUME } from "./data/fixtures";
+import { QUEST_TREE } from "./data/quests";
+import { bumpStreak, getStreak, isCourseDone, isProjectDone, setQuestDone, completedSkillIdsForRole } from "./lib/progress";
+import { improveResume, mockInterviewFeedback } from "./lib/gemini";
+import { parseResumeFile } from "./lib/parseResume";
+import { Badge, Button, Card, CardHead, Field, Progress, inputCls } from "./components/ui";
+import { FadeUp, Lift, Meter, Segmented, TextReveal, Tilt } from "./components/amicro";
+
+const AI_ON = Boolean(import.meta.env.VITE_GEMINI_KEY);
+
+// ponytail: naukri-style save/apply/alert persist in localStorage — no backend until Supabase
+const load = (k, fb) => { try { return JSON.parse(localStorage.getItem(k)) ?? fb; } catch { return fb; } };
+const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+
+const NAV = [
+  ["jobs", "Jobs", Briefcase],
+  ["score", "My Score", Gauge],
+  ["quests", "Quests", Sprout],
+  ["interview", "Interview", Mic],
+  ["battle", "Battle", Trophy],
+];
+
+const ROLE_OPTS = Object.entries(ROLES).map(([value, r]) => ({ value, label: r.label }));
+const STEPS = ["Role", "Upload", "Score", "Fix"];
+const JOB_TABS = [
+  { value: "rec", label: "Recommended" },
+  { value: "saved", label: "Saved" },
+  { value: "applied", label: "Applied" },
+];
+
+export default function App() {
+  const [view, setView] = useState("jobs");
+  const [q, setQ] = useState("");
+  const [locQ, setLocQ] = useState("");
+  const [role, setRole] = useState("sde");
+  const [text, setText] = useState("");
+  const [aiTip, setAiTip] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [answers, setAnswers] = useState({});
+  const [feedback, setFeedback] = useState("");
+  const [myScore, setMyScore] = useState(null);
+  // naukri: tracker state
+  const [saved, setSaved] = useState(() => load("c2c-saved", []));
+  const [applied, setApplied] = useState(() => load("c2c-applied", []));
+  const [alert, setAlert] = useState(() => load("c2c-alert", null));
+  const [jobTab, setJobTab] = useState("rec");
+  const [typeFilter, setTypeFilter] = useState([]);
+  const [locFilter, setLocFilter] = useState([]);
+  const [eligFilter, setEligFilter] = useState("all");
+  const [sort, setSort] = useState("rel");
+  // quests/2: quest version + interview streak
+  const [questVer, setQuestVer] = useState(0);
+  const [streak, setStreak] = useState(() => getStreak());
+
+  const earnedSkills = useMemo(() => {
+    // recompute when questVer changes so toggling a quest re-credits the score live
+    void questVer;
+    return completedSkillIdsForRole(role);
+  }, [role, questVer]);
+
+  const result = useMemo(
+    () => (text.trim() ? scoreResume(text, role, earnedSkills) : null),
+    [text, role, earnedSkills]
+  );
+  const score = result?.total ?? 0;
+  const jobs = useMemo(() => matchJobs(role, score, result?.found || []), [role, score, result]);
+  const colleges = useMemo(() => {
+    if (myScore == null) return COLLEGES;
+    const youRow = COLLEGES.find((c) => c.you);
+    return youRow ? recomputeCollegeAvg(COLLEGES, myScore, youRow.name) : COLLEGES;
+  }, [myScore]);
+
+  const foundSet = useMemo(() => new Set((result?.found || []).map((s) => s.toLowerCase())), [result]);
+  const allTypes = useMemo(() => [...new Set(jobs.map((j) => j.type))], [jobs]);
+  const allLocs = useMemo(() => [...new Set(jobs.map((j) => j.loc))], [jobs]);
+
+  // naukri: recommended = eligible-first, then saved/applied shelves, filters, sort
+  const visibleJobs = useMemo(() => {
+    let list = jobs;
+    if (jobTab === "saved") list = list.filter((j) => saved.includes(j.id));
+    if (jobTab === "applied") list = list.filter((j) => applied.includes(j.id));
+    const needle = q.trim().toLowerCase();
+    if (needle) list = list.filter((j) => `${j.title} ${j.company} ${j.loc} ${j.skills.join(" ")}`.toLowerCase().includes(needle));
+    const locNeedle = locQ.trim().toLowerCase();
+    if (locNeedle) list = list.filter((j) => j.loc.toLowerCase().includes(locNeedle));
+    if (typeFilter.length) list = list.filter((j) => typeFilter.includes(j.type));
+    if (locFilter.length) list = list.filter((j) => locFilter.includes(j.loc));
+    if (eligFilter === "ok") list = list.filter((j) => j.eligible);
+    if (eligFilter === "locked") list = list.filter((j) => !j.eligible);
+    if (sort === "easy") list = [...list].sort((a, b) => a.minScore - b.minScore);
+    return list;
+  }, [jobs, jobTab, saved, applied, q, locQ, typeFilter, locFilter, eligFilter, sort]);
+
+  const eligibleCount = jobs.filter((j) => j.eligible).length;
+  const hasFilters = q || locQ || typeFilter.length || locFilter.length || eligFilter !== "all";
+  const filledAnswers = Object.values(answers).filter((a) => (a || "").trim().length > 10).length;
+  // naukri: profile completeness from real state — resume, score, interview, saved
+  const strength = (text.trim().length >= 50 ? 25 : 0) + (result?.breakdown ? 25 : 0) + (filledAnswers >= 3 ? 25 : 0) + (myScore != null ? 25 : 0);
+
+  function go(v) { setView(v); }
+  const toggleIn = (list, set, key, id) => {
+    const next = list.includes(id) ? list.filter((x) => x !== id) : [...list, id];
+    set(next); save(key, next);
+  };
+  const toggleList = (list, set, v) => set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
+  function clearFilters() {
+    setQ(""); setLocQ(""); setTypeFilter([]); setLocFilter([]); setEligFilter("all");
+  }
+
+  async function onFile(e) {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    try {
+      setText(await parseResumeFile(f));
+    } catch (err) {
+      alert(err.message);
+    }
+    e.target.value = ""; // file never leaves browser
+  }
+
+  async function getAiHelp() {
+    if (!result) return;
+    setAiLoading(true);
+    const line = result.breakdown.map((b) => `${b.label} ${b.pts}/${b.max}`).join(", ");
+    const tip = await improveResume(text, ROLES[role].label, result.missing, `${score}/95 — ${line}`);
+    setAiTip(tip || "Add VITE_GEMINI_KEY in .env to unlock AI rewrites. Local tips above already work for demo.");
+    setAiLoading(false);
+  }
+
+  async function gradeInterview() {
+    const qs = INTERVIEW_QS[role];
+    const qa = qs.map((qq, i) => `Q: ${qq}\nA: ${answers[i] || "(skipped)"}`).join("\n");
+    const local = `Local score: ${filledAnswers}/5 answered well. Tip: use STAR (Situation-Task-Action-Result) + 1 number in each answer.`;
+    const ai = await mockInterviewFeedback(ROLES[role].label, qa);
+    setFeedback(ai || local + " (Add VITE_GEMINI_KEY for AI grading.)");
+    // quests/2: reward the daily interview habit, even on local mode
+    if (filledAnswers >= 3) {
+      const next = bumpStreak();
+      setStreak(next);
+    }
+  }
+
+  function saveScore() {
+    if (!score) return;
+    setMyScore(score);
+    go("battle");
+  }
+
+  const statusLine = !result
+    ? "Upload a resume to get scored"
+    : score >= 70 ? "Job-ready — apply where eligible" : score >= 45 ? "Close — fix 2–3 gaps below" : "Foundation stage — 1 project + 1 cert";
+
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+      {/* ── Sidebar ─────────────────────────────────────────── */}
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 w-60 flex-col bg-zinc-950 border-r border-white/10 z-20">
+        <button onClick={() => go("jobs")} className="flex items-center gap-2.5 px-5 pt-6 pb-5 text-left cursor-pointer">
+          <span className="grid place-items-center w-9 h-9 rounded-lg bg-white text-zinc-950">
+            <GraduationCap size={18} />
+          </span>
+          <span>
+            <span className="block text-sm font-bold leading-tight">Campus2Corporate</span>
+            <span className="block text-[11px] text-zinc-500">Career readiness suite</span>
+          </span>
+        </button>
+        <nav className="px-3 space-y-1">
+          {NAV.map(([k, label, Icon]) => (
+            <button
+              key={k}
+              onClick={() => go(k)}
+              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${view === k ? "bg-white text-zinc-950" : "text-zinc-400 hover:bg-white/5 hover:text-zinc-100"}`}
+            >
+              <Icon size={16} />
+              {label}
+              {k === "jobs" && result && (
+                <Badge tone={view === k ? "light" : eligibleCount ? "emerald" : "zinc"} className="ml-auto">
+                  {eligibleCount}
+                </Badge>
+              )}
+            </button>
+          ))}
+        </nav>
+        <div className="mt-auto p-4 space-y-3">
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+            <div className="flex items-center justify-between text-xs font-semibold">
+              Profile strength
+              <span className="tabular-nums text-zinc-400">{strength}%</span>
+            </div>
+            <Progress value={strength} className="mt-2" />
+            <p className="text-[11px] text-zinc-500 mt-2 leading-relaxed">
+              {strength < 100 ? "Resume, score, interview + save to reach 100." : "Complete — recruiters see full profiles first."}
+            </p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+            <div className="flex items-center gap-1.5 text-xs font-semibold"><ShieldCheck size={14} /> Private by design</div>
+            <p className="text-[11px] text-zinc-500 mt-1 leading-relaxed">PDFs are parsed in your browser and never uploaded.</p>
+          </div>
+        </div>
+      </aside>
+
+      <div className="lg:pl-60">
+        {/* ── Header ────────────────────────────────────────── */}
+        <header className="sticky top-0 z-10 bg-zinc-950/85 backdrop-blur border-b border-white/10">
+          <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-2">
+            <span className="lg:hidden grid place-items-center w-8 h-8 rounded-lg bg-white text-zinc-950 shrink-0">
+              <GraduationCap size={16} />
+            </span>
+            <nav className="lg:hidden flex gap-1 overflow-x-auto">
+              {NAV.map(([k, label]) => (
+                <button key={k} onClick={() => go(k)}
+                  className={`px-2.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap cursor-pointer ${view === k ? "bg-white text-zinc-950" : "text-zinc-400 hover:bg-white/5"}`}>
+                  {label}
+                </button>
+              ))}
+            </nav>
+            <div className="hidden lg:block text-xs text-zinc-500">
+              {view === "jobs" && "Jobs matched to your profile"}
+              {view === "score" && "Upload → score → fix gaps"}
+              {view === "quests" && "Skill tree — course + project pairs to grow your score"}
+              {view === "interview" && "5-question mock, instant grading"}
+              {view === "battle" && "College averages, private resumes"}
+            </div>
+            <div className="ml-auto flex items-center gap-2">
+              {streak.count > 0 && (
+                <Badge tone="amber" title={`${streak.count}-day interview streak`}>
+                  <Flame size={11} /> {streak.count}d
+                </Badge>
+              )}
+              <Badge tone={AI_ON ? "emerald" : "zinc"}>{AI_ON ? <><Sparkles size={11} /> AI on</> : "Local mode"}</Badge>
+              <button onClick={() => go("score")}
+                className={`text-xs font-semibold px-3 py-2 rounded-lg border transition-colors cursor-pointer ${result ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400" : "bg-white text-zinc-950 border-white"}`}>
+                {result ? `ATS ${score}` : "Get scored"}
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main className="max-w-5xl mx-auto px-4 py-6">
+          {/* ═══ JOBS ═══ */}
+          {view === "jobs" && (
+            <div>
+              <FadeUp>
+                <div className="flex items-end justify-between gap-3 flex-wrap">
+                  <div>
+                    <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="Recommended jobs" /></h1>
+                    <p className="text-sm text-zinc-500 mt-1">
+                      {result ? `${eligibleCount} eligible at ATS ${score} · matched to your skills` : "Get scored to unlock profile-matched recommendations"}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      if (alert) { setAlert(null); save("c2c-alert", null); }
+                      else { const a = { q, locQ, types: typeFilter }; setAlert(a); save("c2c-alert", a); }
+                    }}
+                    className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border transition-colors cursor-pointer ${alert ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400" : "border-white/10 text-zinc-400 hover:bg-white/5"}`}
+                  >
+                    <BellRing size={13} /> {alert ? "Alert on" : "Set alert"}
+                  </button>
+                </div>
+              </FadeUp>
+
+              {/* naukri: keyword + location search */}
+              <FadeUp delay={0.05} className="mt-4">
+                <Card className="p-4">
+                  <div className="grid sm:grid-cols-[1fr_220px] gap-2">
+                    <div className="relative">
+                      <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Skills, designation, company…"
+                        className={`${inputCls} pl-9`} />
+                    </div>
+                    <div className="relative">
+                      <MapPin size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                      <input value={locQ} onChange={(e) => setLocQ(e.target.value)} placeholder="Location…"
+                        className={`${inputCls} pl-9`} />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center gap-2 flex-wrap">
+                    <Segmented options={ROLE_OPTS} value={role} onChange={setRole} />
+                  </div>
+                </Card>
+              </FadeUp>
+
+              {/* naukri: rec / saved / applied shelves */}
+              <FadeUp delay={0.08} className="mt-3 flex items-center gap-1 flex-wrap">
+                {JOB_TABS.map((t) => {
+                  const n = t.value === "saved" ? saved.length : t.value === "applied" ? applied.length : null;
+                  return (
+                    <button key={t.value} onClick={() => setJobTab(t.value)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${jobTab === t.value ? "bg-white text-zinc-950 border-white" : "border-white/10 text-zinc-400 hover:bg-white/5"}`}>
+                      {t.label}{n != null && <span className="ml-1.5 tabular-nums opacity-70">{n}</span>}
+                    </button>
+                  );
+                })}
+                <div className="ml-auto flex items-center gap-1.5">
+                  <label className="text-[11px] text-zinc-500">Sort</label>
+                  <select value={sort} onChange={(e) => setSort(e.target.value)}
+                    className="text-xs bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 outline-none cursor-pointer">
+                    <option value="rel">Relevance</option>
+                    <option value="easy">Easiest to unlock</option>
+                  </select>
+                </div>
+              </FadeUp>
+
+              <div className="grid md:grid-cols-[200px_1fr] gap-4 mt-4 items-start">
+                {/* naukri: left filter rail */}
+                <FadeUp delay={0.1}>
+                  <Card className="p-4 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold">Filters</span>
+                      {hasFilters && (
+                        <button onClick={clearFilters}
+                          className="inline-flex items-center gap-1 text-[11px] text-zinc-400 hover:text-zinc-100 cursor-pointer">
+                          <RotateCcw size={11} /> Clear
+                        </button>
+                      )}
+                    </div>
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider text-zinc-500 mb-2">Eligibility</div>
+                      {[["all", "All"], ["ok", "Eligible"], ["locked", "Locked"]].map(([v, l]) => (
+                        <label key={v} className="flex items-center gap-2 text-xs text-zinc-300 py-1 cursor-pointer">
+                          <input type="radio" name="elig" checked={eligFilter === v} onChange={() => setEligFilter(v)}
+                            className="accent-white" /> {l}
+                        </label>
+                      ))}
+                    </div>
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider text-zinc-500 mb-2">Job type</div>
+                      {allTypes.map((t) => (
+                        <label key={t} className="flex items-center gap-2 text-xs text-zinc-300 py-1 cursor-pointer">
+                          <input type="checkbox" checked={typeFilter.includes(t)} onChange={() => toggleList(typeFilter, setTypeFilter, t)}
+                            className="accent-white" /> {t}
+                        </label>
+                      ))}
+                    </div>
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider text-zinc-500 mb-2">Location</div>
+                      {allLocs.map((l) => (
+                        <label key={l} className="flex items-center gap-2 text-xs text-zinc-300 py-1 cursor-pointer">
+                          <input type="checkbox" checked={locFilter.includes(l)} onChange={() => toggleList(locFilter, setLocFilter, l)}
+                            className="accent-white" /> {l}
+                        </label>
+                      ))}
+                    </div>
+                  </Card>
+                </FadeUp>
+
+                {/* results */}
+                <div className="space-y-3">
+                  {visibleJobs.length === 0 && (
+                    <Card className="p-5 text-sm text-zinc-400">
+                      {jobTab !== "rec"
+                        ? <>Nothing here yet — {jobTab === "saved" ? "bookmark jobs to apply later." : "applied jobs will appear here."}</>
+                        : <>No matches. <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={clearFilters}>Broaden filters</button></>}
+                    </Card>
+                  )}
+                  {visibleJobs.map((j, i) => {
+                    const isSaved = saved.includes(j.id);
+                    const isApplied = applied.includes(j.id);
+                    return (
+                      <FadeUp key={j.id} delay={Math.min(i * 0.04, 0.2)}>
+                        <article className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <div className="font-semibold text-[15px] flex items-center gap-1.5">
+                                {!j.eligible && <Lock size={13} className="text-zinc-500" />}
+                                {j.title}
+                              </div>
+                              <div className="text-xs text-zinc-500 mt-0.5">{j.company} • {j.loc} • {j.type} • needs ATS {j.minScore}+</div>
+                            </div>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              <Badge tone={j.eligible ? "emerald" : "amber"}>
+                                {j.eligible ? <><CheckCircle2 size={11} /> Eligible</> : `+${j.minScore - score}`}
+                              </Badge>
+                              <button
+                                onClick={() => toggleIn(saved, setSaved, "c2c-saved", j.id)}
+                                title={isSaved ? "Remove from saved" : "Save for later"}
+                                className={`grid place-items-center w-7 h-7 rounded-lg border transition-colors cursor-pointer ${isSaved ? "border-white bg-white text-zinc-950" : "border-white/10 text-zinc-500 hover:bg-white/5"}`}>
+                                <Bookmark size={13} fill={isSaved ? "currentColor" : "none"} />
+                              </button>
+                            </div>
+                          </div>
+                          {/* skill-match chips from real scoring */}
+                          <div className="flex flex-wrap gap-1.5 mt-2.5">
+                            {j.skills.map((s) => foundSet.has(s.toLowerCase())
+                              ? <span key={s} className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"><CheckCircle2 size={10} />{s}</span>
+                              : <span key={s} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-zinc-500">{s}</span>)}
+                          </div>
+                          <div className="text-[11px] text-zinc-500 mt-2 tabular-nums">Matched {j.matched}/{j.skills.length} skills</div>
+                          <div className="mt-3 flex items-center gap-2">
+                            {isApplied
+                              ? <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400"><CheckCircle2 size={13} /> Applied
+                                  <button onClick={() => toggleIn(applied, setApplied, "c2c-applied", j.id)} className="underline text-zinc-500 hover:text-zinc-300 cursor-pointer">undo</button></span>
+                              : j.eligible
+                                ? <Lift>
+                                    <a href={j.apply} target="_blank" rel="noreferrer"
+                                      onClick={() => { if (!applied.includes(j.id)) { const n = [...applied, j.id]; setApplied(n); save("c2c-applied", n); } }}
+                                      className="inline-flex items-center gap-1 text-xs font-medium px-4 py-2 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200">
+                                      Apply <ArrowUpRight size={13} />
+                                    </a>
+                                  </Lift>
+                                : <button onClick={() => go("score")}
+                                    className="text-xs font-medium text-amber-400 hover:underline cursor-pointer">Need {j.minScore - score} more pts — check My Score →</button>}
+                          </div>
+                        </article>
+                      </FadeUp>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ═══ SCORE ═══ */}
+          {view === "score" && (
+            <div className="max-w-2xl mx-auto">
+              <FadeUp>
+                <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="My Score" /></h1>
+                <p className="text-sm text-zinc-500 mt-1">Transparent rubric — every point shows its evidence.</p>
+              </FadeUp>
+              <FadeUp delay={0.05}>
+                <ol className="flex items-center gap-1.5 mt-4 mb-4">
+                  {STEPS.map((s, i) => {
+                    const done = (i === 0) || (i === 1 && text.trim()) || (i === 2 && result) || (i === 3 && result?.missing?.length);
+                    return (
+                      <li key={s} className="flex items-center gap-1.5 flex-1 last:flex-none">
+                        <span className={`grid place-items-center w-6 h-6 rounded-full text-[11px] font-bold shrink-0 ${done ? "bg-white text-zinc-950" : "border border-white/15 text-zinc-500"}`}>{i + 1}</span>
+                        <span className={`text-xs font-medium ${done ? "text-zinc-100" : "text-zinc-500"}`}>{s}</span>
+                        {i < 3 && <span className="flex-1 h-px bg-white/10 mx-1" />}
+                      </li>
+                    );
+                  })}
+                </ol>
+              </FadeUp>
+
+              <div className="space-y-4">
+                <FadeUp delay={0.08}>
+                  <Card>
+                    <CardHead title="Step 1 — Target role" desc="Scoring is role-specific" />
+                    <div className="p-4"><Segmented options={ROLE_OPTS} value={role} onChange={setRole} /></div>
+                  </Card>
+                </FadeUp>
+
+                <FadeUp delay={0.12}>
+                  <Card>
+                    <CardHead title="Step 2 — Upload resume" desc="Parsed locally, never uploaded" />
+                    <div className="p-4 space-y-3">
+                      <Field label="Resume file (PDF or TXT)">
+                        <input type="file" accept=".pdf,.txt" onChange={onFile}
+                          className="w-full text-sm file:mr-3 file:px-3 file:py-2 file:rounded-lg file:bg-white file:text-zinc-950 file:border-0 file:text-xs file:font-medium file:cursor-pointer hover:file:bg-zinc-200 text-zinc-500 cursor-pointer" />
+                      </Field>
+                      <Field label="Or paste resume text">
+                        <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Paste resume text here…"
+                          className={`${inputCls} h-36 resize-y`} />
+                      </Field>
+                      <div className="flex flex-wrap gap-2">
+                        <Button variant="secondary" size="sm" onClick={() => setText(SAMPLE_RESUME)}>Try sample</Button>
+                        <Lift><Button variant="success" size="sm" onClick={saveScore} disabled={!result}>Save score → battle <ArrowRight size={13} /></Button></Lift>
+                      </div>
+                    </div>
+                  </Card>
+                </FadeUp>
+
+                <FadeUp delay={0.16}>
+                  <Tilt>
+                    <div className="bg-white/[0.04] border border-white/10 rounded-xl p-6 text-center">
+                      <div className="text-[11px] uppercase tracking-[0.14em] text-zinc-500">Step 3 — ATS Score • {ROLES[role].label}</div>
+                      <div className="text-6xl font-extrabold tracking-tight my-2 tabular-nums">{result ? score : "––"}</div>
+                      <div className="text-xs text-zinc-400">{result ? statusLine : "Upload to score"}</div>
+                      {result?.breakdown && (
+                        <div className="text-left mt-5 space-y-2.5">
+                          {result.breakdown.map((b) => (
+                            <div key={b.label}>
+                              <div className="flex justify-between text-xs"><span className="text-zinc-400">{b.label}</span><span className="font-semibold tabular-nums">{b.pts}/{b.max}</span></div>
+                              <div className="mt-1"><Meter value={b.pts} max={b.max} /></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {result?.msg && <p className="text-xs text-amber-400 mt-3">{result.msg}</p>}
+                    </div>
+                  </Tilt>
+                </FadeUp>
+
+                {result && result.breakdown && (
+                  <FadeUp delay={0.2}>
+                    <Card>
+                      <CardHead title="Step 4 — Fix gaps (free)" desc="Top 3 missing skills + one project" />
+                      <div className="p-4 space-y-3">
+                        {result.missing.slice(0, 3).map((m) => (
+                          <div key={m} className="rounded-lg bg-white/[0.03] border border-white/10 p-3">
+                            <div className="text-sm font-semibold capitalize">Missing: {m}</div>
+                            {coursesFor(m).map((c) => (
+                              <a key={c.u + c.t} href={c.u} target="_blank" rel="noreferrer"
+                                className="flex items-center gap-1 text-xs text-zinc-300 hover:text-white hover:underline mt-1"><BookOpen size={12} /> {c.t}</a>
+                            ))}
+                          </div>
+                        ))}
+                        <div className="flex items-start gap-1.5 text-xs text-zinc-400"><Hammer size={13} className="mt-0.5 shrink-0" /> Do 1 project: {PROJECT_IDEAS[role][0]}</div>
+                        <Button className="w-full" onClick={getAiHelp} disabled={aiLoading}>
+                          <Sparkles size={14} /> {aiLoading ? "AI thinking…" : "AI rewrite my bullets (needs key)"}
+                        </Button>
+                        {aiTip && <p className="text-xs whitespace-pre-wrap p-3 bg-white/[0.03] rounded-lg border border-white/10 leading-relaxed text-zinc-300">{aiTip}</p>}
+                      </div>
+                    </Card>
+                  </FadeUp>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* ═══ QUESTS — skill-tree gamification ═══ */}
+          {view === "quests" && (() => {
+            const tree = QUEST_TREE[role];
+            const roleSkills = ROLES[role].skills.map((s) => s.toLowerCase());
+            let earnedCount = 0, totalCount = 0;
+            const branchData = tree.branches.map((br) => {
+              const done = br.skills.filter((sk) =>
+                isCourseDone(role, sk.id) && isProjectDone(role, sk.id)
+              ).length;
+              earnedCount += done;
+              totalCount += br.skills.length;
+              return { ...br, done };
+            });
+            return (
+              <div className="max-w-2xl mx-auto">
+                <FadeUp>
+                  <div className="flex items-end justify-between gap-3 flex-wrap">
+                    <div>
+                      <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="Skill quests" /></h1>
+                      <p className="text-sm text-zinc-500 mt-1">
+                        Each skill needs a <span className="text-zinc-300">free course</span> + a <span className="text-zinc-300">real project</span>. Both unlock the badge — and your ATS.
+                      </p>
+                    </div>
+                    <Badge tone="emerald">{earnedCount}/{totalCount} skills closed</Badge>
+                  </div>
+                </FadeUp>
+                <FadeUp delay={0.05} className="mt-4">
+                  <div className="mb-3"><Segmented options={ROLE_OPTS} value={role} onChange={setRole} /></div>
+                </FadeUp>
+                <FadeUp delay={0.08}>
+                  <Card className="p-4">
+                    <Progress value={earnedCount} max={totalCount || 1} />
+                    <p className="text-[11px] text-zinc-500 mt-2">
+                      Closing a quest adds the skill to your score even if it's not yet on your resume. Target gaps <span className="text-zinc-300">first</span> — they unblock eligibility fastest.
+                    </p>
+                  </Card>
+                </FadeUp>
+                <div className="space-y-3 mt-4">
+                  {branchData.map((br, bi) => (
+                    <FadeUp key={br.id} delay={Math.min(0.05 + bi * 0.05, 0.3)}>
+                      <Card>
+                        <CardHead
+                          title={br.name}
+                          desc={`${br.done}/${br.skills.length} complete`}
+                          right={br.done === br.skills.length && <Badge tone="emerald">Branch done</Badge>}
+                        />
+                        <div className="p-4 space-y-3">
+                          {br.skills.map((sk) => {
+                            const cDone = isCourseDone(role, sk.id);
+                            const pDone = isProjectDone(role, sk.id);
+                            const complete = cDone && pDone;
+                            const closesGap = roleSkills.includes(sk.name.toLowerCase());
+                            return (
+                              <div key={sk.id}
+                                className={`rounded-lg border p-3 transition-colors ${complete
+                                  ? "border-emerald-500/30 bg-emerald-500/[0.06]"
+                                  : "border-white/10 bg-white/[0.02]"}`}>
+                                <div className="flex items-start justify-between gap-2">
+                                  <div>
+                                    <div className="text-sm font-semibold flex items-center gap-2">
+                                      {complete
+                                        ? <CircleCheck size={15} className="text-emerald-400" />
+                                        : <Circle size={15} className="text-zinc-500" />}
+                                      {sk.name}
+                                      {closesGap && !complete && <Badge tone="amber">Closes resume gap</Badge>}
+                                    </div>
+                                  </div>
+                                  {complete && <Badge tone="emerald">+score</Badge>}
+                                </div>
+                                {/* course row */}
+                                <div className="mt-2.5 flex items-start gap-2 text-xs text-zinc-300">
+                                  <button
+                                    onClick={() => { setQuestDone(role, sk.id, "course", !cDone); setQuestVer((v) => v + 1); }}
+                                    className={`grid place-items-center w-5 h-5 rounded-md border shrink-0 mt-0.5 ${cDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
+                                    title={cDone ? "Mark course undone" : "Mark course done"}>
+                                    {cDone && <CircleCheck size={12} />}
+                                  </button>
+                                  <div className="flex-1">
+                                    <div className="font-medium">Course</div>
+                                    <a href={sk.course.u} target="_blank" rel="noreferrer"
+                                      className="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-100">
+                                      <BookOpen size={11} /> {sk.course.t} <ExternalLink size={10} />
+                                    </a>
+                                  </div>
+                                </div>
+                                {/* project row */}
+                                <div className="mt-2 flex items-start gap-2 text-xs text-zinc-300">
+                                  <button
+                                    onClick={() => { setQuestDone(role, sk.id, "project", !pDone); setQuestVer((v) => v + 1); }}
+                                    className={`grid place-items-center w-5 h-5 rounded-md border shrink-0 mt-0.5 ${pDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
+                                    title={pDone ? "Mark project undone" : "Mark project done"}>
+                                    {pDone && <CircleCheck size={12} />}
+                                  </button>
+                                  <div className="flex-1">
+                                    <div className="font-medium">Project</div>
+                                    <div className="text-zinc-400">{sk.project}</div>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </Card>
+                    </FadeUp>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* ═══ INTERVIEW ═══ */}
+          {view === "interview" && (
+            <div className="max-w-2xl mx-auto">
+              <FadeUp>
+                <div className="flex items-end justify-between gap-3 flex-wrap">
+                  <div>
+                    <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="Mock interview" /></h1>
+                    <p className="text-sm text-zinc-500 mt-1">5 questions for {ROLES[role].label} · 60-second demo. <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={() => go("score")}>Change role →</button></p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {streak.count > 0 && (
+                      <Badge tone="amber" title="Graded 3+ answers today counts as your daily streak">
+                        <Flame size={11} /> {streak.count}-day streak
+                      </Badge>
+                    )}
+                    {streak.badges.includes("interview-ready") && <Badge tone="emerald">Interview Ready</Badge>}
+                    {streak.badges.includes("sharp") && <Badge tone="emerald">Sharp 10</Badge>}
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp delay={0.06} className="mt-4">
+                <Card>
+                  <CardHead title={`Questions • ${ROLES[role].label}`} desc={`Answered well: ${filledAnswers}/5`} />
+                  <div className="p-4 space-y-3">
+                    {INTERVIEW_QS[role].map((qq, i) => (
+                      <Field key={i} label={`Q${i + 1}. ${qq}`}>
+                        <input value={answers[i] || ""} onChange={(e) => setAnswers({ ...answers, [i]: e.target.value })}
+                          placeholder="Your answer…" className={inputCls} />
+                      </Field>
+                    ))}
+                    <Lift><Button className="w-full" onClick={gradeInterview}><Mic size={14} /> Grade me</Button></Lift>
+                    {streak.lastDay && (
+                      <p className="text-[11px] text-zinc-500 -mt-1">
+                        Daily streak progresses only when you answer 3+ on the same day. Miss a day and the counter resets to 1.
+                      </p>
+                    )}
+                    {feedback && <p className="text-xs whitespace-pre-wrap p-3 bg-white/[0.03] rounded-lg border border-white/10 leading-relaxed text-zinc-300">{feedback}</p>}
+                  </div>
+                </Card>
+              </FadeUp>
+            </div>
+          )}
+
+          {/* ═══ BATTLE ═══ */}
+          {view === "battle" && (
+            <div className="max-w-2xl mx-auto">
+              <FadeUp>
+                <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="College Battle" /></h1>
+                <p className="text-sm text-zinc-500 mt-1">Demo averages + your live score. Resumes stay private — only numbers compete.</p>
+              </FadeUp>
+              <FadeUp delay={0.06} className="mt-4">
+                <Card>
+                  <CardHead title="Leaderboard" desc="Average ATS by college" right={myScore != null && <Badge tone="emerald">Your score: {myScore}</Badge>} />
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-left text-[11px] uppercase tracking-wider text-zinc-500 border-b border-white/[0.07]">
+                        <th className="font-medium px-5 py-2.5">#</th>
+                        <th className="font-medium py-2.5">College</th>
+                        <th className="font-medium py-2.5 hidden sm:table-cell">Members</th>
+                        <th className="font-medium px-5 py-2.5 text-right">Avg</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...colleges].sort((a, b) => b.avg - a.avg).map((c, i) => (
+                        <tr key={c.name} className={`border-b border-white/5 last:border-0 ${c.you ? "bg-white/[0.04]" : ""}`}>
+                          <td className="px-5 py-3 text-zinc-500 font-medium tabular-nums">{i + 1}</td>
+                          <td className="py-3 pr-3">
+                            <div className="font-medium flex items-center gap-1.5">{c.you && <Badge tone="light">You</Badge>}{c.name}</div>
+                            <div className="mt-1.5 w-40 max-w-full"><Progress value={c.avg} /></div>
+                          </td>
+                          <td className="py-3 text-zinc-500 hidden sm:table-cell tabular-nums">{c.members}</td>
+                          <td className="px-5 py-3 text-right font-bold tabular-nums">{c.avg}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {!myScore && (
+                    <div className="p-4 border-t border-white/[0.07]">
+                      <Button variant="secondary" size="sm" onClick={() => go("score")}><FileText size={13} /> Get scored to join the battle</Button>
+                    </div>
+                  )}
+                </Card>
+              </FadeUp>
+            </div>
+          )}
+        </main>
+
+        <footer className="max-w-5xl mx-auto px-4 pb-8 pt-2 text-center text-[11px] text-zinc-600">
+          <span className="inline-flex items-center gap-1.5"><Briefcase size={11} /> Inspired by naukri.com workflows</span>
+          {" · "}Local ATS works offline • Add VITE_GEMINI_KEY for AI • PDFs never leave your browser
+        </footer>
+      </div>
+    </div>
+  );
+}

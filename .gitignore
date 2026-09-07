@@ -1,0 +1,9 @@
+# secrets – never commit real keys (template: app/.env.example)
+app/.env
+*.local
+
+# deps / build output (also covered by app/.gitignore)
+app/node_modules/
+app/dist/
+node_modules/
+dist/
