@@ -24,6 +24,6 @@ export async function parseResumeFile(file) {
     if (file.name.toLowerCase().endsWith(".pdf")) return await pdfAdapter(file);
     return await textAdapter(file);
   } catch {
-    throw new Error("PDF parse failed — paste resume text instead.");
+    throw new Error("PDF parse failed. Paste resume text instead.");
   }
 }

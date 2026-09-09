@@ -78,7 +78,7 @@ Return exactly this markdown (no extra prose):
 - <specific line + why it works>
 
 ### Fixes
-- <which Q and what to add — rephrase 1 fragment to show>
+- <which Q and what to add (rephrase 1 fragment to show)>
 
 ### 60-second drill
 <one task they can do today to lift score by 2>`;

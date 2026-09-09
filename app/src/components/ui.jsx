@@ -1,4 +1,4 @@
-// ponytail: 6 shadcn-style primitives cover the whole app — add more only when a view needs one
+// ponytail: 6 shadcn-style primitives cover the whole app, add more only when a view needs one
 export function Button({ variant = "primary", size = "md", className = "", ...rest }) {
   const v = {
     primary: "bg-white text-zinc-950 hover:bg-zinc-200",

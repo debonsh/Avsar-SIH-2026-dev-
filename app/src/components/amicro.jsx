@@ -1,16 +1,19 @@
 // amicro: vendored micro-transition primitives (fade-up, text-reveal, magnetic, tilt, segmented)
-// patterned on https://amicro.vercel.app — CSS + motion only, no extra registry weight
+// patterned on https://amicro.vercel.app, CSS + motion only, no extra registry weight
+// operate-mode: fast and quiet. Durations short, movement small, static under reduced-motion.
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 
 const EASE = [0.22, 1, 0.36, 1];
 
-export function FadeUp({ delay = 0, y = 14, className = "", children, ...rest }) {
+export function FadeUp({ delay = 0, y = 8, className = "", children, ...rest }) {
+  const reduce = useReducedMotion();
+  if (reduce) return <div className={className} {...rest}>{children}</div>;
   return (
     <motion.div
       initial={{ opacity: 0, y }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay, ease: EASE }}
+      transition={{ duration: 0.28, delay: Math.min(delay, 0.12), ease: EASE }}
       className={className}
       {...rest}
     >
@@ -19,16 +22,18 @@ export function FadeUp({ delay = 0, y = 14, className = "", children, ...rest })
   );
 }
 
-export function TextReveal({ text, delay = 0, className = "", step = 0.035 }) {
+export function TextReveal({ text, delay = 0, className = "", step = 0.018 }) {
+  const reduce = useReducedMotion();
+  if (reduce) return <span className={className}>{text}</span>;
   return (
     <span className={className} aria-label={text}>
       {text.split(" ").map((w, i) => (
         <motion.span
           key={i}
           aria-hidden
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: delay + i * step, ease: EASE }}
+          transition={{ duration: 0.25, delay: delay + i * step, ease: EASE }}
           className="inline-block mr-[0.28em] last:mr-0"
         >
           {w}
@@ -38,7 +43,7 @@ export function TextReveal({ text, delay = 0, className = "", step = 0.035 }) {
   );
 }
 
-// amicro pressable: stills on hover, 1px lift + 0.98 press — no cursor-chasing
+// amicro pressable: stills on hover, 1px lift + 0.98 press, no cursor-chasing
 export function Lift({ children, className = "", ...rest }) {
   return (
     <motion.span
@@ -54,7 +59,7 @@ export function Lift({ children, className = "", ...rest }) {
   );
 }
 
-// amicro tilt-card: max 3deg — presence without playfulness
+// amicro tilt-card: max 3deg, presence without playfulness
 export function Tilt({ className = "", children, ...rest }) {
   const ref = useRef(null);
   const rx = useMotionValue(0);
@@ -92,7 +97,7 @@ export function Segmented({ options, value, onChange, className = "" }) {
             aria-selected={active}
             data-cuelume-toggle
             onClick={() => onChange(o.value)}
-            className={`relative px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${active ? "text-zinc-950" : "text-zinc-400 hover:text-zinc-100"}`}
+            className={`relative px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${active ? "text-zinc-950" : "text-zinc-400 hover:text-zinc-100"}`}
           >
             {active && (
               <motion.span layoutId="seg-pill" transition={{ duration: 0.3, ease: EASE }} className="absolute inset-0 bg-white rounded-md" />
@@ -105,15 +110,13 @@ export function Segmented({ options, value, onChange, className = "" }) {
   );
 }
 
-// amicro progress-step-bar: spring-animated meter for ATS breakdown
+// ponytail: CSS transition, not JS animation, keystroke re-scores glide instead of replaying
 export function Meter({ value, max, tone = "bg-white" }) {
   return (
     <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-      <motion.div
-        initial={{ width: 0 }}
-        animate={{ width: `${Math.min(100, (value / max) * 100)}%` }}
-        transition={{ duration: 0.7, ease: EASE }}
-        className={`h-full rounded-full ${tone}`}
+      <div
+        style={{ width: `${Math.min(100, (value / max) * 100)}%` }}
+        className={`h-full rounded-full transition-[width] duration-300 ease-out ${tone}`}
       />
     </div>
   );

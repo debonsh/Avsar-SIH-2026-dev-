@@ -1,4 +1,4 @@
-// ponytail: transparent keyword rubric, Gemini upgrades it in Part 2 — logic stays here
+// ponytail: transparent keyword rubric, Gemini upgrades it in Part 2, logic stays here
 export const ROLES = {
   sde: {
     label: "Software Developer",
@@ -27,13 +27,37 @@ function countHits(text, words) {
   return words.filter((w) => t.includes(w.toLowerCase()));
 }
 
+// ponytail: MAIN_SCORE per MASTER_PRD §4.1, pure, no imports. ATS 0-95 in, all clamped.
+export function calculateMainScore(atsScore = 0, voiceScore = 0, proofScore = 0, roleKey = "sde") {
+  const clamp = (n) => Math.max(0, Math.min(100, Math.round(n || 0)));
+  const a = clamp(atsScore), v = clamp(voiceScore), p = clamp(proofScore);
+  const tech = roleKey === "sde" || roleKey === "data";
+  return tech ? Math.round(0.5 * a + 0.3 * v + 0.2 * p) : Math.round(0.6 * a + 0.3 * v + 0.1 * p);
+}
+
+// ponytail: rank per MASTER_PRD §4.2, single home for badge + job gating
+export function rankFor(score = 0) {
+  if (score >= 90) return "Diamond";
+  if (score >= 80) return "Platinum";
+  if (score >= 65) return "Gold";
+  if (score >= 50) return "Silver";
+  return "Bronze";
+}
+
+// ponytail: career-path finder, score the same text against every role, suggest the best fit
+export function rankRoles(text = "", earnedSkills = []) {
+  return Object.keys(ROLES)
+    .map((key) => ({ key, label: ROLES[key].label, total: scoreResume(text, key, earnedSkills).total }))
+    .sort((a, b) => b.total - a.total);
+}
+
 export function scoreResume(text = "", roleKey = "sde", earnedSkills = []) {
   const role = ROLES[roleKey] || ROLES.sde;
   const clean = text.trim();
   if (clean.length < 50) {
     return {
       total: 0, breakdown: null, found: [], missing: role.skills,
-      msg: "Upload a real resume (or paste text) — too little text to score.",
+      msg: "Upload a real resume (or paste text). Too little text to score.",
     };
   }
   const foundSkills = countHits(clean, role.skills);

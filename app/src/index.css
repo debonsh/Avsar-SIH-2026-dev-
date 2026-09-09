@@ -6,7 +6,7 @@
   --color-ink: #f4f4f5;
 }
 
-/* ponytail: dark minimal shadcn — zinc-950 canvas, white primary, one emerald accent */
+/* ponytail: dark minimal shadcn, zinc-950 canvas, white primary, one emerald accent */
 body {
   background: var(--color-canvas);
   color: var(--color-ink);

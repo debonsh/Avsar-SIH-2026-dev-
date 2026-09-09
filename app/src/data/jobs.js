@@ -1,4 +1,4 @@
-// ponytail: curated jobs beat live scraping — never fails on stage
+// ponytail: curated jobs beat live scraping, never fails on stage
 export const JOBS = [
   { id: 1, role: "sde", title: "Frontend Intern", company: "ZetaPay (Startup)", loc: "Remote", type: "Internship", skills: ["javascript", "react", "html", "css", "git"], minScore: 40, apply: "https://internshala.com/internships/front-end-development-internship/" },
   { id: 2, role: "sde", title: "Backend Trainee", company: "TCS Ninja (Off-campus)", loc: "Pan India", type: "Full-time", skills: ["python", "sql", "api", "git", "dsa"], minScore: 55, apply: "https://www.naukri.com/it-jobs" },
@@ -11,7 +11,7 @@ export const JOBS = [
   { id: 9, role: "govt", title: "SSC CGL Assistant", company: "Govt. of India", loc: "Pan India", type: "Govt", skills: ["gk", "reasoning", "quant", "english"], minScore: 30, apply: "https://ssc.gov.in/" },
   { id: 10, role: "govt", title: "IBPS Clerk", company: "Public Sector Banks", loc: "Pan India", type: "Govt", skills: ["reasoning", "quant", "english", "current affairs"], minScore: 30, apply: "https://www.ibps.in/" },
   { id: 11, role: "govt", title: "UPSC CSE (Foundation)", company: "Govt. of India", loc: "Delhi", type: "Govt", skills: ["polity", "history", "current affairs", "gk"], minScore: 30, apply: "https://upsc.gov.in/" },
-  { id: 12, role: "sde", title: "Apprentice — NATS", company: "Govt. Apprenticeship", loc: "Pan India", type: "Govt", skills: ["python", "sql", "git"], minScore: 35, apply: "https://nats.education.gov.in/" },
+  { id: 12, role: "sde", title: "Apprentice (NATS)", company: "Govt. Apprenticeship", loc: "Pan India", type: "Govt", skills: ["python", "sql", "git"], minScore: 35, apply: "https://nats.education.gov.in/" },
 ];
 
 export function matchJobs(role, score, foundSkills = [], jobs = JOBS) {

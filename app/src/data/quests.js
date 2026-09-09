@@ -8,7 +8,7 @@ export const QUEST_TREE = {
         id: "lang",
         name: "Languages & Logic",
         skills: [
-          { id: "js", name: "JavaScript", course: { t: "freeCodeCamp JS", u: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" }, project: "Reverse-a-string CLI in Node — push to GitHub" },
+          { id: "js", name: "JavaScript", course: { t: "freeCodeCamp JS", u: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" }, project: "Reverse-a-string CLI in Node. Push to GitHub" },
           { id: "python", name: "Python", course: { t: "Python for Everybody (NPTEL)", u: "https://swayam.gov.in/" }, project: "CSV cleaner script with argparse + 5 sample inputs" },
           { id: "dsa", name: "DSA", course: { t: "Striver A2Z (free)", u: "https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" }, project: "Solve 30 array+string problems, log time/space complexity" },
         ],

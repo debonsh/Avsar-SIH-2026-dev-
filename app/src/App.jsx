@@ -5,26 +5,31 @@ import {
   GraduationCap, Hammer, Lock, MapPin, Mic, RotateCcw, Search, ShieldCheck,
   Sparkles, Sprout, Trophy,
 } from "lucide-react";
-import { ROLES, scoreResume } from "./lib/score";
+import { ROLES, scoreResume, calculateMainScore, rankFor, rankRoles } from "./lib/score";
 import { matchJobs } from "./data/jobs";
 import { coursesFor, PROJECT_IDEAS } from "./data/courses";
 import { COLLEGES, recomputeCollegeAvg } from "./data/colleges";
+import { loadBoard, submitScore } from "./lib/supabase";
 import { INTERVIEW_QS } from "./data/interview";
 import { SAMPLE_RESUME } from "./data/fixtures";
 import { QUEST_TREE } from "./data/quests";
 import { bumpStreak, getStreak, isCourseDone, isProjectDone, setQuestDone, completedSkillIdsForRole } from "./lib/progress";
 import { improveResume, mockInterviewFeedback } from "./lib/gemini";
+import { isVoiceSupported, listenOnce } from "./lib/speech";
+import { roadmapGenerator } from "./lib/roadmapGenerator";
 import { parseResumeFile } from "./lib/parseResume";
+import Landing from "./components/Landing";
 import { Badge, Button, Card, CardHead, Field, Progress, inputCls } from "./components/ui";
-import { FadeUp, Lift, Meter, Segmented, TextReveal, Tilt } from "./components/amicro";
+import { FadeUp, Lift, Meter, Segmented } from "./components/amicro";
 
 const AI_ON = Boolean(import.meta.env.VITE_GEMINI_KEY);
 
-// ponytail: naukri-style save/apply/alert persist in localStorage — no backend until Supabase
+// ponytail: naukri-style save/apply/alert persist in localStorage, no backend until Supabase
 const load = (k, fb) => { try { return JSON.parse(localStorage.getItem(k)) ?? fb; } catch { return fb; } };
 const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
 
 const NAV = [
+  ["home", "Home", Sparkles],
   ["jobs", "Jobs", Briefcase],
   ["score", "My Score", Gauge],
   ["quests", "Quests", Sprout],
@@ -41,7 +46,7 @@ const JOB_TABS = [
 ];
 
 export default function App() {
-  const [view, setView] = useState("jobs");
+  const [view, setView] = useState("home");
   const [q, setQ] = useState("");
   const [locQ, setLocQ] = useState("");
   const [role, setRole] = useState("sde");
@@ -63,6 +68,14 @@ export default function App() {
   // quests/2: quest version + interview streak
   const [questVer, setQuestVer] = useState(0);
   const [streak, setStreak] = useState(() => getStreak());
+  // voice: fail tracking + listening indicator for interview slice
+  const [voiceFailCount, setVoiceFailCount] = useState(0);
+  const [voiceListening, setVoiceListening] = useState(false);
+  const [voiceActiveQ, setVoiceActiveQ] = useState(null);
+  const voiceAvailable = useMemo(() => isVoiceSupported(), []);
+  // slice1: shared board, seeds until remote loads
+  const [board, setBoard] = useState(COLLEGES);
+  useEffect(() => { loadBoard().then((b) => { if (b?.length) setBoard(b); }); }, []);
 
   const earnedSkills = useMemo(() => {
     // recompute when questVer changes so toggling a quest re-credits the score live
@@ -75,12 +88,21 @@ export default function App() {
     [text, role, earnedSkills]
   );
   const score = result?.total ?? 0;
+  // path finder: same resume scored against every role, suggest the best fit
+  const bestFit = useMemo(
+    () => (text.trim().length >= 50 ? rankRoles(text, earnedSkills) : null),
+    [text, earnedSkills]
+  );
+  const fitSuggest = bestFit && bestFit[0].key !== role ? bestFit[0] : null;
+  // roadmap: week-by-week plan from missing skills + checkbox state (after result, TDZ)
+  const [roadmapTasks, setRoadmapTasks] = useState(() => load("c2c-roadmap-tasks", {}));
+  const roadmap = useMemo(() => roadmapGenerator(result?.missing || []), [result, role]);
   const jobs = useMemo(() => matchJobs(role, score, result?.found || []), [role, score, result]);
   const colleges = useMemo(() => {
-    if (myScore == null) return COLLEGES;
-    const youRow = COLLEGES.find((c) => c.you);
-    return youRow ? recomputeCollegeAvg(COLLEGES, myScore, youRow.name) : COLLEGES;
-  }, [myScore]);
+    if (myScore == null) return board;
+    const youRow = board.find((c) => c.you) || board.find((c) => c.name === "Your College") || board[0];
+    return youRow ? recomputeCollegeAvg(board, myScore, youRow.name) : board;
+  }, [myScore, board]);
 
   const foundSet = useMemo(() => new Set((result?.found || []).map((s) => s.toLowerCase())), [result]);
   const allTypes = useMemo(() => [...new Set(jobs.map((j) => j.type))], [jobs]);
@@ -106,7 +128,7 @@ export default function App() {
   const eligibleCount = jobs.filter((j) => j.eligible).length;
   const hasFilters = q || locQ || typeFilter.length || locFilter.length || eligFilter !== "all";
   const filledAnswers = Object.values(answers).filter((a) => (a || "").trim().length > 10).length;
-  // naukri: profile completeness from real state — resume, score, interview, saved
+  // naukri: profile completeness from real state, resume, score, interview, saved
   const strength = (text.trim().length >= 50 ? 25 : 0) + (result?.breakdown ? 25 : 0) + (filledAnswers >= 3 ? 25 : 0) + (myScore != null ? 25 : 0);
 
   function go(v) { setView(v); }
@@ -117,6 +139,15 @@ export default function App() {
   const toggleList = (list, set, v) => set(list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
   function clearFilters() {
     setQ(""); setLocQ(""); setTypeFilter([]); setLocFilter([]); setEligFilter("all");
+  }
+
+  function toggleRoadmapTask(weekIdx, taskIdx) {
+    const key = `${weekIdx}-${taskIdx}`;
+    setRoadmapTasks((prev) => {
+      const next = { ...prev, [key]: !prev[key] };
+      save("c2c-roadmap-tasks", next);
+      return next;
+    });
   }
 
   async function onFile(e) {
@@ -134,9 +165,23 @@ export default function App() {
     if (!result) return;
     setAiLoading(true);
     const line = result.breakdown.map((b) => `${b.label} ${b.pts}/${b.max}`).join(", ");
-    const tip = await improveResume(text, ROLES[role].label, result.missing, `${score}/95 — ${line}`);
+    const tip = await improveResume(text, ROLES[role].label, result.missing, `${score}/95, ${line}`);
     setAiTip(tip || "Add VITE_GEMINI_KEY in .env to unlock AI rewrites. Local tips above already work for demo.");
     setAiLoading(false);
+  }
+
+  async function startVoiceAnswer(qIndex) {
+    if (voiceFailCount >= 2 || !voiceAvailable) return; // auto-fallback already active
+    setVoiceListening(true);
+    setVoiceActiveQ(qIndex);
+    const res = await listenOnce(15000);
+    setVoiceListening(false);
+    setVoiceActiveQ(null);
+    if (res.transcript) {
+      setAnswers((prev) => ({ ...prev, [qIndex]: res.transcript }));
+    } else {
+      setVoiceFailCount((c) => c + 1);
+    }
   }
 
   async function gradeInterview() {
@@ -155,16 +200,19 @@ export default function App() {
   function saveScore() {
     if (!score) return;
     setMyScore(score);
+    // slice1: best-effort shared insert, never blocks demo
+    const youName = (board.find((c) => c.you) || {}).name || "Your College";
+    submitScore(youName, score).then((ok) => { if (ok) loadBoard().then((b) => { if (b?.length) setBoard(b); }); });
     go("battle");
   }
 
   const statusLine = !result
     ? "Upload a resume to get scored"
-    : score >= 70 ? "Job-ready — apply where eligible" : score >= 45 ? "Close — fix 2–3 gaps below" : "Foundation stage — 1 project + 1 cert";
+    : score >= 70 ? "Job-ready. Apply where eligible." : score >= 45 ? "Close. Fix 2-3 gaps below." : "Foundation stage. 1 project + 1 cert.";
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
-      {/* ── Sidebar ─────────────────────────────────────────── */}
+      {/* Sidebar */}
       <aside className="hidden lg:flex fixed inset-y-0 left-0 w-60 flex-col bg-zinc-950 border-r border-white/10 z-20">
         <button onClick={() => go("jobs")} className="flex items-center gap-2.5 px-5 pt-6 pb-5 text-left cursor-pointer">
           <span className="grid place-items-center w-9 h-9 rounded-lg bg-white text-zinc-950">
@@ -200,7 +248,7 @@ export default function App() {
             </div>
             <Progress value={strength} className="mt-2" />
             <p className="text-[11px] text-zinc-500 mt-2 leading-relaxed">
-              {strength < 100 ? "Resume, score, interview + save to reach 100." : "Complete — recruiters see full profiles first."}
+              {strength < 100 ? "Resume, score, interview + save to reach 100." : "All four done."}
             </p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
@@ -211,7 +259,7 @@ export default function App() {
       </aside>
 
       <div className="lg:pl-60">
-        {/* ── Header ────────────────────────────────────────── */}
+        {/* Header */}
         <header className="sticky top-0 z-10 bg-zinc-950/85 backdrop-blur border-b border-white/10">
           <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-2">
             <span className="lg:hidden grid place-items-center w-8 h-8 rounded-lg bg-white text-zinc-950 shrink-0">
@@ -226,11 +274,12 @@ export default function App() {
               ))}
             </nav>
             <div className="hidden lg:block text-xs text-zinc-500">
+              {view === "home" && "Your verified path to placement"}
               {view === "jobs" && "Jobs matched to your profile"}
               {view === "score" && "Upload → score → fix gaps"}
-              {view === "quests" && "Skill tree — course + project pairs to grow your score"}
-              {view === "interview" && "5-question mock, instant grading"}
-              {view === "battle" && "College averages, private resumes"}
+              {view === "quests" && "One free course + one project per skill. Finish both to close it."}
+              {view === "interview" && "5 questions, graded on STAR + numbers"}
+              {view === "battle" && "Averages compete. Resumes stay private."}
             </div>
             <div className="ml-auto flex items-center gap-2">
               {streak.count > 0 && (
@@ -248,15 +297,18 @@ export default function App() {
         </header>
 
         <main className="max-w-5xl mx-auto px-4 py-6">
-          {/* ═══ JOBS ═══ */}
+          {/* Home */}
+          {view === "home" && <Landing go={go} />}
+
+          {/* Jobs */}
           {view === "jobs" && (
             <div>
               <FadeUp>
                 <div className="flex items-end justify-between gap-3 flex-wrap">
                   <div>
-                    <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="Recommended jobs" /></h1>
+                    <h1 className="text-2xl font-bold tracking-tight">Recommended jobs</h1>
                     <p className="text-sm text-zinc-500 mt-1">
-                      {result ? `${eligibleCount} eligible at ATS ${score} · matched to your skills` : "Get scored to unlock profile-matched recommendations"}
+                      {result ? `${eligibleCount} eligible at ATS ${score} · matched to your skills` : "Get scored to see which jobs you can apply to"}
                     </p>
                   </div>
                   <button
@@ -306,9 +358,9 @@ export default function App() {
                 <div className="ml-auto flex items-center gap-1.5">
                   <label className="text-[11px] text-zinc-500">Sort</label>
                   <select value={sort} onChange={(e) => setSort(e.target.value)}
-                    className="text-xs bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 outline-none cursor-pointer">
+                    className="text-xs bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 outline-none focus:border-white/40 cursor-pointer">
                     <option value="rel">Relevance</option>
-                    <option value="easy">Easiest to unlock</option>
+                    <option value="easy">Lowest score first</option>
                   </select>
                 </div>
               </FadeUp>
@@ -361,7 +413,7 @@ export default function App() {
                   {visibleJobs.length === 0 && (
                     <Card className="p-5 text-sm text-zinc-400">
                       {jobTab !== "rec"
-                        ? <>Nothing here yet — {jobTab === "saved" ? "bookmark jobs to apply later." : "applied jobs will appear here."}</>
+                        ? <>Nothing here yet. {jobTab === "saved" ? "bookmark jobs to apply later." : "applied jobs will appear here."}</>
                         : <>No matches. <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={clearFilters}>Broaden filters</button></>}
                     </Card>
                   )}
@@ -411,7 +463,7 @@ export default function App() {
                                     </a>
                                   </Lift>
                                 : <button onClick={() => go("score")}
-                                    className="text-xs font-medium text-amber-400 hover:underline cursor-pointer">Need {j.minScore - score} more pts — check My Score →</button>}
+                                    className="text-xs font-medium text-amber-400 hover:underline cursor-pointer">Need {j.minScore - score} more pts. Check My Score</button>}
                           </div>
                         </article>
                       </FadeUp>
@@ -422,12 +474,12 @@ export default function App() {
             </div>
           )}
 
-          {/* ═══ SCORE ═══ */}
+          {/* Score */}
           {view === "score" && (
             <div className="max-w-2xl mx-auto">
               <FadeUp>
-                <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="My Score" /></h1>
-                <p className="text-sm text-zinc-500 mt-1">Transparent rubric — every point shows its evidence.</p>
+                <h1 className="text-2xl font-bold tracking-tight">My Score</h1>
+                <p className="text-sm text-zinc-500 mt-1">Transparent rubric. Every point shows its evidence.</p>
               </FadeUp>
               <FadeUp delay={0.05}>
                 <ol className="flex items-center gap-1.5 mt-4 mb-4">
@@ -447,14 +499,22 @@ export default function App() {
               <div className="space-y-4">
                 <FadeUp delay={0.08}>
                   <Card>
-                    <CardHead title="Step 1 — Target role" desc="Scoring is role-specific" />
-                    <div className="p-4"><Segmented options={ROLE_OPTS} value={role} onChange={setRole} /></div>
+                    <CardHead title="Step 1: Target role" desc="Pick one, or paste your resume and take the suggestion" />
+                    <div className="p-4 space-y-2.5">
+                      <Segmented options={ROLE_OPTS} value={role} onChange={setRole} />
+                      {fitSuggest && (
+                        <button onClick={() => setRole(fitSuggest.key)}
+                          className="w-full text-left text-xs px-3 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/15 transition-colors cursor-pointer">
+                          Your resume scores highest as {fitSuggest.label} ({fitSuggest.total}). Switch to it
+                        </button>
+                      )}
+                    </div>
                   </Card>
                 </FadeUp>
 
                 <FadeUp delay={0.12}>
                   <Card>
-                    <CardHead title="Step 2 — Upload resume" desc="Parsed locally, never uploaded" />
+                    <CardHead title="Step 2: Upload resume" desc="Parsed locally, never uploaded" />
                     <div className="p-4 space-y-3">
                       <Field label="Resume file (PDF or TXT)">
                         <input type="file" accept=".pdf,.txt" onChange={onFile}
@@ -473,11 +533,15 @@ export default function App() {
                 </FadeUp>
 
                 <FadeUp delay={0.16}>
-                  <Tilt>
                     <div className="bg-white/[0.04] border border-white/10 rounded-xl p-6 text-center">
-                      <div className="text-[11px] uppercase tracking-[0.14em] text-zinc-500">Step 3 — ATS Score • {ROLES[role].label}</div>
+                      <div className="text-[11px] uppercase tracking-[0.14em] text-zinc-500">Step 3: ATS Score • {ROLES[role].label}</div>
                       <div className="text-6xl font-extrabold tracking-tight my-2 tabular-nums">{result ? score : "––"}</div>
                       <div className="text-xs text-zinc-400">{result ? statusLine : "Upload to score"}</div>
+                      {result && (
+                        <div className="text-xs text-zinc-500 mt-1 tabular-nums">
+                          MAIN {calculateMainScore(score, 0, 0, role)} • {rankFor(calculateMainScore(score, 0, 0, role))} (voice/proof pending)
+                        </div>
+                      )}
                       {result?.breakdown && (
                         <div className="text-left mt-5 space-y-2.5">
                           {result.breakdown.map((b) => (
@@ -490,13 +554,12 @@ export default function App() {
                       )}
                       {result?.msg && <p className="text-xs text-amber-400 mt-3">{result.msg}</p>}
                     </div>
-                  </Tilt>
                 </FadeUp>
 
                 {result && result.breakdown && (
                   <FadeUp delay={0.2}>
                     <Card>
-                      <CardHead title="Step 4 — Fix gaps (free)" desc="Top 3 missing skills + one project" />
+                      <CardHead title="Step 4: Fix gaps (free)" desc="Top 3 missing skills + one project" />
                       <div className="p-4 space-y-3">
                         {result.missing.slice(0, 3).map((m) => (
                           <div key={m} className="rounded-lg bg-white/[0.03] border border-white/10 p-3">
@@ -520,7 +583,7 @@ export default function App() {
             </div>
           )}
 
-          {/* ═══ QUESTS — skill-tree gamification ═══ */}
+          {/* Quests: skill-tree gamification */}
           {view === "quests" && (() => {
             const tree = QUEST_TREE[role];
             const roleSkills = ROLES[role].skills.map((s) => s.toLowerCase());
@@ -538,9 +601,9 @@ export default function App() {
                 <FadeUp>
                   <div className="flex items-end justify-between gap-3 flex-wrap">
                     <div>
-                      <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="Skill quests" /></h1>
+                      <h1 className="text-2xl font-bold tracking-tight">Skill quests</h1>
                       <p className="text-sm text-zinc-500 mt-1">
-                        Each skill needs a <span className="text-zinc-300">free course</span> + a <span className="text-zinc-300">real project</span>. Both unlock the badge — and your ATS.
+                        Each skill needs a <span className="text-zinc-300">free course</span> + a <span className="text-zinc-300">real project</span>. Finish both to earn the badge and lift your ATS.
                       </p>
                     </div>
                     <Badge tone="emerald">{earnedCount}/{totalCount} skills closed</Badge>
@@ -553,7 +616,7 @@ export default function App() {
                   <Card className="p-4">
                     <Progress value={earnedCount} max={totalCount || 1} />
                     <p className="text-[11px] text-zinc-500 mt-2">
-                      Closing a quest adds the skill to your score even if it's not yet on your resume. Target gaps <span className="text-zinc-300">first</span> — they unblock eligibility fastest.
+                        Closing a quest adds the skill to your score even if it's not yet on your resume. Target gaps <span className="text-zinc-300">first</span>. They unblock eligibility fastest.
                     </p>
                   </Card>
                 </FadeUp>
@@ -593,7 +656,7 @@ export default function App() {
                                 <div className="mt-2.5 flex items-start gap-2 text-xs text-zinc-300">
                                   <button
                                     onClick={() => { setQuestDone(role, sk.id, "course", !cDone); setQuestVer((v) => v + 1); }}
-                                    className={`grid place-items-center w-5 h-5 rounded-md border shrink-0 mt-0.5 ${cDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
+                                    className={`grid place-items-center w-6 h-6 rounded-md border shrink-0 mt-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${cDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
                                     title={cDone ? "Mark course undone" : "Mark course done"}>
                                     {cDone && <CircleCheck size={12} />}
                                   </button>
@@ -609,7 +672,7 @@ export default function App() {
                                 <div className="mt-2 flex items-start gap-2 text-xs text-zinc-300">
                                   <button
                                     onClick={() => { setQuestDone(role, sk.id, "project", !pDone); setQuestVer((v) => v + 1); }}
-                                    className={`grid place-items-center w-5 h-5 rounded-md border shrink-0 mt-0.5 ${pDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
+                                    className={`grid place-items-center w-6 h-6 rounded-md border shrink-0 mt-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${pDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
                                     title={pDone ? "Mark project undone" : "Mark project done"}>
                                     {pDone && <CircleCheck size={12} />}
                                   </button>
@@ -624,20 +687,56 @@ export default function App() {
                         </div>
                       </Card>
                     </FadeUp>
-                  ))}
+                    ))}
                 </div>
+                {/* roadmap: week-by-week plan from missing skills */}
+                {roadmap.length > 0 && (
+                  <FadeUp delay={0.25}>
+                    <Card>
+                      <CardHead title="Your roadmap" desc={`${result.missing.length} missing skills · ${roadmap.length} week plan`} />
+                      <div className="p-4 space-y-3">
+                        {roadmap.map((wk, wi) => (
+                          <div key={wk.week} className="rounded-lg border border-white/10 bg-white/[0.02] p-3">
+                            <div className="text-xs font-semibold text-zinc-400 mb-2">Week {wk.week}</div>
+                            {wk.tasks.map((t, ti) => {
+                              const done = roadmapTasks[`${wi}-${ti}`];
+                              return (
+                                <div key={ti} className="flex items-start gap-2 text-xs text-zinc-300 mt-1.5">
+                                  <button
+                                    onClick={() => toggleRoadmapTask(wi, ti)}
+                                    className={`grid place-items-center w-5 h-5 rounded-md border shrink-0 mt-0.5 ${done ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
+                                    title={done ? "Mark undone" : "Mark done"}>
+                                    {done && <CircleCheck size={12} />}
+                                  </button>
+                                  <div className="flex-1">
+                                    <span className={done ? "line-through text-zinc-500" : ""}>{t.text}</span>
+                                    {t.link && (
+                                      <a href={t.link.u} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-100 ml-1">
+                                        <ExternalLink size={10} />
+                                      </a>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </div>
+                    </Card>
+                  </FadeUp>
+                )}
               </div>
             );
           })()}
 
-          {/* ═══ INTERVIEW ═══ */}
+          {/* Interview */}
           {view === "interview" && (
             <div className="max-w-2xl mx-auto">
               <FadeUp>
                 <div className="flex items-end justify-between gap-3 flex-wrap">
                   <div>
-                    <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="Mock interview" /></h1>
-                    <p className="text-sm text-zinc-500 mt-1">5 questions for {ROLES[role].label} · 60-second demo. <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={() => go("score")}>Change role →</button></p>
+                    <h1 className="text-2xl font-bold tracking-tight">Mock interview</h1>
+                    <p className="text-sm text-zinc-500 mt-1">5 questions for {ROLES[role].label} · 60-second demo. <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={() => go("score")}>Change role</button></p>
                   </div>
                   <div className="flex items-center gap-2">
                     {streak.count > 0 && (
@@ -654,10 +753,26 @@ export default function App() {
                 <Card>
                   <CardHead title={`Questions • ${ROLES[role].label}`} desc={`Answered well: ${filledAnswers}/5`} />
                   <div className="p-4 space-y-3">
+                    {voiceFailCount >= 2 && (
+                      <p className="text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-2">
+                        Voice unavailable. Type instead.
+                      </p>
+                    )}
                     {INTERVIEW_QS[role].map((qq, i) => (
                       <Field key={i} label={`Q${i + 1}. ${qq}`}>
-                        <input value={answers[i] || ""} onChange={(e) => setAnswers({ ...answers, [i]: e.target.value })}
-                          placeholder="Your answer…" className={inputCls} />
+                        <div className="flex gap-2">
+                          <input value={answers[i] || ""} onChange={(e) => setAnswers({ ...answers, [i]: e.target.value })}
+                            placeholder="Your answer…" className={inputCls} />
+                          {voiceAvailable && voiceFailCount < 2 && (
+                            <button
+                              onClick={() => startVoiceAnswer(i)}
+                              disabled={voiceListening}
+                              className={`shrink-0 grid place-items-center w-11 h-11 rounded-lg border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${voiceListening && voiceActiveQ === i ? "bg-red-500/20 border-red-500/40 text-red-400" : "border-white/10 text-zinc-400 hover:bg-white/5 hover:text-zinc-100"}`}
+                              title={voiceListening && voiceActiveQ === i ? "Listening… (15s)" : "Speak answer"}>
+                              <Mic size={16} className={voiceListening && voiceActiveQ === i ? "animate-pulse" : ""} />
+                            </button>
+                          )}
+                        </div>
                       </Field>
                     ))}
                     <Lift><Button className="w-full" onClick={gradeInterview}><Mic size={14} /> Grade me</Button></Lift>
@@ -673,12 +788,12 @@ export default function App() {
             </div>
           )}
 
-          {/* ═══ BATTLE ═══ */}
+          {/* Battle */}
           {view === "battle" && (
             <div className="max-w-2xl mx-auto">
               <FadeUp>
-                <h1 className="text-2xl font-bold tracking-tight"><TextReveal text="College Battle" /></h1>
-                <p className="text-sm text-zinc-500 mt-1">Demo averages + your live score. Resumes stay private — only numbers compete.</p>
+                <h1 className="text-2xl font-bold tracking-tight">College Battle</h1>
+                <p className="text-sm text-zinc-500 mt-1">Demo averages + your live score. Resumes stay private. Only numbers compete.</p>
               </FadeUp>
               <FadeUp delay={0.06} className="mt-4">
                 <Card>

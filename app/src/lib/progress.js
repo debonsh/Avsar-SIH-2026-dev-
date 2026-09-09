@@ -24,7 +24,7 @@ function load() {
 }
 
 function save(state) {
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* quota — ignore */ }
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* quota, ignore */ }
 }
 
 export function todayISO() {

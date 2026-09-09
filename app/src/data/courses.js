@@ -1,4 +1,4 @@
-// ponytail: free links only — removes "where do I learn this?" friction
+// ponytail: free links only, removes "where do I learn this?" friction
 export const COURSES = {
   javascript: [{ t: "freeCodeCamp JS (free)", u: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/" }, { t: "Namaste JS — YouTube (free)", u: "https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP" }],
   react: [{ t: "React Official Tutorial (free)", u: "https://react.dev/learn" }, { t: "NPTEL Modern Web (free cert)", u: "https://swayam.gov.in/" }],
@@ -31,26 +31,3 @@ export const PROJECT_IDEAS = {
   govt: ["30-day current-affairs notes + 10 mock tests log", "PYQ analysis sheet: last 5 yrs SSC quant topics", "Daily 50 reasoning Qs tracker for 21 days"],
 };
 
-// ponytail: roadmap reuses COURSES/JOBS urls — no new sources until judges ask
-export const ROADMAP = {
-  sde: [
-    { sem: "Sem 6", task: "DSA basics + Git", link: { t: "Striver A2Z DSA (free)", u: "https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" } },
-    { sem: "Sem 7", task: "React project, deploy on Vercel", link: { t: "React Official Tutorial (free)", u: "https://react.dev/learn" } },
-    { sem: "Sem 8", task: "ATS 70+ → apply to internships", link: { t: "Frontend internships", u: "https://internshala.com/internships/front-end-development-internship/" } },
-  ],
-  data: [
-    { sem: "Sem 6", task: "SQL + Excel foundations", link: { t: "SQLBolt (free, 1 hr)", u: "https://sqlbolt.com/" } },
-    { sem: "Sem 7", task: "PowerBI dashboard project", link: { t: "MS Power BI Guided (free)", u: "https://learn.microsoft.com/en-us/training/paths/power-bi-fundamentals/" } },
-    { sem: "Sem 8", task: "Publish 1 analysis report → apply", link: { t: "Data internships", u: "https://internshala.com/internships/data-analytics-internship/" } },
-  ],
-  marketing: [
-    { sem: "Sem 6", task: "SEO basics + 5 sample posts", link: { t: "Ahrefs SEO Course (free)", u: "https://ahrefs.com/academy/seo-training-course" } },
-    { sem: "Sem 7", task: "Run a 7-day page campaign", link: { t: "Content internships", u: "https://internshala.com/internships/content-writing-internship/" } },
-    { sem: "Sem 8", task: "Portfolio of 3 campaigns → apply", link: { t: "SEO jobs", u: "https://www.naukri.com/seo-jobs" } },
-  ],
-  govt: [
-    { sem: "Sem 6", task: "GK + daily current affairs", link: { t: "PIB Daily (free, official)", u: "https://pib.gov.in/" } },
-    { sem: "Sem 7", task: "Reasoning 50 Qs/day + mocks", link: { t: "Reasoning — Indiabix (free)", u: "https://www.indiabix.com/" } },
-    { sem: "Sem 8", task: "10 mocks logged → apply", link: { t: "SSC official", u: "https://ssc.gov.in/" } },
-  ],
-};

@@ -1,4 +1,4 @@
-// ponytail: shared fixtures — reused by UI "Try sample" + node --test
+// ponytail: shared fixtures, reused by UI "Try sample" + node --test
 export const SAMPLE_RESUME = `Aarav Kumar | aarav@gmail.com | linkedin.com/in/aarav | github.com/aarav
 EDUCATION: B.Tech CSE 2026, Tier-3 College
 SKILLS: JavaScript, React, HTML, CSS, Git
