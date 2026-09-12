@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight, ArrowUpRight, BellRing, BookOpen, Bookmark, Briefcase,
   CheckCircle2, Circle, CircleCheck, ExternalLink, FileText, Flame, Gauge,
   GraduationCap, Hammer, IdCard, Lock, MapPin, Mic, RotateCcw, Search, ShieldCheck,
-  Sparkles, Sprout, Trophy,
+  Sparkles, Sprout, Trophy, User, UserRound,
 } from "lucide-react";
 import { ROLES, scoreResume, rankRoles } from "./lib/score";
 import { combineScores } from "./lib/scores";
@@ -11,40 +11,57 @@ import { loadQuizBest } from "./data/quiz";
 import { matchJobs, JOBS } from "./data/jobs";
 import { EXTRA_JOBS } from "./data/seedJobsExtra";
 import { loadCustomJobs, listJobsBoard, listLiveJobs, liveCacheAt, mergeJobs, recordApplication } from "./lib/store";
-import { coursesFor, PROJECT_IDEAS } from "./data/courses";
+import { coursesFor, recommendFor, PROJECT_IDEAS } from "./data/courses";
 import { COLLEGES, recomputeCollegeAvg } from "./data/colleges";
 import { loadBoard, submitScore } from "./lib/supabase";
 import { INTERVIEW_QS } from "./data/interview";
 import { SAMPLE_RESUME } from "./data/fixtures";
 import { QUEST_TREE } from "./data/quests";
-import { bumpStreak, getStreak, isCourseDone, isProjectDone, setQuestDone, getEvidence, setEvidence, completedSkillIdsForRole } from "./lib/progress";
+import { bumpStreak, getStreak, setQuestDone, setEvidence, completedSkillIdsForRole, questSnapshot, recordDay, weeklyActive, masteryLevel } from "./lib/progress";
+import { bridgeLine, variableReward } from "./lib/dopamine";
+import { track } from "./lib/analytics";
 import { isEvidenceUrl } from "./lib/quests";
-import { improveResume, mockInterviewFeedback } from "./lib/gemini";
+import { improveResume, mockInterviewFeedback, generateQuestions } from "./lib/gemini";
+import { compileEvidence, loadQAnswers, loadCachedSet, saveCachedSet } from "./lib/questionnaire";
+import { scoreAnswer, skillReadiness } from "./lib/interview";
 import { isVoiceSupported, listenOnce } from "./lib/speech";
 import { roadmapGenerator, orderMissingByDemand } from "./lib/roadmapGenerator";
 import { parseResumeFile } from "./lib/parseResume";
+import { loadJSON, saveJSON } from "./lib/storage";
 import Landing from "./components/Landing";
 import IndustryPost from "./components/IndustryPost";
 import FacultyView from "./components/FacultyView";
 import InstituteView from "./components/InstituteView";
 import QuizView from "./components/QuizView";
+import QuestionnaireView from "./components/QuestionnaireView";
+import ProfileView from "./components/ProfileView";
+import { loadProfile } from "./lib/profile";
 import PortfolioView from "./components/PortfolioView";
 import AICoach from "./components/AICoach";
 import { loadRole, saveRole } from "./lib/roles";
 import { getOrCreateC2CId, loadNickname } from "./lib/identity";
 import { Badge, Button, Card, CardHead, Field, Progress, inputCls } from "./components/ui";
-import { FadeUp, Lift, Meter, Segmented } from "./components/amicro";
+import { FadeUp, Lift, Meter, Segmented, Burst, RankUp } from "./components/amicro";
 
 const AI_ON = Boolean(import.meta.env.VITE_GEMINI_KEY);
 
 // ponytail: naukri-style save/apply/alert persist in localStorage, no backend until Supabase
-const load = (k, fb) => { try { return JSON.parse(localStorage.getItem(k)) ?? fb; } catch { return fb; } };
-const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+const load = (k, fb) => loadJSON(k, fb);
+const save = (k, v) => { saveJSON(k, v); };
+
+// ponytail: scoring runs 5× scoreResume + full feed recompute — debounce so keystrokes stay cheap
+function useDebouncedValue(v, ms = 200) {
+  const [d, setD] = useState(v);
+  useEffect(() => { const t = setTimeout(() => setD(v), ms); return () => clearTimeout(t); }, [v, ms]);
+  return d;
+}
 
 const NAV = [
   ["home", "Home", Sparkles],
+  ["you", "You", User],
   ["jobs", "Jobs", Briefcase],
   ["score", "My Score", Gauge],
+  ["you", "You", UserRound],
   ["quiz", "Quiz", BookOpen],
   ["quests", "Quests", Sprout],
   ["interview", "Interview", Mic],
@@ -74,10 +91,32 @@ export default function App() {
   const [q, setQ] = useState("");
   const [locQ, setLocQ] = useState("");
   const [role, setRole] = useState("sde");
-  const [text, setText] = useState("");
+  // ponytail: resume persists once locally — upload pain happens one time, never nag re-uploads
+  const [text, setText] = useState(() => load("c2c-resume", ""));
+  useEffect(() => { if (text.trim().length >= 50) save("c2c-resume", text); }, [text]);
   const [aiTip, setAiTip] = useState("");
   const [aiLoading, setAiLoading] = useState(false);
   const [answers, setAnswers] = useState({});
+  // interview: rubric base (bank) + AI personal layer (resume customs, cached by hash)
+  const [aiQs, setAiQs] = useState({});
+  const [aiQsLoading, setAiQsLoading] = useState(false);
+  const interviewQs = aiQs[role] || INTERVIEW_QS[role];
+  const micros = useMemo(() => interviewQs.map((_, i) => scoreAnswer(answers[i] || "")), [interviewQs, answers]);
+  const readiness = useMemo(() => skillReadiness(micros), [micros]);
+  async function personalizeInterview() {
+    if (aiQsLoading || !text.trim()) return;
+    setAiQsLoading(true);
+    try {
+      const cached = loadCachedSet(text, role, "interview");
+      const items = cached || await generateQuestions(text, role, "interview");
+      if (items?.length) {
+        if (!cached) saveCachedSet(text, role, "interview", items);
+        setAiQs((prev) => ({ ...prev, [role]: items.map((q) => q.text) }));
+      }
+    } finally {
+      setAiQsLoading(false);
+    }
+  }
   const [feedback, setFeedback] = useState("");
   const [myScore, setMyScore] = useState(null);
   // naukri: tracker state
@@ -95,6 +134,10 @@ export default function App() {
   const [quizVer, setQuizVer] = useState(0);
   const [evAsk, setEvAsk] = useState(null); // which skill is being asked for proof link
   const [streak, setStreak] = useState(() => getStreak());
+  // celebration + rank-up (eye-candy reward, auto-dismiss)
+  const [celebrate, setCelebrate] = useState(null);
+  const [rankUp, setRankUp] = useState(null);
+  const prevRank = useRef(null);
   // voice: fail tracking + listening indicator for interview slice
   const [voiceFailCount, setVoiceFailCount] = useState(0);
   const [voiceListening, setVoiceListening] = useState(false);
@@ -112,10 +155,10 @@ export default function App() {
   const [liveJobs, setLiveJobs] = useState([]);
   const [liveAt, setLiveAt] = useState(() => liveCacheAt());
   const [refreshing, setRefreshing] = useState(false);
-  useEffect(() => { listLiveJobs().then((j) => { if (j.length) { setLiveJobs(j); setLiveAt(liveCacheAt()); } }); }, []);
+  useEffect(() => { listLiveJobs(false, loadProfile()).then((j) => { if (j.length) { setLiveJobs(j); setLiveAt(liveCacheAt()); } }); }, []);
   async function refreshJobs() {
     setRefreshing(true);
-    const [b, l] = await Promise.all([listJobsBoard(), listLiveJobs(true)]);
+    const [b, l] = await Promise.all([listJobsBoard(), listLiveJobs(true, loadProfile())]);
     if (b?.length) setRemoteJobs(b);
     setLiveJobs(l || []);
     setLiveAt(liveCacheAt());
@@ -129,9 +172,13 @@ export default function App() {
     return completedSkillIdsForRole(role);
   }, [role, questVer]);
 
+  const dtext = useDebouncedValue(text);
+  // questionnaire evidence feeds the ATS proof slot — claims with links score
+  const [qVer, setQVer] = useState(0);
+  const qProof = useMemo(() => { void qVer; return compileEvidence(loadQAnswers(role)); }, [role, qVer]);
   const result = useMemo(
-    () => (text.trim() ? scoreResume(text, role, earnedSkills) : null),
-    [text, role, earnedSkills]
+    () => (dtext.trim() ? scoreResume(dtext, role, earnedSkills, { linkedProjects: qProof.linkedProjects }) : null),
+    [dtext, role, earnedSkills, qProof]
   );
   const score = result?.total ?? 0;
   // slice C: MAIN gates jobs — ATS + quiz best + verified quest pairs, PRD §4.1 weights
@@ -141,10 +188,39 @@ export default function App() {
     () => combineScores(score, quizBest, questPairs, role),
     [score, quizBest, questPairs, role]
   );
+  // bridge-gap framing: showcase-ready, never job-guarantee
+  const bridge = result ? bridgeLine(mainScore, result.missing) : null;
+  const surprise = useMemo(() => {
+    let id = "anon", day = "";
+    try { id = getOrCreateC2CId(); day = new Date().toISOString().slice(0, 10); } catch { /* no browser */ }
+    return variableReward({ id, day, questPairs, quizBest, main: mainScore, missing: result?.missing || [] });
+  }, [questPairs, quizBest, mainScore, result]);
+  // rank-up detection: first render arms, later rises pop the modal
+  useEffect(() => {
+    if (prevRank.current == null) { prevRank.current = mainRank; return; }
+    const order = ["Bronze", "Silver", "Gold", "Platinum", "Diamond"];
+    if (order.indexOf(mainRank) > order.indexOf(prevRank.current)) {
+      setRankUp(mainRank);
+      track("rank_up", { rank: mainRank });
+    }
+    prevRank.current = mainRank;
+  }, [mainRank]);
+  // quest-close celebration: earned count rose → eye-candy burst, auto-dismiss
+  const earnedRef = useRef(questPairs);
+  useEffect(() => {
+    if (questPairs > earnedRef.current) {
+      setCelebrate(`+verified pair · ${questPairs} showcase-ready`);
+      track("quest_closed", { pairs: questPairs });
+      const t = setTimeout(() => setCelebrate(null), 2600);
+      earnedRef.current = questPairs;
+      return () => clearTimeout(t);
+    }
+    earnedRef.current = questPairs;
+  }, [questPairs]);
   // path finder: same resume scored against every role, suggest the best fit
   const bestFit = useMemo(
-    () => (text.trim().length >= 50 ? rankRoles(text, earnedSkills) : null),
-    [text, earnedSkills]
+    () => (dtext.trim().length >= 50 ? rankRoles(dtext, earnedSkills) : null),
+    [dtext, earnedSkills]
   );
   const fitSuggest = bestFit && bestFit[0].key !== role ? bestFit[0] : null;
   // roadmap: week-by-week plan from missing skills + checkbox state (after result, TDZ)
@@ -154,10 +230,12 @@ export default function App() {
   const roadmap = useMemo(() => roadmapGenerator(result?.missing || [], role, jobs), [result, role, jobs]);
   // slice I: opt-in nickname rides next to the college average — resume stays private
   const nick = loadNickname();
+  // ponytail: always sorted here — the battle table renders as-is, no second sort
+  const byAvg = (rows) => [...rows].sort((a, b) => b.avg - a.avg);
   const colleges = useMemo(() => {
-    if (myScore == null) return board;
+    if (myScore == null) return byAvg(board);
     const youRow = board.find((c) => c.you) || board.find((c) => c.name === "Your College") || board[0];
-    return youRow ? recomputeCollegeAvg(board, myScore, youRow.name) : board;
+    return youRow ? recomputeCollegeAvg(board, myScore, youRow.name) : byAvg(board);
   }, [myScore, board]);
 
   const foundSet = useMemo(() => new Set((result?.found || []).map((s) => s.toLowerCase())), [result]);
@@ -181,7 +259,7 @@ export default function App() {
     return list;
   }, [jobs, jobTab, saved, applied, q, locQ, typeFilter, locFilter, eligFilter, sort]);
 
-  const eligibleCount = jobs.filter((j) => j.eligible).length;
+  const eligibleCount = useMemo(() => jobs.filter((j) => j.eligible).length, [jobs]);
   const hasFilters = q || locQ || typeFilter.length || locFilter.length || eligFilter !== "all";
   const filledAnswers = Object.values(answers).filter((a) => (a || "").trim().length > 10).length;
   // naukri: profile completeness from real state, resume, score, interview, saved
@@ -241,21 +319,23 @@ export default function App() {
   }
 
   async function gradeInterview() {
-    const qs = INTERVIEW_QS[role];
-    const qa = qs.map((qq, i) => `Q: ${qq}\nA: ${answers[i] || "(skipped)"}`).join("\n");
+    const qs = interviewQs;
+    const qa = qs.map((qq, i) => `Q: ${typeof qq === "string" ? qq : qq.text}\nA: ${answers[i] || "(skipped)"}`).join("\n");
     const local = `Local score: ${filledAnswers}/5 answered well. Tip: use STAR (Situation-Task-Action-Result) + 1 number in each answer.`;
     const ai = await mockInterviewFeedback(ROLES[role].label, qa);
     setFeedback(ai || local + " (Add VITE_GEMINI_KEY for AI grading.)");
-    // quests/2: reward the daily interview habit, even on local mode
+    // quests/2: reward the daily interview habit, even on local mode — gentle, no shame copy
     if (filledAnswers >= 3) {
-      const next = bumpStreak();
+      const next = bumpStreak("interview");
       setStreak(next);
+      track("interview_graded", { filled: filledAnswers });
     }
   }
 
   function saveScore() {
     if (!score) return;
     setMyScore(score);
+    track("score_saved", { score, main: mainScore });
     // slice1: best-effort shared insert, never blocks demo
     const youName = (board.find((c) => c.you) || {}).name || "Your College";
     submitScore(youName, score).then((ok) => { if (ok) loadBoard().then((b) => { if (b?.length) setBoard(b); }); });
@@ -331,6 +411,7 @@ export default function App() {
             </nav>
             <div className="hidden lg:block text-xs text-zinc-500">
               {view === "home" && "Your verified path to placement"}
+              {view === "you" && "5 questions → jobs scraped for you"}
               {view === "jobs" && "Jobs matched to your profile"}
               {view === "score" && "Upload → score → fix gaps"}
               {view === "quiz" && "10 questions, best lifts MAIN"}
@@ -340,9 +421,14 @@ export default function App() {
               {view === "portfolio" && "Upskilled? Showcase it to the world"}
             </div>
             <div className="ml-auto flex items-center gap-2">
+              {result && (
+                <Badge tone="emerald" title={bridge || ""}>
+                  MAIN {mainScore} · {mainRank}
+                </Badge>
+              )}
               {streak.count > 0 && (
-                <Badge tone="amber" title={`${streak.count}-day interview streak`}>
-                  <Flame size={11} /> {streak.count}d
+                <Badge tone="amber" title={`${weeklyActive()} active days this stretch — every day counts, none break it`}>
+                  <Flame size={11} /> {weeklyActive()}d active
                 </Badge>
               )}
               <Badge tone={AI_ON ? "emerald" : "zinc"}>{AI_ON ? <><Sparkles size={11} /> AI on</> : "Local mode"}</Badge>
@@ -366,6 +452,11 @@ export default function App() {
           )}
           {appRole === "student" && view === "home" && <Landing go={go} />}
 
+          {/* You = 5-Q interview → profile.md + personalized scrape */}
+          {appRole === "student" && view === "you" && (
+            <ProfileView onUseForJobs={() => { refreshJobs(); go("jobs"); track("profile_used", {}); }} />
+          )}
+
           {/* Jobs */}
           {appRole === "student" && view === "jobs" && (
             <div>
@@ -377,6 +468,15 @@ export default function App() {
                       {result ? `${eligibleCount} eligible at MAIN ${mainScore} (ATS ${score}) · matched to your skills` : "Get scored to see which jobs you can apply to"}
                       {liveAt > 0 && ` · live feed ${Math.max(1, Math.round((Date.now() - liveAt) / 60000))}m ago`}
                     </p>
+                    {bridge && (
+                      <p className="text-xs mt-1.5 text-zinc-300">
+                        <span className="text-emerald-400 font-medium">{bridge}</span>
+                        <span className="text-zinc-500"> · we bridge the gap, you earn the offer</span>
+                      </p>
+                    )}
+                    {result && (
+                      <p className="text-[11px] mt-1 text-zinc-500">✨ {surprise.title} — {surprise.sub}</p>
+                    )}
                   </div>
                   <button
                     onClick={() => {
@@ -488,8 +588,8 @@ export default function App() {
                   {visibleJobs.length === 0 && (
                     <Card className="p-5 text-sm text-zinc-400">
                       {jobTab !== "rec"
-                        ? <>Nothing here yet. {jobTab === "saved" ? "bookmark jobs to apply later." : "applied jobs will appear here."}</>
-                        : <>No matches. <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={clearFilters}>Broaden filters</button></>}
+                        ? <>{jobTab === "saved" ? "Nothing saved yet — bookmark an eligible role to build your shortlist." : "No applications yet — eligible roles take one click to apply."} <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={() => setJobTab("rec")}>Browse recommended</button></>
+                        : <>No matches. <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={clearFilters}>Broaden filters</button> or <button className="underline font-medium text-zinc-100 cursor-pointer" onClick={() => go("score")}>raise MAIN → more unlock</button></>}
                     </Card>
                   )}
                   {visibleJobs.map((j, i) => {
@@ -532,7 +632,7 @@ export default function App() {
                               : j.eligible
                                 ? <Lift>
                                     <a href={j.apply} target="_blank" rel="noreferrer"
-                                      onClick={() => { if (!applied.includes(j.id)) { const n = [...applied, j.id]; setApplied(n); save("c2c-applied", n); recordApplication(j, score, mainScore); } }}
+                                      onClick={() => { if (!applied.includes(j.id)) { const n = [...applied, j.id]; setApplied(n); save("c2c-applied", n); recordApplication(j, score, mainScore); track("job_applied", { id: j.id }); } }}
                                       className="inline-flex items-center gap-1 text-xs font-medium px-4 py-2 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200">
                                       Apply <ArrowUpRight size={13} />
                                     </a>
@@ -617,6 +717,12 @@ export default function App() {
                           MAIN {mainScore} • {mainRank} (ATS {score} + Quiz {quizBest} + {questPairs} quest{questPairs === 1 ? "" : "s"})
                         </div>
                       )}
+                      {bridge && (
+                        <p className="text-xs mt-2 text-zinc-300"><span className="text-emerald-400 font-medium">{bridge}</span></p>
+                      )}
+                      {result && (
+                        <p className="text-[11px] mt-1 text-zinc-500">Next best move: {quizBest === 0 ? "take the quiz (30% of MAIN, ~5 min)" : result.missing.length ? `close ${result.missing[0]} — 1 quest pair, then re-check MAIN` : "share your portfolio — you are showcase-ready"} · ✨ {surprise.title}: {surprise.sub}</p>
+                      )}
                       {result && quizBest === 0 && (
                         <button onClick={() => go("quiz")}
                           className="mt-2 text-xs font-medium text-emerald-400 hover:underline cursor-pointer">
@@ -629,6 +735,9 @@ export default function App() {
                             <div key={b.label}>
                               <div className="flex justify-between text-xs"><span className="text-zinc-400">{b.label}</span><span className="font-semibold tabular-nums">{b.pts}/{b.max}</span></div>
                               <div className="mt-1"><Meter value={b.pts} max={b.max} /></div>
+                              {(b.why || []).map((w, i) => (
+                                <p key={i} className="text-[11px] text-zinc-500 mt-0.5 leading-snug">· {w}</p>
+                              ))}
                             </div>
                           ))}
                         </div>
@@ -645,7 +754,8 @@ export default function App() {
                         {orderMissingByDemand(result.missing, jobs).slice(0, 3).map((m) => (
                           <div key={m} className="rounded-lg bg-white/[0.03] border border-white/10 p-3">
                             <div className="text-sm font-semibold capitalize">Missing: {m}</div>
-                            {coursesFor(m).map((c) => (
+                            {coursesFor(m).length > 0 && <div className="text-[11px] text-zinc-600">Picked for your goal{loadProfile()?.goal ? ` (${loadProfile().goal})` : ""} — You tab retunes this</div>}
+                            {recommendFor(m, loadProfile() || {}).map((c) => (
                               <a key={c.u + c.t} href={c.u} target="_blank" rel="noreferrer"
                                 className="flex items-center gap-1 text-xs text-zinc-300 hover:text-white hover:underline mt-1"><BookOpen size={12} /> {c.t}</a>
                             ))}
@@ -664,6 +774,11 @@ export default function App() {
             </div>
           )}
 
+          {/* You: questionnaire answers become ATS evidence */}
+          {appRole === "student" && view === "you" && (
+            <QuestionnaireView key={role} role={role} resumeText={text} onSaved={() => setQVer((v) => v + 1)} />
+          )}
+
           {/* Quiz = the word "questionnaire" (Slice C) */}
           {appRole === "student" && view === "quiz" && (
             <QuizView role={role} roleOpts={ROLE_OPTS} onRoleChange={setRole} onDone={() => setQuizVer((v) => v + 1)} />
@@ -673,11 +788,14 @@ export default function App() {
           {appRole === "student" && view === "quests" && (() => {
             const tree = QUEST_TREE[role];
             const roleSkills = ROLES[role].skills.map((s) => s.toLowerCase());
+            // ponytail: snapshot once — per-skill helpers would re-parse the blob each
+            const snap = questSnapshot();
+            const snapC = (id) => Boolean(snap.quests[`${role}:${id}:course`]);
+            const snapP = (id) => Boolean(snap.quests[`${role}:${id}:project`]);
+            const snapE = (id) => snap.evidence[`${role}:${id}`] || "";
             let earnedCount = 0, totalCount = 0;
             const branchData = tree.branches.map((br) => {
-              const done = br.skills.filter((sk) =>
-                isCourseDone(role, sk.id) && isProjectDone(role, sk.id)
-              ).length;
+              const done = br.skills.filter((sk) => snapC(sk.id) && snapP(sk.id)).length;
               earnedCount += done;
               totalCount += br.skills.length;
               return { ...br, done };
@@ -717,9 +835,9 @@ export default function App() {
                         />
                         <div className="p-4 space-y-3">
                           {br.skills.map((sk) => {
-                            const cDone = isCourseDone(role, sk.id);
-                            const pDone = isProjectDone(role, sk.id);
-                            const complete = cDone && pDone && isEvidenceUrl(getEvidence(role, sk.id));
+                            const cDone = snapC(sk.id);
+                            const pDone = snapP(sk.id);
+                            const complete = cDone && pDone && isEvidenceUrl(snapE(sk.id));
                             const closesGap = roleSkills.includes(sk.name.toLowerCase());
                             return (
                               <div key={sk.id}
@@ -734,6 +852,9 @@ export default function App() {
                                         : <Circle size={15} className="text-zinc-500" />}
                                       {sk.name}
                                       {closesGap && !complete && <Badge tone="amber">Closes resume gap</Badge>}
+                                      <span className="ml-1 tabular-nums text-[10px] text-zinc-500" title={`Mastery L${masteryLevel(role, sk.id, quizBest)}/3`}>
+                                        {"●".repeat(masteryLevel(role, sk.id, quizBest))}{"○".repeat(3 - masteryLevel(role, sk.id, quizBest))}
+                                      </span>
                                     </div>
                                   </div>
                                   {complete && <Badge tone="emerald">+score</Badge>}
@@ -758,7 +879,7 @@ export default function App() {
                                 <div className="mt-2 flex items-start gap-2 text-xs text-zinc-300">
                                   <button
                                     onClick={() => {
-                                      if (!pDone && !isEvidenceUrl(getEvidence(role, sk.id))) { setEvAsk(`${role}:${sk.id}`); return; }
+                                      if (!pDone && !isEvidenceUrl(snapE(sk.id))) { setEvAsk(`${role}:${sk.id}`); return; }
                                       setQuestDone(role, sk.id, "project", !pDone); setQuestVer((v) => v + 1);
                                     }}
                                     className={`grid place-items-center w-6 h-6 rounded-md border shrink-0 mt-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${pDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
@@ -768,16 +889,16 @@ export default function App() {
                                   <div className="flex-1">
                                     <div className="font-medium">Project</div>
                                     <div className="text-zinc-400">{sk.project}</div>
-                                    {(evAsk === `${role}:${sk.id}` || getEvidence(role, sk.id)) && (
-                                      <input
-                                        key={`${role}:${sk.id}:${questVer}`}
-                                        defaultValue={getEvidence(role, sk.id)}
+                                      {(evAsk === `${role}:${sk.id}` || snapE(sk.id)) && (
+                                        <input
+                                          key={`${role}:${sk.id}:${questVer}`}
+                                          defaultValue={snapE(sk.id)}
                                         onBlur={(e) => { setEvidence(role, sk.id, e.target.value); setEvAsk(null); setQuestVer((v) => v + 1); }}
                                         placeholder="Proof link: GitHub repo / live URL…"
                                         className="mt-1.5 w-full text-xs bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 outline-none placeholder:text-zinc-600 focus:border-white/40"
                                       />
                                     )}
-                                    {!pDone && evAsk === `${role}:${sk.id}` && !isEvidenceUrl(getEvidence(role, sk.id)) && (
+                                      {!pDone && evAsk === `${role}:${sk.id}` && !isEvidenceUrl(snapE(sk.id)) && (
                                       <p className="text-[11px] text-amber-400 mt-1">Paste your repo or live link first — ticks without proof don't lift your score.</p>
                                     )}
                                   </div>
@@ -794,7 +915,7 @@ export default function App() {
                 {roadmap.length > 0 && (
                   <FadeUp delay={0.25}>
                     <Card>
-                      <CardHead title="Your roadmap" desc={`${result.missing.length} missing skills · ${roadmap.length} week plan`} />
+                      <CardHead title="Your roadmap" desc={`${result.missing.length} missing skills · ${roadmap.length} week plan · ${Object.values(roadmapTasks).filter(Boolean).length} tasks done`} />
                       <div className="p-4 space-y-3">
                         {roadmap.map((wk, wi) => (
                           <div key={wk.week} className="rounded-lg border border-white/10 bg-white/[0.02] p-3">
@@ -852,14 +973,16 @@ export default function App() {
               </FadeUp>
               <FadeUp delay={0.06} className="mt-4">
                 <Card>
-                  <CardHead title={`Questions • ${ROLES[role].label}`} desc={`Answered well: ${filledAnswers}/5`} />
+                  <CardHead title={`Questions • ${ROLES[role].label}`} desc={`Answered well: ${filledAnswers}/5 · graded on STAR + numbers`} />
                   <div className="p-4 space-y-3">
+                    <p className="text-[11px] text-zinc-500 leading-relaxed">Rubric preview — each answer wants: <span className="text-zinc-300">STAR shape · 1 number · role keyword · ≤3 sentences · no hedge words</span>.</p>
+                    <p className="text-[11px] text-zinc-500 tabular-nums">Skill readiness — Scene {Math.round(readiness.s * 100)}% · Task {Math.round(readiness.t * 100)}% · Action {Math.round(readiness.a * 100)}% · Result {Math.round(readiness.r * 100)}% · avg {readiness.avg}/4</p>
                     {voiceFailCount >= 2 && (
                       <p className="text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-2">
                         Voice unavailable. Type instead.
                       </p>
                     )}
-                    {INTERVIEW_QS[role].map((qq, i) => (
+                    {interviewQs.map((qq, i) => (
                       <Field key={i} label={`Q${i + 1}. ${qq}`}>
                         <div className="flex gap-2">
                           <input value={answers[i] || ""} onChange={(e) => setAnswers({ ...answers, [i]: e.target.value })}
@@ -874,12 +997,30 @@ export default function App() {
                             </button>
                           )}
                         </div>
+                        {(answers[i] || "").trim() && (
+                          <div className="mt-1.5 flex items-center gap-1.5 text-[11px]">
+                            {["s", "t", "a", "r"].map((k) => (
+                              <span key={k} title={{ s: "Scene", t: "Task", a: "Action", r: "Result" }[k]}
+                                className={`px-1.5 py-0.5 rounded font-semibold uppercase ${micros[i].stars[k] ? "bg-emerald-500/20 text-emerald-300" : "bg-white/5 text-zinc-600"}`}>{k}</span>
+                            ))}
+                            <span className="text-zinc-400 tabular-nums ml-1">{micros[i].micro}/4</span>
+                            {micros[i].tips[0] && <span className="text-zinc-500">· {micros[i].tips[0]}</span>}
+                          </div>
+                        )}
                       </Field>
                     ))}
-                    <Lift><Button className="w-full" onClick={gradeInterview}><Mic size={14} /> Grade me</Button></Lift>
+                    <div className="flex gap-2">
+                      <Lift><Button className="flex-1" onClick={gradeInterview}><Mic size={14} /> Grade me</Button></Lift>
+                      <Button variant="secondary" onClick={personalizeInterview} disabled={aiQsLoading || !text.trim()} title={text.trim() ? "Generate questions from your resume (needs key)" : "Paste your resume on the Score tab first"}>
+                        <Sparkles size={14} /> {aiQsLoading ? "Writing…" : aiQs[role] ? "Regenerate" : "Make it mine"}
+                      </Button>
+                    </div>
+                    {!import.meta.env?.VITE_GEMINI_KEY && (
+                      <p className="text-[11px] text-zinc-600">Personal questions need VITE_GEMINI_KEY — bank questions work offline.</p>
+                    )}
                     {streak.lastDay && (
                       <p className="text-[11px] text-zinc-500 -mt-1">
-                        Daily streak progresses only when you answer 3+ on the same day. Miss a day and the counter resets to 1.
+                        {weeklyActive("interview")} active days and counting — miss a day, nothing breaks, the count keeps your history.
                       </p>
                     )}
                     {feedback && <p className="text-xs whitespace-pre-wrap p-3 bg-white/[0.03] rounded-lg border border-white/10 leading-relaxed text-zinc-300">{feedback}</p>}
@@ -895,6 +1036,11 @@ export default function App() {
               <FadeUp>
                 <h1 className="text-2xl font-bold tracking-tight">College Battle</h1>
                 <p className="text-sm text-zinc-500 mt-1">Demo averages + your live score. Resumes stay private. Only numbers compete.</p>
+                {myScore != null && colleges.length >= 2 && (
+                  <p className="text-xs mt-1.5 text-zinc-400">
+                    ⚔️ Squad-lite: your college vs <span className="text-zinc-100 font-medium">{colleges[0].you ? colleges[1]?.name : colleges[0]?.name}</span> — top avg {colleges[0].you ? colleges[1]?.avg : colleges[0]?.avg}. Full multiplayer seasons next.
+                  </p>
+                )}
               </FadeUp>
               <FadeUp delay={0.06} className="mt-4">
                 <Card>
@@ -909,7 +1055,7 @@ export default function App() {
                       </tr>
                     </thead>
                     <tbody>
-                      {[...colleges].sort((a, b) => b.avg - a.avg).map((c, i) => (
+                      {colleges.map((c, i) => (
                         <tr key={c.name} className={`border-b border-white/5 last:border-0 ${c.you ? "bg-white/[0.04]" : ""}`}>
                           <td className="px-5 py-3 text-zinc-500 font-medium tabular-nums">{i + 1}</td>
                           <td className="py-3 pr-3">
@@ -936,10 +1082,18 @@ export default function App() {
           {appRole === "student" && view === "portfolio" && (
             <PortfolioView
               role={role} result={result} main={mainScore} rank={mainRank}
-              quizBest={quizBest} questPairs={questPairs} earnedSkills={earnedSkills}
+              quizBest={quizBest} questPairs={questPairs} questVer={questVer} earnedSkills={earnedSkills}
               appliedCount={applied.length} go={go}
             />
           )}
+          {celebrate && (
+            <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
+              <Burst className="flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl bg-emerald-400 text-zinc-950 shadow-lg shadow-emerald-500/20">
+                <CheckCircle2 size={14} /> {celebrate}
+              </Burst>
+            </div>
+          )}
+          {rankUp && <RankUp rank={rankUp} onClose={() => setRankUp(null)} onShowcase={() => { setRankUp(null); go("portfolio"); }} />}
         </main>
 
         <footer className="max-w-5xl mx-auto px-4 pb-8 pt-2 text-center text-[11px] text-zinc-600">

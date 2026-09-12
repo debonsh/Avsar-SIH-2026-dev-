@@ -2,6 +2,7 @@
 // single source of truth for Part 2 gamification
 import { QUEST_TREE } from "../data/quests.js";
 import { isEvidenceUrl } from "./quests.js";
+import { loadJSON, saveJSON } from "./storage.js";
 
 const KEY = "c2c-progress-v1";
 
@@ -15,18 +16,11 @@ function emptyState() {
 }
 
 function load() {
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return emptyState();
-    const parsed = JSON.parse(raw);
-    return { ...emptyState(), ...parsed };
-  } catch {
-    return emptyState();
-  }
+  return { ...emptyState(), ...loadJSON(KEY, null) };
 }
 
 function save(state) {
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* quota, ignore */ }
+  saveJSON(KEY, state);
 }
 
 export function todayISO() {
@@ -41,6 +35,13 @@ export function yesterdayISO() {
 }
 
 export function getProgress() { return load(); }
+
+// ponytail: one load per render for quest views — N skills × 3 parses → 1.
+// Keys match isCourseDone/isProjectDone/getEvidence exactly.
+export function questSnapshot() {
+  const s = load();
+  return { quests: s.quests || {}, evidence: s.evidence || {} };
+}
 
 export function isCourseDone(roleKey, skillId) {
   return Boolean(load().quests[`${roleKey}:${skillId}:course`]);
@@ -88,7 +89,29 @@ export function branchProgress(roleKey, branch) {
 }
 
 // mock-interview streak: call AFTER grading; bumps streak if lastDay === yesterday, else resets to 1
-export function bumpStreak() {
+// ponytail: kind-aware ('interview'|'quiz'), gentle momentum — activeDays set never
+// shames; public copy reads "X active days", streak count stays internal for badges
+export function recordDay(kind = "interview") {
+  const s = load();
+  const t = todayISO();
+  s.interview[`${kind}:${t}`] = (s.interview[`${kind}:${t}`] || 0) + 1;
+  save(s);
+}
+
+export function weeklyActive(kind = null) {
+  const s = load();
+  const days = new Set();
+  for (const k of Object.keys(s.interview || {})) {
+    if (kind && !k.startsWith(`${kind}:`)) continue;
+    const day = k.split(":").slice(-1)[0];
+    days.add(day);
+  }
+  if (s.streak.lastDay) days.add(s.streak.lastDay);
+  return days.size;
+}
+
+export function bumpStreak(kind = "interview") {
+  recordDay(kind);
   const s = load();
   const t = todayISO();
   const y = yesterdayISO();
@@ -104,6 +127,16 @@ export function bumpStreak() {
   }
   save(s);
   return s.streak;
+}
+
+// ponytail: mastery L0-L3 lite — course(1) + project&evidence(1) + quiz attempted(1). No backend.
+export function masteryLevel(roleKey, skillId, quizBest = 0) {
+  const s = load();
+  let lv = 0;
+  if (s.quests[`${roleKey}:${skillId}:course`]) lv++;
+  if (s.quests[`${roleKey}:${skillId}:project`] && isEvidenceUrl(s.evidence[`${roleKey}:${skillId}`])) lv++;
+  if (quizBest > 0) lv = Math.min(3, lv + 1);
+  return Math.min(3, lv);
 }
 
 export function getStreak() { return load().streak; }

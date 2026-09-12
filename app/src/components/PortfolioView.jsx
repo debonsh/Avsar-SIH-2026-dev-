@@ -10,7 +10,7 @@ import { isVerified, fetchKudos, giveKudos, hasGivenKudos, loadKudosFallback, lo
 import { Badge, Button, Card, inputCls } from "./ui";
 import { FadeUp } from "./amicro";
 
-export default function PortfolioView({ role, result, main, rank, quizBest, questPairs, earnedSkills, appliedCount, go }) {
+export default function PortfolioView({ role, result, main, rank, quizBest, questPairs, questVer, earnedSkills, appliedCount, go }) {
   const myId = getOrCreateC2CId();
   const [sharedId] = useState(() => {
     try {
@@ -41,11 +41,11 @@ export default function PortfolioView({ role, result, main, rank, quizBest, ques
 
   return <OwnPortfolio
     myId={myId} role={role} result={result} main={main} rank={rank}
-    quizBest={quizBest} questPairs={questPairs} earnedSkills={earnedSkills} appliedCount={appliedCount}
+    quizBest={quizBest} questPairs={questPairs} questVer={questVer} earnedSkills={earnedSkills} appliedCount={appliedCount}
   />;
 }
 
-function OwnPortfolio({ myId, role, result, main, rank, quizBest, questPairs, earnedSkills, appliedCount }) {
+function OwnPortfolio({ myId, role, result, main, rank, quizBest, questPairs, questVer, earnedSkills, appliedCount }) {
   const [github, setGithub] = useState(() => loadGithub());
   const [ghEdit, setGhEdit] = useState(false);
   const [ghDraft, setGhDraft] = useState(github);
@@ -63,7 +63,9 @@ function OwnPortfolio({ myId, role, result, main, rank, quizBest, questPairs, ea
     return () => { live = false; };
   }, [myId]);
 
+  // ponytail: questVer in deps — toggling a quest on this view must re-read storage
   const projects = useMemo(() => {
+    void questVer;
     const tree = QUEST_TREE[role];
     if (!tree) return [];
     const out = [];
@@ -76,7 +78,7 @@ function OwnPortfolio({ myId, role, result, main, rank, quizBest, questPairs, ea
       }
     }
     return out;
-  }, [role]);
+  }, [role, questVer]);
 
   const found = result.found || [];
   const missing = result.missing || [];
@@ -333,11 +335,14 @@ function SharedPortfolio({ id }) {
             Profile not found on this device — the owner opens it here once, or connect the backend.
           </p>
         )}
-        <div className="mt-4 flex justify-center gap-2">
-          <Button size="sm" variant="secondary" onClick={kudo} disabled={gave}>
-            <Heart size={13} /> {gave ? "Kudos given" : "Give kudos"}
-          </Button>
+        <div className="mt-4 flex justify-center gap-2 flex-wrap">
+          {["Clean code", "Great demo", "Job-ready"].map((chip) => (
+            <Button key={chip} size="sm" variant="secondary" onClick={kudo} disabled={gave} title={`Kudos: ${chip}`}>
+              <Heart size={13} /> {chip}
+            </Button>
+          ))}
         </div>
+        <p className="text-[11px] text-zinc-600 mt-2">{gave ? "Kudos given — thanks for recognizing real proof." : "One tap per viewer. Kudos mark verified proof, not popularity."}</p>
       </Card>
     </FadeUp>
   );

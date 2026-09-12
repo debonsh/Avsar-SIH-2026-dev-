@@ -1,6 +1,7 @@
 // ponytail: quiz banks are static data + 3 pure fns. Sampling reuses pickForId
 // (stable per C2C ID + day), storage guarded so node --test never touches DOM.
 import { pickForId } from "../lib/quests.js";
+import { loadJSON, saveJSON } from "../lib/storage.js";
 
 // ponytail: 20 factual 1-line Qs per role; QuizView samples 10 per run.
 export const QUIZ = {
@@ -130,20 +131,14 @@ export function quizSample(role, id = "", day = "", n = 10) {
 const bestKey = (role) => `c2c-quiz-${role}`;
 
 export function loadQuizBest(role) {
-  try {
-    if (typeof localStorage === "undefined") return 0;
-    return Number(JSON.parse(localStorage.getItem(bestKey(role)))) || 0;
-  } catch {
-    return 0;
-  }
+  return Number(loadJSON(bestKey(role), 0)) || 0;
 }
 
 export function saveQuizBest(role, score) {
   try {
-    if (typeof localStorage === "undefined") return score;
     const prev = loadQuizBest(role);
     const best = Math.max(prev, Math.round(score || 0));
-    localStorage.setItem(bestKey(role), JSON.stringify(best));
+    saveJSON(bestKey(role), best);
     return best;
   } catch {
     return score;

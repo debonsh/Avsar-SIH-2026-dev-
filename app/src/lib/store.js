@@ -3,6 +3,8 @@
 import { getClient } from "./supabase.js";
 import { getOrCreateC2CId } from "./identity.js";
 import { ROLES } from "./score.js";
+import { loadJSON, saveJSON } from "./storage.js";
+import { queryFromProfile } from "./profile.js";
 
 // --- pure (tested) ---
 
@@ -43,27 +45,17 @@ const AKEY = "c2c-applications";
 const IKEY = "c2c-interests";
 
 export function loadCustomJobs() {
-  try {
-    return JSON.parse(localStorage.getItem(CKEY)) ?? [];
-  } catch {
-    return [];
-  }
+  return loadJSON(CKEY, []);
 }
 
 export function saveCustomJob(job) {
   const all = [job, ...loadCustomJobs()];
-  try {
-    localStorage.setItem(CKEY, JSON.stringify(all));
-  } catch { /* quota, ignore */ }
+  saveJSON(CKEY, all);
   return all;
 }
 
 export function loadApplications() {
-  try {
-    return JSON.parse(localStorage.getItem(AKEY)) ?? [];
-  } catch {
-    return [];
-  }
+  return loadJSON(AKEY, []);
 }
 
 export function countLocalApplications(jobId) {
@@ -71,15 +63,13 @@ export function countLocalApplications(jobId) {
 }
 
 function saveApplicationLocal(app) {
-  try {
-    localStorage.setItem(AKEY, JSON.stringify([...loadApplications(), app]));
-  } catch { /* ignore */ }
+  saveJSON(AKEY, [...loadApplications(), app]);
 }
 
 // --- remote best-effort (Supabase jobs_board / applications) ---
 
 export async function listJobsBoard() {
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return null;
   try {
     const { data, error } = await sb.from("jobs_board").select("*").order("created_at", { ascending: false }).limit(100);
@@ -91,7 +81,7 @@ export async function listJobsBoard() {
 }
 
 export async function createJobBoard(p) {
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return false;
   try {
     const { error } = await sb.from("jobs_board").insert({
@@ -108,7 +98,7 @@ export async function createJobBoard(p) {
 export async function recordApplication(job, ats, main = ats) {
   const app = { jobId: job.id, title: job.title, ats: Math.round(ats || 0), at: Date.now() };
   saveApplicationLocal(app);
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return false;
   try {
     const { error } = await sb.from("applications").insert({
@@ -121,7 +111,7 @@ export async function recordApplication(job, ats, main = ats) {
 }
 
 export async function countRemoteApplications(jobId) {
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return null;
   try {
     const { count, error } = await sb.from("applications").select("id", { count: "exact", head: true }).eq("job_id", String(jobId));
@@ -134,30 +124,22 @@ export async function countRemoteApplications(jobId) {
 // --- faculty interests (Slice D): local-first ids + best-effort interests table ---
 
 export function loadInterests() {
-  try {
-    return JSON.parse(localStorage.getItem(IKEY)) ?? [];
-  } catch {
-    return [];
-  }
+  return loadJSON(IKEY, []);
 }
 
 export function toggleInterest(id) {
   const ids = loadInterests();
   const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
-  try {
-    localStorage.setItem(IKEY, JSON.stringify(next));
-  } catch { /* ignore */ }
+  saveJSON(IKEY, next);
   return next;
 }
 
 export async function recordInterest(fdp) {
   const ids = loadInterests();
   if (!ids.includes(fdp.id)) {
-    try {
-      localStorage.setItem(IKEY, JSON.stringify([...ids, fdp.id]));
-    } catch { /* ignore */ }
+    saveJSON(IKEY, [...ids, fdp.id]);
   }
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return false;
   try {
     const { error } = await sb.from("interests").insert({
@@ -181,23 +163,15 @@ const KGIVEN = "c2c-kudos-given";
 const KCOUNT = "c2c-kudos-fallback";
 
 export function hasGivenKudos(id) {
-  try {
-    return (JSON.parse(localStorage.getItem(KGIVEN)) ?? []).includes(id);
-  } catch {
-    return false;
-  }
+  return loadJSON(KGIVEN, []).includes(id);
 }
 
 export function loadKudosFallback(id) {
-  try {
-    return (JSON.parse(localStorage.getItem(KCOUNT)) ?? {})[id] || 0;
-  } catch {
-    return 0;
-  }
+  return loadJSON(KCOUNT, {})[id] || 0;
 }
 
 export async function fetchKudos(id) {
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return null;
   try {
     const { count, error } = await sb.from("kudos").select("id", { count: "exact", head: true }).eq("c2c_id", String(id));
@@ -209,14 +183,12 @@ export async function fetchKudos(id) {
 
 export async function giveKudos(id) {
   if (hasGivenKudos(id)) return null; // already counted — never double
-  try {
-    const given = JSON.parse(localStorage.getItem(KGIVEN)) ?? [];
-    localStorage.setItem(KGIVEN, JSON.stringify([...given, id]));
-    const counts = JSON.parse(localStorage.getItem(KCOUNT)) ?? {};
-    counts[id] = (counts[id] || 0) + 1;
-    localStorage.setItem(KCOUNT, JSON.stringify(counts));
-  } catch { /* ignore */ }
-  const sb = getClient();
+  const given = loadJSON(KGIVEN, []);
+  saveJSON(KGIVEN, [...given, id]);
+  const counts = loadJSON(KCOUNT, {});
+  counts[id] = (counts[id] || 0) + 1;
+  saveJSON(KCOUNT, counts);
+  const sb = await getClient();
   if (!sb) return null;
   try {
     const { error } = await sb.from("kudos").insert({ c2c_id: String(id) });
@@ -228,7 +200,7 @@ export async function giveKudos(id) {
 
 // read-only shared profile: best MAIN + application count + kudos, null when unknown/offline
 export async function loadSharedShowcase(id) {
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return null;
   try {
     const { data } = await sb.from("applications").select("ats,main").eq("student", String(id)).limit(50);
@@ -241,7 +213,10 @@ export async function loadSharedShowcase(id) {
   }
 }
 
-// --- live jobs (free Remotive API, no key). Cached 6h, seeds survive offline. ---
+// --- live jobs (free keyless JSON APIs, no scraper needed in browser). Cached 6h, seeds survive offline.
+// sources: Remotive (existing) + Arbeitnow (https://www.arbeitnow.com/api/job-board-api, no key, CORS-open).
+// why not a real scraper here: CORS blocks most boards from the browser, ToS bans it,
+// and stage wifi kills headless runs. Terminal-initiated deep runs live in scripts/scrape.mjs.
 
 const LIVE_KEY = "c2c-live-jobs";
 const LIVE_TTL = 6 * 3600 * 1000;
@@ -289,38 +264,70 @@ export function toLiveJobShape(r, i = 0) {
 }
 
 export function liveCacheAt() {
+  return loadJSON(LIVE_KEY, {}).at || 0;
+}
+
+// ponytail: strip tags for skill-matching, no DOM needed
+function stripHtml(s = "") {
+  return String(s).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ");
+}
+
+export function toArbeitJobShape(r, i = 0) {
+  const text = `${r.title || ""} ${(r.tags || []).join(" ")} ${stripHtml(r.description || "").slice(0, 600)}`;
+  const role = guessRole(text);
+  if (!role || !r.title) return null;
+  const types = (r.job_types || []).join(" ");
+  return {
+    id: `arbeit-${r.slug ?? i}`,
+    role,
+    title: r.title,
+    company: r.company_name || "Remote co",
+    loc: r.remote ? "Remote" : (r.location || "Remote"),
+    type: /full/i.test(types) ? "Full-time" : "Internship",
+    skills: extractSkills(text),
+    minScore: 45,
+    apply: r.url || "#",
+    live: true,
+  };
+}
+
+async function fetchJSON(url, ms = 8000) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
   try {
-    return (JSON.parse(localStorage.getItem(LIVE_KEY) || "null") || {}).at || 0;
-  } catch {
-    return 0;
+    const res = await fetch(url, { signal: ctrl.signal });
+    if (!res.ok) throw new Error("feed down");
+    return await res.json();
+  } finally {
+    clearTimeout(t);
   }
 }
 
-export async function listLiveJobs(force = false) {
-  const readCache = () => {
-    try {
-      return (JSON.parse(localStorage.getItem(LIVE_KEY) || "null") || {}).jobs || [];
-    } catch {
-      return [];
-    }
-  };
+// profile-aware: her top skill becomes the Remotive search, remote flag filters on-device
+export async function listLiveJobs(force = false, profile = null) {
+  const readCache = () => loadJSON(LIVE_KEY, {}).jobs || [];
   if (!force) {
-    try {
-      const c = JSON.parse(localStorage.getItem(LIVE_KEY) || "null");
-      if (c && Date.now() - c.at < LIVE_TTL && c.jobs?.length) return c.jobs;
-    } catch { /* fall through to fetch */ }
+    const c = loadJSON(LIVE_KEY, null);
+    if (c && Date.now() - c.at < LIVE_TTL && c.jobs?.length) return c.jobs;
   }
+  let search = "";
   try {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 8000);
-    const res = await fetch("https://remotive.com/api/remote-jobs?limit=20", { signal: ctrl.signal });
-    clearTimeout(t);
-    if (!res.ok) throw new Error("live feed down");
-    const data = await res.json();
-    const jobs = (data.jobs || []).map(toLiveJobShape).filter(Boolean);
-    try {
-      localStorage.setItem(LIVE_KEY, JSON.stringify({ at: Date.now(), jobs }));
-    } catch { /* quota, ignore */ }
+    const q = queryFromProfile(profile || {}, "developer");
+    search = q.search;
+    const rem = async () => {
+      const data = await fetchJSON(`https://remotive.com/api/remote-jobs?limit=20${search ? `&search=${encodeURIComponent(search)}` : ""}`);
+      return (data.jobs || []).map(toLiveJobShape).filter(Boolean);
+    };
+    const arb = async () => {
+      const data = await fetchJSON("https://www.arbeitnow.com/api/job-board-api");
+      return (data.data || []).slice(0, 30).map(toArbeitJobShape).filter(Boolean)
+        .filter((j) => !search || `${j.title} ${j.skills.join(" ")}`.toLowerCase().includes(search.toLowerCase()) || j.loc === "Remote");
+    };
+    const [a, b] = await Promise.allSettled([rem(), arb()]);
+    const seen = new Set();
+    const jobs = [...(a.status === "fulfilled" ? a.value : []), ...(b.status === "fulfilled" ? b.value : [])]
+      .filter((j) => (seen.has(j.id) ? false : (seen.add(j.id), true)));
+    if (jobs.length) saveJSON(LIVE_KEY, { at: Date.now(), jobs });
     return jobs.length ? jobs : readCache();
   } catch {
     return readCache();

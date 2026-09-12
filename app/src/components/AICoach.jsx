@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import { Send, Sparkles, X } from "lucide-react";
 import { COACH_ACTIONS, buildPrompt, localAnswer } from "../lib/coach";
-import { askCoach } from "../lib/gemini";
+import { ask } from "../lib/gemini";
 import { Card } from "./ui";
 import { FadeUp } from "./amicro";
 
@@ -24,7 +24,7 @@ export default function AICoach({ roleLabel, score, missing, bestFitLabel, resum
     setMsgs((m) => [...m, { from: "user", text: label }]);
     setBusy(true);
     try {
-      const ai = await askCoach(buildPrompt(actionId, actionId === "ask" ? { ...state, question } : state));
+      const ai = await ask(buildPrompt(actionId, actionId === "ask" ? { ...state, question } : state));
       const text = ai || `${localAnswer(actionId, state)}\n\n· offline tips — add VITE_GEMINI_KEY for AI answers`;
       setMsgs((m) => [...m, { from: "bot", text }]);
     } finally {

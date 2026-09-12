@@ -1,9 +1,9 @@
 // ponytail: shared leaderboard = 1 table, seeds stay fallback when keys missing/offline
+// supabase-js is dynamically imported — offline runs never download it.
 // SQL (human runs once in Supabase dashboard):
 // create table public.college_scores(id uuid primary key default gen_random_uuid(), college_name text not null, score int check(score between 0 and 100), created_at timestamptz default now());
 // alter table college_scores enable row level security;
 // create policy "open read/insert" on college_scores for anon using(true) with check(true);
-import { createClient } from "@supabase/supabase-js";
 import { COLLEGES } from "../data/colleges.js";
 
 let cached = null;
@@ -17,10 +17,11 @@ export function isSupabaseOn() {
   }
 }
 
-export function getClient() {
+export async function getClient() {
   if (!isSupabaseOn()) return null;
   try {
     if (!cached) {
+      const { createClient } = await import("@supabase/supabase-js");
       cached = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
     }
     return cached;
@@ -61,7 +62,7 @@ export function mergeBoards(seeds, remote) {
 }
 
 export async function loadBoard() {
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb) return null;
   try {
     const { data, error } = await sb.from("college_scores").select("college_name,score").limit(1000);
@@ -73,7 +74,7 @@ export async function loadBoard() {
 }
 
 export async function submitScore(collegeName, score) {
-  const sb = getClient();
+  const sb = await getClient();
   if (!sb || !collegeName || score == null) return false;
   try {
     const { error } = await sb.from("college_scores").insert({ college_name: collegeName, score: Math.round(score) });
