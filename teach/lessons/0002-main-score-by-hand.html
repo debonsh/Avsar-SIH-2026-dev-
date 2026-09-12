@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C2C — Project Explainer</title>
+<link rel="stylesheet" href="../assets/style.css">
+<!-- Fonts are progressive enhancement: local Nerd Font wins, CDN fills gaps, monospace stack covers offline -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css">
+<style>
+  /* Page-specific: stepper + flow diagrams. Single use, so inline, not in shared assets. */
+  .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+  .statusline { font-family: var(--font-mono); font-size: 0.875rem; color: var(--text-mute); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin: 22px 0 0; }
+  .steps { list-style: none; padding: 0; margin: 16px 0 8px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .steps li { padding: 14px 12px; background: var(--bg-card); border-left: 1px solid var(--border); }
+  .steps li:first-child { border-left: 0; }
+  .steps .n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); display: block; margin-bottom: 4px; }
+  .steps .t { font-weight: 700; font-size: 0.875rem; display: block; }
+  .steps .d { font-size: 0.875rem; color: var(--text-soft); display: block; margin-top: 2px; }
+  .flow { display: flex; align-items: stretch; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+  .fnode { flex: 1 1 0; min-width: 120px; border: 1px solid var(--border); border-radius: 10px; padding: 12px; background: var(--bg-card); text-align: center; }
+  .fnode .k { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-mute); display: block; }
+  .fnode .v { font-family: var(--font-mono); font-weight: 700; font-size: 1rem; display: block; margin-top: 4px; }
+  .farrow { align-self: center; color: var(--text-mute); font-family: var(--font-mono); }
+  .secnum { font-family: var(--font-mono); color: var(--accent); font-size: 0.85em; margin-right: 10px; }
+  @media (max-width: 640px) { .steps { grid-template-columns: 1fr; } .steps li { border-left: 0; border-top: 1px solid var(--border); } .steps li:first-child { border-top: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="eyebrow">C2C · Campus2Corporate · explainer</p>
+<h1>One roof for <span class="accent">getting hired</span></h1>
+<p class="subtitle">Find openings, close your skill gaps, prove what you learned, and show it to the world. Jobs, people, clans, coaching and verified proof in a single loop, instead of five separate apps.</p>
+
+<p class="statusline">vite + react 19 + tailwind v4 · no backend in build 1, browser storage only · build passes · 48/48 tests green</p>
+
+<div class="card callout">
+  <div class="label">Explain it in 30 seconds</div>
+  <p style="margin:0">"Applying everywhere and hearing nothing is the problem I lived. C2C scores your resume transparently, tells you exactly what to learn, tests whether you learned it, and proves it with badges employers can trust. Today it works solo. Next come clans. Later, companies hire whole verified squads." Memorize this order: problem, loop, proof, roadmap.</p>
+</div>
+
+<h2><span class="secnum">01</span>Problem</h2>
+<p>Students apply everywhere and hear back nowhere. They cannot see why they were rejected, what to learn next, or how to prove new skills. Recruiters drown in unverified resumes. Clans, chats, job boards and course sites each solve one slice and none of them connect.</p>
+
+<h2><span class="secnum">02</span>The loop</h2>
+<ol class="steps">
+  <li><span class="n">01</span><span class="t">Analyze</span><span class="d">Resume scored 0 to 95, gaps listed</span></li>
+  <li><span class="n">02</span><span class="t">Upskill</span><span class="d">Quiz, quests, free courses, roadmap</span></li>
+  <li><span class="n">03</span><span class="t">Prove</span><span class="d">Tests, interviews, evidence links</span></li>
+  <li><span class="n">04</span><span class="t">Match</span><span class="d">Jobs unlock as the score rises</span></li>
+  <li><span class="n">05</span><span class="t">Showcase</span><span class="d">Portfolio, badges, kudos, battle</span></li>
+</ol>
+<p>Finishing the loop re-scores you, which re-opens the loop. That cycle is the whole retention design: every action moves a number you can see.</p>
+
+<h2><span class="secnum">03</span>How scoring works</h2>
+<div class="flow">
+  <div class="fnode"><span class="k">ATS · resume</span><span class="v">0 to 95</span></div>
+  <span class="farrow">+</span>
+  <div class="fnode"><span class="k">Quiz · best grade</span><span class="v">0 to 100</span></div>
+  <span class="farrow">+</span>
+  <div class="fnode"><span class="k">Proof · quest pairs × 20</span><span class="v">0 to 100</span></div>
+  <span class="farrow">=</span>
+  <div class="fnode"><span class="k">MAIN · weighted</span><span class="v">0 to 100</span></div>
+</div>
+<pre><code>tech tracks (sde, data):      MAIN = round(0.5*ATS + 0.3*Quiz + 0.2*Proof)
+other tracks (mktg, govt):    MAIN = round(0.6*ATS + 0.3*Quiz + 0.1*Proof)</code></pre>
+<p>Example: ATS 80, quiz 100, 5 quest pairs (proof 100). Tech: 40 + 30 + 20 = <strong>90, Diamond</strong>. Non-tech: 48 + 30 + 10 = <strong>88, Platinum</strong>. Ranks: Diamond 90+, Platinum 80+, Gold 65+, Silver 50+, Bronze below. Each job sets a minimum MAIN, so the rank is the lock and the key. Logic lives in <code>app/src/lib/score.js</code> and <code>app/src/lib/scores.js</code>, pinned by <code>app/tests/scores.test.js</code>.</p>
+
+<h2><span class="secnum">04</span>Under the hood</h2>
+<table>
+  <thead><tr><th>Layer</th><th>What</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>UI</td><td>React 19, Tailwind v4, no router (view state)</td><td>One language, fewer moving parts, demo-proof</td></tr>
+    <tr><td>Logic</td><td>15 small lib files, pure functions</td><td>Scoring and matching run offline and are unit-tested</td></tr>
+    <tr><td>Data</td><td>Seeded jobs, quizzes, quests, courses</td><td>Works on stage Wi-Fi with zero users</td></tr>
+    <tr><td>Cloud</td><td>Supabase + Gemini as optional adapters</td><td>Local answers first, cloud upgrades, never gates</td></tr>
+  </tbody>
+</table>
+<p>Persistence is browser storage under <code>c2c-*</code> keys: identity, quest ticks, evidence URLs, best quiz grades, applications. The resume file itself is parsed in the browser and never uploaded.</p>
+
+<h2><span class="secnum">05</span>Where this is going</h2>
+<table>
+  <thead><tr><th>Pillar</th><th>Hackathon call</th></tr></thead>
+  <tbody>
+    <tr><td>Auto roadmap + todos + streaks</td><td>In, extend existing engine</td></tr>
+    <tr><td>Certification tests that award badges</td><td>In, auto-graded with pass bars</td></tr>
+    <tr><td>XP ledger, verified actions only</td><td>In, capped in code</td></tr>
+    <tr><td>Project interrogation + revoke flag</td><td>In, the demo moment</td></tr>
+    <tr><td>Portfolio with certs, GitHub, LeetCode</td><td>In, verified layer only</td></tr>
+    <tr><td>Simulated season board + squad card</td><td>In, labeled simulated</td></tr>
+    <tr><td>Real clans + chat</td><td>Later, moderation first</td></tr>
+    <tr><td>Company squad-hire marketplace</td><td>Later, after density</td></tr>
+    <tr><td>DMs, global ladder, scraped feeds, extra profile fields</td><td>Cut</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="secnum">06</span>Order of attack</h2>
+<p><strong>Phase 1, single player:</strong> score, roadmap, badge, portfolio, jobs. Must stand alone with zero other users. <strong>Phase 2, social:</strong> clans, chat, seasons, behind moderation and density. <strong>Phase 3, marketplace:</strong> squad-hire for companies. Each phase funds the next one's cold start. Anything not on this list is cut, not postponed.</p>
+
+<h2><span class="secnum">07</span>Glossary</h2>
+<p>ATS, resume score 0 to 95. MAIN, combined readiness 0 to 100. Proof, verified quest work 0 to 100. Quest pair, course plus project plus evidence link. XP, points for verified actions only. Clan, skill group with shared chat. Badge, scarce test-earned proof.</p>
+
+<h2><span class="secnum">08</span>Sources</h2>
+<ul>
+  <li><a href="../../C2C-EXAM-PRD.md">C2C-EXAM-PRD.md</a>, the full exam PRD this page summarizes</li>
+  <li><a href="./0001-campus2corporate-briefing.html">Lesson 0001</a>, briefing plus judge Q&amp;A</li>
+  <li><code>app/src/lib/score.js:31-36</code>, the two MAIN formulas</li>
+</ul>
+
+<div class="nav">
+  <a href="./0001-campus2corporate-briefing.html">Briefing</a> &middot;
+  <a href="../../C2C-EXAM-PRD.md">Exam PRD</a> &middot;
+  <a href="../MISSION.md">Mission</a> &middot;
+  <a href="../RESOURCES.md">Resources</a>
+</div>
+
+</div>
+</body>
+</html>

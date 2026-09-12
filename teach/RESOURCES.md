@@ -3,6 +3,9 @@
 ## Project source (canonical, read-first)
 
 - `PRD.md` — full problem/solution/users/stories/decisions/demo-script (78 lines)
+- `C2C-EXAM-PRD.md` — exam-ready PRD: notebook-PS→code map, scoring walkthrough, frontend/backend, plans, viva sheet (root)
+- `teach/lessons/0002-main-score-by-hand.html` — repurposed 2026-09-12: now the one-page project explainer (was the MAIN-score drill; drill retired, math lives in §03)
+- `ABOUT-ME/index.html` — founder vision page: your thoughts, wedge interpretation, loop diagram, XP bars, roadmap, cited research fuel
 - `ARCHITECTURE-REVIEW.md` — 5 deepening candidates ranked by strength (175 lines)
 - `AGENTS.md` — stack, setup, dev commands
 - `app/src/App.jsx` — all UI, 258 lines, beginner-readable

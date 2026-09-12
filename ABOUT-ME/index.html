@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABOUT: the C2C vision, the plan, the win</title>
+<link rel="stylesheet" href="../teach/assets/style.css">
+<!-- Fonts are progressive enhancement: local Nerd Font wins, CDN fills gaps, monospace stack covers offline -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css">
+<style>
+  /* Page-specific diagrams. Single use, so inline, not in shared assets. */
+  .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+  .secnum { font-family: var(--font-mono); color: var(--accent); font-size: 0.85em; margin-right: 10px; }
+  .statrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+  .stat { border: 1px solid var(--border); border-radius: 10px; padding: 12px; background: var(--bg-card); text-align: center; }
+  .stat .n { font-family: var(--font-mono); font-weight: 800; font-size: 1.3rem; display: block; }
+  .stat .d { font-size: 0.75rem; color: var(--text-soft); display: block; margin-top: 2px; }
+  .loop { display: flex; flex-direction: column; gap: 0; margin: 16px 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .loop .row { display: flex; gap: 12px; padding: 12px 14px; background: var(--bg-card); align-items: baseline; }
+  .loop .row + .row { border-top: 1px solid var(--border); }
+  .loop .n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); min-width: 28px; }
+  .loop .t { font-weight: 700; font-size: 0.875rem; min-width: 90px; }
+  .loop .d { font-size: 0.875rem; color: var(--text-soft); }
+  .loop .back { background: var(--bg-soft); color: var(--text-soft); font-size: 0.875rem; }
+  .bars { margin: 16px 0; display: grid; gap: 8px; }
+  .bar { display: grid; grid-template-columns: 170px 1fr 52px; gap: 10px; align-items: center; font-size: 0.875rem; }
+  .bar .track { height: 10px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--accent); }
+  .bar .xp { font-family: var(--font-mono); text-align: right; color: var(--text-soft); }
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+  .phase { border: 1px solid var(--border); border-radius: 12px; padding: 14px; background: var(--bg-card); }
+  .phase .k { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
+  .phase .t { font-weight: 700; margin: 4px 0; }
+  .phase p { font-size: 0.875rem; color: var(--text-soft); margin: 0; }
+  @media (max-width: 640px) { .statrow, .phases { grid-template-columns: 1fr; } .bar { grid-template-columns: 110px 1fr 48px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="eyebrow">About this project · founder vision + interpretation</p>
+<h1>Prove skills, <span class="accent">not claims</span></h1>
+<p class="subtitle">One roof for careers: find openings, close skill gaps for free, prove what you learned, and show it to the world. Jobs, people, clans, coaching and verified proof in a single loop.</p>
+
+<h2><span class="secnum">01</span>Your thoughts, kept intact</h2>
+<div class="card">
+  <div class="label">Founder notes</div>
+  <p>LinkedIn-like connecting plus Naukri-like listings plus AI help plus freebies plus upskilling: resume review that finds gaps and shows how to raise the ATS score. Gamified with leaderboard (still under discussion), XP, clans, and a profile that shows certificates, GitHub and LeetCode as badges worth grinding for, with a dopamine loop that keeps people improving. Auto roadmaps with todo lists. Mock interviews, mock tests, proof of work, and post-certification skill tests that award showcaseable badges. Portfolio styled your way. Clan and people chat in a simple Discord-like way: mutual clans and badges visible, no follower counts. Companies hire full dev teams fast instead of hunting individuals. Many apps under one roof, made easy.</p>
+</div>
+
+<h2><span class="secnum">02</span>My interpretation: the wedge</h2>
+<p>The roof is phase three. The wedge that wins the hackathon is one closed loop for one user with zero other users: <strong>diagnose, fix free, prove, unlock, showcase</strong>. Everything social (clans, chat, seasons) and everything marketplace (squad-hire) hangs off verified proof, so proof ships first. The trust currency is MAIN plus badges plus evidence links. Nothing else needs to exist for the demo to be real.</p>
+<div class="loop">
+  <div class="row"><span class="n">01</span><span class="t">Diagnose</span><span class="d">Resume scored 0 to 95, gaps listed with the exact fix</span></div>
+  <div class="row"><span class="n">02</span><span class="t">Fix free</span><span class="d">Roadmap, todos, quiz, quests, curated free courses</span></div>
+  <div class="row"><span class="n">03</span><span class="t">Prove</span><span class="d">Cert tests, project interrogation, evidence URLs, revoke flag</span></div>
+  <div class="row"><span class="n">04</span><span class="t">Unlock</span><span class="d">Jobs open as MAIN rises; squad card previews team hire</span></div>
+  <div class="row"><span class="n">05</span><span class="t">Showcase</span><span class="d">Badges, MAIN, proof links on a shareable portfolio</span></div>
+  <div class="row back"><span class="n">↺</span><span class="t">Re-score</span><span class="d">Finishing the loop raises the score, which re-opens the loop</span></div>
+</div>
+
+<h2><span class="secnum">03</span>XP ledger (from BUILD-SPEC)</h2>
+<div class="bars">
+  <div class="bar"><span>Quest pair accepted</span><div class="track"><div class="fill" style="width:40%"></div></div><span class="xp">100</span></div>
+  <div class="bar"><span>Cert test pass / distinction</span><div class="track"><div class="fill" style="width:60%"></div></div><span class="xp">150</span></div>
+  <div class="bar"><span>Interrogation pass</span><div class="track"><div class="fill" style="width:60%"></div></div><span class="xp">150</span></div>
+  <div class="bar"><span>Quiz new best</span><div class="track"><div class="fill" style="width:8%"></div></div><span class="xp">20</span></div>
+  <div class="bar"><span>Streak day</span><div class="track"><div class="fill" style="width:4%"></div></div><span class="xp">10</span></div>
+</div>
+<p>Weekly cap on quest XP, cooldowns on retakes, levels at 0 / 300 / 800 / 1500 / 2500 lifetime XP. Clicks and logins pay nothing.</p>
+
+<h2><span class="secnum">04</span>Hackathon roadmap</h2>
+<div class="phases">
+  <div class="phase"><div class="k">NOW</div><div class="t">The wedge</div><p>XP ledger, ownership check, interrogation, revoke flag, todos from roadmap, digest shelf. Skeleton first, demo script before code.</p></div>
+  <div class="phase"><div class="k">DEMO</div><div class="t">The 3 minutes</div><p>Problem 30s, live loop 90s, stack 30s, horizon 30s. Pre-filled data, recorded backup, one memorable moment: the interrogation.</p></div>
+  <div class="phase"><div class="k">NEXT</div><div class="t">After density</div><p>Clan seasons, channels with moderation, mutual-clan profiles, squad marketplace. Each funds the next cold start.</p></div>
+</div>
+
+<h2><span class="secnum">05</span>Research fuel (cited, usable in viva)</h2>
+<div class="statrow">
+  <div class="stat"><span class="n">85%</span><span class="d">employers use skills-based hiring (TestGorilla 2025)</span></div>
+  <div class="stat"><span class="n">76%</span><span class="d">use skills tests; resumes falling (73 to 67%)</span></div>
+  <div class="stat"><span class="n">+25%</span><span class="d">lesson completion from leagues (Duolingo)</span></div>
+  <div class="stat"><span class="n">12→55%</span><span class="d">next-day retention via streaks (Duolingo)</span></div>
+  <div class="stat"><span class="n">+22%</span><span class="d">daily completion with friend streaks</span></div>
+  <div class="stat"><span class="n">+7%</span><span class="d">entry-level hiring growth vs +19% senior (HackerRank 2025): the pain is real</span></div>
+</div>
+<p>Field evidence backs the mechanics: AI-generated questions test comparably to expert ones in a 91-class study when a generate-judge-refine loop plus distractor QA is used, which is exactly how cert tests should be built (cache the approved bank, never generate live on stage). Leagues work because pools are small (20 to 30), evenly matched, and reset weekly with tightening promotion bands, which is the template for clan seasons. Streaks need forgiveness (freezes) and milestone payouts with real value, not confetti.</p>
+
+<h2><span class="secnum">06</span>Kill list (still dead)</h2>
+<p>DMs and chat UI. Global solo ladder. Scraped feeds. Extra profile fields. Human review. Supabase writes. Follower counts. Anything needing other users, moderation, or weekly ops.</p>
+
+<div class="nav">
+  <a href="../C2C-EXAM-PRD.md">Exam PRD</a> &middot;
+  <a href="../BUILD-SPEC.md">Build spec</a> &middot;
+  <a href="../teach/lessons/0002-main-score-by-hand.html">Explainer</a> &middot;
+  <a href="../teach/RESOURCES.md">Resources</a>
+</div>
+
+</div>
+</body>
+</html>

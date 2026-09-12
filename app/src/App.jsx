@@ -2,23 +2,36 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight, ArrowUpRight, BellRing, BookOpen, Bookmark, Briefcase,
   CheckCircle2, Circle, CircleCheck, ExternalLink, FileText, Flame, Gauge,
-  GraduationCap, Hammer, Lock, MapPin, Mic, RotateCcw, Search, ShieldCheck,
+  GraduationCap, Hammer, IdCard, Lock, MapPin, Mic, RotateCcw, Search, ShieldCheck,
   Sparkles, Sprout, Trophy,
 } from "lucide-react";
-import { ROLES, scoreResume, calculateMainScore, rankFor, rankRoles } from "./lib/score";
-import { matchJobs } from "./data/jobs";
+import { ROLES, scoreResume, rankRoles } from "./lib/score";
+import { combineScores } from "./lib/scores";
+import { loadQuizBest } from "./data/quiz";
+import { matchJobs, JOBS } from "./data/jobs";
+import { EXTRA_JOBS } from "./data/seedJobsExtra";
+import { loadCustomJobs, listJobsBoard, listLiveJobs, liveCacheAt, mergeJobs, recordApplication } from "./lib/store";
 import { coursesFor, PROJECT_IDEAS } from "./data/courses";
 import { COLLEGES, recomputeCollegeAvg } from "./data/colleges";
 import { loadBoard, submitScore } from "./lib/supabase";
 import { INTERVIEW_QS } from "./data/interview";
 import { SAMPLE_RESUME } from "./data/fixtures";
 import { QUEST_TREE } from "./data/quests";
-import { bumpStreak, getStreak, isCourseDone, isProjectDone, setQuestDone, completedSkillIdsForRole } from "./lib/progress";
+import { bumpStreak, getStreak, isCourseDone, isProjectDone, setQuestDone, getEvidence, setEvidence, completedSkillIdsForRole } from "./lib/progress";
+import { isEvidenceUrl } from "./lib/quests";
 import { improveResume, mockInterviewFeedback } from "./lib/gemini";
 import { isVoiceSupported, listenOnce } from "./lib/speech";
-import { roadmapGenerator } from "./lib/roadmapGenerator";
+import { roadmapGenerator, orderMissingByDemand } from "./lib/roadmapGenerator";
 import { parseResumeFile } from "./lib/parseResume";
 import Landing from "./components/Landing";
+import IndustryPost from "./components/IndustryPost";
+import FacultyView from "./components/FacultyView";
+import InstituteView from "./components/InstituteView";
+import QuizView from "./components/QuizView";
+import PortfolioView from "./components/PortfolioView";
+import AICoach from "./components/AICoach";
+import { loadRole, saveRole } from "./lib/roles";
+import { getOrCreateC2CId, loadNickname } from "./lib/identity";
 import { Badge, Button, Card, CardHead, Field, Progress, inputCls } from "./components/ui";
 import { FadeUp, Lift, Meter, Segmented } from "./components/amicro";
 
@@ -32,9 +45,11 @@ const NAV = [
   ["home", "Home", Sparkles],
   ["jobs", "Jobs", Briefcase],
   ["score", "My Score", Gauge],
+  ["quiz", "Quiz", BookOpen],
   ["quests", "Quests", Sprout],
   ["interview", "Interview", Mic],
   ["battle", "Battle", Trophy],
+  ["portfolio", "Portfolio", IdCard],
 ];
 
 const ROLE_OPTS = Object.entries(ROLES).map(([value, r]) => ({ value, label: r.label }));
@@ -46,7 +61,16 @@ const JOB_TABS = [
 ];
 
 export default function App() {
-  const [view, setView] = useState("home");
+  const [appRole, setAppRole] = useState(() => loadRole());
+  function changeRole(v) { saveRole(v); setAppRole(v); }
+  const [view, setView] = useState(() => {
+    // slice F: shared showcase link (?c2c=ID) lands on the portfolio in read-only mode
+    try {
+      const v = new URLSearchParams(location.search).get("c2c");
+      if (v && v !== getOrCreateC2CId()) return "portfolio";
+    } catch { /* no browser */ }
+    return "home";
+  });
   const [q, setQ] = useState("");
   const [locQ, setLocQ] = useState("");
   const [role, setRole] = useState("sde");
@@ -67,6 +91,9 @@ export default function App() {
   const [sort, setSort] = useState("rel");
   // quests/2: quest version + interview streak
   const [questVer, setQuestVer] = useState(0);
+  // slice C: quiz best per role feeds MAIN, ver bumps re-read localStorage
+  const [quizVer, setQuizVer] = useState(0);
+  const [evAsk, setEvAsk] = useState(null); // which skill is being asked for proof link
   const [streak, setStreak] = useState(() => getStreak());
   // voice: fail tracking + listening indicator for interview slice
   const [voiceFailCount, setVoiceFailCount] = useState(0);
@@ -76,6 +103,25 @@ export default function App() {
   // slice1: shared board, seeds until remote loads
   const [board, setBoard] = useState(COLLEGES);
   useEffect(() => { loadBoard().then((b) => { if (b?.length) setBoard(b); }); }, []);
+  // slice B: custom (local-first) + remote board jobs merge into the student feed
+  const [customJobs, setCustomJobs] = useState(() => loadCustomJobs());
+  const [remoteJobs, setRemoteJobs] = useState([]);
+  useEffect(() => { listJobsBoard().then((b) => { if (b?.length) setRemoteJobs(b); }); }, []);
+  useEffect(() => { setCustomJobs(loadCustomJobs()); }, [view, appRole]);
+  // live feed: free API cached 6h, seeds survive offline
+  const [liveJobs, setLiveJobs] = useState([]);
+  const [liveAt, setLiveAt] = useState(() => liveCacheAt());
+  const [refreshing, setRefreshing] = useState(false);
+  useEffect(() => { listLiveJobs().then((j) => { if (j.length) { setLiveJobs(j); setLiveAt(liveCacheAt()); } }); }, []);
+  async function refreshJobs() {
+    setRefreshing(true);
+    const [b, l] = await Promise.all([listJobsBoard(), listLiveJobs(true)]);
+    if (b?.length) setRemoteJobs(b);
+    setLiveJobs(l || []);
+    setLiveAt(liveCacheAt());
+    setCustomJobs(loadCustomJobs());
+    setRefreshing(false);
+  }
 
   const earnedSkills = useMemo(() => {
     // recompute when questVer changes so toggling a quest re-credits the score live
@@ -88,6 +134,13 @@ export default function App() {
     [text, role, earnedSkills]
   );
   const score = result?.total ?? 0;
+  // slice C: MAIN gates jobs — ATS + quiz best + verified quest pairs, PRD §4.1 weights
+  const quizBest = useMemo(() => { void quizVer; return loadQuizBest(role); }, [role, quizVer]);
+  const questPairs = earnedSkills.length;
+  const { main: mainScore, rank: mainRank } = useMemo(
+    () => combineScores(score, quizBest, questPairs, role),
+    [score, quizBest, questPairs, role]
+  );
   // path finder: same resume scored against every role, suggest the best fit
   const bestFit = useMemo(
     () => (text.trim().length >= 50 ? rankRoles(text, earnedSkills) : null),
@@ -96,8 +149,11 @@ export default function App() {
   const fitSuggest = bestFit && bestFit[0].key !== role ? bestFit[0] : null;
   // roadmap: week-by-week plan from missing skills + checkbox state (after result, TDZ)
   const [roadmapTasks, setRoadmapTasks] = useState(() => load("c2c-roadmap-tasks", {}));
-  const roadmap = useMemo(() => roadmapGenerator(result?.missing || []), [result, role]);
-  const jobs = useMemo(() => matchJobs(role, score, result?.found || []), [role, score, result]);
+  const jobs = useMemo(() => matchJobs(role, mainScore, result?.found || [], mergeJobs(customJobs, remoteJobs, EXTRA_JOBS, JOBS, liveJobs)), [role, mainScore, result, customJobs, remoteJobs, liveJobs]);
+  // roadmap after jobs: weeks ordered by employer demand, not rubric order
+  const roadmap = useMemo(() => roadmapGenerator(result?.missing || [], role, jobs), [result, role, jobs]);
+  // slice I: opt-in nickname rides next to the college average — resume stays private
+  const nick = loadNickname();
   const colleges = useMemo(() => {
     if (myScore == null) return board;
     const youRow = board.find((c) => c.you) || board.find((c) => c.name === "Your College") || board[0];
@@ -165,7 +221,7 @@ export default function App() {
     if (!result) return;
     setAiLoading(true);
     const line = result.breakdown.map((b) => `${b.label} ${b.pts}/${b.max}`).join(", ");
-    const tip = await improveResume(text, ROLES[role].label, result.missing, `${score}/95, ${line}`);
+    const tip = await improveResume(text, ROLES[role].label, orderMissingByDemand(result.missing, jobs).slice(0, 5), `${score}/95, ${line}`);
     setAiTip(tip || "Add VITE_GEMINI_KEY in .env to unlock AI rewrites. Local tips above already work for demo.");
     setAiLoading(false);
   }
@@ -220,7 +276,7 @@ export default function App() {
           </span>
           <span>
             <span className="block text-sm font-bold leading-tight">Campus2Corporate</span>
-            <span className="block text-[11px] text-zinc-500">Career readiness suite</span>
+            <span className="block text-[11px] text-zinc-500">Academia–Industry Collaboration Portal</span>
           </span>
         </button>
         <nav className="px-3 space-y-1">
@@ -277,9 +333,11 @@ export default function App() {
               {view === "home" && "Your verified path to placement"}
               {view === "jobs" && "Jobs matched to your profile"}
               {view === "score" && "Upload → score → fix gaps"}
+              {view === "quiz" && "10 questions, best lifts MAIN"}
               {view === "quests" && "One free course + one project per skill. Finish both to close it."}
               {view === "interview" && "5 questions, graded on STAR + numbers"}
               {view === "battle" && "Averages compete. Resumes stay private."}
+              {view === "portfolio" && "Upskilled? Showcase it to the world"}
             </div>
             <div className="ml-auto flex items-center gap-2">
               {streak.count > 0 && (
@@ -297,18 +355,27 @@ export default function App() {
         </header>
 
         <main className="max-w-5xl mx-auto px-4 py-6">
-          {/* Home */}
-          {view === "home" && <Landing go={go} />}
+          {/* Non-student portals (all three live now) */}
+          {appRole === "industry" && <IndustryPost onPosted={() => setCustomJobs(loadCustomJobs())} />}
+          {appRole === "faculty" && <FacultyView />}
+          {appRole === "institute" && (
+            <InstituteView user={{
+              role, ats: score, quiz: quizBest, quests: questPairs,
+              gaps: (result?.missing || []).slice(0, 3), applied: applied.length > 0,
+            }} />
+          )}
+          {appRole === "student" && view === "home" && <Landing go={go} />}
 
           {/* Jobs */}
-          {view === "jobs" && (
+          {appRole === "student" && view === "jobs" && (
             <div>
               <FadeUp>
                 <div className="flex items-end justify-between gap-3 flex-wrap">
                   <div>
                     <h1 className="text-2xl font-bold tracking-tight">Recommended jobs</h1>
                     <p className="text-sm text-zinc-500 mt-1">
-                      {result ? `${eligibleCount} eligible at ATS ${score} · matched to your skills` : "Get scored to see which jobs you can apply to"}
+                      {result ? `${eligibleCount} eligible at MAIN ${mainScore} (ATS ${score}) · matched to your skills` : "Get scored to see which jobs you can apply to"}
+                      {liveAt > 0 && ` · live feed ${Math.max(1, Math.round((Date.now() - liveAt) / 60000))}m ago`}
                     </p>
                   </div>
                   <button
@@ -319,6 +386,14 @@ export default function App() {
                     className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border transition-colors cursor-pointer ${alert ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400" : "border-white/10 text-zinc-400 hover:bg-white/5"}`}
                   >
                     <BellRing size={13} /> {alert ? "Alert on" : "Set alert"}
+                  </button>
+                  <button
+                    onClick={refreshJobs}
+                    disabled={refreshing}
+                    title={liveAt ? "Pull fresh board + live jobs" : "Pull live jobs"}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border border-white/10 text-zinc-400 hover:bg-white/5 transition-colors cursor-pointer disabled:opacity-50"
+                  >
+                    <RotateCcw size={13} className={refreshing ? "animate-spin" : ""} /> {refreshing ? "…" : "Refresh"}
                   </button>
                 </div>
               </FadeUp>
@@ -429,7 +504,7 @@ export default function App() {
                                 {!j.eligible && <Lock size={13} className="text-zinc-500" />}
                                 {j.title}
                               </div>
-                              <div className="text-xs text-zinc-500 mt-0.5">{j.company} • {j.loc} • {j.type} • needs ATS {j.minScore}+</div>
+                              <div className="text-xs text-zinc-500 mt-0.5">{j.company} • {j.loc} • {j.type} • needs MAIN {j.minScore}+{j.live ? " • live" : ""}</div>
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0">
                               <Badge tone={j.eligible ? "emerald" : "amber"}>
@@ -457,13 +532,13 @@ export default function App() {
                               : j.eligible
                                 ? <Lift>
                                     <a href={j.apply} target="_blank" rel="noreferrer"
-                                      onClick={() => { if (!applied.includes(j.id)) { const n = [...applied, j.id]; setApplied(n); save("c2c-applied", n); } }}
+                                      onClick={() => { if (!applied.includes(j.id)) { const n = [...applied, j.id]; setApplied(n); save("c2c-applied", n); recordApplication(j, score, mainScore); } }}
                                       className="inline-flex items-center gap-1 text-xs font-medium px-4 py-2 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200">
                                       Apply <ArrowUpRight size={13} />
                                     </a>
                                   </Lift>
                                 : <button onClick={() => go("score")}
-                                    className="text-xs font-medium text-amber-400 hover:underline cursor-pointer">Need {j.minScore - score} more pts. Check My Score</button>}
+                                    className="text-xs font-medium text-amber-400 hover:underline cursor-pointer">Need {j.minScore - mainScore} more pts. Check My Score</button>}
                           </div>
                         </article>
                       </FadeUp>
@@ -475,7 +550,7 @@ export default function App() {
           )}
 
           {/* Score */}
-          {view === "score" && (
+          {appRole === "student" && view === "score" && (
             <div className="max-w-2xl mx-auto">
               <FadeUp>
                 <h1 className="text-2xl font-bold tracking-tight">My Score</h1>
@@ -539,8 +614,14 @@ export default function App() {
                       <div className="text-xs text-zinc-400">{result ? statusLine : "Upload to score"}</div>
                       {result && (
                         <div className="text-xs text-zinc-500 mt-1 tabular-nums">
-                          MAIN {calculateMainScore(score, 0, 0, role)} • {rankFor(calculateMainScore(score, 0, 0, role))} (voice/proof pending)
+                          MAIN {mainScore} • {mainRank} (ATS {score} + Quiz {quizBest} + {questPairs} quest{questPairs === 1 ? "" : "s"})
                         </div>
+                      )}
+                      {result && quizBest === 0 && (
+                        <button onClick={() => go("quiz")}
+                          className="mt-2 text-xs font-medium text-emerald-400 hover:underline cursor-pointer">
+                          Take the quiz → lift MAIN and unlock jobs
+                        </button>
                       )}
                       {result?.breakdown && (
                         <div className="text-left mt-5 space-y-2.5">
@@ -561,7 +642,7 @@ export default function App() {
                     <Card>
                       <CardHead title="Step 4: Fix gaps (free)" desc="Top 3 missing skills + one project" />
                       <div className="p-4 space-y-3">
-                        {result.missing.slice(0, 3).map((m) => (
+                        {orderMissingByDemand(result.missing, jobs).slice(0, 3).map((m) => (
                           <div key={m} className="rounded-lg bg-white/[0.03] border border-white/10 p-3">
                             <div className="text-sm font-semibold capitalize">Missing: {m}</div>
                             {coursesFor(m).map((c) => (
@@ -583,8 +664,13 @@ export default function App() {
             </div>
           )}
 
+          {/* Quiz = the word "questionnaire" (Slice C) */}
+          {appRole === "student" && view === "quiz" && (
+            <QuizView role={role} roleOpts={ROLE_OPTS} onRoleChange={setRole} onDone={() => setQuizVer((v) => v + 1)} />
+          )}
+
           {/* Quests: skill-tree gamification */}
-          {view === "quests" && (() => {
+          {appRole === "student" && view === "quests" && (() => {
             const tree = QUEST_TREE[role];
             const roleSkills = ROLES[role].skills.map((s) => s.toLowerCase());
             let earnedCount = 0, totalCount = 0;
@@ -603,7 +689,7 @@ export default function App() {
                     <div>
                       <h1 className="text-2xl font-bold tracking-tight">Skill quests</h1>
                       <p className="text-sm text-zinc-500 mt-1">
-                        Each skill needs a <span className="text-zinc-300">free course</span> + a <span className="text-zinc-300">real project</span>. Finish both to earn the badge and lift your ATS.
+                        Each skill needs a <span className="text-zinc-300">free course</span> + a <span className="text-zinc-300">real project with proof link</span>. Verified pairs lift your ATS.
                       </p>
                     </div>
                     <Badge tone="emerald">{earnedCount}/{totalCount} skills closed</Badge>
@@ -633,7 +719,7 @@ export default function App() {
                           {br.skills.map((sk) => {
                             const cDone = isCourseDone(role, sk.id);
                             const pDone = isProjectDone(role, sk.id);
-                            const complete = cDone && pDone;
+                            const complete = cDone && pDone && isEvidenceUrl(getEvidence(role, sk.id));
                             const closesGap = roleSkills.includes(sk.name.toLowerCase());
                             return (
                               <div key={sk.id}
@@ -668,10 +754,13 @@ export default function App() {
                                     </a>
                                   </div>
                                 </div>
-                                {/* project row */}
+                                {/* project row: proof link gates the tick — no evidence, no score lift */}
                                 <div className="mt-2 flex items-start gap-2 text-xs text-zinc-300">
                                   <button
-                                    onClick={() => { setQuestDone(role, sk.id, "project", !pDone); setQuestVer((v) => v + 1); }}
+                                    onClick={() => {
+                                      if (!pDone && !isEvidenceUrl(getEvidence(role, sk.id))) { setEvAsk(`${role}:${sk.id}`); return; }
+                                      setQuestDone(role, sk.id, "project", !pDone); setQuestVer((v) => v + 1);
+                                    }}
                                     className={`grid place-items-center w-6 h-6 rounded-md border shrink-0 mt-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${pDone ? "bg-emerald-400 border-emerald-400 text-zinc-950" : "border-white/20 hover:border-white/40"}`}
                                     title={pDone ? "Mark project undone" : "Mark project done"}>
                                     {pDone && <CircleCheck size={12} />}
@@ -679,6 +768,18 @@ export default function App() {
                                   <div className="flex-1">
                                     <div className="font-medium">Project</div>
                                     <div className="text-zinc-400">{sk.project}</div>
+                                    {(evAsk === `${role}:${sk.id}` || getEvidence(role, sk.id)) && (
+                                      <input
+                                        key={`${role}:${sk.id}:${questVer}`}
+                                        defaultValue={getEvidence(role, sk.id)}
+                                        onBlur={(e) => { setEvidence(role, sk.id, e.target.value); setEvAsk(null); setQuestVer((v) => v + 1); }}
+                                        placeholder="Proof link: GitHub repo / live URL…"
+                                        className="mt-1.5 w-full text-xs bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 outline-none placeholder:text-zinc-600 focus:border-white/40"
+                                      />
+                                    )}
+                                    {!pDone && evAsk === `${role}:${sk.id}` && !isEvidenceUrl(getEvidence(role, sk.id)) && (
+                                      <p className="text-[11px] text-amber-400 mt-1">Paste your repo or live link first — ticks without proof don't lift your score.</p>
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -730,7 +831,7 @@ export default function App() {
           })()}
 
           {/* Interview */}
-          {view === "interview" && (
+          {appRole === "student" && view === "interview" && (
             <div className="max-w-2xl mx-auto">
               <FadeUp>
                 <div className="flex items-end justify-between gap-3 flex-wrap">
@@ -789,7 +890,7 @@ export default function App() {
           )}
 
           {/* Battle */}
-          {view === "battle" && (
+          {appRole === "student" && view === "battle" && (
             <div className="max-w-2xl mx-auto">
               <FadeUp>
                 <h1 className="text-2xl font-bold tracking-tight">College Battle</h1>
@@ -812,7 +913,7 @@ export default function App() {
                         <tr key={c.name} className={`border-b border-white/5 last:border-0 ${c.you ? "bg-white/[0.04]" : ""}`}>
                           <td className="px-5 py-3 text-zinc-500 font-medium tabular-nums">{i + 1}</td>
                           <td className="py-3 pr-3">
-                            <div className="font-medium flex items-center gap-1.5">{c.you && <Badge tone="light">You</Badge>}{c.name}</div>
+                            <div className="font-medium flex items-center gap-1.5">{c.you && <Badge tone="light">{nick || "You"}</Badge>}{c.name}</div>
                             <div className="mt-1.5 w-40 max-w-full"><Progress value={c.avg} /></div>
                           </td>
                           <td className="py-3 text-zinc-500 hidden sm:table-cell tabular-nums">{c.members}</td>
@@ -830,12 +931,47 @@ export default function App() {
               </FadeUp>
             </div>
           )}
+
+          {/* Portfolio = showcase in a cool way (Slice F) */}
+          {appRole === "student" && view === "portfolio" && (
+            <PortfolioView
+              role={role} result={result} main={mainScore} rank={mainRank}
+              quizBest={quizBest} questPairs={questPairs} earnedSkills={earnedSkills}
+              appliedCount={applied.length} go={go}
+            />
+          )}
         </main>
 
         <footer className="max-w-5xl mx-auto px-4 pb-8 pt-2 text-center text-[11px] text-zinc-600">
           <span className="inline-flex items-center gap-1.5"><Briefcase size={11} /> Inspired by naukri.com workflows</span>
           {" · "}Local ATS works offline • Add VITE_GEMINI_KEY for AI • PDFs never leave your browser
+          {/* ponytail: portals hidden, student-first login. Demo access stays via subtle footer link */}
+          {appRole === "student" ? (
+            <div className="mt-2 text-zinc-700">
+              For partners:{" "}
+              <button className="underline hover:text-zinc-400 cursor-pointer" onClick={() => changeRole("industry")}>recruiters</button>
+              {" · "}
+              <button className="underline hover:text-zinc-400 cursor-pointer" onClick={() => changeRole("faculty")}>faculty</button>
+              {" · "}
+              <button className="underline hover:text-zinc-400 cursor-pointer" onClick={() => changeRole("institute")}>institutes</button>
+            </div>
+          ) : (
+            <div className="mt-2">
+              <button className="underline hover:text-zinc-400 cursor-pointer" onClick={() => changeRole("student")}>← back to student login</button>
+            </div>
+          )}
         </footer>
+
+        {/* Slice H: floating coach on every student view, grounded in live state */}
+        {appRole === "student" && (
+          <AICoach
+            roleLabel={ROLES[role].label}
+            score={score}
+            missing={result ? orderMissingByDemand(result.missing, jobs).slice(0, 5) : []}
+            bestFitLabel={bestFit?.[0]?.label}
+            resumeText={text}
+          />
+        )}
       </div>
     </div>
   );

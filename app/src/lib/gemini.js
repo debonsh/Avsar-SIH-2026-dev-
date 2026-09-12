@@ -23,6 +23,11 @@ export async function ask(prompt) {
   return (await httpAdapter(prompt)) ?? null;
 }
 
+// slice H: coach drawer reuses the same key/fallback pipeline — AI upgrades, never gates
+export async function askCoach(prompt) {
+  return ask(prompt);
+}
+
 export async function improveResume(resumeText, role, missing, scoreLine = "") {
   // quests/2: structured output with strong action-verb + number framing for T2/T3 students
   const prompt = `You are rewriting bullets for a Tier-2/3 Indian college student targeting "${role}". Their current ATS score: ${scoreLine}.

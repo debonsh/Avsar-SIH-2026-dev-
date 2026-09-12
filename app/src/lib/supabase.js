@@ -4,12 +4,17 @@
 // alter table college_scores enable row level security;
 // create policy "open read/insert" on college_scores for anon using(true) with check(true);
 import { createClient } from "@supabase/supabase-js";
-import { COLLEGES } from "../data/colleges";
+import { COLLEGES } from "../data/colleges.js";
 
 let cached = null;
 
 export function isSupabaseOn() {
-  return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
+  try {
+    // ponytail: import.meta.env is undefined under node --test → optional chain, not a crash
+    return Boolean(import.meta.env?.VITE_SUPABASE_URL && import.meta.env?.VITE_SUPABASE_ANON_KEY);
+  } catch {
+    return false;
+  }
 }
 
 export function getClient() {

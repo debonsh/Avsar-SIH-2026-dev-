@@ -1,12 +1,14 @@
 // progress layer: localStorage-backed quest completions + interview streak
 // single source of truth for Part 2 gamification
-import { QUEST_TREE } from "../data/quests";
+import { QUEST_TREE } from "../data/quests.js";
+import { isEvidenceUrl } from "./quests.js";
 
 const KEY = "c2c-progress-v1";
 
 function emptyState() {
   return {
     quests: {},          // key: `${role}:${skillId}:${"course"|"project"}` = true
+    evidence: {},        // key: `${role}:${skillId}` = proof URL (repo/deploy/sheet/cert)
     streak: { lastDay: null, count: 0, badges: [] }, // ISO day, day count, badges earned
     interview: {},       // key: `${role}:${dayISO}` = count of Qs answered
   };
@@ -62,6 +64,19 @@ export function setQuestDone(roleKey, skillId, kind, done) {
   save(s);
 }
 
+// evidence: project half counts toward score only with a proof link (verified vs claimed)
+export function getEvidence(roleKey, skillId) {
+  return load().evidence[`${roleKey}:${skillId}`] || "";
+}
+
+export function setEvidence(roleKey, skillId, url) {
+  const s = load();
+  const k = `${roleKey}:${skillId}`;
+  if ((url || "").trim()) s.evidence[k] = url.trim();
+  else delete s.evidence[k];
+  save(s);
+}
+
 export function branchProgress(roleKey, branch) {
   const total = branch.skills.length * 2;
   let done = 0;
@@ -95,6 +110,7 @@ export function getStreak() { return load().streak; }
 
 // returns the set of skill names (lowercased) that have course+project completed for the given role
 // App.jsx merges these into `result.found` so the next resume re-score sees them as known skills
+// ponytail: project half needs a proof URL — tick without evidence stays "claimed", never lifts score
 export function completedSkillIdsForRole(roleKey) {
   const tree = QUEST_TREE[roleKey];
   if (!tree) return [];
@@ -105,7 +121,8 @@ export function completedSkillIdsForRole(roleKey) {
     for (const sk of br.skills) {
       const c = s.quests[`${roleKey}:${sk.id}:course`];
       const p = s.quests[`${roleKey}:${sk.id}:project`];
-      if (c && p && sk.name) {
+      const ev = s.evidence[`${roleKey}:${sk.id}`];
+      if (c && p && isEvidenceUrl(ev) && sk.name) {
         const key = sk.name.toLowerCase();
         if (!seen.has(key)) { seen.add(key); ids.push(key); }
       }
