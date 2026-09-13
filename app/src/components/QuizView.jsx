@@ -6,6 +6,8 @@ import { getOrCreateC2CId } from "../lib/identity.js";
 import { ROLES } from "../lib/score.js";
 import { Badge, Button, Card, CardHead, Progress } from "./ui";
 import { FadeUp, Segmented } from "./amicro";
+import { recordDay } from "../lib/progress.js";
+import { track } from "../lib/analytics.js";
 
 export default function QuizView({ role, roleOpts, onRoleChange, onDone }) {
   const day = useMemo(() => todayDay(), []);
@@ -29,6 +31,8 @@ export default function QuizView({ role, roleOpts, onRoleChange, onDone }) {
     if (arr.some((a) => a == null)) return;
     const r = gradeSet(questions, arr);
     const nb = saveQuizBest(role, r.score);
+    recordDay("quiz");
+    track("quiz_done", { role, score: r.score });
     setResult({ ...r, best: nb, improved: r.score >= nb && r.score > 0 });
     onDone?.();
   }
@@ -96,7 +100,7 @@ export default function QuizView({ role, roleOpts, onRoleChange, onDone }) {
               right={<Badge tone={result.score >= 70 ? "emerald" : result.score >= 45 ? "amber" : "zinc"}>{result.score >= 70 ? "Strong" : result.score >= 45 ? "Close" : "Foundation"}</Badge>} />
             <div className="p-4 space-y-2">
               <Progress value={result.score} />
-              <p className="text-xs text-zinc-500">Best score per role persists offline and feeds MAIN → job eligibility.</p>
+              <p className="text-xs text-zinc-500">Best score per role persists offline and feeds MAIN. Fresh set daily — replay any day, nothing resets.</p>
               {questions.map((item, i) => {
                 const ok = picks[i] === item.ans;
                 return (

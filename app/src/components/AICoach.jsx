@@ -3,19 +3,23 @@ import { useRef, useState } from "react";
 import { Send, Sparkles, X } from "lucide-react";
 import { COACH_ACTIONS, buildPrompt, localAnswer } from "../lib/coach";
 import { ask } from "../lib/gemini";
-import { Card } from "./ui";
+import { TONES, getTone, setTone, getCustom, setCustom } from "../data/tuning";
+import { Card, MiniMd } from "./ui";
 import { FadeUp } from "./amicro";
 
-export default function AICoach({ roleLabel, score, missing, bestFitLabel, resumeText }) {
+export default function AICoach({ roleLabel, score, missing, found, bestFitLabel, resumeText }) {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState([
     { from: "bot", text: "Grounded in your live score and gaps. Pick a quick action or ask anything." },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
+  const [tone, setToneUi] = useState(() => getTone());
+  const [custom, setCustomUi] = useState(() => getCustom());
+  const [tuneOpen, setTuneOpen] = useState(false);
   const bottomRef = useRef(null);
 
-  const state = { roleLabel, score, missing, bestFitLabel, resumeText };
+  const state = { roleLabel, score, missing, found, bestFitLabel, resumeText };
 
   async function run(actionId, question) {
     const label = actionId === "ask"
@@ -25,7 +29,7 @@ export default function AICoach({ roleLabel, score, missing, bestFitLabel, resum
     setBusy(true);
     try {
       const ai = await ask(buildPrompt(actionId, actionId === "ask" ? { ...state, question } : state));
-      const text = ai || `${localAnswer(actionId, state)}\n\n· offline tips — add VITE_GEMINI_KEY for AI answers`;
+      const text = ai || `${localAnswer(actionId, state)}\n\n· offline tips — add VITE_GROQ_KEY for AI answers`;
       setMsgs((m) => [...m, { from: "bot", text }]);
     } finally {
       setBusy(false);
@@ -60,10 +64,27 @@ export default function AICoach({ roleLabel, score, missing, bestFitLabel, resum
                 <X size={15} />
               </button>
             </div>
+            <div className="px-3 py-2 border-b border-white/10">
+              <button onClick={() => setTuneOpen((v) => !v)} className="text-[11px] text-zinc-500 hover:text-zinc-300 cursor-pointer">
+                Tune: {TONES.find((t) => t.id === tone)?.label}{custom ? " + custom" : ""} {tuneOpen ? "▴" : "▾"}
+              </button>
+              {tuneOpen && (
+                <div className="mt-1.5 space-y-1.5">
+                  <div className="flex gap-1.5">
+                    {TONES.map((t) => (
+                      <button key={t.id} onClick={() => { setTone(t.id); setToneUi(t.id); }}
+                        className={`text-[11px] font-medium px-2.5 py-1 rounded-lg border cursor-pointer ${tone === t.id ? "bg-white text-zinc-950 border-white" : "border-white/10 text-zinc-400 hover:bg-white/5"}`}>{t.label}</button>
+                    ))}
+                  </div>
+                  <input value={custom} onChange={(e) => { setCustom(e.target.value); setCustomUi(e.target.value); }}
+                    placeholder="Custom instruction: e.g. talk like a senior, no jargon…" className="w-full text-xs bg-white/5 border border-white/10 rounded-lg px-2.5 py-1.5 outline-none text-zinc-200 placeholder:text-zinc-600 focus:border-white/40" />
+                </div>
+              )}
+            </div>
             <div className="h-72 overflow-y-auto p-3 space-y-2">
               {msgs.map((m, i) => (
-                <div key={i} className={`max-w-[85%] px-2.5 py-2 rounded-xl text-[13px] leading-snug whitespace-pre-wrap ${m.from === "user" ? "ml-auto bg-white text-zinc-950" : "bg-white/5 text-zinc-200"}`}>
-                  {m.text}
+                <div key={i} className={`max-w-[85%] px-2.5 py-2 rounded-xl text-[13px] leading-snug ${m.from === "user" ? "ml-auto bg-white text-zinc-950 whitespace-pre-wrap" : "bg-white/5 text-zinc-200"}`}>
+                  {m.from === "user" ? m.text : <MiniMd text={m.text} />}
                 </div>
               ))}
               {busy && <div className="text-xs text-zinc-500">thinking…</div>}

@@ -10,6 +10,7 @@ import { combineScores } from "./lib/scores";
 import { loadQuizBest } from "./data/quiz";
 import { matchJobs, JOBS } from "./data/jobs";
 import { EXTRA_JOBS } from "./data/seedJobsExtra";
+import { NAUKRI_JOBS } from "./data/naukriSeed";
 import { loadCustomJobs, listJobsBoard, listLiveJobs, liveCacheAt, mergeJobs, recordApplication } from "./lib/store";
 import { coursesFor, recommendFor, PROJECT_IDEAS } from "./data/courses";
 import { COLLEGES, recomputeCollegeAvg } from "./data/colleges";
@@ -40,10 +41,10 @@ import PortfolioView from "./components/PortfolioView";
 import AICoach from "./components/AICoach";
 import { loadRole, saveRole } from "./lib/roles";
 import { getOrCreateC2CId, loadNickname } from "./lib/identity";
-import { Badge, Button, Card, CardHead, Field, Progress, inputCls } from "./components/ui";
+import { Badge, Button, Card, CardHead, Field, MiniMd, Progress, inputCls } from "./components/ui";
 import { FadeUp, Lift, Meter, Segmented, Burst, RankUp } from "./components/amicro";
 
-const AI_ON = Boolean(import.meta.env.VITE_GEMINI_KEY);
+const AI_ON = Boolean(import.meta.env.VITE_GROQ_KEY || import.meta.env.VITE_GEMINI_KEY);
 
 // ponytail: naukri-style save/apply/alert persist in localStorage, no backend until Supabase
 const load = (k, fb) => loadJSON(k, fb);
@@ -225,7 +226,7 @@ export default function App() {
   const fitSuggest = bestFit && bestFit[0].key !== role ? bestFit[0] : null;
   // roadmap: week-by-week plan from missing skills + checkbox state (after result, TDZ)
   const [roadmapTasks, setRoadmapTasks] = useState(() => load("c2c-roadmap-tasks", {}));
-  const jobs = useMemo(() => matchJobs(role, mainScore, result?.found || [], mergeJobs(customJobs, remoteJobs, EXTRA_JOBS, JOBS, liveJobs)), [role, mainScore, result, customJobs, remoteJobs, liveJobs]);
+  const jobs = useMemo(() => matchJobs(role, mainScore, result?.found || [], mergeJobs(customJobs, remoteJobs, EXTRA_JOBS, NAUKRI_JOBS, JOBS, liveJobs)), [role, mainScore, result, customJobs, remoteJobs, liveJobs]);
   // roadmap after jobs: weeks ordered by employer demand, not rubric order
   const roadmap = useMemo(() => roadmapGenerator(result?.missing || [], role, jobs), [result, role, jobs]);
   // slice I: opt-in nickname rides next to the college average — resume stays private
@@ -300,7 +301,7 @@ export default function App() {
     setAiLoading(true);
     const line = result.breakdown.map((b) => `${b.label} ${b.pts}/${b.max}`).join(", ");
     const tip = await improveResume(text, ROLES[role].label, orderMissingByDemand(result.missing, jobs).slice(0, 5), `${score}/95, ${line}`);
-    setAiTip(tip || "Add VITE_GEMINI_KEY in .env to unlock AI rewrites. Local tips above already work for demo.");
+    setAiTip(tip || "Add VITE_GROQ_KEY in app/.env to unlock AI rewrites. Local tips above already work for demo.");
     setAiLoading(false);
   }
 
@@ -323,7 +324,7 @@ export default function App() {
     const qa = qs.map((qq, i) => `Q: ${typeof qq === "string" ? qq : qq.text}\nA: ${answers[i] || "(skipped)"}`).join("\n");
     const local = `Local score: ${filledAnswers}/5 answered well. Tip: use STAR (Situation-Task-Action-Result) + 1 number in each answer.`;
     const ai = await mockInterviewFeedback(ROLES[role].label, qa);
-    setFeedback(ai || local + " (Add VITE_GEMINI_KEY for AI grading.)");
+    setFeedback(ai || local + " (Add VITE_GROQ_KEY for AI grading.)");
     // quests/2: reward the daily interview habit, even on local mode — gentle, no shame copy
     if (filledAnswers >= 3) {
       const next = bumpStreak("interview");
@@ -604,7 +605,7 @@ export default function App() {
                                 {!j.eligible && <Lock size={13} className="text-zinc-500" />}
                                 {j.title}
                               </div>
-                              <div className="text-xs text-zinc-500 mt-0.5">{j.company} • {j.loc} • {j.type} • needs MAIN {j.minScore}+{j.live ? " • live" : ""}</div>
+                               <div className="text-xs text-zinc-500 mt-0.5">{j.company} • {j.loc} • {j.type} • needs MAIN {j.minScore}+{j.live ? " • live" : j.src ? ` • ${j.src}` : ""}{j.salary ? ` • ${j.salary}` : ""}</div>
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0">
                               <Badge tone={j.eligible ? "emerald" : "amber"}>
@@ -765,7 +766,7 @@ export default function App() {
                         <Button className="w-full" onClick={getAiHelp} disabled={aiLoading}>
                           <Sparkles size={14} /> {aiLoading ? "AI thinking…" : "AI rewrite my bullets (needs key)"}
                         </Button>
-                        {aiTip && <p className="text-xs whitespace-pre-wrap p-3 bg-white/[0.03] rounded-lg border border-white/10 leading-relaxed text-zinc-300">{aiTip}</p>}
+                        {aiTip && <div className="text-xs p-3 bg-white/[0.03] rounded-lg border border-white/10 leading-relaxed text-zinc-300"><MiniMd text={aiTip} /></div>}
                       </div>
                     </Card>
                   </FadeUp>
@@ -1015,15 +1016,15 @@ export default function App() {
                         <Sparkles size={14} /> {aiQsLoading ? "Writing…" : aiQs[role] ? "Regenerate" : "Make it mine"}
                       </Button>
                     </div>
-                    {!import.meta.env?.VITE_GEMINI_KEY && (
-                      <p className="text-[11px] text-zinc-600">Personal questions need VITE_GEMINI_KEY — bank questions work offline.</p>
+                    {!(import.meta.env?.VITE_GROQ_KEY || import.meta.env?.VITE_GEMINI_KEY) && (
+                      <p className="text-[11px] text-zinc-600">Personal questions need VITE_GROQ_KEY — bank questions work offline.</p>
                     )}
                     {streak.lastDay && (
                       <p className="text-[11px] text-zinc-500 -mt-1">
                         {weeklyActive("interview")} active days and counting — miss a day, nothing breaks, the count keeps your history.
                       </p>
                     )}
-                    {feedback && <p className="text-xs whitespace-pre-wrap p-3 bg-white/[0.03] rounded-lg border border-white/10 leading-relaxed text-zinc-300">{feedback}</p>}
+                    {feedback && <div className="text-xs p-3 bg-white/[0.03] rounded-lg border border-white/10 leading-relaxed text-zinc-300"><MiniMd text={feedback} /></div>}
                   </div>
                 </Card>
               </FadeUp>
@@ -1098,7 +1099,7 @@ export default function App() {
 
         <footer className="max-w-5xl mx-auto px-4 pb-8 pt-2 text-center text-[11px] text-zinc-600">
           <span className="inline-flex items-center gap-1.5"><Briefcase size={11} /> Inspired by naukri.com workflows</span>
-          {" · "}Local ATS works offline • Add VITE_GEMINI_KEY for AI • PDFs never leave your browser
+          {" · "}Local ATS works offline • Add VITE_GROQ_KEY for AI • PDFs never leave your browser
           {/* ponytail: portals hidden, student-first login. Demo access stays via subtle footer link */}
           {appRole === "student" ? (
             <div className="mt-2 text-zinc-700">
@@ -1122,6 +1123,7 @@ export default function App() {
             roleLabel={ROLES[role].label}
             score={score}
             missing={result ? orderMissingByDemand(result.missing, jobs).slice(0, 5) : []}
+            found={result?.found || []}
             bestFitLabel={bestFit?.[0]?.label}
             resumeText={text}
           />

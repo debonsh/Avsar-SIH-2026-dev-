@@ -98,8 +98,8 @@ export default function QuestionnaireView({ role, resumeText, onSaved }) {
                 <Sparkles size={14} /> {loading ? "Writing…" : aiQs ? "Regenerate" : "Ask about my resume"}
               </Button>
             </div>
-            {!import.meta.env?.VITE_GEMINI_KEY && (
-              <p className="text-[11px] text-zinc-600">Resume-specific questions need VITE_GEMINI_KEY — the bank above works offline.</p>
+            {!(import.meta.env?.VITE_GROQ_KEY || import.meta.env?.VITE_GEMINI_KEY) && (
+              <p className="text-[11px] text-zinc-600">Resume-specific questions need VITE_GROQ_KEY — the bank above works offline.</p>
             )}
           </div>
         </Card>

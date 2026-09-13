@@ -48,3 +48,10 @@ test("localAnswer: interview has STAR + role, career has fit, bullets has STAR",
   assert.ok(localAnswer("career", S).includes("Software Developer"), "career names the fit");
   assert.ok(localAnswer("bullets", S).includes("STAR"), "bullets teaches STAR bullets");
 });
+
+test("ask carries found skills plus resume excerpt", () => {
+  const p = buildPrompt("ask", { ...S, found: ["react", "sql"], question: "my skills?" });
+  assert.ok(p.includes("react"), "names a found skill");
+  assert.ok(p.includes("todo app"), "carries the resume excerpt");
+});
+

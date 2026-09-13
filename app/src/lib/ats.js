@@ -6,6 +6,30 @@ import { ROLES } from "./score.js";
 
 const STRONG_VERBS = ["built", "shipped", "launched", "led", "designed", "deployed", "scaled", "optimized", "automated", "owned", "developed", "migrated"];
 export { STRONG_VERBS };
+
+// ponytail: AI inputs — project-ish lines only (links, verbs, numbers), capped.
+// Sending the whole resume wastes tokens; models probe projects, not headers.
+export function extractProjectLines(text = "", maxLines = 8, maxChars = 1200) {
+  const lines = String(text || "").split("\n").map((l) => l.trim()).filter((l) => l.length > 20);
+  const scored = [];
+  for (const l of lines) {
+    let s = 0;
+    if (URL_RE.test(l)) s += 3;
+    URL_RE.lastIndex = 0;
+    if (/\d/.test(l)) s += 2;
+    const low = l.toLowerCase();
+    if (STRONG_VERBS.some((v) => low.includes(v))) s += 2;
+    if (/project|built|app|website|tool|system|dashboard/i.test(l)) s += 1;
+    if (s > 0) scored.push([s, l]);
+  }
+  scored.sort((a, b) => b[0] - a[0]);
+  let out = "";
+  for (const [, l] of scored.slice(0, maxLines)) {
+    if ((out + l).length > maxChars) break;
+    out += (out ? "\n" : "") + l;
+  }
+  return out;
+}
 const STACK_TOKENS = ["typescript", "javascript", "react", "node", "python", "sql", "docker", "aws", "vercel", "git", "api", "figma", "tailwind", "pandas", "tableau", "excel", "seo", "dsa"];
 const HEADERS = ["experience", "project", "education", "skills"];
 const URL_RE = /https?:\/\/[^\s)]+/gi;

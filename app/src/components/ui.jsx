@@ -68,3 +68,51 @@ export function Progress({ value, max = 100, className = "" }) {
     </div>
   );
 }
+
+// ponytail: chat-bubble markdown only — bold, headings, bullets, code. Nodes, not
+// HTML strings: no injection surface, no dependency.
+export function MiniMd({ text }) {
+  const inline = (s, k) =>
+    String(s).split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((p, j) =>
+      p.startsWith("**") ? (
+        <strong key={`${k}-${j}`} className="font-semibold text-zinc-100">{p.slice(2, -2)}</strong>
+      ) : p.startsWith("`") ? (
+        <code key={`${k}-${j}`} className="px-1 rounded bg-white/10 text-[12px]">{p.slice(1, -1)}</code>
+      ) : (
+        <span key={`${k}-${j}`}>{p}</span>
+      )
+    );
+  const blocks = [];
+  let list = [];
+  const flush = () => {
+    if (list.length) {
+      blocks.push(
+        <ul key={`block-${blocks.length}`} className="list-disc pl-5 space-y-1 my-1">
+          {list.map((it, i) => (
+            <li key={i}>{inline(it, `li${i}`)}</li>
+          ))}
+        </ul>
+      );
+      list = [];
+    }
+  };
+  for (const ln of String(text || "").split("\n")) {
+    const h = ln.match(/^#{1,4}\s+(.*)/);
+    const b = ln.match(/^\s*(?:[-*]|\d+[.)])\s+(.*)/);
+    if (h) {
+      flush();
+      blocks.push(
+        <p key={`block-${blocks.length}`} className="font-semibold text-zinc-100 mt-2">{inline(h[1], `h`)}</p>
+      );
+    } else if (b) list.push(b[1]);
+    else if (!ln.trim()) flush();
+    else {
+      flush();
+      blocks.push(
+        <p key={`block-${blocks.length}`} className="my-1">{inline(ln, `p`)}</p>
+      );
+    }
+  }
+  flush();
+  return <>{blocks}</>;
+}

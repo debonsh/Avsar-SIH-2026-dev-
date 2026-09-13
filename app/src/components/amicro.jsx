@@ -110,6 +110,48 @@ export function Segmented({ options, value, onChange, className = "" }) {
   );
 }
 
+// ponytail: eye-candy reward pop — spring scale + fade, reduced-motion safe, auto-dismiss by parent
+export function Burst({ children, className = "", ...rest }) {
+  const reduce = useReducedMotion();
+  if (reduce) return <div className={className} {...rest}>{children}</div>;
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.85, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 380, damping: 22 }}
+      className={className}
+      {...rest}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// ponytail: rank-up modal — one overlay, no lib, esc/backdrop dismiss
+export function RankUp({ rank, onClose, onShowcase }) {
+  const reduce = useReducedMotion();
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={onClose}>
+      <motion.div
+        initial={reduce ? {} : { opacity: 0, scale: 0.9, y: 14 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 320, damping: 24 }}
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-sm rounded-2xl border border-emerald-500/30 bg-zinc-900 p-6 text-center"
+      >
+        <div className="text-4xl">🏅</div>
+        <div className="text-[11px] uppercase tracking-[0.16em] text-emerald-400 mt-2">Rank up</div>
+        <div className="text-3xl font-extrabold mt-1">{rank}</div>
+        <p className="text-xs text-zinc-400 mt-2">Showcase-ready. Your portfolio ticks carry this — share it.</p>
+        <div className="flex gap-2 mt-4">
+          <button onClick={onShowcase} className="flex-1 text-xs font-semibold px-3 py-2 rounded-lg bg-white text-zinc-950 cursor-pointer">Showcase →</button>
+          <button onClick={onClose} className="flex-1 text-xs font-medium px-3 py-2 rounded-lg border border-white/10 text-zinc-300 cursor-pointer">Keep going</button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 // ponytail: CSS transition, not JS animation, keystroke re-scores glide instead of replaying
 export function Meter({ value, max, tone = "bg-white" }) {
   return (

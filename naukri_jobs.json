@@ -1,0 +1,379 @@
+{
+  "source": "Naukri.com",
+  "query": "Jobs in India - Fresher/Entry Level",
+  "url": "https://www.naukri.com/jobs-in-india?clusters=experience%2CwfhType&experience=0&ugTypeGid=12",
+  "scraped_at": "2026-09-12",
+  "total_jobs": 37,
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Fresher Maintenance Engineer",
+      "company": "JOB PLUS HR CONSULTANCY PRIVATE LIMITED",
+      "rating": null,
+      "experience": "0-5 Yrs",
+      "salary": "4.5-7.5 Lacs PA",
+      "location": "Pune, Ahmedabad, Mumbai (All Areas)",
+      "posted": "2 days ago"
+    },
+    {
+      "id": 2,
+      "title": "Intern",
+      "company": "Crisil",
+      "rating": "3.5",
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Mumbai",
+      "posted": "2 days ago"
+    },
+    {
+      "id": 3,
+      "title": "Graduate Apprentice Trainee",
+      "company": "Volvo Group",
+      "rating": "4.0",
+      "experience": "0 Yrs",
+      "salary": "Not disclosed",
+      "location": "Bengaluru",
+      "posted": "6 days ago"
+    },
+    {
+      "id": 4,
+      "title": "Service Desk Engineer",
+      "company": "Trigent Software",
+      "rating": null,
+      "experience": "0 Yrs",
+      "salary": "1.5-2.5 Lacs PA",
+      "location": "Bengaluru",
+      "posted": "1 week ago"
+    },
+    {
+      "id": 5,
+      "title": "Business Development Executive",
+      "company": "KBR Manufacturing",
+      "rating": null,
+      "experience": "0-1 Yrs",
+      "salary": "3-4 Lacs PA",
+      "location": "Pune (Baner)",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 6,
+      "title": "It Support Engineer",
+      "company": "Bajaj Finance",
+      "rating": "3.9",
+      "experience": "0-1 Yrs",
+      "salary": "50,000-1.5 Lacs PA",
+      "location": "Pune",
+      "posted": "2 days ago"
+    },
+    {
+      "id": 7,
+      "title": "Graduate Engineer Trainee",
+      "company": "KSB",
+      "rating": "3.7",
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Hybrid - Pune",
+      "posted": "2 days ago"
+    },
+    {
+      "id": 8,
+      "title": "Medical Sales Representative",
+      "company": "Randstad",
+      "rating": null,
+      "experience": "0-5 Yrs",
+      "salary": "Not disclosed",
+      "location": "Kannur, Chennai (Anna Nagar), Bengaluru (Indira Nagar)",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 9,
+      "title": "Centralized Research Group - Technical Transaction Analyst",
+      "company": "JPMorgan Chase Bank",
+      "rating": "3.8",
+      "experience": "0-4 Yrs",
+      "salary": "Not disclosed",
+      "location": "Mumbai",
+      "posted": "3+ weeks ago"
+    },
+    {
+      "id": 10,
+      "title": "Tech & Digital-Business Analyst",
+      "company": "Hdfc Bank",
+      "rating": "3.8",
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Navi Mumbai",
+      "posted": "2 days ago"
+    },
+    {
+      "id": 11,
+      "title": "Embedded C/C++ Engineer | 6 Months To 2 Years | Chennai & Bangalore",
+      "company": "HCLTech",
+      "rating": "3.4",
+      "experience": "0-2 Yrs",
+      "salary": "Not disclosed",
+      "location": "Chennai",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 12,
+      "title": "US Recruiter - Mech engineering background",
+      "company": "Allegis Group",
+      "rating": null,
+      "experience": "0-2 Yrs",
+      "salary": "Not disclosed",
+      "location": "Hybrid - Bengaluru (BTM Layout)",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 13,
+      "title": "React JS Developer",
+      "company": "Infosys",
+      "rating": "3.5",
+      "experience": "0-7 Yrs",
+      "salary": "Not disclosed",
+      "location": "Hyderabad, Pune, Bengaluru",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 14,
+      "title": "Tech & Digital-Sr.Technical Analyst",
+      "company": "Hdfc Bank",
+      "rating": "3.8",
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Bengaluru",
+      "posted": "2 days ago"
+    },
+    {
+      "id": 15,
+      "title": "Tech & Digital-Sr Software Engineer-Full Stack",
+      "company": "Hdfc Bank",
+      "rating": "3.8",
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Bengaluru",
+      "posted": "1 week ago"
+    },
+    {
+      "id": 16,
+      "title": "Executive - Technical (Machine)",
+      "company": "Navneet Education",
+      "rating": "4.5",
+      "experience": "0-2 Yrs",
+      "salary": "Not disclosed",
+      "location": "Mumbai (Dadar)",
+      "posted": "2 days ago"
+    },
+    {
+      "id": 17,
+      "title": "Tech & Digital-Sr Data Engineer",
+      "company": "Hdfc Bank",
+      "rating": "3.8",
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Navi Mumbai",
+      "posted": "1 week ago"
+    },
+    {
+      "id": 18,
+      "title": "Candidate Manager (Technical Recruiter)",
+      "company": "Allegis Group",
+      "rating": null,
+      "experience": "0-5 Yrs",
+      "salary": "Not disclosed",
+      "location": "Bengaluru",
+      "posted": "1 week ago"
+    },
+    {
+      "id": 19,
+      "title": "Performance Tester_Load Runner/Jmeter",
+      "company": "Infosys",
+      "rating": "3.5",
+      "experience": "0-5 Yrs",
+      "salary": "Not disclosed",
+      "location": "Hyderabad, Pune, Bengaluru",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 20,
+      "title": "PPM | Customer Service | Immediate Joiners | Bangalore",
+      "company": "NoBroker",
+      "rating": "3.0",
+      "experience": "0-2 Yrs",
+      "salary": "2-3.25 Lacs PA",
+      "location": "Bengaluru",
+      "posted": "1 week ago"
+    },
+    {
+      "id": 21,
+      "title": "It Support Associate",
+      "company": "Amazon",
+      "rating": "3.9",
+      "experience": "0-2 Yrs",
+      "salary": "Not disclosed",
+      "location": "Bengaluru",
+      "posted": "2 weeks ago"
+    },
+    {
+      "id": 22,
+      "title": "RM | Relationship Manager | Immediate Joiners",
+      "company": "NoBroker",
+      "rating": "3.0",
+      "experience": "0-3 Yrs",
+      "salary": "2-3.25 Lacs PA",
+      "location": "Bengaluru",
+      "posted": "2 weeks ago"
+    },
+    {
+      "id": 23,
+      "title": "GET (Marketing)",
+      "company": "Endurance Technologies",
+      "rating": "3.9",
+      "experience": "0-1 Yrs",
+      "salary": "3.75 Lacs PA",
+      "location": "Pune",
+      "posted": "4 days ago"
+    },
+    {
+      "id": 24,
+      "title": "Iot Trainee",
+      "company": "Shahi",
+      "rating": "3.9",
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Bengaluru (Bellandur)",
+      "posted": "2 weeks ago"
+    },
+    {
+      "id": 25,
+      "title": "RM | Inside Sales Executive | Immediate Joiners",
+      "company": "NoBroker",
+      "rating": "3.0",
+      "experience": "0-3 Yrs",
+      "salary": "2-3.5 Lacs PA",
+      "location": "Bengaluru",
+      "posted": "2 weeks ago"
+    },
+    {
+      "id": 26,
+      "title": "R&D Bioprocess/Biochemical Engineer- Upstream & Downstream",
+      "company": "VIA Energicals",
+      "rating": null,
+      "experience": "0-3 Yrs",
+      "salary": "1.75-3.5 Lacs PA (Including Variable: 5.0%)",
+      "location": "Mumbai (Powai +1)",
+      "posted": "5 days ago"
+    },
+    {
+      "id": 27,
+      "title": "Inside Sales Associate (Immediate joiner | Bangalore)",
+      "company": "NoBroker",
+      "rating": "3.0",
+      "experience": "0-4 Yrs",
+      "salary": "2.25-3.25 Lacs PA",
+      "location": "Bengaluru",
+      "posted": "1 week ago"
+    },
+    {
+      "id": 28,
+      "title": "Business Executive",
+      "company": "Shree Stem Academy",
+      "rating": null,
+      "experience": "0-4 Yrs",
+      "salary": "3-4 Lacs PA",
+      "location": "Pune",
+      "posted": "3 days ago"
+    },
+    {
+      "id": 29,
+      "title": "Field Service Engineer",
+      "company": "Randstad",
+      "rating": null,
+      "experience": "0-1 Yrs",
+      "salary": "3-4 Lacs PA",
+      "location": "Vijayawada, Hyderabad",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 30,
+      "title": "Site Sales Representative",
+      "company": "Wonder Cement",
+      "rating": "4.2",
+      "experience": "0-1 Yrs",
+      "salary": "50,000-2.5 Lacs PA",
+      "location": "Navi Mumbai, Pune, Patur",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 31,
+      "title": "Technical Service Engineer",
+      "company": "Meril",
+      "rating": "3.5",
+      "experience": "0-2 Yrs",
+      "salary": "Not disclosed",
+      "location": "Pune, Ahmedabad, Mumbai (All Areas)",
+      "posted": "1 day ago"
+    },
+    {
+      "id": 32,
+      "title": "Robotic Trainer",
+      "company": "Shree Stem Academy",
+      "rating": null,
+      "experience": "0-4 Yrs",
+      "salary": "2.5-3.5 Lacs PA",
+      "location": "Pune",
+      "posted": "3 days ago"
+    },
+    {
+      "id": 33,
+      "title": "Design Engineer - Automotive Lighting",
+      "company": "Electrica Engineers",
+      "rating": "4.1",
+      "experience": "0-2 Yrs",
+      "salary": "Not disclosed",
+      "location": "Pune",
+      "posted": "6 days ago"
+    },
+    {
+      "id": 34,
+      "title": "FEA Analyst",
+      "company": "Michelin",
+      "rating": "3.7",
+      "experience": "0-3 Yrs",
+      "salary": "Not disclosed",
+      "location": "Pune",
+      "posted": "4 days ago"
+    },
+    {
+      "id": 35,
+      "title": "Hardware Testing Engineer",
+      "company": "Blue Star",
+      "rating": "4.0",
+      "experience": "0-2 Yrs",
+      "salary": "2.25-4.5 Lacs PA",
+      "location": "Pune",
+      "posted": "5 days ago"
+    },
+    {
+      "id": 36,
+      "title": "Purchase Specialist- Goregaon Location - MNC",
+      "company": "Asian Paints",
+      "rating": "3.9",
+      "experience": "0-4 Yrs",
+      "salary": "Not disclosed",
+      "location": "Mumbai, Mumbai Suburban, Mumbai (All Areas)",
+      "posted": "2 weeks ago"
+    },
+    {
+      "id": 37,
+      "title": "Android Developer",
+      "company": "Integrity Technologies And Services",
+      "rating": null,
+      "experience": "0-1 Yrs",
+      "salary": "Not disclosed",
+      "location": "Pune, Mukund Nagar",
+      "posted": "2 days ago"
+    }
+  ]
+}
