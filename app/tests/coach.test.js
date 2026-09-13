@@ -1,7 +1,7 @@
 // node --test: coach prompts embed live state, offline answers stay useful. Pure, no network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { COACH_ACTIONS, buildPrompt, localAnswer } from "../src/lib/coach.js";
+import { COACH_ACTIONS, buildPrompt, localAnswer, matchBand, matchJob, parseJobPosting, coverLetter, reviewWriteup } from "../src/lib/coach.js";
 import { coursesFor } from "../src/data/courses.js";
 
 const S = {
@@ -12,8 +12,8 @@ const S = {
   resumeText: "Built a todo app with HTML and CSS.",
 };
 
-test("COACH_ACTIONS: the 4 quick actions", () => {
-  assert.deepEqual(COACH_ACTIONS.map((a) => a.id), ["gaps", "bullets", "interview", "career"]);
+test("COACH_ACTIONS: the 8 quick actions (4 coach + 4 JobSync tools)", () => {
+  assert.deepEqual(COACH_ACTIONS.map((a) => a.id), ["gaps", "bullets", "interview", "career", "review", "match", "cover", "addjob"]);
 });
 
 test("buildPrompt: every action embeds live state", () => {
@@ -53,5 +53,36 @@ test("ask carries found skills plus resume excerpt", () => {
   const p = buildPrompt("ask", { ...S, found: ["react", "sql"], question: "my skills?" });
   assert.ok(p.includes("react"), "names a found skill");
   assert.ok(p.includes("todo app"), "carries the resume excerpt");
+});
+
+const JOB = { id: "1", title: "Frontend Intern", company: "ZetaPay", skills: ["javascript", "react", "html", "css"] };
+
+test("matchJob bands follow JobSync thresholds", () => {
+  assert.equal(matchBand(85), "strong match");
+  assert.equal(matchBand(70), "good match");
+  assert.equal(matchBand(55), "partial match");
+  assert.equal(matchBand(40), "weak match");
+  assert.equal(matchBand(10), "poor match");
+  const m = matchJob(["javascript", "react"], JOB);
+  assert.equal(m.score, 50);
+  assert.equal(m.band, "partial match");
+  assert.deepEqual(m.missing, ["html", "css"]);
+  assert.equal(matchJob([], null), null);
+});
+
+test("reviewWriteup and coverLetter need a score, never crash", () => {
+  assert.ok(reviewWriteup(S).includes("52"), "review names the score");
+  assert.ok(reviewWriteup({}).includes("My Score"), "empty review redirects");
+  assert.ok(coverLetter({ ...S, topJob: JOB }).includes("ZetaPay"), "letter names the company");
+  assert.ok(coverLetter({}).length > 10, "empty letter still answers");
+});
+
+test("parseJobPosting extracts labeled fields, rejects scraps", () => {
+  const j = parseJobPosting("PASTE:\nCompany: Acme\nTitle: Backend Intern\nLocation: Remote\nReact and node daily.");
+  assert.equal(j.company, "Acme");
+  assert.equal(j.title, "Backend Intern");
+  assert.equal(j.loc, "Remote");
+  assert.ok(j.skills.includes("react"));
+  assert.equal(parseJobPosting("hi"), null);
 });
 
