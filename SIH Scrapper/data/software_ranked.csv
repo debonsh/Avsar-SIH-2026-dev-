@@ -1,0 +1,184 @@
+rank,ps_number,ideas,total,competition,solo,data,clarity,ai,theme,organization,dataset?,title
+1,SIH26121,2,8.11,9.71,8,8,10,4,Smart Automation,Oil India Limited,Y,eRTMAC-NWIS (Nearby Wells Intelligence System): An AI-Powered Offset Well Knowledge and Decision Support Platform for Drilling Operations
+2,SIH26024,6,8.09,9.14,8,8,10,5,Smart Automation,Ministry of Coal,Y,AI-Based Smart Governance and Compliance Monitoring System for Coal Mines
+3,SIH26236,5,7.99,9.29,8,8,10,4,"Agriculture, FoodTech & Rural Development",Ministry of Food Processing Industries (MoFPI),Y,Al-Based Intelligent Food Packaging Material Recommendation System for Food Commodities
+4,SIH26150,2,7.96,9.71,8,8,10,3,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,"Development of a Multi-Vendor DVR/NVR Forensic Analysis Tool for Standardized Acquisition, Recovery, and Analysis of Surveillance Evidence."
+5,SIH26094,9,7.95,8.71,8,8,9.89,5,MedTech / BioTech / HealthTech,Ministry of Social Justice and Empowerment (MoSJE),Y,AI-Powered Dynamic Mental Health Monitoring and Distress Prediction System for Victims of Atrocities
+6,SIH26234,3,7.92,9.57,7,8,10,5,"Agriculture, FoodTech & Rural Development",Ministry of Food Processing Industries (MoFPI),Y,Al-Powered Smart Food Waste Reduction and Sustainable Redistribution Ecosystem for Institutional Kitchens and Food Processing Units
+7,SIH26239,0,7.9,10.0,8,8,10,2,Smart Education,Ministry of Tribal Affairs,Y,AI-Enabled Scholarship and Fellowship Management System for Scheduled Tribes
+8,SIH26014,4,7.88,9.43,8,8,10,3,"Agriculture, FoodTech & Rural Development",Ministry of Rural Development,Y,An lntegrated GIS-based Digital Public lnfrastructure for Land Governance
+9,SIH26160,2,7.81,9.71,8,8,10,2,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,AI-Powered IPsec VPN Protocol Analyzer and Security Assessment Framework
+10,SIH26120,2,7.76,9.71,8,8,9.48,2,Smart Automation,Oil India Limited,Y,Digital Twin for Well-to-Surface Optimization of Cyclic Steam Stimulation (CSS) and Sucker Rod Pump (SRP) Operations for Heavy Oil Wells of Baghewala Field.
+11,SIH26006,7,7.75,9.0,8,8,10,3,Transportation & Logistics,Ministry of Steel,Y,Development of an Intelligent Freight Forecasting Model for Optimized Vessel Chartering and Bulk Cargo Procurement from overseas to East Coast of India
+12,SIH26077,0,7.75,10.0,8,8,10,1,Disaster Management,Ministry of Earth Sciences (MoES),Y,AI-Driven Hyper-Local Early Warning System for Severe Weather Nowcasting
+13,SIH26078,0,7.75,10.0,8,8,10,1,Smart Automation,Ministry of Earth Sciences (MoES),Y,AI-Driven Spatio-Temporal Tracking of Extreme Weather Anomalies in Medium-Range Forecasts
+14,SIH26105,7,7.75,9.0,8,8,10,3,Blockchain & Cybersecurity,All India Council for Technical Education (Cyber Security Cell),Y,AI-Powered Continuous Cyber Risk Quantification and Investment Optimization Platform
+15,SIH26099,4,7.73,9.43,8,5,10,5,Smart Automation,Ministry of Petroleum & Natural Gas,,AI-Driven Standardization and Harmonization of Material Codes Across CPSEs
+16,SIH26238,4,7.73,9.43,8,8,10,2,Smart Automation,Ministry of Tribal Affairs,Y,Unified Scholarship Mobile Application for Tribal Students
+17,SIH26017,8,7.71,8.86,8,5,10,6,Smart Automation,Ministry of Rural Development,,Predictive Analytics System for Early Detection of Land Acquisition Delays
+18,SIH26093,8,7.71,8.86,8,8,8.47,4,MedTech / BioTech / HealthTech,Ministry of Social Justice and Empowerment (MoSJE),Y,AI-Based Real-Time Stress and Trauma Assessment Module for Victims/Complainants Accessing NHAA (14566) and Integrated Portal
+19,SIH26159,1,7.71,9.86,8,5,10,4,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),,SecureMailScope: AI-Assisted Cryptographic Security Posture Assessment for Secure Email Communications
+20,SIH26186,6,7.64,9.14,8,5,10,5,MedTech / BioTech / HealthTech,Ministry of Home Affairs,,AI-Based Predictive Personnel Stress and Welfare Monitoring System for Uniformed Forces
+21,SIH26023,1,7.63,9.86,8,8,7.75,2,Smart Automation,Ministry of Coal,Y,"AI-Powered Geological, Mining and other Reporting Solution for CMPDI/CIL subsidiaries"
+22,SIH26086,1,7.62,9.86,8,8,7.65,2,"Agriculture, FoodTech & Rural Development",Ministry of Earth Sciences (MoES),Y,Hyperlocal Monsoon Onset & Break Prediction System (Block/Village Scale)
+23,SIH26148,0,7.6,10.0,8,8,10,0,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,Creation of scripts/functions with new programming language to commence Computer & Network forensic analysis without triggering security solutions
+24,SIH26152,8,7.6,8.86,8,8,8.92,3,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,Social Media Analytics
+25,SIH26229,7,7.6,9.0,8,8,10,2,Clean & Green Technology,Ministry of Mines (MoM),Y,"Kabadiwala Connect – Bringing the Informal Collector into the Formal Recycling
+Chain"
+26,SIH26103,8,7.56,8.86,8,5,10,5,Smart Automation,MoSPI,,Use case on web-based integrated project-monitoring platform
+27,SIH26157,1,7.56,9.86,7,8,10,2,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,Supervisory Analytics Tool for SOC Assessment (SAT-SA)
+28,SIH26012,4,7.54,9.43,7,8,9.56,3,Smart Automation,Ministry of Rural Development,Y,AI-Based Automated Urban Parcel Mapping and Cadastral Feature Extraction System using Drone lmagery
+29,SIH26149,5,7.54,9.29,8,8,10,1,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,Design and Development of an Integrated Secure Data Erasure and Advanced File Recovery Tool for Digital Forensics and Data Sanitization
+30,SIH26019,2,7.51,9.71,8,5,10,3,Smart Automation,Ministry of Rural Development,,"National Digital Platform for Research, Policy Innovation, and Evidence-Based Land Governance"
+31,SIH26028,9,7.51,8.71,8,8,10,2,Smart Automation,Ministry of Railways,Y,Dynamic Forecast of Expected Time of Arrival (ETA) for Coaching Trains
+32,SIH26108,1,7.51,9.86,8,8,6.54,2,Smart Automation,"Ministry of Consumer Affairs, Food & Public Distribution",Y,AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications
+33,SIH26057,6,7.49,9.14,7,8,10,3,Disaster Management,Ministry of Earth Sciences (MoES),Y,AI-Powered Automated Underwater Marine Debris and Anomaly Detection System using Side-Scan Sonar Imagery
+34,SIH26102,16,7.48,7.71,8,8,9.69,4,Smart Automation,MoSPI,Y,"Development of an AI-powered system to detect anomalies, fraud, and inefficiencies in MPLAD Scheme implementation regd."
+35,SIH26183,6,7.48,9.14,8,8,9.87,1,Blockchain & Cybersecurity,Ministry of Home Affairs,Y,Real-Time Identification of Fraud-Linked Cryptocurrency Exchanges from Victim-Reported Suspect Wallet Addresses through Automated Blockchain Analytics
+36,SIH26073,3,7.47,9.57,7,8,10,2,Disaster Management,Ministry of Earth Sciences (MoES),Y,AI/ML-Based Intelligent Anomaly Detection for Automatic Weather Stations (AWS)
+37,SIH26182,3,7.47,9.57,8,8,10,0,Blockchain & Cybersecurity,Ministry of Home Affairs,Y,Automated Attribution of Unknown Cryptocurrency Wallets to Nearest Virtual Asset Service Providers (VASPs) through Blockchain Intelligence APIs
+38,SIH26151,4,7.46,9.43,8,8,7.27,2,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,Dark web threat actor de-anonymization
+39,SIH26069,1,7.45,9.86,8,8,4.46,3,Disaster Management,Ministry of Earth Sciences (MoES),Y,National Weather Big Data Analytics Platform
+40,SIH26090,18,7.43,7.43,8,8,10,4,Heritage & Culture,Ministry of Social Justice and Empowerment (MoSJE),Y,AI-Driven Market Linkage and Smart Cataloging Mobile Application for Marginalized Artisans
+41,SIH26176,11,7.43,8.43,8,8,10,2,Space Technology,Indian Space Research Organisation(ISRO),Y,ORCA Marine EcOsystem Reasoning with Collaborative Agents
+42,SIH26013,1,7.42,9.86,7,8,8.67,2,Smart Automation,Ministry of Rural Development,Y,Automated lntegration and lntelligent Harmonization of Multi-source Geospatial Data for urban Land Record Management.
+43,SIH26056,8,7.41,8.86,8,8,10,1,Smart Automation,MoSPI,Y,Development of a Real-time Airfare Price Index for India through Automated Web Scraping of Airline and Online Travel Aggregator Portals for Augmentation of the Consumer Price Index (CPI).
+44,SIH26171,8,7.41,8.86,8,5,10,4,Smart Automation,Indian Space Research Organisation(ISRO),,On-device Visual Perception for Light-weight Browser Agents
+45,SIH26146,5,7.37,9.29,8,8,6.8,2,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,AI-Powered Monitoring & Analysis of Bitcoin Transaction Traffic
+46,SIH26184,10,7.34,8.57,8,8,8.68,2,Blockchain & Cybersecurity,Ministry of Home Affairs,Y,"Development of a Predictive Analytics Framework for Cybercrime Complaints to Forecast Likely Cash Withdrawal Locations in Advance, Enabling Generation of Actionable Intelligence for Timely and Proactive Cybercrime Intervention."
+47,SIH26097,3,7.32,9.57,6,8,10,3,"Agriculture, FoodTech & Rural Development",Ministry of Social Justice and Empowerment (MoSJE),Y,AI-Driven voice Assistant for livelihood Mapping and NSQF-Aligned Skilling Recommendations for SC Communities under GIA component of PM-AJAY
+48,SIH26154,10,7.32,8.57,8,8,10,1,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,Gen AI Platform for Automated Content Transformation
+49,SIH26169,0,7.3,10.0,7,5,10,3,Smart Automation,Indian Space Research Organisation(ISRO),,Development of an AI-Based Virtual Camera Tracking System for Coarse Alignment of Mobile Free Space Optical Communication (FSOC) Terminals
+50,SIH26240,4,7.28,9.43,6,8,10,3,"Agriculture, FoodTech & Rural Development",Ministry of Tribal Affairs,Y,AI-Based Spring Revival and Recharge Planning for Tribal Areas
+51,SIH26127,9,7.27,8.71,8,8,9.08,1,Smart Automation,Bharat Electronics Limited,Y,City-Wide AI Engine for Multi-Camera ANPR Trajectory Tracking and Urban Traffic Analytics
+52,SIH26079,0,7.26,10.0,8,8,3.57,2,Smart Automation,Ministry of Earth Sciences (MoES),Y,AI-Based Forecast Bust Detection for Medium-Range Weather Forecasts
+53,SIH26156,1,7.26,9.86,6,8,10,2,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),Y,Universal Log Pre-processing Framework
+54,SIH26083,5,7.25,9.29,8,8,7.08,1,Disaster Management,Ministry of Earth Sciences (MoES),Y,Extreme Heatwave Early Warning and Human Thermal Stress Index
+55,SIH26084,0,7.22,10.0,8,8,6.19,0,Disaster Management,Ministry of Earth Sciences (MoES),Y,"Convective scale nowcasting for Thunderstorms, Hail & Cloudbursts (06 hr)"
+56,SIH26018,16,7.21,7.71,8,5,10,5,Smart Automation,Ministry of Rural Development,,Intelligent Land Record Digitization and Validation System
+57,SIH26082,4,7.21,9.43,8,8,6.33,1,Clean & Green Technology,Ministry of Earth Sciences (MoES),Y,Air Pollution–Weather Coupled Forecasting System (Delhi NCR Focus)
+58,SIH26106,23,7.21,6.71,8,8,10,4,Blockchain & Cybersecurity,All India Council for Technical Education (Cyber Security Cell),Y,"AI-Powered Email Threat Detection, GeoLocation and Forensic Intelligence Platform"
+59,SIH26119,2,7.21,9.71,8,5,10,1,Smart Automation,Mangalore Refinery and Petrochemicals Limited (MRPL),,Indigenous GPU-Accelerated Optimization Solver (Sovereign Alternative to Express / CEPLEX)
+60,SIH26111,6,7.2,9.14,8,5,7.11,4,"Agriculture, FoodTech & Rural Development","Ministry of Fisheries, Animal Husbandry & Dairying",,Smart Al-Enabled Rapid Feed and Silage Quality Testing System for Dairy Farmers
+61,SIH26155,6,7.19,9.14,7,5,10,4,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),,AI-Driven Multi-Vendor Network Security Compliance Auditor
+62,SIH26015,3,7.17,9.57,8,5,10,1,"Agriculture, FoodTech & Rural Development",Ministry of Rural Development,,Application of Geospatial Techniques for visualization and analysis to interpret Geo-Coded lmages to enhance watershed Development Outcomes.
+63,SIH26101,31,7.17,5.57,8,5,10,9,Smart Education,MoSPI,,"Develop an AI enabled learning platform that identifies competency gaps, recommends personalized training through integration with the iGOT Karmayogi ecosystem, and capable of generating Quizzes and Multiple choice questions (MCQs) from uploaded learning materials to strengthen capacity building in India's Official Statistical System."
+64,SIH26125,10,7.17,8.57,8,8,10,0,Blockchain & Cybersecurity,Bharat Electronics Limited,Y,"Blockchain-Based Secure Platform for Identity,Access Control, and Digital Asset Management"
+65,SIH26142,3,7.17,9.57,6,8,10,2,Space Technology,National Technical Research Organisation (NTRO),Y,Deep Learning Based Super Resolution Mapping (SRM) from Medium Resolution Satellite Imageries
+66,SIH26124,12,7.15,8.29,8,8,7.63,2,Smart Automation,Bharat Electronics Limited,Y,AI-Powered Mobile Urban Intelligence Platform Using Public Transport Fleet
+67,SIH26054,11,7.13,8.43,6,8,10,4,Robotics and Drones,DRDO,Y,"AI-Enabled Real-Time Digital Twin System for Health Monitoring, Fault Prediction and Mission Reliability Enhancement of Aero Piston Engines used in MALE UAVs."
+68,SIH26055,3,7.13,9.57,8,5,8.1,2,Robotics and Drones,DRDO,,Smart Scan strategy for Electronic Warfare
+69,SIH26081,1,7.1,9.86,8,8,3.94,1,Disaster Management,Ministry of Earth Sciences (MoES),Y,Hybrid AI–NWP Multi-Model Forecast Blending System
+70,SIH26141,3,7.1,9.57,8,5,9.24,1,Blockchain & Cybersecurity,Egreen Quanta,,Quantum-Inspired Cyber Threat Detection for Digital Signature Security
+71,SIH26107,5,7.09,9.29,8,8,5.49,1,Smart Automation,"Ministry of Consumer Affairs, Food & Public Distribution",Y,Al-powered Intelligent Assistant for Indian Standards and BIS Services for Industries and Consumers
+72,SIH26165,3,7.06,9.57,8,8,4.4,1,Smart Automation,Oil India Limited,Y,AI/NLP Engine to Detect Serious Injury & Fatality (SIF) Precursors in OIL's Unsafe-Act/Unsafe-Condition and Near-Miss Reports
+73,SIH26173,3,7.06,9.57,6,8,8.9,2,Smart Automation,Indian Space Research Organisation(ISRO),Y,iTantra -Indian Multilingual TTS & STT Aided Neural Transceiver Radio Access for low bitrate links
+74,SIH26187,19,7.06,7.29,7,8,8.19,5,Blockchain & Cybersecurity,Ministry of Home Affairs,Y,AI-Based Intelligent Video Analytics Platform for Border Surveillance using existing CCTV Infrastructure.
+75,SIH26085,9,7.05,8.71,8,8,6.85,1,Disaster Management,Ministry of Earth Sciences (MoES),Y,Urban Flood Nowcasting System (Drainage and Rainfall Coupling)
+76,SIH26041,4,7.04,9.43,8,8,6.16,0,Smart Education,Government of Jharkhand,Y,AR-Based Vocational Training Simulator for Industrial Safety in Jharkhand's Mining & Manufacturing Sector
+77,SIH26009,4,7.03,9.43,8,8,4.55,1,Space Technology,Ministry of Steel,Y,Using AI/ML and Space Technology to Identify Manganese Reserves and Overcome Production Shortfalls.
+78,SIH26016,10,7.02,8.57,8,5,10,2,Smart Automation,Ministry of Rural Development,,Real-Time National Land Acquisition & Management System for End-to-End Digital Monitoring and Decision Support
+79,SIH26067,3,7.02,9.57,8,5,10,0,Disaster Management,Ministry of Earth Sciences (MoES),,Develop a web-based interactive 3D visualization platform that integrates numerical ocean model outputs and in-situ observations.
+80,SIH26100,10,7.02,8.57,8,5,10,2,Smart Automation,Ministry of Petroleum & Natural Gas,,AI-Powered Integrated Bid Compliance Verification Platform for GeM Procurement
+81,SIH26161,2,7.02,9.71,8,5,9.61,0,Disaster Management,National Technical Research Organisation (NTRO),,Dam Break Inundation Modelling Using Hydrodynamic Modelling of any River
+82,SIH26163,0,7.01,10.0,8,5,7.07,1,Smart Automation,National Technical Research Organisation (NTRO),,Security Assessment of the World Monitor application
+83,SIH26035,4,6.98,9.43,8,5,10,0,Miscellaneous,"Ministry of Consumer Affairs, Food & Public Distribution",,Development of a Software Program/Application for Generation of Test Reports for Non-Automatic Weighing Instruments (NAWI) as per OIML Recommendation R- 76
+84,SIH26046,4,6.98,9.43,8,5,10,0,MedTech / BioTech / HealthTech,Ministry of Ayush,,"AIIA Clinical Trials Dashboard - a real-time, cloud-based, GCP-compliant Clinical Trial Management System (CTMS) for Ayurveda research, with CDISC/FHIR-interoperable data, role-based KPIs, and integrated ethics, regulatory (CTRI / NDCT Rules 2019) and pharma covigilance tracking."
+85,SIH26140,6,6.98,9.14,7,5,9.35,3,Smart Education,Egreen Quanta,,AI-Based Interactive Quantum Algorithm Learning Platform
+86,SIH26122,8,6.96,8.86,6,8,10,2,Smart Automation,Oil India Limited,Y,Intelligent Data Capture & Schedule-Linking Layer for Infrastructure Project Management: Real-Time Actual Progress Tracking (Planning-to-Execution Bridge)
+87,SIH26091,19,6.94,7.29,8,8,10,1,"Agriculture, FoodTech & Rural Development",Ministry of Social Justice and Empowerment (MoSJE),Y,AI-Driven Hyper-Local Business Advisory and Financial Structuring Assistant for Rural Micro-Entrepreneurs
+88,SIH26115,5,6.94,9.29,7,5,8.49,3,MedTech / BioTech / HealthTech,Autodesk,,Design and Develop a Smart Mobile Medical-Waste Collection and Segregation System
+89,SIH26228,5,6.94,9.29,7,5,10,2,Blockchain & Cybersecurity,Ministry of defence (MoD),,"Trustworthy Computer Vision Integrity Assurance for Data, Models and Inference Outputs in Multi-Contributor Pipelines"
+90,SIH26138,2,6.91,9.71,8,5,8.45,0,Clean & Green Technology,Egreen Quanta,,Quantum-Inspired Fuel Consumption Prediction and Green Fleet Optimization
+91,SIH26153,9,6.91,8.71,7,5,10,3,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),,AI based Network Attack Forecasting from Network Traffic Data
+92,SIH26130,5,6.9,9.29,8,8,5.13,0,Miscellaneous,Government Of Maharashtra,Y,"Efficiency in streamlining industrial approvals,compliance processes,and access to government support services"
+93,SIH26190,15,6.89,7.86,8,8,7.8,1,Blockchain & Cybersecurity,Ministry of Home Affairs,Y,Secure Digital Document Management System for Legal and Investigation Documents
+94,SIH26092,18,6.83,7.43,8,8,8.5,1,Smart Automation,Ministry of Social Justice and Empowerment (MoSJE),Y,AI-Driven Scheme Matching for Marginalized Entrepreneurs
+95,SIH26170,5,6.83,9.29,6,8,5.89,3,Smart Automation,Indian Space Research Organisation(ISRO),Y,AI-Driven Anomaly Detection in Component Burn-In & Screening
+96,SIH26036,8,6.81,8.86,8,5,10,0,Miscellaneous,"Ministry of Consumer Affairs, Food & Public Distribution",,Development of an Online Verification System for Weighing and Measuring Instruments
+97,SIH26128,12,6.81,8.29,8,8,5.71,1,MedTech / BioTech / HealthTech,Government Of Maharashtra,Y,"Efficient systems for early detection,prevention,and management of livestock diseases and animal health issues"
+98,SIH26043,23,6.76,6.71,8,8,10,1,Smart Education,Government of Jharkhand,Y,A digital platform to crowdsource societal challenges and facilitate collaborative problem solving through universities and industry partnerships
+99,SIH26134,7,6.76,9.0,8,8,4.63,0,Miscellaneous,Government Of Maharashtra,Y,Challenges in aligning skill development programs with industry requirements and emerging job market demands
+100,SIH26168,9,6.76,8.71,7,5,10,2,Smart Vehicles,Indian Space Research Organisation(ISRO),,AI-ML based Intelligent Dead Reckoning system for seamless navigation
+101,SIH26162,6,6.74,9.14,6,8,5.52,3,Disaster Management,National Technical Research Organisation (NTRO),Y,"AI-Based Detection and Classification of Industrial Fires and Persistent Thermal Sources Using NASA FIRMS, OSM & Satellite Data"
+102,SIH26051,10,6.72,8.57,6,8,10,1,Miscellaneous,DRDO,Y,Software Based Model Development for Design of Area Specific Shelter for Thermal Comfort Maintenance.
+103,SIH26075,10,6.72,8.57,8,8,4.0,1,Smart Education,Ministry of Earth Sciences (MoES),Y,"Participants are invited to design and develop **CAPACITY CONNECT A Digital Capacity Building and Learning Management Portal** to support organizational training, competency development, and knowledge sharing through a centralized web-based platform."
+104,SIH26076,6,6.71,9.14,8,8,3.73,0,Smart Automation,Ministry of Earth Sciences (MoES),Y,Development of personalized homepage for 'Mausam' mobile application:
+105,SIH26129,13,6.7,8.14,8,8,5.03,1,Miscellaneous,Government Of Maharashtra,Y,"System integration and interoperability among government digital platforms,resulting in fragmented service delivery"
+106,SIH26139,7,6.7,9.0,7,5,8.54,2,MedTech / BioTech / HealthTech,Egreen Quanta,,Hybrid Quantum Machine Learning Platform for Early Disease Detection
+107,SIH26191,7,6.7,9.0,8,8,3.96,0,Disaster Management,Ministry of Home Affairs,Y,"Intelligent Identification of Hazard-Based Red Zones, Carrying Capacity Assessment, and Immediate Relocation Needs for Vulnerable Habitations"
+108,SIH26031,4,6.69,9.43,8,8,1.14,1,Smart Automation,"Ministry of Consumer Affairs, Food & Public Distribution",Y,"Quality assessment and grading of onions are often subjective and vary across procurement centers, resulting in disputes and inconsistencies."
+109,SIH26123,5,6.68,9.29,7,8,5.96,0,Smart Automation,Bharat Electronics Limited,Y,Edge-AI Based Distributed Fleet Coordination for Autonomous Mobile Robots (AMRs) in Smart Warehouses
+110,SIH26002,29,6.66,5.86,8,8,10,2,Transportation & Logistics,Ministry of Development of North Eastern Region (MDoNER),Y,Al-Based Smart Logistics and Accessibility Intelligence Platform for North Eastern Region (NER)
+111,SIH26059,8,6.65,8.86,8,8,0.93,2,Transportation & Logistics,Ministry of Earth Sciences (MoES),Y,"AI-Enabled Antarctic Sea-Ice, Iceberg Trajectory, and Navigation Decision Support System"
+112,SIH26062,0,6.65,10.0,8,8,0.49,0,Smart Automation,Ministry of Earth Sciences (MoES),Y,Integrated Polar Expedition Logistics and Asset Management System
+113,SIH26066,5,6.64,9.29,6,5,10,2,Disaster Management,Ministry of Earth Sciences (MoES),,OceanEmbed - Satellite Embedding-Based Deep Learning Framework for Reconstruction of Subsurface Ocean Temperature from Surface Satellite Observations.
+114,SIH26063,1,6.63,9.86,8,8,0.72,0,Smart Education,Ministry of Earth Sciences (MoES),Y,"Integrated Polar Science Outreach, Knowledge Repository and Media Dissemination Portal"
+115,SIH26231,4,6.61,9.43,7,8,4.83,0,MedTech / BioTech / HealthTech,Ministry of Home Affairs,Y,Digital Companion for Field Drug Testing
+116,SIH26237,2,6.61,9.71,5,8,10,0,Blockchain & Cybersecurity,Ministry of Defence,Y,Cryptographic Attribution and Immutable Decryption Provenance for Multi-Recipient Encrypted Document Distribution
+117,SIH26227,3,6.57,9.57,6,5,10,1,Space Technology,Ministry of defence (MoD),,Semantic Retrieval and Multi-Temporal Change Analysis of Satellite lmagery.
+118,SIH26053,5,6.55,9.29,6,8,7.66,0,Smart Vehicles,DRDO,Y,Adaptive Variable Resolution 2.5D Lidar Mapping for Dynamic Environment Perception
+119,SIH26147,2,6.55,9.71,5,8,9.38,0,Space Technology,National Technical Research Organisation (NTRO),Y,Automated model for analysis of .IQ and .wav files along with signal parameter extraction
+120,SIH26003,38,6.54,4.57,8,8,9.68,4,MedTech / BioTech / HealthTech,Ministry of Development of North Eastern Region (MDoNER),Y,AI-Based Cognitive Gaming and Memory Assistance Platform for Elderly Dementia Patients in North Eastern Region (NER)
+121,SIH26060,3,6.53,9.57,8,8,0.58,0,Smart Automation,Ministry of Earth Sciences (MoES),Y,Digital Platform for efficient remote management of Indian Antarctic Research Stations
+122,SIH26080,0,6.52,10.0,6,8,3.66,1,Smart Automation,Ministry of Earth Sciences (MoES),Y,Regime-Aware AI Post-Processing of Monsoon Rainfall Forecasts
+123,SIH26104,33,6.49,5.29,8,8,10,2,Blockchain & Cybersecurity,All India Council for Technical Education (Cyber Security Cell),Y,AI-Powered Real-Time Detection and Prevention of Voice Cloning Impersonation Attacks
+124,SIH26011,5,6.46,9.29,6,8,5.22,1,Smart Automation,Ministry of Rural Development,Y,3D ULPIN Generation and vertical Property Mapping SYstem
+125,SIH26095,17,6.4,7.57,8,8,3.75,1,Smart Automation,Ministry of Social Justice and Empowerment (MoSJE),Y,Smart Real-Time Monitoring & Inspection Mobile App
+126,SIH26114,0,6.4,10.0,5,5,10,1,Miscellaneous,Autodesk,,Smart City Site Planning using Autodesk Forma Site Design
+127,SIH26145,11,6.38,8.43,6,5,10,2,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),,AI-Based Detection of Cyber Threats in Unidirectional IP Traffic
+128,SIH26175,4,6.38,9.43,6,5,10,0,Disaster Management,Indian Space Research Organisation(ISRO),,DepthWizard - Single-View Height Estimation and 3D Flythrough
+129,SIH26137,3,6.37,9.57,7,5,6.51,0,Transportation & Logistics,Egreen Quanta,,Quantum-Inspired Intelligent Traffic Route Optimization in Transportation Systems Using Metaheuristic Optimization
+130,SIH26045,8,6.36,8.86,6,5,10,1,MedTech / BioTech / HealthTech,Ministry of Ayush,,"IP-SAKTI Sahayak a multilingual, RAG-based (source-cited) AI assistant for Intellectual Property and regulatory guidance in Ayurveda, across national and international regimes."
+131,SIH26158,4,6.34,9.43,6,5,8.07,1,Robotics and Drones,National Technical Research Organisation (NTRO),,Single-Pass Drone Video to Accurate 3D Model Generation System
+132,SIH26027,14,6.3,8.0,6,8,7.54,1,Transportation & Logistics,Ministry of Railways,Y,Al-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways
+133,SIH26068,38,6.28,4.57,8,8,8.58,3,Disaster Management,Ministry of Earth Sciences (MoES),Y,"WeatherGPT: Conversational AI for Weather Forecasting, Alerts, and Climate Information"
+134,SIH26136,7,6.24,9.0,6,8,5.44,0,Miscellaneous,Government Of Maharashtra,Y,"Startup friendly public procurement mechanism that enables government departments to identify,pilot, procure,and scale innovative solutions from eligible startups"
+135,SIH26167,18,6.23,7.43,7,5,10,1,Space Technology,Indian Space Research Organisation(ISRO),,SatQuery AI - An Interactive Vision-Language Assistant for Multimodal Remote Sensing Image Analysis through Text Queries
+136,SIH26126,3,6.18,9.57,5,8,4.57,1,Smart Automation,Bharat Electronics Limited,Y,Vision Based Autonomous Navigation for Unmanned Ground Vehicle for Outdoor environment
+137,SIH26135,7,6.16,9.0,6,8,4.61,0,Miscellaneous,Government Of Maharashtra,Y,"Difficulties in tracking employment outcomes,skill gaps, and the impact of skilling initiatives"
+138,SIH26042,18,6.13,7.43,6,8,7.49,1,Smart Education,Government of Jharkhand,Y,Al-Powered Vernacular Pedagogy and Real-Time Translation Tool for Mother Tongue-Based Primary Education
+139,SIH26164,6,6.1,9.14,7,5,5.11,0,Blockchain & Cybersecurity,National Technical Research Organisation (NTRO),,Enterprise Cryptographic Discovery & Analysis Tool (ECDAT)
+140,SIH26188,32,6.1,5.43,8,8,8.75,0,Blockchain & Cybersecurity,Ministry of Home Affairs,Y,Al-Based Fake Identity & Document Screening System
+141,SIH26070,3,6.09,9.57,6,8,0.69,1,Disaster Management,Ministry of Earth Sciences (MoES),Y,"To develop an Artificial Intelligence (AI) / Machine Learning (ML) based system for identification, classification, and prediction of different tropical cyclone patterns using multi-source satellite data."
+142,SIH26089,28,6.07,6.0,8,8,5.24,1,"Agriculture, FoodTech & Rural Development",Ministry of Cooperation,Y,Cooperative Gig Services Platform for Household & Community Services
+143,SIH26189,29,6.07,5.86,6,8,7.17,4,Blockchain & Cybersecurity,Ministry of Home Affairs,Y,AI-Powered Criminal Network Analysis System
+144,SIH26038,17,6.05,7.57,6,5,9.29,2,MedTech / BioTech / HealthTech,MathWorks,,Explainable AI for Diabetic Retinopathy Screening in Rural India
+145,SIH26074,1,6.03,9.86,6,8,0.73,0,"Agriculture, FoodTech & Rural Development",Ministry of Earth Sciences (MoES),Y,Downscaling of weather forecast from Block level to Panchayat level: Inferring high-resolution plots/ data/ information from low-resolution plot /data /information /variables for agro-meteorological advisory services.
+146,SIH26072,1,6.01,9.86,6,8,0.49,0,Disaster Management,Ministry of Earth Sciences (MoES),Y,"AIML based Nowcasting of thunderstorm and lightning using atmospheric observation including multiple radars, satellite, lightning and model data."
+147,SIH26174,4,5.97,9.43,5,5,7.39,1,Space Technology,Indian Space Research Organisation(ISRO),,AI Human Activity Recognition for On-board BAS Experiments
+148,SIH26201,3,5.94,9.57,6,8,0.65,0,Robotics and Drones,AICTE,Y,"Student Innovation-There is a need to design drones and robots that can solve some of the pressing challenges of India such as handling medical emergencies, search and rescue operations, etc."
+149,SIH26133,31,5.9,5.57,8,8,4.8,1,MedTech / BioTech / HealthTech,Government Of Maharashtra,Y,"Accessibility and quality of public healthcare services,particularly in rural and underserved areas"
+150,SIH26203,4,5.86,9.43,6,8,0.27,0,Smart Vehicles,AICTE,Y,Student Innovation-Creating intelligent devices to improve commutation sector.
+151,SIH26209,5,5.85,9.29,6,8,0.67,0,Space Technology,AICTE,Y,"Student Innovation-Space technology refers to the application of engineering principles to the design, development, manufacture, and operation of devices and systems for space travel and exploration."
+152,SIH26143,12,5.83,8.29,6,5,4.95,2,Disaster Management,National Technical Research Organisation (NTRO),,Leveraging satellite imagery to determine Oil spills at sea along with AIS data correlations to identify vessel responsible for the spill.
+153,SIH26200,5,5.83,9.29,6,8,0.39,0,Renewable / Sustainable Energy,AICTE,Y,Student Innovation-Innovative ideas that help manage and generate renewable /sustainable sources more efficiently
+154,SIH26071,9,5.82,8.71,6,8,0.59,1,Disaster Management,Ministry of Earth Sciences (MoES),Y,"AI/ML-Based Integrated heavy rainfall Early Warning and Inundation Prediction System using Satellite, Radar, observational Weather and numerical weather prediction model data."
+155,SIH26061,6,5.8,9.14,6,8,0.55,0,Clean & Green Technology,Ministry of Earth Sciences (MoES),Y,AI-Driven Smart Energy Management System for Polar Research Stations
+156,SIH26194,7,5.77,9.0,6,8,0.68,0,Blockchain & Cybersecurity,AICTE,Y,Student Innovation-Provide ideas in a decentralized and distributed ledger technology used to store digital information that powers cryptocurrencies and NFTs and can radically change multiple sectors.
+157,SIH26192,11,5.74,8.43,5,8,3.56,1,Disaster Management,Ministry of Home Affairs,Y,Flash Flood Prediction System for Hilly Regions using Multi-Source Data Theme
+158,SIH26021,10,5.69,8.57,5,8,4.19,0,"Agriculture, FoodTech & Rural Development",Ministry of MSME,Y,Honey Chain: A block chain-based system for honey traceability and smart beekeeping management.
+159,SIH26116,0,5.65,10.0,3,5,10,0,Miscellaneous,Autodesk,,"Urban Mixed-Use Design Challenge-Design a centrally located mixed-use building in Autodesk Revit with commercial spaces (Ground + 1st floor) and residential units (up to 8 floors). 1 Level of Basement (Car Parking + EV Charging), Total (B+G+9)(Note: Plot size and all required dimensions may be assumed by students (in mm units)."
+160,SIH26117,19,5.58,7.29,5,5,9.95,1,Smart Automation,Mangalore Refinery and Petrochemicals Limited (MRPL),,Sovereign On-Premise Agentic AI Workbench using Open-Weight Multimodal LLMs for Confidential Industrial Work
+161,SIH26034,37,5.56,4.71,8,5,10,0,Miscellaneous,"Ministry of Consumer Affairs, Food & Public Distribution",,"Software System to check compliance of Packaged Commodities under Legal Metrology(Packaged Commodities) Rules, 2011 by scanning products, images and labels."
+162,SIH26208,12,5.54,8.29,6,8,0.51,0,Toys & Games,AICTE,Y,"Student Innovation-Challenge your creative mind to conceptualize and develop unique toys and games based on our civilization, history, and culture etc."
+163,SIH26166,14,5.52,8.0,6,5,5.73,0,Space Technology,Indian Space Research Organisation(ISRO),,"Multi-modal, Sun angle and scale invariant image correspondence using Chandrayaan-2 optical images (OHRC, TMC and IIRS)"
+164,SIH26037,14,5.5,8.0,4,5,10,1,Smart Vehicles,MathWorks,,Adaptive Path Planning and Collision Avoidance for Autonomous Vehicles on Unstructured Indian Roads
+165,SIH26044,49,5.5,3.0,8,8,10,0,Smart Automation,Ministry of Ayush,Y,"Portal for Academia - Industry collaboration for Skill Mapping, Internships and Placement"
+166,SIH26196,13,5.47,8.14,6,8,0.29,0,Fitness & Sports,AICTE,Y,Student Innovation-Ideas that can boost fitness activities and assist in keeping fit.
+167,SIH26199,17,5.31,7.57,6,8,0.41,0,Miscellaneous,AICTE,Y,"Student Innovation-Technology ideas in tertiary sectors like Hospitality, Financial Services, Entertainment and Retail."
+168,SIH26195,19,5.23,7.29,6,8,0.39,0,Clean & Green Technology,AICTE,Y,"Student Innovation-Solutions could be in the form of waste segregation, disposal, and improve sanitization system."
+169,SIH26197,19,5.22,7.29,6,8,0.31,0,Heritage & Culture,AICTE,Y,Student Innovation-Ideas that showcase the rich cultural heritage and traditions of India.
+170,SIH26193,22,5.12,6.86,6,8,0.57,0,"Agriculture, FoodTech & Rural Development",AICTE,Y,"Student Innovation-Developing solutions, keeping in mind the need to enhance the primary sector of India - Agriculture and to manage and process our agriculture produce."
+171,SIH26001,65,5.09,0.71,7,8,8.26,5,Disaster Management,Ministry of Development of North Eastern Region (MDoNER),Y,AI-Based early warning and landslide Risk Monitoring System in NER
+172,SIH26205,23,5.06,6.71,6,8,0.48,0,Transportation & Logistics,AICTE,Y,"Student Innovation-Submit your ideas to address the growing pressures on the city’s resources, transport networks, and logistic infrastructure."
+173,SIH26202,25,5.0,6.43,6,8,0.73,0,Smart Automation,AICTE,Y,Student Innovation-Ideas focused on the intelligent use of resources for transforming and advancements of technology with combining the artificial intelligence to explore more various sources and get valuable insights.
+174,SIH26131,45,4.98,3.57,7,8,4.63,1,"Agriculture, FoodTech & Rural Development",Government Of Maharashtra,Y,Early detection and management of crop diseases and pest infestations
+175,SIH26132,39,4.94,4.43,6,8,4.62,1,"Agriculture, FoodTech & Rural Development",Government Of Maharashtra,Y,Strengthening market linkages and price discovery for farmers
+176,SIH26047,66,4.77,0.57,8,5,10,3,MedTech / BioTech / HealthTech,Ministry of Ayush,,Patient Case-Taking Software
+177,SIH26032,46,4.73,3.43,8,8,0.98,0,Smart Automation,"Ministry of Consumer Affairs, Food & Public Distribution",Y,"Farmers often face long waiting times, lack of information regarding procurement schedules, and uncertainty about procurement status."
+178,SIH26206,32,4.68,5.43,6,8,0.48,0,Disaster Management,AICTE,Y,"Student Innovation-Disaster management includes ideas related to risk mitigation, Planning and management before, after or during a disaster."
+179,SIH26198,36,4.53,4.86,6,8,0.67,0,MedTech / BioTech / HealthTech,AICTE,Y,"Student Innovation-Cutting-edge technology in these sectors continues to be in demand. Recent shifts in healthcare trends, growing populations also present an array of opportunities for innovation."
+180,SIH26204,36,4.5,4.86,6,8,0.46,0,Travel & Tourism,AICTE,Y,"Student Innovation-A solution/idea that can boost the current situation of the tourism industries including hotels, travel and others."
+181,SIH26033,41,4.36,4.14,6,8,1.2,0,"Agriculture, FoodTech & Rural Development","Ministry of Consumer Affairs, Food & Public Distribution",Y,Multiple intermediaries reduce farmers earnings and increase consumer prices.
+182,SIH26207,49,3.96,3.0,6,8,0.57,0,Smart Education,AICTE,Y,"Student Innovation-Smart education,a concept that describes learning in digital age. It enables learners to learn more effectively, efficiently, flexibly and comfortably."

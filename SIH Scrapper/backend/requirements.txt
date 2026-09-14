@@ -1,0 +1,9 @@
+fastapi>=0.115
+uvicorn>=0.30
+sqlalchemy>=2.0
+python-multipart>=0.0.9
+pillow>=10
+transformers>=4.40
+huggingface_hub>=0.23
+# NOTE: torch must be the CPU build (plain `pip install torch` pulls ~2GB CUDA):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
