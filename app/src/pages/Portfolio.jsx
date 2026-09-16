@@ -60,7 +60,7 @@ export default function Portfolio() {
             <Field label="GitHub profile" hint="A linked GitHub verifies every skill on your resume.">
               <input className={inputCls} value={github} onChange={(e) => setGithub(e.target.value)} onBlur={saveIdentity} placeholder="https://github.com/you" />
             </Field>
-            <p className="text-xs text-zinc-500">Public ID: <span className="font-mono">{id.slice(0, 8)}</span> · Kudos received: <strong className="tabular-nums">{kudos}</strong></p>
+            <p className="text-xs text-zinc-400">Public ID: <span className="font-mono">{id.slice(0, 8)}</span> · Kudos received: <strong className="tabular-nums">{kudos}</strong></p>
           </div>
 
           <H2 className="mt-5">Verified skills ({found.filter((s) => isVerified(s, earned, github)).length}/{found.length})</H2>
@@ -68,7 +68,7 @@ export default function Portfolio() {
             {found.map((s) => (
               <Chip key={s} tone={isVerified(s, earned, github) ? "green" : "zinc"}>{s}</Chip>
             ))}
-            {found.length === 0 && <p className="text-sm text-zinc-500">Score a resume to list skills here.</p>}
+            {found.length === 0 && <p className="text-sm text-zinc-400">Score a resume to list skills here.</p>}
           </div>
 
           {proofSkills.length > 0 && (
@@ -77,8 +77,8 @@ export default function Portfolio() {
               <ul className="space-y-1.5">
                 {proofSkills.map((s) => (
                   <li key={s} className="text-sm">
-                    <span className="text-zinc-600">{s}: </span>
-                    <a className="font-medium text-green-800 underline" href={getEvidence(role, s)} target="_blank" rel="noreferrer">{getEvidence(role, s)}</a>
+                    <span className="text-zinc-400">{s}: </span>
+                    <a className="font-medium text-blurple-soft underline" href={getEvidence(role, s)} target="_blank" rel="noreferrer">{getEvidence(role, s)}</a>
                   </li>
                 ))}
               </ul>
@@ -93,16 +93,16 @@ export default function Portfolio() {
               {certs.map((c, i) => (
                 <li key={i} className="flex items-start justify-between gap-2 text-sm">
                   <span>
-                    <strong className="text-zinc-900">{c.title}</strong>
-                    <span className="text-zinc-500"> · {c.issuer}</span>
-                    {c.url && <> · <a className="font-medium text-green-800 underline" href={c.url} target="_blank" rel="noreferrer">view</a></>}
+                    <strong className="text-zinc-100">{c.title}</strong>
+                    <span className="text-zinc-400"> · {c.issuer}</span>
+                    {c.url && <> · <a className="font-medium text-blurple-soft underline" href={c.url} target="_blank" rel="noreferrer">view</a></>}
                   </span>
                   <button type="button" className="shrink-0 text-xs font-medium text-red-700 underline" onClick={() => setCerts(removeCert(i))}>
                     Remove
                   </button>
                 </li>
               ))}
-              {certs.length === 0 && <li className="text-sm text-zinc-500">None added. Free course certs from the Quests page belong here.</li>}
+              {certs.length === 0 && <li className="text-sm text-zinc-400">None added. Free course certs from the Quests page belong here.</li>}
             </ul>
             <div className="mt-3 grid gap-2">
               <Field label="Certificate title">
@@ -123,7 +123,7 @@ export default function Portfolio() {
           <Card>
             <H2>Rate this app</H2>
             {thanks ? (
-              <p className="text-sm text-zinc-600">Thanks. Your rating helps the placement cell read real sentiment.</p>
+              <p className="text-sm text-zinc-400">Thanks. Your rating helps the placement cell read real sentiment.</p>
             ) : (
               <>
                 <div className="flex gap-1" role="radiogroup" aria-label="Star rating">
@@ -134,7 +134,7 @@ export default function Portfolio() {
                       role="radio"
                       aria-checked={stars === n}
                       aria-label={`${n} star${n > 1 ? "s" : ""}`}
-                      className={`flex h-11 w-11 items-center justify-center rounded-lg border text-lg ${stars >= n ? "border-green-600 bg-green-50 text-green-700" : "border-zinc-200 text-zinc-300 hover:border-zinc-400"}`}
+                      className={`flex h-11 w-11 items-center justify-center rounded-lg border text-lg ${stars >= n ? "border-blurple bg-blurple/10 text-blurple-soft" : "border-zinc-700 text-zinc-600 hover:border-zinc-500"}`}
                       onClick={() => setStars(n)}
                     >
                       ★

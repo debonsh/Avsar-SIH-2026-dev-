@@ -53,7 +53,7 @@ export default function Profile() {
           <Btn variant="dangerQuiet" onClick={clear}>Clear everything</Btn>
         </div>
         {savedAt > 0 && (
-          <p className="mt-2 text-sm text-green-800">
+          <p className="mt-2 text-sm text-green-300">
             Saved. Live search starts with {q.search}{q.remote ? ", remote roles" : ", all locations"}.
           </p>
         )}
@@ -62,7 +62,7 @@ export default function Profile() {
       {savedAt > 0 && (
         <Card className="mt-4">
           <H2>Profile summary</H2>
-          <pre className="whitespace-pre-wrap text-sm text-zinc-700">{toMarkdown({ ...form, updatedAt: savedAt })}</pre>
+          <pre className="whitespace-pre-wrap text-sm text-zinc-300">{toMarkdown({ ...form, updatedAt: savedAt })}</pre>
         </Card>
       )}
     </Page>

@@ -35,16 +35,16 @@ export default function Institute() {
         actions={<Btn variant="quiet" onClick={() => downloadCSV(rows, "sample-cohort.csv")}>Export sample CSV</Btn>}
       >
         <div className="grid gap-4 sm:grid-cols-4">
-          <Card><H2>Students</H2><p className="text-3xl font-semibold tabular-nums">{stats.total}</p><p className="text-xs text-zinc-500">sample cohort</p></Card>
-          <Card><H2>Gold or better</H2><p className="text-3xl font-semibold tabular-nums">{stats.goldPct}%</p><p className="text-xs text-zinc-500">main score 65 plus</p></Card>
-          <Card><H2>Scored</H2><p className="text-3xl font-semibold tabular-nums">{stats.funnel.scored}</p><p className="text-xs text-zinc-500">have an ATS score</p></Card>
-          <Card><H2>Applied</H2><p className="text-3xl font-semibold tabular-nums">{stats.funnel.applied}</p><p className="text-xs text-zinc-500">tracked applications</p></Card>
+          <Card><H2>Students</H2><p className="text-3xl font-semibold tabular-nums">{stats.total}</p><p className="text-xs text-zinc-400">sample cohort</p></Card>
+          <Card><H2>Gold or better</H2><p className="text-3xl font-semibold tabular-nums">{stats.goldPct}%</p><p className="text-xs text-zinc-400">main score 65 plus</p></Card>
+          <Card><H2>Scored</H2><p className="text-3xl font-semibold tabular-nums">{stats.funnel.scored}</p><p className="text-xs text-zinc-400">have an ATS score</p></Card>
+          <Card><H2>Applied</H2><p className="text-3xl font-semibold tabular-nums">{stats.funnel.applied}</p><p className="text-xs text-zinc-400">tracked applications</p></Card>
         </div>
         <Card className="mt-4">
           <H2>Average main score by track</H2>
           <ul className="space-y-1.5">
             {Object.entries(stats.avgByRole).map(([k, v]) => (
-              <li key={k} className="flex justify-between text-sm"><span className="text-zinc-600">{k}</span><span className="font-medium tabular-nums">{v}</span></li>
+              <li key={k} className="flex justify-between text-sm"><span className="text-zinc-400">{k}</span><span className="font-medium tabular-nums">{v}</span></li>
             ))}
           </ul>
           <H2 className="mt-4">Most common gaps</H2>
@@ -56,15 +56,15 @@ export default function Institute() {
           <H2>Sample cohort roster (demo data)</H2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead><tr className="text-xs text-zinc-500"><th className="py-1 pr-3 font-medium">Name</th><th className="py-1 pr-3 font-medium">Track</th><th className="py-1 pr-3 font-medium">Main</th><th className="py-1 pr-3 font-medium">Rank</th><th className="py-1 font-medium">Applied</th></tr></thead>
+              <thead><tr className="text-xs text-zinc-400"><th className="py-1 pr-3 font-medium">Name</th><th className="py-1 pr-3 font-medium">Track</th><th className="py-1 pr-3 font-medium">Main</th><th className="py-1 pr-3 font-medium">Rank</th><th className="py-1 font-medium">Applied</th></tr></thead>
               <tbody>
                 {rows.map((r) => (
                   <tr key={r.name} className="border-t border-zinc-100">
-                    <td className="py-1.5 pr-3 text-zinc-800">{r.name}</td>
-                    <td className="py-1.5 pr-3 text-zinc-500">{r.role}</td>
+                    <td className="py-1.5 pr-3 text-zinc-200">{r.name}</td>
+                    <td className="py-1.5 pr-3 text-zinc-400">{r.role}</td>
                     <td className="py-1.5 pr-3 tabular-nums">{r.main}</td>
                     <td className="py-1.5 pr-3"><Chip tone={r.main >= 65 ? "green" : "zinc"}>{r.rank}</Chip></td>
-                    <td className="py-1.5 text-zinc-500">{r.applied ? "Yes" : "No"}</td>
+                    <td className="py-1.5 text-zinc-400">{r.applied ? "Yes" : "No"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -83,7 +83,7 @@ export default function Institute() {
     >
       <div className="grid gap-4 sm:grid-cols-4">
         <Card><H2>Assessments</H2><p className="text-3xl font-semibold tabular-nums">{summary.total}</p></Card>
-        <Card><H2>Average rating</H2><p className="text-3xl font-semibold tabular-nums">{summary.avgRating || "—"}</p><p className="text-xs text-zinc-500">{summary.ratingCount} ratings</p></Card>
+        <Card><H2>Average rating</H2><p className="text-3xl font-semibold tabular-nums">{summary.avgRating || "—"}</p><p className="text-xs text-zinc-400">{summary.ratingCount} ratings</p></Card>
         {Object.entries(summary.byRole).slice(0, 2).map(([k, v]) => (
           <Card key={k}><H2>Track: {k}</H2><p className="text-3xl font-semibold tabular-nums">{v}</p></Card>
         ))}
@@ -92,14 +92,14 @@ export default function Institute() {
         <H2>Score bands (ATS)</H2>
         <ul className="space-y-1.5">
           {Object.entries(summary.bands).map(([b, n]) => (
-            <li key={b} className="flex justify-between text-sm"><span className="text-zinc-600">{b}</span><span className="font-medium tabular-nums">{n}</span></li>
+            <li key={b} className="flex justify-between text-sm"><span className="text-zinc-400">{b}</span><span className="font-medium tabular-nums">{n}</span></li>
           ))}
         </ul>
         {summary.comments.length > 0 && (
           <>
             <H2 className="mt-4">Latest student comments</H2>
             <ul className="space-y-1.5">
-              {summary.comments.map((c, i) => <li key={i} className="text-sm text-zinc-600">{c.rating ? `${c.rating}/5: ` : ""}{c.comment}</li>)}
+              {summary.comments.map((c, i) => <li key={i} className="text-sm text-zinc-400">{c.rating ? `${c.rating}/5: ` : ""}{c.comment}</li>)}
             </ul>
           </>
         )}

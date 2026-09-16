@@ -120,8 +120,8 @@ export default function Jobs() {
               {segs.map((s, i) => (
                 <li key={s.label} className="flex items-center gap-1.5 text-xs">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: s.label === "none" ? "#d4d4d8" : DONUT_COLORS_EXPORT[i % DONUT_COLORS_EXPORT.length] }} />
-                  <span className="text-zinc-500">{s.label}</span>
-                  <span className="ml-auto pl-3 font-medium tabular-nums text-zinc-800">{s.value}</span>
+                  <span className="text-zinc-400">{s.label}</span>
+                  <span className="ml-auto pl-3 font-medium tabular-nums text-zinc-200">{s.value}</span>
                 </li>
               ))}
             </ul>
@@ -133,24 +133,24 @@ export default function Jobs() {
             {trend.map((d) => (
               <div key={d.key} className="flex flex-1 flex-col items-center gap-1" title={`${d.saved} saved, ${d.applied} applied`}>
                 <div className="flex h-16 w-full flex-col justify-end gap-0.5">
-                  {d.applied > 0 && <div className="w-full rounded-sm bg-green-600" style={{ height: `${Math.max(8, (d.applied / trendMax) * 64)}px` }} />}
+                  {d.applied > 0 && <div className="w-full rounded-sm bg-blurple" style={{ height: `${Math.max(8, (d.applied / trendMax) * 64)}px` }} />}
                   {d.saved > 0 && <div className="w-full rounded-sm bg-zinc-300" style={{ height: `${Math.max(6, (d.saved / trendMax) * 64)}px` }} />}
                 </div>
-                <span className="text-[10px] text-zinc-500">{d.label}</span>
+                <span className="text-[10px] text-zinc-400">{d.label}</span>
               </div>
             ))}
           </div>
-          <p className="mt-2 text-[11px] text-zinc-500">Green bars are applications, grey bars are saves.</p>
+          <p className="mt-2 text-[11px] text-zinc-400">Blurple bars are applications, grey bars are saves.</p>
         </Card>
         <Card>
           <H2>What matters today</H2>
           <ul className="space-y-1.5">
-            {brief.map((b, i) => <li key={i} className="text-xs leading-snug text-zinc-600">{b}</li>)}
+            {brief.map((b, i) => <li key={i} className="text-xs leading-snug text-zinc-400">{b}</li>)}
           </ul>
           {recent.length > 0 && (
             <ul className="mt-3 space-y-1 border-t border-zinc-100 pt-2.5">
               {recent.slice(0, 3).map((r, i) => (
-                <li key={i} className="truncate text-[11px] text-zinc-500">
+                <li key={i} className="truncate text-[11px] text-zinc-400">
                   <span className="capitalize text-zinc-700">{r.event}</span>: {r.title}{r.company ? ` at ${r.company}` : ""}
                 </li>
               ))}
@@ -182,7 +182,7 @@ export default function Jobs() {
         </div>
       </Card>
 
-      {notice && <p className="mt-3 text-sm text-green-800">{notice}</p>}
+      {notice && <p className="mt-3 text-sm text-blurple-soft">{notice}</p>}
 
       {!resume && (
         <div className="mt-4">
@@ -198,8 +198,8 @@ export default function Jobs() {
             <Card key={j.id}>
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
-                  <h3 className="text-base font-semibold text-zinc-900">{j.title}</h3>
-                  <p className="text-sm text-zinc-500">{j.company} · {j.loc} · {j.type}{j.src ? ` · via ${j.src}` : ""}</p>
+                  <h3 className="text-base font-semibold text-zinc-100">{j.title}</h3>
+                  <p className="text-sm text-zinc-400">{j.company} · {j.loc} · {j.type}{j.src ? ` · via ${j.src}` : ""}</p>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {m && <Chip tone={m.score >= 65 ? "green" : m.score >= 50 ? "blue" : "zinc"}>{m.score}/100 {matchBand(m.score)}</Chip>}
@@ -214,7 +214,7 @@ export default function Jobs() {
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {j.apply && j.apply !== "#" && (
-                  <a className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white hover:bg-green-800" href={j.apply} target="_blank" rel="noreferrer">
+                  <a className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-blurple px-4 py-2 text-sm font-medium text-white hover:bg-blurple-deep" href={j.apply} target="_blank" rel="noreferrer">
                     Apply on source site
                   </a>
                 )}
@@ -246,10 +246,10 @@ export default function Jobs() {
           <textarea className={`${inputCls} min-h-24 font-mono text-xs`} value={paste} onChange={(e) => { setPaste(e.target.value); setParsed(parseJobPosting(e.target.value)); }} placeholder="Paste the full posting here" />
         </Field>
         {parsed && (
-          <div className="mt-3 rounded-lg border border-green-200 bg-green-50 p-4">
-            <p className="text-sm font-semibold text-zinc-900">{parsed.title}</p>
-            <p className="text-sm text-zinc-600">{parsed.company} · {parsed.loc} · {parsed.type}</p>
-            <p className="mt-1 text-xs text-zinc-500">Skills read: {parsed.skills.join(", ") || "none"}</p>
+          <div className="mt-3 rounded-lg border border-blurple/30 bg-blurple/10 p-4">
+            <p className="text-sm font-semibold text-zinc-100">{parsed.title}</p>
+            <p className="text-sm text-zinc-400">{parsed.company} · {parsed.loc} · {parsed.type}</p>
+            <p className="mt-1 text-xs text-zinc-400">Skills read: {parsed.skills.join(", ") || "none"}</p>
             <Btn className="mt-3" onClick={confirmPasted}>Confirm and add to feed</Btn>
           </div>
         )}

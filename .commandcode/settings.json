@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__graft__graft_repo_map",
+      "mcp__graft__graft_find_code"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

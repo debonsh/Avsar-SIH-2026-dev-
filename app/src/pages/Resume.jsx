@@ -1,5 +1,8 @@
+// Resume score. Operate surface: input console on top, then a 12-col result grid.
+// Score rail left (sticky on desktop), evidence right. Same logic as before.
 import { useMemo, useState } from "react";
-import { Page, Card, H2, Btn, Field, Chip, Empty, Meter, inputCls } from "../components/ui.jsx";
+import { ArrowRight, ExternalLink, Play } from "lucide-react";
+import { Page, Card, H2, Btn, Field, Chip, CountUp, Empty, Meter, inputCls } from "../components/ui.jsx";
 import { useC2C } from "../app/store.jsx";
 import { ROLES, scoreResume, calculateMainScore, rankFor, rankRoles } from "../lib/score.js";
 import { parseResumeFile, extractSections } from "../lib/parseResume.js";
@@ -48,11 +51,11 @@ export default function Resume() {
   return (
     <Page
       title="Resume score"
-      sub="Transparent ATS scoring: five dimensions, every point explained, nothing hidden."
-      actions={result && <Btn to="/quests">Turn gaps into quests</Btn>}
+      sub="Five dimensions, every point traced to a line. Nothing hidden, nothing averaged away."
+      actions={result && <Btn to="/quests">Turn gaps into quests <ArrowRight aria-hidden /></Btn>}
     >
       <Card>
-        <div className="grid gap-4 sm:grid-cols-[1fr_220px]">
+        <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Target track">
             <select className={inputCls} value={role} onChange={(e) => setRole(e.target.value)}>
               {Object.entries(ROLES).map(([k, r]) => (
@@ -60,96 +63,126 @@ export default function Resume() {
               ))}
             </select>
           </Field>
-          <Field label="Resume file (PDF or text)">
-            <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-600" />
+          <Field label="Resume file" hint="PDF or plain text. Parsed on your device.">
+            <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-400 file:mr-3 file:rounded-md file:border file:border-zinc-800 file:bg-zinc-900 file:px-3 file:py-1.5 file:text-sm file:text-zinc-200 hover:file:border-zinc-600" />
           </Field>
         </div>
         <div className="mt-4">
           <Field label="Resume text">
             <textarea
-              className={`${inputCls} min-h-44 font-mono text-xs`}
+              className={`${inputCls} min-h-44 font-mono text-xs leading-5`}
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Paste your resume text here"
             />
           </Field>
         </div>
-        {notice && <p className="mt-2 text-sm text-red-700">{notice}</p>}
-        <div className="mt-4 flex flex-wrap gap-2">
+        {notice && <p className="mt-2 text-sm text-red-400" role="alert">{notice}</p>}
+        <div className="mt-4 flex flex-wrap items-center gap-2">
           <Btn onClick={score}>Score my resume</Btn>
           <Btn variant="quiet" onClick={() => setText(SAMPLE_RESUME)}>Use a sample resume</Btn>
+          {bestFit && bestFit.key !== role && (
+            <p className="w-full text-sm text-zinc-400">
+              This text reads more like <strong className="text-zinc-100">{bestFit.label}</strong>{" "}
+              <span className="font-mono tabular-nums">({bestFit.total}/95)</span>.{" "}
+              <button type="button" className="font-medium text-blurple-soft underline underline-offset-4" onClick={() => setRole(bestFit.key)}>
+                Switch track
+              </button>
+            </p>
+          )}
         </div>
-        {bestFit && bestFit.key !== role && (
-          <p className="mt-3 text-sm text-zinc-600">
-            Best fit for this text looks like <strong>{bestFit.label}</strong> ({bestFit.total}/95).{" "}
-            <button type="button" className="font-medium text-green-800 underline" onClick={() => setRole(bestFit.key)}>
-              Switch track
-            </button>
-          </p>
-        )}
       </Card>
 
       {!result && (
         <div className="mt-4">
           <Empty
             title="No score yet"
-            body="Paste your resume above and press Score. Your result, gaps, and fixes appear here."
+            body="Press Score and this page turns into your breakdown: dimensions, skills, sections, and the exact fixes."
           />
         </div>
       )}
 
       {result && (
-        <div className="mt-4 grid gap-4 lg:grid-cols-5">
-          <Card className="lg:col-span-2">
-            <H2>Your score</H2>
-            <p className="text-4xl font-semibold tabular-nums text-zinc-900">{main}<span className="text-lg text-zinc-400">/100</span></p>
-            <p className="mt-1 text-sm text-zinc-500">Rank: <Chip tone="green">{rankFor(main)}</Chip></p>
-            <p className="mt-1 text-xs text-zinc-500">ATS {result.total}/95 plus {pairs} quest-verified skill pairs and interview practice.</p>
-            <div className="mt-4 space-y-3">
-              {result.breakdown.map((d) => (
-                <div key={d.label}>
-                  <div className="mb-1 flex justify-between text-xs">
-                    <span className="font-medium text-zinc-700">{d.label}</span>
-                    <span className="tabular-nums text-zinc-500">{d.pts}/{d.max}</span>
+        <div className="mt-4 grid gap-4 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Card className="lg:sticky lg:top-20">
+              <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Your score</p>
+              <p className="mt-1 font-display text-6xl font-bold tabular-nums tracking-[-0.03em] text-zinc-50">
+                <CountUp to={main} />
+                <span className="text-xl text-zinc-500">/100</span>
+              </p>
+              <p className="mt-2">
+                <Chip tone="green">{rankFor(main)}</Chip>
+              </p>
+              <p className="mt-2 font-mono text-[11px] tabular-nums leading-5 text-zinc-500">
+                ATS {result.total}/95 · {pairs} quest-verified pair{pairs === 1 ? "" : "s"} · interview {interviewBest}
+              </p>
+              <div className="mt-5 space-y-4 border-t border-zinc-800 pt-4">
+                {result.breakdown.map((d) => (
+                  <div key={d.label}>
+                    <div className="mb-1.5 flex items-baseline justify-between gap-2 text-xs">
+                      <span className="font-medium text-zinc-200">{d.label}</span>
+                      <span className="font-mono tabular-nums text-zinc-500">{d.pts}/{d.max}</span>
+                    </div>
+                    <Meter value={d.pts} max={d.max} />
+                    <ul className="mt-1.5 space-y-1">
+                      {d.why.map((w, i) => (
+                        <li key={i} className="text-xs leading-5 text-zinc-500">· {w}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <Meter value={d.pts} max={d.max} />
-                  <ul className="mt-1 space-y-0.5">
-                    {d.why.map((w, i) => (
-                      <li key={i} className="text-xs text-zinc-500">{w}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Card>
+                ))}
+              </div>
+            </Card>
+          </div>
 
-          <div className="space-y-4 lg:col-span-3">
+          <div className="space-y-4 lg:col-span-8">
+            {tips.length > 0 && (
+              <Card>
+                <H2>Fixes that raise this score</H2>
+                <ol className="divide-y divide-zinc-800">
+                  {tips.map((t, i) => (
+                    <li key={i} className="flex items-baseline gap-3 py-2.5 first:pt-0 last:pb-0">
+                      <span className="font-mono text-xs tabular-nums text-blurple-soft">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <p className="text-sm leading-6 text-zinc-200">{t}</p>
+                    </li>
+                  ))}
+                </ol>
+              </Card>
+            )}
+
             <Card>
-              <H2>Skills on your resume ({result.found.length})</H2>
+              <H2>
+                Skills on your resume{" "}
+                <span className="font-mono font-normal tabular-nums text-zinc-500">{result.found.length}</span>
+              </H2>
               <div className="flex flex-wrap gap-1.5">
                 {result.found.map((s) => <Chip key={s} tone="green">{s}</Chip>)}
-                {result.found.length === 0 && <p className="text-sm text-zinc-500">None detected yet.</p>}
+                {result.found.length === 0 && <p className="text-sm text-zinc-400">None detected yet.</p>}
               </div>
-              <H2 className="mt-4">Missing for this track ({result.missing.length})</H2>
+              <H2 className="mt-5">
+                Missing for this track{" "}
+                <span className="font-mono font-normal tabular-nums text-zinc-500">{result.missing.length}</span>
+              </H2>
               <div className="flex flex-wrap gap-1.5">
                 {result.missing.map((s) => <Chip key={s} tone="amber">{s}</Chip>)}
-                {result.missing.length === 0 && <p className="text-sm text-zinc-500">Nothing missing. Apply now.</p>}
+                {result.missing.length === 0 && <p className="text-sm text-zinc-400">Nothing missing. Apply now.</p>}
               </div>
             </Card>
 
             <Card>
               <H2>Sections detected</H2>
-              <div className="flex flex-wrap gap-1.5">
-                {sections.map((s) => <Chip key={s.section}>{s.title}</Chip>)}
-                {sections.length === 0 && <p className="text-sm text-zinc-500">No standard sections found. Add headers like Experience, Projects, Skills, Education.</p>}
-              </div>
-              {tips.length > 0 && (
-                <>
-                  <H2 className="mt-4">Fixes that raise this score</H2>
-                  <ul className="space-y-1.5">
-                    {tips.map((t, i) => <li key={i} className="text-sm text-zinc-600">{t}</li>)}
-                  </ul>
-                </>
+              {sections.length > 0 ? (
+                <div className="flex flex-wrap gap-1.5">
+                  {sections.map((s) => <Chip key={s.section}>{s.title}</Chip>)}
+                </div>
+              ) : (
+                <p className="text-sm leading-6 text-zinc-400">
+                  No standard sections found. Add headers like Experience, Projects, Skills, Education —
+                  parsers and humans both skim for them.
+                </p>
               )}
             </Card>
 
@@ -158,11 +191,25 @@ export default function Resume() {
               if (!vids.length) return null;
               return (
                 <Card key={s}>
-                  <H2>Start {s} today</H2>
-                  <ul className="space-y-1.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <H2 className="mb-0">Start {s} today</H2>
+                    <Btn to="/quests" variant="quiet" size="sm">Make it a quest</Btn>
+                  </div>
+                  <ul className="mt-3 space-y-2">
                     {vids.slice(0, 2).map((v, i) => (
                       <li key={i}>
-                        <a className="text-sm font-medium text-green-800 underline" href={v.u} target="_blank" rel="noreferrer">{v.t}</a>
+                        <a
+                          className="group flex items-center gap-2.5 rounded-lg border border-zinc-800 px-3 py-2.5 hover:border-zinc-600"
+                          href={v.u}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Play className="size-4 shrink-0 text-blurple-soft" aria-hidden />
+                          <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-200 group-hover:text-zinc-50">
+                            {v.t}
+                          </span>
+                          <ExternalLink className="size-3.5 shrink-0 text-zinc-600" aria-hidden />
+                        </a>
                       </li>
                     ))}
                   </ul>

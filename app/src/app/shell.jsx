@@ -1,10 +1,10 @@
-// Shell: header nav, routes, footer. Every nav item is a real route (R-24).
-import { NavLink, Route, Routes } from "react-router";
+// Avsar shell: header nav, routes, footer. Every nav item is a real route.
+import { useEffect, useRef } from "react";
+import { NavLink, Route, Routes, useLocation } from "react-router";
 import Home from "../pages/Home.jsx";
 import Resume from "../pages/Resume.jsx";
 import Jobs from "../pages/Jobs.jsx";
 import Quests from "../pages/Quests.jsx";
-import Coach from "../pages/Coach.jsx";
 import Quiz from "../pages/Quiz.jsx";
 import Interview from "../pages/Interview.jsx";
 import Institute from "../pages/Institute.jsx";
@@ -12,12 +12,12 @@ import Faculty from "../pages/Faculty.jsx";
 import Portfolio from "../pages/Portfolio.jsx";
 import Profile from "../pages/Profile.jsx";
 import NotFound from "../pages/NotFound.jsx";
+import { CoachWidget } from "./coach-widget.jsx";
 
 const PRIMARY = [
   { to: "/resume", label: "Resume" },
   { to: "/jobs", label: "Jobs" },
   { to: "/quests", label: "Quests" },
-  { to: "/coach", label: "Coach" },
 ];
 
 const MORE = [
@@ -30,21 +30,53 @@ const MORE = [
 ];
 
 function linkCls({ isActive }) {
-  return `rounded-md px-3 py-2 text-sm font-medium min-h-[40px] inline-flex items-center ${
-    isActive ? "bg-zinc-900 text-white" : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900"
+  return `inline-flex min-h-[40px] items-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+    isActive ? "bg-zinc-100 text-zinc-950" : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100"
   }`;
 }
 
 export function Shell() {
+  const moreRef = useRef(null);
+  const { pathname } = useLocation();
+
+  // The More menu is uncontrolled; close it imperatively on navigation,
+  // outside click, and Escape so it never lingers.
+  useEffect(() => {
+    if (moreRef.current) moreRef.current.open = false;
+  }, [pathname]);
+
+  useEffect(() => {
+    const close = () => {
+      if (moreRef.current?.open) moreRef.current.open = false;
+    };
+    const onDown = (e) => {
+      if (moreRef.current?.open && !moreRef.current.contains(e.target)) close();
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
   return (
-    <div className="flex min-h-screen flex-col">
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:m-2 focus:rounded focus:bg-white focus:p-2">
+    <div className="flex min-h-dvh flex-col bg-ink text-zinc-300">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:m-2 focus:rounded focus:bg-zinc-950 focus:p-2"
+      >
         Skip to content
       </a>
-      <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white/95">
+      <header className="sticky top-0 z-30 border-b border-zinc-800/80 bg-ink/85 backdrop-blur">
         <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-1 px-4 py-2 sm:px-6">
-          <NavLink to="/" className="mr-3 text-base font-semibold tracking-tight text-zinc-900">
-            Campus2Corporate
+          <NavLink to="/" className="mr-3 inline-flex items-center gap-2 text-base font-semibold text-zinc-50">
+            <span className="flex size-7 items-center justify-center rounded-md bg-blurple font-display text-sm font-bold text-white">
+              A
+            </span>
+            Avsar
           </NavLink>
           <nav aria-label="Primary" className="flex flex-wrap items-center gap-1">
             {PRIMARY.map((l) => (
@@ -52,13 +84,17 @@ export function Shell() {
                 {l.label}
               </NavLink>
             ))}
-            <details className="relative">
-              <summary className="cursor-pointer rounded-md px-3 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 min-h-[40px] inline-flex items-center list-none">
+            <details ref={moreRef} className="relative">
+              <summary className="inline-flex min-h-[40px] cursor-pointer list-none items-center rounded-md px-3 py-2 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100">
                 More
               </summary>
-              <div className="absolute left-0 top-full z-20 mt-1 w-44 rounded-lg border border-zinc-200 bg-white p-1 shadow-lg">
+              <div className="absolute left-0 top-full z-30 mt-1 w-44 rounded-lg border border-zinc-800 bg-zinc-950 p-1">
                 {MORE.map((l) => (
-                  <NavLink key={l.to} to={l.to} className="block rounded-md px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-100">
+                  <NavLink
+                    key={l.to}
+                    to={l.to}
+                    className="block rounded-md px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-900"
+                  >
                     {l.label}
                   </NavLink>
                 ))}
@@ -74,7 +110,6 @@ export function Shell() {
           <Route path="/resume" element={<Resume />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/quests" element={<Quests />} />
-          <Route path="/coach" element={<Coach />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/interview" element={<Interview />} />
           <Route path="/portfolio" element={<Portfolio />} />
@@ -85,11 +120,38 @@ export function Shell() {
         </Routes>
       </main>
 
-      <footer className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto w-full max-w-5xl px-4 py-5 text-sm text-zinc-500 sm:px-6">
-          Campus2Corporate: score your resume, close skill gaps, track applications. Works offline, syncs to Supabase when configured.
+      <footer className="border-t border-zinc-800">
+        <div className="mx-auto grid w-full max-w-5xl gap-8 px-4 py-10 sm:grid-cols-[1fr_1fr_1fr] sm:px-6">
+          <div>
+            <p className="text-sm font-semibold text-zinc-100">Avsar</p>
+            <p className="mt-2 max-w-xs text-sm leading-6 text-zinc-500">
+              Score your resume, close skill gaps, track applications. Works offline, syncs to Supabase
+              when configured.
+            </p>
+          </div>
+          <nav aria-label="Product">
+            <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Product</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              {[["/resume", "Resume"], ["/jobs", "Jobs"], ["/quests", "Quests"], ["/quiz", "Quiz"], ["/interview", "Interview"]].map(([to, label]) => (
+                <li key={to}>
+                  <NavLink to={to} className="text-zinc-400 hover:text-zinc-100">{label}</NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav aria-label="Resources">
+            <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Resources</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              {[["/portfolio", "Portfolio"], ["/institute", "Institute"], ["/faculty", "Faculty"], ["/profile", "Profile"]].map(([to, label]) => (
+                <li key={to}>
+                  <NavLink to={to} className="text-zinc-400 hover:text-zinc-100">{label}</NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </footer>
+      <CoachWidget />
     </div>
   );
 }

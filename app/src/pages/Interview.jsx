@@ -85,7 +85,7 @@ export default function Interview() {
             {evidence.level && <Chip tone="blue">{evidence.level}</Chip>}
             {evidence.claims.map((c) => <Chip key={c} tone="green">{c}</Chip>)}
             {evidence.linkedProjects.map((u) => (
-              <a key={u} className="text-xs font-medium text-green-800 underline" href={u} target="_blank" rel="noreferrer">proof link</a>
+              <a key={u} className="text-xs font-medium text-blurple-soft underline" href={u} target="_blank" rel="noreferrer">proof link</a>
             ))}
           </div>
         )}
@@ -105,12 +105,12 @@ export default function Interview() {
             </Field>
             <div className="mt-1.5 flex items-center gap-3">
               {isVoiceSupported() && (
-                <button type="button" className="text-xs font-medium text-green-800 underline" onClick={() => dictate(i)} disabled={listening === i}>
+                <button type="button" className="text-xs font-medium text-blurple-soft underline" onClick={() => dictate(i)} disabled={listening === i}>
                   {listening === i ? "Listening, speak now" : "Dictate instead of typing"}
                 </button>
               )}
               {graded && (
-                <span className="text-xs text-zinc-500">
+                <span className="text-xs text-zinc-400">
                   STAR {graded.scores[i].micro}/4
                   {graded.scores[i].tips.length > 0 && `, fix: ${graded.scores[i].tips[0]}`}
                 </span>
@@ -120,7 +120,7 @@ export default function Interview() {
         ))}
         <Btn onClick={grade} disabled={qa.every((t) => !t.trim())}>Grade my answers</Btn>
         {graded && (
-          <p className="mt-3 text-sm text-zinc-600">
+          <p className="mt-3 text-sm text-zinc-400">
             Average STAR {graded.ready.avg}/4. Weakest dimension:{" "}
             {["s", "t", "a", "r"].sort((a, b) => graded.ready[a] - graded.ready[b])[0] === "s" ? "Situation" :
              ["s", "t", "a", "r"].sort((a, b) => graded.ready[a] - graded.ready[b])[0] === "t" ? "Task" :

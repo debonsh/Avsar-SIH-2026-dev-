@@ -35,13 +35,13 @@ export default function Faculty() {
             <Card key={f.id}>
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
-                  <h3 className="text-base font-semibold text-zinc-900">{f.title}</h3>
-                  <p className="text-sm text-zinc-500">{f.org} · {f.loc}{f.deadline ? ` · apply by ${f.deadline}` : ""}</p>
+                  <h3 className="text-base font-semibold text-zinc-100">{f.title}</h3>
+                  <p className="text-sm text-zinc-400">{f.org} · {f.loc}{f.deadline ? ` · apply by ${f.deadline}` : ""}</p>
                 </div>
                 <Chip tone={on ? "green" : "zinc"}>{FDP_KINDS[f.kind]}</Chip>
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
-                <a className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white hover:bg-green-800" href={f.url} target="_blank" rel="noreferrer">
+                <a className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-blurple px-4 py-2 text-sm font-medium text-white hover:bg-blurple-deep" href={f.url} target="_blank" rel="noreferrer">
                   Open official page
                 </a>
                 <Btn variant="quiet" onClick={() => toggle(f)}>
