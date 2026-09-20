@@ -1,24 +1,39 @@
 // Industry: post a role in 30 seconds. Offline-first like everything else —
 // saves to the local feed instantly (custom jobs merge into /jobs), Supabase
 // mirror rides along when configured. No login, no review queue for the prototype.
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router";
 import { Page, Card, H2, Btn, Field, Chip, Empty, inputCls } from "../components/ui.jsx";
 import { useC2C } from "../app/store.jsx";
 import { listApplicants } from "../lib/store.js";
+import { matchJobPost, profileForMatching } from "../lib/match.js";
+import { loadQuizBest } from "../data/quiz.js";
+import { loadQAnswers, compileEvidence } from "../lib/questionnaire.js";
 
 const AYUSH_TYPS = ["Internship", "Full-time", "Govt", "ministry", "research", "training"];
 
 const blank = { title: "", company: "", role: "ayush", loc: "Remote", type: "Internship", skills: "", minScore: 40, apply: "", description: "" };
 
 export default function Industry() {
-  const { customJobs, addCustomJob } = useC2C();
+  const { customJobs, addCustomJob, role, resume } = useC2C();
   const [f, setF] = useState(blank);
   const [notice, setNotice] = useState("");
   const [err, setErr] = useState("");
   const [open, setOpen] = useState(null);
   const [applicants, setApplicants] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  // same engine, recruiter side: this-device candidate scored with breakdown.
+  const engineProfile = useMemo(() => {
+    try {
+      const found = resume?.result?.found || [];
+      return profileForMatching(role, found, loadQuizBest(role), compileEvidence(loadQAnswers(role)).claims);
+    } catch {
+      return { skills: [], levels: {}, verified: [], usedAt: {}, interests: [] };
+    }
+  }, [role, resume]);
+  const openJob = customJobs.find((j) => j.id === open) || null;
+  const openFit = openJob ? matchJobPost(openJob, engineProfile) : null;
 
   const set = (k) => (e) => setF((prev) => ({ ...prev, [k]: e.target.value }));
 
@@ -147,6 +162,18 @@ export default function Industry() {
                     <p className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
                       applicants · ranked by score
                     </p>
+                    {openFit && (
+                      <div className="mt-2 rounded-lg border border-emerald-900 bg-emerald-950 px-3 py-2">
+                        <p className="font-mono text-xs text-emerald-300">
+                          this-device candidate: {openFit.score}/100 · {openFit.band}
+                        </p>
+                        <ul className="mt-1 space-y-0.5">
+                          {openFit.why.map((w, i) => (
+                            <li key={i} className="font-mono text-[11px] leading-5 text-zinc-400">· {w}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                     {loading ? (
                       <p className="mt-2 font-mono text-xs text-zinc-500">reading applications…</p>
                     ) : applicants.length === 0 ? (

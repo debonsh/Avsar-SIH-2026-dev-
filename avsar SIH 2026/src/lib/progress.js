@@ -10,13 +10,24 @@ function emptyState() {
   return {
     quests: {},          // key: `${role}:${skillId}:${"course"|"project"}` = true
     evidence: {},        // key: `${role}:${skillId}` = proof URL (repo/deploy/sheet/cert)
+    questDays: {},       // key: ISO day = ticks that day (feeds the streak heatmap)
     streak: { lastDay: null, count: 0, badges: [] }, // ISO day, day count, badges earned
     interview: {},       // key: `${role}:${dayISO}` = count of Qs answered
   };
 }
 
 function load() {
-  return { ...emptyState(), ...loadJSON(KEY, null) };
+  const s = { ...emptyState(), ...loadJSON(KEY, null) };
+  // ponytail: one-time backfill — ticks stored before day-stamping existed get
+  // credited today, so past work lights the heatmap instead of vanishing.
+  const days = s.questDays || {};
+  const keys = Object.keys(s.quests || {});
+  if (keys.length > 0 && Object.keys(days).length === 0) {
+    days[todayISO()] = keys.length;
+    s.questDays = days;
+    save(s);
+  }
+  return s;
 }
 
 function save(state) {
@@ -60,8 +71,12 @@ export function isSkillComplete(roleKey, skillId) {
 export function setQuestDone(roleKey, skillId, kind, done) {
   const s = load();
   const k = `${roleKey}:${skillId}:${kind}`;
-  if (done) s.quests[k] = true;
-  else delete s.quests[k];
+  if (done) {
+    s.quests[k] = true;
+    const t = todayISO();
+    s.questDays = s.questDays || {};
+    s.questDays[t] = (s.questDays[t] || 0) + 1;
+  } else delete s.quests[k];
   save(s);
 }
 

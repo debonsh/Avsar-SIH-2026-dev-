@@ -181,6 +181,20 @@ export async function recordInterest(fdp) {
   }
 }
 
+// --- program enrollments (student side of the collaboration layer) ---
+const EKEY = "c2c-enrollments";
+
+export function loadEnrollments() {
+  return loadJSON(EKEY, []);
+}
+
+export function toggleEnrollment(id) {
+  const ids = loadEnrollments();
+  const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
+  saveJSON(EKEY, next);
+  return next;
+}
+
 // --- portfolio (Slice F): verified ticks + kudos + shared showcase ---
 
 export function isVerified(skill, earnedSkills = [], github = "") {

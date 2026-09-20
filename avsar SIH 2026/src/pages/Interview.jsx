@@ -4,6 +4,7 @@ import { useC2C } from "../app/store.jsx";
 import { QUESTIONNAIRE } from "../data/questionnaire.js";
 import { visibleQuestions, compileEvidence, loadQAnswers, saveQAnswers } from "../lib/questionnaire.js";
 import { scoreAnswer, skillReadiness } from "../lib/interview.js";
+import { recordDay } from "../lib/progress.js";
 import { isVoiceSupported, listenOnce } from "../lib/speech.js";
 import { saveJSON } from "../lib/storage.js";
 import { ROLES } from "../lib/score.js";
@@ -42,6 +43,7 @@ export default function Interview() {
     setGraded({ scores, ready });
     const best = Math.round(ready.avg * 25);
     saveJSON("c2c-interview-best", best);
+    recordDay("interview");
   }
 
   async function dictate(i) {

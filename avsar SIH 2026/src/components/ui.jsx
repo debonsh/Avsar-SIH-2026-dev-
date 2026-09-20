@@ -149,6 +149,55 @@ export function Donut({ segs = [], size = 120, thick = 16, label = "Distribution
 
 export const DONUT_COLORS_EXPORT = DONUT_COLORS;
 
+// Zero-dependency radar: skill profile (emerald, filled) vs target role
+// (amber, dashed). axes: [{ label, value, target }] on a shared 0–max scale.
+// Theme-safe: grid uses currentColor at low opacity, series use brand hexes.
+export function Radar({ axes = [], max = 5, size = 280, className = "h-auto w-full", label = "Skill radar" }) {
+  const cx = size / 2;
+  const cy = size / 2;
+  const r = size / 2 - 34;
+  const n = axes.length;
+  if (!n) return null;
+  const pt = (i, v) => {
+    const a = (Math.PI * 2 * i) / n - Math.PI / 2;
+    const rr = (Math.max(0, Math.min(max, v)) / max) * r;
+    return [cx + rr * Math.cos(a), cy + rr * Math.sin(a)];
+  };
+  const poly = (key) => axes.map((a, i) => pt(i, a[key]).join(",")).join(" ");
+  const rings = [1, 2, 3, 4, 5].filter((x) => x <= max);
+  // long axis names ("Pharmacovigilance") would cross the polygons and the
+  // frame edge — truncate once here so no caller can collide.
+  const short = (s) => {
+    const t = String(s || "");
+    return t.length > 12 ? `${t.slice(0, 11)}…` : t;
+  };
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} role="img" aria-label={label} className={className}>
+      {rings.map((ring) => (
+        <polygon
+          key={ring}
+          points={axes.map((_, i) => pt(i, (ring / max) * max).join(",")).join(" ")}
+          fill="none" stroke="currentColor" strokeOpacity={ring === max ? 0.35 : 0.14} strokeWidth="1"
+        />
+      ))}
+      {axes.map((_, i) => {
+        const [x, y] = pt(i, max);
+        return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="currentColor" strokeOpacity="0.14" />;
+      })}
+      <polygon points={poly("target")} fill="#c77b21" fillOpacity="0.08" stroke="#c77b21" strokeWidth="1.5" strokeDasharray="5 3" />
+      <polygon points={poly("value")} fill="#1e7a4c" fillOpacity="0.22" stroke="#1e7a4c" strokeWidth="2" strokeLinejoin="round" />
+      {axes.map((a, i) => {
+        const [x, y] = pt(i, max * 1.16);
+        return (
+          <text key={a.label} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="currentColor" fillOpacity="0.75">
+            {short(a.label)}
+          </text>
+        );
+      })}
+    </svg>
+  );
+}
+
 const badgeVariants = cva(
   "inline-flex items-center rounded-xl border px-2 py-0.5 font-mono text-xs font-medium tabular-nums",
   {

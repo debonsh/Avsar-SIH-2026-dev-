@@ -10,6 +10,7 @@ import { parseResumeFile, extractSections } from "../lib/parseResume.js";
 import { AYUSH_RESUMES, RESUME_ANATOMY, RESUME_BULLETS, SKILL_WHY } from "../ayush/resumes.js";
 import { videosFor, resumeTips } from "../data/courses.js";
 import { questPairsToProof } from "../lib/score.js";
+import { recordDay } from "../lib/progress.js";
 import { completedSkillIdsForRole } from "../lib/progress.js";
 import { loadJSON } from "../lib/storage.js";
 import { vaidyaLevel } from "../ayush/scoring.js";
@@ -53,6 +54,7 @@ export default function Resume() {
       return;
     }
     saveResume(text, scoreResume(text, role), role);
+    recordDay("resume");
     setNotice("");
   }
 

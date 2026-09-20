@@ -11,7 +11,7 @@ import { completedSkillIdsForRole, getEvidence } from "../lib/progress.js";
 import { submitFeedback } from "../lib/backend.js";
 import { calculateMainScore, questPairsToProof } from "../lib/score.js";
 import { loadJSON } from "../lib/storage.js";
-import { signCredential, verifyUrl } from "../lib/verify.js";
+import { signCredential, verifyUrl, checkCredentialStatus, revokeCredential } from "../lib/verify.js";
 import { VaidyaLevel } from "../components/ui.jsx";
 import { vaidyaLevel } from "../ayush/scoring.js";
 
@@ -27,6 +27,7 @@ export default function Portfolio() {
   const [comment, setComment] = useState("");
   const [thanks, setThanks] = useState(false);
   const [kudos, setKudos] = useState(() => loadKudosFallback(getOrCreateC2CId()));
+  const [revInfo, setRevInfo] = useState(null);
 
   const id = getOrCreateC2CId();
   const found = resume?.result?.found || [];
@@ -80,6 +81,16 @@ export default function Portfolio() {
     setThanks(true);
   }
 
+  // revocation is public and permanent: the credential stays verifiable
+  // history, every view renders it as REVOKED.
+  const rev = revInfo || checkCredentialStatus(code).revoked;
+  function revokeNow() {
+    const reason = window.prompt("Why revoke? This reason shows publicly.", "certificate withdrawn by issuer");
+    if (reason === null) return;
+    const e = revokeCredential(code, reason || "revoked by issuer");
+    if (e) setRevInfo({ reason: e.reason, at: e.at });
+  }
+
   return (
     <Page title="Portfolio" sub="Everything you have proven, in one place. Your public ID lets colleges verify it.">
       <Card>
@@ -107,6 +118,15 @@ export default function Portfolio() {
               <Link to={verifyUrl(code)} className="mt-1 inline-block font-mono text-xs text-blurple-soft underline underline-offset-4">
                 open verify page →
               </Link>
+              {rev ? (
+                <p className="mt-2 rounded-lg border border-red-900 bg-red-950 px-2 py-1.5 font-mono text-[11px] text-red-300">
+                  REVOKED · {rev.reason}
+                </p>
+              ) : (
+                <button type="button" onClick={revokeNow} className="mt-2 text-xs font-medium text-zinc-500 underline underline-offset-4 hover:text-red-400">
+                  Revoke credential
+                </button>
+              )}
             </div>
           </div>
         </div>

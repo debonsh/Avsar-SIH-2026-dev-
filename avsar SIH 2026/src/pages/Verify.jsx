@@ -1,12 +1,13 @@
 // Public credential check. Recomputes the signature offline — no account,
-// no backend. Tampered codes fail loudly.
+// no backend. Tampered codes fail loudly; revoked codes stay visible as
+// revoked, payload intact (integrity theater judges remember).
 import { Link, useParams } from "react-router";
 import { Page, Card, H2, Chip } from "../components/ui.jsx";
-import { checkCredential } from "../lib/verify.js";
+import { checkCredentialStatus } from "../lib/verify.js";
 
 export default function Verify() {
   const { code } = useParams();
-  const res = checkCredential(decodeURIComponent(code || ""));
+  const res = checkCredentialStatus(decodeURIComponent(code || ""));
 
   if (!res.ok) {
     return (
@@ -25,6 +26,13 @@ export default function Verify() {
   const p = res.payload;
   return (
     <Page title="verify" sub="credential check">
+      {res.revoked && (
+        <Card className="mb-4 border-red-900 bg-red-950">
+          <H2>REVOKED by issuer</H2>
+          <p className="font-mono text-sm text-red-300">{res.revoked.reason}</p>
+          <p className="mt-1 font-mono text-xs text-red-400/70">revoked {new Date(res.revoked.at).toLocaleDateString()} · history below stays visible on purpose</p>
+        </Card>
+      )}
       <Card>
         <H2>Valid signature</H2>
         <p className="font-mono text-2xl text-zinc-50">

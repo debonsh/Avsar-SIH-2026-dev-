@@ -1,16 +1,23 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Page, Card, H2, Btn, Chip, Empty } from "../components/ui.jsx";
 import { useC2C } from "../app/store.jsx";
 import { QUIZ, gradeSet, quizSample, loadQuizBest, saveQuizBest, todayDay } from "../data/quiz.js";
+import { recordDay } from "../lib/progress.js";
 import { getOrCreateC2CId } from "../lib/identity.js";
 import { ROLES } from "../lib/score.js";
 import { AYUSH_QUIZ } from "../data/ayushSeed.js";
+
+// timed aptitude: 10 questions, 10 minutes, auto-submit at zero.
+// The clock is the point — recruiters read speed + accuracy, not just marks.
+const LIMIT_S = 600;
+const fmt = (s) => `${Math.floor(Math.max(0, s) / 60)}:${String(Math.max(0, s) % 60).padStart(2, "0")}`;
 
 export default function Quiz() {
   const { role } = useC2C();
   const [started, setStarted] = useState(false);
   const [picks, setPicks] = useState([]);
   const [done, setDone] = useState(null);
+  const [left, setLeft] = useState(LIMIT_S);
 
   // Ayush role uses its own question bank
   const bank = role === "ayush" ? AYUSH_QUIZ : (QUIZ[role] || []);
@@ -20,11 +27,26 @@ export default function Quiz() {
   );
   const best = loadQuizBest(role);
 
-  function submit() {
-    const g = gradeSet(questions, picks);
+  function submit(answers = picks) {
+    const full = questions.map((_, i) => (answers[i] == null ? -1 : answers[i]));
+    const g = gradeSet(questions, full);
     saveQuizBest(role, g.score);
+    recordDay("quiz");
     setDone(g);
   }
+
+  useEffect(() => {
+    if (!started || done) return;
+    setLeft(LIMIT_S);
+    const id = setInterval(() => setLeft((s) => s - 1), 1000);
+    return () => clearInterval(id);
+  }, [started, done]);
+
+  // time up → grade what's answered, blanks count wrong
+  useEffect(() => {
+    if (started && !done && left <= 0) submit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- submit reads live picks
+  }, [left, started, done]);
 
   const isAyush = role === "ayush";
 
@@ -41,13 +63,19 @@ export default function Quiz() {
       {bank.length > 0 && !started && (
         <Card>
           <H2>Ready when you are</H2>
-          <p className="text-sm text-zinc-400">10 questions, one try per sitting, instant grading with the right answers shown after.</p>
-          <Btn className="mt-4" onClick={() => { setStarted(true); setPicks([]); setDone(null); }}>Start the quiz</Btn>
+          <p className="text-sm text-zinc-400">10 questions, {fmt(LIMIT_S)} on the clock, one try per sitting. Unanswered questions count wrong when time runs out.</p>
+          <Btn className="mt-4" onClick={() => { setStarted(true); setPicks([]); setDone(null); setLeft(LIMIT_S); }}>Start the timed quiz</Btn>
         </Card>
       )}
 
       {started && !done && (
         <Card>
+          <div className="mb-4 flex items-center justify-between gap-2">
+            <p className={`font-mono text-sm font-bold tabular-nums ${left < 60 ? "text-red-400" : "text-zinc-200"}`} role="timer" aria-label={`${fmt(left)} remaining`}>
+              ⏱ {fmt(left)}
+            </p>
+            <Chip tone={left < 60 ? "red" : "zinc"}>{picks.filter((p) => p != null).length}/{questions.length} answered</Chip>
+          </div>
           <ol className="space-y-5">
             {questions.map((q, qi) => (
               <li key={qi}>

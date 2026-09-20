@@ -1,15 +1,38 @@
 import { useEffect, useMemo, useState } from "react";
+import CIcon from "@coreui/icons-react";
+import { cilBriefcase, cilLocationPin, cilClock, cilExternalLink } from "@coreui/icons";
 import { Page, Card, H2, Btn, Field, Chip, Empty, ErrorBox, Donut, DONUT_COLORS_EXPORT, inputCls } from "../components/ui.jsx";
 import { useC2C } from "../app/store.jsx";
 import { JOBS, matchJobs } from "../data/jobs.js";
 import { AYUSH_JOBS } from "../data/ayushSeed.js";
 import { mergeJobs, listLiveJobs, recordApplication, saveCustomJob } from "../lib/store.js";
 import { loadProfile } from "../lib/profile.js";
-import { matchJob, matchBand, parseJobPosting } from "../lib/coach.js";
+import { matchBand, parseJobPosting } from "../lib/coach.js";
+import { matchJobPost, profileForMatching } from "../lib/match.js";
+import { loadQuizBest } from "../data/quiz.js";
+import { loadQAnswers, compileEvidence } from "../lib/questionnaire.js";
 import { donutSegments, weekTrend, recentActivity, briefing, demandHeatmap } from "../lib/dashboard.js";
 import { calculateMainScore } from "../lib/score.js";
 
 const STATUS_FLOW = ["saved", "applied", "interview", "offer"];
+
+// job-board card DNA: company mark tile, fit ring, meta rows, skill chips,
+// one primary apply + quiet pipeline steps. Same data, half the noise.
+function FitRing({ score }) {
+  const r = 14;
+  const c = 2 * Math.PI * r;
+  const frac = Math.max(0, Math.min(100, score || 0)) / 100;
+  const col = score >= 65 ? "#1e7a4c" : score >= 50 ? "#2563eb" : "#a1a1aa";
+  return (
+    <span className="relative inline-flex items-center justify-center" role="img" aria-label={`Fit ${score} of 100`}>
+      <svg width="44" height="44" viewBox="0 0 44 44" className="-rotate-90" aria-hidden>
+        <circle cx="22" cy="22" r={r} fill="none" strokeWidth="4" className="stroke-stone-200" />
+        <circle cx="22" cy="22" r={r} fill="none" stroke={col} strokeWidth="4" strokeLinecap="round" strokeDasharray={`${(frac * c).toFixed(1)} ${c.toFixed(1)}`} />
+      </svg>
+      <span className="absolute text-[11px] font-bold tabular-nums text-stone-800">{score}</span>
+    </span>
+  );
+}
 
 function statusOf(events, id) {
   const mine = events.filter((e) => e.jobId === String(id));
@@ -19,6 +42,42 @@ function statusOf(events, id) {
   if (mine.some((e) => e.event === "applied")) return "applied";
   if (mine.some((e) => e.event === "saved")) return "saved";
   return null;
+}
+
+// explainable match, same engine the recruiter sees: score + factor bars + why.
+function EngineFit({ job, profile }) {
+  const m = matchJobPost(job, profile);
+  if (!m) return null;
+  const rows = [
+    ["coverage", "Skill coverage", 45],
+    ["proficiency", "Proficiency fit", 25],
+    ["verified", "Verified ratio", 15],
+    ["recency", "Recency", 10],
+    ["interest", "Interests", 5],
+  ];
+  return (
+    <details className="mt-2 rounded-lg border border-stone-200/70 bg-stone-50/70 px-3 py-2">
+      <summary className="cursor-pointer text-xs font-semibold text-emerald-800">
+        Engine match {m.score}/100 · {m.band} — why this number?
+      </summary>
+      <ul className="mt-2 space-y-1">
+        {rows.map(([k, label, w]) => (
+          <li key={k} className="flex items-center gap-2 text-[11px]">
+            <span className="w-28 shrink-0 text-stone-500">{label} <span className="font-mono tabular-nums">{w}%</span></span>
+            <span className="h-1.5 flex-1 rounded-full bg-stone-200">
+              <span className="block h-full rounded-full bg-emerald-600" style={{ width: `${Math.round(m.breakdown[k] * 100)}%` }} />
+            </span>
+            <span className="w-9 shrink-0 text-right font-mono tabular-nums text-stone-600">{Math.round(m.breakdown[k] * 100)}%</span>
+          </li>
+        ))}
+      </ul>
+      <ul className="mt-1.5 space-y-0.5">
+        {m.why.map((w, i) => (
+          <li key={i} className="text-[11px] leading-5 text-stone-500">· {w}</li>
+        ))}
+      </ul>
+    </details>
+  );
 }
 
 export default function Jobs() {
@@ -37,6 +96,14 @@ export default function Jobs() {
 
   const found = useMemo(() => resume?.result?.found || [], [resume]);
   const score = resume?.result ? calculateMainScore(resume.result.total, 0, 0, role) : 0;
+  // one held-profile for the explainable engine, shared by every card below
+  const engineProfile = useMemo(() => {
+    try {
+      return profileForMatching(role, found, loadQuizBest(role), compileEvidence(loadQAnswers(role)).claims);
+    } catch {
+      return { skills: found, levels: {}, verified: [], usedAt: {}, interests: [] };
+    }
+  }, [role, found]);
 
   const pool = useMemo(
     () => matchJobs(role, score, found, mergeJobs(customJobs, AYUSH_JOBS, JOBS, live)),
@@ -333,6 +400,10 @@ export default function Jobs() {
 
       {notice && <p className="mt-3 text-sm text-blurple-soft">{notice}</p>}
 
+      <p className="mt-4 px-1 font-mono text-xs tabular-nums text-stone-500" role="status">
+        {filtered.length} role{filtered.length === 1 ? "" : "s"} · {filtered.filter((j) => j.eligible).length} eligible for you
+      </p>
+
       {!resume && (
         <div className="mt-4">
           <Empty title="Scores unlock matches" body="Match percentages and eligibility gates appear after you score a resume. The feed below is still browsable." action={<Btn to="/resume">Score your resume</Btn>} />
@@ -343,48 +414,64 @@ export default function Jobs() {
         {filtered.map((j) => {
           const st = statusOf(events, j.id);
           const isAyushJob = j.role === "ayush" || j.kind === "ministry" || j.kind === "research" || j.kind === "training";
+          const have = new Set(found.map((f) => f.toLowerCase()));
           return (
-            <Card key={j.id}>
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <div>
-                  <h3 className="text-base font-semibold text-zinc-100">{j.title}</h3>
-                  <p className="text-sm text-zinc-400">{j.company} · {j.loc} · {j.type}{j.src ? ` · via ${j.src}` : ""}</p>
-                  {(j.stipend || j.deadline) && (
-                    <p className="mt-0.5 font-mono text-[11px] text-sage">
-                      {[j.stipend, j.deadline ? `apply: ${j.deadline}` : ""].filter(Boolean).join(" · ")}
-                    </p>
-                  )}
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {j.src === "ccras" && <Chip tone="blue">fresh · ccras</Chip>}
-                  {j.fit && <Chip tone={j.fit.score >= 65 ? "green" : j.fit.score >= 50 ? "blue" : "zinc"}>{j.fit.score}/100 {matchBand(j.fit.score)}</Chip>}
-                  {j.eligible ? <Chip tone="green">eligible</Chip> : <Chip tone="amber">needs {j.minScore}+</Chip>}
-                  {isAyushJob && <Chip tone="green">ayush</Chip>}
-                  {st && <Chip tone="blue">{st}</Chip>}
+            <Card key={j.id} className="overflow-hidden p-0">
+              <div className="flex gap-3.5 p-4 sm:p-5">
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-700 font-display text-lg font-bold text-white" aria-hidden>
+                  {(j.company || "A").trim()[0]}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <h3 className="text-[15px] font-bold leading-snug text-stone-900">{j.title}</h3>
+                      <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[13px] text-stone-500">
+                        <span className="font-medium text-stone-700">{j.company}</span>
+                        <span className="inline-flex items-center gap-0.5"><CIcon icon={cilLocationPin} width={12} height={12} aria-hidden />{j.loc}</span>
+                        <span className="inline-flex items-center gap-0.5"><CIcon icon={cilBriefcase} width={12} height={12} aria-hidden />{j.type}</span>
+                        {j.src && <span>via {j.src}</span>}
+                      </p>
+                      {(j.stipend || j.deadline) && (
+                        <p className="mt-1 flex flex-wrap items-center gap-1 font-mono text-[11px] text-stone-500">
+                          <CIcon icon={cilClock} width={12} height={12} aria-hidden />
+                          {[j.stipend, j.deadline ? `apply: ${j.deadline}` : ""].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
+                    </div>
+                    {j.fit && <FitRing score={j.fit.score} />}
+                  </div>
+                  <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
+                    {j.src === "ccras" && <Chip tone="blue">fresh · ccras</Chip>}
+                    {j.fit && <Chip tone={j.fit.score >= 65 ? "green" : j.fit.score >= 50 ? "blue" : "zinc"}>{matchBand(j.fit.score)}</Chip>}
+                    {j.eligible ? <Chip tone="green">eligible</Chip> : <Chip tone="amber">needs {j.minScore}+</Chip>}
+                    {isAyushJob && <Chip tone="green">ayush</Chip>}
+                    {st && <Chip tone="blue">{st}</Chip>}
+                  </div>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {j.skills.map((s) => (
+                      <span key={s} className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${have.has(s.toLowerCase()) ? "bg-emerald-50 text-emerald-800" : "bg-stone-100 text-stone-500"}`}>{s}</span>
+                    ))}
+                  </div>
+                  {resume && <EngineFit job={j} profile={engineProfile} />}
                 </div>
               </div>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {j.skills.map((s) => (
-                  <Chip key={s} tone={found.map((f) => f.toLowerCase()).includes(s.toLowerCase()) ? "green" : "zinc"}>{s}</Chip>
-                ))}
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center gap-2 border-t border-stone-100 bg-stone-50/60 px-4 py-2.5 sm:px-5">
                 {j.apply && j.apply !== "#" && (
-                  <a className="inline-flex min-h-[40px] items-center justify-center rounded-full bg-blurple px-4 py-2 text-sm font-medium text-white hover:bg-blurple-deep" href={j.apply} target="_blank" rel="noreferrer">
-                    Apply on source site
+                  <a className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-emerald-700 px-4 text-[13px] font-semibold text-white hover:bg-emerald-800" href={j.apply} target="_blank" rel="noreferrer">
+                    Apply <CIcon icon={cilExternalLink} width={13} height={13} aria-hidden />
                   </a>
                 )}
-                {!st && <Btn variant="quiet" onClick={() => addEvent(String(j.id), "saved")}>Save</Btn>}
-                {st === "saved" && <Btn variant="quiet" onClick={() => markApplied(j)}>Mark applied</Btn>}
+                {!st && <Btn variant="quiet" size="sm" onClick={() => addEvent(String(j.id), "saved")}>Save</Btn>}
+                {st === "saved" && <Btn variant="quiet" size="sm" onClick={() => markApplied(j)}>Mark applied</Btn>}
                 {st && STATUS_FLOW.includes(st) && st !== "offer" && (
-                  <Btn variant="quiet" onClick={() => addEvent(String(j.id), STATUS_FLOW[STATUS_FLOW.indexOf(st) + 1])}>
+                  <Btn variant="quiet" size="sm" onClick={() => addEvent(String(j.id), STATUS_FLOW[STATUS_FLOW.indexOf(st) + 1])}>
                     Move to {STATUS_FLOW[STATUS_FLOW.indexOf(st) + 1]}
                   </Btn>
                 )}
-                {st !== "rejected" && <Btn variant="dangerQuiet" onClick={() => addEvent(String(j.id), "rejected")}>Rejected</Btn>}
-                <Btn variant="quiet" onClick={() => toggleDismiss(String(j.id))}>
+                {st !== "rejected" && <Btn variant="dangerQuiet" size="sm" onClick={() => addEvent(String(j.id), "rejected")}>Rejected</Btn>}
+                <button type="button" onClick={() => toggleDismiss(String(j.id))} className="ml-auto text-xs font-medium text-stone-400 underline underline-offset-4 hover:text-stone-600">
                   {dismissed.includes(String(j.id)) ? "Restore" : "Dismiss"}
-                </Btn>
+                </button>
               </div>
             </Card>
           );

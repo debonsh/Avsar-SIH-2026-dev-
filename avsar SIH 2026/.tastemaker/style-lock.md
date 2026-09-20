@@ -2,7 +2,7 @@
 
 ## Type
 - Display: Bricolage Grotesque 700, -0.02em (headlines, professional weight)
-- Body: Inter 400 (readable paragraphs)
+- Body: Inter 400, Noto Sans Devanagari fallback (Hindi coach answers render correctly)
 - Mono: DM Mono, measurement only (scores, counts, tabular numbers). Never headlines.
 
 ## Color contract
@@ -17,7 +17,9 @@
 - FractalMap hero bg at 20% opacity, static on reduced-motion
 
 ## Dark mode
-Locked light only. No toggle.
+Runtime toggle (header sun/moon, persisted `c2c-theme`). Light default.
+Dark = warm-dark panels `#141a15` on `#0d100e`; stone/white/emerald-tint
+utilities remapped in index.css `.ayush-dark` layer. Hero gradient untouched.
 
 ## Identity motif
 Leaf mark + warm paper + Devanagari vaidya growth stages (beej to acharya).

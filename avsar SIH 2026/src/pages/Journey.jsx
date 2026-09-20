@@ -16,6 +16,7 @@ import { coursesFor, resumeTips } from "../data/courses.js";
 import { completedSkillIdsForRole } from "../lib/progress.js";
 import { loadJSON, saveJSON } from "../lib/storage.js";
 import { onboardingProgress, questionsFromProfile, resetOnboarding } from "../lib/onboarding.js";
+import { recordDay } from "../lib/progress.js";
 import { genInterviewQs, gradeAnswerAI } from "../lib/aiQuestions.js";
 import { scoreAnswer } from "../lib/interview.js";
 import { hasAIKey } from "../lib/ai.js";
@@ -148,6 +149,7 @@ export default function Journey() {
       return;
     }
     saveResume(text, scoreResume(text, "ayush"), "ayush");
+    recordDay("resume");
     setNotice("");
     setTab("improve");
   }
@@ -168,6 +170,7 @@ export default function Journey() {
     if (!done.length) return;
     const avg = done.reduce((a, g) => a + g.score, 0) / done.length;
     saveJSON("c2c-interview-best", Math.round(avg * 25));
+    recordDay("interview");
     setStage("congrats");
   }
 

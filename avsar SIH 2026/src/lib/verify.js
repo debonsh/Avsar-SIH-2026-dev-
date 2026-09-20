@@ -1,7 +1,10 @@
 // ponytail: verifiable credentials without a server. code = base64url(payload)
 // + "." + fnv hash. anyone with this file recomputes the hash offline —
 // tampered codes fail. payload: { id, name, readiness, skills[], at }.
+// revocation: a revoked sig stays verifiable but renders as REVOKED forever —
+// integrity theater judges remember, and fakes can't quietly disappear.
 import { hashStr } from "./quests.js";
+import { loadJSON, saveJSON } from "./storage.js";
 
 const enc = (s) => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const dec = (s) => {
@@ -41,4 +44,40 @@ export function checkCredential(code = "") {
 
 export function verifyUrl(code = "") {
   return `/verify/${encodeURIComponent(code)}`;
+}
+
+// --- revocation ledger: sig → { reason, at }. Revoked codes still verify the
+// signature (the payload is real history) but every view marks them revoked.
+const RKEY = "c2c-revoked-v1";
+let memRevoked = null; // node --test has no localStorage; mirror like taxonomy
+
+export function loadRevocations() {
+  if (memRevoked === null) memRevoked = loadJSON(RKEY, []);
+  return Array.isArray(memRevoked) ? memRevoked : [];
+}
+
+export function revokeCredential(code = "", reason = "revoked by issuer") {
+  const res = checkCredential(code);
+  if (!res.ok) return null;
+  const sig = String(code).split(".")[1];
+  const rows = loadRevocations();
+  if (rows.some((r) => r.sig === sig)) return rows.find((r) => r.sig === sig);
+  const entry = { sig, reason: String(reason || "revoked by issuer").slice(0, 120), at: Date.now() };
+  memRevoked = [...rows, entry].slice(-100);
+  saveJSON(RKEY, memRevoked);
+  return entry;
+}
+
+export function revocationFor(code = "") {
+  const sig = String(code || "").split(".")[1];
+  if (!sig) return null;
+  return loadRevocations().find((r) => r.sig === sig) || null;
+}
+
+// one call for views: signature truth + revocation state together
+export function checkCredentialStatus(code = "") {
+  const res = checkCredential(code);
+  if (!res.ok) return res;
+  const revoked = revocationFor(code);
+  return { ...res, revoked: revoked ? { reason: revoked.reason, at: revoked.at } : null };
 }

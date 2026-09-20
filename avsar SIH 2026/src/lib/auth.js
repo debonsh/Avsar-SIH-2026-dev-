@@ -15,7 +15,7 @@ export async function getUser() {
 
 export async function signInWithGoogle() {
   const sb = await getClient();
-  if (!sb) return { error: "supabase is not configured. add keys to app/.env to enable google sign-in." };
+  if (!sb) return { error: "supabase is not configured. add keys to .env to enable google sign-in." };
   try {
     const { error } = await sb.auth.signInWithOAuth({
       provider: "google",

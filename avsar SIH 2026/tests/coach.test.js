@@ -113,3 +113,12 @@ test("bams deepen: hindi tone flips to devanagari when lang=hi", () => {
   assert.ok(hi.includes("अभियान") || hi.includes("गहराई") || hi.includes("बीज") || hi.includes("readiness"), "hindi bams answer present");
 });
 
+test("ask answers from local data, never asks for a key", () => {
+  const A = { ...S, found: ["diagnosis"], missing: ["gmp"], score: 48 };
+  assert.ok(!localAnswer("ask", { ...A, question: "hello" }).includes("VITE_"), "no key talk");
+  assert.ok(localAnswer("ask", { ...A, question: "how do I learn gmp?" }).includes("gmp"), "gap skill routes to quests");
+  assert.ok(localAnswer("ask", { ...A, question: "where internship?" }).includes("Internship"), "internship routes to feed");
+  assert.ok(localAnswer("ask", { ...A, question: "my score?" }).includes("48"), "score question names score");
+  assert.ok(localAnswer("ask", { ...A, question: "xyzzy" }).length > 20, "unknown still answers");
+});
+

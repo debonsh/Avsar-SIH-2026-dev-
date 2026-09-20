@@ -2,7 +2,9 @@
 // (localAnswer instantly, GROQ upgrades when keyed), available everywhere.
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router";
-import { MessageCircle, Send, X } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
+import CIcon from "@coreui/icons-react";
+import { cilSpa, cilSend, cilPlus } from "@coreui/icons";
 import { Btn, inputCls } from "../components/ui.jsx";
 import { useC2C } from "./store.jsx";
 import { COACH_ACTIONS, buildPrompt, localAnswer } from "../lib/coach.js";
@@ -116,7 +118,7 @@ export function CoachWidget() {
       resumeText: resume?.text || "",
       contactName: resume?.text ? extractContact(resume.text).name : "",
     };
-  }, [role, resume]);
+  }, [role, resume, open]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -156,11 +158,11 @@ export function CoachWidget() {
   }, [params, setParams]);
 
   function push(kind, text) {
-    setLog((prev) => [...prev, { kind, text }].slice(-30));
+    setLog((prev) => [...prev, { kind, text, at: Date.now() }].slice(-30));
   }
 
-  function greet() {
-    if (log.length > 0) return;
+  function greet(force = false) {
+    if (!force && log.length > 0) return;
     const name = s.contactName ? ` ${s.contactName.split(" ")[0]}` : "";
     push(
       "coach",
@@ -168,6 +170,12 @@ export function CoachWidget() {
         ? `Hey${name}. Your resume scores ${s.score}, and ${s.missing[0] || "nothing"} is your biggest gap. Ask me anything, or tap a shortcut below.`
         : `Hey${name}. Score your resume first and I can coach off your real gaps. Until then, ask me anything about the process.`
     );
+  }
+
+  function newChat() {
+    try { localStorage.removeItem(LOG_KEY); } catch { /* private mode */ }
+    setLog([]);
+    greet(true);
   }
 
   async function run(actionId, extra = {}) {
@@ -196,21 +204,31 @@ export function CoachWidget() {
           role="dialog"
           aria-label="Avsar coach chat"
         >
-          <div className="flex items-center gap-2.5 border-b border-zinc-800 px-4 py-3">
-            <span className="relative flex size-2.5">
-              <span className="absolute h-full w-full rounded-full bg-blurple" />
+          <div className="flex items-center gap-2.5 border-b border-zinc-800 bg-emerald-700 px-4 py-3 text-white">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/20" aria-hidden>
+              <CIcon icon={cilSpa} width={17} height={17} />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-zinc-100">Coach</p>
-              <p className="truncate text-xs text-zinc-500">
-                {hasAIKey() ? "Online, knows your resume" : "Offline, knows your resume"}
+              <p className="text-sm font-bold">Avsar Coach</p>
+              <p className="flex items-center gap-1 text-xs text-emerald-100">
+                <span className={`size-1.5 rounded-full ${hasAIKey() ? "bg-amber-300" : "bg-white/60"}`} aria-hidden />
+                {hasAIKey() ? "AI online" : "Offline answers"}{s.missing[0] ? ` · gap: ${s.missing[0]}` : ""}
               </p>
             </div>
             <button
               type="button"
+              onClick={newChat}
+              aria-label="Start a new chat"
+              title="New chat"
+              className="rounded-xl p-1.5 text-emerald-100 hover:bg-white/15 hover:text-white"
+            >
+              <CIcon icon={cilPlus} width={16} height={16} />
+            </button>
+            <button
+              type="button"
               onClick={() => setLang((l) => (l === "en" ? "hi" : "en"))}
               aria-label="Toggle language"
-              className="rounded-xl border border-zinc-800 px-2 py-0.5 font-mono text-[10px] text-zinc-400 hover:border-zinc-600 hover:text-zinc-100"
+              className="rounded-xl border border-white/30 px-2 py-0.5 font-mono text-[10px] text-emerald-50 hover:bg-white/15"
             >
               {lang === "en" ? "हिंदी" : "EN"}
             </button>
@@ -218,29 +236,68 @@ export function CoachWidget() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close coach chat"
-              className="rounded-xl p-1.5 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100"
+              className="rounded-xl p-1.5 text-emerald-100 hover:bg-white/15 hover:text-white"
             >
               <X className="size-4" aria-hidden />
             </button>
           </div>
 
-          <div className="min-h-40 flex-1 space-y-3 overflow-y-auto px-4 py-3">
+          <div className="min-h-40 flex-1 space-y-3 overflow-y-auto bg-zinc-950 px-4 py-3">
+            {log.length === 0 && !busy && (
+              <div className="space-y-2 py-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Start with</p>
+                {[
+                  { label: s.missing[0] ? `Fix my gap: ${s.missing[0]}` : "Explain my gaps", id: "gaps" },
+                  { label: "Interview tip for me", id: "interview" },
+                  { label: "Where should I apply?", id: "career" },
+                ].map((c) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => run(c.id)}
+                    className="block w-full rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-2.5 text-left text-sm text-zinc-200 hover:border-emerald-600"
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+            )}
             {log.map((m, i) => (
-              <div key={i} className={m.kind === "you" ? "flex justify-end" : "flex justify-start"}>
+              <div key={i} className={m.kind === "you" ? "flex justify-end" : "flex items-end justify-start gap-1.5"}>
+                {m.kind !== "you" && (
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-white" aria-hidden>
+                    <CIcon icon={cilSpa} width={13} height={13} />
+                  </span>
+                )}
                 <div
-                  className={`max-w-[85%] rounded-xl px-3 py-2 text-sm leading-6 ${
+                  className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-6 ${
                     m.kind === "you"
-                      ? "bg-blurple text-white"
-                      : "border border-zinc-800 bg-zinc-900 text-zinc-200"
+                      ? "rounded-br-md bg-blurple text-white"
+                      : "rounded-bl-md border border-zinc-800 bg-zinc-900 text-zinc-200"
                   }`}
                 >
                   {m.kind === "coach-ai" && (
-                    <p className="mb-0.5 font-mono text-[10px] uppercase tracking-wide text-blurple-soft">AI upgrade</p>
+                    <p className="mb-0.5 font-mono text-[10px] uppercase tracking-wide text-blurple-soft">AI</p>
                   )}
                   <ChatText text={m.text} />
+                  {m.at && (
+                    <p className={`mt-1 text-right font-mono text-[10px] tabular-nums ${m.kind === "you" ? "text-white/70" : "text-zinc-500"}`}>
+                      {new Intl.DateTimeFormat("en-IN", { hour: "numeric", minute: "2-digit" }).format(m.at)}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
+            {busy && (
+              <div className="flex items-end gap-1.5">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-white" aria-hidden>
+                  <CIcon icon={cilSpa} width={13} height={13} />
+                </span>
+                <p className="rounded-2xl rounded-bl-md border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-400" role="status">
+                  Coach is thinking…
+                </p>
+              </div>
+            )}
             <div ref={bottomRef} />
           </div>
 
@@ -275,8 +332,8 @@ export function CoachWidget() {
                 placeholder={busy ? "Thinking..." : lang === "hi" ? "अपने बारे में पूछें..." : "Ask about your resume..."}
                 aria-label="Ask the coach"
               />
-              <Btn type="submit" size="icon" disabled={busy || !question.trim()} aria-label="Send message">
-                <Send aria-hidden />
+              <Btn type="submit" size="icon" disabled={busy || !question.trim()} aria-label="Send message" className="rounded-full">
+                <CIcon icon={cilSend} width={16} height={16} aria-hidden />
               </Btn>
             </form>
           </div>
@@ -290,7 +347,7 @@ export function CoachWidget() {
           greet();
         }}
         aria-label={open ? "Close coach chat" : "Open coach chat"}
-        className="fixed bottom-4 right-4 z-40 flex size-12 items-center justify-center rounded-xl bg-blurple text-white transition-colors hover:bg-blurple-deep"
+        className="fixed bottom-20 right-4 z-40 flex size-12 items-center justify-center rounded-xl bg-blurple text-white transition-colors hover:bg-blurple-deep sm:bottom-4"
         style={{ marginBottom: "env(safe-area-inset-bottom)" }}
       >
         {open ? <X className="size-5" aria-hidden /> : <MessageCircle className="size-5" aria-hidden />}

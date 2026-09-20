@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Page, Card, H2, Btn, Chip, Empty } from "../components/ui.jsx";
 import { COHORT, cohortStats, enrich, toCSV } from "../lib/cohort.js";
+import { demandHeatmap } from "../lib/dashboard.js";
+import { JOBS } from "../data/jobs.js";
+import { AYUSH_JOBS } from "../data/ayushSeed.js";
 import { loadAssessments, loadRemoteAssessments, loadFeedback, loadRemoteFeedback, analyticsSummary } from "../lib/backend.js";
 
 // Real placement data first (local mirror, then Supabase). The demo cohort
@@ -28,6 +31,8 @@ export default function Institute() {
   if (!real.length) {
     const stats = cohortStats(COHORT);
     const rows = enrich(COHORT);
+    const heat = demandHeatmap([...AYUSH_JOBS, ...JOBS], [], 8);
+    const heatMax = Math.max(1, ...heat.map((h) => h.demand));
     return (
       <Page
         title="Institute"
@@ -51,6 +56,23 @@ export default function Institute() {
           <div className="flex flex-wrap gap-1.5">
             {stats.topGaps.map((g) => <Chip key={g.skill}>{g.skill} ({g.n})</Chip>)}
           </div>
+        </Card>
+        <Card className="mt-4">
+          <H2>Policymaker view — live demand vs cohort supply</H2>
+          <p className="mb-2 text-xs leading-5 text-zinc-400">
+            Demand counted from the feed ({[...AYUSH_JOBS, ...JOBS].length} postings). Supply is the gap list above. The mismatch is the curriculum memo.
+          </p>
+          <ul className="space-y-1.5">
+            {heat.map((h) => (
+              <li key={h.skill} className="flex items-center gap-2 text-xs">
+                <span className="w-32 shrink-0 truncate text-zinc-300">{h.skill}</span>
+                <span className="h-2 flex-1 rounded-full bg-zinc-800">
+                  <span className="block h-full rounded-full bg-blurple" style={{ width: `${Math.max(4, (h.demand / heatMax) * 100)}%` }} />
+                </span>
+                <span className="w-8 shrink-0 text-right font-mono tabular-nums text-zinc-500">{h.demand}</span>
+              </li>
+            ))}
+          </ul>
         </Card>
         <Card className="mt-4">
           <H2>Sample cohort roster (demo data)</H2>

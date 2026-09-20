@@ -1,7 +1,7 @@
 // node --test: verifiable credentials. Pure, no network.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { signCredential, checkCredential, verifyUrl } from "../src/lib/verify.js";
+import { signCredential, checkCredential, verifyUrl, revokeCredential, revocationFor, checkCredentialStatus } from "../src/lib/verify.js";
 
 test("sign → check roundtrips with payload intact", () => {
   const code = signCredential({ id: "C2C-1", name: "Ananya", readiness: 72, skills: ["dravyaguna"] });
@@ -21,4 +21,23 @@ test("tampered codes fail loudly", () => {
 
 test("verifyUrl points at the public route", () => {
   assert.ok(verifyUrl("abc.def").startsWith("/verify/"));
+});
+
+test("revoked credentials stay visible as revoked, payload intact", () => {
+  const code = signCredential({ id: "C2C-9", name: "Ghost", readiness: 40, skills: ["gmp"] });
+  assert.equal(revocationFor(code), null, "fresh code is clean");
+  const entry = revokeCredential(code, "certificate withdrawn by issuer");
+  assert.ok(entry && entry.sig, "revocation recorded");
+  const status = checkCredentialStatus(code);
+  assert.equal(status.ok, true, "signature still verifies — history is real");
+  assert.equal(status.payload.name, "Ghost");
+  assert.equal(status.revoked.reason, "certificate withdrawn by issuer");
+  const again = revokeCredential(code, "second attempt");
+  assert.equal(again.reason, "certificate withdrawn by issuer", "idempotent");
+});
+
+test("cannot revoke a forged or malformed code", () => {
+  assert.equal(revokeCredential("garbage"), null);
+  const [body] = signCredential({ id: "C2C-2" }).split(".");
+  assert.equal(revokeCredential(`${body}.forged`), null);
 });

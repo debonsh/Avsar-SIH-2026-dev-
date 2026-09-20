@@ -172,5 +172,45 @@ export function localAnswer(actionId, s = {}) {
   if (actionId === "addjob") {
     return "Paste the job posting as your next message starting with PASTE: (include Company:, Title:, Location: lines if you can). I'll parse it and show a confirm card: nothing saves until you press Confirm.";
   }
-  return "Free-text needs the AI key (add VITE_GROQ_KEY to ayush-portal/.env). Meanwhile, the 4 quick actions above all work offline.";
+  if (actionId === "ask") return askAnswer(ctx(s), s);
+  return "I did not catch that. Ask about a skill, an internship, your score, or tap a shortcut below.";
+}
+
+// free-text, answered from their own data — no key needed. The AI upgrade
+// (when keyed) deepens this, never replaces it.
+function askAnswer(c, s = {}) {
+  const q = String(s.question || "").toLowerCase();
+  const has = (...words) => words.some((w) => q.includes(w));
+  const all = [...c.found, ...c.missing];
+  const skill = all.find((sk) => sk && q.includes(String(sk).toLowerCase()));
+  if (skill) {
+    const known = c.found.some((f) => String(f).toLowerCase() === String(skill).toLowerCase());
+    return known
+      ? `${skill} is on your resume (score ${c.score ?? 0}). To defend it in an interview: one place you used it, one number (cases, sittings, records). Add that line and re-score — numbers lift the result dimension.`
+      : `${skill} is your gap: it is missing from your resume and postings ask for it. Fastest close: open Quests, finish the ${skill} pair, link one proof, re-score. One pair typically moves readiness.`;
+  }
+  if (has("intern", "job", "apply", "hospital", "vacan")) {
+    return c.jobTitle
+      ? `Closest match right now: ${c.jobTitle} at ${c.jobCompany} (needs ${c.jobSkills.join(", ") || "role skills"}). Open Internships, check the eligible chip, mark applied — it enters your pipeline.`
+      : "Open Internships: eligible roles sort first, ranked by the skills on your resume. Save three, apply to one.";
+  }
+  if (has("score", "resume", "ats", "improve", "fix")) {
+    return `Your resume scores ${c.score ?? 0}. Highest-leverage fix: ${c.top ? `add ${c.top} with one proof link` : "add one number per bullet"}. The Improve tab lists each fix in order.`;
+  }
+  if (has("interview", "question", "round", "hr")) {
+    return "Clinical rounds test case presentation: complaint, examination, intervention, outcome — with one number. The Interview tab asks 5 questions built from your skills and grades each 0-4.";
+  }
+  if (has("quest", "learn", "course", "study")) {
+    return `Your next quest is ${c.top || "in the quest list"}: one free course plus one proof-sized task. Finish the pair and your readiness moves the same day.`;
+  }
+  if (has("certificate", "certificat")) {
+    return "Free certs that count: SWAYAM pharma quality (GMP), NPTEL Ayurveda Biology, ABDM digital health basics. Each completed pair with proof lifts score and unlocks postings.";
+  }
+  if (has("stipend", "salary", "pay", "sarkari", "government")) {
+    return "Paid BAMS starts: JRF Pharmacy (Rs.37,000+HRA), SPARK studentship (Rs.50,000), QA/GMP trainee roles (~Rs.10,000/month). Ministry internships pay in certificate. All are in your feed with stipends listed.";
+  }
+  if (has("hello", "hi", "hey", "namaste")) {
+    return `Namaste. I can see your score (${c.score ?? 0}), your gaps (${c.missing.join(", ") || "none"}), and your lane. Ask about any of them.`;
+  }
+  return `Good question. From your data: score ${c.score ?? 0}, biggest gap ${c.top || "none"}, lane ${c.profileLine || "not set"}. Ask about a skill, an internship, or your score — or tap a shortcut and I will go deeper.`;
 }

@@ -16,6 +16,8 @@ import { completedSkillIdsForRole } from "../lib/progress.js";
 import { loadJSON } from "../lib/storage.js";
 import { onboardingProgress } from "../lib/onboarding.js";
 import { vaidyaLevel } from "../ayush/scoring.js";
+import StreakMeter from "../components/StreakMeter.jsx";
+import XpMeter from "../components/XpMeter.jsx";
 
 const TONES = {
   emerald: "bg-emerald-100 text-emerald-800",
@@ -158,6 +160,12 @@ export default function Home() {
           <Btn to="/journey" size="sm">Continue journey</Btn>
         </Card>
       )}
+
+      {/* proof of work */}
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        <StreakMeter />
+        <XpMeter />
+      </div>
 
       {/* today's rounds */}
       <h2 className="mb-3 mt-6 flex items-center gap-2 font-display text-lg font-bold text-stone-900">

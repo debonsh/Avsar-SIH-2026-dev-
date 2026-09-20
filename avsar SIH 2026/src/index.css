@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Bricolage Grotesque", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Noto Sans Devanagari", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque", "Noto Sans Devanagari", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 
   --color-ink: #06060b;
@@ -179,3 +179,71 @@ body {
 }
 *::-webkit-scrollbar { width: 8px; height: 8px; }
 *::-webkit-scrollbar-thumb { background: #27272a; border-radius: 8px; }
+
+/* [app] dark theme: the zinc/blurple base is already dark, so this layer only
+   remaps the light-hardcoded utilities (stone scale, white surfaces, emerald
+   tints) that the newer screens use. Warm-dark panels keep the paper feel. */
+.ayush-dark { --color-ink: #0d100e; --color-panel: #141a15; background: #0d100e; color: #ece7d9; }
+.ayush-dark .bg-white { background-color: #141a15; }
+.ayush-dark .bg-stone-50 { background-color: #1a201b; }
+.ayush-dark .bg-stone-100 { background-color: #20271f; }
+.ayush-dark .bg-stone-200 { background-color: #2c332d; }
+.ayush-dark .border-stone-100 { border-color: #242b25; }
+.ayush-dark .border-stone-200 { border-color: #2c332d; }
+.ayush-dark .divide-stone-100 > * + * { border-color: #242b25; }
+.ayush-dark .text-stone-400 { color: #8a8474; }
+.ayush-dark .text-stone-500, .ayush-dark .text-stone-600 { color: #b3ac9c; }
+.ayush-dark .text-stone-700, .ayush-dark .text-stone-800, .ayush-dark .text-stone-900 { color: #ece7d9; }
+.ayush-dark .bg-emerald-50 { background-color: rgb(30 122 76 / 0.16); }
+.ayush-dark .bg-emerald-100 { background-color: rgb(30 122 76 / 0.28); }
+.ayush-dark .border-emerald-200 { border-color: rgb(52 211 153 / 0.35); }
+.ayush-dark .text-emerald-700 { color: #34d399; }
+.ayush-dark .text-emerald-800, .ayush-dark .text-emerald-900 { color: #6ee7b7; }
+.ayush-dark .bg-amber-50 { background-color: rgb(245 158 11 / 0.12); }
+.ayush-dark .bg-amber-100 { background-color: rgb(245 158 11 / 0.22); }
+.ayush-dark .border-amber-300, .ayush-dark .border-amber-400 { border-color: rgb(245 158 11 / 0.4); }
+.ayush-dark .text-amber-800 { color: #fcd34d; }
+.ayush-dark .bg-sky-50 { background-color: rgb(14 165 233 / 0.12); }
+.ayush-dark .text-sky-700, .ayush-dark .text-sky-800 { color: #7dd3fc; }
+.ayush-dark .border-sky-200 { border-color: rgb(125 211 252 / 0.3); }
+.ayush-dark .bg-rose-100 { background-color: rgb(244 63 94 / 0.16); }
+.ayush-dark .text-rose-800 { color: #fda4af; }
+.ayush-dark .text-red-500 { color: #f87171; }
+.ayush-dark .bg-blurple { background-color: #1e7a4c; }
+.ayush-dark .hover\:bg-blurple-deep:hover { background-color: #155c39; }
+.ayush-dark [class*="text-blurple-soft"] { color: #34d399; }
+.ayush-dark .border-blurple { border-color: #1e7a4c; }
+.ayush-dark .bg-blurple\/10 { background-color: rgb(30 122 76 / 0.14); }
+.ayush-dark .bg-blurple\/15 { background-color: rgb(30 122 76 / 0.18); }
+.ayush-dark .border-blurple\/40 { border-color: rgb(30 122 76 / 0.45); }
+.ayush-dark .border-blurple\/30 { border-color: rgb(30 122 76 / 0.35); }
+.ayush-dark .bg-stone-50\/60 { background-color: rgb(26 32 27 / 0.6); }
+.ayush-dark .stroke-stone-200 { stroke: #2c332d; }
+.ayush-dark .app-header { background-color: rgb(13 16 14 / 0.92); }
+.ayush-dark .app-tabbar { background-color: rgb(13 16 14 / 0.95); }
+.ayush-dark ::selection { background: #1e7a4c; color: #fff; }
+.ayush-dark :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid #34d399;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* [app] streak heatmap: GitHub buckets in herb green, both themes. */
+.heat-0 { background-color: #e7e0cd; }
+.heat-1 { background-color: #bfe3cf; }
+.heat-2 { background-color: #7cc9a2; }
+.heat-3 { background-color: #2f9e68; }
+.heat-4 { background-color: #1e7a4c; }
+.ayush-dark .heat-0 { background-color: #20271f; }
+.ayush-dark .heat-1 { background-color: #14432e; }
+.ayush-dark .heat-2 { background-color: #1e7a4c; }
+.ayush-dark .heat-3 { background-color: #34d399; }
+.ayush-dark .heat-4 { background-color: #a7f3d0; }
+
+/* [app] mobile hardening: kill iOS focus-zoom (16px floor), kill sideways
+   scroll, kill the grey tap flash. Desktop untouched. */
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: clip; -webkit-tap-highlight-color: transparent; }
+@media (max-width: 640px) {
+  input, textarea, select { font-size: 16px !important; }
+}
