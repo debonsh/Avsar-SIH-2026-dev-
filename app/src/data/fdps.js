@@ -1,4 +1,5 @@
 // ponytail: curated seeds, same shape discipline as EXTRA_JOBS. ids f1+ never collide (separate board).
+import { AYUSH_ENABLED, AYUSH_FDPS } from "../ayush/seed.js"; // [ayush] rollback: delete import + if below
 export const FDP_KINDS = {
   "fdp": "FDP",
   "faculty-internship": "Faculty Internship",
@@ -20,3 +21,6 @@ export const FDPS = [
   { id: "f11", kind: "workshop", title: "Research Paper Writing Workshop", org: "IEEE India", loc: "Chennai", url: "https://www.ieee.org/", deadline: "2026-11-05" },
   { id: "f12", kind: "workshop", title: "Lab Modernization Bootcamp", org: "AICTE IDEA Lab", loc: "Pune", url: "https://www.aicte-india.org/", deadline: "2026-11-20" },
 ];
+
+// [ayush] rollback: delete this block + ayush/seed.js
+if (AYUSH_ENABLED) FDPS.push(...AYUSH_FDPS);

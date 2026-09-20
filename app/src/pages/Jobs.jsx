@@ -5,10 +5,11 @@ import { JOBS, matchJobs } from "../data/jobs.js";
 import { EXTRA_JOBS } from "../data/seedJobsExtra.js";
 import { NAUKRI_JOBS } from "../data/naukriSeed.js";
 import { BOARDS_JOBS } from "../data/boardsSeed.js";
+import { AYUSH_ENABLED, AYUSH_JOBS } from "../data/ayushSeed.js"; // [ayush] rollback: delete import + spread
 import { mergeJobs, listLiveJobs, recordApplication, saveCustomJob } from "../lib/store.js";
 import { loadProfile } from "../lib/profile.js";
 import { matchJob, matchBand, parseJobPosting } from "../lib/coach.js";
-import { donutSegments, weekTrend, recentActivity, briefing } from "../lib/dashboard.js";
+import { donutSegments, weekTrend, recentActivity, briefing, demandHeatmap } from "../lib/dashboard.js";
 import { calculateMainScore } from "../lib/score.js";
 
 const STATUS_FLOW = ["saved", "applied", "interview", "offer"];
@@ -40,12 +41,22 @@ export default function Jobs() {
   const score = resume?.result ? calculateMainScore(resume.result.total, 0, 0, role) : 0;
 
   const pool = useMemo(
-    () => matchJobs(role, score, found, mergeJobs(customJobs, EXTRA_JOBS, NAUKRI_JOBS, BOARDS_JOBS, JOBS, live)),
+    () => matchJobs(role, score, found, mergeJobs(customJobs, AYUSH_ENABLED ? AYUSH_JOBS : [], EXTRA_JOBS, NAUKRI_JOBS, BOARDS_JOBS, JOBS, live)),
     [role, score, found, customJobs, live]
   );
-  const byId = useMemo(() => Object.fromEntries(pool.map((j) => [String(j.id), j])), [pool]);
+  // Ayush roles sort first when role=ayush
+  const sortedPool = useMemo(() => {
+    if (role !== "ayush") return pool;
+    return [...pool].sort((a, b) => {
+      const aAyush = a.role === "ayush" ? 0 : 1;
+      const bAyush = b.role === "ayush" ? 0 : 1;
+      return aAyush - bAyush || (b.eligible - a.eligible) || ((b.fit?.score || 0) - (a.fit?.score || 0));
+    });
+  }, [pool, role]);
 
-  const filtered = pool.filter((j) => {
+  const byId = useMemo(() => Object.fromEntries(sortedPool.map((j) => [String(j.id), j])), [sortedPool]);
+
+  const filtered = sortedPool.filter((j) => {
     if (!showDismissed && dismissed.includes(String(j.id))) return false;
     if (eligibleOnly && !j.eligible) return false;
     if (type !== "all" && j.type !== type) return false;
@@ -62,9 +73,11 @@ export default function Jobs() {
   const trendMax = Math.max(1, ...trend.map((d) => d.saved + d.applied));
   const recent = useMemo(() => recentActivity(events, byId), [events, byId]);
   const brief = useMemo(
-    () => briefing({ funnel, jobs: pool, found, missing: resume?.result?.missing || [], mainScore: score }),
-    [funnel, pool, found, resume, score]
+    () => briefing({ funnel, jobs: sortedPool, found, missing: resume?.result?.missing || [], mainScore: score }),
+    [funnel, sortedPool, found, resume, score]
   );
+  const heat = useMemo(() => demandHeatmap(sortedPool, found, 10), [sortedPool, found]);
+  const heatMax = Math.max(1, ...heat.map((h) => h.demand));
 
   async function refreshLive() {
     setLiveState("loading");
@@ -101,10 +114,15 @@ export default function Jobs() {
     setNotice(`Added "${job.title}". It now appears in your feed.`);
   }
 
+  const isAyush = role === "ayush";
+
   return (
     <Page
-      title="Jobs"
-      sub="Open roles matched to your skills. Save, apply, and follow each one through the pipeline."
+      title={isAyush ? "Ayush Roles" : "Jobs"}
+      sub={isAyush
+        ? `${pool.length} live ayush postings · internships, ministry programs, research, training. fit computed from your resume.`
+        : "Open roles matched to your skills. Save, apply, and follow each one through the pipeline."
+      }
       actions={<Btn variant="quiet" onClick={refreshLive}>{liveState === "loading" ? "Refreshing..." : "Refresh live roles"}</Btn>}
     >
       {liveState === "error" && (
@@ -119,7 +137,7 @@ export default function Jobs() {
             <ul className="space-y-1.5">
               {segs.map((s, i) => (
                 <li key={s.label} className="flex items-center gap-1.5 text-xs">
-                  <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: s.label === "none" ? "#d4d4d8" : DONUT_COLORS_EXPORT[i % DONUT_COLORS_EXPORT.length] }} />
+                  <span className="h-2 w-2 shrink-0 rounded-none" style={{ background: s.label === "none" ? "#d4d4d8" : DONUT_COLORS_EXPORT[i % DONUT_COLORS_EXPORT.length] }} />
                   <span className="text-zinc-400">{s.label}</span>
                   <span className="ml-auto pl-3 font-medium tabular-nums text-zinc-200">{s.value}</span>
                 </li>
@@ -170,9 +188,22 @@ export default function Jobs() {
           <Field label="Type">
             <select className={inputCls} value={type} onChange={(e) => setType(e.target.value)}>
               <option value="all">All types</option>
-              <option value="Internship">Internship</option>
-              <option value="Full-time">Full-time</option>
-              <option value="Govt">Govt</option>
+              {isAyush ? (
+                <>
+                  <option value="Internship">Internship</option>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Govt">Govt</option>
+                  <option value="ministry">Ministry</option>
+                  <option value="research">Research</option>
+                  <option value="training">Training</option>
+                </>
+              ) : (
+                <>
+                  <option value="Internship">Internship</option>
+                  <option value="Full-time">Full-time</option>
+                  <option value="Govt">Govt</option>
+                </>
+              )}
             </select>
           </Field>
           <div className="flex items-end gap-4 pb-2 text-sm text-zinc-700">
@@ -184,6 +215,41 @@ export default function Jobs() {
 
       {notice && <p className="mt-3 text-sm text-blurple-soft">{notice}</p>}
 
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <Card>
+          <H2>{"// demand vs your supply"}</H2>
+          <ul className="space-y-1.5">
+            {heat.map((h) => (
+              <li key={h.skill} className="flex items-center gap-2 text-xs">
+                <span className="w-28 shrink-0 truncate text-zinc-300">{h.skill}</span>
+                <span className="h-2 flex-1 bg-zinc-800">
+                  <span className={`block h-full ${h.have ? "bg-blurple" : "bg-zinc-500"}`} style={{ width: `${Math.max(4, (h.demand / heatMax) * 100)}%` }} />
+                </span>
+                <span className="w-8 shrink-0 text-right font-mono tabular-nums text-zinc-500">{h.demand}</span>
+                <Chip tone={h.have ? "green" : "amber"}>{h.have ? "have" : "gap"}</Chip>
+              </li>
+            ))}
+            {heat.length === 0 && <li className="text-xs text-zinc-500">no postings in the feed yet.</li>}
+          </ul>
+        </Card>
+        <Card>
+          <H2>{"// how fit is computed"}</H2>
+          <p className="text-xs leading-5 text-zinc-400">
+            fit = share of required skills found on your resume. no black box:
+          </p>
+          <ul className="mt-2 space-y-1 font-mono text-xs tabular-nums text-zinc-400">
+            <li><span className="text-zinc-200">80+</span> strong fit</li>
+            <li><span className="text-zinc-200">65+</span> good fit</li>
+            <li><span className="text-zinc-200">50+</span> partial fit</li>
+            <li><span className="text-zinc-200">35+</span> weak fit</li>
+            <li><span className="text-zinc-200">below</span> poor fit</li>
+          </ul>
+          <p className="mt-2 text-xs leading-5 text-zinc-400">
+            eligibility is separate: your readiness must clear the role bar. close one gap to move both numbers.
+          </p>
+        </Card>
+      </div>
+
       {!resume && (
         <div className="mt-4">
           <Empty title="Scores unlock matches" body="Match percentages and eligibility gates appear after you score a resume. The feed below is still browsable." action={<Btn to="/resume">Score your resume</Btn>} />
@@ -192,18 +258,25 @@ export default function Jobs() {
 
       <div className="mt-4 space-y-3">
         {filtered.map((j) => {
-          const m = matchJob(found, j);
           const st = statusOf(events, j.id);
+          const isAyushJob = j.role === "ayush" || j.kind === "ministry" || j.kind === "research" || j.kind === "training";
           return (
             <Card key={j.id}>
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <h3 className="text-base font-semibold text-zinc-100">{j.title}</h3>
                   <p className="text-sm text-zinc-400">{j.company} · {j.loc} · {j.type}{j.src ? ` · via ${j.src}` : ""}</p>
+                  {(j.stipend || j.deadline) && (
+                    <p className="mt-0.5 font-mono text-[11px] text-sage">
+                      {[j.stipend, j.deadline ? `apply: ${j.deadline}` : ""].filter(Boolean).join(" · ")}
+                    </p>
+                  )}
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {m && <Chip tone={m.score >= 65 ? "green" : m.score >= 50 ? "blue" : "zinc"}>{m.score}/100 {matchBand(m.score)}</Chip>}
-                  {j.eligible ? <Chip tone="green">Eligible</Chip> : <Chip tone="amber">Needs {j.minScore}+</Chip>}
+                  {j.src === "ccras" && <Chip tone="blue">fresh · ccras</Chip>}
+                  {j.fit && <Chip tone={j.fit.score >= 65 ? "green" : j.fit.score >= 50 ? "blue" : "zinc"}>{j.fit.score}/100 {matchBand(j.fit.score)}</Chip>}
+                  {j.eligible ? <Chip tone="green">eligible</Chip> : <Chip tone="amber">needs {j.minScore}+</Chip>}
+                  {isAyushJob && <Chip tone="sage">ayush</Chip>}
                   {st && <Chip tone="blue">{st}</Chip>}
                 </div>
               </div>

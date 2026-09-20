@@ -2,6 +2,7 @@
 // (stable per C2C ID + day), storage guarded so node --test never touches DOM.
 import { pickForId } from "../lib/quests.js";
 import { loadJSON, saveJSON } from "../lib/storage.js";
+import { AYUSH_ENABLED, AYUSH_QUIZ } from "../ayush/seed.js"; // [ayush] rollback: delete import + if below
 
 // ponytail: 20 factual 1-line Qs per role; QuizView samples 10 per run.
 export const QUIZ = {
@@ -94,6 +95,9 @@ export const QUIZ = {
     { q: "If selling price is 120 and profit 20%, cost price is?", opts: ["96", "100", "110", "90"], ans: 1 },
   ],
 };
+
+// [ayush] rollback: delete this block + ayush/seed.js
+if (AYUSH_ENABLED) QUIZ.ayush = AYUSH_QUIZ;
 
 // ponytail: one home for grading; gradeQuiz covers the bank, gradeSet any sample.
 export function gradeSet(questions = [], picks = []) {

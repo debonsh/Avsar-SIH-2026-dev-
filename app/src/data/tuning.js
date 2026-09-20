@@ -4,7 +4,7 @@
 import { loadJSON, saveJSON } from "../lib/storage.js";
 
 export const TONES = [
-  { id: "coach", label: "Coach", prompt: "Encouraging, specific, no fluff. Tier-2/3 Indian college student; plain words, short lines." },
+  { id: "coach", label: "Coach", prompt: "Encouraging, specific, no fluff. Tier-2/3 Indian college student; plain words, short lines. Adapts examples to the student's track (software or BAMS clinical)." },
   { id: "drill", label: "Drill", prompt: "Blunt and dense. No praise, no preamble. Orders, not suggestions. Still kind underneath." },
   { id: "hinglish", label: "Hinglish", prompt: "Warm Hinglish mix (Hindi words in Roman script where natural). Simple English otherwise, encouraging." },
 ];

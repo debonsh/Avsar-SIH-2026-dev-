@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router";
 import { Page, Card, H2, Btn, Field, Chip, inputCls } from "../components/ui.jsx";
 import { useC2C } from "../app/store.jsx";
 import {
@@ -8,6 +9,11 @@ import {
 import { isVerified, fetchKudos, loadKudosFallback } from "../lib/store.js";
 import { completedSkillIdsForRole, getEvidence } from "../lib/progress.js";
 import { submitFeedback } from "../lib/backend.js";
+import { calculateMainScore, questPairsToProof } from "../lib/score.js";
+import { loadJSON } from "../lib/storage.js";
+import { signCredential, verifyUrl } from "../lib/verify.js";
+import { VaidyaLevel } from "../components/ui.jsx";
+import { vaidyaLevel } from "../ayush/scoring.js";
 
 export default function Portfolio() {
   const { role, resume } = useC2C();
@@ -26,6 +32,32 @@ export default function Portfolio() {
   const found = resume?.result?.found || [];
   const earned = completedSkillIdsForRole(role);
   const proofSkills = earned.filter((s) => getEvidence(role, s));
+  const verified = found.filter((s) => isVerified(s, earned, github));
+  const readiness = resume?.result
+    ? calculateMainScore(resume.result.total, loadJSON("c2c-interview-best", 0), questPairsToProof(earned.length), role)
+    : 0;
+  const code = useMemo(
+    () => signCredential({ id, name: nick || "avsar student", readiness, skills: verified }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-sign on explicit refresh only
+    [id, readiness]
+  );
+  const qrRef = useRef(null);
+  const isAyush = role === "ayush";
+  const vaidya = isAyush ? vaidyaLevel(readiness) : null;
+
+  useEffect(() => {
+    let live = true;
+    (async () => {
+      try {
+        const { toCanvas } = await import("qrcode");
+        if (!live || !qrRef.current) return;
+        await toCanvas(qrRef.current, `${window.location.origin}${verifyUrl(code)}`, { margin: 1, width: 132 });
+      } catch {
+        /* qr stays empty, link still works */
+      }
+    })();
+    return () => { live = false; };
+  }, [code]);
 
   useEffect(() => {
     fetchKudos(id).then((n) => { if (n != null) setKudos(n); }).catch(() => {});
@@ -50,7 +82,36 @@ export default function Portfolio() {
 
   return (
     <Page title="Portfolio" sub="Everything you have proven, in one place. Your public ID lets colleges verify it.">
-      <div className="grid gap-4 lg:grid-cols-2">
+      <Card>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">readiness</p>
+            <p className="font-display text-4xl font-bold tabular-nums text-zinc-50">
+              {readiness}<span className="text-lg text-zinc-500">/100</span>
+            </p>
+            {vaidya && (
+              <div className="mt-2">
+                <VaidyaLevel level={vaidya.id} />
+                <p className="mt-0.5 font-mono text-xs text-emerald-400">{vaidya.label} · {vaidya.hi}</p>
+              </div>
+            )}
+            <p className="mt-2 font-mono text-xs tabular-nums text-zinc-500">
+              assessed {found.length} · verified {verified.length} · proof links {proofSkills.length}
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <canvas ref={qrRef} width="132" height="132" className="border border-zinc-800 bg-white p-1" aria-label="QR code to verification page" />
+            <div className="max-w-[180px]">
+              <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">passport qr</p>
+              <p className="mt-1 text-xs leading-5 text-zinc-400">scan to verify. signature recomputes offline.</p>
+              <Link to={verifyUrl(code)} className="mt-1 inline-block font-mono text-xs text-blurple-soft underline underline-offset-4">
+                open verify page →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Card>
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <Card>
           <H2>Identity</H2>
           <div className="grid gap-3">

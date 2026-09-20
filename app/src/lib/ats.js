@@ -4,7 +4,9 @@
 // Shape matches scoreResume: { total, breakdown[{label,pts,max,why[]}], found, missing, strengths, earned, msg }.
 import { ROLES } from "./score.js";
 
-const STRONG_VERBS = ["built", "shipped", "launched", "led", "designed", "deployed", "scaled", "optimized", "automated", "owned", "developed", "migrated"];
+const STRONG_VERBS = ["built", "shipped", "launched", "led", "designed", "deployed", "scaled", "optimized", "automated", "owned", "developed", "migrated",
+  // clinical action verbs carry the same weight for bams resumes
+  "assisted", "treated", "diagnosed", "managed", "documented", "conducted", "supervised", "counselled", "counseled", "prescribed", "examined", "monitored", "performed"];
 export { STRONG_VERBS };
 
 // ponytail: AI inputs — project-ish lines only (links, verbs, numbers), capped.
@@ -20,6 +22,7 @@ export function extractProjectLines(text = "", maxLines = 8, maxChars = 1200) {
     const low = l.toLowerCase();
     if (STRONG_VERBS.some((v) => low.includes(v))) s += 2;
     if (/project|built|app|website|tool|system|dashboard/i.test(l)) s += 1;
+    if (/case|opd|ipd|patient|internship|clinical|hospital|therapy|sitting|trial/i.test(l)) s += 1;
     if (s > 0) scored.push([s, l]);
   }
   scored.sort((a, b) => b[0] - a[0]);
@@ -30,8 +33,10 @@ export function extractProjectLines(text = "", maxLines = 8, maxChars = 1200) {
   }
   return out;
 }
-const STACK_TOKENS = ["typescript", "javascript", "react", "node", "python", "sql", "docker", "aws", "vercel", "git", "api", "figma", "tailwind", "pandas", "tableau", "excel", "seo", "dsa"];
-const HEADERS = ["experience", "project", "education", "skills"];
+const STACK_TOKENS = ["typescript", "javascript", "react", "node", "python", "sql", "docker", "aws", "vercel", "git", "api", "figma", "tailwind", "pandas", "tableau", "excel", "seo", "dsa",
+  // clinical depth signals for bams resumes
+  "opd", "ipd", "panchakarma", "dravyaguna", "gmp", "hims", "case", "ncism", "nabh", "pharmacovigilance", "vaidya", "bams", "shishiksha"];
+const HEADERS = ["experience", "project", "education", "skills", "internship", "certifications", "objective"];
 const URL_RE = /https?:\/\/[^\s)]+/gi;
 const NUM_RE = /\d+%|\d+\+|\(\d+\)|\b\d{4}\b|\b\d+\b/g;
 const YEAR_RE = /\b(19|20)\d{2}\b/;

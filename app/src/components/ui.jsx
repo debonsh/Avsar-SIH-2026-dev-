@@ -36,7 +36,7 @@ export function Page({ title, sub, actions, children }) {
 
 export function Card({ className = "", children, ...rest }) {
   return (
-    <section className={cn("rounded-xl border border-zinc-800 bg-zinc-950 p-5", className)} {...rest}>
+    <section className={cn("rounded-none border border-zinc-800 bg-zinc-950 p-5", className)} {...rest}>
       {children}
     </section>
   );
@@ -47,7 +47,7 @@ export function H2({ children, className = "" }) {
 }
 
 const buttonVariants = cva(
-  "inline-flex min-h-[40px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex min-h-[40px] items-center justify-center gap-1.5 whitespace-nowrap rounded-none text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -90,14 +90,14 @@ export function Field({ label, children, hint }) {
 }
 
 export const inputCls =
-  "flex h-10 w-full rounded-md border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 hover:border-zinc-700";
+  "flex h-10 w-full rounded-none border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 hover:border-zinc-700";
 
 export function Meter({ value, max }) {
   const reduce = useReducedMotion();
   const pct = `${Math.min(100, (value / max) * 100)}%`;
   return (
     <div
-      className="h-2 overflow-hidden rounded-full bg-zinc-800"
+      className="h-2 overflow-hidden rounded-none bg-zinc-800"
       role="progressbar"
       aria-valuenow={value}
       aria-valuemin={0}
@@ -105,7 +105,7 @@ export function Meter({ value, max }) {
       aria-label={`${value} of ${max}`}
     >
       <motion.div
-        className="h-full rounded-full bg-blurple"
+        className="h-full rounded-none bg-blurple"
         initial={reduce ? { width: pct } : { width: "0%" }}
         whileInView={{ width: pct }}
         viewport={{ once: true, margin: "-40px" }}
@@ -150,7 +150,7 @@ export function Donut({ segs = [], size = 120, thick = 16, label = "Distribution
 export const DONUT_COLORS_EXPORT = DONUT_COLORS;
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-md border px-2 py-0.5 font-mono text-xs font-medium tabular-nums",
+  "inline-flex items-center rounded-none border px-2 py-0.5 font-mono text-xs font-medium tabular-nums",
   {
     variants: {
       tone: {
@@ -177,7 +177,7 @@ export function Chip({ children, tone = "zinc" }) {
 
 // Structural skeleton for loading states.
 export function Skeleton({ className, ...rest }) {
-  return <div aria-hidden className={cn("animate-pulse rounded-md bg-zinc-800", className)} {...rest} />;
+  return <div aria-hidden className={cn("animate-pulse rounded-none bg-zinc-800", className)} {...rest} />;
 }
 
 // One scroll reveal for section entrances: transform + opacity, ease-out, once.
@@ -222,7 +222,7 @@ export function CountUp({ to, className }) {
 // Empty states name the cause and the one action that fills them.
 export function Empty({ title, body, action }) {
   return (
-    <div className="rounded-xl border border-dashed border-zinc-800 bg-zinc-950 px-6 py-10 text-center">
+    <div className="rounded-none border border-dashed border-zinc-800 bg-zinc-950 px-6 py-10 text-center">
       <p className="text-balance text-sm font-semibold text-zinc-100">{title}</p>
       <p className="mx-auto mt-1 max-w-md text-pretty text-sm leading-6 text-zinc-400">{body}</p>
       {action && <div className="mt-4 flex justify-center">{action}</div>}
@@ -232,10 +232,7 @@ export function Empty({ title, body, action }) {
 
 export function ErrorBox({ message, onRetry }) {
   return (
-    <div
-      className="rounded-xl border border-red-900 bg-red-950 px-5 py-4 text-sm text-red-200"
-      role="alert"
-    >
+    <div className="border border-red-900 bg-red-950 px-5 py-4 text-sm text-red-200" role="alert">
       <p className="font-semibold">Something failed to load</p>
       <p className="mt-1 text-pretty">{message}</p>
       {onRetry && (
@@ -243,6 +240,144 @@ export function ErrorBox({ message, onRetry }) {
           Try again
         </Btn>
       )}
+    </div>
+  );
+}
+
+// --- system24: sharp 1px chrome, mono labels, square corners. Landing + figs only. ---
+
+// Thin mono status strip: `left … right`, 1px top/bottom borders via parent.
+export function StatusBar({ left, right, className = "" }) {
+  return (
+    <div className={cn("flex flex-wrap items-center justify-between gap-2 px-4 py-2", className)}>
+      <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-600">{left}</span>
+      {right && (
+        <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-600">{right}</span>
+      )}
+    </div>
+  );
+}
+
+// ASCII divider: `// label ─────`. One line, no gradients.
+export function AsciiRule({ label = "", className = "" }) {
+  return (
+    <div className={cn("flex items-center gap-2", className)} aria-hidden>
+      <span className="shrink-0 font-mono text-[11px] uppercase tracking-widest text-zinc-600">
+        {"//"} {label}
+      </span>
+      <span className="h-px flex-1 bg-zinc-800" />
+    </div>
+  );
+}
+
+// Square 1px panel with optional mono header row. The landing fig frame.
+export function Ticket({ label, status, className = "", children, ...rest }) {
+  return (
+    <section className={cn("border border-zinc-800 bg-zinc-950", className)} {...rest}>
+      {(label || status) && (
+        <div className="flex items-center justify-between gap-4 border-b border-zinc-800 px-4 py-2">
+          <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+            {label}
+          </span>
+          {status && (
+            <span className="font-mono text-[11px] uppercase tracking-widest text-blurple-soft">
+              {status}
+            </span>
+          )}
+        </div>
+      )}
+      <div className="p-5 sm:p-6">{children}</div>
+    </section>
+  );
+}
+
+// Terminal window: square frame, `> _` header, mono body. For coach/CLI previews.
+export function TermWindow({ url, children, className = "" }) {
+  return (
+    <div className={cn("overflow-hidden border border-zinc-800 bg-zinc-950", className)}>
+      <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-2">
+        <span className="font-mono text-[11px] text-zinc-600" aria-hidden>
+          {">"} _
+        </span>
+        {url && (
+          <span className="mx-auto hidden bg-zinc-900 px-3 py-0.5 font-mono text-[11px] text-zinc-500 sm:block">
+            {url}
+          </span>
+        )}
+      </div>
+      <div className="p-5 font-mono text-sm leading-6 text-zinc-300 sm:p-6">{children}</div>
+    </div>
+  );
+}
+
+// --- ayush tokens + components (added for SIH 26044) ---
+
+export const SAGE = "text-emerald-400";
+export const GOLD = "text-amber-300";
+export const SAGE_BG = "border-emerald-900 bg-emerald-950";
+export const GOLD_BG = "border-amber-900 bg-amber-950";
+
+// beej → ankur → paudha → vaidya → acharya growth display
+export function VaidyaLevel({ level, className = "" }) {
+  const stages = [
+    { id: "beej", label: "बीज", hi: "seed" },
+    { id: "ankur", label: "अंकुर", hi: "sprout" },
+    { id: "paudha", label: "पौधा", hi: "seedling" },
+    { id: "vaidya", label: "वैद्य", hi: "vaidya" },
+    { id: "acharya", label: "आचार्य", hi: "acharya" },
+  ];
+  const idx = stages.findIndex((s) => s.id === level);
+  return (
+    <div className={`flex items-center gap-1.5 ${className}`}>
+      {stages.map((s, i) => (
+        <span
+          key={s.id}
+          className={`inline-flex size-6 items-center justify-center rounded-full border text-[10px] font-mono ${
+            i <= idx ? "border-emerald-500 bg-emerald-600 text-white" : "border-zinc-700 text-zinc-500"
+          }`}
+          title={s.hi}
+        >
+          {i + 1}
+        </span>
+      ))}
+      <span className="ml-1 font-mono text-xs text-emerald-400">{idx >= 0 ? stages[idx].label : ""}</span>
+    </div>
+  );
+}
+
+// BAMS semester syllabus table
+export function SyllabusTable({ data = [] }) {
+  if (!data.length) return null;
+  return (
+    <div className="overflow-x-auto border border-zinc-800">
+      <table className="w-full min-w-[560px] text-left text-sm">
+        <thead>
+          <tr className="border-b border-zinc-800 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+            <th className="px-4 py-2 font-medium">Semester</th>
+            <th className="px-4 py-2 font-medium">Focus</th>
+            <th className="px-4 py-2 font-medium">Skills</th>
+            <th className="px-4 py-2 text-right font-medium">Courses</th>
+            <th className="px-4 py-2 text-right font-medium">Quests</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.sem} className="border-t border-zinc-800 first:border-t-0 hover:bg-zinc-900">
+              <td className="px-4 py-2.5 font-mono text-zinc-100">{row.sem}</td>
+              <td className="px-4 py-2.5 text-zinc-300">{row.label}</td>
+              <td className="px-4 py-2.5">
+                <div className="flex flex-wrap gap-1">
+                  {row.skills.map((s) => (
+                    <span key={s} className="inline-block rounded-none border border-zinc-700 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-300">{s}</span>
+                  ))}
+                </div>
+              </td>
+              <td className="px-4 py-2.5 text-right font-mono tabular-nums text-zinc-200">{row.courses}</td>
+              <td className="px-4 py-2.5 text-right font-mono tabular-nums text-zinc-200">{row.quests}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

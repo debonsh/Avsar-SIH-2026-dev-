@@ -1,16 +1,19 @@
 // Resume score. Operate surface: input console on top, then a 12-col result grid.
 // Score rail left (sticky on desktop), evidence right. Same logic as before.
+// BAMS + vaidya level readout when role=ayush.
 import { useMemo, useState } from "react";
 import { ArrowRight, ExternalLink, Play } from "lucide-react";
-import { Page, Card, H2, Btn, Field, Chip, CountUp, Empty, Meter, inputCls } from "../components/ui.jsx";
+import { Page, Card, H2, Btn, Field, Chip, CountUp, Empty, Meter, inputCls, VaidyaLevel } from "../components/ui.jsx";
 import { useC2C } from "../app/store.jsx";
-import { ROLES, scoreResume, calculateMainScore, rankFor, rankRoles } from "../lib/score.js";
+import { ROLES, scoreResume, calculateMainScore, rankFor, rankRoles, normalizeScoreResult } from "../lib/score.js";
 import { parseResumeFile, extractSections } from "../lib/parseResume.js";
 import { SAMPLE_RESUME } from "../data/fixtures.js";
+import { AYUSH_RESUMES } from "../ayush/resumes.js";
 import { videosFor, resumeTips } from "../data/courses.js";
-import { questPairsToProof } from "../lib/scores.js";
+import { questPairsToProof } from "../lib/score.js";
 import { completedSkillIdsForRole } from "../lib/progress.js";
 import { loadJSON } from "../lib/storage.js";
+import { vaidyaLevel } from "../ayush/scoring.js";
 
 export default function Resume() {
   const { role, setRole, resume, saveResume } = useC2C();
@@ -18,6 +21,10 @@ export default function Resume() {
   const [notice, setNotice] = useState("");
 
   const result = resume?.result || null;
+  // ponytail: stored scores predate the current shape (breakdown/found/missing
+  // were null in old builds). normalize once so every reader below is safe.
+  const view = normalizeScoreResult(result);
+  const staleShape = Boolean(result) && view.breakdown.length === 0;
   const pairs = completedSkillIdsForRole(role).length;
   const proof = questPairsToProof(pairs);
   const interviewBest = loadJSON("c2c-interview-best", 0);
@@ -26,6 +33,9 @@ export default function Resume() {
   const bestFit = useMemo(() => (text.trim() ? rankRoles(text)[0] : null), [text]);
   const sections = useMemo(() => (result ? extractSections(resume.text) : []), [result, resume]);
   const tips = useMemo(() => (result ? resumeTips(result) : []), [result]);
+
+  const isAyush = role === "ayush";
+  const vaidya = isAyush ? vaidyaLevel(main) : null;
 
   async function onFile(e) {
     const f = e.target.files?.[0];
@@ -64,7 +74,7 @@ export default function Resume() {
             </select>
           </Field>
           <Field label="Resume file" hint="PDF or plain text. Parsed on your device.">
-            <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-400 file:mr-3 file:rounded-md file:border file:border-zinc-800 file:bg-zinc-900 file:px-3 file:py-1.5 file:text-sm file:text-zinc-200 hover:file:border-zinc-600" />
+            <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-400 file:mr-3 file:rounded-none file:border file:border-zinc-800 file:bg-zinc-900 file:px-3 file:py-1.5 file:text-sm file:text-zinc-200 hover:file:border-zinc-600" />
           </Field>
         </div>
         <div className="mt-4">
@@ -80,7 +90,7 @@ export default function Resume() {
         {notice && <p className="mt-2 text-sm text-red-400" role="alert">{notice}</p>}
         <div className="mt-4 flex flex-wrap items-center gap-2">
           <Btn onClick={score}>Score my resume</Btn>
-          <Btn variant="quiet" onClick={() => setText(SAMPLE_RESUME)}>Use a sample resume</Btn>
+          <Btn variant="quiet" onClick={() => setText(role === "ayush" ? AYUSH_RESUMES[0].text : SAMPLE_RESUME)}>Use a sample resume</Btn>
           {bestFit && bestFit.key !== role && (
             <p className="w-full text-sm text-zinc-400">
               This text reads more like <strong className="text-zinc-100">{bestFit.label}</strong>{" "}
@@ -106,19 +116,30 @@ export default function Resume() {
         <div className="mt-4 grid gap-4 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Card className="lg:sticky lg:top-20">
-              <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Your score</p>
+              <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Readiness</p>
               <p className="mt-1 font-display text-6xl font-bold tabular-nums tracking-[-0.03em] text-zinc-50">
                 <CountUp to={main} />
                 <span className="text-xl text-zinc-500">/100</span>
               </p>
+              {vaidya && (
+                <div className="mt-3">
+                  <VaidyaLevel level={vaidya.id} />
+                  <p className="mt-1 font-mono text-xs text-emerald-400">{vaidya.label} · {vaidya.hi}</p>
+                </div>
+              )}
               <p className="mt-2">
                 <Chip tone="green">{rankFor(main)}</Chip>
               </p>
               <p className="mt-2 font-mono text-[11px] tabular-nums leading-5 text-zinc-500">
-                ATS {result.total}/95 · {pairs} quest-verified pair{pairs === 1 ? "" : "s"} · interview {interviewBest}
+                resume score {view.total}/95 · {pairs} quest-verified pair{pairs === 1 ? "" : "s"} · interview {interviewBest}
               </p>
+              {staleShape && (
+                <p className="mt-2 font-mono text-[11px] leading-5 text-amber-300">
+                  saved score is from an older version — press score again to rebuild the breakdown.
+                </p>
+              )}
               <div className="mt-5 space-y-4 border-t border-zinc-800 pt-4">
-                {result.breakdown.map((d) => (
+                {view.breakdown.map((d) => (
                   <div key={d.label}>
                     <div className="mb-1.5 flex items-baseline justify-between gap-2 text-xs">
                       <span className="font-medium text-zinc-200">{d.label}</span>
@@ -126,7 +147,7 @@ export default function Resume() {
                     </div>
                     <Meter value={d.pts} max={d.max} />
                     <ul className="mt-1.5 space-y-1">
-                      {d.why.map((w, i) => (
+                      {(Array.isArray(d.why) ? d.why : []).map((w, i) => (
                         <li key={i} className="text-xs leading-5 text-zinc-500">· {w}</li>
                       ))}
                     </ul>
@@ -156,19 +177,19 @@ export default function Resume() {
             <Card>
               <H2>
                 Skills on your resume{" "}
-                <span className="font-mono font-normal tabular-nums text-zinc-500">{result.found.length}</span>
+                <span className="font-mono font-normal tabular-nums text-zinc-500">{view.found.length}</span>
               </H2>
               <div className="flex flex-wrap gap-1.5">
-                {result.found.map((s) => <Chip key={s} tone="green">{s}</Chip>)}
-                {result.found.length === 0 && <p className="text-sm text-zinc-400">None detected yet.</p>}
+                {view.found.map((s) => <Chip key={s} tone="green">{s}</Chip>)}
+                {view.found.length === 0 && <p className="text-sm text-zinc-400">None detected yet.</p>}
               </div>
               <H2 className="mt-5">
                 Missing for this track{" "}
-                <span className="font-mono font-normal tabular-nums text-zinc-500">{result.missing.length}</span>
+                <span className="font-mono font-normal tabular-nums text-zinc-500">{view.missing.length}</span>
               </H2>
               <div className="flex flex-wrap gap-1.5">
-                {result.missing.map((s) => <Chip key={s} tone="amber">{s}</Chip>)}
-                {result.missing.length === 0 && <p className="text-sm text-zinc-400">Nothing missing. Apply now.</p>}
+                {view.missing.map((s) => <Chip key={s} tone="amber">{s}</Chip>)}
+                {view.missing.length === 0 && <p className="text-sm text-zinc-400">Nothing missing. Apply now.</p>}
               </div>
             </Card>
 
@@ -186,7 +207,7 @@ export default function Resume() {
               )}
             </Card>
 
-            {result.missing.slice(0, 3).map((s) => {
+            {view.missing.slice(0, 3).map((s) => {
               const vids = videosFor(s);
               if (!vids.length) return null;
               return (

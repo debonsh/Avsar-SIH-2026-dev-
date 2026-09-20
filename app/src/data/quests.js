@@ -1,5 +1,6 @@
 // skill-tree: 4 branches per role, each branch = chain of skills with course + project
 // "meaningful" = pair-gated (course AND project both required), skill completion feeds back into ATS
+import { AYUSH_ENABLED, AYUSH_TREE } from "../ayush/seed.js"; // [ayush] rollback: delete import + if below
 export const QUEST_TREE = {
   sde: {
     label: "Software Developer",
@@ -163,6 +164,9 @@ export const QUEST_TREE = {
     ],
   },
 };
+
+// [ayush] rollback: delete this block + ayush/seed.js
+if (AYUSH_ENABLED) QUEST_TREE.ayush = AYUSH_TREE.ayush;
 
 export function questFor(roleKey) {
   return QUEST_TREE[roleKey] || QUEST_TREE.sde;

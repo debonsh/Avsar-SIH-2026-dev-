@@ -7,30 +7,46 @@ import Jobs from "../pages/Jobs.jsx";
 import Quests from "../pages/Quests.jsx";
 import Quiz from "../pages/Quiz.jsx";
 import Interview from "../pages/Interview.jsx";
-import Institute from "../pages/Institute.jsx";
-import Faculty from "../pages/Faculty.jsx";
+import Syllabus from "../pages/Syllabus.jsx";
+import Roadmap from "../pages/Roadmap.jsx";
 import Portfolio from "../pages/Portfolio.jsx";
+import Institute from "../pages/Institute.jsx";
+import Industry from "../pages/Industry.jsx";
+import Faculty from "../pages/Faculty.jsx";
 import Profile from "../pages/Profile.jsx";
 import NotFound from "../pages/NotFound.jsx";
+import Verify from "../pages/Verify.jsx";
+import Ayush from "../ayush/AyushHome.jsx";
+import AyushColleges from "../ayush/AyushColleges.jsx";
+import AyushAssess from "../ayush/AyushAssess.jsx";
+import AyushJobs from "../ayush/AyushJobs.jsx";
+import AyushAdmin from "../ayush/Admin.jsx"; // [ayush-door]
 import { CoachWidget } from "./coach-widget.jsx";
+import { RouteErrorBoundary } from "./error-boundary.jsx";
+import { AyushGate, TechGate } from "./gate.jsx";
 
 const PRIMARY = [
-  { to: "/resume", label: "Resume" },
-  { to: "/jobs", label: "Jobs" },
-  { to: "/quests", label: "Quests" },
+  { to: "/ayush", label: "ayush" },
+  { to: "/resume", label: "resume" },
+  { to: "/jobs", label: "jobs" },
+  { to: "/quests", label: "quests" },
 ];
 
 const MORE = [
-  { to: "/quiz", label: "Quiz" },
-  { to: "/interview", label: "Interview" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/institute", label: "Institute" },
-  { to: "/faculty", label: "Faculty" },
-  { to: "/profile", label: "Profile" },
+  { to: "/quiz", label: "quiz" },
+  { to: "/interview", label: "interview" },
+  { to: "/syllabus", label: "syllabus" },
+  { to: "/roadmap", label: "roadmap" },
+  { to: "/portfolio", label: "portfolio" },
+  { to: "/institute", label: "institute" },
+  { to: "/industry", label: "industry" },
+  { to: "/faculty", label: "faculty" },
+  { to: "/profile", label: "profile" },
+  { to: "/tech", label: "tech" },
 ];
 
 function linkCls({ isActive }) {
-  return `inline-flex min-h-[40px] items-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+  return `inline-flex min-h-[40px] items-center rounded-none px-3 py-2 text-sm font-medium transition-colors ${
     isActive ? "bg-zinc-100 text-zinc-950" : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100"
   }`;
 }
@@ -73,10 +89,10 @@ export function Shell() {
       <header className="sticky top-0 z-30 border-b border-zinc-800/80 bg-ink/85 backdrop-blur">
         <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-1 px-4 py-2 sm:px-6">
           <NavLink to="/" className="mr-3 inline-flex items-center gap-2 text-base font-semibold text-zinc-50">
-            <span className="flex size-7 items-center justify-center rounded-md bg-blurple font-display text-sm font-bold text-white">
-              A
+            <span className="flex size-7 items-center justify-center rounded-none bg-blurple font-display text-sm font-bold text-white">
+              आ
             </span>
-            Avsar
+            ayushsetu
           </NavLink>
           <nav aria-label="Primary" className="flex flex-wrap items-center gap-1">
             {PRIMARY.map((l) => (
@@ -85,15 +101,15 @@ export function Shell() {
               </NavLink>
             ))}
             <details ref={moreRef} className="relative">
-              <summary className="inline-flex min-h-[40px] cursor-pointer list-none items-center rounded-md px-3 py-2 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100">
-                More
+              <summary className="inline-flex min-h-[40px] cursor-pointer list-none items-center rounded-none px-3 py-2 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-100">
+                more
               </summary>
               <div className="absolute left-0 top-full z-30 mt-1 w-44 rounded-lg border border-zinc-800 bg-zinc-950 p-1">
                 {MORE.map((l) => (
                   <NavLink
                     key={l.to}
                     to={l.to}
-                    className="block rounded-md px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-900"
+                    className="block rounded-none px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-900"
                   >
                     {l.label}
                   </NavLink>
@@ -105,34 +121,50 @@ export function Shell() {
       </header>
 
       <main id="main" className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/quests" element={<Quests />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/interview" element={<Interview />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/institute" element={<Institute />} />
-          <Route path="/faculty" element={<Faculty />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <RouteErrorBoundary path={pathname}>
+          <Routes>
+            <Route path="/" element={
+              <AyushGate><Home /></AyushGate>
+            } />
+            <Route path="/tech" element={
+              <TechGate><Home /></TechGate>
+            } />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/quests" element={<Quests />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/interview" element={<Interview />} />
+            <Route path="/syllabus" element={<Syllabus />} />
+            <Route path="/roadmap" element={<Roadmap />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/institute" element={<Institute />} />
+            <Route path="/industry" element={<Industry />} />
+            <Route path="/faculty" element={<Faculty />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/ayush" element={<Ayush />} />
+            <Route path="/ayush/colleges" element={<AyushColleges />} />
+            <Route path="/ayush/assess" element={<AyushAssess />} />
+            <Route path="/ayush/roles" element={<AyushJobs />} />
+            <Route path="/ayush/admin" element={<AyushAdmin />} /> {/* [ayush-door] */}
+            <Route path="/verify/:code" element={<Verify />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </RouteErrorBoundary>
       </main>
 
       <footer className="border-t border-zinc-800">
         <div className="mx-auto grid w-full max-w-5xl gap-8 px-4 py-10 sm:grid-cols-[1fr_1fr_1fr] sm:px-6">
           <div>
-            <p className="text-sm font-semibold text-zinc-100">Avsar</p>
+            <p className="text-sm font-semibold text-zinc-100">ayushsetu</p>
             <p className="mt-2 max-w-xs text-sm leading-6 text-zinc-500">
-              Score your resume, close skill gaps, track applications. Works offline, syncs to Supabase
+              score your resume, close skill gaps, track applications. works offline, syncs to supabase
               when configured.
             </p>
           </div>
           <nav aria-label="Product">
             <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Product</p>
             <ul className="mt-3 space-y-2 text-sm">
-              {[["/resume", "Resume"], ["/jobs", "Jobs"], ["/quests", "Quests"], ["/quiz", "Quiz"], ["/interview", "Interview"]].map(([to, label]) => (
+              {[["/resume", "resume"], ["/jobs", "jobs"], ["/quests", "quests"], ["/quiz", "quiz"], ["/interview", "interview"]].map(([to, label]) => (
                 <li key={to}>
                   <NavLink to={to} className="text-zinc-400 hover:text-zinc-100">{label}</NavLink>
                 </li>
@@ -142,7 +174,7 @@ export function Shell() {
           <nav aria-label="Resources">
             <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Resources</p>
             <ul className="mt-3 space-y-2 text-sm">
-              {[["/portfolio", "Portfolio"], ["/institute", "Institute"], ["/faculty", "Faculty"], ["/profile", "Profile"]].map(([to, label]) => (
+              {[["/portfolio", "portfolio"], ["/institute", "institute"], ["/industry", "industry"], ["/faculty", "faculty"], ["/profile", "profile"]].map(([to, label]) => (
                 <li key={to}>
                   <NavLink to={to} className="text-zinc-400 hover:text-zinc-100">{label}</NavLink>
                 </li>

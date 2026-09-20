@@ -2,6 +2,7 @@
 // AI customs (gemini.generateQuestions) layer on top; bank answers + AI answers
 // compile to the same evidence shape for the ATS engine.
 // Schema: { id, text, type: choice|yesno|text|url, options?, showIf: {id,value}? }
+import { AYUSH_ENABLED, AYUSH_QUESTIONNAIRE } from "../ayush/seed.js"; // [ayush] rollback: delete
 const COMMON = [
   { id: "level", text: "How would you describe yourself?", type: "choice", options: ["Fresher", "1-2 years", "3+ years"] },
   { id: "live", text: "Is any of your work live on the internet?", type: "yesno" },
@@ -33,3 +34,6 @@ export const QUESTIONNAIRE = {
     { id: "top-skills", text: "Your 3 strongest subjects, comma separated", type: "text" },
   ],
 };
+
+// [ayush] rollback: delete this block + ayush/seed.js
+if (AYUSH_ENABLED) QUESTIONNAIRE.ayush = AYUSH_QUESTIONNAIRE;

@@ -1,0 +1,2 @@
+2026-09-17 | kept | hero headline stays DM Mono lowercase + prompt + cursor, sections stay Bricolage bold | axis: typography | reason: user "before was better for headline", premium split keeps both
+2026-09-17 | kept | color grounded in UI-Inspo pixels (periwinkle primary, sage secondary) + contrast matrix verified | axis: color | reason: tastemaker Step 2 extract_palette + check_contrast

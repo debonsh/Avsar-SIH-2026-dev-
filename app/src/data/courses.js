@@ -1,6 +1,7 @@
 // ponytail: free links only, removes "where do I learn this?" friction
 // c:true = free certificate. hrs = honest hours. kind: cert|course|practice.
 // sourcing stays hand-verified (AI invents URLs); profile-driven ranking does the "smart" part offline.
+import { AYUSH_ENABLED, AYUSH_COURSES, AYUSH_PROJECT_IDEAS } from "../ayush/seed.js"; // [ayush] rollback: delete
 export const COURSES = {
   javascript: [{ t: "freeCodeCamp JS (free cert)", u: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/", c: true }, { t: "Namaste JS — YouTube (free)", u: "https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP" }],
   react: [{ t: "React Official Tutorial (free)", u: "https://react.dev/learn" }, { t: "NPTEL Modern Web (free cert)", u: "https://swayam.gov.in/", c: true }],
@@ -83,4 +84,10 @@ export const PROJECT_IDEAS = {
   marketing: ["Run a 7-day meme page campaign, track reach in a sheet", "SEO audit of your college site, 2-page fix report", "Write 5 LinkedIn posts for a local shop, show engagement"],
   govt: ["30-day current-affairs notes + 10 mock tests log", "PYQ analysis sheet: last 5 yrs SSC quant topics", "Daily 50 reasoning Qs tracker for 21 days"],
 };
+
+// [ayush] rollback: delete this block + ayush/seed.js
+if (AYUSH_ENABLED) {
+  Object.assign(COURSES, AYUSH_COURSES);
+  PROJECT_IDEAS.ayush = AYUSH_PROJECT_IDEAS;
+}
 

@@ -2,6 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { FDPS, FDP_KINDS } from "../src/data/fdps.js";
+import { AYUSH_ENABLED, AYUSH_FDPS } from "../src/ayush/seed.js";
 import { loadInterests, toggleInterest, recordInterest } from "../src/lib/store.js";
 
 // tiny in-memory localStorage for node (guarded fns never throw without it, but persistence needs it)
@@ -12,17 +13,19 @@ globalThis.localStorage = {
   removeItem: (k) => { delete mem[k]; },
 };
 
-test("FDPS: 12 seeds, 3 per kind, required fields, unique ids", () => {
-  assert.equal(FDPS.length, 12);
+test("FDPS: 12 base seeds + ayush module when enabled, required fields, unique ids", () => {
+  const base = FDPS.filter((f) => !String(f.id).startsWith("a"));
+  assert.equal(base.length, 12);
   for (const kind of Object.keys(FDP_KINDS)) {
-    assert.equal(FDPS.filter((f) => f.kind === kind).length, 3, `${kind} needs 3 seeds`);
+    assert.equal(base.filter((f) => f.kind === kind).length, 3, `${kind} needs 3 seeds`);
   }
+  assert.equal(FDPS.length, AYUSH_ENABLED ? 12 + AYUSH_FDPS.length : 12);
   for (const f of FDPS) {
     for (const k of ["id", "kind", "title", "org", "loc", "url", "deadline"]) {
       assert.ok(f[k], `fdp ${f.id} needs ${k}`);
     }
   }
-  assert.equal(new Set(FDPS.map((f) => f.id)).size, 12, "ids unique");
+  assert.equal(new Set(FDPS.map((f) => f.id)).size, FDPS.length, "ids unique");
 });
 
 test("interests: toggle adds then removes, persists", () => {
