@@ -172,11 +172,10 @@ export function Shell() {
     };
   }, []);
 
-  const pill = (active) =>    active && !reduce ? (
-      <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-emerald-700" transition={{ type: "spring", stiffness: 500, damping: 35 }} />
-    ) : active ? (
-      <span className="absolute inset-0 rounded-full bg-emerald-700" />
-    ) : null;
+  // Static active pill: layoutId springs measure layout on every nav
+  // change, which janks on weak GPUs. A plain fill reads the same.
+  const pill = (active) =>
+    active ? <span className="absolute inset-0 rounded-full bg-emerald-700" /> : null;
 
   return (
     <div className={`${theme === "dark" ? "ayush-dark" : "ayush-light"} flex min-h-dvh flex-col bg-ink text-zinc-300`}>
@@ -186,7 +185,7 @@ export function Shell() {
       >
         {t(lang, "nav.skip")}
       </a>
-      <header className="app-header sticky top-0 z-30 border-b border-emerald-900/10 bg-[#f6f3ea]/90 backdrop-blur">
+      <header className="app-header sticky top-0 z-30 border-b border-emerald-900/10 bg-[#f6f3ea]/90">
         <div className="h-0.5 bg-gradient-to-r from-emerald-800 via-emerald-500 to-amber-400" aria-hidden />
         <div className="mx-auto flex w-full max-w-5xl items-center gap-2 px-4 py-2 sm:px-6">
           <Brand />
@@ -309,9 +308,9 @@ export function Shell() {
         <RouteErrorBoundary path={pathname}>
           <motion.div
             key={pathname}
-            initial={reduce ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.16, ease: "easeOut" }}
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.12, ease: "easeOut" }}
           >
           <Routes>
           <Route path="/" element={<Ayush />} />
@@ -374,7 +373,7 @@ export function Shell() {
       </footer>
 
       {/* mobile bottom tabs */}
-      <nav aria-label="Mobile" className="app-tabbar fixed inset-x-0 bottom-0 z-30 border-t border-emerald-900/10 bg-[#f6f3ea]/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden">
+      <nav aria-label="Mobile" className="app-tabbar fixed inset-x-0 bottom-0 z-30 border-t border-emerald-900/10 bg-[#f6f3ea]/95 pb-[env(safe-area-inset-bottom)] sm:hidden">
         <div className="grid grid-cols-5 px-2">
           {tabs.map((t) => (
             <NavLink
@@ -389,9 +388,7 @@ export function Shell() {
               {({ isActive }) => (
                 <>
                   {isActive && (
-                    reduce
-                      ? <span className="absolute left-1/2 top-0 h-1 w-8 -translate-x-1/2 rounded-b-full bg-emerald-600" />
-                      : <motion.span layoutId="tab-ink" className="absolute left-1/2 top-0 h-1 w-8 -translate-x-1/2 rounded-b-full bg-emerald-600" transition={{ type: "spring", stiffness: 500, damping: 35 }} />
+                    <span className="absolute left-1/2 top-0 h-1 w-8 -translate-x-1/2 rounded-b-full bg-emerald-600" />
                   )}
                   <span className="relative">
                     <CIcon icon={t.icon} width={21} height={21} aria-hidden />

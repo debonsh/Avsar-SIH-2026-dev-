@@ -123,7 +123,7 @@ export default function Home() {
                     Today&apos;s matches <CIcon icon={cilArrowRight} width={15} height={15} />
                   </Btn>
                 )}
-                <Btn to="/home?chat=1" variant="quiet" className="border border-white/30 text-white hover:bg-white/10">
+                <Btn to="/home?chat=1" variant="quiet" className="border border-white/30 bg-transparent text-white hover:bg-white/10">
                   Ask the coach
                 </Btn>
               </div>

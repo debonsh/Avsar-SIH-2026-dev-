@@ -47,7 +47,7 @@ export function H2({ children, className = "" }) {
 }
 
 const buttonVariants = cva(
-  "inline-flex min-h-[40px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl text-sm font-medium transition-all active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex min-h-[40px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl text-sm font-medium transition-colors active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -94,7 +94,7 @@ export const inputCls =
 
 export function Meter({ value, max }) {
   const reduce = useReducedMotion();
-  const pct = `${Math.min(100, (value / max) * 100)}%`;
+  const frac = Math.max(0, Math.min(1, value / max));
   return (
     <div
       className="h-2 overflow-hidden rounded-xl bg-zinc-800"
@@ -105,11 +105,11 @@ export function Meter({ value, max }) {
       aria-label={`${value} of ${max}`}
     >
       <motion.div
-        className="h-full rounded-xl bg-blurple"
-        initial={reduce ? { width: pct } : { width: "0%" }}
-        whileInView={{ width: pct }}
+        className="h-full w-full origin-left rounded-xl bg-blurple"
+        initial={reduce ? { scaleX: frac } : { scaleX: 0 }}
+        whileInView={{ scaleX: frac }}
         viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       />
     </div>
   );
@@ -255,7 +255,7 @@ export function CountUp({ to, className }) {
   useEffect(() => {
     if (reduce) return;
     const controls = animate(0, to, {
-      duration: 0.9,
+      duration: 0.6,
       ease: "easeOut",
       onUpdate: (v) => setVal(Math.round(v)),
     });

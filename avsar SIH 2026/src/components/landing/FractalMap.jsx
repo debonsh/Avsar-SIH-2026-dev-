@@ -1,7 +1,11 @@
 // Pixel fractal map — download(10) pixel-splat + shipping harbor stripes.
 // Seeded value-noise fBm, blocky canvas, slow drift + edge shimmer.
 // Palette: mono | harbor (blue) | leaf (herb green) | rainbow. Static when reduced-motion/offscreen.
-// ponytail: one rAF loop, ~12fps redraws, dpr capped at 1, disconnects on unmount.
+// Perf: size measured on resize only (no per-frame layout reads), static
+// valley field precomputed, land colors quantized into 8 buckets and painted
+// as run-length fillRects (one fill per run, not per cell). Rainbow keeps the
+// per-cell path since its hue varies per pixel.
+// ponytail: one rAF loop, ~11fps redraws, dpr capped at 1, disconnects on unmount.
 import { useEffect, useRef } from "react";
 
 function mulberry32(seed) {
@@ -23,6 +27,14 @@ function landColor(palette, n, x, y) {
   if (palette === "harbor") return `rgba(88,101,242,${0.35 + n * 0.65})`;
   if (palette === "leaf") return `rgba(30,122,76,${0.3 + n * 0.7})`;
   return `rgba(228,228,231,${0.25 + n * 0.75})`;
+}
+
+const BUCKETS = 8;
+
+function bucketColors(palette) {
+  const arr = [];
+  for (let i = 0; i < BUCKETS; i++) arr.push(landColor(palette, i / (BUCKETS - 1)));
+  return arr;
 }
 
 export default function FractalMap({
@@ -67,48 +79,106 @@ export default function FractalMap({
     let last = 0;
     let t = 0;
     let visible = true;
+    let gw = 0;
+    let gh = 0;
+    let valley = new Float32Array(0);
+    const rainbow = palette === "rainbow";
+    const buckets = rainbow ? null : bucketColors(palette);
+    const edgeColor = rainbow ? null : landColor(palette, 0.15);
 
-    const render = (frame) => {
+    // size is measured here only, never per frame (clientWidth forces layout)
+    const measure = () => {
       const w = parent.clientWidth;
       const h = parent.clientHeight;
-      if (!w || !h) return;
-      if (canvas.width !== Math.ceil(w / pixel)) canvas.width = Math.ceil(w / pixel);
-      if (canvas.height !== Math.ceil(h / pixel)) canvas.height = Math.ceil(h / pixel);
+      if (!w || !h) return false;
+      const ngw = Math.max(1, Math.ceil(w / pixel));
+      const ngh = Math.max(1, Math.ceil(h / pixel));
+      canvas.width = ngw;
+      canvas.height = ngh;
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
+      if (ngw !== gw || ngh !== gh) {
+        gw = ngw;
+        gh = ngh;
+        // harbor valley is static per size: carve out center-bottom once
+        valley = new Float32Array(gw * gh);
+        for (let y = 0; y < gh; y++) {
+          const row = Math.max(0, 0.35 - y / gh) * 0.8;
+          for (let x = 0; x < gw; x++) {
+            valley[y * gw + x] = Math.abs(x / gw - 0.5) * 1.6 + row;
+          }
+        }
+      }
+      return true;
+    };
 
-      const gw = canvas.width;
-      const gh = canvas.height;
+    const render = (frame) => {
+      if (!gw || !gh) return;
       ctx.clearRect(0, 0, gw, gh);
       // edge shimmer: threshold breathes per frame, cheap pseudo-random per cell
       const shimmer = ((frame * 0.37) % 1) * 0.02;
+      const ox = t;
+      const oy = t * 0.6;
 
+      if (rainbow) {
+        for (let y = 0; y < gh; y++) {
+          for (let x = 0; x < gw; x++) {
+            const nx = x / gw + ox;
+            const ny = y / gh + oy;
+            const n =
+              noise(nx, ny) * 0.55 + noise(nx * 2, ny * 2) * 0.3 + noise(nx * 4, ny * 4) * 0.15;
+            const v = n - valley[y * gw + x] * 0.28 + shimmer;
+            if (v > 0.52) {
+              ctx.fillStyle = landColor(palette, (v - 0.52) * 2, x, y);
+              ctx.fillRect(x, y, 1, 1);
+            } else if (v > 0.46 && (x + y + frame) % 3 === 0) {
+              // checker edge, download(10) transition, crawls one cell per frame
+              ctx.fillStyle = landColor(palette, 0.15, x, y);
+              ctx.fillRect(x, y, 1, 1);
+            }
+          }
+        }
+        return;
+      }
+
+      // bucketed path: quantized colors painted as horizontal runs, so each
+      // run costs one fillStyle set + one fillRect instead of one per cell
       for (let y = 0; y < gh; y++) {
-        for (let x = 0; x < gw; x++) {
-          const nx = x / gw + t;
-          const ny = y / gh + t * 0.6;
-          const n =
-            noise(nx, ny) * 0.55 + noise(nx * 2, ny * 2) * 0.3 + noise(nx * 4, ny * 4) * 0.15;
-          // harbor valley: carve out center-bottom like shipping illustration
-          const valley = Math.abs(x / gw - 0.5) * 1.6 + Math.max(0, 0.35 - y / gh) * 0.8;
-          const v = n - valley * 0.28 + shimmer;
-          if (v > 0.52) {
-            ctx.fillStyle = landColor(palette, (v - 0.52) * 2, x, y);
-            ctx.fillRect(x, y, 1, 1);
-          } else if (v > 0.46 && (x + y + frame) % 3 === 0) {
-            // checker edge, download(10) transition, crawls one cell per frame
-            ctx.fillStyle = landColor(palette, 0.15, x, y);
-            ctx.fillRect(x, y, 1, 1);
+        const ny = y / gh + oy;
+        const ny2 = ny * 2;
+        const ny4 = ny * 4;
+        let runColor = null;
+        let runStart = 0;
+        for (let x = 0; x <= gw; x++) {
+          let c = null;
+          if (x < gw) {
+            const nx = x / gw + ox;
+            const n =
+              noise(nx, ny) * 0.55 + noise(nx * 2, ny2) * 0.3 + noise(nx * 4, ny4) * 0.15;
+            const v = n - valley[y * gw + x] * 0.28 + shimmer;
+            if (v > 0.52) {
+              const b = Math.min(BUCKETS - 1, ((v - 0.52) * 2 * BUCKETS) | 0);
+              c = buckets[b];
+            } else if (v > 0.46 && (x + y + frame) % 3 === 0) {
+              c = edgeColor;
+            }
+          }
+          if (c !== runColor) {
+            if (runColor !== null) {
+              ctx.fillStyle = runColor;
+              ctx.fillRect(runStart, y, x - runStart, 1);
+            }
+            runColor = c;
+            runStart = x;
           }
         }
       }
     };
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      render(0);
-      return undefined;
-    }
+    if (!measure()) return undefined;
+    render(0);
+    if (reduced) return undefined;
 
     let frame = 0;
     const loop = (now) => {
@@ -121,13 +191,14 @@ export default function FractalMap({
       render(frame);
     };
 
-    const ro = new ResizeObserver(() => render(frame));
+    const ro = new ResizeObserver(() => {
+      if (measure()) render(frame);
+    });
     ro.observe(parent);
     const io = new IntersectionObserver(([e]) => {
       visible = e.isIntersecting;
     });
     io.observe(canvas);
-    render(0);
     raf = requestAnimationFrame(loop);
     return () => {
       cancelAnimationFrame(raf);

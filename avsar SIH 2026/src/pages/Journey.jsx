@@ -51,7 +51,7 @@ function JourneyBar({ progress }) {
   );
 }
 
-// ponytail: canvas confetti, zero deps. ~120 rects, 1.6s, then done.
+// ponytail: canvas confetti, zero deps. ~80 rects, 1.3s, then done.
 function confettiBurst() {
   const c = document.createElement("canvas");
   c.style.cssText = "position:fixed;inset:0;z-index:80;pointer-events:none";
@@ -60,7 +60,7 @@ function confettiBurst() {
   c.width = innerWidth;
   c.height = innerHeight;
   const colors = ["#1e7a4c", "#f59e0b", "#0ea5e9", "#e11d48", "#a855f7"];
-  const ps = Array.from({ length: 130 }, () => ({
+  const ps = Array.from({ length: 80 }, () => ({
     x: innerWidth / 2 + (Math.random() - 0.5) * 120,
     y: innerHeight / 2,
     vx: (Math.random() - 0.5) * 14,
@@ -83,11 +83,11 @@ function confettiBurst() {
       ctx.translate(p.x, p.y);
       ctx.rotate(p.r);
       ctx.fillStyle = p.col;
-      ctx.globalAlpha = Math.max(0, 1 - el / 1700);
+      ctx.globalAlpha = Math.max(0, 1 - el / 1300);
       ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);
       ctx.restore();
     }
-    if (el < 1700) requestAnimationFrame(tick);
+    if (el < 1300) requestAnimationFrame(tick);
     else c.remove();
   })(t0);
 }
