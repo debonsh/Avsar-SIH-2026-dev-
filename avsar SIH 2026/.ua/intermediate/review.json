@@ -1,0 +1,41 @@
+{
+  "issues": [],
+  "warnings": [
+    "Node 'config:.oxlintrc.json' has no edges (orphan)",
+    "Node 'document:README.md' has no edges (orphan)",
+    "Node 'config:package.json' has no edges (orphan)",
+    "Node 'document:.tastemaker/reference-board.md' has no edges (orphan)",
+    "Node 'document:.tastemaker/style-lock.md' has no edges (orphan)",
+    "Node 'file:public/manifest.webmanifest' has no edges (orphan)",
+    "Node 'file:public/sw.js' has no edges (orphan)",
+    "Node 'file:scripts/scrape.mjs' has no edges (orphan)",
+    "Node 'file:src/data/boardsSeed.js' has no edges (orphan)",
+    "Node 'file:src/data/fixtures.js' has no edges (orphan)",
+    "Node 'file:src/data/naukriSeed.js' has no edges (orphan)",
+    "Node 'file:src/data/seedJobsExtra.js' has no edges (orphan)",
+    "Node 'file:tests/ayushProof.test.js' has no edges (orphan)",
+    "Node 'file:vite.config.js' has no edges (orphan)"
+  ],
+  "stats": {
+    "totalNodes": 452,
+    "totalEdges": 1143,
+    "totalLayers": 8,
+    "tourSteps": 11,
+    "nodeTypes": {
+      "file": 124,
+      "class": 1,
+      "function": 319,
+      "config": 5,
+      "document": 3
+    },
+    "edgeTypes": {
+      "contains": 320,
+      "exports": 290,
+      "imports": 313,
+      "calls": 167,
+      "tested_by": 49,
+      "depends_on": 2,
+      "related": 2
+    }
+  }
+}

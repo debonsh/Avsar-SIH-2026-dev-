@@ -9,7 +9,13 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "scrape": "node scripts/scrape.mjs",
-    "jobs:import": "node scripts/naukri.mjs"
+    "jobs:import": "node scripts/naukri.mjs",
+    "deck:shots": "node scripts/deck/capture-screens.mjs",
+    "deck:logo": "node scripts/deck/prepare-logo.mjs",
+    "deck:assets": "node scripts/deck/extract-assets.mjs && node scripts/deck/prepare-assets.mjs",
+    "deck:build": "node scripts/deck/prepare-logo.mjs && node scripts/deck/build-deck.mjs",
+    "deck:verify": "node scripts/deck/verify-deck.mjs",
+    "deck:preview": "node scripts/deck/prepare-logo.mjs && node scripts/deck/preview.mjs"
   },
   "dependencies": {
     "@coreui/icons": "^3.1.0",
@@ -35,7 +41,10 @@
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.0",
     "jsdom": "^30.1.0",
+    "jszip": "^3.10.2",
     "oxlint": "^1.79.0",
+    "playwright": "^1.63.0",
+    "pptxgenjs": "^4.0.1",
     "vite": "^8.2.2"
   }
 }

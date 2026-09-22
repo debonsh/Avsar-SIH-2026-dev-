@@ -1,0 +1,1633 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 8,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 8,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/data/programs.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 30,
+      "functions": [
+        {
+          "name": "programsFor",
+          "startLine": 26,
+          "endLine": 29,
+          "params": []
+        },
+        {
+          "name": "programsByKind",
+          "startLine": 31,
+          "endLine": 33,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PROGRAM_KINDS",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "PROGRAMS",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "programsFor",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "programsByKind",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "programsFor",
+          "callee": "String(skill).toLowerCase",
+          "lineNumber": 27
+        },
+        {
+          "caller": "programsFor",
+          "callee": "String",
+          "lineNumber": 27
+        },
+        {
+          "caller": "programsFor",
+          "callee": "PROGRAMS.filter",
+          "lineNumber": 28
+        },
+        {
+          "caller": "programsFor",
+          "callee": "p.skills.includes",
+          "lineNumber": 28
+        },
+        {
+          "caller": "programsByKind",
+          "callee": "PROGRAMS.filter",
+          "lineNumber": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/taxonomy.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 307,
+      "nonEmptyLines": 277,
+      "functions": [
+        {
+          "name": "proficiencyLabel",
+          "startLine": 17,
+          "endLine": 20,
+          "params": []
+        },
+        {
+          "name": "skillById",
+          "startLine": 124,
+          "endLine": 126,
+          "params": []
+        },
+        {
+          "name": "resolveSkill",
+          "startLine": 129,
+          "endLine": 135,
+          "params": []
+        },
+        {
+          "name": "skillsByDomain",
+          "startLine": 137,
+          "endLine": 139,
+          "params": []
+        },
+        {
+          "name": "domainLabel",
+          "startLine": 141,
+          "endLine": 143,
+          "params": []
+        },
+        {
+          "name": "decayedLevel",
+          "startLine": 147,
+          "endLine": 153,
+          "params": []
+        },
+        {
+          "name": "demandWeight",
+          "startLine": 155,
+          "endLine": 157,
+          "params": []
+        },
+        {
+          "name": "taxonomyRole",
+          "startLine": 214,
+          "endLine": 216,
+          "params": []
+        },
+        {
+          "name": "requiredFor",
+          "startLine": 218,
+          "endLine": 224,
+          "params": []
+        },
+        {
+          "name": "gapVector",
+          "startLine": 228,
+          "endLine": 236,
+          "params": []
+        },
+        {
+          "name": "listProposals",
+          "startLine": 243,
+          "endLine": 249,
+          "params": []
+        },
+        {
+          "name": "persistProposals",
+          "startLine": 251,
+          "endLine": 254,
+          "params": [
+            "rows"
+          ]
+        },
+        {
+          "name": "proposeSkill",
+          "startLine": 256,
+          "endLine": 273,
+          "params": []
+        },
+        {
+          "name": "approveSkill",
+          "startLine": 275,
+          "endLine": 283,
+          "params": []
+        },
+        {
+          "name": "rejectSkill",
+          "startLine": 285,
+          "endLine": 292,
+          "params": []
+        },
+        {
+          "name": "approvedSkills",
+          "startLine": 295,
+          "endLine": 307,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PROFICIENCY",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "proficiencyLabel",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "DOMAINS",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "SKILLS",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "skillById",
+          "line": 124,
+          "isDefault": false
+        },
+        {
+          "name": "resolveSkill",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "skillsByDomain",
+          "line": 137,
+          "isDefault": false
+        },
+        {
+          "name": "domainLabel",
+          "line": 141,
+          "isDefault": false
+        },
+        {
+          "name": "decayedLevel",
+          "line": 147,
+          "isDefault": false
+        },
+        {
+          "name": "demandWeight",
+          "line": 155,
+          "isDefault": false
+        },
+        {
+          "name": "DEFAULT_REQUIRED_LEVEL",
+          "line": 161,
+          "isDefault": false
+        },
+        {
+          "name": "TAXONOMY_ROLES",
+          "line": 163,
+          "isDefault": false
+        },
+        {
+          "name": "taxonomyRole",
+          "line": 214,
+          "isDefault": false
+        },
+        {
+          "name": "requiredFor",
+          "line": 218,
+          "isDefault": false
+        },
+        {
+          "name": "gapVector",
+          "line": 228,
+          "isDefault": false
+        },
+        {
+          "name": "listProposals",
+          "line": 243,
+          "isDefault": false
+        },
+        {
+          "name": "proposeSkill",
+          "line": 256,
+          "isDefault": false
+        },
+        {
+          "name": "approveSkill",
+          "line": 275,
+          "isDefault": false
+        },
+        {
+          "name": "rejectSkill",
+          "line": 285,
+          "isDefault": false
+        },
+        {
+          "name": "approvedSkills",
+          "line": 295,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "proficiencyLabel",
+          "callee": "PROFICIENCY.find",
+          "lineNumber": 18
+        },
+        {
+          "caller": "skillById",
+          "callee": "BY_ID.get",
+          "lineNumber": 125
+        },
+        {
+          "caller": "skillById",
+          "callee": "String(id).toLowerCase",
+          "lineNumber": 125
+        },
+        {
+          "caller": "skillById",
+          "callee": "String",
+          "lineNumber": 125
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "String(name).toLowerCase().trim",
+          "lineNumber": 130
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "String(name).toLowerCase",
+          "lineNumber": 130
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "String",
+          "lineNumber": 130
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "BY_ALIAS.has",
+          "lineNumber": 132
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "BY_ALIAS.get",
+          "lineNumber": 132
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "approvedSkills().find",
+          "lineNumber": 133
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "approvedSkills",
+          "lineNumber": 133
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "s.name.toLowerCase",
+          "lineNumber": 133
+        },
+        {
+          "caller": "resolveSkill",
+          "callee": "s.aliases.includes",
+          "lineNumber": 133
+        },
+        {
+          "caller": "skillsByDomain",
+          "callee": "SKILLS.filter",
+          "lineNumber": 138
+        },
+        {
+          "caller": "domainLabel",
+          "callee": "DOMAINS.find",
+          "lineNumber": 142
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "Date.now",
+          "lineNumber": 147
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "Math.max",
+          "lineNumber": 148
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "Math.min",
+          "lineNumber": 148
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "Number",
+          "lineNumber": 148
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "Math.max",
+          "lineNumber": 150
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "skillById",
+          "lineNumber": 150
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "Math.max",
+          "lineNumber": 151
+        },
+        {
+          "caller": "decayedLevel",
+          "callee": "Math.pow",
+          "lineNumber": 152
+        },
+        {
+          "caller": "demandWeight",
+          "callee": "skillById",
+          "lineNumber": 156
+        },
+        {
+          "caller": "requiredFor",
+          "callee": "Object.entries(r.required)\n    .map(([skill, level]) => ({ skill, level, name: skillById(skill)?.name || skill }))\n    .sort",
+          "lineNumber": 221
+        },
+        {
+          "caller": "requiredFor",
+          "callee": "Object.entries(r.required)\n    .map",
+          "lineNumber": 221
+        },
+        {
+          "caller": "requiredFor",
+          "callee": "Object.entries",
+          "lineNumber": 221
+        },
+        {
+          "caller": "requiredFor",
+          "callee": "skillById",
+          "lineNumber": 222
+        },
+        {
+          "caller": "gapVector",
+          "callee": "requiredFor(roleId)\n    .map((r) => {\n      const have = Math.max(0, Math.min(5, Number(held[r.skill]) || 0));\n      return { ...r, have, gap: Math.max(0, r.level - have) };\n    })\n    .filter((r) => r.gap > 0)\n    .sort",
+          "lineNumber": 229
+        },
+        {
+          "caller": "gapVector",
+          "callee": "requiredFor(roleId)\n    .map((r) => {\n      const have = Math.max(0, Math.min(5, Number(held[r.skill]) || 0));\n      return { ...r, have, gap: Math.max(0, r.level - have) };\n    })\n    .filter",
+          "lineNumber": 229
+        },
+        {
+          "caller": "gapVector",
+          "callee": "requiredFor(roleId)\n    .map",
+          "lineNumber": 229
+        },
+        {
+          "caller": "gapVector",
+          "callee": "requiredFor",
+          "lineNumber": 229
+        },
+        {
+          "caller": "gapVector",
+          "callee": "Math.max",
+          "lineNumber": 231
+        },
+        {
+          "caller": "gapVector",
+          "callee": "Math.min",
+          "lineNumber": 231
+        },
+        {
+          "caller": "gapVector",
+          "callee": "Number",
+          "lineNumber": 231
+        },
+        {
+          "caller": "gapVector",
+          "callee": "Math.max",
+          "lineNumber": 232
+        },
+        {
+          "caller": "listProposals",
+          "callee": "loadJSON",
+          "lineNumber": 245
+        },
+        {
+          "caller": "listProposals",
+          "callee": "Array.isArray",
+          "lineNumber": 246
+        },
+        {
+          "caller": "listProposals",
+          "callee": "memRows.filter",
+          "lineNumber": 248
+        },
+        {
+          "caller": "persistProposals",
+          "callee": "saveJSON",
+          "lineNumber": 253
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "String(name || \"\").trim",
+          "lineNumber": 257
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "String",
+          "lineNumber": 257
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "listProposals",
+          "lineNumber": 259
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "resolveSkill",
+          "lineNumber": 260
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "rows.some",
+          "lineNumber": 260
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "p.name.toLowerCase",
+          "lineNumber": 260
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "n.toLowerCase",
+          "lineNumber": 260
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "Date.now",
+          "lineNumber": 263
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "Math.floor",
+          "lineNumber": 263
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "Math.random",
+          "lineNumber": 263
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "n.slice",
+          "lineNumber": 264
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "DOMAINS.some",
+          "lineNumber": 265
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "String(by || \"industry\").slice",
+          "lineNumber": 266
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "String",
+          "lineNumber": 266
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "Math.max",
+          "lineNumber": 267
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "Math.min",
+          "lineNumber": 267
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "Number",
+          "lineNumber": 267
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "Date.now",
+          "lineNumber": 269
+        },
+        {
+          "caller": "proposeSkill",
+          "callee": "persistProposals",
+          "lineNumber": 271
+        },
+        {
+          "caller": "approveSkill",
+          "callee": "listProposals",
+          "lineNumber": 276
+        },
+        {
+          "caller": "approveSkill",
+          "callee": "rows.find",
+          "lineNumber": 277
+        },
+        {
+          "caller": "approveSkill",
+          "callee": "Date.now",
+          "lineNumber": 280
+        },
+        {
+          "caller": "approveSkill",
+          "callee": "persistProposals",
+          "lineNumber": 281
+        },
+        {
+          "caller": "rejectSkill",
+          "callee": "listProposals",
+          "lineNumber": 286
+        },
+        {
+          "caller": "rejectSkill",
+          "callee": "rows.find",
+          "lineNumber": 287
+        },
+        {
+          "caller": "rejectSkill",
+          "callee": "persistProposals",
+          "lineNumber": 290
+        },
+        {
+          "caller": "approvedSkills",
+          "callee": "listProposals(\"approved\").map",
+          "lineNumber": 296
+        },
+        {
+          "caller": "approvedSkills",
+          "callee": "listProposals",
+          "lineNumber": 296
+        },
+        {
+          "caller": "approvedSkills",
+          "callee": "p.name.toLowerCase().replace(/[^a-z0-9]+/g, \"-\").replace",
+          "lineNumber": 297
+        },
+        {
+          "caller": "approvedSkills",
+          "callee": "p.name.toLowerCase().replace",
+          "lineNumber": 297
+        },
+        {
+          "caller": "approvedSkills",
+          "callee": "p.name.toLowerCase",
+          "lineNumber": 297
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 20,
+        "functionCount": 16,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/match.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 159,
+      "nonEmptyLines": 144,
+      "functions": [
+        {
+          "name": "canon",
+          "startLine": 23,
+          "endLine": 23,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "matchScore",
+          "startLine": 27,
+          "endLine": 97,
+          "params": []
+        },
+        {
+          "name": "levelFromSignals",
+          "startLine": 101,
+          "endLine": 107,
+          "params": []
+        },
+        {
+          "name": "questIdFor",
+          "startLine": 110,
+          "endLine": 120,
+          "params": [
+            "role",
+            "name"
+          ]
+        },
+        {
+          "name": "profileForMatching",
+          "startLine": 125,
+          "endLine": 142,
+          "params": [
+            "role"
+          ]
+        },
+        {
+          "name": "matchJobPost",
+          "startLine": 146,
+          "endLine": 159,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MATCH_WEIGHTS",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "matchScore",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "levelFromSignals",
+          "line": 101,
+          "isDefault": false
+        },
+        {
+          "name": "profileForMatching",
+          "line": 125,
+          "isDefault": false
+        },
+        {
+          "name": "matchJobPost",
+          "line": 146,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "canon",
+          "callee": "resolveSkill",
+          "lineNumber": 23
+        },
+        {
+          "caller": "canon",
+          "callee": "String(s || \"\").toLowerCase().trim",
+          "lineNumber": 23
+        },
+        {
+          "caller": "canon",
+          "callee": "String(s || \"\").toLowerCase",
+          "lineNumber": 23
+        },
+        {
+          "caller": "canon",
+          "callee": "String",
+          "lineNumber": 23
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Date.now",
+          "lineNumber": 27
+        },
+        {
+          "caller": "matchScore",
+          "callee": "(required || [])\n    .map((r) => ({ skill: canon(r.skill), level: Math.max(1, Math.min(5, Number(r.level) || 3)) }))\n    .filter",
+          "lineNumber": 28
+        },
+        {
+          "caller": "matchScore",
+          "callee": "(required || [])\n    .map",
+          "lineNumber": 28
+        },
+        {
+          "caller": "matchScore",
+          "callee": "canon",
+          "lineNumber": 29
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.max",
+          "lineNumber": 29
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.min",
+          "lineNumber": 29
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Number",
+          "lineNumber": 29
+        },
+        {
+          "caller": "matchScore",
+          "callee": "matchBand",
+          "lineNumber": 32
+        },
+        {
+          "caller": "matchScore",
+          "callee": "canon",
+          "lineNumber": 37
+        },
+        {
+          "caller": "matchScore",
+          "callee": "heldBy.get",
+          "lineNumber": 39
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.max",
+          "lineNumber": 42
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.min",
+          "lineNumber": 42
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Number",
+          "lineNumber": 42
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Boolean",
+          "lineNumber": 43
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Number",
+          "lineNumber": 44
+        },
+        {
+          "caller": "matchScore",
+          "callee": "heldBy.set",
+          "lineNumber": 46
+        },
+        {
+          "caller": "matchScore",
+          "callee": "heldBy.get",
+          "lineNumber": 56
+        },
+        {
+          "caller": "matchScore",
+          "callee": "gaps.push",
+          "lineNumber": 58
+        },
+        {
+          "caller": "matchScore",
+          "callee": "decayedLevel",
+          "lineNumber": 61
+        },
+        {
+          "caller": "matchScore",
+          "callee": "matched.push",
+          "lineNumber": 62
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.round",
+          "lineNumber": 64
+        },
+        {
+          "caller": "matchScore",
+          "callee": "demandWeight",
+          "lineNumber": 65
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.min",
+          "lineNumber": 67
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.min",
+          "lineNumber": 69
+        },
+        {
+          "caller": "matchScore",
+          "callee": "(tags || []).map(canon).filter",
+          "lineNumber": 77
+        },
+        {
+          "caller": "matchScore",
+          "callee": "(tags || []).map",
+          "lineNumber": 77
+        },
+        {
+          "caller": "matchScore",
+          "callee": "(interests || []).map(canon).filter",
+          "lineNumber": 78
+        },
+        {
+          "caller": "matchScore",
+          "callee": "(interests || []).map",
+          "lineNumber": 78
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.min",
+          "lineNumber": 80
+        },
+        {
+          "caller": "matchScore",
+          "callee": "ints.filter",
+          "lineNumber": 80
+        },
+        {
+          "caller": "matchScore",
+          "callee": "tagSet.has",
+          "lineNumber": 80
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.min",
+          "lineNumber": 80
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.round",
+          "lineNumber": 84
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Object.entries(MATCH_WEIGHTS).reduce",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Object.entries",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.max",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.min",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchScore",
+          "callee": "why.push",
+          "lineNumber": 89
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.round",
+          "lineNumber": 89
+        },
+        {
+          "caller": "matchScore",
+          "callee": "matched.filter",
+          "lineNumber": 90
+        },
+        {
+          "caller": "matchScore",
+          "callee": "why.push",
+          "lineNumber": 91
+        },
+        {
+          "caller": "matchScore",
+          "callee": "under.map((m) => `${m.skill} (L${Math.floor(m.effective)} vs L${m.need})`).join",
+          "lineNumber": 91
+        },
+        {
+          "caller": "matchScore",
+          "callee": "under.map",
+          "lineNumber": 91
+        },
+        {
+          "caller": "matchScore",
+          "callee": "Math.floor",
+          "lineNumber": 91
+        },
+        {
+          "caller": "matchScore",
+          "callee": "why.push",
+          "lineNumber": 92
+        },
+        {
+          "caller": "matchScore",
+          "callee": "gaps.map((g) => g.skill).join",
+          "lineNumber": 92
+        },
+        {
+          "caller": "matchScore",
+          "callee": "gaps.map",
+          "lineNumber": 92
+        },
+        {
+          "caller": "matchScore",
+          "callee": "why.push",
+          "lineNumber": 93
+        },
+        {
+          "caller": "matchScore",
+          "callee": "why.push",
+          "lineNumber": 94
+        },
+        {
+          "caller": "matchScore",
+          "callee": "matchBand",
+          "lineNumber": 96
+        },
+        {
+          "caller": "levelFromSignals",
+          "callee": "Math.max",
+          "lineNumber": 102
+        },
+        {
+          "caller": "levelFromSignals",
+          "callee": "Math.min",
+          "lineNumber": 102
+        },
+        {
+          "caller": "levelFromSignals",
+          "callee": "Number",
+          "lineNumber": 102
+        },
+        {
+          "caller": "levelFromSignals",
+          "callee": "Number",
+          "lineNumber": 104
+        },
+        {
+          "caller": "levelFromSignals",
+          "callee": "Number",
+          "lineNumber": 105
+        },
+        {
+          "caller": "levelFromSignals",
+          "callee": "Math.min",
+          "lineNumber": 106
+        },
+        {
+          "caller": "questIdFor",
+          "callee": "String(name).toLowerCase",
+          "lineNumber": 113
+        },
+        {
+          "caller": "questIdFor",
+          "callee": "String",
+          "lineNumber": 113
+        },
+        {
+          "caller": "questIdFor",
+          "callee": "(sk.name || \"\").toLowerCase",
+          "lineNumber": 116
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "resolveSkill",
+          "lineNumber": 131
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "String(raw).toLowerCase().trim",
+          "lineNumber": 131
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "String(raw).toLowerCase",
+          "lineNumber": 131
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "String",
+          "lineNumber": 131
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "skills.includes",
+          "lineNumber": 132
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "masteryLevel",
+          "lineNumber": 133
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "questIdFor",
+          "lineNumber": 133
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "skillConfidence",
+          "lineNumber": 134
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "proofsFor",
+          "lineNumber": 135
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "skills.push",
+          "lineNumber": 136
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "levelFromSignals",
+          "lineNumber": 137
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "verifyState",
+          "lineNumber": 138
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "verified.push",
+          "lineNumber": 138
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "Math.max",
+          "lineNumber": 139
+        },
+        {
+          "caller": "profileForMatching",
+          "callee": "proofs.map",
+          "lineNumber": 139
+        },
+        {
+          "caller": "matchJobPost",
+          "callee": "job.skills.map",
+          "lineNumber": 148
+        },
+        {
+          "caller": "matchJobPost",
+          "callee": "(heldProfile.skills || []).map",
+          "lineNumber": 149
+        },
+        {
+          "caller": "matchJobPost",
+          "callee": "canon",
+          "lineNumber": 150
+        },
+        {
+          "caller": "matchJobPost",
+          "callee": "(heldProfile.verified || []).map(canon).includes",
+          "lineNumber": 154
+        },
+        {
+          "caller": "matchJobPost",
+          "callee": "(heldProfile.verified || []).map",
+          "lineNumber": 154
+        },
+        {
+          "caller": "matchJobPost",
+          "callee": "matchScore",
+          "lineNumber": 158
+        },
+        {
+          "caller": "matchJobPost",
+          "callee": "[job.role, job.kind].filter",
+          "lineNumber": 158
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 5,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Match.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 155,
+      "nonEmptyLines": 148,
+      "functions": [
+        {
+          "name": "Match",
+          "startLine": 20,
+          "endLine": 155,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Match",
+          "line": 20,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Match",
+          "callee": "useC2C",
+          "lineNumber": 21
+        },
+        {
+          "caller": "Match",
+          "callee": "taxonomyRole",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Match",
+          "callee": "loadQuizBest",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Match",
+          "callee": "useMemo",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Match",
+          "callee": "useMemo",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Match",
+          "callee": "compileEvidence",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Match",
+          "callee": "loadQAnswers",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Match",
+          "callee": "useMemo",
+          "lineNumber": 27
+        },
+        {
+          "caller": "Match",
+          "callee": "profileForMatching",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Match",
+          "callee": "matchScore",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Match",
+          "callee": "requiredFor",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Match",
+          "callee": "profile.skills.map",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Match",
+          "callee": "profile.verified.includes",
+          "lineNumber": 31
+        },
+        {
+          "caller": "Match",
+          "callee": "useMemo",
+          "lineNumber": 37
+        },
+        {
+          "caller": "Match",
+          "callee": "profileForMatching",
+          "lineNumber": 39
+        },
+        {
+          "caller": "Match",
+          "callee": "profile.skills.map",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Match",
+          "callee": "profile.verified.includes",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Match",
+          "callee": "Object.entries(TAXONOMY_ROLES)\n      .filter(([, r]) => String(r.domain || \"\").startsWith(\"ayush\")) // ayush portal: ayush roles only\n      .map(([id, r]) => ({ id, ...r, ...matchScore({ required: requiredFor(id), held, tags: r.tags, interests }) }))\n      .sort",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Match",
+          "callee": "Object.entries(TAXONOMY_ROLES)\n      .filter(([, r]) => String(r.domain || \"\").startsWith(\"ayush\")) // ayush portal: ayush roles only\n      .map",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Match",
+          "callee": "Object.entries(TAXONOMY_ROLES)\n      .filter",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Match",
+          "callee": "Object.entries",
+          "lineNumber": 43
+        },
+        {
+          "caller": "Match",
+          "callee": "String(r.domain || \"\").startsWith",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Match",
+          "callee": "String",
+          "lineNumber": 44
+        },
+        {
+          "caller": "Match",
+          "callee": "matchScore",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Match",
+          "callee": "requiredFor",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Match",
+          "callee": "FACTORS.map",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Match",
+          "callee": "MATCH_WEIGHTS[f.key].toFixed",
+          "lineNumber": 60
+        },
+        {
+          "caller": "Match",
+          "callee": "FACTORS.map",
+          "lineNumber": 66
+        },
+        {
+          "caller": "Match",
+          "callee": "(MATCH_WEIGHTS[f.key] * 100).toFixed",
+          "lineNumber": 70
+        },
+        {
+          "caller": "Match",
+          "callee": "FACTORS.map",
+          "lineNumber": 99
+        },
+        {
+          "caller": "Match",
+          "callee": "Math.round",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Match",
+          "callee": "MATCH_WEIGHTS[f.key].toFixed",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Match",
+          "callee": "(live.breakdown[f.key] * MATCH_WEIGHTS[f.key] * 100).toFixed",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Match",
+          "callee": "Math.round",
+          "lineNumber": 107
+        },
+        {
+          "caller": "Match",
+          "callee": "live.why.map",
+          "lineNumber": 113
+        },
+        {
+          "caller": "Match",
+          "callee": "live.gaps.map",
+          "lineNumber": 119
+        },
+        {
+          "caller": "Match",
+          "callee": "pathways.map",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Match",
+          "callee": "p.gaps.slice(0, 3).map((g) => g.skill).join",
+          "lineNumber": 141
+        },
+        {
+          "caller": "Match",
+          "callee": "p.gaps.slice(0, 3).map",
+          "lineNumber": 141
+        },
+        {
+          "caller": "Match",
+          "callee": "p.gaps.slice",
+          "lineNumber": 141
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Programs.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 114,
+      "nonEmptyLines": 105,
+      "functions": [
+        {
+          "name": "Programs",
+          "startLine": 15,
+          "endLine": 114,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Programs",
+          "line": 15,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Programs",
+          "callee": "useC2C",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Programs",
+          "callee": "useState",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Programs",
+          "callee": "useState",
+          "lineNumber": 18
+        },
+        {
+          "caller": "Programs",
+          "callee": "loadEnrollments",
+          "lineNumber": 18
+        },
+        {
+          "caller": "Programs",
+          "callee": "useMemo",
+          "lineNumber": 19
+        },
+        {
+          "caller": "Programs",
+          "callee": "loadQuizBest",
+          "lineNumber": 20
+        },
+        {
+          "caller": "Programs",
+          "callee": "useMemo",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Programs",
+          "callee": "profileForMatching",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Programs",
+          "callee": "useMemo",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Programs",
+          "callee": "gapVector(\"ayush-cra\", held).slice",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Programs",
+          "callee": "gapVector",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Programs",
+          "callee": "useMemo",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Programs",
+          "callee": "programsFor",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Programs",
+          "callee": "ids.includes",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Programs",
+          "callee": "ids.push",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Programs",
+          "callee": "ids.slice",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Programs",
+          "callee": "PROGRAMS.filter",
+          "lineNumber": 36
+        },
+        {
+          "caller": "toggle",
+          "callee": "setEnrolled",
+          "lineNumber": 39
+        },
+        {
+          "caller": "toggle",
+          "callee": "toggleEnrollment",
+          "lineNumber": 39
+        },
+        {
+          "caller": "Programs",
+          "callee": "recIds.map",
+          "lineNumber": 51
+        },
+        {
+          "caller": "Programs",
+          "callee": "PROGRAMS.find",
+          "lineNumber": 52
+        },
+        {
+          "caller": "Programs",
+          "callee": "enrolled.includes",
+          "lineNumber": 57
+        },
+        {
+          "caller": "Programs",
+          "callee": "toggle",
+          "lineNumber": 57
+        },
+        {
+          "caller": "Programs",
+          "callee": "enrolled.includes",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Programs",
+          "callee": "KINDS.map",
+          "lineNumber": 68
+        },
+        {
+          "caller": "Programs",
+          "callee": "setKind",
+          "lineNumber": 73
+        },
+        {
+          "caller": "Programs",
+          "callee": "list.map",
+          "lineNumber": 85
+        },
+        {
+          "caller": "Programs",
+          "callee": "p.skills.map",
+          "lineNumber": 96
+        },
+        {
+          "caller": "Programs",
+          "callee": "enrolled.includes",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Programs",
+          "callee": "toggle",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Programs",
+          "callee": "enrolled.includes",
+          "lineNumber": 103
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/match.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 111,
+      "nonEmptyLines": 100,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/programs.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 33,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/taxonomy.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 94,
+      "nonEmptyLines": 85,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

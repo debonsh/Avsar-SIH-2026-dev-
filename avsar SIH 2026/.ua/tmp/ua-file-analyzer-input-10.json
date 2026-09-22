@@ -1,0 +1,107 @@
+{
+ "projectRoot": "D:/CodeProjects/avsar/avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": ".tastemaker/reference-board.md",
+   "language": "markdown",
+   "sizeLines": 25,
+   "fileCategory": "docs"
+  },
+  {
+   "path": ".tastemaker/style-lock.md",
+   "language": "markdown",
+   "sizeLines": 25,
+   "fileCategory": "docs"
+  },
+  {
+   "path": "public/manifest.webmanifest",
+   "language": "webmanifest",
+   "sizeLines": 15,
+   "fileCategory": "code"
+  },
+  {
+   "path": "public/sw.js",
+   "language": "javascript",
+   "sizeLines": 32,
+   "fileCategory": "code"
+  },
+  {
+   "path": "scripts/naukri.mjs",
+   "language": "javascript",
+   "sizeLines": 75,
+   "fileCategory": "code"
+  },
+  {
+   "path": "scripts/scrape.mjs",
+   "language": "javascript",
+   "sizeLines": 44,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/boardsSeed.js",
+   "language": "javascript",
+   "sizeLines": 736,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/fixtures.js",
+   "language": "javascript",
+   "sizeLines": 7,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/naukriSeed.js",
+   "language": "javascript",
+   "sizeLines": 290,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/seedJobsExtra.js",
+   "language": "javascript",
+   "sizeLines": 23,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/index.css",
+   "language": "css",
+   "sizeLines": 259,
+   "fileCategory": "markup"
+  },
+  {
+   "path": "tests/ayushProof.test.js",
+   "language": "javascript",
+   "sizeLines": 52,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/naukri.test.js",
+   "language": "javascript",
+   "sizeLines": 30,
+   "fileCategory": "code"
+  },
+  {
+   "path": "vite.config.js",
+   "language": "javascript",
+   "sizeLines": 8,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  ".tastemaker/reference-board.md": [],
+  ".tastemaker/style-lock.md": [],
+  "public/manifest.webmanifest": [],
+  "public/sw.js": [],
+  "scripts/naukri.mjs": [],
+  "scripts/scrape.mjs": [],
+  "src/data/boardsSeed.js": [],
+  "src/data/fixtures.js": [],
+  "src/data/naukriSeed.js": [],
+  "src/data/seedJobsExtra.js": [],
+  "src/index.css": [],
+  "tests/ayushProof.test.js": [],
+  "tests/naukri.test.js": [
+   "scripts/naukri.mjs"
+  ],
+  "vite.config.js": []
+ }
+}

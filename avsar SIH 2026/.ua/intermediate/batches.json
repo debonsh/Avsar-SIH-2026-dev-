@@ -1,0 +1,5847 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 132,
+  "totalBatches": 10,
+  "exportsByPath": {
+    "public/manifest.webmanifest": [],
+    "public/sw.js": [],
+    "scripts/boards.mjs": [],
+    "scripts/naukri.mjs": [
+      "mapNaukri",
+      "importNaukri"
+    ],
+    "scripts/scrape.mjs": [],
+    "src/app/coach-widget.jsx": [
+      "CoachWidget"
+    ],
+    "src/app/error-boundary.jsx": [
+      "RouteErrorBoundary"
+    ],
+    "src/app/shell.jsx": [
+      "Shell"
+    ],
+    "src/app/store.jsx": [
+      "C2CProvider",
+      "useC2C"
+    ],
+    "src/ayush/data.js": [
+      "AYUSH_COLLEGES",
+      "AYUSH_NOTICES",
+      "AYUSH_PROGRAMS",
+      "ayushStats",
+      "AYUSH_SCHEMES",
+      "AYUSH_FAQ"
+    ],
+    "src/ayush/proof.js": [
+      "loadLedger",
+      "addProof",
+      "removeProof",
+      "proofsFor",
+      "caseCount",
+      "verifyState",
+      "skillConfidence",
+      "PROOF_KINDS"
+    ],
+    "src/ayush/resumes.js": [
+      "AYUSH_RESUMES",
+      "RESUME_ANATOMY",
+      "RESUME_BULLETS",
+      "SKILL_WHY"
+    ],
+    "src/ayush/scoring.js": [
+      "vaidyaLevel",
+      "pathForSkill",
+      "ayushReadout"
+    ],
+    "src/ayush/seed.js": [
+      "AYUSH_ENABLED",
+      "AYUSH_ROLE",
+      "AYUSH_JOBS",
+      "AYUSH_TREE",
+      "AYUSH_COURSES",
+      "AYUSH_PROJECT_IDEAS",
+      "AYUSH_QUIZ",
+      "AYUSH_INTERVIEW_QS",
+      "AYUSH_QUESTIONNAIRE",
+      "AYUSH_FDPS"
+    ],
+    "src/components/StreakMeter.jsx": [
+      "StreakMeter"
+    ],
+    "src/components/XpMeter.jsx": [
+      "XpMeter"
+    ],
+    "src/components/landing/Figs.jsx": [
+      "ScoreFig",
+      "QuestFig",
+      "PipelineFig"
+    ],
+    "src/components/landing/FractalMap.jsx": [
+      "FractalMap"
+    ],
+    "src/components/landing/LandingHero.jsx": [
+      "LandingHero"
+    ],
+    "src/components/landing/Sections.jsx": [
+      "ProblemStrip",
+      "CoachFig",
+      "ClanSim",
+      "Trio",
+      "BootCta"
+    ],
+    "src/components/ui.jsx": [
+      "cn",
+      "Page",
+      "Card",
+      "H2",
+      "Button",
+      "Btn",
+      "Field",
+      "inputCls",
+      "Meter",
+      "Donut",
+      "DONUT_COLORS_EXPORT",
+      "Radar",
+      "Badge",
+      "Chip",
+      "Skeleton",
+      "Reveal",
+      "CountUp",
+      "Empty",
+      "ErrorBox",
+      "StatusBar",
+      "AsciiRule",
+      "Ticket",
+      "TermWindow",
+      "SAGE",
+      "GOLD",
+      "SAGE_BG",
+      "GOLD_BG",
+      "VaidyaLevel",
+      "SyllabusTable"
+    ],
+    "src/data/ayushSeed.js": [
+      "AYUSH_ENABLED",
+      "AYUSH_ROLE",
+      "AYUSH_JOBS",
+      "AYUSH_TREE",
+      "AYUSH_COURSES",
+      "AYUSH_PROJECT_IDEAS",
+      "AYUSH_QUIZ",
+      "AYUSH_INTERVIEW_QS",
+      "AYUSH_QUESTIONNAIRE",
+      "AYUSH_FDPS",
+      "AYUSH_SYLLABUS",
+      "AYUSH_ROADMAP_STAGES"
+    ],
+    "src/data/boardsSeed.js": [
+      "BOARDS_JOBS"
+    ],
+    "src/data/colleges.js": [
+      "COLLEGES",
+      "recomputeCollegeAvg"
+    ],
+    "src/data/courses.js": [
+      "COURSES",
+      "coursesFor",
+      "certsFor",
+      "recommendFor",
+      "videosFor",
+      "resumeTips",
+      "PROJECT_IDEAS"
+    ],
+    "src/data/fdps.js": [
+      "FDP_KINDS",
+      "FDPS"
+    ],
+    "src/data/fixtures.js": [
+      "SAMPLE_RESUME"
+    ],
+    "src/data/interview.js": [
+      "INTERVIEW_QS"
+    ],
+    "src/data/jobs.js": [
+      "JOBS",
+      "matchJobs"
+    ],
+    "src/data/naukriSeed.js": [
+      "NAUKRI_JOBS"
+    ],
+    "src/data/programs.js": [
+      "PROGRAM_KINDS",
+      "PROGRAMS",
+      "programsFor",
+      "programsByKind"
+    ],
+    "src/data/questionnaire.js": [
+      "QUESTIONNAIRE"
+    ],
+    "src/data/quests.js": [
+      "QUEST_TREE",
+      "questFor"
+    ],
+    "src/data/quiz.js": [
+      "QUIZ",
+      "gradeSet",
+      "gradeQuiz",
+      "quizSample",
+      "loadQuizBest",
+      "saveQuizBest",
+      "todayDay"
+    ],
+    "src/data/seedJobsExtra.js": [
+      "EXTRA_JOBS"
+    ],
+    "src/data/taxonomy.js": [
+      "PROFICIENCY",
+      "proficiencyLabel",
+      "DOMAINS",
+      "SKILLS",
+      "skillById",
+      "resolveSkill",
+      "skillsByDomain",
+      "domainLabel",
+      "decayedLevel",
+      "demandWeight",
+      "DEFAULT_REQUIRED_LEVEL",
+      "TAXONOMY_ROLES",
+      "taxonomyRole",
+      "requiredFor",
+      "gapVector",
+      "listProposals",
+      "proposeSkill",
+      "approveSkill",
+      "rejectSkill",
+      "approvedSkills"
+    ],
+    "src/data/tuning.js": [
+      "TONES",
+      "DEFAULT_TONE",
+      "getTone",
+      "setTone",
+      "getCustom",
+      "setCustom",
+      "systemPreamble"
+    ],
+    "src/lib/ai.js": [
+      "TASKS",
+      "modelFor",
+      "hasAIKey",
+      "chat",
+      "memoCall"
+    ],
+    "src/lib/aiQuestions.js": [
+      "parseQuizItems",
+      "parseInterviewItems",
+      "parseQuestionnaireItems",
+      "genQuizItems",
+      "genInterviewQs",
+      "gradeAnswerAI",
+      "genQuestionnaire"
+    ],
+    "src/lib/ats.js": [
+      "STRONG_VERBS",
+      "extractProjectLines",
+      "scoreATS"
+    ],
+    "src/lib/auth.js": [
+      "getUser",
+      "signInWithGoogle",
+      "signOut",
+      "onAuthChange",
+      "authLabel"
+    ],
+    "src/lib/backend.js": [
+      "JOB_EVENTS",
+      "ARTIFACT_KINDS",
+      "RESUME_SECTIONS",
+      "isJobEvent",
+      "isArtifactKind",
+      "normalizeSection",
+      "toAssessmentRow",
+      "toJobEventRow",
+      "toArtifactRow",
+      "toFeedbackRow",
+      "funnelCounts",
+      "loadAssessments",
+      "loadJobEvents",
+      "loadArtifacts",
+      "loadFeedback",
+      "analyticsSummary",
+      "saveAssessment",
+      "saveResumeSections",
+      "recordJobEvent",
+      "saveArtifact",
+      "submitFeedback",
+      "loadRemoteAssessments",
+      "loadRemoteFeedback"
+    ],
+    "src/lib/coach.js": [
+      "COACH_ACTIONS",
+      "buildPrompt",
+      "matchBand",
+      "matchJob",
+      "matchWriteup",
+      "reviewWriteup",
+      "coverLetter",
+      "parseJobPosting",
+      "localAnswer"
+    ],
+    "src/lib/cohort.js": [
+      "COHORT",
+      "mainOf",
+      "enrich",
+      "cohortStats",
+      "toCSV"
+    ],
+    "src/lib/dashboard.js": [
+      "donutSegments",
+      "weekTrend",
+      "recentActivity",
+      "demandHeatmap",
+      "briefing"
+    ],
+    "src/lib/gemini.js": [
+      "parseQuestionSet"
+    ],
+    "src/lib/i18n.js": [
+      "LANGS",
+      "STRINGS",
+      "loadLang",
+      "saveLang",
+      "t"
+    ],
+    "src/lib/identity.js": [
+      "getOrCreateC2CId",
+      "loadNickname",
+      "saveNickname",
+      "loadCerts",
+      "addCert",
+      "removeCert",
+      "loadGithub",
+      "saveGithub"
+    ],
+    "src/lib/interview.js": [
+      "scoreAnswer",
+      "skillReadiness"
+    ],
+    "src/lib/match.js": [
+      "MATCH_WEIGHTS",
+      "matchScore",
+      "levelFromSignals",
+      "profileForMatching",
+      "matchJobPost"
+    ],
+    "src/lib/onboarding.js": [
+      "ONBOARD_W",
+      "onboardingProgress",
+      "questionsFromProfile",
+      "resetOnboarding",
+      "parseAiGrade"
+    ],
+    "src/lib/parseResume.js": [
+      "parseResumeFile",
+      "extractContact",
+      "extractSections"
+    ],
+    "src/lib/profile.js": [
+      "PROFILE_QS",
+      "loadProfile",
+      "saveProfile",
+      "clearProfile",
+      "toMarkdown",
+      "queriesFromProfile",
+      "queryFromProfile"
+    ],
+    "src/lib/progress.js": [
+      "todayISO",
+      "yesterdayISO",
+      "getProgress",
+      "questSnapshot",
+      "isCourseDone",
+      "isProjectDone",
+      "isSkillComplete",
+      "setQuestDone",
+      "getEvidence",
+      "setEvidence",
+      "branchProgress",
+      "recordDay",
+      "weeklyActive",
+      "bumpStreak",
+      "masteryLevel",
+      "getStreak",
+      "completedSkillIdsForRole",
+      "clearProgress"
+    ],
+    "src/lib/questionnaire.js": [
+      "visibleQuestions",
+      "compileEvidence",
+      "qgenKey",
+      "loadCachedSet",
+      "saveCachedSet",
+      "loadQAnswers",
+      "saveQAnswers"
+    ],
+    "src/lib/quests.js": [
+      "hashStr",
+      "pickForId",
+      "isEvidenceUrl"
+    ],
+    "src/lib/roadmapGenerator.js": [
+      "jobDemand",
+      "orderMissingByDemand",
+      "roadmapGenerator"
+    ],
+    "src/lib/roles.js": [
+      "APP_ROLES",
+      "loadRole",
+      "saveRole"
+    ],
+    "src/lib/score.js": [
+      "ROLES",
+      "calculateMainScore",
+      "rankFor",
+      "rankRoles",
+      "scoreResume",
+      "normalizeScoreResult",
+      "questPairsToProof",
+      "combineScores"
+    ],
+    "src/lib/speech.js": [
+      "isVoiceSupported",
+      "listenOnce"
+    ],
+    "src/lib/storage.js": [
+      "loadJSON",
+      "saveJSON",
+      "loadText",
+      "saveText"
+    ],
+    "src/lib/store.js": [
+      "toJobShape",
+      "mergeJobs",
+      "loadCustomJobs",
+      "saveCustomJob",
+      "loadApplications",
+      "countLocalApplications",
+      "listJobsBoard",
+      "createJobBoard",
+      "recordApplication",
+      "countRemoteApplications",
+      "listApplicants",
+      "loadInterests",
+      "toggleInterest",
+      "recordInterest",
+      "loadEnrollments",
+      "toggleEnrollment",
+      "isVerified",
+      "hasGivenKudos",
+      "loadKudosFallback",
+      "fetchKudos",
+      "giveKudos",
+      "loadSharedShowcase",
+      "guessRole",
+      "extractSkills",
+      "toLiveJobShape",
+      "liveCacheAt",
+      "toArbeitJobShape",
+      "listLiveJobs"
+    ],
+    "src/lib/streak.js": [
+      "dayISO",
+      "collectDayDetail",
+      "collectDayCounts",
+      "levelFor",
+      "heatmapWeeks",
+      "currentStreak",
+      "totalActive"
+    ],
+    "src/lib/supabase.js": [
+      "isSupabaseOn",
+      "getClient",
+      "mergeBoards",
+      "loadBoard",
+      "submitScore"
+    ],
+    "src/lib/theme.js": [
+      "loadTheme",
+      "saveTheme"
+    ],
+    "src/lib/verify.js": [
+      "signCredential",
+      "checkCredential",
+      "verifyUrl",
+      "loadRevocations",
+      "revokeCredential",
+      "revocationFor",
+      "checkCredentialStatus"
+    ],
+    "src/lib/xp.js": [
+      "XP_WEIGHTS",
+      "XP_SOURCES",
+      "levelFor",
+      "collectXP"
+    ],
+    "src/main.jsx": [],
+    "src/pages/Ayush.jsx": [
+      "Ayush"
+    ],
+    "src/pages/Faculty.jsx": [
+      "Faculty"
+    ],
+    "src/pages/Home.jsx": [
+      "Home"
+    ],
+    "src/pages/Industry.jsx": [
+      "Industry"
+    ],
+    "src/pages/Institute.jsx": [
+      "Institute"
+    ],
+    "src/pages/Interview.jsx": [
+      "Interview"
+    ],
+    "src/pages/Jobs.jsx": [
+      "Jobs"
+    ],
+    "src/pages/Journey.jsx": [
+      "Journey"
+    ],
+    "src/pages/Match.jsx": [
+      "Match"
+    ],
+    "src/pages/NotFound.jsx": [
+      "NotFound"
+    ],
+    "src/pages/Portfolio.jsx": [
+      "Portfolio"
+    ],
+    "src/pages/Profile.jsx": [
+      "Profile"
+    ],
+    "src/pages/Programs.jsx": [
+      "Programs"
+    ],
+    "src/pages/Public.jsx": [
+      "Public"
+    ],
+    "src/pages/Quests.jsx": [
+      "Quests"
+    ],
+    "src/pages/Quiz.jsx": [
+      "Quiz"
+    ],
+    "src/pages/Resume.jsx": [
+      "Resume"
+    ],
+    "src/pages/Verify.jsx": [
+      "Verify"
+    ],
+    "src/pages/Workspace.jsx": [
+      "Workspace"
+    ],
+    "tests/ai.test.js": [],
+    "tests/aiopt.test.js": [],
+    "tests/aiquestions.test.js": [],
+    "tests/ats.test.js": [],
+    "tests/ayush.test.js": [],
+    "tests/ayushPortal.test.js": [],
+    "tests/ayushProof.test.js": [],
+    "tests/backend.test.js": [],
+    "tests/coach.test.js": [],
+    "tests/dashboard.test.js": [],
+    "tests/faculty.test.js": [],
+    "tests/i18n.test.js": [],
+    "tests/institute.test.js": [],
+    "tests/interview.test.js": [],
+    "tests/match.test.js": [],
+    "tests/naukri.test.js": [],
+    "tests/onboarding.test.js": [],
+    "tests/portfolio.test.js": [],
+    "tests/profile.test.js": [],
+    "tests/programs.test.js": [],
+    "tests/questionnaire.test.js": [],
+    "tests/quests.test.js": [],
+    "tests/quiz.test.js": [],
+    "tests/recommend.test.js": [],
+    "tests/score.test.js": [],
+    "tests/scores.test.js": [],
+    "tests/sections.test.js": [],
+    "tests/store.test.js": [],
+    "tests/streak.test.js": [],
+    "tests/taxonomy.test.js": [],
+    "tests/tips.test.js": [],
+    "tests/tuning.test.js": [],
+    "tests/verify.test.js": [],
+    "tests/xp.test.js": [],
+    "vite.config.js": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "src/app/error-boundary.jsx",
+          "language": "javascript",
+          "sizeLines": 68,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/app/shell.jsx",
+          "language": "javascript",
+          "sizeLines": 415,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/app/store.jsx",
+          "language": "javascript",
+          "sizeLines": 72,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/landing/Figs.jsx",
+          "language": "javascript",
+          "sizeLines": 123,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/landing/FractalMap.jsx",
+          "language": "javascript",
+          "sizeLines": 218,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/landing/LandingHero.jsx",
+          "language": "javascript",
+          "sizeLines": 134,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/landing/Sections.jsx",
+          "language": "javascript",
+          "sizeLines": 130,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/ui.jsx",
+          "language": "javascript",
+          "sizeLines": 432,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/ayushSeed.js",
+          "language": "javascript",
+          "sizeLines": 126,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/jobs.js",
+          "language": "javascript",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/dashboard.js",
+          "language": "javascript",
+          "sizeLines": 77,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/roles.js",
+          "language": "javascript",
+          "sizeLines": 18,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/theme.js",
+          "language": "javascript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/main.jsx",
+          "language": "javascript",
+          "sizeLines": 21,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Ayush.jsx",
+          "language": "javascript",
+          "sizeLines": 150,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Institute.jsx",
+          "language": "javascript",
+          "sizeLines": 136,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Jobs.jsx",
+          "language": "javascript",
+          "sizeLines": 504,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/NotFound.jsx",
+          "language": "javascript",
+          "sizeLines": 9,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Quiz.jsx",
+          "language": "javascript",
+          "sizeLines": 119,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Verify.jsx",
+          "language": "javascript",
+          "sizeLines": 57,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Workspace.jsx",
+          "language": "javascript",
+          "sizeLines": 160,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/dashboard.test.js",
+          "language": "javascript",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/app/error-boundary.jsx": [],
+        "src/app/shell.jsx": [
+          "src/app/coach-widget.jsx",
+          "src/app/error-boundary.jsx",
+          "src/app/store.jsx",
+          "src/lib/auth.js",
+          "src/lib/i18n.js",
+          "src/lib/score.js",
+          "src/lib/theme.js",
+          "src/pages/Ayush.jsx",
+          "src/pages/Faculty.jsx",
+          "src/pages/Home.jsx",
+          "src/pages/Industry.jsx",
+          "src/pages/Institute.jsx",
+          "src/pages/Interview.jsx",
+          "src/pages/Jobs.jsx",
+          "src/pages/Journey.jsx",
+          "src/pages/Match.jsx",
+          "src/pages/NotFound.jsx",
+          "src/pages/Portfolio.jsx",
+          "src/pages/Profile.jsx",
+          "src/pages/Programs.jsx",
+          "src/pages/Public.jsx",
+          "src/pages/Quests.jsx",
+          "src/pages/Quiz.jsx",
+          "src/pages/Resume.jsx",
+          "src/pages/Verify.jsx",
+          "src/pages/Workspace.jsx"
+        ],
+        "src/app/store.jsx": [
+          "src/lib/backend.js",
+          "src/lib/roles.js",
+          "src/lib/storage.js",
+          "src/lib/store.js"
+        ],
+        "src/components/landing/Figs.jsx": [
+          "src/components/ui.jsx"
+        ],
+        "src/components/landing/FractalMap.jsx": [],
+        "src/components/landing/LandingHero.jsx": [
+          "src/app/store.jsx",
+          "src/components/landing/FractalMap.jsx",
+          "src/components/ui.jsx"
+        ],
+        "src/components/landing/Sections.jsx": [
+          "src/components/ui.jsx"
+        ],
+        "src/components/ui.jsx": [],
+        "src/data/ayushSeed.js": [],
+        "src/data/jobs.js": [],
+        "src/lib/dashboard.js": [],
+        "src/lib/roles.js": [
+          "src/lib/storage.js"
+        ],
+        "src/lib/theme.js": [
+          "src/lib/storage.js"
+        ],
+        "src/main.jsx": [
+          "src/app/shell.jsx",
+          "src/app/store.jsx",
+          "src/index.css"
+        ],
+        "src/pages/Ayush.jsx": [
+          "src/app/store.jsx",
+          "src/components/landing/FractalMap.jsx",
+          "src/components/ui.jsx",
+          "src/data/ayushSeed.js",
+          "src/lib/progress.js"
+        ],
+        "src/pages/Institute.jsx": [
+          "src/components/ui.jsx",
+          "src/data/ayushSeed.js",
+          "src/data/jobs.js",
+          "src/lib/backend.js",
+          "src/lib/cohort.js",
+          "src/lib/dashboard.js"
+        ],
+        "src/pages/Jobs.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/ayushSeed.js",
+          "src/data/jobs.js",
+          "src/data/quiz.js",
+          "src/lib/coach.js",
+          "src/lib/dashboard.js",
+          "src/lib/match.js",
+          "src/lib/profile.js",
+          "src/lib/questionnaire.js",
+          "src/lib/score.js",
+          "src/lib/store.js"
+        ],
+        "src/pages/NotFound.jsx": [
+          "src/components/ui.jsx"
+        ],
+        "src/pages/Quiz.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/ayushSeed.js",
+          "src/data/quiz.js",
+          "src/lib/identity.js",
+          "src/lib/progress.js",
+          "src/lib/score.js"
+        ],
+        "src/pages/Verify.jsx": [
+          "src/components/ui.jsx",
+          "src/lib/verify.js"
+        ],
+        "src/pages/Workspace.jsx": [
+          "src/app/store.jsx",
+          "src/ayush/proof.js",
+          "src/components/ui.jsx",
+          "src/data/ayushSeed.js",
+          "src/data/jobs.js",
+          "src/lib/store.js"
+        ],
+        "tests/dashboard.test.js": [
+          "src/lib/dashboard.js"
+        ]
+      },
+      "neighborMap": {
+        "src/app/shell.jsx": [
+          {
+            "path": "src/app/coach-widget.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "CoachWidget"
+            ]
+          },
+          {
+            "path": "src/lib/auth.js",
+            "batchIndex": 2,
+            "symbols": [
+              "getUser",
+              "signInWithGoogle",
+              "signOut",
+              "onAuthChange",
+              "authLabel"
+            ]
+          },
+          {
+            "path": "src/lib/i18n.js",
+            "batchIndex": 2,
+            "symbols": [
+              "LANGS",
+              "STRINGS",
+              "loadLang",
+              "saveLang",
+              "t"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/pages/Faculty.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Faculty"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Industry.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Industry"
+            ]
+          },
+          {
+            "path": "src/pages/Interview.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Interview"
+            ]
+          },
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          },
+          {
+            "path": "src/pages/Match.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Match"
+            ]
+          },
+          {
+            "path": "src/pages/Portfolio.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Portfolio"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          },
+          {
+            "path": "src/pages/Programs.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Programs"
+            ]
+          },
+          {
+            "path": "src/pages/Public.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Public"
+            ]
+          },
+          {
+            "path": "src/pages/Quests.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Quests"
+            ]
+          },
+          {
+            "path": "src/pages/Resume.jsx",
+            "batchIndex": 5,
+            "symbols": [
+              "Resume"
+            ]
+          }
+        ],
+        "src/app/store.jsx": [
+          {
+            "path": "src/lib/backend.js",
+            "batchIndex": 2,
+            "symbols": [
+              "JOB_EVENTS",
+              "ARTIFACT_KINDS",
+              "RESUME_SECTIONS",
+              "isJobEvent",
+              "isArtifactKind",
+              "normalizeSection",
+              "toAssessmentRow",
+              "toJobEventRow",
+              "toArtifactRow",
+              "toFeedbackRow",
+              "funnelCounts",
+              "loadAssessments",
+              "loadJobEvents",
+              "loadArtifacts",
+              "loadFeedback",
+              "analyticsSummary",
+              "saveAssessment",
+              "saveResumeSections",
+              "recordJobEvent",
+              "saveArtifact",
+              "submitFeedback",
+              "loadRemoteAssessments",
+              "loadRemoteFeedback"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          },
+          {
+            "path": "src/app/coach-widget.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "CoachWidget"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Industry.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Industry"
+            ]
+          },
+          {
+            "path": "src/pages/Interview.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Interview"
+            ]
+          },
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          },
+          {
+            "path": "src/pages/Match.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Match"
+            ]
+          },
+          {
+            "path": "src/pages/Portfolio.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Portfolio"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          },
+          {
+            "path": "src/pages/Programs.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Programs"
+            ]
+          },
+          {
+            "path": "src/pages/Public.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Public"
+            ]
+          },
+          {
+            "path": "src/pages/Quests.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Quests"
+            ]
+          },
+          {
+            "path": "src/pages/Resume.jsx",
+            "batchIndex": 5,
+            "symbols": [
+              "Resume"
+            ]
+          }
+        ],
+        "src/components/ui.jsx": [
+          {
+            "path": "src/app/coach-widget.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "CoachWidget"
+            ]
+          },
+          {
+            "path": "src/components/StreakMeter.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "StreakMeter"
+            ]
+          },
+          {
+            "path": "src/components/XpMeter.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "XpMeter"
+            ]
+          },
+          {
+            "path": "src/pages/Faculty.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Faculty"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Industry.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Industry"
+            ]
+          },
+          {
+            "path": "src/pages/Interview.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Interview"
+            ]
+          },
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          },
+          {
+            "path": "src/pages/Match.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Match"
+            ]
+          },
+          {
+            "path": "src/pages/Portfolio.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Portfolio"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          },
+          {
+            "path": "src/pages/Programs.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Programs"
+            ]
+          },
+          {
+            "path": "src/pages/Public.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Public"
+            ]
+          },
+          {
+            "path": "src/pages/Quests.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Quests"
+            ]
+          },
+          {
+            "path": "src/pages/Resume.jsx",
+            "batchIndex": 5,
+            "symbols": [
+              "Resume"
+            ]
+          }
+        ],
+        "src/data/ayushSeed.js": [
+          {
+            "path": "src/pages/Interview.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Interview"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          }
+        ],
+        "src/data/jobs.js": [
+          {
+            "path": "src/app/coach-widget.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "CoachWidget"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Quests.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Quests"
+            ]
+          }
+        ],
+        "src/lib/roles.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          }
+        ],
+        "src/lib/theme.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          }
+        ],
+        "src/main.jsx": [
+          {
+            "path": "src/index.css",
+            "batchIndex": 10,
+            "symbols": []
+          }
+        ],
+        "src/pages/Ayush.jsx": [
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          }
+        ],
+        "src/pages/Institute.jsx": [
+          {
+            "path": "src/lib/backend.js",
+            "batchIndex": 2,
+            "symbols": [
+              "JOB_EVENTS",
+              "ARTIFACT_KINDS",
+              "RESUME_SECTIONS",
+              "isJobEvent",
+              "isArtifactKind",
+              "normalizeSection",
+              "toAssessmentRow",
+              "toJobEventRow",
+              "toArtifactRow",
+              "toFeedbackRow",
+              "funnelCounts",
+              "loadAssessments",
+              "loadJobEvents",
+              "loadArtifacts",
+              "loadFeedback",
+              "analyticsSummary",
+              "saveAssessment",
+              "saveResumeSections",
+              "recordJobEvent",
+              "saveArtifact",
+              "submitFeedback",
+              "loadRemoteAssessments",
+              "loadRemoteFeedback"
+            ]
+          },
+          {
+            "path": "src/lib/cohort.js",
+            "batchIndex": 5,
+            "symbols": [
+              "COHORT",
+              "mainOf",
+              "enrich",
+              "cohortStats",
+              "toCSV"
+            ]
+          }
+        ],
+        "src/pages/Jobs.jsx": [
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/lib/coach.js",
+            "batchIndex": 3,
+            "symbols": [
+              "COACH_ACTIONS",
+              "buildPrompt",
+              "matchBand",
+              "matchJob",
+              "matchWriteup",
+              "reviewWriteup",
+              "coverLetter",
+              "parseJobPosting",
+              "localAnswer"
+            ]
+          },
+          {
+            "path": "src/lib/match.js",
+            "batchIndex": 8,
+            "symbols": [
+              "MATCH_WEIGHTS",
+              "matchScore",
+              "levelFromSignals",
+              "profileForMatching",
+              "matchJobPost"
+            ]
+          },
+          {
+            "path": "src/lib/profile.js",
+            "batchIndex": 3,
+            "symbols": [
+              "PROFILE_QS",
+              "loadProfile",
+              "saveProfile",
+              "clearProfile",
+              "toMarkdown",
+              "queriesFromProfile",
+              "queryFromProfile"
+            ]
+          },
+          {
+            "path": "src/lib/questionnaire.js",
+            "batchIndex": 7,
+            "symbols": [
+              "visibleQuestions",
+              "compileEvidence",
+              "qgenKey",
+              "loadCachedSet",
+              "saveCachedSet",
+              "loadQAnswers",
+              "saveQAnswers"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          }
+        ],
+        "src/pages/Quiz.jsx": [
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/lib/identity.js",
+            "batchIndex": 2,
+            "symbols": [
+              "getOrCreateC2CId",
+              "loadNickname",
+              "saveNickname",
+              "loadCerts",
+              "addCert",
+              "removeCert",
+              "loadGithub",
+              "saveGithub"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          }
+        ],
+        "src/pages/Verify.jsx": [
+          {
+            "path": "src/lib/verify.js",
+            "batchIndex": 2,
+            "symbols": [
+              "signCredential",
+              "checkCredential",
+              "verifyUrl",
+              "loadRevocations",
+              "revokeCredential",
+              "revocationFor",
+              "checkCredentialStatus"
+            ]
+          }
+        ],
+        "src/pages/Workspace.jsx": [
+          {
+            "path": "src/ayush/proof.js",
+            "batchIndex": 5,
+            "symbols": [
+              "loadLedger",
+              "addProof",
+              "removeProof",
+              "proofsFor",
+              "caseCount",
+              "verifyState",
+              "skillConfidence",
+              "PROOF_KINDS"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "scripts/boards.mjs",
+          "language": "javascript",
+          "sizeLines": 128,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/colleges.js",
+          "language": "javascript",
+          "sizeLines": 14,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/auth.js",
+          "language": "javascript",
+          "sizeLines": 53,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/backend.js",
+          "language": "javascript",
+          "sizeLines": 181,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/i18n.js",
+          "language": "javascript",
+          "sizeLines": 82,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/identity.js",
+          "language": "javascript",
+          "sizeLines": 60,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/storage.js",
+          "language": "javascript",
+          "sizeLines": 42,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/store.js",
+          "language": "javascript",
+          "sizeLines": 379,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/supabase.js",
+          "language": "javascript",
+          "sizeLines": 85,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/verify.js",
+          "language": "javascript",
+          "sizeLines": 83,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Portfolio.jsx",
+          "language": "javascript",
+          "sizeLines": 237,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Public.jsx",
+          "language": "javascript",
+          "sizeLines": 65,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/backend.test.js",
+          "language": "javascript",
+          "sizeLines": 63,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/i18n.test.js",
+          "language": "javascript",
+          "sizeLines": 28,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/portfolio.test.js",
+          "language": "javascript",
+          "sizeLines": 53,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/store.test.js",
+          "language": "javascript",
+          "sizeLines": 39,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/verify.test.js",
+          "language": "javascript",
+          "sizeLines": 43,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "scripts/boards.mjs": [
+          "src/lib/store.js"
+        ],
+        "src/data/colleges.js": [],
+        "src/lib/auth.js": [
+          "src/lib/supabase.js"
+        ],
+        "src/lib/backend.js": [
+          "src/lib/identity.js",
+          "src/lib/storage.js",
+          "src/lib/supabase.js"
+        ],
+        "src/lib/i18n.js": [
+          "src/lib/storage.js"
+        ],
+        "src/lib/identity.js": [
+          "src/lib/storage.js"
+        ],
+        "src/lib/storage.js": [],
+        "src/lib/store.js": [
+          "src/lib/identity.js",
+          "src/lib/profile.js",
+          "src/lib/score.js",
+          "src/lib/storage.js",
+          "src/lib/supabase.js"
+        ],
+        "src/lib/supabase.js": [
+          "src/data/colleges.js"
+        ],
+        "src/lib/verify.js": [
+          "src/lib/quests.js",
+          "src/lib/storage.js"
+        ],
+        "src/pages/Portfolio.jsx": [
+          "src/app/store.jsx",
+          "src/ayush/scoring.js",
+          "src/components/ui.jsx",
+          "src/lib/backend.js",
+          "src/lib/identity.js",
+          "src/lib/progress.js",
+          "src/lib/score.js",
+          "src/lib/storage.js",
+          "src/lib/store.js",
+          "src/lib/verify.js"
+        ],
+        "src/pages/Public.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/lib/identity.js",
+          "src/lib/progress.js",
+          "src/lib/score.js",
+          "src/lib/storage.js",
+          "src/lib/store.js",
+          "src/lib/verify.js"
+        ],
+        "tests/backend.test.js": [
+          "src/lib/backend.js"
+        ],
+        "tests/i18n.test.js": [
+          "src/lib/i18n.js"
+        ],
+        "tests/portfolio.test.js": [
+          "src/lib/identity.js",
+          "src/lib/store.js"
+        ],
+        "tests/store.test.js": [
+          "src/lib/store.js"
+        ],
+        "tests/verify.test.js": [
+          "src/lib/verify.js"
+        ]
+      },
+      "neighborMap": {
+        "src/lib/auth.js": [
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          }
+        ],
+        "src/lib/backend.js": [
+          {
+            "path": "src/app/coach-widget.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "CoachWidget"
+            ]
+          },
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/pages/Institute.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Institute"
+            ]
+          }
+        ],
+        "src/lib/i18n.js": [
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "src/lib/identity.js": [
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          },
+          {
+            "path": "src/pages/Quiz.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Quiz"
+            ]
+          }
+        ],
+        "src/lib/storage.js": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/ayush/proof.js",
+            "batchIndex": 5,
+            "symbols": [
+              "loadLedger",
+              "addProof",
+              "removeProof",
+              "proofsFor",
+              "caseCount",
+              "verifyState",
+              "skillConfidence",
+              "PROOF_KINDS"
+            ]
+          },
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/data/taxonomy.js",
+            "batchIndex": 8,
+            "symbols": [
+              "PROFICIENCY",
+              "proficiencyLabel",
+              "DOMAINS",
+              "SKILLS",
+              "skillById",
+              "resolveSkill",
+              "skillsByDomain",
+              "domainLabel",
+              "decayedLevel",
+              "demandWeight",
+              "DEFAULT_REQUIRED_LEVEL",
+              "TAXONOMY_ROLES",
+              "taxonomyRole",
+              "requiredFor",
+              "gapVector",
+              "listProposals",
+              "proposeSkill",
+              "approveSkill",
+              "rejectSkill",
+              "approvedSkills"
+            ]
+          },
+          {
+            "path": "src/data/tuning.js",
+            "batchIndex": 3,
+            "symbols": [
+              "TONES",
+              "DEFAULT_TONE",
+              "getTone",
+              "setTone",
+              "getCustom",
+              "setCustom",
+              "systemPreamble"
+            ]
+          },
+          {
+            "path": "src/lib/ai.js",
+            "batchIndex": 3,
+            "symbols": [
+              "TASKS",
+              "modelFor",
+              "hasAIKey",
+              "chat",
+              "memoCall"
+            ]
+          },
+          {
+            "path": "src/lib/onboarding.js",
+            "batchIndex": 6,
+            "symbols": [
+              "ONBOARD_W",
+              "onboardingProgress",
+              "questionsFromProfile",
+              "resetOnboarding",
+              "parseAiGrade"
+            ]
+          },
+          {
+            "path": "src/lib/profile.js",
+            "batchIndex": 3,
+            "symbols": [
+              "PROFILE_QS",
+              "loadProfile",
+              "saveProfile",
+              "clearProfile",
+              "toMarkdown",
+              "queriesFromProfile",
+              "queryFromProfile"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/questionnaire.js",
+            "batchIndex": 7,
+            "symbols": [
+              "visibleQuestions",
+              "compileEvidence",
+              "qgenKey",
+              "loadCachedSet",
+              "saveCachedSet",
+              "loadQAnswers",
+              "saveQAnswers"
+            ]
+          },
+          {
+            "path": "src/lib/roles.js",
+            "batchIndex": 1,
+            "symbols": [
+              "APP_ROLES",
+              "loadRole",
+              "saveRole"
+            ]
+          },
+          {
+            "path": "src/lib/streak.js",
+            "batchIndex": 6,
+            "symbols": [
+              "dayISO",
+              "collectDayDetail",
+              "collectDayCounts",
+              "levelFor",
+              "heatmapWeeks",
+              "currentStreak",
+              "totalActive"
+            ]
+          },
+          {
+            "path": "src/lib/theme.js",
+            "batchIndex": 1,
+            "symbols": [
+              "loadTheme",
+              "saveTheme"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Interview.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Interview"
+            ]
+          },
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          },
+          {
+            "path": "src/pages/Resume.jsx",
+            "batchIndex": 5,
+            "symbols": [
+              "Resume"
+            ]
+          }
+        ],
+        "src/lib/store.js": [
+          {
+            "path": "src/lib/profile.js",
+            "batchIndex": 3,
+            "symbols": [
+              "PROFILE_QS",
+              "loadProfile",
+              "saveProfile",
+              "clearProfile",
+              "toMarkdown",
+              "queriesFromProfile",
+              "queryFromProfile"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/lib/coach.js",
+            "batchIndex": 3,
+            "symbols": [
+              "COACH_ACTIONS",
+              "buildPrompt",
+              "matchBand",
+              "matchJob",
+              "matchWriteup",
+              "reviewWriteup",
+              "coverLetter",
+              "parseJobPosting",
+              "localAnswer"
+            ]
+          },
+          {
+            "path": "src/pages/Faculty.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Faculty"
+            ]
+          },
+          {
+            "path": "src/pages/Industry.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Industry"
+            ]
+          },
+          {
+            "path": "src/pages/Jobs.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Jobs"
+            ]
+          },
+          {
+            "path": "src/pages/Programs.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Programs"
+            ]
+          },
+          {
+            "path": "src/pages/Workspace.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Workspace"
+            ]
+          },
+          {
+            "path": "tests/faculty.test.js",
+            "batchIndex": 4,
+            "symbols": []
+          },
+          {
+            "path": "tests/profile.test.js",
+            "batchIndex": 3,
+            "symbols": []
+          },
+          {
+            "path": "tests/programs.test.js",
+            "batchIndex": 8,
+            "symbols": []
+          },
+          {
+            "path": "tests/recommend.test.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/lib/verify.js": [
+          {
+            "path": "src/lib/quests.js",
+            "batchIndex": 4,
+            "symbols": [
+              "hashStr",
+              "pickForId",
+              "isEvidenceUrl"
+            ]
+          },
+          {
+            "path": "src/pages/Verify.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Verify"
+            ]
+          }
+        ],
+        "src/pages/Portfolio.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/ayush/scoring.js",
+            "batchIndex": 5,
+            "symbols": [
+              "vaidyaLevel",
+              "pathForSkill",
+              "ayushReadout"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "src/pages/Public.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "src/app/coach-widget.jsx",
+          "language": "javascript",
+          "sizeLines": 357,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/courses.js",
+          "language": "javascript",
+          "sizeLines": 89,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/tuning.js",
+          "language": "javascript",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/ai.js",
+          "language": "javascript",
+          "sizeLines": 118,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/aiQuestions.js",
+          "language": "javascript",
+          "sizeLines": 103,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/coach.js",
+          "language": "javascript",
+          "sizeLines": 216,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/gemini.js",
+          "language": "javascript",
+          "sizeLines": 24,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/parseResume.js",
+          "language": "javascript",
+          "sizeLines": 79,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/profile.js",
+          "language": "javascript",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Journey.jsx",
+          "language": "javascript",
+          "sizeLines": 436,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/ai.test.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/aiquestions.test.js",
+          "language": "javascript",
+          "sizeLines": 40,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/coach.test.js",
+          "language": "javascript",
+          "sizeLines": 124,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/profile.test.js",
+          "language": "javascript",
+          "sizeLines": 56,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/sections.test.js",
+          "language": "javascript",
+          "sizeLines": 45,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/tips.test.js",
+          "language": "javascript",
+          "sizeLines": 27,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/tuning.test.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/app/coach-widget.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/jobs.js",
+          "src/lib/ai.js",
+          "src/lib/backend.js",
+          "src/lib/coach.js",
+          "src/lib/parseResume.js",
+          "src/lib/profile.js",
+          "src/lib/score.js"
+        ],
+        "src/data/courses.js": [],
+        "src/data/tuning.js": [
+          "src/lib/storage.js"
+        ],
+        "src/lib/ai.js": [
+          "src/data/tuning.js",
+          "src/lib/quests.js",
+          "src/lib/storage.js"
+        ],
+        "src/lib/aiQuestions.js": [
+          "src/lib/ai.js",
+          "src/lib/gemini.js",
+          "src/lib/onboarding.js"
+        ],
+        "src/lib/coach.js": [
+          "src/data/courses.js",
+          "src/lib/store.js"
+        ],
+        "src/lib/gemini.js": [],
+        "src/lib/parseResume.js": [],
+        "src/lib/profile.js": [
+          "src/lib/storage.js"
+        ],
+        "src/pages/Journey.jsx": [
+          "src/app/store.jsx",
+          "src/ayush/resumes.js",
+          "src/components/ui.jsx",
+          "src/data/courses.js",
+          "src/lib/ai.js",
+          "src/lib/aiQuestions.js",
+          "src/lib/interview.js",
+          "src/lib/onboarding.js",
+          "src/lib/parseResume.js",
+          "src/lib/profile.js",
+          "src/lib/progress.js",
+          "src/lib/score.js",
+          "src/lib/storage.js"
+        ],
+        "tests/ai.test.js": [
+          "src/lib/ai.js"
+        ],
+        "tests/aiquestions.test.js": [
+          "src/lib/aiQuestions.js"
+        ],
+        "tests/coach.test.js": [
+          "src/data/courses.js",
+          "src/lib/coach.js"
+        ],
+        "tests/profile.test.js": [
+          "src/data/courses.js",
+          "src/lib/profile.js",
+          "src/lib/store.js"
+        ],
+        "tests/sections.test.js": [
+          "src/lib/parseResume.js"
+        ],
+        "tests/tips.test.js": [
+          "src/data/courses.js"
+        ],
+        "tests/tuning.test.js": [
+          "src/data/tuning.js"
+        ]
+      },
+      "neighborMap": {
+        "src/app/coach-widget.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/jobs.js",
+            "batchIndex": 1,
+            "symbols": [
+              "JOBS",
+              "matchJobs"
+            ]
+          },
+          {
+            "path": "src/lib/backend.js",
+            "batchIndex": 2,
+            "symbols": [
+              "JOB_EVENTS",
+              "ARTIFACT_KINDS",
+              "RESUME_SECTIONS",
+              "isJobEvent",
+              "isArtifactKind",
+              "normalizeSection",
+              "toAssessmentRow",
+              "toJobEventRow",
+              "toArtifactRow",
+              "toFeedbackRow",
+              "funnelCounts",
+              "loadAssessments",
+              "loadJobEvents",
+              "loadArtifacts",
+              "loadFeedback",
+              "analyticsSummary",
+              "saveAssessment",
+              "saveResumeSections",
+              "recordJobEvent",
+              "saveArtifact",
+              "submitFeedback",
+              "loadRemoteAssessments",
+              "loadRemoteFeedback"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "src/data/courses.js": [
+          {
+            "path": "src/lib/roadmapGenerator.js",
+            "batchIndex": 4,
+            "symbols": [
+              "jobDemand",
+              "orderMissingByDemand",
+              "roadmapGenerator"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Resume.jsx",
+            "batchIndex": 5,
+            "symbols": [
+              "Resume"
+            ]
+          },
+          {
+            "path": "tests/ayush.test.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/data/tuning.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          }
+        ],
+        "src/lib/ai.js": [
+          {
+            "path": "src/lib/quests.js",
+            "batchIndex": 4,
+            "symbols": [
+              "hashStr",
+              "pickForId",
+              "isEvidenceUrl"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "tests/aiopt.test.js",
+            "batchIndex": 7,
+            "symbols": []
+          }
+        ],
+        "src/lib/aiQuestions.js": [
+          {
+            "path": "src/lib/onboarding.js",
+            "batchIndex": 6,
+            "symbols": [
+              "ONBOARD_W",
+              "onboardingProgress",
+              "questionsFromProfile",
+              "resetOnboarding",
+              "parseAiGrade"
+            ]
+          }
+        ],
+        "src/lib/coach.js": [
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          },
+          {
+            "path": "src/lib/match.js",
+            "batchIndex": 8,
+            "symbols": [
+              "MATCH_WEIGHTS",
+              "matchScore",
+              "levelFromSignals",
+              "profileForMatching",
+              "matchJobPost"
+            ]
+          },
+          {
+            "path": "src/pages/Jobs.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Jobs"
+            ]
+          }
+        ],
+        "src/lib/parseResume.js": [
+          {
+            "path": "src/pages/Resume.jsx",
+            "batchIndex": 5,
+            "symbols": [
+              "Resume"
+            ]
+          }
+        ],
+        "src/lib/profile.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Jobs.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Jobs"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          }
+        ],
+        "src/pages/Journey.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/ayush/resumes.js",
+            "batchIndex": 5,
+            "symbols": [
+              "AYUSH_RESUMES",
+              "RESUME_ANATOMY",
+              "RESUME_BULLETS",
+              "SKILL_WHY"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/lib/interview.js",
+            "batchIndex": 7,
+            "symbols": [
+              "scoreAnswer",
+              "skillReadiness"
+            ]
+          },
+          {
+            "path": "src/lib/onboarding.js",
+            "batchIndex": 6,
+            "symbols": [
+              "ONBOARD_W",
+              "onboardingProgress",
+              "questionsFromProfile",
+              "resetOnboarding",
+              "parseAiGrade"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "tests/profile.test.js": [
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "src/ayush/seed.js",
+          "language": "javascript",
+          "sizeLines": 110,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/fdps.js",
+          "language": "javascript",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/interview.js",
+          "language": "javascript",
+          "sizeLines": 10,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/quests.js",
+          "language": "javascript",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/quiz.js",
+          "language": "javascript",
+          "sizeLines": 80,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/quests.js",
+          "language": "javascript",
+          "sizeLines": 24,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/roadmapGenerator.js",
+          "language": "javascript",
+          "sizeLines": 65,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Faculty.jsx",
+          "language": "javascript",
+          "sizeLines": 57,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Quests.jsx",
+          "language": "javascript",
+          "sizeLines": 293,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/ayush.test.js",
+          "language": "javascript",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/faculty.test.js",
+          "language": "javascript",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/quests.test.js",
+          "language": "javascript",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/quiz.test.js",
+          "language": "javascript",
+          "sizeLines": 52,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/recommend.test.js",
+          "language": "javascript",
+          "sizeLines": 58,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/ayush/seed.js": [],
+        "src/data/fdps.js": [
+          "src/ayush/seed.js"
+        ],
+        "src/data/interview.js": [
+          "src/ayush/seed.js"
+        ],
+        "src/data/quests.js": [
+          "src/ayush/seed.js"
+        ],
+        "src/data/quiz.js": [
+          "src/ayush/seed.js",
+          "src/lib/quests.js",
+          "src/lib/storage.js"
+        ],
+        "src/lib/quests.js": [],
+        "src/lib/roadmapGenerator.js": [
+          "src/data/courses.js",
+          "src/data/quests.js"
+        ],
+        "src/pages/Faculty.jsx": [
+          "src/components/ui.jsx",
+          "src/data/fdps.js",
+          "src/lib/store.js"
+        ],
+        "src/pages/Quests.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/jobs.js",
+          "src/data/quiz.js",
+          "src/lib/progress.js",
+          "src/lib/quests.js",
+          "src/lib/roadmapGenerator.js"
+        ],
+        "tests/ayush.test.js": [
+          "src/ayush/seed.js",
+          "src/data/courses.js",
+          "src/data/fdps.js",
+          "src/data/interview.js",
+          "src/data/questionnaire.js",
+          "src/data/quests.js",
+          "src/data/quiz.js",
+          "src/lib/score.js"
+        ],
+        "tests/faculty.test.js": [
+          "src/ayush/seed.js",
+          "src/data/fdps.js",
+          "src/lib/store.js"
+        ],
+        "tests/quests.test.js": [
+          "src/lib/quests.js"
+        ],
+        "tests/quiz.test.js": [
+          "src/data/quiz.js"
+        ],
+        "tests/recommend.test.js": [
+          "src/lib/roadmapGenerator.js",
+          "src/lib/store.js"
+        ]
+      },
+      "neighborMap": {
+        "src/ayush/seed.js": [
+          {
+            "path": "src/data/questionnaire.js",
+            "batchIndex": 7,
+            "symbols": [
+              "QUESTIONNAIRE"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "tests/ayushPortal.test.js",
+            "batchIndex": 5,
+            "symbols": []
+          }
+        ],
+        "src/data/quests.js": [
+          {
+            "path": "src/lib/match.js",
+            "batchIndex": 8,
+            "symbols": [
+              "MATCH_WEIGHTS",
+              "matchScore",
+              "levelFromSignals",
+              "profileForMatching",
+              "matchJobPost"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          }
+        ],
+        "src/data/quiz.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/ayush/scoring.js",
+            "batchIndex": 5,
+            "symbols": [
+              "vaidyaLevel",
+              "pathForSkill",
+              "ayushReadout"
+            ]
+          },
+          {
+            "path": "src/pages/Industry.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Industry"
+            ]
+          },
+          {
+            "path": "src/pages/Jobs.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Jobs"
+            ]
+          },
+          {
+            "path": "src/pages/Match.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Match"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          },
+          {
+            "path": "src/pages/Programs.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Programs"
+            ]
+          },
+          {
+            "path": "src/pages/Quiz.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Quiz"
+            ]
+          }
+        ],
+        "src/lib/quests.js": [
+          {
+            "path": "src/lib/ai.js",
+            "batchIndex": 3,
+            "symbols": [
+              "TASKS",
+              "modelFor",
+              "hasAIKey",
+              "chat",
+              "memoCall"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/questionnaire.js",
+            "batchIndex": 7,
+            "symbols": [
+              "visibleQuestions",
+              "compileEvidence",
+              "qgenKey",
+              "loadCachedSet",
+              "saveCachedSet",
+              "loadQAnswers",
+              "saveQAnswers"
+            ]
+          },
+          {
+            "path": "src/lib/verify.js",
+            "batchIndex": 2,
+            "symbols": [
+              "signCredential",
+              "checkCredential",
+              "verifyUrl",
+              "loadRevocations",
+              "revokeCredential",
+              "revocationFor",
+              "checkCredentialStatus"
+            ]
+          }
+        ],
+        "src/lib/roadmapGenerator.js": [
+          {
+            "path": "src/data/courses.js",
+            "batchIndex": 3,
+            "symbols": [
+              "COURSES",
+              "coursesFor",
+              "certsFor",
+              "recommendFor",
+              "videosFor",
+              "resumeTips",
+              "PROJECT_IDEAS"
+            ]
+          }
+        ],
+        "src/pages/Faculty.jsx": [
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "src/pages/Quests.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/jobs.js",
+            "batchIndex": 1,
+            "symbols": [
+              "JOBS",
+              "matchJobs"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "tests/ayush.test.js": [
+          {
+            "path": "src/data/courses.js",
+            "batchIndex": 3,
+            "symbols": [
+              "COURSES",
+              "coursesFor",
+              "certsFor",
+              "recommendFor",
+              "videosFor",
+              "resumeTips",
+              "PROJECT_IDEAS"
+            ]
+          },
+          {
+            "path": "src/data/questionnaire.js",
+            "batchIndex": 7,
+            "symbols": [
+              "QUESTIONNAIRE"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          }
+        ],
+        "tests/faculty.test.js": [
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          }
+        ],
+        "tests/recommend.test.js": [
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "src/ayush/data.js",
+          "language": "javascript",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/ayush/proof.js",
+          "language": "javascript",
+          "sizeLines": 97,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/ayush/resumes.js",
+          "language": "javascript",
+          "sizeLines": 140,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/ayush/scoring.js",
+          "language": "javascript",
+          "sizeLines": 49,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/cohort.js",
+          "language": "javascript",
+          "sizeLines": 61,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/score.js",
+          "language": "javascript",
+          "sizeLines": 82,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Resume.jsx",
+          "language": "javascript",
+          "sizeLines": 283,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/ayushPortal.test.js",
+          "language": "javascript",
+          "sizeLines": 71,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/institute.test.js",
+          "language": "javascript",
+          "sizeLines": 47,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/score.test.js",
+          "language": "javascript",
+          "sizeLines": 52,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/scores.test.js",
+          "language": "javascript",
+          "sizeLines": 53,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/ayush/data.js": [],
+        "src/ayush/proof.js": [
+          "src/lib/storage.js"
+        ],
+        "src/ayush/resumes.js": [],
+        "src/ayush/scoring.js": [
+          "src/ayush/proof.js",
+          "src/data/quiz.js",
+          "src/lib/score.js"
+        ],
+        "src/lib/cohort.js": [
+          "src/lib/score.js"
+        ],
+        "src/lib/score.js": [
+          "src/ayush/seed.js",
+          "src/lib/ats.js"
+        ],
+        "src/pages/Resume.jsx": [
+          "src/app/store.jsx",
+          "src/ayush/resumes.js",
+          "src/ayush/scoring.js",
+          "src/components/ui.jsx",
+          "src/data/courses.js",
+          "src/lib/parseResume.js",
+          "src/lib/progress.js",
+          "src/lib/score.js",
+          "src/lib/storage.js"
+        ],
+        "tests/ayushPortal.test.js": [
+          "src/ayush/data.js",
+          "src/ayush/resumes.js",
+          "src/ayush/seed.js",
+          "src/lib/score.js"
+        ],
+        "tests/institute.test.js": [
+          "src/lib/cohort.js",
+          "src/lib/score.js"
+        ],
+        "tests/score.test.js": [
+          "src/lib/score.js"
+        ],
+        "tests/scores.test.js": [
+          "src/lib/score.js"
+        ]
+      },
+      "neighborMap": {
+        "src/ayush/proof.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/lib/match.js",
+            "batchIndex": 8,
+            "symbols": [
+              "MATCH_WEIGHTS",
+              "matchScore",
+              "levelFromSignals",
+              "profileForMatching",
+              "matchJobPost"
+            ]
+          },
+          {
+            "path": "src/pages/Workspace.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Workspace"
+            ]
+          }
+        ],
+        "src/ayush/resumes.js": [
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          }
+        ],
+        "src/ayush/scoring.js": [
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Portfolio.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Portfolio"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          }
+        ],
+        "src/lib/cohort.js": [
+          {
+            "path": "src/pages/Institute.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Institute"
+            ]
+          }
+        ],
+        "src/lib/score.js": [
+          {
+            "path": "src/ayush/seed.js",
+            "batchIndex": 4,
+            "symbols": [
+              "AYUSH_ENABLED",
+              "AYUSH_ROLE",
+              "AYUSH_JOBS",
+              "AYUSH_TREE",
+              "AYUSH_COURSES",
+              "AYUSH_PROJECT_IDEAS",
+              "AYUSH_QUIZ",
+              "AYUSH_INTERVIEW_QS",
+              "AYUSH_QUESTIONNAIRE",
+              "AYUSH_FDPS"
+            ]
+          },
+          {
+            "path": "src/lib/ats.js",
+            "batchIndex": 7,
+            "symbols": [
+              "STRONG_VERBS",
+              "extractProjectLines",
+              "scoreATS"
+            ]
+          },
+          {
+            "path": "src/app/coach-widget.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "CoachWidget"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          },
+          {
+            "path": "src/pages/Home.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Home"
+            ]
+          },
+          {
+            "path": "src/pages/Interview.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Interview"
+            ]
+          },
+          {
+            "path": "src/pages/Jobs.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Jobs"
+            ]
+          },
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          },
+          {
+            "path": "src/pages/Portfolio.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Portfolio"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          },
+          {
+            "path": "src/pages/Public.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Public"
+            ]
+          },
+          {
+            "path": "src/pages/Quiz.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Quiz"
+            ]
+          },
+          {
+            "path": "tests/ayush.test.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/pages/Resume.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/courses.js",
+            "batchIndex": 3,
+            "symbols": [
+              "COURSES",
+              "coursesFor",
+              "certsFor",
+              "recommendFor",
+              "videosFor",
+              "resumeTips",
+              "PROJECT_IDEAS"
+            ]
+          },
+          {
+            "path": "src/lib/parseResume.js",
+            "batchIndex": 3,
+            "symbols": [
+              "parseResumeFile",
+              "extractContact",
+              "extractSections"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "tests/ayushPortal.test.js": [
+          {
+            "path": "src/ayush/seed.js",
+            "batchIndex": 4,
+            "symbols": [
+              "AYUSH_ENABLED",
+              "AYUSH_ROLE",
+              "AYUSH_JOBS",
+              "AYUSH_TREE",
+              "AYUSH_COURSES",
+              "AYUSH_PROJECT_IDEAS",
+              "AYUSH_QUIZ",
+              "AYUSH_INTERVIEW_QS",
+              "AYUSH_QUESTIONNAIRE",
+              "AYUSH_FDPS"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": "src/components/StreakMeter.jsx",
+          "language": "javascript",
+          "sizeLines": 89,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/components/XpMeter.jsx",
+          "language": "javascript",
+          "sizeLines": 58,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/onboarding.js",
+          "language": "javascript",
+          "sizeLines": 75,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/progress.js",
+          "language": "javascript",
+          "sizeLines": 184,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/streak.js",
+          "language": "javascript",
+          "sizeLines": 110,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/xp.js",
+          "language": "javascript",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Home.jsx",
+          "language": "javascript",
+          "sizeLines": 241,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Profile.jsx",
+          "language": "javascript",
+          "sizeLines": 442,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/onboarding.test.js",
+          "language": "javascript",
+          "sizeLines": 64,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/streak.test.js",
+          "language": "javascript",
+          "sizeLines": 48,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/xp.test.js",
+          "language": "javascript",
+          "sizeLines": 35,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/components/StreakMeter.jsx": [
+          "src/components/ui.jsx",
+          "src/lib/streak.js"
+        ],
+        "src/components/XpMeter.jsx": [
+          "src/components/ui.jsx",
+          "src/lib/xp.js"
+        ],
+        "src/lib/onboarding.js": [
+          "src/lib/storage.js"
+        ],
+        "src/lib/progress.js": [
+          "src/data/quests.js",
+          "src/lib/quests.js",
+          "src/lib/storage.js"
+        ],
+        "src/lib/streak.js": [
+          "src/lib/progress.js",
+          "src/lib/storage.js"
+        ],
+        "src/lib/xp.js": [
+          "src/lib/streak.js"
+        ],
+        "src/pages/Home.jsx": [
+          "src/app/store.jsx",
+          "src/ayush/scoring.js",
+          "src/components/StreakMeter.jsx",
+          "src/components/XpMeter.jsx",
+          "src/components/ui.jsx",
+          "src/data/courses.js",
+          "src/data/jobs.js",
+          "src/lib/onboarding.js",
+          "src/lib/profile.js",
+          "src/lib/progress.js",
+          "src/lib/score.js",
+          "src/lib/storage.js"
+        ],
+        "src/pages/Profile.jsx": [
+          "src/app/store.jsx",
+          "src/ayush/scoring.js",
+          "src/components/ui.jsx",
+          "src/data/ayushSeed.js",
+          "src/data/quiz.js",
+          "src/data/taxonomy.js",
+          "src/lib/auth.js",
+          "src/lib/identity.js",
+          "src/lib/match.js",
+          "src/lib/onboarding.js",
+          "src/lib/profile.js",
+          "src/lib/progress.js",
+          "src/lib/score.js",
+          "src/lib/storage.js",
+          "src/lib/streak.js",
+          "src/lib/xp.js"
+        ],
+        "tests/onboarding.test.js": [
+          "src/lib/onboarding.js"
+        ],
+        "tests/streak.test.js": [
+          "src/lib/streak.js"
+        ],
+        "tests/xp.test.js": [
+          "src/lib/xp.js"
+        ]
+      },
+      "neighborMap": {
+        "src/components/StreakMeter.jsx": [
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          }
+        ],
+        "src/components/XpMeter.jsx": [
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          }
+        ],
+        "src/lib/onboarding.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/lib/aiQuestions.js",
+            "batchIndex": 3,
+            "symbols": [
+              "parseQuizItems",
+              "parseInterviewItems",
+              "parseQuestionnaireItems",
+              "genQuizItems",
+              "genInterviewQs",
+              "gradeAnswerAI",
+              "genQuestionnaire"
+            ]
+          },
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          }
+        ],
+        "src/lib/progress.js": [
+          {
+            "path": "src/data/quests.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUEST_TREE",
+              "questFor"
+            ]
+          },
+          {
+            "path": "src/lib/quests.js",
+            "batchIndex": 4,
+            "symbols": [
+              "hashStr",
+              "pickForId",
+              "isEvidenceUrl"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/lib/match.js",
+            "batchIndex": 8,
+            "symbols": [
+              "MATCH_WEIGHTS",
+              "matchScore",
+              "levelFromSignals",
+              "profileForMatching",
+              "matchJobPost"
+            ]
+          },
+          {
+            "path": "src/pages/Ayush.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Ayush"
+            ]
+          },
+          {
+            "path": "src/pages/Interview.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Interview"
+            ]
+          },
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          },
+          {
+            "path": "src/pages/Portfolio.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Portfolio"
+            ]
+          },
+          {
+            "path": "src/pages/Public.jsx",
+            "batchIndex": 2,
+            "symbols": [
+              "Public"
+            ]
+          },
+          {
+            "path": "src/pages/Quests.jsx",
+            "batchIndex": 4,
+            "symbols": [
+              "Quests"
+            ]
+          },
+          {
+            "path": "src/pages/Quiz.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Quiz"
+            ]
+          },
+          {
+            "path": "src/pages/Resume.jsx",
+            "batchIndex": 5,
+            "symbols": [
+              "Resume"
+            ]
+          }
+        ],
+        "src/lib/streak.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          }
+        ],
+        "src/pages/Home.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/ayush/scoring.js",
+            "batchIndex": 5,
+            "symbols": [
+              "vaidyaLevel",
+              "pathForSkill",
+              "ayushReadout"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/courses.js",
+            "batchIndex": 3,
+            "symbols": [
+              "COURSES",
+              "coursesFor",
+              "certsFor",
+              "recommendFor",
+              "videosFor",
+              "resumeTips",
+              "PROJECT_IDEAS"
+            ]
+          },
+          {
+            "path": "src/data/jobs.js",
+            "batchIndex": 1,
+            "symbols": [
+              "JOBS",
+              "matchJobs"
+            ]
+          },
+          {
+            "path": "src/lib/profile.js",
+            "batchIndex": 3,
+            "symbols": [
+              "PROFILE_QS",
+              "loadProfile",
+              "saveProfile",
+              "clearProfile",
+              "toMarkdown",
+              "queriesFromProfile",
+              "queryFromProfile"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "src/pages/Profile.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/ayush/scoring.js",
+            "batchIndex": 5,
+            "symbols": [
+              "vaidyaLevel",
+              "pathForSkill",
+              "ayushReadout"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/ayushSeed.js",
+            "batchIndex": 1,
+            "symbols": [
+              "AYUSH_ENABLED",
+              "AYUSH_ROLE",
+              "AYUSH_JOBS",
+              "AYUSH_TREE",
+              "AYUSH_COURSES",
+              "AYUSH_PROJECT_IDEAS",
+              "AYUSH_QUIZ",
+              "AYUSH_INTERVIEW_QS",
+              "AYUSH_QUESTIONNAIRE",
+              "AYUSH_FDPS",
+              "AYUSH_SYLLABUS",
+              "AYUSH_ROADMAP_STAGES"
+            ]
+          },
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/data/taxonomy.js",
+            "batchIndex": 8,
+            "symbols": [
+              "PROFICIENCY",
+              "proficiencyLabel",
+              "DOMAINS",
+              "SKILLS",
+              "skillById",
+              "resolveSkill",
+              "skillsByDomain",
+              "domainLabel",
+              "decayedLevel",
+              "demandWeight",
+              "DEFAULT_REQUIRED_LEVEL",
+              "TAXONOMY_ROLES",
+              "taxonomyRole",
+              "requiredFor",
+              "gapVector",
+              "listProposals",
+              "proposeSkill",
+              "approveSkill",
+              "rejectSkill",
+              "approvedSkills"
+            ]
+          },
+          {
+            "path": "src/lib/auth.js",
+            "batchIndex": 2,
+            "symbols": [
+              "getUser",
+              "signInWithGoogle",
+              "signOut",
+              "onAuthChange",
+              "authLabel"
+            ]
+          },
+          {
+            "path": "src/lib/identity.js",
+            "batchIndex": 2,
+            "symbols": [
+              "getOrCreateC2CId",
+              "loadNickname",
+              "saveNickname",
+              "loadCerts",
+              "addCert",
+              "removeCert",
+              "loadGithub",
+              "saveGithub"
+            ]
+          },
+          {
+            "path": "src/lib/match.js",
+            "batchIndex": 8,
+            "symbols": [
+              "MATCH_WEIGHTS",
+              "matchScore",
+              "levelFromSignals",
+              "profileForMatching",
+              "matchJobPost"
+            ]
+          },
+          {
+            "path": "src/lib/profile.js",
+            "batchIndex": 3,
+            "symbols": [
+              "PROFILE_QS",
+              "loadProfile",
+              "saveProfile",
+              "clearProfile",
+              "toMarkdown",
+              "queriesFromProfile",
+              "queryFromProfile"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 7,
+      "files": [
+        {
+          "path": "src/data/questionnaire.js",
+          "language": "javascript",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/ats.js",
+          "language": "javascript",
+          "sizeLines": 163,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/interview.js",
+          "language": "javascript",
+          "sizeLines": 53,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/questionnaire.js",
+          "language": "javascript",
+          "sizeLines": 58,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/speech.js",
+          "language": "javascript",
+          "sizeLines": 45,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Industry.jsx",
+          "language": "javascript",
+          "sizeLines": 205,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Interview.jsx",
+          "language": "javascript",
+          "sizeLines": 143,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/aiopt.test.js",
+          "language": "javascript",
+          "sizeLines": 46,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/ats.test.js",
+          "language": "javascript",
+          "sizeLines": 78,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/interview.test.js",
+          "language": "javascript",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/questionnaire.test.js",
+          "language": "javascript",
+          "sizeLines": 39,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/data/questionnaire.js": [
+          "src/ayush/seed.js"
+        ],
+        "src/lib/ats.js": [
+          "src/lib/score.js"
+        ],
+        "src/lib/interview.js": [
+          "src/lib/ats.js"
+        ],
+        "src/lib/questionnaire.js": [
+          "src/lib/quests.js",
+          "src/lib/storage.js"
+        ],
+        "src/lib/speech.js": [],
+        "src/pages/Industry.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/quiz.js",
+          "src/lib/match.js",
+          "src/lib/questionnaire.js",
+          "src/lib/store.js"
+        ],
+        "src/pages/Interview.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/ayushSeed.js",
+          "src/data/questionnaire.js",
+          "src/lib/interview.js",
+          "src/lib/progress.js",
+          "src/lib/questionnaire.js",
+          "src/lib/score.js",
+          "src/lib/speech.js",
+          "src/lib/storage.js"
+        ],
+        "tests/aiopt.test.js": [
+          "src/lib/ai.js",
+          "src/lib/ats.js"
+        ],
+        "tests/ats.test.js": [
+          "src/lib/ats.js"
+        ],
+        "tests/interview.test.js": [
+          "src/lib/interview.js"
+        ],
+        "tests/questionnaire.test.js": [
+          "src/data/questionnaire.js",
+          "src/lib/questionnaire.js"
+        ]
+      },
+      "neighborMap": {
+        "src/data/questionnaire.js": [
+          {
+            "path": "src/ayush/seed.js",
+            "batchIndex": 4,
+            "symbols": [
+              "AYUSH_ENABLED",
+              "AYUSH_ROLE",
+              "AYUSH_JOBS",
+              "AYUSH_TREE",
+              "AYUSH_COURSES",
+              "AYUSH_PROJECT_IDEAS",
+              "AYUSH_QUIZ",
+              "AYUSH_INTERVIEW_QS",
+              "AYUSH_QUESTIONNAIRE",
+              "AYUSH_FDPS"
+            ]
+          },
+          {
+            "path": "tests/ayush.test.js",
+            "batchIndex": 4,
+            "symbols": []
+          }
+        ],
+        "src/lib/ats.js": [
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          }
+        ],
+        "src/lib/interview.js": [
+          {
+            "path": "src/pages/Journey.jsx",
+            "batchIndex": 3,
+            "symbols": [
+              "Journey"
+            ]
+          }
+        ],
+        "src/lib/questionnaire.js": [
+          {
+            "path": "src/lib/quests.js",
+            "batchIndex": 4,
+            "symbols": [
+              "hashStr",
+              "pickForId",
+              "isEvidenceUrl"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/pages/Jobs.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Jobs"
+            ]
+          },
+          {
+            "path": "src/pages/Match.jsx",
+            "batchIndex": 8,
+            "symbols": [
+              "Match"
+            ]
+          }
+        ],
+        "src/pages/Industry.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/lib/match.js",
+            "batchIndex": 8,
+            "symbols": [
+              "MATCH_WEIGHTS",
+              "matchScore",
+              "levelFromSignals",
+              "profileForMatching",
+              "matchJobPost"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "src/pages/Interview.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/ayushSeed.js",
+            "batchIndex": 1,
+            "symbols": [
+              "AYUSH_ENABLED",
+              "AYUSH_ROLE",
+              "AYUSH_JOBS",
+              "AYUSH_TREE",
+              "AYUSH_COURSES",
+              "AYUSH_PROJECT_IDEAS",
+              "AYUSH_QUIZ",
+              "AYUSH_INTERVIEW_QS",
+              "AYUSH_QUESTIONNAIRE",
+              "AYUSH_FDPS",
+              "AYUSH_SYLLABUS",
+              "AYUSH_ROADMAP_STAGES"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/lib/score.js",
+            "batchIndex": 5,
+            "symbols": [
+              "ROLES",
+              "calculateMainScore",
+              "rankFor",
+              "rankRoles",
+              "scoreResume",
+              "normalizeScoreResult",
+              "questPairsToProof",
+              "combineScores"
+            ]
+          },
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "tests/aiopt.test.js": [
+          {
+            "path": "src/lib/ai.js",
+            "batchIndex": 3,
+            "symbols": [
+              "TASKS",
+              "modelFor",
+              "hasAIKey",
+              "chat",
+              "memoCall"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": "src/data/programs.js",
+          "language": "javascript",
+          "sizeLines": 33,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/taxonomy.js",
+          "language": "javascript",
+          "sizeLines": 307,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/lib/match.js",
+          "language": "javascript",
+          "sizeLines": 159,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Match.jsx",
+          "language": "javascript",
+          "sizeLines": 155,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/pages/Programs.jsx",
+          "language": "javascript",
+          "sizeLines": 114,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/match.test.js",
+          "language": "javascript",
+          "sizeLines": 111,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/programs.test.js",
+          "language": "javascript",
+          "sizeLines": 37,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/taxonomy.test.js",
+          "language": "javascript",
+          "sizeLines": 94,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "src/data/programs.js": [],
+        "src/data/taxonomy.js": [
+          "src/lib/storage.js"
+        ],
+        "src/lib/match.js": [
+          "src/ayush/proof.js",
+          "src/data/quests.js",
+          "src/data/taxonomy.js",
+          "src/lib/coach.js",
+          "src/lib/progress.js"
+        ],
+        "src/pages/Match.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/quiz.js",
+          "src/data/taxonomy.js",
+          "src/lib/match.js",
+          "src/lib/questionnaire.js"
+        ],
+        "src/pages/Programs.jsx": [
+          "src/app/store.jsx",
+          "src/components/ui.jsx",
+          "src/data/programs.js",
+          "src/data/quiz.js",
+          "src/data/taxonomy.js",
+          "src/lib/match.js",
+          "src/lib/store.js"
+        ],
+        "tests/match.test.js": [
+          "src/data/taxonomy.js",
+          "src/lib/match.js"
+        ],
+        "tests/programs.test.js": [
+          "src/data/programs.js",
+          "src/data/taxonomy.js",
+          "src/lib/store.js"
+        ],
+        "tests/taxonomy.test.js": [
+          "src/data/taxonomy.js"
+        ]
+      },
+      "neighborMap": {
+        "src/data/taxonomy.js": [
+          {
+            "path": "src/lib/storage.js",
+            "batchIndex": 2,
+            "symbols": [
+              "loadJSON",
+              "saveJSON",
+              "loadText",
+              "saveText"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          }
+        ],
+        "src/lib/match.js": [
+          {
+            "path": "src/ayush/proof.js",
+            "batchIndex": 5,
+            "symbols": [
+              "loadLedger",
+              "addProof",
+              "removeProof",
+              "proofsFor",
+              "caseCount",
+              "verifyState",
+              "skillConfidence",
+              "PROOF_KINDS"
+            ]
+          },
+          {
+            "path": "src/data/quests.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUEST_TREE",
+              "questFor"
+            ]
+          },
+          {
+            "path": "src/lib/coach.js",
+            "batchIndex": 3,
+            "symbols": [
+              "COACH_ACTIONS",
+              "buildPrompt",
+              "matchBand",
+              "matchJob",
+              "matchWriteup",
+              "reviewWriteup",
+              "coverLetter",
+              "parseJobPosting",
+              "localAnswer"
+            ]
+          },
+          {
+            "path": "src/lib/progress.js",
+            "batchIndex": 6,
+            "symbols": [
+              "todayISO",
+              "yesterdayISO",
+              "getProgress",
+              "questSnapshot",
+              "isCourseDone",
+              "isProjectDone",
+              "isSkillComplete",
+              "setQuestDone",
+              "getEvidence",
+              "setEvidence",
+              "branchProgress",
+              "recordDay",
+              "weeklyActive",
+              "bumpStreak",
+              "masteryLevel",
+              "getStreak",
+              "completedSkillIdsForRole",
+              "clearProgress"
+            ]
+          },
+          {
+            "path": "src/pages/Industry.jsx",
+            "batchIndex": 7,
+            "symbols": [
+              "Industry"
+            ]
+          },
+          {
+            "path": "src/pages/Jobs.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Jobs"
+            ]
+          },
+          {
+            "path": "src/pages/Profile.jsx",
+            "batchIndex": 6,
+            "symbols": [
+              "Profile"
+            ]
+          }
+        ],
+        "src/pages/Match.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/lib/questionnaire.js",
+            "batchIndex": 7,
+            "symbols": [
+              "visibleQuestions",
+              "compileEvidence",
+              "qgenKey",
+              "loadCachedSet",
+              "saveCachedSet",
+              "loadQAnswers",
+              "saveQAnswers"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "src/pages/Programs.jsx": [
+          {
+            "path": "src/app/store.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "C2CProvider",
+              "useC2C"
+            ]
+          },
+          {
+            "path": "src/components/ui.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "cn",
+              "Page",
+              "Card",
+              "H2",
+              "Button",
+              "Btn",
+              "Field",
+              "inputCls",
+              "Meter",
+              "Donut",
+              "DONUT_COLORS_EXPORT",
+              "Radar",
+              "Badge",
+              "Chip",
+              "Skeleton",
+              "Reveal",
+              "CountUp",
+              "Empty",
+              "ErrorBox",
+              "StatusBar",
+              "AsciiRule",
+              "Ticket",
+              "TermWindow",
+              "SAGE",
+              "GOLD",
+              "SAGE_BG",
+              "GOLD_BG",
+              "VaidyaLevel",
+              "SyllabusTable"
+            ]
+          },
+          {
+            "path": "src/data/quiz.js",
+            "batchIndex": 4,
+            "symbols": [
+              "QUIZ",
+              "gradeSet",
+              "gradeQuiz",
+              "quizSample",
+              "loadQuizBest",
+              "saveQuizBest",
+              "todayDay"
+            ]
+          },
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          },
+          {
+            "path": "src/app/shell.jsx",
+            "batchIndex": 1,
+            "symbols": [
+              "Shell"
+            ]
+          }
+        ],
+        "tests/programs.test.js": [
+          {
+            "path": "src/lib/store.js",
+            "batchIndex": 2,
+            "symbols": [
+              "toJobShape",
+              "mergeJobs",
+              "loadCustomJobs",
+              "saveCustomJob",
+              "loadApplications",
+              "countLocalApplications",
+              "listJobsBoard",
+              "createJobBoard",
+              "recordApplication",
+              "countRemoteApplications",
+              "listApplicants",
+              "loadInterests",
+              "toggleInterest",
+              "recordInterest",
+              "loadEnrollments",
+              "toggleEnrollment",
+              "isVerified",
+              "hasGivenKudos",
+              "loadKudosFallback",
+              "fetchKudos",
+              "giveKudos",
+              "loadSharedShowcase",
+              "guessRole",
+              "extractSkills",
+              "toLiveJobShape",
+              "liveCacheAt",
+              "toArbeitJobShape",
+              "listLiveJobs"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 9,
+      "files": [
+        {
+          "path": ".env",
+          "language": "config",
+          "sizeLines": 5,
+          "fileCategory": "config"
+        },
+        {
+          "path": ".env.example",
+          "language": "config",
+          "sizeLines": 11,
+          "fileCategory": "config"
+        },
+        {
+          "path": ".oxlintrc.json",
+          "language": "json",
+          "sizeLines": 8,
+          "fileCategory": "config"
+        },
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 23,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "index.html",
+          "language": "html",
+          "sizeLines": 22,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "package.json",
+          "language": "json",
+          "sizeLines": 41,
+          "fileCategory": "config"
+        },
+        {
+          "path": "vercel.json",
+          "language": "json",
+          "sizeLines": 3,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        ".env": [],
+        ".env.example": [],
+        ".oxlintrc.json": [],
+        "README.md": [],
+        "index.html": [],
+        "package.json": [],
+        "vercel.json": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 10,
+      "files": [
+        {
+          "path": ".tastemaker/reference-board.md",
+          "language": "markdown",
+          "sizeLines": 25,
+          "fileCategory": "docs"
+        },
+        {
+          "path": ".tastemaker/style-lock.md",
+          "language": "markdown",
+          "sizeLines": 25,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "public/manifest.webmanifest",
+          "language": "webmanifest",
+          "sizeLines": 15,
+          "fileCategory": "code"
+        },
+        {
+          "path": "public/sw.js",
+          "language": "javascript",
+          "sizeLines": 32,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/naukri.mjs",
+          "language": "javascript",
+          "sizeLines": 75,
+          "fileCategory": "code"
+        },
+        {
+          "path": "scripts/scrape.mjs",
+          "language": "javascript",
+          "sizeLines": 44,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/boardsSeed.js",
+          "language": "javascript",
+          "sizeLines": 736,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/fixtures.js",
+          "language": "javascript",
+          "sizeLines": 7,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/naukriSeed.js",
+          "language": "javascript",
+          "sizeLines": 290,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/data/seedJobsExtra.js",
+          "language": "javascript",
+          "sizeLines": 23,
+          "fileCategory": "code"
+        },
+        {
+          "path": "src/index.css",
+          "language": "css",
+          "sizeLines": 259,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "tests/ayushProof.test.js",
+          "language": "javascript",
+          "sizeLines": 52,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/naukri.test.js",
+          "language": "javascript",
+          "sizeLines": 30,
+          "fileCategory": "code"
+        },
+        {
+          "path": "vite.config.js",
+          "language": "javascript",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        ".tastemaker/reference-board.md": [],
+        ".tastemaker/style-lock.md": [],
+        "public/manifest.webmanifest": [],
+        "public/sw.js": [],
+        "scripts/naukri.mjs": [],
+        "scripts/scrape.mjs": [],
+        "src/data/boardsSeed.js": [],
+        "src/data/fixtures.js": [],
+        "src/data/naukriSeed.js": [],
+        "src/data/seedJobsExtra.js": [],
+        "src/index.css": [],
+        "tests/ayushProof.test.js": [],
+        "tests/naukri.test.js": [
+          "scripts/naukri.mjs"
+        ],
+        "vite.config.js": []
+      },
+      "neighborMap": {
+        "src/index.css": [
+          {
+            "path": "src/main.jsx",
+            "batchIndex": 1,
+            "symbols": []
+          }
+        ]
+      }
+    }
+  ]
+}

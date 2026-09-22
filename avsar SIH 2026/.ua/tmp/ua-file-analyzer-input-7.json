@@ -1,0 +1,121 @@
+{
+ "projectRoot": "D:\\CodeProjects\\avsar\\avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": "src/data/questionnaire.js",
+   "language": "javascript",
+   "sizeLines": 15,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/ats.js",
+   "language": "javascript",
+   "sizeLines": 163,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/interview.js",
+   "language": "javascript",
+   "sizeLines": 53,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/questionnaire.js",
+   "language": "javascript",
+   "sizeLines": 58,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/speech.js",
+   "language": "javascript",
+   "sizeLines": 45,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Industry.jsx",
+   "language": "javascript",
+   "sizeLines": 205,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Interview.jsx",
+   "language": "javascript",
+   "sizeLines": 143,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/aiopt.test.js",
+   "language": "javascript",
+   "sizeLines": 46,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/ats.test.js",
+   "language": "javascript",
+   "sizeLines": 78,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/interview.test.js",
+   "language": "javascript",
+   "sizeLines": 38,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/questionnaire.test.js",
+   "language": "javascript",
+   "sizeLines": 39,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  "src/data/questionnaire.js": [
+   "src/ayush/seed.js"
+  ],
+  "src/lib/ats.js": [
+   "src/lib/score.js"
+  ],
+  "src/lib/interview.js": [
+   "src/lib/ats.js"
+  ],
+  "src/lib/questionnaire.js": [
+   "src/lib/quests.js",
+   "src/lib/storage.js"
+  ],
+  "src/lib/speech.js": [],
+  "src/pages/Industry.jsx": [
+   "src/app/store.jsx",
+   "src/components/ui.jsx",
+   "src/data/quiz.js",
+   "src/lib/match.js",
+   "src/lib/questionnaire.js",
+   "src/lib/store.js"
+  ],
+  "src/pages/Interview.jsx": [
+   "src/app/store.jsx",
+   "src/components/ui.jsx",
+   "src/data/ayushSeed.js",
+   "src/data/questionnaire.js",
+   "src/lib/interview.js",
+   "src/lib/progress.js",
+   "src/lib/questionnaire.js",
+   "src/lib/score.js",
+   "src/lib/speech.js",
+   "src/lib/storage.js"
+  ],
+  "tests/aiopt.test.js": [
+   "src/lib/ai.js",
+   "src/lib/ats.js"
+  ],
+  "tests/ats.test.js": [
+   "src/lib/ats.js"
+  ],
+  "tests/interview.test.js": [
+   "src/lib/interview.js"
+  ],
+  "tests/questionnaire.test.js": [
+   "src/data/questionnaire.js",
+   "src/lib/questionnaire.js"
+  ]
+ }
+}

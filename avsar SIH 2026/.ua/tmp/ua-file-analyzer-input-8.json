@@ -1,0 +1,95 @@
+{
+ "projectRoot": "D:\\CodeProjects\\avsar\\avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": "src/data/programs.js",
+   "language": "javascript",
+   "sizeLines": 33,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/taxonomy.js",
+   "language": "javascript",
+   "sizeLines": 307,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/match.js",
+   "language": "javascript",
+   "sizeLines": 159,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Match.jsx",
+   "language": "javascript",
+   "sizeLines": 155,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Programs.jsx",
+   "language": "javascript",
+   "sizeLines": 114,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/match.test.js",
+   "language": "javascript",
+   "sizeLines": 111,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/programs.test.js",
+   "language": "javascript",
+   "sizeLines": 37,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/taxonomy.test.js",
+   "language": "javascript",
+   "sizeLines": 94,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  "src/data/programs.js": [],
+  "src/data/taxonomy.js": [
+   "src/lib/storage.js"
+  ],
+  "src/lib/match.js": [
+   "src/ayush/proof.js",
+   "src/data/quests.js",
+   "src/data/taxonomy.js",
+   "src/lib/coach.js",
+   "src/lib/progress.js"
+  ],
+  "src/pages/Match.jsx": [
+   "src/app/store.jsx",
+   "src/components/ui.jsx",
+   "src/data/quiz.js",
+   "src/data/taxonomy.js",
+   "src/lib/match.js",
+   "src/lib/questionnaire.js"
+  ],
+  "src/pages/Programs.jsx": [
+   "src/app/store.jsx",
+   "src/components/ui.jsx",
+   "src/data/programs.js",
+   "src/data/quiz.js",
+   "src/data/taxonomy.js",
+   "src/lib/match.js",
+   "src/lib/store.js"
+  ],
+  "tests/match.test.js": [
+   "src/data/taxonomy.js",
+   "src/lib/match.js"
+  ],
+  "tests/programs.test.js": [
+   "src/data/programs.js",
+   "src/data/taxonomy.js",
+   "src/lib/store.js"
+  ],
+  "tests/taxonomy.test.js": [
+   "src/data/taxonomy.js"
+  ]
+ }
+}

@@ -1,0 +1,551 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 132,
+    "filesWithImports": 95,
+    "totalEdges": 313
+  },
+  "failures": [],
+  "importMap": {
+    ".env": [],
+    ".env.example": [],
+    ".oxlintrc.json": [],
+    ".tastemaker/reference-board.md": [],
+    ".tastemaker/style-lock.md": [],
+    "README.md": [],
+    "index.html": [],
+    "package.json": [],
+    "public/manifest.webmanifest": [],
+    "public/sw.js": [],
+    "scripts/boards.mjs": [
+      "src/lib/store.js"
+    ],
+    "scripts/naukri.mjs": [],
+    "scripts/scrape.mjs": [],
+    "src/app/coach-widget.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/jobs.js",
+      "src/lib/ai.js",
+      "src/lib/backend.js",
+      "src/lib/coach.js",
+      "src/lib/parseResume.js",
+      "src/lib/profile.js",
+      "src/lib/score.js"
+    ],
+    "src/app/error-boundary.jsx": [],
+    "src/app/shell.jsx": [
+      "src/app/coach-widget.jsx",
+      "src/app/error-boundary.jsx",
+      "src/app/store.jsx",
+      "src/lib/auth.js",
+      "src/lib/i18n.js",
+      "src/lib/score.js",
+      "src/lib/theme.js",
+      "src/pages/Ayush.jsx",
+      "src/pages/Faculty.jsx",
+      "src/pages/Home.jsx",
+      "src/pages/Industry.jsx",
+      "src/pages/Institute.jsx",
+      "src/pages/Interview.jsx",
+      "src/pages/Jobs.jsx",
+      "src/pages/Journey.jsx",
+      "src/pages/Match.jsx",
+      "src/pages/NotFound.jsx",
+      "src/pages/Portfolio.jsx",
+      "src/pages/Profile.jsx",
+      "src/pages/Programs.jsx",
+      "src/pages/Public.jsx",
+      "src/pages/Quests.jsx",
+      "src/pages/Quiz.jsx",
+      "src/pages/Resume.jsx",
+      "src/pages/Verify.jsx",
+      "src/pages/Workspace.jsx"
+    ],
+    "src/app/store.jsx": [
+      "src/lib/backend.js",
+      "src/lib/roles.js",
+      "src/lib/storage.js",
+      "src/lib/store.js"
+    ],
+    "src/ayush/data.js": [],
+    "src/ayush/proof.js": [
+      "src/lib/storage.js"
+    ],
+    "src/ayush/resumes.js": [],
+    "src/ayush/scoring.js": [
+      "src/ayush/proof.js",
+      "src/data/quiz.js",
+      "src/lib/score.js"
+    ],
+    "src/ayush/seed.js": [],
+    "src/components/StreakMeter.jsx": [
+      "src/components/ui.jsx",
+      "src/lib/streak.js"
+    ],
+    "src/components/XpMeter.jsx": [
+      "src/components/ui.jsx",
+      "src/lib/xp.js"
+    ],
+    "src/components/landing/Figs.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/components/landing/FractalMap.jsx": [],
+    "src/components/landing/LandingHero.jsx": [
+      "src/app/store.jsx",
+      "src/components/landing/FractalMap.jsx",
+      "src/components/ui.jsx"
+    ],
+    "src/components/landing/Sections.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/components/ui.jsx": [],
+    "src/data/ayushSeed.js": [],
+    "src/data/boardsSeed.js": [],
+    "src/data/colleges.js": [],
+    "src/data/courses.js": [],
+    "src/data/fdps.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/fixtures.js": [],
+    "src/data/interview.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/jobs.js": [],
+    "src/data/naukriSeed.js": [],
+    "src/data/programs.js": [],
+    "src/data/questionnaire.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/quests.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/quiz.js": [
+      "src/ayush/seed.js",
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/data/seedJobsExtra.js": [],
+    "src/data/taxonomy.js": [
+      "src/lib/storage.js"
+    ],
+    "src/data/tuning.js": [
+      "src/lib/storage.js"
+    ],
+    "src/index.css": [],
+    "src/lib/ai.js": [
+      "src/data/tuning.js",
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/aiQuestions.js": [
+      "src/lib/ai.js",
+      "src/lib/gemini.js",
+      "src/lib/onboarding.js"
+    ],
+    "src/lib/ats.js": [
+      "src/lib/score.js"
+    ],
+    "src/lib/auth.js": [
+      "src/lib/supabase.js"
+    ],
+    "src/lib/backend.js": [
+      "src/lib/identity.js",
+      "src/lib/storage.js",
+      "src/lib/supabase.js"
+    ],
+    "src/lib/coach.js": [
+      "src/data/courses.js",
+      "src/lib/store.js"
+    ],
+    "src/lib/cohort.js": [
+      "src/lib/score.js"
+    ],
+    "src/lib/dashboard.js": [],
+    "src/lib/gemini.js": [],
+    "src/lib/i18n.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/identity.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/interview.js": [
+      "src/lib/ats.js"
+    ],
+    "src/lib/match.js": [
+      "src/ayush/proof.js",
+      "src/data/quests.js",
+      "src/data/taxonomy.js",
+      "src/lib/coach.js",
+      "src/lib/progress.js"
+    ],
+    "src/lib/onboarding.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/parseResume.js": [],
+    "src/lib/profile.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/progress.js": [
+      "src/data/quests.js",
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/questionnaire.js": [
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/quests.js": [],
+    "src/lib/roadmapGenerator.js": [
+      "src/data/courses.js",
+      "src/data/quests.js"
+    ],
+    "src/lib/roles.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/score.js": [
+      "src/ayush/seed.js",
+      "src/lib/ats.js"
+    ],
+    "src/lib/speech.js": [],
+    "src/lib/storage.js": [],
+    "src/lib/store.js": [
+      "src/lib/identity.js",
+      "src/lib/profile.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/supabase.js"
+    ],
+    "src/lib/streak.js": [
+      "src/lib/progress.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/supabase.js": [
+      "src/data/colleges.js"
+    ],
+    "src/lib/theme.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/verify.js": [
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/xp.js": [
+      "src/lib/streak.js"
+    ],
+    "src/main.jsx": [
+      "src/app/shell.jsx",
+      "src/app/store.jsx",
+      "src/index.css"
+    ],
+    "src/pages/Ayush.jsx": [
+      "src/app/store.jsx",
+      "src/components/landing/FractalMap.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/lib/progress.js"
+    ],
+    "src/pages/Faculty.jsx": [
+      "src/components/ui.jsx",
+      "src/data/fdps.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Home.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/scoring.js",
+      "src/components/StreakMeter.jsx",
+      "src/components/XpMeter.jsx",
+      "src/components/ui.jsx",
+      "src/data/courses.js",
+      "src/data/jobs.js",
+      "src/lib/onboarding.js",
+      "src/lib/profile.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Industry.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/quiz.js",
+      "src/lib/match.js",
+      "src/lib/questionnaire.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Institute.jsx": [
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/lib/backend.js",
+      "src/lib/cohort.js",
+      "src/lib/dashboard.js"
+    ],
+    "src/pages/Interview.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/questionnaire.js",
+      "src/lib/interview.js",
+      "src/lib/progress.js",
+      "src/lib/questionnaire.js",
+      "src/lib/score.js",
+      "src/lib/speech.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Jobs.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/data/quiz.js",
+      "src/lib/coach.js",
+      "src/lib/dashboard.js",
+      "src/lib/match.js",
+      "src/lib/profile.js",
+      "src/lib/questionnaire.js",
+      "src/lib/score.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Journey.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/resumes.js",
+      "src/components/ui.jsx",
+      "src/data/courses.js",
+      "src/lib/ai.js",
+      "src/lib/aiQuestions.js",
+      "src/lib/interview.js",
+      "src/lib/onboarding.js",
+      "src/lib/parseResume.js",
+      "src/lib/profile.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Match.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/quiz.js",
+      "src/data/taxonomy.js",
+      "src/lib/match.js",
+      "src/lib/questionnaire.js"
+    ],
+    "src/pages/NotFound.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/pages/Portfolio.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/scoring.js",
+      "src/components/ui.jsx",
+      "src/lib/backend.js",
+      "src/lib/identity.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/store.js",
+      "src/lib/verify.js"
+    ],
+    "src/pages/Profile.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/scoring.js",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/quiz.js",
+      "src/data/taxonomy.js",
+      "src/lib/auth.js",
+      "src/lib/identity.js",
+      "src/lib/match.js",
+      "src/lib/onboarding.js",
+      "src/lib/profile.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/streak.js",
+      "src/lib/xp.js"
+    ],
+    "src/pages/Programs.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/programs.js",
+      "src/data/quiz.js",
+      "src/data/taxonomy.js",
+      "src/lib/match.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Public.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/lib/identity.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/store.js",
+      "src/lib/verify.js"
+    ],
+    "src/pages/Quests.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/jobs.js",
+      "src/data/quiz.js",
+      "src/lib/progress.js",
+      "src/lib/quests.js",
+      "src/lib/roadmapGenerator.js"
+    ],
+    "src/pages/Quiz.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/quiz.js",
+      "src/lib/identity.js",
+      "src/lib/progress.js",
+      "src/lib/score.js"
+    ],
+    "src/pages/Resume.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/resumes.js",
+      "src/ayush/scoring.js",
+      "src/components/ui.jsx",
+      "src/data/courses.js",
+      "src/lib/parseResume.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Verify.jsx": [
+      "src/components/ui.jsx",
+      "src/lib/verify.js"
+    ],
+    "src/pages/Workspace.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/proof.js",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/lib/store.js"
+    ],
+    "tests/ai.test.js": [
+      "src/lib/ai.js"
+    ],
+    "tests/aiopt.test.js": [
+      "src/lib/ai.js",
+      "src/lib/ats.js"
+    ],
+    "tests/aiquestions.test.js": [
+      "src/lib/aiQuestions.js"
+    ],
+    "tests/ats.test.js": [
+      "src/lib/ats.js"
+    ],
+    "tests/ayush.test.js": [
+      "src/ayush/seed.js",
+      "src/data/courses.js",
+      "src/data/fdps.js",
+      "src/data/interview.js",
+      "src/data/questionnaire.js",
+      "src/data/quests.js",
+      "src/data/quiz.js",
+      "src/lib/score.js"
+    ],
+    "tests/ayushPortal.test.js": [
+      "src/ayush/data.js",
+      "src/ayush/resumes.js",
+      "src/ayush/seed.js",
+      "src/lib/score.js"
+    ],
+    "tests/ayushProof.test.js": [],
+    "tests/backend.test.js": [
+      "src/lib/backend.js"
+    ],
+    "tests/coach.test.js": [
+      "src/data/courses.js",
+      "src/lib/coach.js"
+    ],
+    "tests/dashboard.test.js": [
+      "src/lib/dashboard.js"
+    ],
+    "tests/faculty.test.js": [
+      "src/ayush/seed.js",
+      "src/data/fdps.js",
+      "src/lib/store.js"
+    ],
+    "tests/i18n.test.js": [
+      "src/lib/i18n.js"
+    ],
+    "tests/institute.test.js": [
+      "src/lib/cohort.js",
+      "src/lib/score.js"
+    ],
+    "tests/interview.test.js": [
+      "src/lib/interview.js"
+    ],
+    "tests/match.test.js": [
+      "src/data/taxonomy.js",
+      "src/lib/match.js"
+    ],
+    "tests/naukri.test.js": [
+      "scripts/naukri.mjs"
+    ],
+    "tests/onboarding.test.js": [
+      "src/lib/onboarding.js"
+    ],
+    "tests/portfolio.test.js": [
+      "src/lib/identity.js",
+      "src/lib/store.js"
+    ],
+    "tests/profile.test.js": [
+      "src/data/courses.js",
+      "src/lib/profile.js",
+      "src/lib/store.js"
+    ],
+    "tests/programs.test.js": [
+      "src/data/programs.js",
+      "src/data/taxonomy.js",
+      "src/lib/store.js"
+    ],
+    "tests/questionnaire.test.js": [
+      "src/data/questionnaire.js",
+      "src/lib/questionnaire.js"
+    ],
+    "tests/quests.test.js": [
+      "src/lib/quests.js"
+    ],
+    "tests/quiz.test.js": [
+      "src/data/quiz.js"
+    ],
+    "tests/recommend.test.js": [
+      "src/lib/roadmapGenerator.js",
+      "src/lib/store.js"
+    ],
+    "tests/score.test.js": [
+      "src/lib/score.js"
+    ],
+    "tests/scores.test.js": [
+      "src/lib/score.js"
+    ],
+    "tests/sections.test.js": [
+      "src/lib/parseResume.js"
+    ],
+    "tests/store.test.js": [
+      "src/lib/store.js"
+    ],
+    "tests/streak.test.js": [
+      "src/lib/streak.js"
+    ],
+    "tests/taxonomy.test.js": [
+      "src/data/taxonomy.js"
+    ],
+    "tests/tips.test.js": [
+      "src/data/courses.js"
+    ],
+    "tests/tuning.test.js": [
+      "src/data/tuning.js"
+    ],
+    "tests/verify.test.js": [
+      "src/lib/verify.js"
+    ],
+    "tests/xp.test.js": [
+      "src/lib/xp.js"
+    ],
+    "vercel.json": [],
+    "vite.config.js": []
+  }
+}

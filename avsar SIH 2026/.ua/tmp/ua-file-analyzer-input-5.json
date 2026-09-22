@@ -1,0 +1,117 @@
+{
+ "projectRoot": "D:\\CodeProjects\\avsar\\avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": "src/ayush/data.js",
+   "language": "javascript",
+   "sizeLines": 64,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/ayush/proof.js",
+   "language": "javascript",
+   "sizeLines": 97,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/ayush/resumes.js",
+   "language": "javascript",
+   "sizeLines": 140,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/ayush/scoring.js",
+   "language": "javascript",
+   "sizeLines": 49,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/cohort.js",
+   "language": "javascript",
+   "sizeLines": 61,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/score.js",
+   "language": "javascript",
+   "sizeLines": 82,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Resume.jsx",
+   "language": "javascript",
+   "sizeLines": 283,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/ayushPortal.test.js",
+   "language": "javascript",
+   "sizeLines": 71,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/institute.test.js",
+   "language": "javascript",
+   "sizeLines": 47,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/score.test.js",
+   "language": "javascript",
+   "sizeLines": 52,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/scores.test.js",
+   "language": "javascript",
+   "sizeLines": 53,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  "src/ayush/data.js": [],
+  "src/ayush/proof.js": [
+   "src/lib/storage.js"
+  ],
+  "src/ayush/resumes.js": [],
+  "src/ayush/scoring.js": [
+   "src/ayush/proof.js",
+   "src/data/quiz.js",
+   "src/lib/score.js"
+  ],
+  "src/lib/cohort.js": [
+   "src/lib/score.js"
+  ],
+  "src/lib/score.js": [
+   "src/ayush/seed.js",
+   "src/lib/ats.js"
+  ],
+  "src/pages/Resume.jsx": [
+   "src/app/store.jsx",
+   "src/ayush/resumes.js",
+   "src/ayush/scoring.js",
+   "src/components/ui.jsx",
+   "src/data/courses.js",
+   "src/lib/parseResume.js",
+   "src/lib/progress.js",
+   "src/lib/score.js",
+   "src/lib/storage.js"
+  ],
+  "tests/ayushPortal.test.js": [
+   "src/ayush/data.js",
+   "src/ayush/resumes.js",
+   "src/ayush/seed.js",
+   "src/lib/score.js"
+  ],
+  "tests/institute.test.js": [
+   "src/lib/cohort.js",
+   "src/lib/score.js"
+  ],
+  "tests/score.test.js": [
+   "src/lib/score.js"
+  ],
+  "tests/scores.test.js": [
+   "src/lib/score.js"
+  ]
+ }
+}

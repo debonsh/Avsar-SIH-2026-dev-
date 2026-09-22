@@ -1,0 +1,620 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/data/ayushSeed.js",
+      "type": "file",
+      "name": "ayushSeed.js",
+      "filePath": "src/data/ayushSeed.js",
+      "summary": "Seed data for the AYUSH vertical: jobs, skill tree, courses, quiz, interview, and questionnaire content.",
+      "tags": [
+        "seed-data",
+        "ayush",
+        "content",
+        "static-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/data/jobs.js",
+      "type": "file",
+      "name": "jobs.js",
+      "filePath": "src/data/jobs.js",
+      "summary": "Core job listings plus matchJobs helper ranking jobs by role fit and score eligibility.",
+      "tags": [
+        "jobs",
+        "matching",
+        "seed-data",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/lib/dashboard.js",
+      "type": "file",
+      "name": "dashboard.js",
+      "filePath": "src/lib/dashboard.js",
+      "summary": "Pure analytics helpers for donut segments, week trend, recent activity, demand heatmap, and briefing lines.",
+      "tags": [
+        "analytics",
+        "dashboard",
+        "utility",
+        "reporting"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/lib/roles.js",
+      "type": "file",
+      "name": "roles.js",
+      "filePath": "src/lib/roles.js",
+      "summary": "App role constants with load and save helpers for the role preference.",
+      "tags": [
+        "roles",
+        "preferences",
+        "storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/lib/theme.js",
+      "type": "file",
+      "name": "theme.js",
+      "filePath": "src/lib/theme.js",
+      "summary": "Theme load and save helpers persisting the UI theme via storage.",
+      "tags": [
+        "theme",
+        "preferences",
+        "storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/main.jsx",
+      "type": "file",
+      "name": "main.jsx",
+      "filePath": "src/main.jsx",
+      "summary": "React entry point mounting the app shell inside the C2C provider.",
+      "tags": [
+        "entry-point",
+        "bootstrap",
+        "react"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/pages/Ayush.jsx",
+      "type": "file",
+      "name": "Ayush.jsx",
+      "filePath": "src/pages/Ayush.jsx",
+      "summary": "AYUSH entry page showing the rotatory checklist, progress state, and role entry action.",
+      "tags": [
+        "ayush",
+        "onboarding",
+        "page",
+        "progress"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/Institute.jsx",
+      "type": "file",
+      "name": "Institute.jsx",
+      "filePath": "src/pages/Institute.jsx",
+      "summary": "Institute analytics dashboard with cohort stats, demand heatmap, assessments, and CSV export.",
+      "tags": [
+        "analytics",
+        "institute",
+        "dashboard",
+        "page"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/data/jobs.js:matchJobs",
+      "type": "function",
+      "name": "matchJobs",
+      "filePath": "src/data/jobs.js",
+      "lineRange": [
+        19,
+        28
+      ],
+      "summary": "Ranks jobs for a role by matched skills and score eligibility.",
+      "tags": [
+        "jobs",
+        "matching",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/dashboard.js:donutSegments",
+      "type": "function",
+      "name": "donutSegments",
+      "filePath": "src/lib/dashboard.js",
+      "lineRange": [
+        5,
+        17
+      ],
+      "summary": "Converts role count entries into proportional donut segments.",
+      "tags": [
+        "analytics",
+        "chart",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/dashboard.js:weekTrend",
+      "type": "function",
+      "name": "weekTrend",
+      "filePath": "src/lib/dashboard.js",
+      "lineRange": [
+        20,
+        35
+      ],
+      "summary": "Builds a seven-day activity trend from timestamped events.",
+      "tags": [
+        "analytics",
+        "reporting",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/dashboard.js:recentActivity",
+      "type": "function",
+      "name": "recentActivity",
+      "filePath": "src/lib/dashboard.js",
+      "lineRange": [
+        38,
+        44
+      ],
+      "summary": "Returns the most recent job-related events sorted by time.",
+      "tags": [
+        "analytics",
+        "reporting",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/dashboard.js:demandHeatmap",
+      "type": "function",
+      "name": "demandHeatmap",
+      "filePath": "src/lib/dashboard.js",
+      "lineRange": [
+        48,
+        61
+      ],
+      "summary": "Aggregates skill demand across jobs flagging skills the user has.",
+      "tags": [
+        "analytics",
+        "matching",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/dashboard.js:briefing",
+      "type": "function",
+      "name": "briefing",
+      "filePath": "src/lib/dashboard.js",
+      "lineRange": [
+        63,
+        77
+      ],
+      "summary": "Generates morning-briefing lines from score, matches, and gaps.",
+      "tags": [
+        "analytics",
+        "reporting",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/roles.js:loadRole",
+      "type": "function",
+      "name": "loadRole",
+      "filePath": "src/lib/roles.js",
+      "lineRange": [
+        11,
+        14
+      ],
+      "summary": "Loads the saved app role preference falling back to default.",
+      "tags": [
+        "roles",
+        "preferences",
+        "storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/roles.js:saveRole",
+      "type": "function",
+      "name": "saveRole",
+      "filePath": "src/lib/roles.js",
+      "lineRange": [
+        16,
+        18
+      ],
+      "summary": "Persists the selected app role preference to storage.",
+      "tags": [
+        "roles",
+        "preferences",
+        "storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/theme.js:loadTheme",
+      "type": "function",
+      "name": "loadTheme",
+      "filePath": "src/lib/theme.js",
+      "lineRange": [
+        8,
+        10
+      ],
+      "summary": "Loads the saved UI theme defaulting to light mode.",
+      "tags": [
+        "theme",
+        "preferences",
+        "storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/lib/theme.js:saveTheme",
+      "type": "function",
+      "name": "saveTheme",
+      "filePath": "src/lib/theme.js",
+      "lineRange": [
+        12,
+        14
+      ],
+      "summary": "Persists the selected UI theme to storage.",
+      "tags": [
+        "theme",
+        "preferences",
+        "storage"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/pages/Ayush.jsx:Ayush",
+      "type": "function",
+      "name": "Ayush",
+      "filePath": "src/pages/Ayush.jsx",
+      "lineRange": [
+        15,
+        150
+      ],
+      "summary": "AYUSH landing page with orientation checklist and entry flow.",
+      "tags": [
+        "ayush",
+        "onboarding",
+        "page"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/pages/Institute.jsx:Institute",
+      "type": "function",
+      "name": "Institute",
+      "filePath": "src/pages/Institute.jsx",
+      "lineRange": [
+        11,
+        136
+      ],
+      "summary": "Institute dashboard page with cohort analytics and CSV export.",
+      "tags": [
+        "analytics",
+        "institute",
+        "page"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/data/jobs.js",
+      "target": "function:src/data/jobs.js:matchJobs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/data/jobs.js",
+      "target": "function:src/data/jobs.js:matchJobs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:donutSegments",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:donutSegments",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:weekTrend",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:weekTrend",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:recentActivity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:recentActivity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:demandHeatmap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:demandHeatmap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:briefing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "function:src/lib/dashboard.js:briefing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/roles.js",
+      "target": "function:src/lib/roles.js:loadRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/roles.js",
+      "target": "function:src/lib/roles.js:loadRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/roles.js",
+      "target": "function:src/lib/roles.js:saveRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/roles.js",
+      "target": "function:src/lib/roles.js:saveRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/theme.js",
+      "target": "function:src/lib/theme.js:loadTheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/theme.js",
+      "target": "function:src/lib/theme.js:loadTheme",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/theme.js",
+      "target": "function:src/lib/theme.js:saveTheme",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/lib/theme.js",
+      "target": "function:src/lib/theme.js:saveTheme",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "function:src/pages/Ayush.jsx:Ayush",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "function:src/pages/Ayush.jsx:Ayush",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "function:src/pages/Institute.jsx:Institute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "function:src/pages/Institute.jsx:Institute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/roles.js",
+      "target": "file:src/lib/storage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/lib/theme.js",
+      "target": "file:src/lib/storage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.jsx",
+      "target": "file:src/app/shell.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.jsx",
+      "target": "file:src/app/store.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/main.jsx",
+      "target": "file:src/index.css",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "file:src/app/store.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "file:src/components/landing/FractalMap.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "file:src/data/ayushSeed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "file:src/lib/progress.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "file:src/data/ayushSeed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "file:src/data/jobs.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "file:src/lib/backend.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "file:src/lib/cohort.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "file:src/lib/dashboard.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Ayush.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Institute.jsx",
+      "target": "function:src/lib/dashboard.js:demandHeatmap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/lib/dashboard.js",
+      "target": "file:tests/dashboard.test.js",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

@@ -1,0 +1,2268 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 11,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 11,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 11,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/components/StreakMeter.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 83,
+      "functions": [
+        {
+          "name": "StreakMeter",
+          "startLine": 18,
+          "endLine": 89,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "StreakMeter",
+          "line": 18,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "StreakMeter",
+          "callee": "useMemo",
+          "lineNumber": 19
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "collectDayCounts",
+          "lineNumber": 19
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "useMemo",
+          "lineNumber": 20
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "collectDayDetail",
+          "lineNumber": 20
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "useMemo",
+          "lineNumber": 21
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "heatmapWeeks",
+          "lineNumber": 21
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "currentStreak",
+          "lineNumber": 22
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "totalActive",
+          "lineNumber": 23
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "Object.values(counts).reduce",
+          "lineNumber": 24
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "Object.values",
+          "lineNumber": 24
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "dayISO",
+          "lineNumber": 25
+        },
+        {
+          "caller": "monthAt",
+          "callee": "first.slice",
+          "lineNumber": 30
+        },
+        {
+          "caller": "monthAt",
+          "callee": "prev.slice",
+          "lineNumber": 30
+        },
+        {
+          "caller": "monthAt",
+          "callee": "Number",
+          "lineNumber": 31
+        },
+        {
+          "caller": "monthAt",
+          "callee": "first.slice",
+          "lineNumber": 31
+        },
+        {
+          "caller": "tip",
+          "callee": "Object.entries((detail[d.date] || {}).kinds || {})\n      .filter(([, n]) => n > 0)\n      .map",
+          "lineNumber": 35
+        },
+        {
+          "caller": "tip",
+          "callee": "Object.entries((detail[d.date] || {}).kinds || {})\n      .filter",
+          "lineNumber": 35
+        },
+        {
+          "caller": "tip",
+          "callee": "Object.entries",
+          "lineNumber": 35
+        },
+        {
+          "caller": "tip",
+          "callee": "parts.join",
+          "lineNumber": 38
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "cols.map",
+          "lineNumber": 62
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "monthAt",
+          "lineNumber": 65
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "col.map",
+          "lineNumber": 67
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "tip",
+          "lineNumber": 70
+        },
+        {
+          "caller": "StreakMeter",
+          "callee": "[0, 1, 2, 3, 4].map",
+          "lineNumber": 79
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/components/XpMeter.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 58,
+      "nonEmptyLines": 56,
+      "functions": [
+        {
+          "name": "XpMeter",
+          "startLine": 10,
+          "endLine": 58,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "XpMeter",
+          "line": 10,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "XpMeter",
+          "callee": "useMemo",
+          "lineNumber": 11
+        },
+        {
+          "caller": "XpMeter",
+          "callee": "collectXP",
+          "lineNumber": 11
+        },
+        {
+          "caller": "XpMeter",
+          "callee": "XP_SOURCES.filter",
+          "lineNumber": 12
+        },
+        {
+          "caller": "XpMeter",
+          "callee": "Math.min",
+          "lineNumber": 28
+        },
+        {
+          "caller": "XpMeter",
+          "callee": "Math.round",
+          "lineNumber": 28
+        },
+        {
+          "caller": "XpMeter",
+          "callee": "parts.map",
+          "lineNumber": 38
+        },
+        {
+          "caller": "XpMeter",
+          "callee": "parts.map",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/onboarding.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 75,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "onboardingProgress",
+          "startLine": 10,
+          "endLine": 15,
+          "params": []
+        },
+        {
+          "name": "skillQ",
+          "startLine": 31,
+          "endLine": 36,
+          "params": [
+            "skill",
+            "year"
+          ]
+        },
+        {
+          "name": "questionsFromProfile",
+          "startLine": 39,
+          "endLine": 54,
+          "params": []
+        },
+        {
+          "name": "resetOnboarding",
+          "startLine": 62,
+          "endLine": 67,
+          "params": []
+        },
+        {
+          "name": "parseAiGrade",
+          "startLine": 70,
+          "endLine": 75,
+          "params": [
+            "raw"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ONBOARD_W",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "onboardingProgress",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "questionsFromProfile",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "resetOnboarding",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "parseAiGrade",
+          "line": 70,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "skillQ",
+          "callee": "/1st|2nd/.test",
+          "lineNumber": 32
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "String(p.skills || \"\").split(\",\").map((s) => s.trim()).filter",
+          "lineNumber": 40
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "String(p.skills || \"\").split(\",\").map",
+          "lineNumber": 40
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "String(p.skills || \"\").split",
+          "lineNumber": 40
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "String",
+          "lineNumber": 40
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "s.trim",
+          "lineNumber": 40
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "(resume?.missing || []).slice",
+          "lineNumber": 41
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "skillQ",
+          "lineNumber": 43
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "skillQ",
+          "lineNumber": 45
+        },
+        {
+          "caller": "questionsFromProfile",
+          "callee": "out.slice",
+          "lineNumber": 53
+        },
+        {
+          "caller": "resetOnboarding",
+          "callee": "saveJSON",
+          "lineNumber": 64
+        },
+        {
+          "caller": "resetOnboarding",
+          "callee": "localStorage.removeItem",
+          "lineNumber": 65
+        },
+        {
+          "caller": "parseAiGrade",
+          "callee": "Math.round",
+          "lineNumber": 72
+        },
+        {
+          "caller": "parseAiGrade",
+          "callee": "String(raw).match",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parseAiGrade",
+          "callee": "String",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parseAiGrade",
+          "callee": "Number",
+          "lineNumber": 74
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/progress.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 184,
+      "nonEmptyLines": 162,
+      "functions": [
+        {
+          "name": "emptyState",
+          "startLine": 9,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "load",
+          "startLine": 19,
+          "endLine": 31,
+          "params": []
+        },
+        {
+          "name": "save",
+          "startLine": 33,
+          "endLine": 35,
+          "params": [
+            "state"
+          ]
+        },
+        {
+          "name": "todayISO",
+          "startLine": 37,
+          "endLine": 40,
+          "params": []
+        },
+        {
+          "name": "yesterdayISO",
+          "startLine": 42,
+          "endLine": 46,
+          "params": []
+        },
+        {
+          "name": "getProgress",
+          "startLine": 48,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "questSnapshot",
+          "startLine": 52,
+          "endLine": 55,
+          "params": []
+        },
+        {
+          "name": "isCourseDone",
+          "startLine": 57,
+          "endLine": 59,
+          "params": [
+            "roleKey",
+            "skillId"
+          ]
+        },
+        {
+          "name": "isProjectDone",
+          "startLine": 61,
+          "endLine": 63,
+          "params": [
+            "roleKey",
+            "skillId"
+          ]
+        },
+        {
+          "name": "isSkillComplete",
+          "startLine": 65,
+          "endLine": 69,
+          "params": [
+            "roleKey",
+            "skillId"
+          ]
+        },
+        {
+          "name": "setQuestDone",
+          "startLine": 71,
+          "endLine": 81,
+          "params": [
+            "roleKey",
+            "skillId",
+            "kind",
+            "done"
+          ]
+        },
+        {
+          "name": "getEvidence",
+          "startLine": 84,
+          "endLine": 86,
+          "params": [
+            "roleKey",
+            "skillId"
+          ]
+        },
+        {
+          "name": "setEvidence",
+          "startLine": 88,
+          "endLine": 94,
+          "params": [
+            "roleKey",
+            "skillId",
+            "url"
+          ]
+        },
+        {
+          "name": "branchProgress",
+          "startLine": 96,
+          "endLine": 104,
+          "params": [
+            "roleKey",
+            "branch"
+          ]
+        },
+        {
+          "name": "recordDay",
+          "startLine": 109,
+          "endLine": 114,
+          "params": []
+        },
+        {
+          "name": "weeklyActive",
+          "startLine": 116,
+          "endLine": 126,
+          "params": []
+        },
+        {
+          "name": "bumpStreak",
+          "startLine": 128,
+          "endLine": 145,
+          "params": []
+        },
+        {
+          "name": "masteryLevel",
+          "startLine": 148,
+          "endLine": 155,
+          "params": [
+            "roleKey",
+            "skillId"
+          ]
+        },
+        {
+          "name": "getStreak",
+          "startLine": 157,
+          "endLine": 157,
+          "params": []
+        },
+        {
+          "name": "completedSkillIdsForRole",
+          "startLine": 162,
+          "endLine": 180,
+          "params": [
+            "roleKey"
+          ]
+        },
+        {
+          "name": "clearProgress",
+          "startLine": 182,
+          "endLine": 184,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "todayISO",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "yesterdayISO",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "getProgress",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "questSnapshot",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "isCourseDone",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "isProjectDone",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "isSkillComplete",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "setQuestDone",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "getEvidence",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "setEvidence",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "branchProgress",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "recordDay",
+          "line": 109,
+          "isDefault": false
+        },
+        {
+          "name": "weeklyActive",
+          "line": 116,
+          "isDefault": false
+        },
+        {
+          "name": "bumpStreak",
+          "line": 128,
+          "isDefault": false
+        },
+        {
+          "name": "masteryLevel",
+          "line": 148,
+          "isDefault": false
+        },
+        {
+          "name": "getStreak",
+          "line": 157,
+          "isDefault": false
+        },
+        {
+          "name": "completedSkillIdsForRole",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "clearProgress",
+          "line": 182,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "load",
+          "callee": "emptyState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "load",
+          "callee": "loadJSON",
+          "lineNumber": 20
+        },
+        {
+          "caller": "load",
+          "callee": "Object.keys",
+          "lineNumber": 24
+        },
+        {
+          "caller": "load",
+          "callee": "Object.keys",
+          "lineNumber": 25
+        },
+        {
+          "caller": "load",
+          "callee": "todayISO",
+          "lineNumber": 26
+        },
+        {
+          "caller": "load",
+          "callee": "save",
+          "lineNumber": 28
+        },
+        {
+          "caller": "save",
+          "callee": "saveJSON",
+          "lineNumber": 34
+        },
+        {
+          "caller": "todayISO",
+          "callee": "d.getFullYear",
+          "lineNumber": 39
+        },
+        {
+          "caller": "todayISO",
+          "callee": "String(d.getMonth() + 1).padStart",
+          "lineNumber": 39
+        },
+        {
+          "caller": "todayISO",
+          "callee": "String",
+          "lineNumber": 39
+        },
+        {
+          "caller": "todayISO",
+          "callee": "d.getMonth",
+          "lineNumber": 39
+        },
+        {
+          "caller": "todayISO",
+          "callee": "String(d.getDate()).padStart",
+          "lineNumber": 39
+        },
+        {
+          "caller": "todayISO",
+          "callee": "String",
+          "lineNumber": 39
+        },
+        {
+          "caller": "todayISO",
+          "callee": "d.getDate",
+          "lineNumber": 39
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "d.setDate",
+          "lineNumber": 44
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "d.getDate",
+          "lineNumber": 44
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "d.getFullYear",
+          "lineNumber": 45
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "String(d.getMonth() + 1).padStart",
+          "lineNumber": 45
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "String",
+          "lineNumber": 45
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "d.getMonth",
+          "lineNumber": 45
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "String(d.getDate()).padStart",
+          "lineNumber": 45
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "String",
+          "lineNumber": 45
+        },
+        {
+          "caller": "yesterdayISO",
+          "callee": "d.getDate",
+          "lineNumber": 45
+        },
+        {
+          "caller": "getProgress",
+          "callee": "load",
+          "lineNumber": 48
+        },
+        {
+          "caller": "questSnapshot",
+          "callee": "load",
+          "lineNumber": 53
+        },
+        {
+          "caller": "isCourseDone",
+          "callee": "Boolean",
+          "lineNumber": 58
+        },
+        {
+          "caller": "isCourseDone",
+          "callee": "load",
+          "lineNumber": 58
+        },
+        {
+          "caller": "isProjectDone",
+          "callee": "Boolean",
+          "lineNumber": 62
+        },
+        {
+          "caller": "isProjectDone",
+          "callee": "load",
+          "lineNumber": 62
+        },
+        {
+          "caller": "isSkillComplete",
+          "callee": "load",
+          "lineNumber": 66
+        },
+        {
+          "caller": "isSkillComplete",
+          "callee": "Boolean",
+          "lineNumber": 67
+        },
+        {
+          "caller": "isSkillComplete",
+          "callee": "Boolean",
+          "lineNumber": 68
+        },
+        {
+          "caller": "setQuestDone",
+          "callee": "load",
+          "lineNumber": 72
+        },
+        {
+          "caller": "setQuestDone",
+          "callee": "todayISO",
+          "lineNumber": 76
+        },
+        {
+          "caller": "setQuestDone",
+          "callee": "save",
+          "lineNumber": 80
+        },
+        {
+          "caller": "getEvidence",
+          "callee": "load",
+          "lineNumber": 85
+        },
+        {
+          "caller": "setEvidence",
+          "callee": "load",
+          "lineNumber": 89
+        },
+        {
+          "caller": "setEvidence",
+          "callee": "(url || \"\").trim",
+          "lineNumber": 91
+        },
+        {
+          "caller": "setEvidence",
+          "callee": "url.trim",
+          "lineNumber": 91
+        },
+        {
+          "caller": "setEvidence",
+          "callee": "save",
+          "lineNumber": 93
+        },
+        {
+          "caller": "branchProgress",
+          "callee": "load",
+          "lineNumber": 100
+        },
+        {
+          "caller": "branchProgress",
+          "callee": "load",
+          "lineNumber": 101
+        },
+        {
+          "caller": "recordDay",
+          "callee": "load",
+          "lineNumber": 110
+        },
+        {
+          "caller": "recordDay",
+          "callee": "todayISO",
+          "lineNumber": 111
+        },
+        {
+          "caller": "recordDay",
+          "callee": "save",
+          "lineNumber": 113
+        },
+        {
+          "caller": "weeklyActive",
+          "callee": "load",
+          "lineNumber": 117
+        },
+        {
+          "caller": "weeklyActive",
+          "callee": "Object.keys",
+          "lineNumber": 119
+        },
+        {
+          "caller": "weeklyActive",
+          "callee": "k.startsWith",
+          "lineNumber": 120
+        },
+        {
+          "caller": "weeklyActive",
+          "callee": "k.split(\":\").slice",
+          "lineNumber": 121
+        },
+        {
+          "caller": "weeklyActive",
+          "callee": "k.split",
+          "lineNumber": 121
+        },
+        {
+          "caller": "weeklyActive",
+          "callee": "days.add",
+          "lineNumber": 122
+        },
+        {
+          "caller": "weeklyActive",
+          "callee": "days.add",
+          "lineNumber": 124
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "recordDay",
+          "lineNumber": 129
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "load",
+          "lineNumber": 130
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "todayISO",
+          "lineNumber": 131
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "yesterdayISO",
+          "lineNumber": 132
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "s.streak.badges.includes",
+          "lineNumber": 137
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "s.streak.badges.push",
+          "lineNumber": 138
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "s.streak.badges.includes",
+          "lineNumber": 140
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "s.streak.badges.push",
+          "lineNumber": 141
+        },
+        {
+          "caller": "bumpStreak",
+          "callee": "save",
+          "lineNumber": 143
+        },
+        {
+          "caller": "masteryLevel",
+          "callee": "load",
+          "lineNumber": 149
+        },
+        {
+          "caller": "masteryLevel",
+          "callee": "isEvidenceUrl",
+          "lineNumber": 152
+        },
+        {
+          "caller": "masteryLevel",
+          "callee": "Math.min",
+          "lineNumber": 153
+        },
+        {
+          "caller": "masteryLevel",
+          "callee": "Math.min",
+          "lineNumber": 154
+        },
+        {
+          "caller": "getStreak",
+          "callee": "load",
+          "lineNumber": 157
+        },
+        {
+          "caller": "completedSkillIdsForRole",
+          "callee": "load",
+          "lineNumber": 165
+        },
+        {
+          "caller": "completedSkillIdsForRole",
+          "callee": "isEvidenceUrl",
+          "lineNumber": 173
+        },
+        {
+          "caller": "completedSkillIdsForRole",
+          "callee": "sk.name.toLowerCase",
+          "lineNumber": 174
+        },
+        {
+          "caller": "completedSkillIdsForRole",
+          "callee": "seen.has",
+          "lineNumber": 175
+        },
+        {
+          "caller": "completedSkillIdsForRole",
+          "callee": "seen.add",
+          "lineNumber": 175
+        },
+        {
+          "caller": "completedSkillIdsForRole",
+          "callee": "ids.push",
+          "lineNumber": 175
+        },
+        {
+          "caller": "clearProgress",
+          "callee": "save",
+          "lineNumber": 183
+        },
+        {
+          "caller": "clearProgress",
+          "callee": "emptyState",
+          "lineNumber": 183
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 18,
+        "functionCount": 21,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/streak.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 110,
+      "nonEmptyLines": 102,
+      "functions": [
+        {
+          "name": "dayISO",
+          "startLine": 8,
+          "endLine": 11,
+          "params": []
+        },
+        {
+          "name": "shiftISO",
+          "startLine": 13,
+          "endLine": 17,
+          "params": [
+            "iso",
+            "deltaDays"
+          ]
+        },
+        {
+          "name": "collectDayDetail",
+          "startLine": 21,
+          "endLine": 50,
+          "params": []
+        },
+        {
+          "name": "collectDayCounts",
+          "startLine": 53,
+          "endLine": 70,
+          "params": []
+        },
+        {
+          "name": "levelFor",
+          "startLine": 73,
+          "endLine": 79,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "heatmapWeeks",
+          "startLine": 82,
+          "endLine": 94,
+          "params": []
+        },
+        {
+          "name": "currentStreak",
+          "startLine": 97,
+          "endLine": 106,
+          "params": []
+        },
+        {
+          "name": "totalActive",
+          "startLine": 108,
+          "endLine": 110,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "dayISO",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "collectDayDetail",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "collectDayCounts",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "levelFor",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "heatmapWeeks",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "currentStreak",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "totalActive",
+          "line": 108,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "dayISO",
+          "callee": "Date.now",
+          "lineNumber": 8
+        },
+        {
+          "caller": "dayISO",
+          "callee": "d.getFullYear",
+          "lineNumber": 10
+        },
+        {
+          "caller": "dayISO",
+          "callee": "String(d.getMonth() + 1).padStart",
+          "lineNumber": 10
+        },
+        {
+          "caller": "dayISO",
+          "callee": "String",
+          "lineNumber": 10
+        },
+        {
+          "caller": "dayISO",
+          "callee": "d.getMonth",
+          "lineNumber": 10
+        },
+        {
+          "caller": "dayISO",
+          "callee": "String(d.getDate()).padStart",
+          "lineNumber": 10
+        },
+        {
+          "caller": "dayISO",
+          "callee": "String",
+          "lineNumber": 10
+        },
+        {
+          "caller": "dayISO",
+          "callee": "d.getDate",
+          "lineNumber": 10
+        },
+        {
+          "caller": "shiftISO",
+          "callee": "d.setDate",
+          "lineNumber": 15
+        },
+        {
+          "caller": "shiftISO",
+          "callee": "d.getDate",
+          "lineNumber": 15
+        },
+        {
+          "caller": "shiftISO",
+          "callee": "dayISO",
+          "lineNumber": 16
+        },
+        {
+          "caller": "shiftISO",
+          "callee": "d.getTime",
+          "lineNumber": 16
+        },
+        {
+          "caller": "touch",
+          "callee": "/^\\d{4}-\\d{2}-\\d{2}$/.test",
+          "lineNumber": 24
+        },
+        {
+          "caller": "add",
+          "callee": "touch",
+          "lineNumber": 29
+        },
+        {
+          "caller": "add",
+          "callee": "Number",
+          "lineNumber": 31
+        },
+        {
+          "caller": "add",
+          "callee": "Number",
+          "lineNumber": 32
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "getProgress",
+          "lineNumber": 35
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "Object.entries",
+          "lineNumber": 36
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "k.split",
+          "lineNumber": 37
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "add",
+          "lineNumber": 38
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "k.split(\":\").slice",
+          "lineNumber": 38
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "k.split",
+          "lineNumber": 38
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "[\"quiz\", \"interview\", \"resume\"].includes",
+          "lineNumber": 38
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "Object.entries",
+          "lineNumber": 40
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "add",
+          "lineNumber": 40
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "loadJSON",
+          "lineNumber": 43
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "String(e.event || \"saved\").toLowerCase",
+          "lineNumber": 45
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "String",
+          "lineNumber": 45
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "add",
+          "lineNumber": 46
+        },
+        {
+          "caller": "collectDayDetail",
+          "callee": "dayISO",
+          "lineNumber": 46
+        },
+        {
+          "caller": "add",
+          "callee": "/^\\d{4}-\\d{2}-\\d{2}$/.test",
+          "lineNumber": 56
+        },
+        {
+          "caller": "add",
+          "callee": "Number",
+          "lineNumber": 57
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "getProgress",
+          "lineNumber": 60
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "Object.entries",
+          "lineNumber": 61
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "add",
+          "lineNumber": 61
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "k.split(\":\").slice",
+          "lineNumber": 61
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "k.split",
+          "lineNumber": 61
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "Object.entries",
+          "lineNumber": 62
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "add",
+          "lineNumber": 62
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "loadJSON",
+          "lineNumber": 65
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "add",
+          "lineNumber": 66
+        },
+        {
+          "caller": "collectDayCounts",
+          "callee": "dayISO",
+          "lineNumber": 66
+        },
+        {
+          "caller": "heatmapWeeks",
+          "callee": "dayISO",
+          "lineNumber": 82
+        },
+        {
+          "caller": "heatmapWeeks",
+          "callee": "shiftISO",
+          "lineNumber": 84
+        },
+        {
+          "caller": "heatmapWeeks",
+          "callee": "shiftISO",
+          "lineNumber": 87
+        },
+        {
+          "caller": "heatmapWeeks",
+          "callee": "days.push",
+          "lineNumber": 89
+        },
+        {
+          "caller": "heatmapWeeks",
+          "callee": "levelFor",
+          "lineNumber": 89
+        },
+        {
+          "caller": "heatmapWeeks",
+          "callee": "cols.push",
+          "lineNumber": 92
+        },
+        {
+          "caller": "heatmapWeeks",
+          "callee": "days.slice",
+          "lineNumber": 92
+        },
+        {
+          "caller": "currentStreak",
+          "callee": "dayISO",
+          "lineNumber": 97
+        },
+        {
+          "caller": "currentStreak",
+          "callee": "shiftISO",
+          "lineNumber": 99
+        },
+        {
+          "caller": "currentStreak",
+          "callee": "shiftISO",
+          "lineNumber": 103
+        },
+        {
+          "caller": "totalActive",
+          "callee": "Object.values(counts).filter",
+          "lineNumber": 109
+        },
+        {
+          "caller": "totalActive",
+          "callee": "Object.values",
+          "lineNumber": 109
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 7,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/xp.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 58,
+      "functions": [
+        {
+          "name": "levelFor",
+          "startLine": 37,
+          "endLine": 51,
+          "params": []
+        },
+        {
+          "name": "collectXP",
+          "startLine": 53,
+          "endLine": 64,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "XP_WEIGHTS",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "XP_SOURCES",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "levelFor",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "collectXP",
+          "line": 53,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "collectXP",
+          "callee": "collectDayDetail",
+          "lineNumber": 53
+        },
+        {
+          "caller": "collectXP",
+          "callee": "Object.values",
+          "lineNumber": 55
+        },
+        {
+          "caller": "collectXP",
+          "callee": "Object.entries",
+          "lineNumber": 56
+        },
+        {
+          "caller": "collectXP",
+          "callee": "Number",
+          "lineNumber": 59
+        },
+        {
+          "caller": "collectXP",
+          "callee": "Object.values(bySource).reduce",
+          "lineNumber": 62
+        },
+        {
+          "caller": "collectXP",
+          "callee": "Object.values",
+          "lineNumber": 62
+        },
+        {
+          "caller": "collectXP",
+          "callee": "levelFor",
+          "lineNumber": 63
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 4,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Home.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 241,
+      "nonEmptyLines": 229,
+      "functions": [
+        {
+          "name": "IconBadge",
+          "startLine": 29,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "Ring",
+          "startLine": 37,
+          "endLine": 53,
+          "params": []
+        },
+        {
+          "name": "Home",
+          "startLine": 55,
+          "endLine": 241,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Home",
+          "line": 55,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Ring",
+          "callee": "Math.max",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Ring",
+          "callee": "Math.min",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Ring",
+          "callee": "(frac * c).toFixed",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Ring",
+          "callee": "c.toFixed",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Home",
+          "callee": "useC2C",
+          "lineNumber": 56
+        },
+        {
+          "caller": "Home",
+          "callee": "loadProfile",
+          "lineNumber": 57
+        },
+        {
+          "caller": "Home",
+          "callee": "loadJSON",
+          "lineNumber": 61
+        },
+        {
+          "caller": "Home",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 62
+        },
+        {
+          "caller": "Home",
+          "callee": "calculateMainScore",
+          "lineNumber": 63
+        },
+        {
+          "caller": "Home",
+          "callee": "questPairsToProof",
+          "lineNumber": 63
+        },
+        {
+          "caller": "Home",
+          "callee": "vaidyaLevel",
+          "lineNumber": 64
+        },
+        {
+          "caller": "Home",
+          "callee": "onboardingProgress",
+          "lineNumber": 65
+        },
+        {
+          "caller": "Home",
+          "callee": "Boolean",
+          "lineNumber": 66
+        },
+        {
+          "caller": "Home",
+          "callee": "Boolean",
+          "lineNumber": 67
+        },
+        {
+          "caller": "Home",
+          "callee": "matchJobs(\"ayush\", main, found, JOBS).slice",
+          "lineNumber": 70
+        },
+        {
+          "caller": "Home",
+          "callee": "matchJobs",
+          "lineNumber": 70
+        },
+        {
+          "caller": "Home",
+          "callee": "String(profile.skills || \"\").split(\",\").map((s) => s.trim()).filter",
+          "lineNumber": 71
+        },
+        {
+          "caller": "Home",
+          "callee": "String(profile.skills || \"\").split(\",\").map",
+          "lineNumber": 71
+        },
+        {
+          "caller": "Home",
+          "callee": "String(profile.skills || \"\").split",
+          "lineNumber": 71
+        },
+        {
+          "caller": "Home",
+          "callee": "String",
+          "lineNumber": 71
+        },
+        {
+          "caller": "Home",
+          "callee": "s.trim",
+          "lineNumber": 71
+        },
+        {
+          "caller": "Home",
+          "callee": "String",
+          "lineNumber": 75
+        },
+        {
+          "caller": "Home",
+          "callee": "String",
+          "lineNumber": 76
+        },
+        {
+          "caller": "Home",
+          "callee": "String",
+          "lineNumber": 77
+        },
+        {
+          "caller": "Home",
+          "callee": "[40, 30, 30].map",
+          "lineNumber": 112
+        },
+        {
+          "caller": "Home",
+          "callee": "stats.map",
+          "lineNumber": 143
+        },
+        {
+          "caller": "Home",
+          "callee": "missing.slice(0, 3).map",
+          "lineNumber": 187
+        },
+        {
+          "caller": "Home",
+          "callee": "missing.slice",
+          "lineNumber": 187
+        },
+        {
+          "caller": "Home",
+          "callee": "coursesFor",
+          "lineNumber": 190
+        },
+        {
+          "caller": "Home",
+          "callee": "topJobs.map",
+          "lineNumber": 206
+        }
+      ],
+      "metrics": {
+        "importCount": 12,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Profile.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 442,
+      "nonEmptyLines": 418,
+      "functions": [
+        {
+          "name": "isComplete",
+          "startLine": 52,
+          "endLine": 54,
+          "params": [
+            "p"
+          ]
+        },
+        {
+          "name": "OptionCard",
+          "startLine": 56,
+          "endLine": 81,
+          "params": []
+        },
+        {
+          "name": "ProfileCard",
+          "startLine": 86,
+          "endLine": 195,
+          "params": []
+        },
+        {
+          "name": "Profile",
+          "startLine": 197,
+          "endLine": 442,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Profile",
+          "line": 197,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isComplete",
+          "callee": "Boolean",
+          "lineNumber": 53
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String(form.skills || \"\").split(\",\").map((s) => s.trim()).filter",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String(form.skills || \"\").split(\",\").map",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String(form.skills || \"\").split",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "s.trim",
+          "lineNumber": 87
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 88
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "loadJSON",
+          "lineNumber": 89
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "calculateMainScore",
+          "lineNumber": 90
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "questPairsToProof",
+          "lineNumber": 90
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "currentStreak",
+          "lineNumber": 91
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "collectDayCounts",
+          "lineNumber": 91
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "collectXP",
+          "lineNumber": 92
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "vaidyaLevel",
+          "lineNumber": 93
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "((form.college || \"\").trim()[0] || \"V\").toUpperCase",
+          "lineNumber": 94
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "(form.college || \"\").trim",
+          "lineNumber": 94
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "loadQuizBest",
+          "lineNumber": 96
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "profileForMatching",
+          "lineNumber": 97
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "requiredFor(\"ayush-cra\").slice",
+          "lineNumber": 98
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "requiredFor",
+          "lineNumber": 98
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "req.map",
+          "lineNumber": 101
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "gapVector(\"ayush-cra\", prof.levels).slice",
+          "lineNumber": 102
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "gapVector",
+          "lineNumber": 102
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String",
+          "lineNumber": 104
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String",
+          "lineNumber": 105
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String",
+          "lineNumber": 106
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "String",
+          "lineNumber": 107
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "form.college?.trim",
+          "lineNumber": 132
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "GOALS.find",
+          "lineNumber": 133
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "stats.map",
+          "lineNumber": 135
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "skills.map",
+          "lineNumber": 145
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "gaps.map",
+          "lineNumber": 161
+        },
+        {
+          "caller": "ProfileCard",
+          "callee": "skillById",
+          "lineNumber": 163
+        },
+        {
+          "caller": "Profile",
+          "callee": "useC2C",
+          "lineNumber": 198
+        },
+        {
+          "caller": "Profile",
+          "callee": "loadProfile",
+          "lineNumber": 199
+        },
+        {
+          "caller": "Profile",
+          "callee": "useState",
+          "lineNumber": 200
+        },
+        {
+          "caller": "Profile",
+          "callee": "useState",
+          "lineNumber": 201
+        },
+        {
+          "caller": "Profile",
+          "callee": "isComplete",
+          "lineNumber": 201
+        },
+        {
+          "caller": "Profile",
+          "callee": "useReducedMotion",
+          "lineNumber": 202
+        },
+        {
+          "caller": "Profile",
+          "callee": "useState",
+          "lineNumber": 203
+        },
+        {
+          "caller": "Profile",
+          "callee": "String(stored?.skills || \"\").split(\",\").map((s) => s.trim().toLowerCase()).filter",
+          "lineNumber": 204
+        },
+        {
+          "caller": "Profile",
+          "callee": "String(stored?.skills || \"\").split(\",\").map",
+          "lineNumber": 204
+        },
+        {
+          "caller": "Profile",
+          "callee": "String(stored?.skills || \"\").split",
+          "lineNumber": 204
+        },
+        {
+          "caller": "Profile",
+          "callee": "String",
+          "lineNumber": 204
+        },
+        {
+          "caller": "Profile",
+          "callee": "s.trim().toLowerCase",
+          "lineNumber": 204
+        },
+        {
+          "caller": "Profile",
+          "callee": "s.trim",
+          "lineNumber": 204
+        },
+        {
+          "caller": "Profile",
+          "callee": "useState",
+          "lineNumber": 206
+        },
+        {
+          "caller": "Profile",
+          "callee": "useState",
+          "lineNumber": 207
+        },
+        {
+          "caller": "Profile",
+          "callee": "useEffect",
+          "lineNumber": 209
+        },
+        {
+          "caller": "Profile",
+          "callee": "getUser().then(setUser).catch",
+          "lineNumber": 210
+        },
+        {
+          "caller": "Profile",
+          "callee": "getUser().then",
+          "lineNumber": 210
+        },
+        {
+          "caller": "Profile",
+          "callee": "getUser",
+          "lineNumber": 210
+        },
+        {
+          "caller": "Profile",
+          "callee": "onAuthChange",
+          "lineNumber": 211
+        },
+        {
+          "caller": "google",
+          "callee": "signInWithGoogle",
+          "lineNumber": 215
+        },
+        {
+          "caller": "google",
+          "callee": "setAuthMsg",
+          "lineNumber": 216
+        },
+        {
+          "caller": "set",
+          "callee": "setForm",
+          "lineNumber": 220
+        },
+        {
+          "caller": "toggleSkill",
+          "callee": "setSkills",
+          "lineNumber": 224
+        },
+        {
+          "caller": "toggleSkill",
+          "callee": "prev.includes",
+          "lineNumber": 224
+        },
+        {
+          "caller": "toggleSkill",
+          "callee": "prev.filter",
+          "lineNumber": 224
+        },
+        {
+          "caller": "toggleSkill",
+          "callee": "[...prev, s].slice",
+          "lineNumber": 224
+        },
+        {
+          "caller": "saveAll",
+          "callee": "saveProfile",
+          "lineNumber": 228
+        },
+        {
+          "caller": "saveAll",
+          "callee": "skills.join",
+          "lineNumber": 228
+        },
+        {
+          "caller": "saveAll",
+          "callee": "setForm",
+          "lineNumber": 229
+        },
+        {
+          "caller": "saveAll",
+          "callee": "skills.join",
+          "lineNumber": 229
+        },
+        {
+          "caller": "finish",
+          "callee": "saveAll",
+          "lineNumber": 234
+        },
+        {
+          "caller": "finish",
+          "callee": "setStep",
+          "lineNumber": 235
+        },
+        {
+          "caller": "restart",
+          "callee": "setStep",
+          "lineNumber": 239
+        },
+        {
+          "caller": "Profile",
+          "callee": "steps.map",
+          "lineNumber": 258
+        },
+        {
+          "caller": "Profile",
+          "callee": "AYUSH_ROLE.skills.map",
+          "lineNumber": 274
+        },
+        {
+          "caller": "Profile",
+          "callee": "skills.includes",
+          "lineNumber": 275
+        },
+        {
+          "caller": "Profile",
+          "callee": "toggleSkill",
+          "lineNumber": 280
+        },
+        {
+          "caller": "Profile",
+          "callee": "saveAll",
+          "lineNumber": 294
+        },
+        {
+          "caller": "Profile",
+          "callee": "setStep",
+          "lineNumber": 294
+        },
+        {
+          "caller": "Profile",
+          "callee": "YEARS.map",
+          "lineNumber": 311
+        },
+        {
+          "caller": "Profile",
+          "callee": "set",
+          "lineNumber": 317
+        },
+        {
+          "caller": "Profile",
+          "callee": "LANES.map",
+          "lineNumber": 332
+        },
+        {
+          "caller": "Profile",
+          "callee": "set",
+          "lineNumber": 333
+        },
+        {
+          "caller": "Profile",
+          "callee": "set",
+          "lineNumber": 344
+        },
+        {
+          "caller": "Profile",
+          "callee": "saveAll",
+          "lineNumber": 349
+        },
+        {
+          "caller": "Profile",
+          "callee": "setStep",
+          "lineNumber": 349
+        },
+        {
+          "caller": "Profile",
+          "callee": "setStep",
+          "lineNumber": 352
+        },
+        {
+          "caller": "Profile",
+          "callee": "GOALS.map",
+          "lineNumber": 368
+        },
+        {
+          "caller": "Profile",
+          "callee": "set",
+          "lineNumber": 374
+        },
+        {
+          "caller": "Profile",
+          "callee": "saveAll",
+          "lineNumber": 374
+        },
+        {
+          "caller": "Profile",
+          "callee": "setStep",
+          "lineNumber": 374
+        },
+        {
+          "caller": "Profile",
+          "callee": "setStep",
+          "lineNumber": 378
+        },
+        {
+          "caller": "Profile",
+          "callee": "LOCS.map",
+          "lineNumber": 393
+        },
+        {
+          "caller": "Profile",
+          "callee": "set",
+          "lineNumber": 394
+        },
+        {
+          "caller": "Profile",
+          "callee": "HOURS.map",
+          "lineNumber": 399
+        },
+        {
+          "caller": "Profile",
+          "callee": "set",
+          "lineNumber": 400
+        },
+        {
+          "caller": "Profile",
+          "callee": "setStep",
+          "lineNumber": 407
+        },
+        {
+          "caller": "Profile",
+          "callee": "window.confirm",
+          "lineNumber": 421
+        },
+        {
+          "caller": "Profile",
+          "callee": "resetOnboarding",
+          "lineNumber": 421
+        },
+        {
+          "caller": "Profile",
+          "callee": "window.location.reload",
+          "lineNumber": 421
+        },
+        {
+          "caller": "Profile",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 427
+        },
+        {
+          "caller": "Profile",
+          "callee": "authLabel",
+          "lineNumber": 427
+        },
+        {
+          "caller": "Profile",
+          "callee": "signOut().then",
+          "lineNumber": 431
+        },
+        {
+          "caller": "Profile",
+          "callee": "signOut",
+          "lineNumber": 431
+        },
+        {
+          "caller": "Profile",
+          "callee": "setUser",
+          "lineNumber": 431
+        }
+      ],
+      "metrics": {
+        "importCount": 16,
+        "exportCount": 1,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/onboarding.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 60,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/streak.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 48,
+      "nonEmptyLines": 44,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/xp.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 33,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

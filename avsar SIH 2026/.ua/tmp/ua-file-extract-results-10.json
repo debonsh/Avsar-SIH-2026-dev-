@@ -1,0 +1,519 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 12,
+  "filesSkipped": [
+    "public/manifest.webmanifest",
+    "src/index.css"
+  ],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 12,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 10,
+      "failed": 0,
+      "skipped": 2
+    }
+  },
+  "results": [
+    {
+      "path": ".tastemaker/reference-board.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 25,
+      "nonEmptyLines": 20,
+      "sections": [
+        {
+          "heading": "Reference board: app-shell navigation (viewed 2026-09-20)",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Direct sources (viewed)",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Adjacent pattern (known, not fetched)",
+          "level": 2,
+          "line": 12
+        },
+        {
+          "heading": "Anti-references",
+          "level": 2,
+          "line": 17
+        },
+        {
+          "heading": "Direction contract",
+          "level": 2,
+          "line": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": ".tastemaker/style-lock.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 25,
+      "nonEmptyLines": 20,
+      "sections": [
+        {
+          "heading": "Avsar style lock (tastemaker)",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Type",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Color contract",
+          "level": 2,
+          "line": 8
+        },
+        {
+          "heading": "Shape",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "Dark mode",
+          "level": 2,
+          "line": 19
+        },
+        {
+          "heading": "Identity motif",
+          "level": 2,
+          "line": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "public/sw.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 29,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "scripts/naukri.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 75,
+      "nonEmptyLines": 69,
+      "functions": [
+        {
+          "name": "mapNaukri",
+          "startLine": 21,
+          "endLine": 45,
+          "params": []
+        },
+        {
+          "name": "importNaukri",
+          "startLine": 47,
+          "endLine": 60,
+          "params": [
+            "raw"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "mapNaukri",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "importNaukri",
+          "line": 47,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mapNaukri",
+          "callee": "` ${String(j.title || \"\")} `.toLowerCase",
+          "lineNumber": 22
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String",
+          "lineNumber": 22
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "DENY.some",
+          "lineNumber": 23
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "text.includes",
+          "lineNumber": 23
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "hints.some",
+          "lineNumber": 26
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "text.includes",
+          "lineNumber": 26
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "[...new Set(SKILL_DICT.filter((s) => text.includes(s)).map((s) => (s === \"c++\" ? \"dsa\" : s)))].slice",
+          "lineNumber": 29
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "SKILL_DICT.filter((s) => text.includes(s)).map",
+          "lineNumber": 29
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "SKILL_DICT.filter",
+          "lineNumber": 29
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "text.includes",
+          "lineNumber": 29
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String",
+          "lineNumber": 30
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "text.slice",
+          "lineNumber": 32
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String(j.title).trim",
+          "lineNumber": 34
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String",
+          "lineNumber": 34
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String(j.company || \"Naukri employer\").trim",
+          "lineNumber": 35
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String",
+          "lineNumber": 35
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String(j.location || \"India\").split(\",\")[0].replace(/\\(.*/, \"\").replace(/hybrid\\s*-\\s*/i, \"\").trim",
+          "lineNumber": 36
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String(j.location || \"India\").split(\",\")[0].replace(/\\(.*/, \"\").replace",
+          "lineNumber": 36
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String(j.location || \"India\").split(\",\")[0].replace",
+          "lineNumber": 36
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String(j.location || \"India\").split",
+          "lineNumber": 36
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "String",
+          "lineNumber": 36
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "/intern|trainee|apprentice/i.test",
+          "lineNumber": 37
+        },
+        {
+          "caller": "mapNaukri",
+          "callee": "/^0/.test",
+          "lineNumber": 39
+        },
+        {
+          "caller": "importNaukri",
+          "callee": "mapNaukri",
+          "lineNumber": 52
+        },
+        {
+          "caller": "importNaukri",
+          "callee": "m.title.toLowerCase",
+          "lineNumber": 54
+        },
+        {
+          "caller": "importNaukri",
+          "callee": "m.company.toLowerCase",
+          "lineNumber": 54
+        },
+        {
+          "caller": "importNaukri",
+          "callee": "seen.has",
+          "lineNumber": 55
+        },
+        {
+          "caller": "importNaukri",
+          "callee": "seen.add",
+          "lineNumber": 56
+        },
+        {
+          "caller": "importNaukri",
+          "callee": "jobs.push",
+          "lineNumber": 57
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "scripts/scrape.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 39,
+      "functions": [
+        {
+          "name": "get",
+          "startLine": 17,
+          "endLine": 21,
+          "params": [
+            "url"
+          ]
+        },
+        {
+          "name": "strip",
+          "startLine": 23,
+          "endLine": 23,
+          "params": []
+        },
+        {
+          "name": "has",
+          "startLine": 24,
+          "endLine": 24,
+          "params": [
+            "t",
+            "k"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get",
+          "callee": "fetch",
+          "lineNumber": 18
+        },
+        {
+          "caller": "get",
+          "callee": "AbortSignal.timeout",
+          "lineNumber": 18
+        },
+        {
+          "caller": "get",
+          "callee": "res.json",
+          "lineNumber": 20
+        },
+        {
+          "caller": "strip",
+          "callee": "String(s).replace(/<[^>]*>/g, \" \").replace(/\\s+/g, \" \").trim",
+          "lineNumber": 23
+        },
+        {
+          "caller": "strip",
+          "callee": "String(s).replace(/<[^>]*>/g, \" \").replace",
+          "lineNumber": 23
+        },
+        {
+          "caller": "strip",
+          "callee": "String(s).replace",
+          "lineNumber": 23
+        },
+        {
+          "caller": "strip",
+          "callee": "String",
+          "lineNumber": 23
+        },
+        {
+          "caller": "has",
+          "callee": "t.toLowerCase().includes",
+          "lineNumber": 24
+        },
+        {
+          "caller": "has",
+          "callee": "t.toLowerCase",
+          "lineNumber": 24
+        },
+        {
+          "caller": "has",
+          "callee": "k.toLowerCase",
+          "lineNumber": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/boardsSeed.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 736,
+      "nonEmptyLines": 736,
+      "exports": [
+        {
+          "name": "BOARDS_JOBS",
+          "line": 4,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/fixtures.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "exports": [
+        {
+          "name": "SAMPLE_RESUME",
+          "line": 2,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/naukriSeed.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 290,
+      "nonEmptyLines": 290,
+      "exports": [
+        {
+          "name": "NAUKRI_JOBS",
+          "line": 4,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/seedJobsExtra.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 23,
+      "nonEmptyLines": 23,
+      "exports": [
+        {
+          "name": "EXTRA_JOBS",
+          "line": 2,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/ayushProof.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 52,
+      "nonEmptyLines": 45,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/naukri.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 30,
+      "nonEmptyLines": 29,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "vite.config.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 7,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

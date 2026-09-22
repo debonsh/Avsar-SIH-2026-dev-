@@ -340,35 +340,39 @@ export function Shell() {
       </main>
 
       <footer className="border-t border-emerald-900/10">
-        <div className="mx-auto grid w-full max-w-5xl gap-8 px-4 py-10 sm:grid-cols-[1fr_1fr_1fr] sm:px-6">
-          <div>
+        <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
+          {/* brand row */}
+          <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
             <p className="flex items-center gap-1.5 text-sm font-semibold text-emerald-950">
               <CIcon icon={cilSpa} width={15} height={15} aria-hidden /> Avsar
             </p>
-            <p className="mt-2 max-w-xs text-sm leading-6 text-stone-500">
+            <p className="max-w-xs text-xs leading-5 text-stone-400">
               {t(lang, "footer.tag")}
             </p>
           </div>
-          <nav aria-label="Product">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-400">{t(lang, "footer.upskill")}</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              {[["/resume", "Resume score"], ["/quests", "Quests"], ["/quiz", "Quiz"], ["/interview", "Interview prep"]].map(([to, label]) => (
-                <li key={to}>
-                  <NavLink to={to} className="text-stone-500 hover:text-emerald-800">{label}</NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Resources">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-400">{t(lang, "footer.career")}</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              { [["/jobs", "Internships & jobs"], ["/portfolio", "Portfolio"], ["/institute", "Institute"], ["/industry", "For hospitals"], ["/profile", "Profile"]].map(([to, label]) => (
-                <li key={to}>
-                  <NavLink to={to} className="text-stone-500 hover:text-emerald-800">{label}</NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* link table: two columns side by side */}
+          <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-[1fr_1fr_1fr] sm:gap-x-10">
+            <nav aria-label="Product">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-stone-400">{t(lang, "footer.upskill")}</p>
+              <ul className="mt-1.5 space-y-1 text-[13px]">
+                {[["/resume", "Resume score"], ["/quests", "Quests"], ["/quiz", "Quiz"], ["/interview", "Interview prep"]].map(([to, label]) => (
+                  <li key={to}>
+                    <NavLink to={to} className="text-stone-500 hover:text-emerald-800">{label}</NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <nav aria-label="Resources">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-stone-400">{t(lang, "footer.career")}</p>
+              <ul className="mt-1.5 space-y-1 text-[13px]">
+                {[["/jobs", "Internships & jobs"], ["/portfolio", "Portfolio"], ["/institute", "Institute"], ["/industry", "For hospitals"], ["/profile", "Profile"]].map(([to, label]) => (
+                  <li key={to}>
+                    <NavLink to={to} className="text-stone-500 hover:text-emerald-800">{label}</NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </div>
       </footer>
 

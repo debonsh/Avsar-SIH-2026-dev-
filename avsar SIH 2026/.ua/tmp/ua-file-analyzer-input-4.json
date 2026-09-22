@@ -1,0 +1,150 @@
+{
+ "projectRoot": "D:/CodeProjects/avsar/avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": "src/ayush/seed.js",
+   "language": "javascript",
+   "sizeLines": 110,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/fdps.js",
+   "language": "javascript",
+   "sizeLines": 15,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/interview.js",
+   "language": "javascript",
+   "sizeLines": 10,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/quests.js",
+   "language": "javascript",
+   "sizeLines": 35,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/quiz.js",
+   "language": "javascript",
+   "sizeLines": 80,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/quests.js",
+   "language": "javascript",
+   "sizeLines": 24,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/roadmapGenerator.js",
+   "language": "javascript",
+   "sizeLines": 65,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Faculty.jsx",
+   "language": "javascript",
+   "sizeLines": 57,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Quests.jsx",
+   "language": "javascript",
+   "sizeLines": 293,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/ayush.test.js",
+   "language": "javascript",
+   "sizeLines": 38,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/faculty.test.js",
+   "language": "javascript",
+   "sizeLines": 38,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/quests.test.js",
+   "language": "javascript",
+   "sizeLines": 32,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/quiz.test.js",
+   "language": "javascript",
+   "sizeLines": 52,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/recommend.test.js",
+   "language": "javascript",
+   "sizeLines": 58,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  "src/ayush/seed.js": [],
+  "src/data/fdps.js": [
+   "src/ayush/seed.js"
+  ],
+  "src/data/interview.js": [
+   "src/ayush/seed.js"
+  ],
+  "src/data/quests.js": [
+   "src/ayush/seed.js"
+  ],
+  "src/data/quiz.js": [
+   "src/ayush/seed.js",
+   "src/lib/quests.js",
+   "src/lib/storage.js"
+  ],
+  "src/lib/quests.js": [],
+  "src/lib/roadmapGenerator.js": [
+   "src/data/courses.js",
+   "src/data/quests.js"
+  ],
+  "src/pages/Faculty.jsx": [
+   "src/components/ui.jsx",
+   "src/data/fdps.js",
+   "src/lib/store.js"
+  ],
+  "src/pages/Quests.jsx": [
+   "src/app/store.jsx",
+   "src/components/ui.jsx",
+   "src/data/jobs.js",
+   "src/data/quiz.js",
+   "src/lib/progress.js",
+   "src/lib/quests.js",
+   "src/lib/roadmapGenerator.js"
+  ],
+  "tests/ayush.test.js": [
+   "src/ayush/seed.js",
+   "src/data/courses.js",
+   "src/data/fdps.js",
+   "src/data/interview.js",
+   "src/data/questionnaire.js",
+   "src/data/quests.js",
+   "src/data/quiz.js",
+   "src/lib/score.js"
+  ],
+  "tests/faculty.test.js": [
+   "src/ayush/seed.js",
+   "src/data/fdps.js",
+   "src/lib/store.js"
+  ],
+  "tests/quests.test.js": [
+   "src/lib/quests.js"
+  ],
+  "tests/quiz.test.js": [
+   "src/data/quiz.js"
+  ],
+  "tests/recommend.test.js": [
+   "src/lib/roadmapGenerator.js",
+   "src/lib/store.js"
+  ]
+ }
+}

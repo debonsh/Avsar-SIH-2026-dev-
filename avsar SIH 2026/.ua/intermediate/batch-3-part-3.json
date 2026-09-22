@@ -1,0 +1,132 @@
+{
+ "nodes": [
+  {
+   "id": "file:tests/coach.test.js",
+   "type": "file",
+   "name": "coach.test.js",
+   "filePath": "tests/coach.test.js",
+   "summary": "Tests for the coach engine: matching, writeups, cover letters, and job-posting parsing.",
+   "tags": [
+    "test",
+    "career-coach",
+    "matching",
+    "unit-test"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:tests/profile.test.js",
+   "type": "file",
+   "name": "profile.test.js",
+   "filePath": "tests/profile.test.js",
+   "summary": "Tests for profile persistence, markdown rendering, and query builders.",
+   "tags": [
+    "test",
+    "user-profile",
+    "persistence",
+    "unit-test"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:tests/sections.test.js",
+   "type": "file",
+   "name": "sections.test.js",
+   "filePath": "tests/sections.test.js",
+   "summary": "Tests for resume contact extraction and section bucketing.",
+   "tags": [
+    "test",
+    "resume-parsing",
+    "sectioning",
+    "unit-test"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:tests/tips.test.js",
+   "type": "file",
+   "name": "tips.test.js",
+   "filePath": "tests/tips.test.js",
+   "summary": "Tests for resume-tip derivation from score breakdowns.",
+   "tags": [
+    "test",
+    "resume-tips",
+    "courses",
+    "unit-test"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:tests/tuning.test.js",
+   "type": "file",
+   "name": "tuning.test.js",
+   "filePath": "tests/tuning.test.js",
+   "summary": "Tests for AI tone presets and system-preamble composition.",
+   "tags": [
+    "test",
+    "tone-preset",
+    "prompting",
+    "unit-test"
+   ],
+   "complexity": "simple"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:tests/coach.test.js",
+   "target": "file:src/data/courses.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/coach.test.js",
+   "target": "file:src/lib/coach.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/profile.test.js",
+   "target": "file:src/data/courses.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/profile.test.js",
+   "target": "file:src/lib/profile.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/profile.test.js",
+   "target": "file:src/lib/store.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/sections.test.js",
+   "target": "file:src/lib/parseResume.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/tips.test.js",
+   "target": "file:src/data/courses.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/tuning.test.js",
+   "target": "file:src/data/tuning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  }
+ ]
+}

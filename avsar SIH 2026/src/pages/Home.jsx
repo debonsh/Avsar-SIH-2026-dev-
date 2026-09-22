@@ -218,13 +218,13 @@ export default function Home() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <Card className="flex h-full flex-col border-sky-200 bg-sky-50/50">
+          <Card className="flex h-full flex-col">
             <div className="mb-2 flex items-center gap-2.5">
-              <IconBadge icon={cilChatBubble} tone="sky" />
+              <IconBadge icon={cilChatBubble} tone="emerald" />
               <H2 className="mb-0">Round 3 — ask</H2>
             </div>
             <p className="flex items-start gap-1.5 text-sm leading-6 text-stone-600">
-              <CIcon icon={cilMedicalCross} width={15} height={15} className="mt-1 shrink-0 text-sky-700" />
+              <CIcon icon={cilMedicalCross} width={15} height={15} className="mt-1 shrink-0 text-emerald-700" />
               {profile.lane ? `Coached for your ${profile.lane} lane` : "Coached on your answers"}
               {missing[0] ? ` — biggest gap today: ${missing[0]}.` : "."}
             </p>

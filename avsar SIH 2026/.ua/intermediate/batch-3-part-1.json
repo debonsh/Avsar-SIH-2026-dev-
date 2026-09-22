@@ -1,0 +1,1523 @@
+{
+ "nodes": [
+  {
+   "id": "file:src/app/coach-widget.jsx",
+   "type": "file",
+   "name": "coach-widget.jsx",
+   "filePath": "src/app/coach-widget.jsx",
+   "summary": "Floating AI career-coach chat widget with quick actions, resume-aware greeting, offline answers plus Groq/Gemini fallback, and a persisted chat log.",
+   "tags": [
+    "component",
+    "ai-coach",
+    "chat-widget",
+    "resume-aware",
+    "frontend"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:src/app/coach-widget.jsx:inlineMd",
+   "type": "function",
+   "name": "inlineMd",
+   "filePath": "src/app/coach-widget.jsx",
+   "lineRange": [
+    34,
+    45
+   ],
+   "summary": "Renders **bold** inline markdown segments as strong elements.",
+   "tags": [
+    "utility",
+    "markdown",
+    "rendering"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/app/coach-widget.jsx:ChatText",
+   "type": "function",
+   "name": "ChatText",
+   "filePath": "src/app/coach-widget.jsx",
+   "lineRange": [
+    47,
+    87
+   ],
+   "summary": "Parses chat text into headings, lists, and paragraphs with inline markdown.",
+   "tags": [
+    "utility",
+    "markdown",
+    "chat-rendering"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/app/coach-widget.jsx:CoachWidget",
+   "type": "function",
+   "name": "CoachWidget",
+   "filePath": "src/app/coach-widget.jsx",
+   "lineRange": [
+    89,
+    357
+   ],
+   "summary": "Floating coach panel: profile-aware context, quick-fix prompts, artifact saving, and AI chat with offline fallback.",
+   "tags": [
+    "component",
+    "ai-coach",
+    "chat-widget"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:src/data/courses.js",
+   "type": "file",
+   "name": "courses.js",
+   "filePath": "src/data/courses.js",
+   "summary": "Free course catalog keyed by skill with cert filtering, budget-aware recommendations, YouTube video links, and resume-tip rules.",
+   "tags": [
+    "data-model",
+    "courses",
+    "recommendations",
+    "resume-tips",
+    "catalog"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/data/courses.js:coursesFor",
+   "type": "function",
+   "name": "coursesFor",
+   "filePath": "src/data/courses.js",
+   "lineRange": [
+    21,
+    24
+   ],
+   "summary": "Returns catalog entries matching a skill name.",
+   "tags": [
+    "utility",
+    "courses",
+    "lookup"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/courses.js:certsFor",
+   "type": "function",
+   "name": "certsFor",
+   "filePath": "src/data/courses.js",
+   "lineRange": [
+    27,
+    31
+   ],
+   "summary": "Returns certifiable courses for a skill, falling back to defaults.",
+   "tags": [
+    "utility",
+    "courses",
+    "certification"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/courses.js:recommendFor",
+   "type": "function",
+   "name": "recommendFor",
+   "filePath": "src/data/courses.js",
+   "lineRange": [
+    38,
+    53
+   ],
+   "summary": "Ranks courses for a skill by cert need, practice preference, and hour budget.",
+   "tags": [
+    "utility",
+    "courses",
+    "recommendations"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/data/courses.js:videosFor",
+   "type": "function",
+   "name": "videosFor",
+   "filePath": "src/data/courses.js",
+   "lineRange": [
+    57,
+    59
+   ],
+   "summary": "Returns YouTube video courses for a skill.",
+   "tags": [
+    "utility",
+    "courses",
+    "videos"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/courses.js:resumeTips",
+   "type": "function",
+   "name": "resumeTips",
+   "filePath": "src/data/courses.js",
+   "lineRange": [
+    63,
+    74
+   ],
+   "summary": "Derives resume improvement tips from a score-result breakdown.",
+   "tags": [
+    "utility",
+    "resume-tips",
+    "scoring"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/data/tuning.js",
+   "type": "file",
+   "name": "tuning.js",
+   "filePath": "src/data/tuning.js",
+   "summary": "AI tone presets with localStorage-backed tone choice and custom instructions, composing the system preamble for all LLM calls.",
+   "tags": [
+    "configuration",
+    "ai-personalization",
+    "tone-preset",
+    "local-storage",
+    "prompting"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/tuning.js:getTone",
+   "type": "function",
+   "name": "getTone",
+   "filePath": "src/data/tuning.js",
+   "lineRange": [
+    16,
+    19
+   ],
+   "summary": "Returns the saved tone id, falling back to the default.",
+   "tags": [
+    "utility",
+    "tone-preset",
+    "local-storage"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/tuning.js:setTone",
+   "type": "function",
+   "name": "setTone",
+   "filePath": "src/data/tuning.js",
+   "lineRange": [
+    21,
+    23
+   ],
+   "summary": "Persists the selected tone id when it is a known preset.",
+   "tags": [
+    "utility",
+    "tone-preset",
+    "local-storage"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/tuning.js:getCustom",
+   "type": "function",
+   "name": "getCustom",
+   "filePath": "src/data/tuning.js",
+   "lineRange": [
+    25,
+    27
+   ],
+   "summary": "Returns saved custom AI instructions, truncated.",
+   "tags": [
+    "utility",
+    "custom-instructions",
+    "local-storage"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/tuning.js:setCustom",
+   "type": "function",
+   "name": "setCustom",
+   "filePath": "src/data/tuning.js",
+   "lineRange": [
+    29,
+    31
+   ],
+   "summary": "Persists custom AI instructions, truncated.",
+   "tags": [
+    "utility",
+    "custom-instructions",
+    "local-storage"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/data/tuning.js:systemPreamble",
+   "type": "function",
+   "name": "systemPreamble",
+   "filePath": "src/data/tuning.js",
+   "lineRange": [
+    34,
+    38
+   ],
+   "summary": "Builds the system prompt from the active tone plus custom instructions.",
+   "tags": [
+    "utility",
+    "prompting",
+    "system-preamble"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/lib/ai.js",
+   "type": "file",
+   "name": "ai.js",
+   "filePath": "src/lib/ai.js",
+   "summary": "Groq/Gemini chat gateway with API-key detection, per-task models, timed fetch, and a localStorage-backed memoization cache.",
+   "tags": [
+    "service",
+    "ai-gateway",
+    "llm-client",
+    "caching",
+    "groq-gemini"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/ai.js:modelFor",
+   "type": "function",
+   "name": "modelFor",
+   "filePath": "src/lib/ai.js",
+   "lineRange": [
+    23,
+    25
+   ],
+   "summary": "Returns the task-specific model and sampling config.",
+   "tags": [
+    "utility",
+    "model-routing",
+    "configuration"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/ai.js:hasAIKey",
+   "type": "function",
+   "name": "hasAIKey",
+   "filePath": "src/lib/ai.js",
+   "lineRange": [
+    34,
+    36
+   ],
+   "summary": "Reports whether any Groq or Gemini key is configured.",
+   "tags": [
+    "utility",
+    "api-keys",
+    "feature-flag"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/ai.js:postJSON",
+   "type": "function",
+   "name": "postJSON",
+   "filePath": "src/lib/ai.js",
+   "lineRange": [
+    38,
+    56
+   ],
+   "summary": "POSTs JSON with an abort timeout and extracts the reply text.",
+   "tags": [
+    "utility",
+    "http-client",
+    "timeout"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/ai.js:groqChat",
+   "type": "function",
+   "name": "groqChat",
+   "filePath": "src/lib/ai.js",
+   "lineRange": [
+    58,
+    69
+   ],
+   "summary": "Sends a prompt to Groq with key rotation and the tuned system preamble.",
+   "tags": [
+    "utility",
+    "groq-client",
+    "chat"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/ai.js:geminiChat",
+   "type": "function",
+   "name": "geminiChat",
+   "filePath": "src/lib/ai.js",
+   "lineRange": [
+    71,
+    80
+   ],
+   "summary": "Sends a prompt to Gemini with the tuned system preamble.",
+   "tags": [
+    "utility",
+    "gemini-client",
+    "chat"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/ai.js:chat",
+   "type": "function",
+   "name": "chat",
+   "filePath": "src/lib/ai.js",
+   "lineRange": [
+    83,
+    86
+   ],
+   "summary": "Tries Groq then Gemini and returns the first non-empty reply.",
+   "tags": [
+    "service",
+    "chat-fallback",
+    "llm-client"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/ai.js:memoCall",
+   "type": "function",
+   "name": "memoCall",
+   "filePath": "src/lib/ai.js",
+   "lineRange": [
+    108,
+    118
+   ],
+   "summary": "Caches async AI results by namespace plus content hash, in memory and storage.",
+   "tags": [
+    "utility",
+    "caching",
+    "memoization"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/lib/aiQuestions.js",
+   "type": "file",
+   "name": "aiQuestions.js",
+   "filePath": "src/lib/aiQuestions.js",
+   "summary": "AI-generated quiz, interview, and questionnaire item builders with tolerant parsers that normalize raw LLM JSON output.",
+   "tags": [
+    "service",
+    "ai-generation",
+    "quiz",
+    "interview",
+    "parsing"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/aiQuestions.js:parseQuizItems",
+   "type": "function",
+   "name": "parseQuizItems",
+   "filePath": "src/lib/aiQuestions.js",
+   "lineRange": [
+    13,
+    31
+   ],
+   "summary": "Parses raw LLM output into validated quiz items with options and answers.",
+   "tags": [
+    "utility",
+    "parsing",
+    "quiz"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/aiQuestions.js:parseInterviewItems",
+   "type": "function",
+   "name": "parseInterviewItems",
+   "filePath": "src/lib/aiQuestions.js",
+   "lineRange": [
+    33,
+    37
+   ],
+   "summary": "Parses raw LLM output into up to 5 interview questions.",
+   "tags": [
+    "utility",
+    "parsing",
+    "interview"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/aiQuestions.js:parseQuestionnaireItems",
+   "type": "function",
+   "name": "parseQuestionnaireItems",
+   "filePath": "src/lib/aiQuestions.js",
+   "lineRange": [
+    39,
+    62
+   ],
+   "summary": "Parses raw LLM output into typed questionnaire items with options.",
+   "tags": [
+    "utility",
+    "parsing",
+    "questionnaire"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/aiQuestions.js:genQuizItems",
+   "type": "function",
+   "name": "genQuizItems",
+   "filePath": "src/lib/aiQuestions.js",
+   "lineRange": [
+    66,
+    73
+   ],
+   "summary": "Generates resume-grounded quiz items via memoized AI chat.",
+   "tags": [
+    "service",
+    "ai-generation",
+    "quiz"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/aiQuestions.js:genInterviewQs",
+   "type": "function",
+   "name": "genInterviewQs",
+   "filePath": "src/lib/aiQuestions.js",
+   "lineRange": [
+    75,
+    82
+   ],
+   "summary": "Generates resume-grounded interview questions via memoized AI chat.",
+   "tags": [
+    "service",
+    "ai-generation",
+    "interview"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/aiQuestions.js:gradeAnswerAI",
+   "type": "function",
+   "name": "gradeAnswerAI",
+   "filePath": "src/lib/aiQuestions.js",
+   "lineRange": [
+    86,
+    94
+   ],
+   "summary": "Grades an interview answer via memoized AI chat with a local fallback grade.",
+   "tags": [
+    "service",
+    "ai-grading",
+    "interview"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/aiQuestions.js:genQuestionnaire",
+   "type": "function",
+   "name": "genQuestionnaire",
+   "filePath": "src/lib/aiQuestions.js",
+   "lineRange": [
+    96,
+    103
+   ],
+   "summary": "Generates a resume-grounded evidence questionnaire via memoized AI chat.",
+   "tags": [
+    "service",
+    "ai-generation",
+    "questionnaire"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/lib/coach.js",
+   "type": "file",
+   "name": "coach.js",
+   "filePath": "src/lib/coach.js",
+   "summary": "Offline-first career-coach engine: prompt building, match banding, writeups, cover letters, job-posting parsing, and bilingual answers.",
+   "tags": [
+    "service",
+    "career-coach",
+    "matching",
+    "cover-letter",
+    "offline-first"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:src/lib/coach.js:ctx",
+   "type": "function",
+   "name": "ctx",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    21,
+    32
+   ],
+   "summary": "Builds the shared coach context from score state and profile.",
+   "tags": [
+    "utility",
+    "context-builder",
+    "coach"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/coach.js:buildPrompt",
+   "type": "function",
+   "name": "buildPrompt",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    36,
+    69
+   ],
+   "summary": "Builds the LLM prompt for a coach action from score and profile context.",
+   "tags": [
+    "utility",
+    "prompting",
+    "coach"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:src/lib/coach.js:matchBand",
+   "type": "function",
+   "name": "matchBand",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    74,
+    80
+   ],
+   "summary": "Maps a match percentage to a readiness band label.",
+   "tags": [
+    "utility",
+    "matching",
+    "banding"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/coach.js:matchJob",
+   "type": "function",
+   "name": "matchJob",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    82,
+    89
+   ],
+   "summary": "Scores a job against found skills into overlap, missing, and band.",
+   "tags": [
+    "utility",
+    "matching",
+    "job-scoring"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/coach.js:matchWriteup",
+   "type": "function",
+   "name": "matchWriteup",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    91,
+    95
+   ],
+   "summary": "Writes the fit summary for a job match.",
+   "tags": [
+    "utility",
+    "matching",
+    "writeup"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/coach.js:reviewWriteup",
+   "type": "function",
+   "name": "reviewWriteup",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    97,
+    102
+   ],
+   "summary": "Writes a resume review with score breakdown and course pointers.",
+   "tags": [
+    "utility",
+    "resume-review",
+    "writeup"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/coach.js:coverLetter",
+   "type": "function",
+   "name": "coverLetter",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    104,
+    111
+   ],
+   "summary": "Drafts a cover letter from profile context and match strengths.",
+   "tags": [
+    "utility",
+    "cover-letter",
+    "writeup"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/coach.js:parseJobPosting",
+   "type": "function",
+   "name": "parseJobPosting",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    114,
+    134
+   ],
+   "summary": "Extracts title, company, location, type, and skills from pasted job text.",
+   "tags": [
+    "utility",
+    "job-parsing",
+    "skill-extraction"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/coach.js:localAnswer",
+   "type": "function",
+   "name": "localAnswer",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    136,
+    177
+   ],
+   "summary": "Answers any coach action offline, including bilingual AYUSH guidance.",
+   "tags": [
+    "service",
+    "offline-answers",
+    "coach"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:src/lib/coach.js:askAnswer",
+   "type": "function",
+   "name": "askAnswer",
+   "filePath": "src/lib/coach.js",
+   "lineRange": [
+    181,
+    216
+   ],
+   "summary": "Answers free-text questions offline via keyword routing over profile context.",
+   "tags": [
+    "service",
+    "offline-answers",
+    "question-answering"
+   ],
+   "complexity": "complex"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/app/store.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/components/ui.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/data/jobs.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/lib/ai.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/lib/backend.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/lib/coach.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/lib/parseResume.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/lib/profile.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "file:src/lib/score.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "file:src/lib/storage.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "file:src/data/tuning.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "file:src/lib/quests.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "file:src/lib/storage.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "file:src/lib/ai.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "file:src/lib/gemini.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "file:src/lib/onboarding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "file:src/data/courses.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "file:src/lib/store.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "function:src/app/coach-widget.jsx:inlineMd",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "function:src/app/coach-widget.jsx:ChatText",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "function:src/app/coach-widget.jsx:CoachWidget",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/app/coach-widget.jsx",
+   "target": "function:src/app/coach-widget.jsx:CoachWidget",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:coursesFor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:certsFor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:recommendFor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:videosFor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:resumeTips",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:coursesFor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:certsFor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:recommendFor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:videosFor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "function:src/data/courses.js:resumeTips",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:getTone",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:setTone",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:getCustom",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:setCustom",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:systemPreamble",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:getTone",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:setTone",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:getCustom",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:setCustom",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "function:src/data/tuning.js:systemPreamble",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:modelFor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:hasAIKey",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:postJSON",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:groqChat",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:geminiChat",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:chat",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:memoCall",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:modelFor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:hasAIKey",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:chat",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "function:src/lib/ai.js:memoCall",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:parseQuizItems",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:parseInterviewItems",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:parseQuestionnaireItems",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:genQuizItems",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:genInterviewQs",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:gradeAnswerAI",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:genQuestionnaire",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:parseQuizItems",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:parseInterviewItems",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:parseQuestionnaireItems",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:genQuizItems",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:genInterviewQs",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:gradeAnswerAI",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "function:src/lib/aiQuestions.js:genQuestionnaire",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:ctx",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:buildPrompt",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:matchBand",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:matchJob",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:matchWriteup",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:reviewWriteup",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:coverLetter",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:parseJobPosting",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:localAnswer",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:askAnswer",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:buildPrompt",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:matchBand",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:matchJob",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:matchWriteup",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:reviewWriteup",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:coverLetter",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:parseJobPosting",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "function:src/lib/coach.js:localAnswer",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/app/coach-widget.jsx:CoachWidget",
+   "target": "function:src/lib/profile.js:loadProfile",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/app/coach-widget.jsx:CoachWidget",
+   "target": "function:src/lib/coach.js:localAnswer",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/app/coach-widget.jsx:CoachWidget",
+   "target": "function:src/lib/coach.js:buildPrompt",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/app/coach-widget.jsx:CoachWidget",
+   "target": "function:src/lib/ai.js:chat",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/app/coach-widget.jsx:CoachWidget",
+   "target": "function:src/lib/ai.js:hasAIKey",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/app/coach-widget.jsx:CoachWidget",
+   "target": "function:src/lib/parseResume.js:extractContact",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/ai.js:groqChat",
+   "target": "function:src/data/tuning.js:systemPreamble",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/ai.js:geminiChat",
+   "target": "function:src/data/tuning.js:systemPreamble",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/ai.js:memoCall",
+   "target": "function:src/lib/quests.js:hashStr",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:parseInterviewItems",
+   "target": "function:src/lib/gemini.js:parseQuestionSet",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:genQuizItems",
+   "target": "function:src/lib/ai.js:memoCall",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:genQuizItems",
+   "target": "function:src/lib/ai.js:chat",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:genInterviewQs",
+   "target": "function:src/lib/ai.js:memoCall",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:genInterviewQs",
+   "target": "function:src/lib/ai.js:chat",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:gradeAnswerAI",
+   "target": "function:src/lib/ai.js:memoCall",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:gradeAnswerAI",
+   "target": "function:src/lib/ai.js:chat",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:gradeAnswerAI",
+   "target": "function:src/lib/onboarding.js:parseAiGrade",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:genQuestionnaire",
+   "target": "function:src/lib/ai.js:memoCall",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/aiQuestions.js:genQuestionnaire",
+   "target": "function:src/lib/ai.js:chat",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/coach.js:reviewWriteup",
+   "target": "function:src/data/courses.js:coursesFor",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/coach.js:localAnswer",
+   "target": "function:src/data/courses.js:coursesFor",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/lib/coach.js:parseJobPosting",
+   "target": "function:src/lib/store.js:extractSkills",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/ai.js",
+   "target": "file:tests/ai.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/lib/aiQuestions.js",
+   "target": "file:tests/aiquestions.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "file:tests/coach.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/lib/coach.js",
+   "target": "file:tests/coach.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "file:tests/profile.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/data/tuning.js",
+   "target": "file:tests/tuning.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/data/courses.js",
+   "target": "file:tests/tips.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  }
+ ]
+}

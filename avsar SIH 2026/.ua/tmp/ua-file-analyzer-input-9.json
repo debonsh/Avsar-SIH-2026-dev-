@@ -1,0 +1,56 @@
+{
+ "projectRoot": "D:/CodeProjects/avsar/avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": ".env",
+   "language": "config",
+   "sizeLines": 5,
+   "fileCategory": "config"
+  },
+  {
+   "path": ".env.example",
+   "language": "config",
+   "sizeLines": 11,
+   "fileCategory": "config"
+  },
+  {
+   "path": ".oxlintrc.json",
+   "language": "json",
+   "sizeLines": 8,
+   "fileCategory": "config"
+  },
+  {
+   "path": "README.md",
+   "language": "markdown",
+   "sizeLines": 23,
+   "fileCategory": "docs"
+  },
+  {
+   "path": "index.html",
+   "language": "html",
+   "sizeLines": 22,
+   "fileCategory": "markup"
+  },
+  {
+   "path": "package.json",
+   "language": "json",
+   "sizeLines": 41,
+   "fileCategory": "config"
+  },
+  {
+   "path": "vercel.json",
+   "language": "json",
+   "sizeLines": 3,
+   "fileCategory": "config"
+  }
+ ],
+ "batchImportData": {
+  ".env": [],
+  ".env.example": [],
+  ".oxlintrc.json": [],
+  "README.md": [],
+  "index.html": [],
+  "package.json": [],
+  "vercel.json": []
+ }
+}

@@ -1,0 +1,1649 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 11,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 11,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 11,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/data/questionnaire.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 14,
+      "exports": [
+        {
+          "name": "QUESTIONNAIRE",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/ats.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 163,
+      "nonEmptyLines": 149,
+      "functions": [
+        {
+          "name": "extractProjectLines",
+          "startLine": 14,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "countHits",
+          "startLine": 44,
+          "endLine": 47,
+          "params": [
+            "text",
+            "words"
+          ]
+        },
+        {
+          "name": "occurrences",
+          "startLine": 49,
+          "endLine": 58,
+          "params": [
+            "text",
+            "words"
+          ]
+        },
+        {
+          "name": "distinctMatches",
+          "startLine": 60,
+          "endLine": 64,
+          "params": [
+            "text",
+            "res"
+          ]
+        },
+        {
+          "name": "scoreATS",
+          "startLine": 66,
+          "endLine": 163,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "STRONG_VERBS",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "extractProjectLines",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "scoreATS",
+          "line": 66,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "extractProjectLines",
+          "callee": "String(text || \"\").split(\"\\n\").map((l) => l.trim()).filter",
+          "lineNumber": 15
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "String(text || \"\").split(\"\\n\").map",
+          "lineNumber": 15
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "String(text || \"\").split",
+          "lineNumber": 15
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "String",
+          "lineNumber": 15
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "l.trim",
+          "lineNumber": 15
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "URL_RE.test",
+          "lineNumber": 19
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "/\\d/.test",
+          "lineNumber": 21
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "l.toLowerCase",
+          "lineNumber": 22
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "STRONG_VERBS.some",
+          "lineNumber": 23
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "low.includes",
+          "lineNumber": 23
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "/project|built|app|website|tool|system|dashboard/i.test",
+          "lineNumber": 24
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "/case|opd|ipd|patient|internship|clinical|hospital|therapy|sitting|trial/i.test",
+          "lineNumber": 25
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "scored.push",
+          "lineNumber": 26
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "scored.sort",
+          "lineNumber": 28
+        },
+        {
+          "caller": "extractProjectLines",
+          "callee": "scored.slice",
+          "lineNumber": 30
+        },
+        {
+          "caller": "countHits",
+          "callee": "text.toLowerCase",
+          "lineNumber": 45
+        },
+        {
+          "caller": "countHits",
+          "callee": "words.filter",
+          "lineNumber": 46
+        },
+        {
+          "caller": "countHits",
+          "callee": "t.includes",
+          "lineNumber": 46
+        },
+        {
+          "caller": "countHits",
+          "callee": "w.toLowerCase",
+          "lineNumber": 46
+        },
+        {
+          "caller": "occurrences",
+          "callee": "text.toLowerCase",
+          "lineNumber": 50
+        },
+        {
+          "caller": "occurrences",
+          "callee": "w.toLowerCase",
+          "lineNumber": 53
+        },
+        {
+          "caller": "occurrences",
+          "callee": "t.indexOf",
+          "lineNumber": 54
+        },
+        {
+          "caller": "occurrences",
+          "callee": "t.indexOf",
+          "lineNumber": 55
+        },
+        {
+          "caller": "distinctMatches",
+          "callee": "text.matchAll",
+          "lineNumber": 62
+        },
+        {
+          "caller": "distinctMatches",
+          "callee": "found.add",
+          "lineNumber": 62
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "(text || \"\").trim",
+          "lineNumber": 70
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "countHits",
+          "lineNumber": 80
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "earnedSkills.slice",
+          "lineNumber": 81
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.max",
+          "lineNumber": 81
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "earnedUpper.map",
+          "lineNumber": 82
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "s.toLowerCase",
+          "lineNumber": 82
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "merged.map",
+          "lineNumber": 83
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "x.toLowerCase",
+          "lineNumber": 83
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.round",
+          "lineNumber": 87
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "countHits",
+          "lineNumber": 90
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "occurrences",
+          "lineNumber": 91
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.round",
+          "lineNumber": 94
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.round",
+          "lineNumber": 95
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "foundKw.slice(0, 5).join",
+          "lineNumber": 98
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "foundKw.slice",
+          "lineNumber": 98
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "d2.why.push",
+          "lineNumber": 100
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "density.toFixed",
+          "lineNumber": 100
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "distinctMatches",
+          "lineNumber": 104
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 105
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 105
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 105
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "distinctMatches",
+          "lineNumber": 106
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "countHits",
+          "lineNumber": 108
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 109
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "countHits",
+          "lineNumber": 110
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 111
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 112
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 114
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "verbHits.slice(0, 4).join",
+          "lineNumber": 120
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "verbHits.slice",
+          "lineNumber": 120
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "d3.why.push",
+          "lineNumber": 124
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 128
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "merged.slice(0, 6).join",
+          "lineNumber": 131
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "merged.slice",
+          "lineNumber": 131
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "d1.why.push",
+          "lineNumber": 133
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "HEADERS.filter",
+          "lineNumber": 136
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "clean.toLowerCase().includes",
+          "lineNumber": 136
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "clean.toLowerCase",
+          "lineNumber": 136
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 137
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "YEAR_RE.test",
+          "lineNumber": 138
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "HEADERS.filter((s) => clean.toLowerCase().includes(s)).join",
+          "lineNumber": 141
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "HEADERS.filter",
+          "lineNumber": 141
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "clean.toLowerCase().includes",
+          "lineNumber": 141
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "clean.toLowerCase",
+          "lineNumber": 141
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "/@|linkedin|github|phone|[0-9]{10}/i.test",
+          "lineNumber": 145
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 147
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.floor",
+          "lineNumber": 147
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "Math.min",
+          "lineNumber": 155
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "breakdown.reduce",
+          "lineNumber": 155
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "role.skills.filter",
+          "lineNumber": 158
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "mergedLower.has",
+          "lineNumber": 158
+        },
+        {
+          "caller": "scoreATS",
+          "callee": "s.toLowerCase",
+          "lineNumber": 158
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/interview.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 48,
+      "functions": [
+        {
+          "name": "hasAny",
+          "startLine": 11,
+          "endLine": 14,
+          "params": [
+            "text",
+            "words"
+          ]
+        },
+        {
+          "name": "hasVerb",
+          "startLine": 16,
+          "endLine": 19,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "scoreAnswer",
+          "startLine": 22,
+          "endLine": 40,
+          "params": []
+        },
+        {
+          "name": "skillReadiness",
+          "startLine": 43,
+          "endLine": 53,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "scoreAnswer",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "skillReadiness",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "hasAny",
+          "callee": "text.toLowerCase",
+          "lineNumber": 12
+        },
+        {
+          "caller": "hasAny",
+          "callee": "words.some",
+          "lineNumber": 13
+        },
+        {
+          "caller": "hasAny",
+          "callee": "t.includes",
+          "lineNumber": 13
+        },
+        {
+          "caller": "hasAny",
+          "callee": "w.toLowerCase",
+          "lineNumber": 13
+        },
+        {
+          "caller": "hasVerb",
+          "callee": "text.toLowerCase",
+          "lineNumber": 17
+        },
+        {
+          "caller": "hasVerb",
+          "callee": "STRONG_VERBS.some",
+          "lineNumber": 18
+        },
+        {
+          "caller": "hasVerb",
+          "callee": "new RegExp(`\\\\b${v}\\\\b`, \"i\").test",
+          "lineNumber": 18
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "(text || \"\").trim",
+          "lineNumber": 23
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "S_RE.test",
+          "lineNumber": 24
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "T_RE.test",
+          "lineNumber": 25
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "hasVerb",
+          "lineNumber": 26
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "NUM_RE.test",
+          "lineNumber": 27
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "hasAny",
+          "lineNumber": 28
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "tips.push",
+          "lineNumber": 34
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "tips.push",
+          "lineNumber": 35
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "tips.push",
+          "lineNumber": 36
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "tips.push",
+          "lineNumber": 37
+        },
+        {
+          "caller": "scoreAnswer",
+          "callee": "tips.push",
+          "lineNumber": 38
+        },
+        {
+          "caller": "skillReadiness",
+          "callee": "scores.map",
+          "lineNumber": 47
+        },
+        {
+          "caller": "skillReadiness",
+          "callee": "Math.round",
+          "lineNumber": 48
+        },
+        {
+          "caller": "skillReadiness",
+          "callee": "vals.reduce",
+          "lineNumber": 48
+        },
+        {
+          "caller": "skillReadiness",
+          "callee": "scores.map",
+          "lineNumber": 50
+        },
+        {
+          "caller": "skillReadiness",
+          "callee": "Math.round",
+          "lineNumber": 51
+        },
+        {
+          "caller": "skillReadiness",
+          "callee": "micros.reduce",
+          "lineNumber": 51
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/questionnaire.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 58,
+      "nonEmptyLines": 49,
+      "functions": [
+        {
+          "name": "visibleQuestions",
+          "startLine": 6,
+          "endLine": 11,
+          "params": []
+        },
+        {
+          "name": "compileEvidence",
+          "startLine": 16,
+          "endLine": 27,
+          "params": []
+        },
+        {
+          "name": "qgenKey",
+          "startLine": 33,
+          "endLine": 35,
+          "params": [
+            "text",
+            "role",
+            "kind"
+          ]
+        },
+        {
+          "name": "loadCachedSet",
+          "startLine": 37,
+          "endLine": 41,
+          "params": [
+            "text",
+            "role",
+            "kind"
+          ]
+        },
+        {
+          "name": "saveCachedSet",
+          "startLine": 43,
+          "endLine": 49,
+          "params": [
+            "text",
+            "role",
+            "kind",
+            "items"
+          ]
+        },
+        {
+          "name": "loadQAnswers",
+          "startLine": 52,
+          "endLine": 54,
+          "params": [
+            "role"
+          ]
+        },
+        {
+          "name": "saveQAnswers",
+          "startLine": 56,
+          "endLine": 58,
+          "params": [
+            "role",
+            "answers"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "visibleQuestions",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "compileEvidence",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "qgenKey",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "loadCachedSet",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "saveCachedSet",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "loadQAnswers",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "saveQAnswers",
+          "line": 56,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "visibleQuestions",
+          "callee": "bank.filter",
+          "lineNumber": 7
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "Object.values",
+          "lineNumber": 18
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String(v || \"\").matchAll",
+          "lineNumber": 19
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String",
+          "lineNumber": 19
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "linked.add",
+          "lineNumber": 19
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String(answers[\"top-skills\"] || \"\")\n    .split(\",\")\n    .map((s) => s.trim().toLowerCase())\n    .filter(Boolean)\n    .slice",
+          "lineNumber": 21
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String(answers[\"top-skills\"] || \"\")\n    .split(\",\")\n    .map((s) => s.trim().toLowerCase())\n    .filter",
+          "lineNumber": 21
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String(answers[\"top-skills\"] || \"\")\n    .split(\",\")\n    .map",
+          "lineNumber": 21
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String(answers[\"top-skills\"] || \"\")\n    .split",
+          "lineNumber": 21
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String",
+          "lineNumber": 21
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "s.trim().toLowerCase",
+          "lineNumber": 23
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "s.trim",
+          "lineNumber": 23
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "[...linked].slice",
+          "lineNumber": 26
+        },
+        {
+          "caller": "compileEvidence",
+          "callee": "String",
+          "lineNumber": 26
+        },
+        {
+          "caller": "qgenKey",
+          "callee": "hashStr",
+          "lineNumber": 34
+        },
+        {
+          "caller": "qgenKey",
+          "callee": "String",
+          "lineNumber": 34
+        },
+        {
+          "caller": "loadCachedSet",
+          "callee": "loadJSON",
+          "lineNumber": 38
+        },
+        {
+          "caller": "loadCachedSet",
+          "callee": "qgenKey",
+          "lineNumber": 39
+        },
+        {
+          "caller": "loadCachedSet",
+          "callee": "Array.isArray",
+          "lineNumber": 40
+        },
+        {
+          "caller": "saveCachedSet",
+          "callee": "loadJSON",
+          "lineNumber": 44
+        },
+        {
+          "caller": "saveCachedSet",
+          "callee": "qgenKey",
+          "lineNumber": 45
+        },
+        {
+          "caller": "saveCachedSet",
+          "callee": "Object.keys",
+          "lineNumber": 46
+        },
+        {
+          "caller": "saveCachedSet",
+          "callee": "keys.slice",
+          "lineNumber": 47
+        },
+        {
+          "caller": "saveCachedSet",
+          "callee": "Math.max",
+          "lineNumber": 47
+        },
+        {
+          "caller": "saveCachedSet",
+          "callee": "saveJSON",
+          "lineNumber": 48
+        },
+        {
+          "caller": "loadQAnswers",
+          "callee": "loadJSON",
+          "lineNumber": 53
+        },
+        {
+          "caller": "saveQAnswers",
+          "callee": "saveJSON",
+          "lineNumber": 57
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/speech.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 37,
+      "functions": [
+        {
+          "name": "isVoiceSupported",
+          "startLine": 4,
+          "endLine": 7,
+          "params": []
+        },
+        {
+          "name": "listenOnce",
+          "startLine": 9,
+          "endLine": 45,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "isVoiceSupported",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "listenOnce",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "listenOnce",
+          "callee": "isVoiceSupported",
+          "lineNumber": 11
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "resolve",
+          "lineNumber": 12
+        },
+        {
+          "caller": "finish",
+          "callee": "clearTimeout",
+          "lineNumber": 26
+        },
+        {
+          "caller": "finish",
+          "callee": "rec.stop",
+          "lineNumber": 27
+        },
+        {
+          "caller": "finish",
+          "callee": "resolve",
+          "lineNumber": 28
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "setTimeout",
+          "lineNumber": 31
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "finish",
+          "lineNumber": 31
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "e.results?.[0]?.[0]?.transcript?.trim",
+          "lineNumber": 34
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "finish",
+          "lineNumber": 35
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "finish",
+          "lineNumber": 36
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "finish",
+          "lineNumber": 39
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "finish",
+          "lineNumber": 40
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "rec.start",
+          "lineNumber": 42
+        },
+        {
+          "caller": "listenOnce",
+          "callee": "finish",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Industry.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 205,
+      "nonEmptyLines": 195,
+      "functions": [
+        {
+          "name": "Industry",
+          "startLine": 17,
+          "endLine": 205,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Industry",
+          "line": 17,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Industry",
+          "callee": "useC2C",
+          "lineNumber": 18
+        },
+        {
+          "caller": "Industry",
+          "callee": "useState",
+          "lineNumber": 19
+        },
+        {
+          "caller": "Industry",
+          "callee": "useState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "Industry",
+          "callee": "useState",
+          "lineNumber": 21
+        },
+        {
+          "caller": "Industry",
+          "callee": "useState",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Industry",
+          "callee": "useState",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Industry",
+          "callee": "useState",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Industry",
+          "callee": "useMemo",
+          "lineNumber": 27
+        },
+        {
+          "caller": "Industry",
+          "callee": "profileForMatching",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Industry",
+          "callee": "loadQuizBest",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Industry",
+          "callee": "compileEvidence",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Industry",
+          "callee": "loadQAnswers",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Industry",
+          "callee": "customJobs.find",
+          "lineNumber": 35
+        },
+        {
+          "caller": "Industry",
+          "callee": "matchJobPost",
+          "lineNumber": 36
+        },
+        {
+          "caller": "set",
+          "callee": "setF",
+          "lineNumber": 38
+        },
+        {
+          "caller": "post",
+          "callee": "e.preventDefault",
+          "lineNumber": 41
+        },
+        {
+          "caller": "post",
+          "callee": "f.title.trim",
+          "lineNumber": 42
+        },
+        {
+          "caller": "post",
+          "callee": "f.company.trim",
+          "lineNumber": 42
+        },
+        {
+          "caller": "post",
+          "callee": "setErr",
+          "lineNumber": 43
+        },
+        {
+          "caller": "post",
+          "callee": "f.skills.split(\",\").map((s) => s.trim().toLowerCase()).filter(Boolean).slice",
+          "lineNumber": 46
+        },
+        {
+          "caller": "post",
+          "callee": "f.skills.split(\",\").map((s) => s.trim().toLowerCase()).filter",
+          "lineNumber": 46
+        },
+        {
+          "caller": "post",
+          "callee": "f.skills.split(\",\").map",
+          "lineNumber": 46
+        },
+        {
+          "caller": "post",
+          "callee": "f.skills.split",
+          "lineNumber": 46
+        },
+        {
+          "caller": "post",
+          "callee": "s.trim().toLowerCase",
+          "lineNumber": 46
+        },
+        {
+          "caller": "post",
+          "callee": "s.trim",
+          "lineNumber": 46
+        },
+        {
+          "caller": "post",
+          "callee": "Date.now",
+          "lineNumber": 48
+        },
+        {
+          "caller": "post",
+          "callee": "f.title.trim",
+          "lineNumber": 50
+        },
+        {
+          "caller": "post",
+          "callee": "f.company.trim",
+          "lineNumber": 51
+        },
+        {
+          "caller": "post",
+          "callee": "f.loc.trim",
+          "lineNumber": 52
+        },
+        {
+          "caller": "post",
+          "callee": "Math.max",
+          "lineNumber": 55
+        },
+        {
+          "caller": "post",
+          "callee": "Math.min",
+          "lineNumber": 55
+        },
+        {
+          "caller": "post",
+          "callee": "Number",
+          "lineNumber": 55
+        },
+        {
+          "caller": "post",
+          "callee": "f.apply.trim",
+          "lineNumber": 56
+        },
+        {
+          "caller": "post",
+          "callee": "f.description.trim",
+          "lineNumber": 57
+        },
+        {
+          "caller": "post",
+          "callee": "addCustomJob",
+          "lineNumber": 59
+        },
+        {
+          "caller": "post",
+          "callee": "setF",
+          "lineNumber": 60
+        },
+        {
+          "caller": "post",
+          "callee": "setErr",
+          "lineNumber": 61
+        },
+        {
+          "caller": "post",
+          "callee": "setNotice",
+          "lineNumber": 62
+        },
+        {
+          "caller": "shortlist",
+          "callee": "setOpen",
+          "lineNumber": 67
+        },
+        {
+          "caller": "shortlist",
+          "callee": "setOpen",
+          "lineNumber": 70
+        },
+        {
+          "caller": "shortlist",
+          "callee": "setLoading",
+          "lineNumber": 71
+        },
+        {
+          "caller": "shortlist",
+          "callee": "setApplicants",
+          "lineNumber": 73
+        },
+        {
+          "caller": "shortlist",
+          "callee": "listApplicants",
+          "lineNumber": 73
+        },
+        {
+          "caller": "shortlist",
+          "callee": "setApplicants",
+          "lineNumber": 75
+        },
+        {
+          "caller": "shortlist",
+          "callee": "setLoading",
+          "lineNumber": 77
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 93
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 96
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 99
+        },
+        {
+          "caller": "Industry",
+          "callee": "AYUSH_TYPS.map",
+          "lineNumber": 100
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 106
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 112
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 115
+        },
+        {
+          "caller": "Industry",
+          "callee": "set",
+          "lineNumber": 119
+        },
+        {
+          "caller": "Industry",
+          "callee": "customJobs.map",
+          "lineNumber": 138
+        },
+        {
+          "caller": "Industry",
+          "callee": "(j.skills || []).map",
+          "lineNumber": 148
+        },
+        {
+          "caller": "Industry",
+          "callee": "shortlist",
+          "lineNumber": 153
+        },
+        {
+          "caller": "Industry",
+          "callee": "openFit.why.map",
+          "lineNumber": 171
+        },
+        {
+          "caller": "Industry",
+          "callee": "applicants.map",
+          "lineNumber": 185
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Interview.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 144,
+      "nonEmptyLines": 135,
+      "functions": [
+        {
+          "name": "Interview",
+          "startLine": 21,
+          "endLine": 144,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Interview",
+          "line": 21,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Interview",
+          "callee": "useC2C",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Interview",
+          "callee": "useState",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Interview",
+          "callee": "loadQAnswers",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Interview",
+          "callee": "useState",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Interview",
+          "callee": "useState",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Interview",
+          "callee": "useState",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Interview",
+          "callee": "useMemo",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Interview",
+          "callee": "visibleQuestions",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Interview",
+          "callee": "useMemo",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Interview",
+          "callee": "compileEvidence",
+          "lineNumber": 29
+        },
+        {
+          "caller": "setAns",
+          "callee": "setAnswers",
+          "lineNumber": 33
+        },
+        {
+          "caller": "setAns",
+          "callee": "saveQAnswers",
+          "lineNumber": 35
+        },
+        {
+          "caller": "grade",
+          "callee": "qa.map",
+          "lineNumber": 41
+        },
+        {
+          "caller": "grade",
+          "callee": "scoreAnswer",
+          "lineNumber": 41
+        },
+        {
+          "caller": "grade",
+          "callee": "skillReadiness",
+          "lineNumber": 42
+        },
+        {
+          "caller": "grade",
+          "callee": "setGraded",
+          "lineNumber": 43
+        },
+        {
+          "caller": "grade",
+          "callee": "Math.round",
+          "lineNumber": 44
+        },
+        {
+          "caller": "grade",
+          "callee": "saveJSON",
+          "lineNumber": 45
+        },
+        {
+          "caller": "grade",
+          "callee": "recordDay",
+          "lineNumber": 46
+        },
+        {
+          "caller": "dictate",
+          "callee": "isVoiceSupported",
+          "lineNumber": 50
+        },
+        {
+          "caller": "dictate",
+          "callee": "setListening",
+          "lineNumber": 51
+        },
+        {
+          "caller": "dictate",
+          "callee": "listenOnce",
+          "lineNumber": 53
+        },
+        {
+          "caller": "dictate",
+          "callee": "setQa",
+          "lineNumber": 54
+        },
+        {
+          "caller": "dictate",
+          "callee": "setListening",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Interview",
+          "callee": "visible.map",
+          "lineNumber": 66
+        },
+        {
+          "caller": "Interview",
+          "callee": "setAns",
+          "lineNumber": 69
+        },
+        {
+          "caller": "Interview",
+          "callee": "q.options.map",
+          "lineNumber": 71
+        },
+        {
+          "caller": "Interview",
+          "callee": "setAns",
+          "lineNumber": 75
+        },
+        {
+          "caller": "Interview",
+          "callee": "setAns",
+          "lineNumber": 82
+        },
+        {
+          "caller": "Interview",
+          "callee": "evidence.claims.map",
+          "lineNumber": 90
+        },
+        {
+          "caller": "Interview",
+          "callee": "evidence.linkedProjects.map",
+          "lineNumber": 91
+        },
+        {
+          "caller": "Interview",
+          "callee": "STAR_QS.map",
+          "lineNumber": 100
+        },
+        {
+          "caller": "Interview",
+          "callee": "setQa",
+          "lineNumber": 106
+        },
+        {
+          "caller": "Interview",
+          "callee": "isVoiceSupported",
+          "lineNumber": 111
+        },
+        {
+          "caller": "Interview",
+          "callee": "dictate",
+          "lineNumber": 112
+        },
+        {
+          "caller": "Interview",
+          "callee": "qa.every",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Interview",
+          "callee": "t.trim",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Interview",
+          "callee": "[\"s\", \"t\", \"a\", \"r\"].sort",
+          "lineNumber": 129
+        },
+        {
+          "caller": "Interview",
+          "callee": "[\"s\", \"t\", \"a\", \"r\"].sort",
+          "lineNumber": 130
+        },
+        {
+          "caller": "Interview",
+          "callee": "[\"s\", \"t\", \"a\", \"r\"].sort",
+          "lineNumber": 131
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/aiopt.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 41,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/ats.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 78,
+      "nonEmptyLines": 66,
+      "callGraph": [
+        {
+          "caller": "pq",
+          "callee": "r.breakdown.find",
+          "lineNumber": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/interview.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 33,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/questionnaire.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 35,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

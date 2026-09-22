@@ -32,22 +32,24 @@ export default function Ayush() {
     <div>
       <section className="relative overflow-hidden border-b border-emerald-900/10" aria-label="Ayush entry">
         <div className="pointer-events-none absolute inset-0" aria-hidden>
-          <FractalMap palette="leaf" className="absolute inset-0 h-full w-full opacity-20" />
+          <FractalMap palette="leaf" className="absolute inset-0 h-full w-full opacity-40" />
+          {/* soft gradient overlay so text stays readable over the map */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f6f3ea]/30 via-transparent to-[#f6f3ea]/60" />
         </div>
-        <div className="relative mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
-          <div className="rounded-2xl border border-emerald-900/10 bg-white/95 shadow-sm">
-            <div className="px-4 py-10 text-center sm:px-8 sm:py-14">
-              <p className="inline-block rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-emerald-800">
+        <div className="relative mx-auto w-full max-w-5xl px-3 py-5 sm:px-6 sm:py-14">
+          <div className="rounded-2xl border border-emerald-900/10 bg-white/90 shadow-sm backdrop-blur-sm">
+            <div className="px-4 py-6 text-center sm:px-8 sm:py-12">
+              <p className="inline-block rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-800 sm:px-3 sm:py-1 sm:text-[11px]">
                 Ministry of Ayush · BAMS · NCISM aligned
               </p>
-              <h1 className="mx-auto mt-6 max-w-3xl text-balance font-display text-4xl font-bold leading-[1.08] text-stone-900 sm:text-6xl">
+              <h1 className="mx-auto mt-4 max-w-3xl text-balance font-display text-3xl font-bold leading-[1.1] text-stone-900 sm:mt-6 sm:text-5xl md:text-6xl">
                 Vaidya track: classroom to clinic, with proof.
               </h1>
-              <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-7 text-stone-500">
+              <p className="mx-auto mt-3 max-w-xl text-pretty text-sm leading-6 text-stone-500 sm:mt-5 sm:text-base sm:leading-7">
                 Three questions tune your matches. Then score your BAMS resume,
                 clear the SHISHIKSHA checklist, and apply to ayurveda internships.
               </p>
-              <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-7 sm:gap-4">
                 <Btn size="lg" onClick={() => enter("/profile")}>
                   Set up my profile <ArrowRight aria-hidden />
                 </Btn>
@@ -60,11 +62,11 @@ export default function Ayush() {
                 </button>
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-stone-100 px-4 py-2">
-              <span className="text-[11px] tabular-nums text-stone-400">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-stone-100 px-3 py-1.5 sm:px-4 sm:py-2">
+              <span className="text-[10px] tabular-nums text-stone-400 sm:text-[11px]">
                 Rotatory internships · SHISHIKSHA checklist · SIH 26044
               </span>
-              <Link to="/jobs" className="text-[11px] font-medium text-emerald-700 hover:text-emerald-900">
+              <Link to="/jobs" className="text-[10px] font-medium text-emerald-700 hover:text-emerald-900 sm:text-[11px]">
                 View openings
               </Link>
             </div>

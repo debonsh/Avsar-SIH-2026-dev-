@@ -1,0 +1,1001 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 14,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 14,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 14,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/ayush/seed.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 110,
+      "nonEmptyLines": 101,
+      "exports": [
+        {
+          "name": "AYUSH_ENABLED",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_ROLE",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_JOBS",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_TREE",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_COURSES",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_PROJECT_IDEAS",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_QUIZ",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_INTERVIEW_QS",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_QUESTIONNAIRE",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_FDPS",
+          "line": 104,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 10,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/fdps.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 14,
+      "exports": [
+        {
+          "name": "FDP_KINDS",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "FDPS",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/interview.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 10,
+      "exports": [
+        {
+          "name": "INTERVIEW_QS",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/quests.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "questFor",
+          "startLine": 33,
+          "endLine": 35,
+          "params": [
+            "roleKey"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "QUEST_TREE",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "questFor",
+          "line": 33,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/quiz.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 80,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "gradeSet",
+          "startLine": 25,
+          "endLine": 33,
+          "params": []
+        },
+        {
+          "name": "gradeQuiz",
+          "startLine": 35,
+          "endLine": 39,
+          "params": [
+            "role"
+          ]
+        },
+        {
+          "name": "quizSample",
+          "startLine": 43,
+          "endLine": 55,
+          "params": [
+            "role"
+          ]
+        },
+        {
+          "name": "bestKey",
+          "startLine": 57,
+          "endLine": 57,
+          "params": [
+            "role"
+          ]
+        },
+        {
+          "name": "loadQuizBest",
+          "startLine": 59,
+          "endLine": 61,
+          "params": [
+            "role"
+          ]
+        },
+        {
+          "name": "saveQuizBest",
+          "startLine": 63,
+          "endLine": 72,
+          "params": [
+            "role",
+            "score"
+          ]
+        },
+        {
+          "name": "todayDay",
+          "startLine": 74,
+          "endLine": 80,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "QUIZ",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "gradeSet",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "gradeQuiz",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "quizSample",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "loadQuizBest",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "saveQuizBest",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "todayDay",
+          "line": 74,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "gradeSet",
+          "callee": "Math.round",
+          "lineNumber": 32
+        },
+        {
+          "caller": "gradeQuiz",
+          "callee": "gradeSet",
+          "lineNumber": 38
+        },
+        {
+          "caller": "quizSample",
+          "callee": "Math.min",
+          "lineNumber": 48
+        },
+        {
+          "caller": "quizSample",
+          "callee": "pickForId",
+          "lineNumber": 50
+        },
+        {
+          "caller": "quizSample",
+          "callee": "out.push",
+          "lineNumber": 51
+        },
+        {
+          "caller": "quizSample",
+          "callee": "pool.splice",
+          "lineNumber": 52
+        },
+        {
+          "caller": "quizSample",
+          "callee": "pool.indexOf",
+          "lineNumber": 52
+        },
+        {
+          "caller": "loadQuizBest",
+          "callee": "Number",
+          "lineNumber": 60
+        },
+        {
+          "caller": "loadQuizBest",
+          "callee": "loadJSON",
+          "lineNumber": 60
+        },
+        {
+          "caller": "loadQuizBest",
+          "callee": "bestKey",
+          "lineNumber": 60
+        },
+        {
+          "caller": "saveQuizBest",
+          "callee": "loadQuizBest",
+          "lineNumber": 65
+        },
+        {
+          "caller": "saveQuizBest",
+          "callee": "Math.max",
+          "lineNumber": 66
+        },
+        {
+          "caller": "saveQuizBest",
+          "callee": "Math.round",
+          "lineNumber": 66
+        },
+        {
+          "caller": "saveQuizBest",
+          "callee": "saveJSON",
+          "lineNumber": 67
+        },
+        {
+          "caller": "saveQuizBest",
+          "callee": "bestKey",
+          "lineNumber": 67
+        },
+        {
+          "caller": "todayDay",
+          "callee": "new Date().toISOString().slice",
+          "lineNumber": 76
+        },
+        {
+          "caller": "todayDay",
+          "callee": "new Date().toISOString",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/quests.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "hashStr",
+          "startLine": 5,
+          "endLine": 12,
+          "params": []
+        },
+        {
+          "name": "pickForId",
+          "startLine": 14,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "isEvidenceUrl",
+          "startLine": 21,
+          "endLine": 24,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "hashStr",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "pickForId",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "isEvidenceUrl",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "hashStr",
+          "callee": "s.charCodeAt",
+          "lineNumber": 8
+        },
+        {
+          "caller": "hashStr",
+          "callee": "Math.imul",
+          "lineNumber": 9
+        },
+        {
+          "caller": "pickForId",
+          "callee": "hashStr",
+          "lineNumber": 16
+        },
+        {
+          "caller": "isEvidenceUrl",
+          "callee": "(u || \"\").trim",
+          "lineNumber": 22
+        },
+        {
+          "caller": "isEvidenceUrl",
+          "callee": "/^https?:\\/\\/[^\\s/$.?#].[^\\s]*$/i.test",
+          "lineNumber": 23
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/roadmapGenerator.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 65,
+      "nonEmptyLines": 61,
+      "functions": [
+        {
+          "name": "jobDemand",
+          "startLine": 7,
+          "endLine": 16,
+          "params": []
+        },
+        {
+          "name": "orderMissingByDemand",
+          "startLine": 19,
+          "endLine": 24,
+          "params": []
+        },
+        {
+          "name": "questProjectFor",
+          "startLine": 26,
+          "endLine": 36,
+          "params": [
+            "role",
+            "skill"
+          ]
+        },
+        {
+          "name": "roadmapGenerator",
+          "startLine": 38,
+          "endLine": 65,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "jobDemand",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "orderMissingByDemand",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "roadmapGenerator",
+          "line": 38,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "jobDemand",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 11
+        },
+        {
+          "caller": "jobDemand",
+          "callee": "String",
+          "lineNumber": 11
+        },
+        {
+          "caller": "jobDemand",
+          "callee": "map.set",
+          "lineNumber": 12
+        },
+        {
+          "caller": "jobDemand",
+          "callee": "map.get",
+          "lineNumber": 12
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "jobDemand",
+          "lineNumber": 20
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "[...missing].sort",
+          "lineNumber": 21
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "demand.get",
+          "lineNumber": 22
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "String(b).toLowerCase",
+          "lineNumber": 22
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "String",
+          "lineNumber": 22
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "demand.get",
+          "lineNumber": 22
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "String(a).toLowerCase",
+          "lineNumber": 22
+        },
+        {
+          "caller": "orderMissingByDemand",
+          "callee": "String",
+          "lineNumber": 22
+        },
+        {
+          "caller": "questProjectFor",
+          "callee": "String(skill).toLowerCase",
+          "lineNumber": 29
+        },
+        {
+          "caller": "questProjectFor",
+          "callee": "String",
+          "lineNumber": 29
+        },
+        {
+          "caller": "questProjectFor",
+          "callee": "(sk.name || \"\").toLowerCase",
+          "lineNumber": 32
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "orderMissingByDemand",
+          "lineNumber": 39
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "jobDemand",
+          "lineNumber": 41
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "ordered.slice",
+          "lineNumber": 45
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "coursesFor",
+          "lineNumber": 46
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "demand.get",
+          "lineNumber": 47
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "String(skill).toLowerCase",
+          "lineNumber": 47
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "String",
+          "lineNumber": 47
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "tasks.push",
+          "lineNumber": 48
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "questProjectFor",
+          "lineNumber": 52
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "tasks.push",
+          "lineNumber": 53
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "tasks.push",
+          "lineNumber": 58
+        },
+        {
+          "caller": "roadmapGenerator",
+          "callee": "weeks.push",
+          "lineNumber": 62
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Faculty.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 52,
+      "functions": [
+        {
+          "name": "Faculty",
+          "startLine": 6,
+          "endLine": 57,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Faculty",
+          "line": 6,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Faculty",
+          "callee": "useState",
+          "lineNumber": 7
+        },
+        {
+          "caller": "Faculty",
+          "callee": "useState",
+          "lineNumber": 8
+        },
+        {
+          "caller": "Faculty",
+          "callee": "loadInterests",
+          "lineNumber": 8
+        },
+        {
+          "caller": "Faculty",
+          "callee": "FDPS.filter",
+          "lineNumber": 10
+        },
+        {
+          "caller": "toggle",
+          "callee": "setInterested",
+          "lineNumber": 13
+        },
+        {
+          "caller": "toggle",
+          "callee": "toggleInterest",
+          "lineNumber": 13
+        },
+        {
+          "caller": "toggle",
+          "callee": "recordInterest(f).catch",
+          "lineNumber": 14
+        },
+        {
+          "caller": "toggle",
+          "callee": "recordInterest",
+          "lineNumber": 14
+        },
+        {
+          "caller": "Faculty",
+          "callee": "setKind",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Faculty",
+          "callee": "Object.entries(FDP_KINDS).map",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Faculty",
+          "callee": "Object.entries",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Faculty",
+          "callee": "list.map",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Faculty",
+          "callee": "interested.includes",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Faculty",
+          "callee": "toggle",
+          "lineNumber": 47
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Quests.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 294,
+      "nonEmptyLines": 283,
+      "functions": [
+        {
+          "name": "QuestCheck",
+          "startLine": 18,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "MasteryPips",
+          "startLine": 45,
+          "endLine": 59,
+          "params": []
+        },
+        {
+          "name": "Quests",
+          "startLine": 119,
+          "endLine": 294,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Quests",
+          "line": 119,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "MasteryPips",
+          "callee": "[1, 2, 3].map",
+          "lineNumber": 49
+        },
+        {
+          "caller": "Quests",
+          "callee": "useC2C",
+          "lineNumber": 120
+        },
+        {
+          "caller": "Quests",
+          "callee": "useState",
+          "lineNumber": 121
+        },
+        {
+          "caller": "Quests",
+          "callee": "useMemo",
+          "lineNumber": 122
+        },
+        {
+          "caller": "Quests",
+          "callee": "useMemo",
+          "lineNumber": 123
+        },
+        {
+          "caller": "Quests",
+          "callee": "roadmapGenerator",
+          "lineNumber": 123
+        },
+        {
+          "caller": "Quests",
+          "callee": "loadQuizBest",
+          "lineNumber": 124
+        },
+        {
+          "caller": "refresh",
+          "callee": "bump",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Quests",
+          "callee": "displayWeeks.flatMap",
+          "lineNumber": 155
+        },
+        {
+          "caller": "Quests",
+          "callee": "w.tasks.map",
+          "lineNumber": 155
+        },
+        {
+          "caller": "isDone",
+          "callee": "isCourseDone",
+          "lineNumber": 157
+        },
+        {
+          "caller": "isDone",
+          "callee": "isProjectDone",
+          "lineNumber": 157
+        },
+        {
+          "caller": "Quests",
+          "callee": "all.filter",
+          "lineNumber": 158
+        },
+        {
+          "caller": "Quests",
+          "callee": "Math.round",
+          "lineNumber": 159
+        },
+        {
+          "caller": "Quests",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 160
+        },
+        {
+          "caller": "Quests",
+          "callee": "displayWeeks.map",
+          "lineNumber": 196
+        },
+        {
+          "caller": "Quests",
+          "callee": "w.tasks.filter",
+          "lineNumber": 198
+        },
+        {
+          "caller": "Quests",
+          "callee": "isCourseDone",
+          "lineNumber": 199
+        },
+        {
+          "caller": "Quests",
+          "callee": "isProjectDone",
+          "lineNumber": 199
+        },
+        {
+          "caller": "Quests",
+          "callee": "w.tasks.map",
+          "lineNumber": 213
+        },
+        {
+          "caller": "Quests",
+          "callee": "isCourseDone",
+          "lineNumber": 215
+        },
+        {
+          "caller": "Quests",
+          "callee": "isProjectDone",
+          "lineNumber": 215
+        },
+        {
+          "caller": "Quests",
+          "callee": "getEvidence",
+          "lineNumber": 216
+        },
+        {
+          "caller": "Quests",
+          "callee": "masteryLevel",
+          "lineNumber": 217
+        },
+        {
+          "caller": "toggle",
+          "callee": "setQuestDone",
+          "lineNumber": 219
+        },
+        {
+          "caller": "toggle",
+          "callee": "refresh",
+          "lineNumber": 220
+        },
+        {
+          "caller": "Quests",
+          "callee": "e.target.value.trim",
+          "lineNumber": 257
+        },
+        {
+          "caller": "Quests",
+          "callee": "isEvidenceUrl",
+          "lineNumber": 259
+        },
+        {
+          "caller": "Quests",
+          "callee": "e.target.setCustomValidity",
+          "lineNumber": 260
+        },
+        {
+          "caller": "Quests",
+          "callee": "e.target.reportValidity",
+          "lineNumber": 261
+        },
+        {
+          "caller": "Quests",
+          "callee": "e.target.setCustomValidity",
+          "lineNumber": 262
+        },
+        {
+          "caller": "Quests",
+          "callee": "setEvidence",
+          "lineNumber": 265
+        },
+        {
+          "caller": "Quests",
+          "callee": "refresh",
+          "lineNumber": 266
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/ayush.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 36,
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/faculty.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 34,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/quests.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 27,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/quiz.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 52,
+      "nonEmptyLines": 46,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/recommend.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 58,
+      "nonEmptyLines": 51,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

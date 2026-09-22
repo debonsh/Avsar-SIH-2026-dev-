@@ -1,0 +1,7800 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "no-git-repo",
+  "generatedAt": "2026-09-21T19:16:14.341Z",
+  "files": {
+    ".env": {
+      "filePath": ".env",
+      "contentHash": "6be42fdb778ffe290d081336f9c304e0dcc4d10e906acf21c1a0c0fe22b654b0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": false
+    },
+    ".env.example": {
+      "filePath": ".env.example",
+      "contentHash": "ac4e89a7d7c6b71799a50608b2f15f95ffb2ef3dae7fa69f97270d05349e2849",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": false
+    },
+    ".oxlintrc.json": {
+      "filePath": ".oxlintrc.json",
+      "contentHash": "1be899e45c49b2a2edc715bc3bfb31d8ed8e866ed7ebab2065ff6e55e88c2396",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    ".tastemaker/reference-board.md": {
+      "filePath": ".tastemaker/reference-board.md",
+      "contentHash": "1dacf43f40c50ce745e453bcd767aba0135a6e52643a225630992f412d89c20f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": false
+    },
+    ".tastemaker/style-lock.md": {
+      "filePath": ".tastemaker/style-lock.md",
+      "contentHash": "b24bb374f9a4c37beb9e05a53835a00486da89a086a1e2a0d1845239af39c9a1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 26,
+      "hasStructuralAnalysis": false
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "7e2c0e97092da6acc6485bb9cff8de5a95becc8cfa8225e9a4efbce07ba52691",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 24,
+      "hasStructuralAnalysis": false
+    },
+    "index.html": {
+      "filePath": "index.html",
+      "contentHash": "d392594f56a5430df949f1cbb664b95f8c3d9080ed88a674426d575ddaebcc39",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": false
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "bc29cb5167d3cad59e14b13f6464cd0ec98d23e4bd77542bdc5c9a6e8d65b6e3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 42,
+      "hasStructuralAnalysis": false
+    },
+    "public/manifest.webmanifest": {
+      "filePath": "public/manifest.webmanifest",
+      "contentHash": "51272487098bb399b232498eb60bb868f9b0664a35463c4d74e8f620066d28e6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 16,
+      "hasStructuralAnalysis": false
+    },
+    "public/sw.js": {
+      "filePath": "public/sw.js",
+      "contentHash": "147fbd568f2009d01b951bd53cbb4443a11aba8f3ac6700d98a383723e5c95aa",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/boards.mjs": {
+      "filePath": "scripts/boards.mjs",
+      "contentHash": "7c176ddb3e5b9abe543c5fe18a82bb9e85571e87b08f61421b44bc1870f4a959",
+      "functions": [
+        {
+          "name": "split",
+          "params": [
+            "v"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "loadList",
+          "params": [
+            "f"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "resolve",
+          "params": [
+            "provider",
+            "want"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "get",
+          "params": [
+            "url"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "strip",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "locOf",
+          "params": [
+            "...parts"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "typeOf",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "toShape",
+          "params": [
+            "prefix",
+            "raw",
+            "company",
+            "map"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "fetchGreenhouse",
+          "params": [],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "fetchLeverBoard",
+          "params": [],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "fetchAshby",
+          "params": [],
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync",
+            "writeFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        },
+        {
+          "source": "../src/lib/store.js",
+          "specifiers": [
+            "guessRole",
+            "extractSkills"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 129,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/naukri.mjs": {
+      "filePath": "scripts/naukri.mjs",
+      "contentHash": "cfd12d09bc637d25b464345bf462130e2f0e04da92fc6468396c00e43c16aa4c",
+      "functions": [
+        {
+          "name": "mapNaukri",
+          "params": [],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "importNaukri",
+          "params": [
+            "raw"
+          ],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "readFileSync",
+            "writeFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "exports": [
+        "mapNaukri",
+        "importNaukri"
+      ],
+      "totalLines": 76,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/scrape.mjs": {
+      "filePath": "scripts/scrape.mjs",
+      "contentHash": "7729c992d13b088d1df501b50ccfdd2c969f2a4c8a2f354a5f3852cf7c5cd6f2",
+      "functions": [
+        {
+          "name": "get",
+          "params": [
+            "url"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "strip",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "has",
+          "params": [
+            "t",
+            "k"
+          ],
+          "exported": false,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs",
+          "specifiers": [
+            "mkdirSync",
+            "writeFileSync"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "dirname",
+            "join"
+          ]
+        },
+        {
+          "source": "node:url",
+          "specifiers": [
+            "fileURLToPath"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/coach-widget.jsx": {
+      "filePath": "src/app/coach-widget.jsx",
+      "contentHash": "78fb49453d999ee8ef8ce3375ca23d0b009cc44b7fe0eeced429327719757fcd",
+      "functions": [
+        {
+          "name": "loadLog",
+          "params": [],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "inlineMd",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "ChatText",
+          "params": [],
+          "exported": false,
+          "lineCount": 41
+        },
+        {
+          "name": "CoachWidget",
+          "params": [],
+          "exported": true,
+          "lineCount": 269
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useMemo",
+            "useRef",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "useSearchParams"
+          ]
+        },
+        {
+          "source": "lucide-react",
+          "specifiers": [
+            "MessageCircle",
+            "X"
+          ]
+        },
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilSpa",
+            "cilSend",
+            "cilPlus"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Btn",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "./store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/coach.js",
+          "specifiers": [
+            "COACH_ACTIONS",
+            "buildPrompt",
+            "localAnswer"
+          ]
+        },
+        {
+          "source": "../lib/ai.js",
+          "specifiers": [
+            "chat",
+            "hasAIKey"
+          ]
+        },
+        {
+          "source": "../lib/backend.js",
+          "specifiers": [
+            "saveArtifact"
+          ]
+        },
+        {
+          "source": "../lib/parseResume.js",
+          "specifiers": [
+            "extractContact"
+          ]
+        },
+        {
+          "source": "../lib/profile.js",
+          "specifiers": [
+            "loadProfile"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "ROLES",
+            "rankRoles"
+          ]
+        },
+        {
+          "source": "../data/jobs.js",
+          "specifiers": [
+            "JOBS"
+          ]
+        }
+      ],
+      "exports": [
+        "CoachWidget"
+      ],
+      "totalLines": 358,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/error-boundary.jsx": {
+      "filePath": "src/app/error-boundary.jsx",
+      "contentHash": "be64ffad940fafbe6a74f5cd417156987be2edf6a59717349392de2badd0389a",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RouteErrorBoundary",
+          "methods": [
+            "constructor",
+            "getDerivedStateFromError",
+            "getDerivedStateFromProps",
+            "componentDidCatch",
+            "render"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 62
+        }
+      ],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "Component"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link"
+          ]
+        }
+      ],
+      "exports": [
+        "RouteErrorBoundary"
+      ],
+      "totalLines": 69,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/shell.jsx": {
+      "filePath": "src/app/shell.jsx",
+      "contentHash": "d7c48d72f774518918d1a9afa88c5c40fbed5826330a0ae1dd13ad5a10d0f157",
+      "functions": [
+        {
+          "name": "ReadinessRing",
+          "params": [],
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "Brand",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "Shell",
+          "params": [],
+          "exported": true,
+          "lineCount": 295
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useRef",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "NavLink",
+            "Route",
+            "Routes",
+            "useLocation"
+          ]
+        },
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilSpa",
+            "cilHome",
+            "cilCompass",
+            "cilBriefcase",
+            "cilBook",
+            "cilUser",
+            "cilChevronBottom",
+            "cilSun",
+            "cilMoon"
+          ]
+        },
+        {
+          "source": "motion/react",
+          "specifiers": [
+            "motion",
+            "useReducedMotion"
+          ]
+        },
+        {
+          "source": "./store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "calculateMainScore"
+          ]
+        },
+        {
+          "source": "../lib/theme.js",
+          "specifiers": [
+            "loadTheme",
+            "saveTheme"
+          ]
+        },
+        {
+          "source": "../lib/i18n.js",
+          "specifiers": [
+            "loadLang",
+            "saveLang",
+            "t"
+          ]
+        },
+        {
+          "source": "../lib/auth.js",
+          "specifiers": [
+            "getUser",
+            "signInWithGoogle",
+            "signOut",
+            "onAuthChange"
+          ]
+        },
+        {
+          "source": "../pages/Jobs.jsx",
+          "specifiers": [
+            "Jobs"
+          ]
+        },
+        {
+          "source": "../pages/Quests.jsx",
+          "specifiers": [
+            "Quests"
+          ]
+        },
+        {
+          "source": "../pages/Quiz.jsx",
+          "specifiers": [
+            "Quiz"
+          ]
+        },
+        {
+          "source": "../pages/Interview.jsx",
+          "specifiers": [
+            "Interview"
+          ]
+        },
+        {
+          "source": "../pages/Institute.jsx",
+          "specifiers": [
+            "Institute"
+          ]
+        },
+        {
+          "source": "../pages/Faculty.jsx",
+          "specifiers": [
+            "Faculty"
+          ]
+        },
+        {
+          "source": "../pages/Portfolio.jsx",
+          "specifiers": [
+            "Portfolio"
+          ]
+        },
+        {
+          "source": "../pages/Profile.jsx",
+          "specifiers": [
+            "Profile"
+          ]
+        },
+        {
+          "source": "../pages/Journey.jsx",
+          "specifiers": [
+            "Journey"
+          ]
+        },
+        {
+          "source": "../pages/Home.jsx",
+          "specifiers": [
+            "Home"
+          ]
+        },
+        {
+          "source": "../pages/NotFound.jsx",
+          "specifiers": [
+            "NotFound"
+          ]
+        },
+        {
+          "source": "../pages/Industry.jsx",
+          "specifiers": [
+            "Industry"
+          ]
+        },
+        {
+          "source": "../pages/Verify.jsx",
+          "specifiers": [
+            "Verify"
+          ]
+        },
+        {
+          "source": "../pages/Ayush.jsx",
+          "specifiers": [
+            "Ayush"
+          ]
+        },
+        {
+          "source": "../pages/Resume.jsx",
+          "specifiers": [
+            "Resume"
+          ]
+        },
+        {
+          "source": "../pages/Match.jsx",
+          "specifiers": [
+            "Match"
+          ]
+        },
+        {
+          "source": "../pages/Programs.jsx",
+          "specifiers": [
+            "Programs"
+          ]
+        },
+        {
+          "source": "../pages/Workspace.jsx",
+          "specifiers": [
+            "Workspace"
+          ]
+        },
+        {
+          "source": "../pages/Public.jsx",
+          "specifiers": [
+            "Public"
+          ]
+        },
+        {
+          "source": "./coach-widget.jsx",
+          "specifiers": [
+            "CoachWidget"
+          ]
+        },
+        {
+          "source": "./error-boundary.jsx",
+          "specifiers": [
+            "RouteErrorBoundary"
+          ]
+        }
+      ],
+      "exports": [
+        "Shell"
+      ],
+      "totalLines": 416,
+      "hasStructuralAnalysis": true
+    },
+    "src/app/store.jsx": {
+      "filePath": "src/app/store.jsx",
+      "contentHash": "f60dd2379f30a527b779642ade128aa3ff682ba750655f7fa937f562712dc824",
+      "functions": [
+        {
+          "name": "C2CProvider",
+          "params": [],
+          "exported": true,
+          "lineCount": 48
+        },
+        {
+          "name": "useC2C",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "createContext",
+            "useCallback",
+            "useContext",
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        },
+        {
+          "source": "../lib/roles.js",
+          "specifiers": [
+            "loadRole",
+            "saveRole"
+          ]
+        },
+        {
+          "source": "../lib/backend.js",
+          "specifiers": [
+            "funnelCounts",
+            "loadJobEvents",
+            "recordJobEvent",
+            "saveAssessment"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "loadCustomJobs",
+            "saveCustomJob"
+          ]
+        }
+      ],
+      "exports": [
+        "C2CProvider",
+        "useC2C"
+      ],
+      "totalLines": 73,
+      "hasStructuralAnalysis": true
+    },
+    "src/ayush/data.js": {
+      "filePath": "src/ayush/data.js",
+      "contentHash": "ff806f61c6f986a324c9167f0a34edb852f2eb7a27fc5e9a193b06668a39648f",
+      "functions": [
+        {
+          "name": "ayushStats",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "AYUSH_COLLEGES",
+        "AYUSH_NOTICES",
+        "AYUSH_PROGRAMS",
+        "ayushStats",
+        "AYUSH_SCHEMES",
+        "AYUSH_FAQ"
+      ],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "src/ayush/proof.js": {
+      "filePath": "src/ayush/proof.js",
+      "contentHash": "a964ac3c9e59d47483b14f5f13d52ba4ec539dcbf137b1e10835c82e1755b949",
+      "functions": [
+        {
+          "name": "empty",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "loadLedger",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "persist",
+          "params": [
+            "ledger"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "addProof",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "removeProof",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "proofsFor",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "caseCount",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "verifyState",
+          "params": [],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "skillConfidence",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "loadLedger",
+        "addProof",
+        "removeProof",
+        "proofsFor",
+        "caseCount",
+        "verifyState",
+        "skillConfidence",
+        "PROOF_KINDS"
+      ],
+      "totalLines": 98,
+      "hasStructuralAnalysis": true
+    },
+    "src/ayush/resumes.js": {
+      "filePath": "src/ayush/resumes.js",
+      "contentHash": "13af4831b865cdc1cfb4724137e0ea6ce4ce1c9deba5c0c599264ac8bb798385",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "AYUSH_RESUMES",
+        "RESUME_ANATOMY",
+        "RESUME_BULLETS",
+        "SKILL_WHY"
+      ],
+      "totalLines": 141,
+      "hasStructuralAnalysis": true
+    },
+    "src/ayush/scoring.js": {
+      "filePath": "src/ayush/scoring.js",
+      "contentHash": "e5ba0dc3b428e71696e76d544cd91e5738fcec165d2be487411ba7833e9f994b",
+      "functions": [
+        {
+          "name": "vaidyaLevel",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "pathForSkill",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "ayushReadout",
+          "params": [],
+          "exported": true,
+          "lineCount": 23
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "scoreResume",
+            "calculateMainScore"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "loadQuizBest"
+          ]
+        },
+        {
+          "source": "./proof.js",
+          "specifiers": [
+            "verifyState",
+            "skillConfidence"
+          ]
+        }
+      ],
+      "exports": [
+        "vaidyaLevel",
+        "pathForSkill",
+        "ayushReadout"
+      ],
+      "totalLines": 50,
+      "hasStructuralAnalysis": true
+    },
+    "src/ayush/seed.js": {
+      "filePath": "src/ayush/seed.js",
+      "contentHash": "c7da4e245e05b155cc11fa707cd6d03795672146c8432c295e0565cc919a6970",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "AYUSH_ENABLED",
+        "AYUSH_ROLE",
+        "AYUSH_JOBS",
+        "AYUSH_TREE",
+        "AYUSH_COURSES",
+        "AYUSH_PROJECT_IDEAS",
+        "AYUSH_QUIZ",
+        "AYUSH_INTERVIEW_QS",
+        "AYUSH_QUESTIONNAIRE",
+        "AYUSH_FDPS"
+      ],
+      "totalLines": 111,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/StreakMeter.jsx": {
+      "filePath": "src/components/StreakMeter.jsx",
+      "contentHash": "c8bc80b77b43de848ea6ef2e82c9daaef0e5741a50151530721f66666e618d2e",
+      "functions": [
+        {
+          "name": "StreakMeter",
+          "params": [],
+          "exported": true,
+          "lineCount": 72
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo"
+          ]
+        },
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilFire"
+          ]
+        },
+        {
+          "source": "./ui.jsx",
+          "specifiers": [
+            "Card"
+          ]
+        },
+        {
+          "source": "../lib/streak.js",
+          "specifiers": [
+            "collectDayCounts",
+            "collectDayDetail",
+            "heatmapWeeks",
+            "currentStreak",
+            "totalActive",
+            "dayISO"
+          ]
+        }
+      ],
+      "exports": [
+        "StreakMeter"
+      ],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/XpMeter.jsx": {
+      "filePath": "src/components/XpMeter.jsx",
+      "contentHash": "12a54d7bdd2ed0267f4685a166c234e6b489be5c1bc0f37a98e547bf6a9357c1",
+      "functions": [
+        {
+          "name": "XpMeter",
+          "params": [],
+          "exported": true,
+          "lineCount": 49
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo"
+          ]
+        },
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilBolt"
+          ]
+        },
+        {
+          "source": "./ui.jsx",
+          "specifiers": [
+            "Card"
+          ]
+        },
+        {
+          "source": "../lib/xp.js",
+          "specifiers": [
+            "collectXP",
+            "XP_SOURCES"
+          ]
+        }
+      ],
+      "exports": [
+        "XpMeter"
+      ],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/landing/Figs.jsx": {
+      "filePath": "src/components/landing/Figs.jsx",
+      "contentHash": "a607a7ec30cc8234958ebe62634b583722c92e1d85227a61028b2f00c338ef15",
+      "functions": [
+        {
+          "name": "ScoreFig",
+          "params": [],
+          "exported": true,
+          "lineCount": 57
+        },
+        {
+          "name": "QuestFig",
+          "params": [],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "PipelineFig",
+          "params": [],
+          "exported": true,
+          "lineCount": 32
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "lucide-react",
+          "specifiers": [
+            "Check"
+          ]
+        },
+        {
+          "source": "../ui.jsx",
+          "specifiers": [
+            "Badge",
+            "CountUp",
+            "Meter",
+            "Ticket"
+          ]
+        }
+      ],
+      "exports": [
+        "ScoreFig",
+        "QuestFig",
+        "PipelineFig"
+      ],
+      "totalLines": 124,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/landing/FractalMap.jsx": {
+      "filePath": "src/components/landing/FractalMap.jsx",
+      "contentHash": "5b7080b49253737f1bbc0767eb442f43031e9706b5c6fa6fdf92aab6479d9929",
+      "functions": [
+        {
+          "name": "mulberry32",
+          "params": [
+            "seed"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "landColor",
+          "params": [
+            "palette",
+            "n",
+            "x",
+            "y"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "bucketColors",
+          "params": [
+            "palette"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "FractalMap",
+          "params": [],
+          "exported": true,
+          "lineCount": 179
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useRef"
+          ]
+        }
+      ],
+      "exports": [
+        "FractalMap"
+      ],
+      "totalLines": 219,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/landing/LandingHero.jsx": {
+      "filePath": "src/components/landing/LandingHero.jsx",
+      "contentHash": "331a1732f7a4ce577374f66f69b22debfe715c9195964d14b1c9ab7084eb3264",
+      "functions": [
+        {
+          "name": "NextStep",
+          "params": [],
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "LandingHero",
+          "params": [],
+          "exported": true,
+          "lineCount": 99
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link"
+          ]
+        },
+        {
+          "source": "lucide-react",
+          "specifiers": [
+            "ArrowRight"
+          ]
+        },
+        {
+          "source": "../ui.jsx",
+          "specifiers": [
+            "Btn"
+          ]
+        },
+        {
+          "source": "../../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "./FractalMap.jsx",
+          "specifiers": [
+            "FractalMap"
+          ]
+        }
+      ],
+      "exports": [
+        "LandingHero"
+      ],
+      "totalLines": 135,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/landing/Sections.jsx": {
+      "filePath": "src/components/landing/Sections.jsx",
+      "contentHash": "bc4220dbc2bbe3dd87215a8c37002c01c1c7d8e54d99110cf007e9587a6536aa",
+      "functions": [
+        {
+          "name": "ProblemStrip",
+          "params": [],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "CoachFig",
+          "params": [],
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "ClanSim",
+          "params": [],
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "Trio",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "BootCta",
+          "params": [],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link"
+          ]
+        },
+        {
+          "source": "lucide-react",
+          "specifiers": [
+            "ArrowRight"
+          ]
+        },
+        {
+          "source": "../ui.jsx",
+          "specifiers": [
+            "AsciiRule",
+            "Badge",
+            "Btn",
+            "Reveal",
+            "TermWindow",
+            "Ticket"
+          ]
+        }
+      ],
+      "exports": [
+        "ProblemStrip",
+        "CoachFig",
+        "ClanSim",
+        "Trio",
+        "BootCta"
+      ],
+      "totalLines": 131,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/ui.jsx": {
+      "filePath": "src/components/ui.jsx",
+      "contentHash": "06330f7cec94d97df094beb03af7e23b1c8a48c01d9f5588aaffd7545abea1e2",
+      "functions": [
+        {
+          "name": "cn",
+          "params": [
+            "...inputs"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Page",
+          "params": [],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "Card",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "H2",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Button",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "Field",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "Meter",
+          "params": [],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "Donut",
+          "params": [],
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "Radar",
+          "params": [],
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "Badge",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Chip",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Skeleton",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Reveal",
+          "params": [],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "CountUp",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "Empty",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "ErrorBox",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "StatusBar",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "AsciiRule",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "Ticket",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "TermWindow",
+          "params": [],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "VaidyaLevel",
+          "params": [],
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "SyllabusTable",
+          "params": [],
+          "exported": true,
+          "lineCount": 35
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useRef",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link"
+          ]
+        },
+        {
+          "source": "@radix-ui/react-slot",
+          "specifiers": [
+            "Slot"
+          ]
+        },
+        {
+          "source": "class-variance-authority",
+          "specifiers": [
+            "cva"
+          ]
+        },
+        {
+          "source": "clsx",
+          "specifiers": [
+            "clsx"
+          ]
+        },
+        {
+          "source": "tailwind-merge",
+          "specifiers": [
+            "twMerge"
+          ]
+        },
+        {
+          "source": "motion/react",
+          "specifiers": [
+            "animate",
+            "motion",
+            "useReducedMotion"
+          ]
+        }
+      ],
+      "exports": [
+        "cn",
+        "Page",
+        "Card",
+        "H2",
+        "Button",
+        "Btn",
+        "Field",
+        "inputCls",
+        "Meter",
+        "Donut",
+        "DONUT_COLORS_EXPORT",
+        "Radar",
+        "Badge",
+        "Chip",
+        "Skeleton",
+        "Reveal",
+        "CountUp",
+        "Empty",
+        "ErrorBox",
+        "StatusBar",
+        "AsciiRule",
+        "Ticket",
+        "TermWindow",
+        "SAGE",
+        "GOLD",
+        "SAGE_BG",
+        "GOLD_BG",
+        "VaidyaLevel",
+        "SyllabusTable"
+      ],
+      "totalLines": 433,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/ayushSeed.js": {
+      "filePath": "src/data/ayushSeed.js",
+      "contentHash": "da1c15b24e6da5488763a41589b35bad3bb866619ccccff689dac023bb6083a6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "AYUSH_ENABLED",
+        "AYUSH_ROLE",
+        "AYUSH_JOBS",
+        "AYUSH_TREE",
+        "AYUSH_COURSES",
+        "AYUSH_PROJECT_IDEAS",
+        "AYUSH_QUIZ",
+        "AYUSH_INTERVIEW_QS",
+        "AYUSH_QUESTIONNAIRE",
+        "AYUSH_FDPS",
+        "AYUSH_SYLLABUS",
+        "AYUSH_ROADMAP_STAGES"
+      ],
+      "totalLines": 127,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/boardsSeed.js": {
+      "filePath": "src/data/boardsSeed.js",
+      "contentHash": "f452b9b84f635e5957999cd77c4e85c054d9c769c45b417dd7f31be96f525d87",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "BOARDS_JOBS"
+      ],
+      "totalLines": 737,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/colleges.js": {
+      "filePath": "src/data/colleges.js",
+      "contentHash": "280957dc91b64be5b61bed4076c4ce6eec3b22684a29c009a3aadf243b863364",
+      "functions": [
+        {
+          "name": "recomputeCollegeAvg",
+          "params": [
+            "rows",
+            "userScore",
+            "collegeName"
+          ],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "COLLEGES",
+        "recomputeCollegeAvg"
+      ],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/courses.js": {
+      "filePath": "src/data/courses.js",
+      "contentHash": "020c3575505f7dbe675e3fce1a673a8aba6304629ce4103a2ca764e335cbce00",
+      "functions": [
+        {
+          "name": "coursesFor",
+          "params": [
+            "skill"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "certsFor",
+          "params": [
+            "skill"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "recommendFor",
+          "params": [
+            "skill"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "videosFor",
+          "params": [
+            "skill"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "resumeTips",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "COURSES",
+        "coursesFor",
+        "certsFor",
+        "recommendFor",
+        "videosFor",
+        "resumeTips",
+        "PROJECT_IDEAS"
+      ],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/fdps.js": {
+      "filePath": "src/data/fdps.js",
+      "contentHash": "53855ad0d74932d9e558160f9eb6f13b2993c5bc8c235affe91e618a1d43c66b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../ayush/seed.js",
+          "specifiers": [
+            "AYUSH_FDPS"
+          ]
+        }
+      ],
+      "exports": [
+        "FDP_KINDS",
+        "FDPS"
+      ],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/fixtures.js": {
+      "filePath": "src/data/fixtures.js",
+      "contentHash": "5eff285b790325b883640f83140f1931b7b214a5686fb5a4c9400197611575b7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "SAMPLE_RESUME"
+      ],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/interview.js": {
+      "filePath": "src/data/interview.js",
+      "contentHash": "021317ac19084e924ce930b1152e61cc59389f676eacfc49578d5b0d1b501d3d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../ayush/seed.js",
+          "specifiers": [
+            "AYUSH_INTERVIEW_QS"
+          ]
+        }
+      ],
+      "exports": [
+        "INTERVIEW_QS"
+      ],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/jobs.js": {
+      "filePath": "src/data/jobs.js",
+      "contentHash": "fdae2f7f8a224256149d23139c47ad2bb5d5dac5dd0107423a16659801445f94",
+      "functions": [
+        {
+          "name": "matchJobs",
+          "params": [
+            "role",
+            "score"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "JOBS",
+        "matchJobs"
+      ],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/naukriSeed.js": {
+      "filePath": "src/data/naukriSeed.js",
+      "contentHash": "cce029f5fc9df849908b4b610bbfdf6fd43297fec4b576d0683cc29e209a38ba",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "NAUKRI_JOBS"
+      ],
+      "totalLines": 291,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/programs.js": {
+      "filePath": "src/data/programs.js",
+      "contentHash": "34871c38182ecc9b5f0d7a52eed4c8c96764e7c0c5504be0fa6ae646f02899d2",
+      "functions": [
+        {
+          "name": "programsFor",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "programsByKind",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "PROGRAM_KINDS",
+        "PROGRAMS",
+        "programsFor",
+        "programsByKind"
+      ],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/questionnaire.js": {
+      "filePath": "src/data/questionnaire.js",
+      "contentHash": "8bf40890797c0e7db74a9ad8551b0d038339fbbaa290c5f163dcc24d5a740827",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../ayush/seed.js",
+          "specifiers": [
+            "AYUSH_QUESTIONNAIRE"
+          ]
+        }
+      ],
+      "exports": [
+        "QUESTIONNAIRE"
+      ],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/quests.js": {
+      "filePath": "src/data/quests.js",
+      "contentHash": "c4f6b874dbea51db5e449044ec367bd6b9daafa230ba565a6d8a59611cb84940",
+      "functions": [
+        {
+          "name": "questFor",
+          "params": [
+            "roleKey"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../ayush/seed.js",
+          "specifiers": [
+            "AYUSH_TREE"
+          ]
+        }
+      ],
+      "exports": [
+        "QUEST_TREE",
+        "questFor"
+      ],
+      "totalLines": 36,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/quiz.js": {
+      "filePath": "src/data/quiz.js",
+      "contentHash": "ac2b4cd413ec81e112d0a29f745dd29a5a4390c790d32616c3be5fd4739b7f9d",
+      "functions": [
+        {
+          "name": "gradeSet",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "gradeQuiz",
+          "params": [
+            "role"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "quizSample",
+          "params": [
+            "role"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "bestKey",
+          "params": [
+            "role"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "loadQuizBest",
+          "params": [
+            "role"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveQuizBest",
+          "params": [
+            "role",
+            "score"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "todayDay",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../lib/quests.js",
+          "specifiers": [
+            "pickForId"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        },
+        {
+          "source": "../ayush/seed.js",
+          "specifiers": [
+            "AYUSH_QUIZ"
+          ]
+        }
+      ],
+      "exports": [
+        "QUIZ",
+        "gradeSet",
+        "gradeQuiz",
+        "quizSample",
+        "loadQuizBest",
+        "saveQuizBest",
+        "todayDay"
+      ],
+      "totalLines": 81,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/seedJobsExtra.js": {
+      "filePath": "src/data/seedJobsExtra.js",
+      "contentHash": "b6250d514560ddebd95877e42c8b854f6cd9f25e0746356218b5023593c74ae2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "EXTRA_JOBS"
+      ],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/taxonomy.js": {
+      "filePath": "src/data/taxonomy.js",
+      "contentHash": "291e3e352bb4046aaccc6ba76ab109a43e813e5a13932e79023db9786f7619e0",
+      "functions": [
+        {
+          "name": "proficiencyLabel",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "skillById",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "resolveSkill",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "skillsByDomain",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "domainLabel",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "decayedLevel",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "demandWeight",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "taxonomyRole",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "requiredFor",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "gapVector",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "listProposals",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "persistProposals",
+          "params": [
+            "rows"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "proposeSkill",
+          "params": [],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "approveSkill",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "rejectSkill",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "approvedSkills",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "PROFICIENCY",
+        "proficiencyLabel",
+        "DOMAINS",
+        "SKILLS",
+        "skillById",
+        "resolveSkill",
+        "skillsByDomain",
+        "domainLabel",
+        "decayedLevel",
+        "demandWeight",
+        "DEFAULT_REQUIRED_LEVEL",
+        "TAXONOMY_ROLES",
+        "taxonomyRole",
+        "requiredFor",
+        "gapVector",
+        "listProposals",
+        "proposeSkill",
+        "approveSkill",
+        "rejectSkill",
+        "approvedSkills"
+      ],
+      "totalLines": 308,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/tuning.js": {
+      "filePath": "src/data/tuning.js",
+      "contentHash": "ea74c5451e592d2de6055620b7eaffc5878fe229590697a4fffc62cfdd7adb50",
+      "functions": [
+        {
+          "name": "getTone",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "setTone",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "getCustom",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "setCustom",
+          "params": [
+            "text"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "systemPreamble",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "TONES",
+        "DEFAULT_TONE",
+        "getTone",
+        "setTone",
+        "getCustom",
+        "setCustom",
+        "systemPreamble"
+      ],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "src/index.css": {
+      "filePath": "src/index.css",
+      "contentHash": "c1b7c1b00991dc7ecf53a1a2f6e3da3b9611d665cee6cf85df57b858d2ef6b8f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 260,
+      "hasStructuralAnalysis": false
+    },
+    "src/lib/ai.js": {
+      "filePath": "src/lib/ai.js",
+      "contentHash": "a7fc09d96c3fb1cf3d37c1459c75e05c31fb21f6da444b54f7e5a44ddb930694",
+      "functions": [
+        {
+          "name": "modelFor",
+          "params": [
+            "task"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "groqKeys",
+          "params": [],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "hasAIKey",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "postJSON",
+          "params": [
+            "url",
+            "headers",
+            "body"
+          ],
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "groqChat",
+          "params": [
+            "prompt",
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "geminiChat",
+          "params": [
+            "prompt",
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "chat",
+          "params": [
+            "prompt"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "readMemo",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "writeMemo",
+          "params": [
+            "map",
+            "persist"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "memoCall",
+          "params": [
+            "namespace",
+            "keyText",
+            "fn"
+          ],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        },
+        {
+          "source": "./quests.js",
+          "specifiers": [
+            "hashStr"
+          ]
+        },
+        {
+          "source": "../data/tuning.js",
+          "specifiers": [
+            "systemPreamble"
+          ]
+        }
+      ],
+      "exports": [
+        "TASKS",
+        "modelFor",
+        "hasAIKey",
+        "chat",
+        "memoCall"
+      ],
+      "totalLines": 119,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/aiQuestions.js": {
+      "filePath": "src/lib/aiQuestions.js",
+      "contentHash": "5894764ffc47e128465aa900f6b4c8b4cbc579f08662a6395dc7703321a3fb54",
+      "functions": [
+        {
+          "name": "ctx",
+          "params": [],
+          "exported": false,
+          "lineCount": 2
+        },
+        {
+          "name": "parseQuizItems",
+          "params": [
+            "raw"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "parseInterviewItems",
+          "params": [
+            "raw"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "parseQuestionnaireItems",
+          "params": [
+            "raw"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "genQuizItems",
+          "params": [
+            "resumeText"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "genInterviewQs",
+          "params": [
+            "resumeText"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "gradeAnswerAI",
+          "params": [
+            "question",
+            "answer"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "genQuestionnaire",
+          "params": [
+            "resumeText"
+          ],
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./ai.js",
+          "specifiers": [
+            "chat",
+            "memoCall"
+          ]
+        },
+        {
+          "source": "./gemini.js",
+          "specifiers": [
+            "parseQuestionSet"
+          ]
+        },
+        {
+          "source": "./onboarding.js",
+          "specifiers": [
+            "parseAiGrade"
+          ]
+        }
+      ],
+      "exports": [
+        "parseQuizItems",
+        "parseInterviewItems",
+        "parseQuestionnaireItems",
+        "genQuizItems",
+        "genInterviewQs",
+        "gradeAnswerAI",
+        "genQuestionnaire"
+      ],
+      "totalLines": 104,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/ats.js": {
+      "filePath": "src/lib/ats.js",
+      "contentHash": "67bba15b14d544997296549ee4d06bab05fa5d7b1255dd0af05620fafd54d17a",
+      "functions": [
+        {
+          "name": "extractProjectLines",
+          "params": [],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "countHits",
+          "params": [
+            "text",
+            "words"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "occurrences",
+          "params": [
+            "text",
+            "words"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "distinctMatches",
+          "params": [
+            "text",
+            "res"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "scoreATS",
+          "params": [],
+          "exported": true,
+          "lineCount": 98
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./score.js",
+          "specifiers": [
+            "ROLES"
+          ]
+        }
+      ],
+      "exports": [
+        "STRONG_VERBS",
+        "extractProjectLines",
+        "scoreATS"
+      ],
+      "totalLines": 164,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/auth.js": {
+      "filePath": "src/lib/auth.js",
+      "contentHash": "680d40ad1b8b0f7a5b5225260642f571d4b22752be396ae1b6eeff5d06264d88",
+      "functions": [
+        {
+          "name": "getUser",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "signInWithGoogle",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "signOut",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "onAuthChange",
+          "params": [
+            "cb"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "authLabel",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./supabase.js",
+          "specifiers": [
+            "getClient",
+            "isSupabaseOn"
+          ]
+        }
+      ],
+      "exports": [
+        "getUser",
+        "signInWithGoogle",
+        "signOut",
+        "onAuthChange",
+        "authLabel"
+      ],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/backend.js": {
+      "filePath": "src/lib/backend.js",
+      "contentHash": "0a069591172aca529572ae73ed2d8009d847eb5e3a99e458ec658998c67e53f6",
+      "functions": [
+        {
+          "name": "isJobEvent",
+          "params": [
+            "e"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "isArtifactKind",
+          "params": [
+            "k"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "normalizeSection",
+          "params": [
+            "s"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "clamp",
+          "params": [
+            "n",
+            "lo",
+            "hi"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "toAssessmentRow",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "toJobEventRow",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "toArtifactRow",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "toFeedbackRow",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "funnelCounts",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "loadAssessments",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadJobEvents",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadArtifacts",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadFeedback",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "analyticsSummary",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "insert",
+          "params": [
+            "table",
+            "row"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "saveAssessment",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "saveResumeSections",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "recordJobEvent",
+          "params": [
+            "jobId",
+            "event"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "saveArtifact",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "submitFeedback",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "select",
+          "params": [
+            "table"
+          ],
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "loadRemoteAssessments",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadRemoteFeedback",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./supabase.js",
+          "specifiers": [
+            "getClient"
+          ]
+        },
+        {
+          "source": "./identity.js",
+          "specifiers": [
+            "getOrCreateC2CId"
+          ]
+        },
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "JOB_EVENTS",
+        "ARTIFACT_KINDS",
+        "RESUME_SECTIONS",
+        "isJobEvent",
+        "isArtifactKind",
+        "normalizeSection",
+        "toAssessmentRow",
+        "toJobEventRow",
+        "toArtifactRow",
+        "toFeedbackRow",
+        "funnelCounts",
+        "loadAssessments",
+        "loadJobEvents",
+        "loadArtifacts",
+        "loadFeedback",
+        "analyticsSummary",
+        "saveAssessment",
+        "saveResumeSections",
+        "recordJobEvent",
+        "saveArtifact",
+        "submitFeedback",
+        "loadRemoteAssessments",
+        "loadRemoteFeedback"
+      ],
+      "totalLines": 182,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/coach.js": {
+      "filePath": "src/lib/coach.js",
+      "contentHash": "86153ebb92567e10ffacde84c08d412b8842730bf41d08f20859699175371f8c",
+      "functions": [
+        {
+          "name": "HI",
+          "params": [
+            "en",
+            "hi"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ctx",
+          "params": [],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "buildPrompt",
+          "params": [
+            "actionId"
+          ],
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "matchBand",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "matchJob",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "matchWriteup",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "reviewWriteup",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "coverLetter",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "parseJobPosting",
+          "params": [],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "localAnswer",
+          "params": [
+            "actionId"
+          ],
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "askAnswer",
+          "params": [
+            "c"
+          ],
+          "exported": false,
+          "lineCount": 36
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../data/courses.js",
+          "specifiers": [
+            "coursesFor"
+          ]
+        },
+        {
+          "source": "./store.js",
+          "specifiers": [
+            "extractSkills"
+          ]
+        }
+      ],
+      "exports": [
+        "COACH_ACTIONS",
+        "buildPrompt",
+        "matchBand",
+        "matchJob",
+        "matchWriteup",
+        "reviewWriteup",
+        "coverLetter",
+        "parseJobPosting",
+        "localAnswer"
+      ],
+      "totalLines": 217,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/cohort.js": {
+      "filePath": "src/lib/cohort.js",
+      "contentHash": "8227a64314fbcc5b0bce457ca516870bb5c7389ff4ab1ed0166d97b51ceaed23",
+      "functions": [
+        {
+          "name": "mainOf",
+          "params": [
+            "s"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "enrich",
+          "params": [
+            "rows"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "cohortStats",
+          "params": [
+            "students"
+          ],
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "q",
+          "params": [
+            "v"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "toCSV",
+          "params": [
+            "rows"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./score.js",
+          "specifiers": [
+            "combineScores"
+          ]
+        },
+        {
+          "source": "./score.js",
+          "specifiers": [
+            "rankFor"
+          ]
+        }
+      ],
+      "exports": [
+        "COHORT",
+        "mainOf",
+        "enrich",
+        "cohortStats",
+        "toCSV"
+      ],
+      "totalLines": 62,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/dashboard.js": {
+      "filePath": "src/lib/dashboard.js",
+      "contentHash": "88f1cdbf63b1f14f5508c5627c7f7dc83e739ceaaaba05acb95a9f0ddac1b525",
+      "functions": [
+        {
+          "name": "donutSegments",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "weekTrend",
+          "params": [],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "recentActivity",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "demandHeatmap",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "briefing",
+          "params": [],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "donutSegments",
+        "weekTrend",
+        "recentActivity",
+        "demandHeatmap",
+        "briefing"
+      ],
+      "totalLines": 78,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/gemini.js": {
+      "filePath": "src/lib/gemini.js",
+      "contentHash": "aced5c1f6c2f630ab843a27da81a56abc007dfdb95b2487f269ae07d7aab6299",
+      "functions": [
+        {
+          "name": "parseQuestionSet",
+          "params": [
+            "raw"
+          ],
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "parseQuestionSet"
+      ],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/i18n.js": {
+      "filePath": "src/lib/i18n.js",
+      "contentHash": "c4c5398c1d2a92ab7804b2a7cbf2cd5c9be1df4d07b494ba69e9bbf381b0ad5e",
+      "functions": [
+        {
+          "name": "loadLang",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveLang",
+          "params": [
+            "lang"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "t",
+          "params": [
+            "lang",
+            "key"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadText",
+            "saveText"
+          ]
+        }
+      ],
+      "exports": [
+        "LANGS",
+        "STRINGS",
+        "loadLang",
+        "saveLang",
+        "t"
+      ],
+      "totalLines": 83,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/identity.js": {
+      "filePath": "src/lib/identity.js",
+      "contentHash": "92f2360971e240706f0373e46f9c4c7a7bf02610e59f4556dd6aa98b32fa9cf1",
+      "functions": [
+        {
+          "name": "getOrCreateC2CId",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "loadNickname",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveNickname",
+          "params": [
+            "n"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadCerts",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "addCert",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "removeCert",
+          "params": [
+            "at"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "loadGithub",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveGithub",
+          "params": [
+            "h"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON",
+            "loadText",
+            "saveText"
+          ]
+        }
+      ],
+      "exports": [
+        "getOrCreateC2CId",
+        "loadNickname",
+        "saveNickname",
+        "loadCerts",
+        "addCert",
+        "removeCert",
+        "loadGithub",
+        "saveGithub"
+      ],
+      "totalLines": 61,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/interview.js": {
+      "filePath": "src/lib/interview.js",
+      "contentHash": "7c6779a5733d65d776be3d5302cf8c031196f890176fb033a0ea979a94291ed8",
+      "functions": [
+        {
+          "name": "hasAny",
+          "params": [
+            "text",
+            "words"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "hasVerb",
+          "params": [
+            "text"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "scoreAnswer",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "skillReadiness",
+          "params": [],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./ats.js",
+          "specifiers": [
+            "STRONG_VERBS"
+          ]
+        }
+      ],
+      "exports": [
+        "scoreAnswer",
+        "skillReadiness"
+      ],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/match.js": {
+      "filePath": "src/lib/match.js",
+      "contentHash": "1f55c22967916c570d5dad41829a62b0bf5de464bafbe4262fb2a56b31f90587",
+      "functions": [
+        {
+          "name": "canon",
+          "params": [
+            "s"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "matchScore",
+          "params": [],
+          "exported": true,
+          "lineCount": 71
+        },
+        {
+          "name": "levelFromSignals",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "questIdFor",
+          "params": [
+            "role",
+            "name"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "profileForMatching",
+          "params": [
+            "role"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "matchJobPost",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../data/taxonomy.js",
+          "specifiers": [
+            "decayedLevel",
+            "resolveSkill",
+            "demandWeight"
+          ]
+        },
+        {
+          "source": "./coach.js",
+          "specifiers": [
+            "matchBand"
+          ]
+        },
+        {
+          "source": "./progress.js",
+          "specifiers": [
+            "masteryLevel"
+          ]
+        },
+        {
+          "source": "../ayush/proof.js",
+          "specifiers": [
+            "proofsFor",
+            "skillConfidence",
+            "verifyState"
+          ]
+        },
+        {
+          "source": "../data/quests.js",
+          "specifiers": [
+            "QUEST_TREE"
+          ]
+        }
+      ],
+      "exports": [
+        "MATCH_WEIGHTS",
+        "matchScore",
+        "levelFromSignals",
+        "profileForMatching",
+        "matchJobPost"
+      ],
+      "totalLines": 160,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/onboarding.js": {
+      "filePath": "src/lib/onboarding.js",
+      "contentHash": "a675dcca2fa96f30dbd2cce7ff0b996831626db2fef8cac77d191efdb292e1cb",
+      "functions": [
+        {
+          "name": "onboardingProgress",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "skillQ",
+          "params": [
+            "skill",
+            "year"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "questionsFromProfile",
+          "params": [],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "resetOnboarding",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "parseAiGrade",
+          "params": [
+            "raw"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "ONBOARD_W",
+        "onboardingProgress",
+        "questionsFromProfile",
+        "resetOnboarding",
+        "parseAiGrade"
+      ],
+      "totalLines": 76,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/parseResume.js": {
+      "filePath": "src/lib/parseResume.js",
+      "contentHash": "ff435eaa934f821bbf3990abc5d506e400a5fe7590843a452c8053dc203de739",
+      "functions": [
+        {
+          "name": "pdfAdapter",
+          "params": [
+            "file"
+          ],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "textAdapter",
+          "params": [
+            "file"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "parseResumeFile",
+          "params": [
+            "file"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "extractContact",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "extractSections",
+          "params": [],
+          "exported": true,
+          "lineCount": 28
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "parseResumeFile",
+        "extractContact",
+        "extractSections"
+      ],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/profile.js": {
+      "filePath": "src/lib/profile.js",
+      "contentHash": "1d8f0e00ffb2542d489ad9d5ee8ef3e8581f63be175c7075a8f3befa9d37ac5e",
+      "functions": [
+        {
+          "name": "loadProfile",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveProfile",
+          "params": [
+            "p"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "clearProfile",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "toMarkdown",
+          "params": [],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "queriesFromProfile",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "queryFromProfile",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "PROFILE_QS",
+        "loadProfile",
+        "saveProfile",
+        "clearProfile",
+        "toMarkdown",
+        "queriesFromProfile",
+        "queryFromProfile"
+      ],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/progress.js": {
+      "filePath": "src/lib/progress.js",
+      "contentHash": "d135079debac30ae724d891f247b42976108a966e8ecebd576ab0490b0766990",
+      "functions": [
+        {
+          "name": "emptyState",
+          "params": [],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "load",
+          "params": [],
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "save",
+          "params": [
+            "state"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "todayISO",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "yesterdayISO",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "getProgress",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "questSnapshot",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "isCourseDone",
+          "params": [
+            "roleKey",
+            "skillId"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "isProjectDone",
+          "params": [
+            "roleKey",
+            "skillId"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "isSkillComplete",
+          "params": [
+            "roleKey",
+            "skillId"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "setQuestDone",
+          "params": [
+            "roleKey",
+            "skillId",
+            "kind",
+            "done"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "getEvidence",
+          "params": [
+            "roleKey",
+            "skillId"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "setEvidence",
+          "params": [
+            "roleKey",
+            "skillId",
+            "url"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "branchProgress",
+          "params": [
+            "roleKey",
+            "branch"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "recordDay",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "weeklyActive",
+          "params": [],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "bumpStreak",
+          "params": [],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "masteryLevel",
+          "params": [
+            "roleKey",
+            "skillId"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "getStreak",
+          "params": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "completedSkillIdsForRole",
+          "params": [
+            "roleKey"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "clearProgress",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../data/quests.js",
+          "specifiers": [
+            "QUEST_TREE"
+          ]
+        },
+        {
+          "source": "./quests.js",
+          "specifiers": [
+            "isEvidenceUrl"
+          ]
+        },
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "todayISO",
+        "yesterdayISO",
+        "getProgress",
+        "questSnapshot",
+        "isCourseDone",
+        "isProjectDone",
+        "isSkillComplete",
+        "setQuestDone",
+        "getEvidence",
+        "setEvidence",
+        "branchProgress",
+        "recordDay",
+        "weeklyActive",
+        "bumpStreak",
+        "masteryLevel",
+        "getStreak",
+        "completedSkillIdsForRole",
+        "clearProgress"
+      ],
+      "totalLines": 185,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/questionnaire.js": {
+      "filePath": "src/lib/questionnaire.js",
+      "contentHash": "8aa887a8bdf436e3dc82224102731907bf6a42ca75c275cfffe2185fe1e9ee11",
+      "functions": [
+        {
+          "name": "visibleQuestions",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "compileEvidence",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "qgenKey",
+          "params": [
+            "text",
+            "role",
+            "kind"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadCachedSet",
+          "params": [
+            "text",
+            "role",
+            "kind"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "saveCachedSet",
+          "params": [
+            "text",
+            "role",
+            "kind",
+            "items"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "loadQAnswers",
+          "params": [
+            "role"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveQAnswers",
+          "params": [
+            "role",
+            "answers"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        },
+        {
+          "source": "./quests.js",
+          "specifiers": [
+            "hashStr"
+          ]
+        }
+      ],
+      "exports": [
+        "visibleQuestions",
+        "compileEvidence",
+        "qgenKey",
+        "loadCachedSet",
+        "saveCachedSet",
+        "loadQAnswers",
+        "saveQAnswers"
+      ],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/quests.js": {
+      "filePath": "src/lib/quests.js",
+      "contentHash": "0dd551147c7f48df46f61bfabd052f50d81bd35dcce692de39418f89e9d20948",
+      "functions": [
+        {
+          "name": "hashStr",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "pickForId",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "isEvidenceUrl",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "hashStr",
+        "pickForId",
+        "isEvidenceUrl"
+      ],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/roadmapGenerator.js": {
+      "filePath": "src/lib/roadmapGenerator.js",
+      "contentHash": "ee9cd7f276e1ce48bcc38992b08310888e353856ff29d65e6a88c71a2a2ec324",
+      "functions": [
+        {
+          "name": "jobDemand",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "orderMissingByDemand",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "questProjectFor",
+          "params": [
+            "role",
+            "skill"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "roadmapGenerator",
+          "params": [],
+          "exported": true,
+          "lineCount": 28
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../data/courses.js",
+          "specifiers": [
+            "coursesFor"
+          ]
+        },
+        {
+          "source": "../data/quests.js",
+          "specifiers": [
+            "QUEST_TREE"
+          ]
+        }
+      ],
+      "exports": [
+        "jobDemand",
+        "orderMissingByDemand",
+        "roadmapGenerator"
+      ],
+      "totalLines": 66,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/roles.js": {
+      "filePath": "src/lib/roles.js",
+      "contentHash": "01ac8487354995a67b80ffb829de1eb751c3d43af0f18035f6c0066adbf55458",
+      "functions": [
+        {
+          "name": "loadRole",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "saveRole",
+          "params": [
+            "v"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadText",
+            "saveText"
+          ]
+        }
+      ],
+      "exports": [
+        "APP_ROLES",
+        "loadRole",
+        "saveRole"
+      ],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/score.js": {
+      "filePath": "src/lib/score.js",
+      "contentHash": "60a253d2f12b14c28de45d9068138468f3e7a57252893b83e49330304d3713a3",
+      "functions": [
+        {
+          "name": "calculateMainScore",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "rankFor",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "rankRoles",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "scoreResume",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "normalizeScoreResult",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "questPairsToProof",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "combineScores",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./ats.js",
+          "specifiers": [
+            "scoreATS"
+          ]
+        },
+        {
+          "source": "../ayush/seed.js",
+          "specifiers": [
+            "AYUSH_ENABLED",
+            "AYUSH_ROLE"
+          ]
+        }
+      ],
+      "exports": [
+        "ROLES",
+        "calculateMainScore",
+        "rankFor",
+        "rankRoles",
+        "scoreResume",
+        "normalizeScoreResult",
+        "questPairsToProof",
+        "combineScores"
+      ],
+      "totalLines": 83,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/speech.js": {
+      "filePath": "src/lib/speech.js",
+      "contentHash": "0b9e8ccbfbdd08c62dc5e2c8901ceabb67f8ca39bda8aa46651c3a46b9ff7485",
+      "functions": [
+        {
+          "name": "isVoiceSupported",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "listenOnce",
+          "params": [],
+          "exported": true,
+          "lineCount": 37
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "isVoiceSupported",
+        "listenOnce"
+      ],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/storage.js": {
+      "filePath": "src/lib/storage.js",
+      "contentHash": "011addcf94bc29288339099bfc50af4db8164cb725f0924f884d485368e94231",
+      "functions": [
+        {
+          "name": "hasLS",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "loadJSON",
+          "params": [
+            "key",
+            "fb"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "saveJSON",
+          "params": [
+            "key",
+            "val"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "loadText",
+          "params": [
+            "key"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "saveText",
+          "params": [
+            "key",
+            "val"
+          ],
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "loadJSON",
+        "saveJSON",
+        "loadText",
+        "saveText"
+      ],
+      "totalLines": 43,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/store.js": {
+      "filePath": "src/lib/store.js",
+      "contentHash": "2f0a17a6c35e3b280347d4b315cc97c08e310ce66b21153e329580dc847a99c6",
+      "functions": [
+        {
+          "name": "toJobShape",
+          "params": [
+            "r"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "mergeJobs",
+          "params": [
+            "...lists"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "loadCustomJobs",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveCustomJob",
+          "params": [
+            "job"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "loadApplications",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "countLocalApplications",
+          "params": [
+            "jobId"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveApplicationLocal",
+          "params": [
+            "app"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "listJobsBoard",
+          "params": [],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "createJobBoard",
+          "params": [
+            "p"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "recordApplication",
+          "params": [
+            "job",
+            "ats"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "countRemoteApplications",
+          "params": [
+            "jobId"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "listApplicants",
+          "params": [
+            "jobId"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "loadInterests",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "toggleInterest",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "recordInterest",
+          "params": [
+            "fdp"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "loadEnrollments",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "toggleEnrollment",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "isVerified",
+          "params": [
+            "skill"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "hasGivenKudos",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadKudosFallback",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "fetchKudos",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "giveKudos",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "loadSharedShowcase",
+          "params": [
+            "id"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "guessRole",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "extractSkills",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "toLiveJobShape",
+          "params": [
+            "r"
+          ],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "liveCacheAt",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "stripHtml",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "toArbeitJobShape",
+          "params": [
+            "r"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "fetchJSON",
+          "params": [
+            "url"
+          ],
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "listLiveJobs",
+          "params": [],
+          "exported": true,
+          "lineCount": 29
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./supabase.js",
+          "specifiers": [
+            "getClient"
+          ]
+        },
+        {
+          "source": "./identity.js",
+          "specifiers": [
+            "getOrCreateC2CId"
+          ]
+        },
+        {
+          "source": "./score.js",
+          "specifiers": [
+            "ROLES"
+          ]
+        },
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        },
+        {
+          "source": "./profile.js",
+          "specifiers": [
+            "queryFromProfile"
+          ]
+        }
+      ],
+      "exports": [
+        "toJobShape",
+        "mergeJobs",
+        "loadCustomJobs",
+        "saveCustomJob",
+        "loadApplications",
+        "countLocalApplications",
+        "listJobsBoard",
+        "createJobBoard",
+        "recordApplication",
+        "countRemoteApplications",
+        "listApplicants",
+        "loadInterests",
+        "toggleInterest",
+        "recordInterest",
+        "loadEnrollments",
+        "toggleEnrollment",
+        "isVerified",
+        "hasGivenKudos",
+        "loadKudosFallback",
+        "fetchKudos",
+        "giveKudos",
+        "loadSharedShowcase",
+        "guessRole",
+        "extractSkills",
+        "toLiveJobShape",
+        "liveCacheAt",
+        "toArbeitJobShape",
+        "listLiveJobs"
+      ],
+      "totalLines": 380,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/streak.js": {
+      "filePath": "src/lib/streak.js",
+      "contentHash": "71f5adb9930e470a6ef935a1d1121c287c819a144ad4f5f8d5ad2116510045c0",
+      "functions": [
+        {
+          "name": "dayISO",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "shiftISO",
+          "params": [
+            "iso",
+            "deltaDays"
+          ],
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "collectDayDetail",
+          "params": [],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "collectDayCounts",
+          "params": [],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "levelFor",
+          "params": [
+            "n"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "heatmapWeeks",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "currentStreak",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "totalActive",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON"
+          ]
+        },
+        {
+          "source": "./progress.js",
+          "specifiers": [
+            "getProgress"
+          ]
+        }
+      ],
+      "exports": [
+        "dayISO",
+        "collectDayDetail",
+        "collectDayCounts",
+        "levelFor",
+        "heatmapWeeks",
+        "currentStreak",
+        "totalActive"
+      ],
+      "totalLines": 111,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/supabase.js": {
+      "filePath": "src/lib/supabase.js",
+      "contentHash": "b57c2234ce31133601a6669d2fd10fe6c1996b423c5b6f50351cbe7c703e6af6",
+      "functions": [
+        {
+          "name": "isSupabaseOn",
+          "params": [],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "getClient",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "aggregate",
+          "params": [
+            "rows"
+          ],
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "mergeBoards",
+          "params": [
+            "seeds",
+            "remote"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "loadBoard",
+          "params": [],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "submitScore",
+          "params": [
+            "collegeName",
+            "score"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../data/colleges.js",
+          "specifiers": [
+            "COLLEGES"
+          ]
+        }
+      ],
+      "exports": [
+        "isSupabaseOn",
+        "getClient",
+        "mergeBoards",
+        "loadBoard",
+        "submitScore"
+      ],
+      "totalLines": 86,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/theme.js": {
+      "filePath": "src/lib/theme.js",
+      "contentHash": "d68613633c17fb688b0642ba81a79feafea147bb7c47ea85838c95755c6c5f1d",
+      "functions": [
+        {
+          "name": "loadTheme",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "saveTheme",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "loadTheme",
+        "saveTheme"
+      ],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/verify.js": {
+      "filePath": "src/lib/verify.js",
+      "contentHash": "7539cd1fc6f129e731002e80ffe3d6a6ed71200b9bc8e85298e191e40e0309a9",
+      "functions": [
+        {
+          "name": "enc",
+          "params": [
+            "s"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dec",
+          "params": [
+            "s"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "signCredential",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "checkCredential",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "verifyUrl",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loadRevocations",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "revokeCredential",
+          "params": [],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "revocationFor",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "checkCredentialStatus",
+          "params": [],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./quests.js",
+          "specifiers": [
+            "hashStr"
+          ]
+        },
+        {
+          "source": "./storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        }
+      ],
+      "exports": [
+        "signCredential",
+        "checkCredential",
+        "verifyUrl",
+        "loadRevocations",
+        "revokeCredential",
+        "revocationFor",
+        "checkCredentialStatus"
+      ],
+      "totalLines": 84,
+      "hasStructuralAnalysis": true
+    },
+    "src/lib/xp.js": {
+      "filePath": "src/lib/xp.js",
+      "contentHash": "8601d44139e922def381b2a31426713d4a2188e876a0bb4a5b47533ebd3d7e32",
+      "functions": [
+        {
+          "name": "levelFor",
+          "params": [],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "collectXP",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./streak.js",
+          "specifiers": [
+            "collectDayDetail"
+          ]
+        }
+      ],
+      "exports": [
+        "XP_WEIGHTS",
+        "XP_SOURCES",
+        "levelFor",
+        "collectXP"
+      ],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "src/main.jsx": {
+      "filePath": "src/main.jsx",
+      "contentHash": "a7d3268b3fc4b9ae5573b5afb0e572bbeb0881d8ea014cc94ddbde51bb8d1aed",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "StrictMode"
+          ]
+        },
+        {
+          "source": "react-dom/client",
+          "specifiers": [
+            "createRoot"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "BrowserRouter"
+          ]
+        },
+        {
+          "source": "./index.css",
+          "specifiers": []
+        },
+        {
+          "source": "./app/store.jsx",
+          "specifiers": [
+            "C2CProvider"
+          ]
+        },
+        {
+          "source": "./app/shell.jsx",
+          "specifiers": [
+            "Shell"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Ayush.jsx": {
+      "filePath": "src/pages/Ayush.jsx",
+      "contentHash": "3d83c2bb80dddeee410668fa48ecb24160c93fd9cf9008a16e0d1ce07d09a5b7",
+      "functions": [
+        {
+          "name": "Ayush",
+          "params": [],
+          "exported": true,
+          "lineCount": 136
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link",
+            "useNavigate"
+          ]
+        },
+        {
+          "source": "lucide-react",
+          "specifiers": [
+            "ArrowRight",
+            "Check"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Btn",
+            "Reveal",
+            "Ticket"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../components/landing/FractalMap.jsx",
+          "specifiers": [
+            "FractalMap"
+          ]
+        },
+        {
+          "source": "../data/ayushSeed.js",
+          "specifiers": [
+            "AYUSH_JOBS",
+            "AYUSH_TREE"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "completedSkillIdsForRole",
+            "getEvidence",
+            "isCourseDone",
+            "isProjectDone"
+          ]
+        }
+      ],
+      "exports": [
+        "Ayush"
+      ],
+      "totalLines": 151,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Faculty.jsx": {
+      "filePath": "src/pages/Faculty.jsx",
+      "contentHash": "b62e511184f62cf46a52f4db48b0986e15fb7120caacb7d8668ee6fdac07cfb8",
+      "functions": [
+        {
+          "name": "Faculty",
+          "params": [],
+          "exported": true,
+          "lineCount": 52
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useState"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "Btn",
+            "Field",
+            "Chip",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../data/fdps.js",
+          "specifiers": [
+            "FDPS",
+            "FDP_KINDS"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "loadInterests",
+            "toggleInterest",
+            "recordInterest"
+          ]
+        }
+      ],
+      "exports": [
+        "Faculty"
+      ],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Home.jsx": {
+      "filePath": "src/pages/Home.jsx",
+      "contentHash": "0fd26cb91b5f9abd2389870071367c12f2c357c35e4e294fc6cfd5a49ed0877b",
+      "functions": [
+        {
+          "name": "IconBadge",
+          "params": [],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "Ring",
+          "params": [],
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "Home",
+          "params": [],
+          "exported": true,
+          "lineCount": 187
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilLeaf",
+            "cilBriefcase",
+            "cilBook",
+            "cilChatBubble",
+            "cilCheckCircle",
+            "cilArrowRight",
+            "cilChart",
+            "cilBadge",
+            "cilCompass",
+            "cilMedicalCross",
+            "cilFire",
+            "cilStar",
+            "cilClock"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Chip",
+            "CountUp",
+            "VaidyaLevel",
+            "Reveal"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/profile.js",
+          "specifiers": [
+            "loadProfile"
+          ]
+        },
+        {
+          "source": "../data/jobs.js",
+          "specifiers": [
+            "JOBS",
+            "matchJobs"
+          ]
+        },
+        {
+          "source": "../data/courses.js",
+          "specifiers": [
+            "coursesFor"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "calculateMainScore",
+            "questPairsToProof"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "completedSkillIdsForRole"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON"
+          ]
+        },
+        {
+          "source": "../lib/onboarding.js",
+          "specifiers": [
+            "onboardingProgress"
+          ]
+        },
+        {
+          "source": "../ayush/scoring.js",
+          "specifiers": [
+            "vaidyaLevel"
+          ]
+        },
+        {
+          "source": "../components/StreakMeter.jsx",
+          "specifiers": [
+            "StreakMeter"
+          ]
+        },
+        {
+          "source": "../components/XpMeter.jsx",
+          "specifiers": [
+            "XpMeter"
+          ]
+        }
+      ],
+      "exports": [
+        "Home"
+      ],
+      "totalLines": 242,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Industry.jsx": {
+      "filePath": "src/pages/Industry.jsx",
+      "contentHash": "3f771cbcaf98ce6f30ac82324599e0fc51e78a6c67e12e93c5dd0c34f98b035a",
+      "functions": [
+        {
+          "name": "Industry",
+          "params": [],
+          "exported": true,
+          "lineCount": 189
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Field",
+            "Chip",
+            "Empty",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "listApplicants"
+          ]
+        },
+        {
+          "source": "../lib/match.js",
+          "specifiers": [
+            "matchJobPost",
+            "profileForMatching"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "loadQuizBest"
+          ]
+        },
+        {
+          "source": "../lib/questionnaire.js",
+          "specifiers": [
+            "loadQAnswers",
+            "compileEvidence"
+          ]
+        }
+      ],
+      "exports": [
+        "Industry"
+      ],
+      "totalLines": 206,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Institute.jsx": {
+      "filePath": "src/pages/Institute.jsx",
+      "contentHash": "3d7b9af9cbe31927b91e61f2fafb85c139c68653e2c9957dd83fa89d735cde07",
+      "functions": [
+        {
+          "name": "Institute",
+          "params": [],
+          "exported": true,
+          "lineCount": 126
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useState"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Chip",
+            "Empty"
+          ]
+        },
+        {
+          "source": "../lib/cohort.js",
+          "specifiers": [
+            "COHORT",
+            "cohortStats",
+            "enrich",
+            "toCSV"
+          ]
+        },
+        {
+          "source": "../lib/dashboard.js",
+          "specifiers": [
+            "demandHeatmap"
+          ]
+        },
+        {
+          "source": "../data/jobs.js",
+          "specifiers": [
+            "JOBS"
+          ]
+        },
+        {
+          "source": "../data/ayushSeed.js",
+          "specifiers": [
+            "AYUSH_JOBS"
+          ]
+        },
+        {
+          "source": "../lib/backend.js",
+          "specifiers": [
+            "loadAssessments",
+            "loadRemoteAssessments",
+            "loadFeedback",
+            "loadRemoteFeedback",
+            "analyticsSummary"
+          ]
+        }
+      ],
+      "exports": [
+        "Institute"
+      ],
+      "totalLines": 137,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Interview.jsx": {
+      "filePath": "src/pages/Interview.jsx",
+      "contentHash": "7cdad08233781033ab1e943d40c23d24ef9701ee97e48c49385da1bf9b26e17e",
+      "functions": [
+        {
+          "name": "Interview",
+          "params": [],
+          "exported": true,
+          "lineCount": 124
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Field",
+            "Chip",
+            "Empty",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../data/questionnaire.js",
+          "specifiers": [
+            "QUESTIONNAIRE"
+          ]
+        },
+        {
+          "source": "../lib/questionnaire.js",
+          "specifiers": [
+            "visibleQuestions",
+            "compileEvidence",
+            "loadQAnswers",
+            "saveQAnswers"
+          ]
+        },
+        {
+          "source": "../lib/interview.js",
+          "specifiers": [
+            "scoreAnswer",
+            "skillReadiness"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "recordDay"
+          ]
+        },
+        {
+          "source": "../lib/speech.js",
+          "specifiers": [
+            "isVoiceSupported",
+            "listenOnce"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "saveJSON"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "ROLES"
+          ]
+        },
+        {
+          "source": "../data/ayushSeed.js",
+          "specifiers": [
+            "AYUSH_INTERVIEW_QS"
+          ]
+        }
+      ],
+      "exports": [
+        "Interview"
+      ],
+      "totalLines": 144,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Jobs.jsx": {
+      "filePath": "src/pages/Jobs.jsx",
+      "contentHash": "280fd4842558f35f4ccb68a52f2931f2c5488dfddff207e85368c5a58ba52b5d",
+      "functions": [
+        {
+          "name": "FitRing",
+          "params": [],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "statusOf",
+          "params": [
+            "events",
+            "id"
+          ],
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "EngineFit",
+          "params": [],
+          "exported": false,
+          "lineCount": 34
+        },
+        {
+          "name": "Jobs",
+          "params": [],
+          "exported": true,
+          "lineCount": 422
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilBriefcase",
+            "cilLocationPin",
+            "cilClock",
+            "cilExternalLink"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Field",
+            "Chip",
+            "Empty",
+            "ErrorBox",
+            "Donut",
+            "DONUT_COLORS_EXPORT",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../data/jobs.js",
+          "specifiers": [
+            "JOBS",
+            "matchJobs"
+          ]
+        },
+        {
+          "source": "../data/ayushSeed.js",
+          "specifiers": [
+            "AYUSH_JOBS"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "mergeJobs",
+            "listLiveJobs",
+            "recordApplication",
+            "saveCustomJob"
+          ]
+        },
+        {
+          "source": "../lib/profile.js",
+          "specifiers": [
+            "loadProfile"
+          ]
+        },
+        {
+          "source": "../lib/coach.js",
+          "specifiers": [
+            "matchBand",
+            "parseJobPosting"
+          ]
+        },
+        {
+          "source": "../lib/match.js",
+          "specifiers": [
+            "matchJobPost",
+            "profileForMatching"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "loadQuizBest"
+          ]
+        },
+        {
+          "source": "../lib/questionnaire.js",
+          "specifiers": [
+            "loadQAnswers",
+            "compileEvidence"
+          ]
+        },
+        {
+          "source": "../lib/dashboard.js",
+          "specifiers": [
+            "donutSegments",
+            "weekTrend",
+            "recentActivity",
+            "briefing",
+            "demandHeatmap"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "calculateMainScore"
+          ]
+        }
+      ],
+      "exports": [
+        "Jobs"
+      ],
+      "totalLines": 505,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Journey.jsx": {
+      "filePath": "src/pages/Journey.jsx",
+      "contentHash": "f58617898d196fa43dc086d5d23c4e7a0d9164667db2646d12217a208316913b",
+      "functions": [
+        {
+          "name": "JourneyBar",
+          "params": [],
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "confettiBurst",
+          "params": [],
+          "exported": false,
+          "lineCount": 39
+        },
+        {
+          "name": "Journey",
+          "params": [],
+          "exported": true,
+          "lineCount": 342
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useMemo",
+            "useRef",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "useNavigate"
+          ]
+        },
+        {
+          "source": "motion/react",
+          "specifiers": [
+            "useReducedMotion"
+          ]
+        },
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilChart",
+            "cilBook",
+            "cilCompass",
+            "cilChatBubble",
+            "cilBadge",
+            "cilArrowRight"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Field",
+            "Chip",
+            "Meter",
+            "Empty",
+            "CountUp",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/profile.js",
+          "specifiers": [
+            "loadProfile"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "scoreResume",
+            "calculateMainScore",
+            "normalizeScoreResult",
+            "questPairsToProof"
+          ]
+        },
+        {
+          "source": "../lib/parseResume.js",
+          "specifiers": [
+            "parseResumeFile"
+          ]
+        },
+        {
+          "source": "../ayush/resumes.js",
+          "specifiers": [
+            "AYUSH_RESUMES",
+            "SKILL_WHY"
+          ]
+        },
+        {
+          "source": "../data/courses.js",
+          "specifiers": [
+            "coursesFor",
+            "resumeTips"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "completedSkillIdsForRole"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON",
+            "saveJSON"
+          ]
+        },
+        {
+          "source": "../lib/onboarding.js",
+          "specifiers": [
+            "onboardingProgress",
+            "questionsFromProfile",
+            "resetOnboarding"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "recordDay"
+          ]
+        },
+        {
+          "source": "../lib/aiQuestions.js",
+          "specifiers": [
+            "genInterviewQs",
+            "gradeAnswerAI"
+          ]
+        },
+        {
+          "source": "../lib/interview.js",
+          "specifiers": [
+            "scoreAnswer"
+          ]
+        },
+        {
+          "source": "../lib/ai.js",
+          "specifiers": [
+            "hasAIKey"
+          ]
+        }
+      ],
+      "exports": [
+        "Journey"
+      ],
+      "totalLines": 437,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Match.jsx": {
+      "filePath": "src/pages/Match.jsx",
+      "contentHash": "fbdbef2367d5d44050595989d3a99132653d29be37fbf18ef3875991e089c3d1",
+      "functions": [
+        {
+          "name": "Match",
+          "params": [],
+          "exported": true,
+          "lineCount": 136
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Chip",
+            "Meter",
+            "Empty",
+            "Btn"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/match.js",
+          "specifiers": [
+            "MATCH_WEIGHTS",
+            "matchScore",
+            "profileForMatching"
+          ]
+        },
+        {
+          "source": "../data/taxonomy.js",
+          "specifiers": [
+            "requiredFor",
+            "taxonomyRole",
+            "TAXONOMY_ROLES"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "loadQuizBest"
+          ]
+        },
+        {
+          "source": "../lib/questionnaire.js",
+          "specifiers": [
+            "loadQAnswers",
+            "compileEvidence"
+          ]
+        }
+      ],
+      "exports": [
+        "Match"
+      ],
+      "totalLines": 156,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/NotFound.jsx": {
+      "filePath": "src/pages/NotFound.jsx",
+      "contentHash": "242280c8355d7cb7cf8258a10e3714bba9b6f3fcd13ac5ba5c4dd09fab82fec1",
+      "functions": [
+        {
+          "name": "NotFound",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Btn"
+          ]
+        }
+      ],
+      "exports": [
+        "NotFound"
+      ],
+      "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Portfolio.jsx": {
+      "filePath": "src/pages/Portfolio.jsx",
+      "contentHash": "444fb5fe60aaee878ff3c0d4d7528b26c14d039fe8fe11c483f4c8cbae490289",
+      "functions": [
+        {
+          "name": "Portfolio",
+          "params": [],
+          "exported": true,
+          "lineCount": 221
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useMemo",
+            "useRef",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Field",
+            "Chip",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/identity.js",
+          "specifiers": [
+            "getOrCreateC2CId",
+            "loadNickname",
+            "saveNickname",
+            "loadGithub",
+            "saveGithub",
+            "loadCerts",
+            "addCert",
+            "removeCert"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "isVerified",
+            "fetchKudos",
+            "loadKudosFallback"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "completedSkillIdsForRole",
+            "getEvidence"
+          ]
+        },
+        {
+          "source": "../lib/backend.js",
+          "specifiers": [
+            "submitFeedback"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "calculateMainScore",
+            "questPairsToProof"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON"
+          ]
+        },
+        {
+          "source": "../lib/verify.js",
+          "specifiers": [
+            "signCredential",
+            "verifyUrl",
+            "checkCredentialStatus",
+            "revokeCredential"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "VaidyaLevel"
+          ]
+        },
+        {
+          "source": "../ayush/scoring.js",
+          "specifiers": [
+            "vaidyaLevel"
+          ]
+        }
+      ],
+      "exports": [
+        "Portfolio"
+      ],
+      "totalLines": 238,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Profile.jsx": {
+      "filePath": "src/pages/Profile.jsx",
+      "contentHash": "9a72f1b77f7afb21946117d13cdfcb56e090d131453e33a754fb37b4e683149b",
+      "functions": [
+        {
+          "name": "isComplete",
+          "params": [
+            "p"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "OptionCard",
+          "params": [],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "ProfileCard",
+          "params": [],
+          "exported": false,
+          "lineCount": 110
+        },
+        {
+          "name": "Profile",
+          "params": [],
+          "exported": true,
+          "lineCount": 246
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useState"
+          ]
+        },
+        {
+          "source": "motion/react",
+          "specifiers": [
+            "motion",
+            "useReducedMotion"
+          ]
+        },
+        {
+          "source": "@coreui/icons-react",
+          "specifiers": [
+            "CIcon"
+          ]
+        },
+        {
+          "source": "@coreui/icons",
+          "specifiers": [
+            "cilSpa",
+            "cilChart",
+            "cilFire",
+            "cilCheckCircle",
+            "cilBolt"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "inputCls",
+            "Radar"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../data/taxonomy.js",
+          "specifiers": [
+            "requiredFor",
+            "gapVector",
+            "skillById"
+          ]
+        },
+        {
+          "source": "../lib/match.js",
+          "specifiers": [
+            "profileForMatching"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "loadQuizBest"
+          ]
+        },
+        {
+          "source": "../lib/profile.js",
+          "specifiers": [
+            "loadProfile",
+            "saveProfile"
+          ]
+        },
+        {
+          "source": "../lib/onboarding.js",
+          "specifiers": [
+            "resetOnboarding"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "calculateMainScore",
+            "questPairsToProof"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "completedSkillIdsForRole"
+          ]
+        },
+        {
+          "source": "../lib/streak.js",
+          "specifiers": [
+            "collectDayCounts",
+            "currentStreak"
+          ]
+        },
+        {
+          "source": "../lib/xp.js",
+          "specifiers": [
+            "collectXP"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON"
+          ]
+        },
+        {
+          "source": "../ayush/scoring.js",
+          "specifiers": [
+            "vaidyaLevel"
+          ]
+        },
+        {
+          "source": "../lib/auth.js",
+          "specifiers": [
+            "getUser",
+            "signInWithGoogle",
+            "signOut",
+            "onAuthChange",
+            "authLabel"
+          ]
+        },
+        {
+          "source": "../lib/identity.js",
+          "specifiers": [
+            "getOrCreateC2CId"
+          ]
+        },
+        {
+          "source": "../data/ayushSeed.js",
+          "specifiers": [
+            "AYUSH_ROLE"
+          ]
+        }
+      ],
+      "exports": [
+        "Profile"
+      ],
+      "totalLines": 443,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Programs.jsx": {
+      "filePath": "src/pages/Programs.jsx",
+      "contentHash": "08f9ce14d4c9c6587c5982ed83af584d0945a1084dc5d431986c8fe3c85d602f",
+      "functions": [
+        {
+          "name": "Programs",
+          "params": [],
+          "exported": true,
+          "lineCount": 100
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Chip",
+            "Empty"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../data/programs.js",
+          "specifiers": [
+            "PROGRAMS",
+            "PROGRAM_KINDS",
+            "programsFor"
+          ]
+        },
+        {
+          "source": "../data/taxonomy.js",
+          "specifiers": [
+            "gapVector"
+          ]
+        },
+        {
+          "source": "../lib/match.js",
+          "specifiers": [
+            "profileForMatching"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "loadQuizBest"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "loadEnrollments",
+            "toggleEnrollment"
+          ]
+        }
+      ],
+      "exports": [
+        "Programs"
+      ],
+      "totalLines": 115,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Public.jsx": {
+      "filePath": "src/pages/Public.jsx",
+      "contentHash": "cb374c8358e06979de2876d012e39daf3efd3691972a1c6860f10a6dce2a9b8e",
+      "functions": [
+        {
+          "name": "Public",
+          "params": [],
+          "exported": true,
+          "lineCount": 51
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link",
+            "useParams"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Chip",
+            "Empty"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/identity.js",
+          "specifiers": [
+            "getOrCreateC2CId",
+            "loadNickname",
+            "loadGithub"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "isVerified"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "completedSkillIdsForRole"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "calculateMainScore",
+            "questPairsToProof"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON"
+          ]
+        },
+        {
+          "source": "../lib/verify.js",
+          "specifiers": [
+            "signCredential",
+            "verifyUrl"
+          ]
+        }
+      ],
+      "exports": [
+        "Public"
+      ],
+      "totalLines": 66,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Quests.jsx": {
+      "filePath": "src/pages/Quests.jsx",
+      "contentHash": "18560bee6e378e06d122433d8c97a80aca2672cc019b64b2b9e337384a1fd45b",
+      "functions": [
+        {
+          "name": "QuestCheck",
+          "params": [],
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "MasteryPips",
+          "params": [],
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "Quests",
+          "params": [],
+          "exported": true,
+          "lineCount": 176
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "motion/react",
+          "specifiers": [
+            "motion"
+          ]
+        },
+        {
+          "source": "lucide-react",
+          "specifiers": [
+            "Check",
+            "ExternalLink"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "Btn",
+            "Chip",
+            "CountUp",
+            "Field",
+            "Empty",
+            "Meter",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/roadmapGenerator.js",
+          "specifiers": [
+            "roadmapGenerator"
+          ]
+        },
+        {
+          "source": "../data/jobs.js",
+          "specifiers": [
+            "JOBS"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "isCourseDone",
+            "isProjectDone",
+            "setQuestDone",
+            "getEvidence",
+            "setEvidence",
+            "completedSkillIdsForRole",
+            "masteryLevel"
+          ]
+        },
+        {
+          "source": "../lib/quests.js",
+          "specifiers": [
+            "isEvidenceUrl"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "loadQuizBest"
+          ]
+        }
+      ],
+      "exports": [
+        "Quests"
+      ],
+      "totalLines": 294,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Quiz.jsx": {
+      "filePath": "src/pages/Quiz.jsx",
+      "contentHash": "70fc1739c925137ce578c00593bca674dcd8b260d68dbb506493e70ec9e2fd81",
+      "functions": [
+        {
+          "name": "fmt",
+          "params": [
+            "s"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Quiz",
+          "params": [],
+          "exported": true,
+          "lineCount": 106
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Chip",
+            "Empty"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../data/quiz.js",
+          "specifiers": [
+            "QUIZ",
+            "gradeSet",
+            "quizSample",
+            "loadQuizBest",
+            "saveQuizBest",
+            "todayDay"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "recordDay"
+          ]
+        },
+        {
+          "source": "../lib/identity.js",
+          "specifiers": [
+            "getOrCreateC2CId"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "ROLES"
+          ]
+        },
+        {
+          "source": "../data/ayushSeed.js",
+          "specifiers": [
+            "AYUSH_QUIZ"
+          ]
+        }
+      ],
+      "exports": [
+        "Quiz"
+      ],
+      "totalLines": 120,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Resume.jsx": {
+      "filePath": "src/pages/Resume.jsx",
+      "contentHash": "16143c7e8fdb4543a32294075f6f4ce4aee4c20bbf82ba1abebf63f67d5bce8c",
+      "functions": [
+        {
+          "name": "Resume",
+          "params": [],
+          "exported": true,
+          "lineCount": 267
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "lucide-react",
+          "specifiers": [
+            "ArrowRight",
+            "ExternalLink",
+            "Leaf",
+            "Play"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Field",
+            "Chip",
+            "CountUp",
+            "Empty",
+            "Meter",
+            "inputCls",
+            "VaidyaLevel"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "scoreResume",
+            "calculateMainScore",
+            "normalizeScoreResult",
+            "rankFor"
+          ]
+        },
+        {
+          "source": "../lib/parseResume.js",
+          "specifiers": [
+            "parseResumeFile",
+            "extractSections"
+          ]
+        },
+        {
+          "source": "../ayush/resumes.js",
+          "specifiers": [
+            "AYUSH_RESUMES",
+            "RESUME_ANATOMY",
+            "RESUME_BULLETS",
+            "SKILL_WHY"
+          ]
+        },
+        {
+          "source": "../data/courses.js",
+          "specifiers": [
+            "videosFor",
+            "resumeTips"
+          ]
+        },
+        {
+          "source": "../lib/score.js",
+          "specifiers": [
+            "questPairsToProof"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "recordDay"
+          ]
+        },
+        {
+          "source": "../lib/progress.js",
+          "specifiers": [
+            "completedSkillIdsForRole"
+          ]
+        },
+        {
+          "source": "../lib/storage.js",
+          "specifiers": [
+            "loadJSON"
+          ]
+        },
+        {
+          "source": "../ayush/scoring.js",
+          "specifiers": [
+            "vaidyaLevel"
+          ]
+        }
+      ],
+      "exports": [
+        "Resume"
+      ],
+      "totalLines": 284,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Verify.jsx": {
+      "filePath": "src/pages/Verify.jsx",
+      "contentHash": "ce5f74b6b57f2299011fd722f9ef6aede3d3a44c21e89e39d2ff6adff451c189",
+      "functions": [
+        {
+          "name": "Verify",
+          "params": [],
+          "exported": true,
+          "lineCount": 50
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link",
+            "useParams"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Chip"
+          ]
+        },
+        {
+          "source": "../lib/verify.js",
+          "specifiers": [
+            "checkCredentialStatus"
+          ]
+        }
+      ],
+      "exports": [
+        "Verify"
+      ],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
+    "src/pages/Workspace.jsx": {
+      "filePath": "src/pages/Workspace.jsx",
+      "contentHash": "a18e9b607512706b791c539d9c0e1c4ba2ea19230178678ce5c9987e38117808",
+      "functions": [
+        {
+          "name": "statusOf",
+          "params": [
+            "events",
+            "id"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "SignOff",
+          "params": [],
+          "exported": false,
+          "lineCount": 28
+        },
+        {
+          "name": "Workspace",
+          "params": [],
+          "exported": true,
+          "lineCount": 107
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "react-router",
+          "specifiers": [
+            "Link",
+            "useParams"
+          ]
+        },
+        {
+          "source": "../components/ui.jsx",
+          "specifiers": [
+            "Page",
+            "Card",
+            "H2",
+            "Btn",
+            "Chip",
+            "Field",
+            "Empty",
+            "inputCls"
+          ]
+        },
+        {
+          "source": "../app/store.jsx",
+          "specifiers": [
+            "useC2C"
+          ]
+        },
+        {
+          "source": "../data/jobs.js",
+          "specifiers": [
+            "JOBS"
+          ]
+        },
+        {
+          "source": "../data/ayushSeed.js",
+          "specifiers": [
+            "AYUSH_JOBS"
+          ]
+        },
+        {
+          "source": "../lib/store.js",
+          "specifiers": [
+            "mergeJobs",
+            "loadApplications"
+          ]
+        },
+        {
+          "source": "../ayush/proof.js",
+          "specifiers": [
+            "addProof",
+            "proofsFor",
+            "verifyState"
+          ]
+        }
+      ],
+      "exports": [
+        "Workspace"
+      ],
+      "totalLines": 161,
+      "hasStructuralAnalysis": true
+    },
+    "tests/ai.test.js": {
+      "filePath": "tests/ai.test.js",
+      "contentHash": "c2242c12a18329834dbbd7444a1b9f88aa362989477c13f9e6e97ba08481daa9",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/ai.js",
+          "specifiers": [
+            "TASKS",
+            "modelFor",
+            "chat"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "tests/aiopt.test.js": {
+      "filePath": "tests/aiopt.test.js",
+      "contentHash": "864e2c026f60b0f20ba158c5b085dc6140efc4cfbf600f3e5c03e07341b8e6e3",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/ats.js",
+          "specifiers": [
+            "extractProjectLines"
+          ]
+        },
+        {
+          "source": "../src/lib/ai.js",
+          "specifiers": [
+            "memoCall"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 47,
+      "hasStructuralAnalysis": true
+    },
+    "tests/aiquestions.test.js": {
+      "filePath": "tests/aiquestions.test.js",
+      "contentHash": "5a52c1d5b97af4ff1b5af3da469547bfb0dbb970621492ea564b55c50c3b34ba",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/aiQuestions.js",
+          "specifiers": [
+            "parseQuizItems",
+            "parseInterviewItems",
+            "parseQuestionnaireItems"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 41,
+      "hasStructuralAnalysis": true
+    },
+    "tests/ats.test.js": {
+      "filePath": "tests/ats.test.js",
+      "contentHash": "7bfc549519435e5623ec2ee81f3850dbcf08c8ec679ecc328dd887271badfb59",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/ats.js",
+          "specifiers": [
+            "scoreATS"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "tests/ayush.test.js": {
+      "filePath": "tests/ayush.test.js",
+      "contentHash": "6c0b97fc4c08bf1309eedea75ddfa5e25bb06cda19e0b650321c712c056a07e7",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/ayush/seed.js",
+          "specifiers": [
+            "AYUSH_ENABLED",
+            "AYUSH_ROLE",
+            "AYUSH_JOBS",
+            "AYUSH_TREE",
+            "AYUSH_COURSES",
+            "AYUSH_QUIZ",
+            "AYUSH_INTERVIEW_QS",
+            "AYUSH_QUESTIONNAIRE",
+            "AYUSH_FDPS"
+          ]
+        },
+        {
+          "source": "../src/lib/score.js",
+          "specifiers": [
+            "ROLES"
+          ]
+        },
+        {
+          "source": "../src/data/quests.js",
+          "specifiers": [
+            "QUEST_TREE"
+          ]
+        },
+        {
+          "source": "../src/data/courses.js",
+          "specifiers": [
+            "COURSES"
+          ]
+        },
+        {
+          "source": "../src/data/quiz.js",
+          "specifiers": [
+            "QUIZ"
+          ]
+        },
+        {
+          "source": "../src/data/interview.js",
+          "specifiers": [
+            "INTERVIEW_QS"
+          ]
+        },
+        {
+          "source": "../src/data/questionnaire.js",
+          "specifiers": [
+            "QUESTIONNAIRE"
+          ]
+        },
+        {
+          "source": "../src/data/fdps.js",
+          "specifiers": [
+            "FDPS"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "tests/ayushPortal.test.js": {
+      "filePath": "tests/ayushPortal.test.js",
+      "contentHash": "67e78be3df92a3859a0a774cb11ddb1061769e028e9896fa0130988105165ae7",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/ayush/resumes.js",
+          "specifiers": [
+            "AYUSH_RESUMES",
+            "RESUME_ANATOMY",
+            "RESUME_BULLETS",
+            "SKILL_WHY"
+          ]
+        },
+        {
+          "source": "../src/ayush/data.js",
+          "specifiers": [
+            "AYUSH_COLLEGES",
+            "AYUSH_NOTICES",
+            "AYUSH_PROGRAMS",
+            "ayushStats",
+            "AYUSH_SCHEMES",
+            "AYUSH_FAQ"
+          ]
+        },
+        {
+          "source": "../src/ayush/seed.js",
+          "specifiers": [
+            "AYUSH_JOBS"
+          ]
+        },
+        {
+          "source": "../src/lib/score.js",
+          "specifiers": [
+            "scoreResume"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "tests/ayushProof.test.js": {
+      "filePath": "tests/ayushProof.test.js",
+      "contentHash": "9248f7d2a7ec082a67cde3ce0d54e6e00ba4b098542513a38d980b19d33224a3",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 53,
+      "hasStructuralAnalysis": true
+    },
+    "tests/backend.test.js": {
+      "filePath": "tests/backend.test.js",
+      "contentHash": "650539cb6eccfa3aac459869a889279f14ee382eaeaf17b3c239f8e9c7bcc0af",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/backend.js",
+          "specifiers": [
+            "isJobEvent",
+            "isArtifactKind",
+            "normalizeSection",
+            "toAssessmentRow",
+            "toJobEventRow",
+            "toArtifactRow",
+            "toFeedbackRow",
+            "funnelCounts",
+            "analyticsSummary"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 64,
+      "hasStructuralAnalysis": true
+    },
+    "tests/coach.test.js": {
+      "filePath": "tests/coach.test.js",
+      "contentHash": "28893e29840844c9efbaab62d2286a3fccb8a5910a9bb742aa20cd65cb1e813d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/coach.js",
+          "specifiers": [
+            "COACH_ACTIONS",
+            "buildPrompt",
+            "localAnswer",
+            "matchBand",
+            "matchJob",
+            "parseJobPosting",
+            "coverLetter",
+            "reviewWriteup"
+          ]
+        },
+        {
+          "source": "../src/data/courses.js",
+          "specifiers": [
+            "coursesFor"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 125,
+      "hasStructuralAnalysis": true
+    },
+    "tests/dashboard.test.js": {
+      "filePath": "tests/dashboard.test.js",
+      "contentHash": "cff9f079e0afcc4c9dbf72b7962f758cf780dd647a5196910e731ad9b5246d74",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/dashboard.js",
+          "specifiers": [
+            "donutSegments",
+            "weekTrend",
+            "recentActivity",
+            "briefing",
+            "demandHeatmap"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "tests/faculty.test.js": {
+      "filePath": "tests/faculty.test.js",
+      "contentHash": "9333e575f0b49fb1ff25bfbd17c03f782cef94413ed533aeec0353687fc79c51",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/data/fdps.js",
+          "specifiers": [
+            "FDPS"
+          ]
+        },
+        {
+          "source": "../src/ayush/seed.js",
+          "specifiers": [
+            "AYUSH_FDPS"
+          ]
+        },
+        {
+          "source": "../src/lib/store.js",
+          "specifiers": [
+            "loadInterests",
+            "toggleInterest",
+            "recordInterest"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "tests/i18n.test.js": {
+      "filePath": "tests/i18n.test.js",
+      "contentHash": "1a245ebcc324893c90be01ce73df22144f132907de813fda977ea7001f49694f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/i18n.js",
+          "specifiers": [
+            "STRINGS",
+            "LANGS",
+            "t",
+            "loadLang",
+            "saveLang"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "tests/institute.test.js": {
+      "filePath": "tests/institute.test.js",
+      "contentHash": "47d96df905d2c3ea30d6eb54c5e4fcf57ae003d85cd62237ebd277a96736ea02",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/cohort.js",
+          "specifiers": [
+            "COHORT",
+            "mainOf",
+            "cohortStats",
+            "toCSV"
+          ]
+        },
+        {
+          "source": "../src/lib/score.js",
+          "specifiers": [
+            "combineScores"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "tests/interview.test.js": {
+      "filePath": "tests/interview.test.js",
+      "contentHash": "15eaf7ee1acb2a1c20dae5c5c111349216bdf0869d44f08d544356bd1f237cc5",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/interview.js",
+          "specifiers": [
+            "scoreAnswer"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "tests/match.test.js": {
+      "filePath": "tests/match.test.js",
+      "contentHash": "6656dc474407b6ee5df864fdc21884e1bc548c5aeb6a4156801a5a961c80067e",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/match.js",
+          "specifiers": [
+            "MATCH_WEIGHTS",
+            "matchScore",
+            "levelFromSignals",
+            "matchJobPost",
+            "profileForMatching"
+          ]
+        },
+        {
+          "source": "../src/data/taxonomy.js",
+          "specifiers": [
+            "requiredFor"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 112,
+      "hasStructuralAnalysis": true
+    },
+    "tests/naukri.test.js": {
+      "filePath": "tests/naukri.test.js",
+      "contentHash": "90e4023527a02c8d7d6b1ae4ebb28994d37219a657df23119dc43cee9e7a1d1b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "describe",
+            "it"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../scripts/naukri.mjs",
+          "specifiers": [
+            "importNaukri",
+            "mapNaukri"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "tests/onboarding.test.js": {
+      "filePath": "tests/onboarding.test.js",
+      "contentHash": "0378ad590f354a602d6f52a469aa9735c163aeb8bbc0b912d509584dbe473b80",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "describe",
+            "it"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/onboarding.js",
+          "specifiers": [
+            "ONBOARD_W",
+            "onboardingProgress",
+            "questionsFromProfile",
+            "parseAiGrade",
+            "resetOnboarding"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "tests/portfolio.test.js": {
+      "filePath": "tests/portfolio.test.js",
+      "contentHash": "94ad8bdfa90c1f2233c12f7e8de0a007e5abf6fd3f884933e02683b7ed99e1c1",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/identity.js",
+          "specifiers": [
+            "loadCerts",
+            "addCert",
+            "removeCert",
+            "loadGithub",
+            "saveGithub",
+            "loadNickname",
+            "saveNickname"
+          ]
+        },
+        {
+          "source": "../src/lib/store.js",
+          "specifiers": [
+            "isVerified",
+            "hasGivenKudos",
+            "giveKudos",
+            "loadKudosFallback",
+            "loadSharedShowcase"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "tests/profile.test.js": {
+      "filePath": "tests/profile.test.js",
+      "contentHash": "5c1ee0cf10c99ee1458b25cf03a9d38d63f10038e487195ed7085ee8b009a371",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "describe",
+            "it"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/profile.js",
+          "specifiers": [
+            "queriesFromProfile",
+            "queryFromProfile",
+            "toMarkdown"
+          ]
+        },
+        {
+          "source": "../src/lib/store.js",
+          "specifiers": [
+            "toArbeitJobShape"
+          ]
+        },
+        {
+          "source": "../src/data/courses.js",
+          "specifiers": [
+            "certsFor",
+            "coursesFor",
+            "recommendFor"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 57,
+      "hasStructuralAnalysis": true
+    },
+    "tests/programs.test.js": {
+      "filePath": "tests/programs.test.js",
+      "contentHash": "41af0265bdeca1db34ca0d86c177a83813be00b32ce28f9c0c11b616bb9a835b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/data/programs.js",
+          "specifiers": [
+            "PROGRAMS",
+            "PROGRAM_KINDS",
+            "programsFor",
+            "programsByKind"
+          ]
+        },
+        {
+          "source": "../src/data/taxonomy.js",
+          "specifiers": [
+            "skillById"
+          ]
+        },
+        {
+          "source": "../src/lib/store.js",
+          "specifiers": [
+            "loadEnrollments",
+            "toggleEnrollment"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "tests/questionnaire.test.js": {
+      "filePath": "tests/questionnaire.test.js",
+      "contentHash": "5cd7dbeeb8bd3df66e3fddb820b6263cddf00b249af5066cfeee8d7d0d1c10b1",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/data/questionnaire.js",
+          "specifiers": [
+            "QUESTIONNAIRE"
+          ]
+        },
+        {
+          "source": "../src/lib/questionnaire.js",
+          "specifiers": [
+            "visibleQuestions",
+            "compileEvidence"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "tests/quests.test.js": {
+      "filePath": "tests/quests.test.js",
+      "contentHash": "0d645dfce039934a94ded8c7a6c2ffea43d41a0008a212992576fd015ee79ffa",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/quests.js",
+          "specifiers": [
+            "hashStr",
+            "pickForId",
+            "isEvidenceUrl"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "tests/quiz.test.js": {
+      "filePath": "tests/quiz.test.js",
+      "contentHash": "ed443d676d76c7852a567e8a3e108fd10e28a9ba0234dc1b05f247b764185907",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/data/quiz.js",
+          "specifiers": [
+            "QUIZ",
+            "gradeQuiz",
+            "gradeSet",
+            "quizSample",
+            "loadQuizBest"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 53,
+      "hasStructuralAnalysis": true
+    },
+    "tests/recommend.test.js": {
+      "filePath": "tests/recommend.test.js",
+      "contentHash": "bb4706140e991a572755b2d7627f6de7726d84308ed15ec15624a66578e6b31f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/roadmapGenerator.js",
+          "specifiers": [
+            "orderMissingByDemand",
+            "jobDemand",
+            "roadmapGenerator"
+          ]
+        },
+        {
+          "source": "../src/lib/store.js",
+          "specifiers": [
+            "guessRole",
+            "extractSkills",
+            "toLiveJobShape"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 59,
+      "hasStructuralAnalysis": true
+    },
+    "tests/score.test.js": {
+      "filePath": "tests/score.test.js",
+      "contentHash": "08b4ee63765444e534bde2964adc8122a3963d81bfdb22e859149aea0c188f4f",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/score.js",
+          "specifiers": [
+            "scoreResume"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 53,
+      "hasStructuralAnalysis": true
+    },
+    "tests/scores.test.js": {
+      "filePath": "tests/scores.test.js",
+      "contentHash": "33ca648d2efc5e107ce15793c0bc220f6601d64bcde29f62853ad30045ccbe77",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/score.js",
+          "specifiers": [
+            "calculateMainScore",
+            "rankFor",
+            "combineScores",
+            "questPairsToProof",
+            "normalizeScoreResult"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 54,
+      "hasStructuralAnalysis": true
+    },
+    "tests/sections.test.js": {
+      "filePath": "tests/sections.test.js",
+      "contentHash": "92da09084b830c035f6dc320d1d09045b705c21f27c23435272fdf66ec8b86ba",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/parseResume.js",
+          "specifiers": [
+            "extractContact",
+            "extractSections"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "tests/store.test.js": {
+      "filePath": "tests/store.test.js",
+      "contentHash": "8125bbb9e3afbcff610a57364bd39aeccec59c626e783362bc850ee17c974b59",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/store.js",
+          "specifiers": [
+            "toJobShape",
+            "mergeJobs",
+            "listApplicants"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 40,
+      "hasStructuralAnalysis": true
+    },
+    "tests/streak.test.js": {
+      "filePath": "tests/streak.test.js",
+      "contentHash": "46acf9b93ab526c61b734cf8975bc42dc7f042e63e8541b9a788fc263c1e6eb3",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "describe",
+            "it"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/streak.js",
+          "specifiers": [
+            "levelFor",
+            "heatmapWeeks",
+            "currentStreak",
+            "totalActive",
+            "collectDayCounts"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 49,
+      "hasStructuralAnalysis": true
+    },
+    "tests/taxonomy.test.js": {
+      "filePath": "tests/taxonomy.test.js",
+      "contentHash": "111a3ee3ec26850228614c6642265e47f3bc01960d2342d76ae65ea0fafda98b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/data/taxonomy.js",
+          "specifiers": [
+            "DOMAINS",
+            "SKILLS",
+            "TAXONOMY_ROLES",
+            "PROFICIENCY",
+            "skillById",
+            "resolveSkill",
+            "skillsByDomain",
+            "decayedLevel",
+            "demandWeight",
+            "requiredFor",
+            "gapVector",
+            "proficiencyLabel",
+            "proposeSkill",
+            "approveSkill",
+            "rejectSkill",
+            "listProposals"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 95,
+      "hasStructuralAnalysis": true
+    },
+    "tests/tips.test.js": {
+      "filePath": "tests/tips.test.js",
+      "contentHash": "b01f78868639c5e45cbbd407ca1f3fe1d015143ce4522c0fffc1f3d72cb9b7b0",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/data/courses.js",
+          "specifiers": [
+            "videosFor",
+            "resumeTips"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 28,
+      "hasStructuralAnalysis": true
+    },
+    "tests/tuning.test.js": {
+      "filePath": "tests/tuning.test.js",
+      "contentHash": "7a9820b4a28eb11bf283d2ca4d3b1eab05bd4294818e3b9a207ca7f8cf603d3e",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/data/tuning.js",
+          "specifiers": [
+            "TONES",
+            "DEFAULT_TONE",
+            "getTone",
+            "getCustom",
+            "systemPreamble"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "tests/verify.test.js": {
+      "filePath": "tests/verify.test.js",
+      "contentHash": "cbf9b866c3b888b738c4c1c10a48bcc3d131e5ea951b6ceb8c978659aca3204c",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "test"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/verify.js",
+          "specifiers": [
+            "signCredential",
+            "checkCredential",
+            "verifyUrl",
+            "revokeCredential",
+            "revocationFor",
+            "checkCredentialStatus"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 44,
+      "hasStructuralAnalysis": true
+    },
+    "tests/xp.test.js": {
+      "filePath": "tests/xp.test.js",
+      "contentHash": "c0c44729431cf7f4227f4c3098de2bdde249fc0b37c77880f0e5c781e8ca567b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:test",
+          "specifiers": [
+            "describe",
+            "it"
+          ]
+        },
+        {
+          "source": "node:assert/strict",
+          "specifiers": [
+            "assert"
+          ]
+        },
+        {
+          "source": "../src/lib/xp.js",
+          "specifiers": [
+            "XP_WEIGHTS",
+            "levelFor",
+            "collectXP"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 36,
+      "hasStructuralAnalysis": true
+    },
+    "vercel.json": {
+      "filePath": "vercel.json",
+      "contentHash": "0faf96401e6d774a6277f4df8a4883e33c9e5468b685f5ecad85221e01fa79a0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": false
+    },
+    "vite.config.js": {
+      "filePath": "vite.config.js",
+      "contentHash": "8e65989940355f1ca24c827c08d338f712af14802ad962a2a61088bf8525e355",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "@tailwindcss/vite",
+          "specifiers": [
+            "tailwindcss"
+          ]
+        },
+        {
+          "source": "@vitejs/plugin-react",
+          "specifiers": [
+            "react"
+          ]
+        },
+        {
+          "source": "vite",
+          "specifiers": [
+            "defineConfig"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

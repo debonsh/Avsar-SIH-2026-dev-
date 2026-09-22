@@ -1,0 +1,588 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/pages/Jobs.jsx",
+      "type": "file",
+      "name": "Jobs.jsx",
+      "filePath": "src/pages/Jobs.jsx",
+      "summary": "Jobs board page with skill matching, filters, insights, live jobs, and application tracking.",
+      "tags": [
+        "jobs",
+        "matching",
+        "page",
+        "dashboard"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/pages/NotFound.jsx",
+      "type": "file",
+      "name": "NotFound.jsx",
+      "filePath": "src/pages/NotFound.jsx",
+      "summary": "Fallback 404 page rendered for unknown routes.",
+      "tags": [
+        "routing",
+        "error-handling",
+        "page"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/pages/Quiz.jsx",
+      "type": "file",
+      "name": "Quiz.jsx",
+      "filePath": "src/pages/Quiz.jsx",
+      "summary": "Timed daily quiz page with question sampling, grading, best-score persistence, and streak recording.",
+      "tags": [
+        "quiz",
+        "assessment",
+        "page",
+        "gamification"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/Verify.jsx",
+      "type": "file",
+      "name": "Verify.jsx",
+      "filePath": "src/pages/Verify.jsx",
+      "summary": "Credential verification page resolving a signed credential status and revocation state.",
+      "tags": [
+        "verification",
+        "credentials",
+        "page",
+        "trust"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/pages/Workspace.jsx",
+      "type": "file",
+      "name": "Workspace.jsx",
+      "filePath": "src/pages/Workspace.jsx",
+      "summary": "Per-application workspace tracking pipeline status, mentor sign-offs, and the proof ledger.",
+      "tags": [
+        "applications",
+        "workspace",
+        "page",
+        "tracking"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/dashboard.test.js",
+      "type": "file",
+      "name": "dashboard.test.js",
+      "filePath": "tests/dashboard.test.js",
+      "summary": "Unit tests covering the dashboard analytics helpers.",
+      "tags": [
+        "test",
+        "analytics",
+        "unit-test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/pages/Jobs.jsx:FitRing",
+      "type": "function",
+      "name": "FitRing",
+      "filePath": "src/pages/Jobs.jsx",
+      "lineRange": [
+        21,
+        35
+      ],
+      "summary": "Small ring gauge showing per-job fit fraction on cards.",
+      "tags": [
+        "visualization",
+        "jobs",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/pages/Jobs.jsx:EngineFit",
+      "type": "function",
+      "name": "EngineFit",
+      "filePath": "src/pages/Jobs.jsx",
+      "lineRange": [
+        48,
+        81
+      ],
+      "summary": "Explainer panel breaking down engine match scores per job.",
+      "tags": [
+        "jobs",
+        "matching",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/pages/Jobs.jsx:Jobs",
+      "type": "function",
+      "name": "Jobs",
+      "filePath": "src/pages/Jobs.jsx",
+      "lineRange": [
+        83,
+        504
+      ],
+      "summary": "Jobs board with filters, insights, live listings, and application actions.",
+      "tags": [
+        "jobs",
+        "matching",
+        "page"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/pages/NotFound.jsx:NotFound",
+      "type": "function",
+      "name": "NotFound",
+      "filePath": "src/pages/NotFound.jsx",
+      "lineRange": [
+        3,
+        9
+      ],
+      "summary": "Not-found page with a link back to the home route.",
+      "tags": [
+        "routing",
+        "error-handling",
+        "page"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/pages/Quiz.jsx:Quiz",
+      "type": "function",
+      "name": "Quiz",
+      "filePath": "src/pages/Quiz.jsx",
+      "lineRange": [
+        15,
+        120
+      ],
+      "summary": "Quiz page running the timed daily set with grading and best score.",
+      "tags": [
+        "quiz",
+        "assessment",
+        "page"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/pages/Verify.jsx:Verify",
+      "type": "function",
+      "name": "Verify",
+      "filePath": "src/pages/Verify.jsx",
+      "lineRange": [
+        8,
+        57
+      ],
+      "summary": "Verification page displaying credential validity and revocation details.",
+      "tags": [
+        "verification",
+        "credentials",
+        "page"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/pages/Workspace.jsx:SignOff",
+      "type": "function",
+      "name": "SignOff",
+      "filePath": "src/pages/Workspace.jsx",
+      "lineRange": [
+        25,
+        52
+      ],
+      "summary": "Mentor sign-off form appending proof entries to the ledger.",
+      "tags": [
+        "verification",
+        "mentorship",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/pages/Workspace.jsx:Workspace",
+      "type": "function",
+      "name": "Workspace",
+      "filePath": "src/pages/Workspace.jsx",
+      "lineRange": [
+        54,
+        160
+      ],
+      "summary": "Workspace page tracking one application through the hiring pipeline.",
+      "tags": [
+        "applications",
+        "tracking",
+        "page"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/pages/Jobs.jsx:FitRing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/pages/Jobs.jsx:EngineFit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/pages/Jobs.jsx:Jobs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/pages/Jobs.jsx:Jobs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/NotFound.jsx",
+      "target": "function:src/pages/NotFound.jsx:NotFound",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/NotFound.jsx",
+      "target": "function:src/pages/NotFound.jsx:NotFound",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "function:src/pages/Quiz.jsx:Quiz",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "function:src/pages/Quiz.jsx:Quiz",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Verify.jsx",
+      "target": "function:src/pages/Verify.jsx:Verify",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Verify.jsx",
+      "target": "function:src/pages/Verify.jsx:Verify",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "function:src/pages/Workspace.jsx:SignOff",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "function:src/pages/Workspace.jsx:Workspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "function:src/pages/Workspace.jsx:Workspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/app/store.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/data/ayushSeed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/data/jobs.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/data/quiz.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/lib/coach.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/lib/dashboard.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/lib/match.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/lib/profile.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/lib/questionnaire.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/lib/score.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "file:src/lib/store.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/NotFound.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "file:src/app/store.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "file:src/data/ayushSeed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "file:src/data/quiz.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "file:src/lib/identity.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "file:src/lib/progress.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "file:src/lib/score.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Verify.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Verify.jsx",
+      "target": "file:src/lib/verify.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "file:src/app/store.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "file:src/ayush/proof.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "file:src/data/ayushSeed.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "file:src/data/jobs.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "file:src/lib/store.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/dashboard.test.js",
+      "target": "file:src/lib/dashboard.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/data/jobs.js:matchJobs",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/lib/dashboard.js:donutSegments",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/lib/dashboard.js:weekTrend",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/lib/dashboard.js:recentActivity",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/lib/dashboard.js:briefing",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Jobs.jsx",
+      "target": "function:src/lib/dashboard.js:demandHeatmap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Quiz.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/pages/Workspace.jsx",
+      "target": "function:src/lib/dashboard.js:demandHeatmap",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

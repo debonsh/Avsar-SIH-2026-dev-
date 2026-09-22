@@ -1,0 +1,137 @@
+{
+ "projectRoot": "D:\\CodeProjects\\avsar\\avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": "src/components/StreakMeter.jsx",
+   "language": "javascript",
+   "sizeLines": 89,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/components/XpMeter.jsx",
+   "language": "javascript",
+   "sizeLines": 58,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/onboarding.js",
+   "language": "javascript",
+   "sizeLines": 75,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/progress.js",
+   "language": "javascript",
+   "sizeLines": 184,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/streak.js",
+   "language": "javascript",
+   "sizeLines": 110,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/xp.js",
+   "language": "javascript",
+   "sizeLines": 64,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Home.jsx",
+   "language": "javascript",
+   "sizeLines": 241,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Profile.jsx",
+   "language": "javascript",
+   "sizeLines": 442,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/onboarding.test.js",
+   "language": "javascript",
+   "sizeLines": 64,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/streak.test.js",
+   "language": "javascript",
+   "sizeLines": 48,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/xp.test.js",
+   "language": "javascript",
+   "sizeLines": 35,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  "src/components/StreakMeter.jsx": [
+   "src/components/ui.jsx",
+   "src/lib/streak.js"
+  ],
+  "src/components/XpMeter.jsx": [
+   "src/components/ui.jsx",
+   "src/lib/xp.js"
+  ],
+  "src/lib/onboarding.js": [
+   "src/lib/storage.js"
+  ],
+  "src/lib/progress.js": [
+   "src/data/quests.js",
+   "src/lib/quests.js",
+   "src/lib/storage.js"
+  ],
+  "src/lib/streak.js": [
+   "src/lib/progress.js",
+   "src/lib/storage.js"
+  ],
+  "src/lib/xp.js": [
+   "src/lib/streak.js"
+  ],
+  "src/pages/Home.jsx": [
+   "src/app/store.jsx",
+   "src/ayush/scoring.js",
+   "src/components/StreakMeter.jsx",
+   "src/components/XpMeter.jsx",
+   "src/components/ui.jsx",
+   "src/data/courses.js",
+   "src/data/jobs.js",
+   "src/lib/onboarding.js",
+   "src/lib/profile.js",
+   "src/lib/progress.js",
+   "src/lib/score.js",
+   "src/lib/storage.js"
+  ],
+  "src/pages/Profile.jsx": [
+   "src/app/store.jsx",
+   "src/ayush/scoring.js",
+   "src/components/ui.jsx",
+   "src/data/ayushSeed.js",
+   "src/data/quiz.js",
+   "src/data/taxonomy.js",
+   "src/lib/auth.js",
+   "src/lib/identity.js",
+   "src/lib/match.js",
+   "src/lib/onboarding.js",
+   "src/lib/profile.js",
+   "src/lib/progress.js",
+   "src/lib/score.js",
+   "src/lib/storage.js",
+   "src/lib/streak.js",
+   "src/lib/xp.js"
+  ],
+  "tests/onboarding.test.js": [
+   "src/lib/onboarding.js"
+  ],
+  "tests/streak.test.js": [
+   "src/lib/streak.js"
+  ],
+  "tests/xp.test.js": [
+   "src/lib/xp.js"
+  ]
+ }
+}

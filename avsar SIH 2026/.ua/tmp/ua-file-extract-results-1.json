@@ -1,0 +1,4317 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 22,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 22,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 22,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/app/error-boundary.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 68,
+      "nonEmptyLines": 63,
+      "classes": [
+        {
+          "name": "RouteErrorBoundary",
+          "startLine": 7,
+          "endLine": 68,
+          "methods": [
+            "constructor",
+            "getDerivedStateFromError",
+            "getDerivedStateFromProps",
+            "componentDidCatch",
+            "render"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "RouteErrorBoundary",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "constructor",
+          "callee": "super",
+          "lineNumber": 9
+        },
+        {
+          "caller": "componentDidCatch",
+          "callee": "console.error",
+          "lineNumber": 24
+        },
+        {
+          "caller": "componentDidCatch",
+          "callee": "this.setState",
+          "lineNumber": 25
+        },
+        {
+          "caller": "componentDidCatch",
+          "callee": "(info?.componentStack || \"\").split(\"\\n\").slice(0, 6).join",
+          "lineNumber": 25
+        },
+        {
+          "caller": "componentDidCatch",
+          "callee": "(info?.componentStack || \"\").split(\"\\n\").slice",
+          "lineNumber": 25
+        },
+        {
+          "caller": "componentDidCatch",
+          "callee": "(info?.componentStack || \"\").split",
+          "lineNumber": 25
+        },
+        {
+          "caller": "render",
+          "callee": "String",
+          "lineNumber": 40
+        },
+        {
+          "caller": "render",
+          "callee": "window.location.reload",
+          "lineNumber": 56
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/app/shell.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 415,
+      "nonEmptyLines": 399,
+      "functions": [
+        {
+          "name": "ReadinessRing",
+          "startLine": 77,
+          "endLine": 105,
+          "params": []
+        },
+        {
+          "name": "Brand",
+          "startLine": 107,
+          "endLine": 119,
+          "params": []
+        },
+        {
+          "name": "Shell",
+          "startLine": 121,
+          "endLine": 415,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Shell",
+          "line": 121,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ReadinessRing",
+          "callee": "Math.max",
+          "lineNumber": 80
+        },
+        {
+          "caller": "ReadinessRing",
+          "callee": "Math.min",
+          "lineNumber": 80
+        },
+        {
+          "caller": "ReadinessRing",
+          "callee": "t",
+          "lineNumber": 84
+        },
+        {
+          "caller": "ReadinessRing",
+          "callee": "t",
+          "lineNumber": 85
+        },
+        {
+          "caller": "ReadinessRing",
+          "callee": "(frac * c).toFixed",
+          "lineNumber": 93
+        },
+        {
+          "caller": "ReadinessRing",
+          "callee": "c.toFixed",
+          "lineNumber": 93
+        },
+        {
+          "caller": "ReadinessRing",
+          "callee": "t",
+          "lineNumber": 101
+        },
+        {
+          "caller": "ReadinessRing",
+          "callee": "t",
+          "lineNumber": 101
+        },
+        {
+          "caller": "Shell",
+          "callee": "useRef",
+          "lineNumber": 122
+        },
+        {
+          "caller": "Shell",
+          "callee": "useLocation",
+          "lineNumber": 123
+        },
+        {
+          "caller": "Shell",
+          "callee": "useC2C",
+          "lineNumber": 124
+        },
+        {
+          "caller": "Shell",
+          "callee": "useReducedMotion",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Shell",
+          "callee": "useState",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Shell",
+          "callee": "loadTheme",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Shell",
+          "callee": "useState",
+          "lineNumber": 127
+        },
+        {
+          "caller": "Shell",
+          "callee": "loadLang",
+          "lineNumber": 127
+        },
+        {
+          "caller": "Shell",
+          "callee": "useState",
+          "lineNumber": 128
+        },
+        {
+          "caller": "Shell",
+          "callee": "calculateMainScore",
+          "lineNumber": 129
+        },
+        {
+          "caller": "flipLang",
+          "callee": "saveLang",
+          "lineNumber": 133
+        },
+        {
+          "caller": "flipLang",
+          "callee": "setLang",
+          "lineNumber": 134
+        },
+        {
+          "caller": "Shell",
+          "callee": "SEGMENTS.map",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Shell",
+          "callee": "TABS.map",
+          "lineNumber": 137
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 137
+        },
+        {
+          "caller": "Shell",
+          "callee": "MORE.map",
+          "lineNumber": 138
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 138
+        },
+        {
+          "caller": "Shell",
+          "callee": "useEffect",
+          "lineNumber": 140
+        },
+        {
+          "caller": "Shell",
+          "callee": "saveTheme",
+          "lineNumber": 141
+        },
+        {
+          "caller": "Shell",
+          "callee": "document.querySelector('meta[name=\"theme-color\"]')?.setAttribute",
+          "lineNumber": 143
+        },
+        {
+          "caller": "Shell",
+          "callee": "document.querySelector",
+          "lineNumber": 143
+        },
+        {
+          "caller": "Shell",
+          "callee": "useEffect",
+          "lineNumber": 146
+        },
+        {
+          "caller": "Shell",
+          "callee": "getUser().then(setUser).catch",
+          "lineNumber": 147
+        },
+        {
+          "caller": "Shell",
+          "callee": "getUser().then",
+          "lineNumber": 147
+        },
+        {
+          "caller": "Shell",
+          "callee": "getUser",
+          "lineNumber": 147
+        },
+        {
+          "caller": "Shell",
+          "callee": "onAuthChange",
+          "lineNumber": 148
+        },
+        {
+          "caller": "Shell",
+          "callee": "useEffect",
+          "lineNumber": 153
+        },
+        {
+          "caller": "Shell",
+          "callee": "useEffect",
+          "lineNumber": 157
+        },
+        {
+          "caller": "onDown",
+          "callee": "moreRef.current.contains",
+          "lineNumber": 162
+        },
+        {
+          "caller": "onDown",
+          "callee": "close",
+          "lineNumber": 162
+        },
+        {
+          "caller": "onKey",
+          "callee": "close",
+          "lineNumber": 165
+        },
+        {
+          "caller": "Shell",
+          "callee": "document.addEventListener",
+          "lineNumber": 167
+        },
+        {
+          "caller": "Shell",
+          "callee": "document.addEventListener",
+          "lineNumber": 168
+        },
+        {
+          "caller": "Shell",
+          "callee": "document.removeEventListener",
+          "lineNumber": 170
+        },
+        {
+          "caller": "Shell",
+          "callee": "document.removeEventListener",
+          "lineNumber": 171
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 186
+        },
+        {
+          "caller": "Shell",
+          "callee": "segs.map",
+          "lineNumber": 193
+        },
+        {
+          "caller": "Shell",
+          "callee": "pill",
+          "lineNumber": 205
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 224
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 225
+        },
+        {
+          "caller": "Shell",
+          "callee": "setTheme",
+          "lineNumber": 232
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 233
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 233
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 234
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 234
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 241
+        },
+        {
+          "caller": "Shell",
+          "callee": "signOut().then",
+          "lineNumber": 250
+        },
+        {
+          "caller": "Shell",
+          "callee": "signOut",
+          "lineNumber": 250
+        },
+        {
+          "caller": "Shell",
+          "callee": "setUser",
+          "lineNumber": 250
+        },
+        {
+          "caller": "Shell",
+          "callee": "signInWithGoogle",
+          "lineNumber": 260
+        },
+        {
+          "caller": "Shell",
+          "callee": "alert",
+          "lineNumber": 261
+        },
+        {
+          "caller": "Shell",
+          "callee": "moreLinks.map",
+          "lineNumber": 269
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 350
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 356
+        },
+        {
+          "caller": "Shell",
+          "callee": "[[\"/resume\", \"Resume score\"], [\"/quests\", \"Quests\"], [\"/quiz\", \"Quiz\"], [\"/interview\", \"Interview prep\"]].map",
+          "lineNumber": 358
+        },
+        {
+          "caller": "Shell",
+          "callee": "t",
+          "lineNumber": 366
+        },
+        {
+          "caller": "Shell",
+          "callee": "[[\"/jobs\", \"Internships & jobs\"], [\"/portfolio\", \"Portfolio\"], [\"/institute\", \"Institute\"], [\"/industry\", \"For hospitals\"], [\"/profile\", \"Profile\"]].map",
+          "lineNumber": 368
+        },
+        {
+          "caller": "Shell",
+          "callee": "tabs.map",
+          "lineNumber": 382
+        }
+      ],
+      "metrics": {
+        "importCount": 26,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/app/store.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 72,
+      "nonEmptyLines": 61,
+      "functions": [
+        {
+          "name": "C2CProvider",
+          "startLine": 18,
+          "endLine": 65,
+          "params": []
+        },
+        {
+          "name": "useC2C",
+          "startLine": 68,
+          "endLine": 72,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "C2CProvider",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "useC2C",
+          "line": 68,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "C2CProvider",
+          "callee": "useState",
+          "lineNumber": 19
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "loadRole",
+          "lineNumber": 19
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "loadJSON",
+          "lineNumber": 20
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useState",
+          "lineNumber": 21
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "loadJSON",
+          "lineNumber": 21
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useState",
+          "lineNumber": 22
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "loadJSON",
+          "lineNumber": 22
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useState",
+          "lineNumber": 23
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "loadCustomJobs",
+          "lineNumber": 23
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useCallback",
+          "lineNumber": 25
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "setRoleState",
+          "lineNumber": 26
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "saveRole",
+          "lineNumber": 27
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useCallback",
+          "lineNumber": 30
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "Date.now",
+          "lineNumber": 32
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "setResumeState",
+          "lineNumber": 33
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "saveJSON",
+          "lineNumber": 34
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "saveAssessment({ role: roleKey, score: result.total, found: result.found, missing: result.missing }).catch",
+          "lineNumber": 35
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "saveAssessment",
+          "lineNumber": 35
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useCallback",
+          "lineNumber": 40
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "recordJobEvent(jobId, event).catch",
+          "lineNumber": 41
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "recordJobEvent",
+          "lineNumber": 41
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "setEvents",
+          "lineNumber": 42
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "loadJobEvents",
+          "lineNumber": 42
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useCallback",
+          "lineNumber": 45
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "setDismissed",
+          "lineNumber": 46
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "prev.includes",
+          "lineNumber": 47
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "prev.filter",
+          "lineNumber": 47
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "saveJSON",
+          "lineNumber": 48
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useCallback",
+          "lineNumber": 53
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "saveCustomJob",
+          "lineNumber": 54
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "setCustomJobs",
+          "lineNumber": 55
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "loadCustomJobs",
+          "lineNumber": 55
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useMemo",
+          "lineNumber": 58
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "funnelCounts",
+          "lineNumber": 58
+        },
+        {
+          "caller": "C2CProvider",
+          "callee": "useMemo",
+          "lineNumber": 60
+        },
+        {
+          "caller": "useC2C",
+          "callee": "useContext",
+          "lineNumber": 69
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/components/landing/Figs.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 123,
+      "nonEmptyLines": 120,
+      "functions": [
+        {
+          "name": "ScoreFig",
+          "startLine": 6,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "QuestFig",
+          "startLine": 64,
+          "endLine": 90,
+          "params": []
+        },
+        {
+          "name": "PipelineFig",
+          "startLine": 92,
+          "endLine": 123,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ScoreFig",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "QuestFig",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "PipelineFig",
+          "line": 92,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ScoreFig",
+          "callee": "rows.map",
+          "lineNumber": 28
+        },
+        {
+          "caller": "ScoreFig",
+          "callee": "fixes.map",
+          "lineNumber": 44
+        },
+        {
+          "caller": "ScoreFig",
+          "callee": "[\"React\", \"REST APIs\", \"SQL\"].map",
+          "lineNumber": 52
+        },
+        {
+          "caller": "QuestFig",
+          "callee": "items.map",
+          "lineNumber": 74
+        },
+        {
+          "caller": "PipelineFig",
+          "callee": "cols.map",
+          "lineNumber": 101
+        },
+        {
+          "caller": "PipelineFig",
+          "callee": "c.items.map",
+          "lineNumber": 107
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/components/landing/FractalMap.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 218,
+      "nonEmptyLines": 202,
+      "functions": [
+        {
+          "name": "mulberry32",
+          "startLine": 11,
+          "endLine": 20,
+          "params": [
+            "seed"
+          ]
+        },
+        {
+          "name": "landColor",
+          "startLine": 22,
+          "endLine": 30,
+          "params": [
+            "palette",
+            "n",
+            "x",
+            "y"
+          ]
+        },
+        {
+          "name": "bucketColors",
+          "startLine": 34,
+          "endLine": 38,
+          "params": [
+            "palette"
+          ]
+        },
+        {
+          "name": "FractalMap",
+          "startLine": 40,
+          "endLine": 218,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FractalMap",
+          "line": 40,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mulberry32",
+          "callee": "Math.imul",
+          "lineNumber": 16
+        },
+        {
+          "caller": "mulberry32",
+          "callee": "Math.imul",
+          "lineNumber": 17
+        },
+        {
+          "caller": "landColor",
+          "callee": "Math.floor",
+          "lineNumber": 24
+        },
+        {
+          "caller": "bucketColors",
+          "callee": "arr.push",
+          "lineNumber": 36
+        },
+        {
+          "caller": "bucketColors",
+          "callee": "landColor",
+          "lineNumber": 36
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "useRef",
+          "lineNumber": 47
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "useEffect",
+          "lineNumber": 49
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "canvas.getContext",
+          "lineNumber": 53
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "mulberry32",
+          "lineNumber": 57
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "Array.from",
+          "lineNumber": 60
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "Array.from",
+          "lineNumber": 61
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "rand",
+          "lineNumber": 61
+        },
+        {
+          "caller": "noise",
+          "callee": "Math.floor",
+          "lineNumber": 67
+        },
+        {
+          "caller": "noise",
+          "callee": "Math.floor",
+          "lineNumber": 68
+        },
+        {
+          "caller": "noise",
+          "callee": "smooth",
+          "lineNumber": 69
+        },
+        {
+          "caller": "noise",
+          "callee": "smooth",
+          "lineNumber": 70
+        },
+        {
+          "caller": "noise",
+          "callee": "Math.min",
+          "lineNumber": 72
+        },
+        {
+          "caller": "noise",
+          "callee": "Math.min",
+          "lineNumber": 73
+        },
+        {
+          "caller": "noise",
+          "callee": "Math.min",
+          "lineNumber": 74
+        },
+        {
+          "caller": "noise",
+          "callee": "Math.min",
+          "lineNumber": 74
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "bucketColors",
+          "lineNumber": 86
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "landColor",
+          "lineNumber": 87
+        },
+        {
+          "caller": "measure",
+          "callee": "Math.max",
+          "lineNumber": 94
+        },
+        {
+          "caller": "measure",
+          "callee": "Math.ceil",
+          "lineNumber": 94
+        },
+        {
+          "caller": "measure",
+          "callee": "Math.max",
+          "lineNumber": 95
+        },
+        {
+          "caller": "measure",
+          "callee": "Math.ceil",
+          "lineNumber": 95
+        },
+        {
+          "caller": "measure",
+          "callee": "Math.max",
+          "lineNumber": 106
+        },
+        {
+          "caller": "measure",
+          "callee": "Math.abs",
+          "lineNumber": 108
+        },
+        {
+          "caller": "render",
+          "callee": "ctx.clearRect",
+          "lineNumber": 117
+        },
+        {
+          "caller": "render",
+          "callee": "noise",
+          "lineNumber": 129
+        },
+        {
+          "caller": "render",
+          "callee": "noise",
+          "lineNumber": 129
+        },
+        {
+          "caller": "render",
+          "callee": "noise",
+          "lineNumber": 129
+        },
+        {
+          "caller": "render",
+          "callee": "landColor",
+          "lineNumber": 132
+        },
+        {
+          "caller": "render",
+          "callee": "ctx.fillRect",
+          "lineNumber": 133
+        },
+        {
+          "caller": "render",
+          "callee": "landColor",
+          "lineNumber": 136
+        },
+        {
+          "caller": "render",
+          "callee": "ctx.fillRect",
+          "lineNumber": 137
+        },
+        {
+          "caller": "render",
+          "callee": "noise",
+          "lineNumber": 157
+        },
+        {
+          "caller": "render",
+          "callee": "noise",
+          "lineNumber": 157
+        },
+        {
+          "caller": "render",
+          "callee": "noise",
+          "lineNumber": 157
+        },
+        {
+          "caller": "render",
+          "callee": "Math.min",
+          "lineNumber": 160
+        },
+        {
+          "caller": "render",
+          "callee": "ctx.fillRect",
+          "lineNumber": 169
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "window.matchMedia",
+          "lineNumber": 178
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "measure",
+          "lineNumber": 179
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "render",
+          "lineNumber": 180
+        },
+        {
+          "caller": "loop",
+          "callee": "requestAnimationFrame",
+          "lineNumber": 185
+        },
+        {
+          "caller": "loop",
+          "callee": "render",
+          "lineNumber": 191
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "measure",
+          "lineNumber": 195
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "render",
+          "lineNumber": 195
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "ro.observe",
+          "lineNumber": 197
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "io.observe",
+          "lineNumber": 201
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "requestAnimationFrame",
+          "lineNumber": 202
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "cancelAnimationFrame",
+          "lineNumber": 204
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "ro.disconnect",
+          "lineNumber": 205
+        },
+        {
+          "caller": "FractalMap",
+          "callee": "io.disconnect",
+          "lineNumber": 206
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/components/landing/LandingHero.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 134,
+      "nonEmptyLines": 127,
+      "functions": [
+        {
+          "name": "NextStep",
+          "startLine": 19,
+          "endLine": 34,
+          "params": []
+        },
+        {
+          "name": "LandingHero",
+          "startLine": 36,
+          "endLine": 134,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "LandingHero",
+          "line": 36,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "NextStep",
+          "callee": "useC2C",
+          "lineNumber": 20
+        },
+        {
+          "caller": "LandingHero",
+          "callee": "NAV.map",
+          "lineNumber": 56
+        },
+        {
+          "caller": "LandingHero",
+          "callee": "PALETTES.map",
+          "lineNumber": 113
+        },
+        {
+          "caller": "LandingHero",
+          "callee": "setPalette",
+          "lineNumber": 117
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/components/landing/Sections.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 130,
+      "nonEmptyLines": 125,
+      "functions": [
+        {
+          "name": "ProblemStrip",
+          "startLine": 8,
+          "endLine": 29,
+          "params": []
+        },
+        {
+          "name": "CoachFig",
+          "startLine": 31,
+          "endLine": 58,
+          "params": []
+        },
+        {
+          "name": "ClanSim",
+          "startLine": 60,
+          "endLine": 90,
+          "params": []
+        },
+        {
+          "name": "Trio",
+          "startLine": 92,
+          "endLine": 104,
+          "params": []
+        },
+        {
+          "name": "BootCta",
+          "startLine": 106,
+          "endLine": 130,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ProblemStrip",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "CoachFig",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "ClanSim",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "Trio",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "BootCta",
+          "line": 106,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ProblemStrip",
+          "callee": "pains.map",
+          "lineNumber": 18
+        },
+        {
+          "caller": "CoachFig",
+          "callee": "[\"review\", \"match\", \"cover\", \"mentor\", \"ask\"].map",
+          "lineNumber": 46
+        },
+        {
+          "caller": "ClanSim",
+          "callee": "rows.map",
+          "lineNumber": 77
+        },
+        {
+          "caller": "Trio",
+          "callee": "items.map",
+          "lineNumber": 95
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/components/ui.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 432,
+      "nonEmptyLines": 401,
+      "functions": [
+        {
+          "name": "cn",
+          "startLine": 12,
+          "endLine": 14,
+          "params": [
+            "...inputs"
+          ]
+        },
+        {
+          "name": "Page",
+          "startLine": 16,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "Card",
+          "startLine": 37,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "H2",
+          "startLine": 45,
+          "endLine": 47,
+          "params": []
+        },
+        {
+          "name": "Button",
+          "startLine": 72,
+          "endLine": 77,
+          "params": []
+        },
+        {
+          "name": "Field",
+          "startLine": 82,
+          "endLine": 90,
+          "params": []
+        },
+        {
+          "name": "Meter",
+          "startLine": 95,
+          "endLine": 116,
+          "params": []
+        },
+        {
+          "name": "Donut",
+          "startLine": 121,
+          "endLine": 148,
+          "params": []
+        },
+        {
+          "name": "Radar",
+          "startLine": 155,
+          "endLine": 199,
+          "params": []
+        },
+        {
+          "name": "Badge",
+          "startLine": 218,
+          "endLine": 220,
+          "params": []
+        },
+        {
+          "name": "Chip",
+          "startLine": 223,
+          "endLine": 225,
+          "params": []
+        },
+        {
+          "name": "Skeleton",
+          "startLine": 228,
+          "endLine": 230,
+          "params": []
+        },
+        {
+          "name": "Reveal",
+          "startLine": 233,
+          "endLine": 248,
+          "params": []
+        },
+        {
+          "name": "CountUp",
+          "startLine": 251,
+          "endLine": 269,
+          "params": []
+        },
+        {
+          "name": "Empty",
+          "startLine": 272,
+          "endLine": 280,
+          "params": []
+        },
+        {
+          "name": "ErrorBox",
+          "startLine": 282,
+          "endLine": 294,
+          "params": []
+        },
+        {
+          "name": "StatusBar",
+          "startLine": 299,
+          "endLine": 308,
+          "params": []
+        },
+        {
+          "name": "AsciiRule",
+          "startLine": 311,
+          "endLine": 320,
+          "params": []
+        },
+        {
+          "name": "Ticket",
+          "startLine": 323,
+          "endLine": 341,
+          "params": []
+        },
+        {
+          "name": "TermWindow",
+          "startLine": 344,
+          "endLine": 360,
+          "params": []
+        },
+        {
+          "name": "VaidyaLevel",
+          "startLine": 370,
+          "endLine": 395,
+          "params": []
+        },
+        {
+          "name": "SyllabusTable",
+          "startLine": 398,
+          "endLine": 432,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "cn",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "Page",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "Card",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "H2",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "Button",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "Btn",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "Field",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "inputCls",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "Meter",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "Donut",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "DONUT_COLORS_EXPORT",
+          "line": 150,
+          "isDefault": false
+        },
+        {
+          "name": "Radar",
+          "line": 155,
+          "isDefault": false
+        },
+        {
+          "name": "Badge",
+          "line": 218,
+          "isDefault": false
+        },
+        {
+          "name": "Chip",
+          "line": 223,
+          "isDefault": false
+        },
+        {
+          "name": "Skeleton",
+          "line": 228,
+          "isDefault": false
+        },
+        {
+          "name": "Reveal",
+          "line": 233,
+          "isDefault": false
+        },
+        {
+          "name": "CountUp",
+          "line": 251,
+          "isDefault": false
+        },
+        {
+          "name": "Empty",
+          "line": 272,
+          "isDefault": false
+        },
+        {
+          "name": "ErrorBox",
+          "line": 282,
+          "isDefault": false
+        },
+        {
+          "name": "StatusBar",
+          "line": 299,
+          "isDefault": false
+        },
+        {
+          "name": "AsciiRule",
+          "line": 311,
+          "isDefault": false
+        },
+        {
+          "name": "Ticket",
+          "line": 323,
+          "isDefault": false
+        },
+        {
+          "name": "TermWindow",
+          "line": 344,
+          "isDefault": false
+        },
+        {
+          "name": "SAGE",
+          "line": 364,
+          "isDefault": false
+        },
+        {
+          "name": "GOLD",
+          "line": 365,
+          "isDefault": false
+        },
+        {
+          "name": "SAGE_BG",
+          "line": 366,
+          "isDefault": false
+        },
+        {
+          "name": "GOLD_BG",
+          "line": 367,
+          "isDefault": false
+        },
+        {
+          "name": "VaidyaLevel",
+          "line": 370,
+          "isDefault": false
+        },
+        {
+          "name": "SyllabusTable",
+          "line": 398,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "cn",
+          "callee": "twMerge",
+          "lineNumber": 13
+        },
+        {
+          "caller": "cn",
+          "callee": "clsx",
+          "lineNumber": 13
+        },
+        {
+          "caller": "Card",
+          "callee": "cn",
+          "lineNumber": 39
+        },
+        {
+          "caller": "H2",
+          "callee": "cn",
+          "lineNumber": 46
+        },
+        {
+          "caller": "Button",
+          "callee": "cn",
+          "lineNumber": 73
+        },
+        {
+          "caller": "Button",
+          "callee": "buttonVariants",
+          "lineNumber": 73
+        },
+        {
+          "caller": "Meter",
+          "callee": "useReducedMotion",
+          "lineNumber": 96
+        },
+        {
+          "caller": "Meter",
+          "callee": "Math.max",
+          "lineNumber": 97
+        },
+        {
+          "caller": "Meter",
+          "callee": "Math.min",
+          "lineNumber": 97
+        },
+        {
+          "caller": "Donut",
+          "callee": "useReducedMotion",
+          "lineNumber": 122
+        },
+        {
+          "caller": "Donut",
+          "callee": "segs.map",
+          "lineNumber": 128
+        },
+        {
+          "caller": "Donut",
+          "callee": "Math.max",
+          "lineNumber": 137
+        },
+        {
+          "caller": "pt",
+          "callee": "Math.max",
+          "lineNumber": 163
+        },
+        {
+          "caller": "pt",
+          "callee": "Math.min",
+          "lineNumber": 163
+        },
+        {
+          "caller": "pt",
+          "callee": "Math.cos",
+          "lineNumber": 164
+        },
+        {
+          "caller": "pt",
+          "callee": "Math.sin",
+          "lineNumber": 164
+        },
+        {
+          "caller": "poly",
+          "callee": "axes.map((a, i) => pt(i, a[key]).join(\",\")).join",
+          "lineNumber": 166
+        },
+        {
+          "caller": "poly",
+          "callee": "axes.map",
+          "lineNumber": 166
+        },
+        {
+          "caller": "poly",
+          "callee": "pt(i, a[key]).join",
+          "lineNumber": 166
+        },
+        {
+          "caller": "poly",
+          "callee": "pt",
+          "lineNumber": 166
+        },
+        {
+          "caller": "Radar",
+          "callee": "[1, 2, 3, 4, 5].filter",
+          "lineNumber": 167
+        },
+        {
+          "caller": "short",
+          "callee": "String",
+          "lineNumber": 171
+        },
+        {
+          "caller": "short",
+          "callee": "t.slice",
+          "lineNumber": 172
+        },
+        {
+          "caller": "Radar",
+          "callee": "rings.map",
+          "lineNumber": 176
+        },
+        {
+          "caller": "Radar",
+          "callee": "axes.map((_, i) => pt(i, (ring / max) * max).join(\",\")).join",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Radar",
+          "callee": "axes.map",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Radar",
+          "callee": "pt(i, (ring / max) * max).join",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Radar",
+          "callee": "pt",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Radar",
+          "callee": "axes.map",
+          "lineNumber": 183
+        },
+        {
+          "caller": "Radar",
+          "callee": "pt",
+          "lineNumber": 184
+        },
+        {
+          "caller": "Radar",
+          "callee": "poly",
+          "lineNumber": 187
+        },
+        {
+          "caller": "Radar",
+          "callee": "poly",
+          "lineNumber": 188
+        },
+        {
+          "caller": "Radar",
+          "callee": "axes.map",
+          "lineNumber": 189
+        },
+        {
+          "caller": "Radar",
+          "callee": "pt",
+          "lineNumber": 190
+        },
+        {
+          "caller": "Radar",
+          "callee": "short",
+          "lineNumber": 193
+        },
+        {
+          "caller": "Badge",
+          "callee": "cn",
+          "lineNumber": 219
+        },
+        {
+          "caller": "Badge",
+          "callee": "badgeVariants",
+          "lineNumber": 219
+        },
+        {
+          "caller": "Skeleton",
+          "callee": "cn",
+          "lineNumber": 229
+        },
+        {
+          "caller": "Reveal",
+          "callee": "useReducedMotion",
+          "lineNumber": 234
+        },
+        {
+          "caller": "CountUp",
+          "callee": "useReducedMotion",
+          "lineNumber": 252
+        },
+        {
+          "caller": "CountUp",
+          "callee": "useRef",
+          "lineNumber": 253
+        },
+        {
+          "caller": "CountUp",
+          "callee": "useState",
+          "lineNumber": 254
+        },
+        {
+          "caller": "CountUp",
+          "callee": "useEffect",
+          "lineNumber": 255
+        },
+        {
+          "caller": "CountUp",
+          "callee": "animate",
+          "lineNumber": 257
+        },
+        {
+          "caller": "CountUp",
+          "callee": "setVal",
+          "lineNumber": 260
+        },
+        {
+          "caller": "CountUp",
+          "callee": "Math.round",
+          "lineNumber": 260
+        },
+        {
+          "caller": "CountUp",
+          "callee": "controls.stop",
+          "lineNumber": 262
+        },
+        {
+          "caller": "CountUp",
+          "callee": "cn",
+          "lineNumber": 265
+        },
+        {
+          "caller": "StatusBar",
+          "callee": "cn",
+          "lineNumber": 301
+        },
+        {
+          "caller": "AsciiRule",
+          "callee": "cn",
+          "lineNumber": 313
+        },
+        {
+          "caller": "Ticket",
+          "callee": "cn",
+          "lineNumber": 325
+        },
+        {
+          "caller": "TermWindow",
+          "callee": "cn",
+          "lineNumber": 346
+        },
+        {
+          "caller": "VaidyaLevel",
+          "callee": "stages.findIndex",
+          "lineNumber": 378
+        },
+        {
+          "caller": "VaidyaLevel",
+          "callee": "stages.map",
+          "lineNumber": 381
+        },
+        {
+          "caller": "SyllabusTable",
+          "callee": "data.map",
+          "lineNumber": 413
+        },
+        {
+          "caller": "SyllabusTable",
+          "callee": "row.skills.map",
+          "lineNumber": 419
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 29,
+        "functionCount": 22,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/ayushSeed.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 127,
+      "nonEmptyLines": 115,
+      "exports": [
+        {
+          "name": "AYUSH_ENABLED",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_ROLE",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_JOBS",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_TREE",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_COURSES",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_PROJECT_IDEAS",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_QUIZ",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_INTERVIEW_QS",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_QUESTIONNAIRE",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_FDPS",
+          "line": 101,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_SYLLABUS",
+          "line": 110,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_ROADMAP_STAGES",
+          "line": 122,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 12,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/jobs.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 27,
+      "functions": [
+        {
+          "name": "matchJobs",
+          "startLine": 19,
+          "endLine": 28,
+          "params": [
+            "role",
+            "score"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "JOBS",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "matchJobs",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "matchJobs",
+          "callee": "foundSkills.map",
+          "lineNumber": 20
+        },
+        {
+          "caller": "matchJobs",
+          "callee": "s.toLowerCase",
+          "lineNumber": 20
+        },
+        {
+          "caller": "matchJobs",
+          "callee": "jobs.filter((j) => j.role === role)\n    .map((j) => ({\n      ...j,\n      matched: j.skills.filter((s) => found.has(s.toLowerCase())).length,\n      eligible: score >= j.minScore,\n    }))\n    .sort",
+          "lineNumber": 21
+        },
+        {
+          "caller": "matchJobs",
+          "callee": "jobs.filter((j) => j.role === role)\n    .map",
+          "lineNumber": 21
+        },
+        {
+          "caller": "matchJobs",
+          "callee": "jobs.filter",
+          "lineNumber": 21
+        },
+        {
+          "caller": "matchJobs",
+          "callee": "j.skills.filter",
+          "lineNumber": 24
+        },
+        {
+          "caller": "matchJobs",
+          "callee": "found.has",
+          "lineNumber": 24
+        },
+        {
+          "caller": "matchJobs",
+          "callee": "s.toLowerCase",
+          "lineNumber": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/dashboard.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 77,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "donutSegments",
+          "startLine": 5,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "weekTrend",
+          "startLine": 20,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "recentActivity",
+          "startLine": 38,
+          "endLine": 44,
+          "params": []
+        },
+        {
+          "name": "demandHeatmap",
+          "startLine": 48,
+          "endLine": 61,
+          "params": []
+        },
+        {
+          "name": "briefing",
+          "startLine": 63,
+          "endLine": 77,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "donutSegments",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "weekTrend",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "recentActivity",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "demandHeatmap",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "briefing",
+          "line": 63,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "donutSegments",
+          "callee": "entries.reduce",
+          "lineNumber": 6
+        },
+        {
+          "caller": "donutSegments",
+          "callee": "Math.max",
+          "lineNumber": 6
+        },
+        {
+          "caller": "donutSegments",
+          "callee": "entries\n    .filter(([, v]) => v > 0)\n    .map",
+          "lineNumber": 9
+        },
+        {
+          "caller": "donutSegments",
+          "callee": "entries\n    .filter",
+          "lineNumber": 9
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "Date.now",
+          "lineNumber": 20
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "days.push",
+          "lineNumber": 24
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "d.toISOString().slice",
+          "lineNumber": 24
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "d.toISOString",
+          "lineNumber": 24
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "d.toLocaleDateString",
+          "lineNumber": 24
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "Object.fromEntries",
+          "lineNumber": 26
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "days.map",
+          "lineNumber": 26
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "new Date(e.at || 0).toISOString().slice",
+          "lineNumber": 28
+        },
+        {
+          "caller": "weekTrend",
+          "callee": "new Date(e.at || 0).toISOString",
+          "lineNumber": 28
+        },
+        {
+          "caller": "recentActivity",
+          "callee": "[...(events || [])]\n    .filter((e) => e && e.jobId)\n    .sort((a, b) => (b.at || 0) - (a.at || 0))\n    .slice(0, n)\n    .map",
+          "lineNumber": 39
+        },
+        {
+          "caller": "recentActivity",
+          "callee": "[...(events || [])]\n    .filter((e) => e && e.jobId)\n    .sort((a, b) => (b.at || 0) - (a.at || 0))\n    .slice",
+          "lineNumber": 39
+        },
+        {
+          "caller": "recentActivity",
+          "callee": "[...(events || [])]\n    .filter((e) => e && e.jobId)\n    .sort",
+          "lineNumber": 39
+        },
+        {
+          "caller": "recentActivity",
+          "callee": "[...(events || [])]\n    .filter",
+          "lineNumber": 39
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "(found || []).map",
+          "lineNumber": 49
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 49
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "String",
+          "lineNumber": 49
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 53
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "String",
+          "lineNumber": 53
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "counts.set",
+          "lineNumber": 54
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "counts.get",
+          "lineNumber": 54
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "[...counts.entries()]\n    .map(([skill, demand]) => ({ skill, demand, have: have.has(skill) }))\n    .sort((a, b) => b.demand - a.demand || (a.skill < b.skill ? -1 : 1))\n    .slice",
+          "lineNumber": 57
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "[...counts.entries()]\n    .map(([skill, demand]) => ({ skill, demand, have: have.has(skill) }))\n    .sort",
+          "lineNumber": 57
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "[...counts.entries()]\n    .map",
+          "lineNumber": 57
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "counts.entries",
+          "lineNumber": 57
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "have.has",
+          "lineNumber": 58
+        },
+        {
+          "caller": "demandHeatmap",
+          "callee": "Math.max",
+          "lineNumber": 60
+        },
+        {
+          "caller": "briefing",
+          "callee": "(found || []).map",
+          "lineNumber": 65
+        },
+        {
+          "caller": "briefing",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 65
+        },
+        {
+          "caller": "briefing",
+          "callee": "String",
+          "lineNumber": 65
+        },
+        {
+          "caller": "briefing",
+          "callee": "(jobs || []).filter",
+          "lineNumber": 66
+        },
+        {
+          "caller": "briefing",
+          "callee": "matched.filter",
+          "lineNumber": 67
+        },
+        {
+          "caller": "briefing",
+          "callee": "(j.skills || []).filter",
+          "lineNumber": 67
+        },
+        {
+          "caller": "briefing",
+          "callee": "have.has",
+          "lineNumber": 67
+        },
+        {
+          "caller": "briefing",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 67
+        },
+        {
+          "caller": "briefing",
+          "callee": "String",
+          "lineNumber": 67
+        },
+        {
+          "caller": "briefing",
+          "callee": "Math.max",
+          "lineNumber": 67
+        },
+        {
+          "caller": "briefing",
+          "callee": "Math.ceil",
+          "lineNumber": 67
+        },
+        {
+          "caller": "briefing",
+          "callee": "lines.push",
+          "lineNumber": 68
+        },
+        {
+          "caller": "briefing",
+          "callee": "strong.slice(0, 2).map((j) => j.title).join",
+          "lineNumber": 68
+        },
+        {
+          "caller": "briefing",
+          "callee": "strong.slice(0, 2).map",
+          "lineNumber": 68
+        },
+        {
+          "caller": "briefing",
+          "callee": "strong.slice",
+          "lineNumber": 68
+        },
+        {
+          "caller": "briefing",
+          "callee": "(jobs || []).filter",
+          "lineNumber": 69
+        },
+        {
+          "caller": "briefing",
+          "callee": "(missing || []).map((m) => ({ m, n: locked.filter((j) => (j.skills || []).map((s) => String(s).toLowerCase()).includes(String(m).toLowerCase())).length }))\n    .sort",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "(missing || []).map",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "locked.filter",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "(j.skills || []).map((s) => String(s).toLowerCase()).includes",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "(j.skills || []).map",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "String",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "String(m).toLowerCase",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "String",
+          "lineNumber": 70
+        },
+        {
+          "caller": "briefing",
+          "callee": "lines.push",
+          "lineNumber": 72
+        },
+        {
+          "caller": "briefing",
+          "callee": "lines.push",
+          "lineNumber": 73
+        },
+        {
+          "caller": "briefing",
+          "callee": "lines.push",
+          "lineNumber": 74
+        },
+        {
+          "caller": "briefing",
+          "callee": "lines.push",
+          "lineNumber": 75
+        },
+        {
+          "caller": "briefing",
+          "callee": "lines.slice",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/roles.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 15,
+      "functions": [
+        {
+          "name": "loadRole",
+          "startLine": 11,
+          "endLine": 14,
+          "params": []
+        },
+        {
+          "name": "saveRole",
+          "startLine": 16,
+          "endLine": 18,
+          "params": [
+            "v"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "APP_ROLES",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "loadRole",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "saveRole",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadRole",
+          "callee": "loadText",
+          "lineNumber": 12
+        },
+        {
+          "caller": "loadRole",
+          "callee": "APP_ROLES.some",
+          "lineNumber": 13
+        },
+        {
+          "caller": "saveRole",
+          "callee": "saveText",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/theme.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 11,
+      "functions": [
+        {
+          "name": "loadTheme",
+          "startLine": 8,
+          "endLine": 10,
+          "params": []
+        },
+        {
+          "name": "saveTheme",
+          "startLine": 12,
+          "endLine": 14,
+          "params": [
+            "t"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "loadTheme",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "saveTheme",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadTheme",
+          "callee": "loadJSON",
+          "lineNumber": 9
+        },
+        {
+          "caller": "saveTheme",
+          "callee": "saveJSON",
+          "lineNumber": 13
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/main.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 19,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Ayush.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 150,
+      "nonEmptyLines": 142,
+      "functions": [
+        {
+          "name": "Ayush",
+          "startLine": 15,
+          "endLine": 150,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Ayush",
+          "line": 15,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Ayush",
+          "callee": "useC2C",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Ayush",
+          "callee": "useNavigate",
+          "lineNumber": 17
+        },
+        {
+          "caller": "enter",
+          "callee": "setRole",
+          "lineNumber": 20
+        },
+        {
+          "caller": "enter",
+          "callee": "nav",
+          "lineNumber": 21
+        },
+        {
+          "caller": "Ayush",
+          "callee": "AYUSH_TREE.ayush.branches[1].skills.find",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Ayush",
+          "callee": "isCourseDone",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Ayush",
+          "callee": "isProjectDone",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Ayush",
+          "callee": "getEvidence",
+          "lineNumber": 27
+        },
+        {
+          "caller": "Ayush",
+          "callee": "completedSkillIdsForRole(\"ayush\").filter",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Ayush",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Ayush",
+          "callee": "getEvidence",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Ayush",
+          "callee": "enter",
+          "lineNumber": 53
+        },
+        {
+          "caller": "Ayush",
+          "callee": "enter",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Ayush",
+          "callee": "ROTATORY.map",
+          "lineNumber": 81
+        },
+        {
+          "caller": "Ayush",
+          "callee": "[\n                { t: \"orientation course done\", done: courseDone },\n                { t: \"6-day checklist project done\", done: projectDone },\n                { t: \"proof link attached\", done: Boolean(evidence) },\n              ].map",
+          "lineNumber": 101
+        },
+        {
+          "caller": "Ayush",
+          "callee": "Boolean",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Ayush",
+          "callee": "enter",
+          "lineNumber": 121
+        },
+        {
+          "caller": "Ayush",
+          "callee": "enter",
+          "lineNumber": 141
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Institute.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 136,
+      "nonEmptyLines": 130,
+      "functions": [
+        {
+          "name": "Institute",
+          "startLine": 11,
+          "endLine": 136,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Institute",
+          "line": 11,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Institute",
+          "callee": "useState",
+          "lineNumber": 12
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadAssessments",
+          "lineNumber": 12
+        },
+        {
+          "caller": "Institute",
+          "callee": "useState",
+          "lineNumber": 13
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadFeedback",
+          "lineNumber": 13
+        },
+        {
+          "caller": "Institute",
+          "callee": "useEffect",
+          "lineNumber": 15
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadRemoteAssessments().then((r) => { if (r && r.length) setReal(r); }).catch",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadRemoteAssessments().then",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadRemoteAssessments",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Institute",
+          "callee": "setReal",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadRemoteFeedback().then((r) => { if (r) setFeedback(r); }).catch",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadRemoteFeedback().then",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Institute",
+          "callee": "loadRemoteFeedback",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Institute",
+          "callee": "setFeedback",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Institute",
+          "callee": "analyticsSummary",
+          "lineNumber": 20
+        },
+        {
+          "caller": "downloadCSV",
+          "callee": "toCSV",
+          "lineNumber": 23
+        },
+        {
+          "caller": "downloadCSV",
+          "callee": "document.createElement",
+          "lineNumber": 24
+        },
+        {
+          "caller": "downloadCSV",
+          "callee": "URL.createObjectURL",
+          "lineNumber": 25
+        },
+        {
+          "caller": "downloadCSV",
+          "callee": "a.click",
+          "lineNumber": 27
+        },
+        {
+          "caller": "downloadCSV",
+          "callee": "URL.revokeObjectURL",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Institute",
+          "callee": "cohortStats",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Institute",
+          "callee": "enrich",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Institute",
+          "callee": "demandHeatmap",
+          "lineNumber": 34
+        },
+        {
+          "caller": "Institute",
+          "callee": "Math.max",
+          "lineNumber": 35
+        },
+        {
+          "caller": "Institute",
+          "callee": "heat.map",
+          "lineNumber": 35
+        },
+        {
+          "caller": "Institute",
+          "callee": "downloadCSV",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Institute",
+          "callee": "Object.entries(stats.avgByRole).map",
+          "lineNumber": 51
+        },
+        {
+          "caller": "Institute",
+          "callee": "Object.entries",
+          "lineNumber": 51
+        },
+        {
+          "caller": "Institute",
+          "callee": "stats.topGaps.map",
+          "lineNumber": 57
+        },
+        {
+          "caller": "Institute",
+          "callee": "heat.map",
+          "lineNumber": 66
+        },
+        {
+          "caller": "Institute",
+          "callee": "Math.max",
+          "lineNumber": 70
+        },
+        {
+          "caller": "Institute",
+          "callee": "rows.map",
+          "lineNumber": 83
+        },
+        {
+          "caller": "Institute",
+          "callee": "downloadCSV",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Institute",
+          "callee": "real.map",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Institute",
+          "callee": "Object.entries(summary.byRole).slice(0, 2).map",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Institute",
+          "callee": "Object.entries(summary.byRole).slice",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Institute",
+          "callee": "Object.entries",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Institute",
+          "callee": "Object.entries(summary.bands).map",
+          "lineNumber": 116
+        },
+        {
+          "caller": "Institute",
+          "callee": "Object.entries",
+          "lineNumber": 116
+        },
+        {
+          "caller": "Institute",
+          "callee": "summary.comments.map",
+          "lineNumber": 124
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Jobs.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 504,
+      "nonEmptyLines": 480,
+      "functions": [
+        {
+          "name": "FitRing",
+          "startLine": 21,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "statusOf",
+          "startLine": 37,
+          "endLine": 45,
+          "params": [
+            "events",
+            "id"
+          ]
+        },
+        {
+          "name": "EngineFit",
+          "startLine": 48,
+          "endLine": 81,
+          "params": []
+        },
+        {
+          "name": "Jobs",
+          "startLine": 83,
+          "endLine": 504,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Jobs",
+          "line": 83,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "FitRing",
+          "callee": "Math.max",
+          "lineNumber": 24
+        },
+        {
+          "caller": "FitRing",
+          "callee": "Math.min",
+          "lineNumber": 24
+        },
+        {
+          "caller": "FitRing",
+          "callee": "(frac * c).toFixed",
+          "lineNumber": 30
+        },
+        {
+          "caller": "FitRing",
+          "callee": "c.toFixed",
+          "lineNumber": 30
+        },
+        {
+          "caller": "statusOf",
+          "callee": "events.filter",
+          "lineNumber": 38
+        },
+        {
+          "caller": "statusOf",
+          "callee": "String",
+          "lineNumber": 38
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 39
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 40
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 41
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 42
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 43
+        },
+        {
+          "caller": "EngineFit",
+          "callee": "matchJobPost",
+          "lineNumber": 49
+        },
+        {
+          "caller": "EngineFit",
+          "callee": "rows.map",
+          "lineNumber": 64
+        },
+        {
+          "caller": "EngineFit",
+          "callee": "Math.round",
+          "lineNumber": 68
+        },
+        {
+          "caller": "EngineFit",
+          "callee": "Math.round",
+          "lineNumber": 70
+        },
+        {
+          "caller": "EngineFit",
+          "callee": "m.why.map",
+          "lineNumber": 75
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useC2C",
+          "lineNumber": 84
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 85
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 86
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 87
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 88
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 89
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 90
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 91
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 92
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 93
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 94
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useState",
+          "lineNumber": 95
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 97
+        },
+        {
+          "caller": "Jobs",
+          "callee": "calculateMainScore",
+          "lineNumber": 98
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 100
+        },
+        {
+          "caller": "Jobs",
+          "callee": "profileForMatching",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Jobs",
+          "callee": "loadQuizBest",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Jobs",
+          "callee": "compileEvidence",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Jobs",
+          "callee": "loadQAnswers",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 108
+        },
+        {
+          "caller": "Jobs",
+          "callee": "matchJobs",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Jobs",
+          "callee": "mergeJobs",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 113
+        },
+        {
+          "caller": "Jobs",
+          "callee": "[...pool].sort",
+          "lineNumber": 114
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 118
+        },
+        {
+          "caller": "Jobs",
+          "callee": "Object.fromEntries",
+          "lineNumber": 118
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.map",
+          "lineNumber": 118
+        },
+        {
+          "caller": "Jobs",
+          "callee": "String",
+          "lineNumber": 118
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.filter",
+          "lineNumber": 120
+        },
+        {
+          "caller": "Jobs",
+          "callee": "dismissed.includes",
+          "lineNumber": 121
+        },
+        {
+          "caller": "Jobs",
+          "callee": "String",
+          "lineNumber": 121
+        },
+        {
+          "caller": "Jobs",
+          "callee": "`${j.title} ${j.company} ${j.skills.join(\" \")}`.toLowerCase().includes",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Jobs",
+          "callee": "`${j.title} ${j.company} ${j.skills.join(\" \")}`.toLowerCase",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Jobs",
+          "callee": "j.skills.join",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Jobs",
+          "callee": "kw.toLowerCase",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Jobs",
+          "callee": "(j.loc || \"\").toLowerCase().includes",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Jobs",
+          "callee": "(j.loc || \"\").toLowerCase",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Jobs",
+          "callee": "loc.toLowerCase",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 130
+        },
+        {
+          "caller": "Jobs",
+          "callee": "donutSegments",
+          "lineNumber": 131
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 134
+        },
+        {
+          "caller": "Jobs",
+          "callee": "weekTrend",
+          "lineNumber": 134
+        },
+        {
+          "caller": "Jobs",
+          "callee": "Math.max",
+          "lineNumber": 135
+        },
+        {
+          "caller": "Jobs",
+          "callee": "trend.map",
+          "lineNumber": 135
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Jobs",
+          "callee": "recentActivity",
+          "lineNumber": 136
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 137
+        },
+        {
+          "caller": "Jobs",
+          "callee": "briefing",
+          "lineNumber": 138
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 141
+        },
+        {
+          "caller": "Jobs",
+          "callee": "demandHeatmap",
+          "lineNumber": 141
+        },
+        {
+          "caller": "Jobs",
+          "callee": "Math.max",
+          "lineNumber": 142
+        },
+        {
+          "caller": "Jobs",
+          "callee": "heat.map",
+          "lineNumber": 142
+        },
+        {
+          "caller": "refreshLive",
+          "callee": "setLiveState",
+          "lineNumber": 145
+        },
+        {
+          "caller": "refreshLive",
+          "callee": "listLiveJobs",
+          "lineNumber": 147
+        },
+        {
+          "caller": "refreshLive",
+          "callee": "loadProfile",
+          "lineNumber": 147
+        },
+        {
+          "caller": "refreshLive",
+          "callee": "setLive",
+          "lineNumber": 148
+        },
+        {
+          "caller": "refreshLive",
+          "callee": "setLiveState",
+          "lineNumber": 149
+        },
+        {
+          "caller": "refreshLive",
+          "callee": "setLiveState",
+          "lineNumber": 151
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useEffect",
+          "lineNumber": 155
+        },
+        {
+          "caller": "Jobs",
+          "callee": "listLiveJobs(false).then(setLive).catch",
+          "lineNumber": 156
+        },
+        {
+          "caller": "Jobs",
+          "callee": "listLiveJobs(false).then",
+          "lineNumber": 156
+        },
+        {
+          "caller": "Jobs",
+          "callee": "listLiveJobs",
+          "lineNumber": 156
+        },
+        {
+          "caller": "markApplied",
+          "callee": "recordApplication",
+          "lineNumber": 161
+        },
+        {
+          "caller": "markApplied",
+          "callee": "addEvent",
+          "lineNumber": 162
+        },
+        {
+          "caller": "markApplied",
+          "callee": "String",
+          "lineNumber": 162
+        },
+        {
+          "caller": "markApplied",
+          "callee": "setNotice",
+          "lineNumber": 163
+        },
+        {
+          "caller": "markApplied",
+          "callee": "setNotice",
+          "lineNumber": 165
+        },
+        {
+          "caller": "confirmPasted",
+          "callee": "saveCustomJob",
+          "lineNumber": 172
+        },
+        {
+          "caller": "confirmPasted",
+          "callee": "addCustomJob",
+          "lineNumber": 173
+        },
+        {
+          "caller": "confirmPasted",
+          "callee": "setParsed",
+          "lineNumber": 174
+        },
+        {
+          "caller": "confirmPasted",
+          "callee": "setPaste",
+          "lineNumber": 175
+        },
+        {
+          "caller": "confirmPasted",
+          "callee": "setNotice",
+          "lineNumber": 176
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.filter",
+          "lineNumber": 179
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 180
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.filter",
+          "lineNumber": 180
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 183
+        },
+        {
+          "caller": "Jobs",
+          "callee": "heat.find",
+          "lineNumber": 183
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 184
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.filter((j) => j.eligible && !statusOf(events, j.id)).slice",
+          "lineNumber": 185
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.filter",
+          "lineNumber": 185
+        },
+        {
+          "caller": "Jobs",
+          "callee": "statusOf",
+          "lineNumber": 185
+        },
+        {
+          "caller": "Jobs",
+          "callee": "useMemo",
+          "lineNumber": 188
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.filter((j) => j.deadline).slice",
+          "lineNumber": 189
+        },
+        {
+          "caller": "Jobs",
+          "callee": "sortedPool.filter",
+          "lineNumber": 189
+        },
+        {
+          "caller": "Jobs",
+          "callee": "[{ id: \"intern\", label: `Internships (${internCount})` }, { id: \"jobs\", label: `Jobs (${jobCount})` }, { id: \"insights\", label: \"My insights\" }].map",
+          "lineNumber": 200
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setSection",
+          "lineNumber": 205
+        },
+        {
+          "caller": "Jobs",
+          "callee": "readyRoles.map",
+          "lineNumber": 243
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setSection",
+          "lineNumber": 246
+        },
+        {
+          "caller": "Jobs",
+          "callee": "closing.map",
+          "lineNumber": 276
+        },
+        {
+          "caller": "Jobs",
+          "callee": "segs.map",
+          "lineNumber": 296
+        },
+        {
+          "caller": "Jobs",
+          "callee": "trend.map",
+          "lineNumber": 309
+        },
+        {
+          "caller": "Jobs",
+          "callee": "Math.max",
+          "lineNumber": 312
+        },
+        {
+          "caller": "Jobs",
+          "callee": "Math.max",
+          "lineNumber": 313
+        },
+        {
+          "caller": "Jobs",
+          "callee": "brief.map",
+          "lineNumber": 324
+        },
+        {
+          "caller": "Jobs",
+          "callee": "recent.slice(0, 3).map",
+          "lineNumber": 328
+        },
+        {
+          "caller": "Jobs",
+          "callee": "recent.slice",
+          "lineNumber": 328
+        },
+        {
+          "caller": "Jobs",
+          "callee": "heat.map",
+          "lineNumber": 342
+        },
+        {
+          "caller": "Jobs",
+          "callee": "Math.max",
+          "lineNumber": 346
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setKw",
+          "lineNumber": 378
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setLoc",
+          "lineNumber": 381
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setType",
+          "lineNumber": 384
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setEligibleOnly",
+          "lineNumber": 395
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setShowDismissed",
+          "lineNumber": 396
+        },
+        {
+          "caller": "Jobs",
+          "callee": "filtered.filter",
+          "lineNumber": 404
+        },
+        {
+          "caller": "Jobs",
+          "callee": "filtered.map",
+          "lineNumber": 414
+        },
+        {
+          "caller": "Jobs",
+          "callee": "statusOf",
+          "lineNumber": 415
+        },
+        {
+          "caller": "Jobs",
+          "callee": "found.map",
+          "lineNumber": 417
+        },
+        {
+          "caller": "Jobs",
+          "callee": "f.toLowerCase",
+          "lineNumber": 417
+        },
+        {
+          "caller": "Jobs",
+          "callee": "(j.company || \"A\").trim",
+          "lineNumber": 422
+        },
+        {
+          "caller": "Jobs",
+          "callee": "[j.stipend, j.deadline ? `apply: ${j.deadline}` : \"\"].filter(Boolean).join",
+          "lineNumber": 437
+        },
+        {
+          "caller": "Jobs",
+          "callee": "[j.stipend, j.deadline ? `apply: ${j.deadline}` : \"\"].filter",
+          "lineNumber": 437
+        },
+        {
+          "caller": "Jobs",
+          "callee": "matchBand",
+          "lineNumber": 445
+        },
+        {
+          "caller": "Jobs",
+          "callee": "j.skills.map",
+          "lineNumber": 451
+        },
+        {
+          "caller": "Jobs",
+          "callee": "have.has",
+          "lineNumber": 452
+        },
+        {
+          "caller": "Jobs",
+          "callee": "s.toLowerCase",
+          "lineNumber": 452
+        },
+        {
+          "caller": "Jobs",
+          "callee": "addEvent",
+          "lineNumber": 464
+        },
+        {
+          "caller": "Jobs",
+          "callee": "String",
+          "lineNumber": 464
+        },
+        {
+          "caller": "Jobs",
+          "callee": "markApplied",
+          "lineNumber": 465
+        },
+        {
+          "caller": "Jobs",
+          "callee": "STATUS_FLOW.includes",
+          "lineNumber": 466
+        },
+        {
+          "caller": "Jobs",
+          "callee": "addEvent",
+          "lineNumber": 467
+        },
+        {
+          "caller": "Jobs",
+          "callee": "String",
+          "lineNumber": 467
+        },
+        {
+          "caller": "Jobs",
+          "callee": "STATUS_FLOW.indexOf",
+          "lineNumber": 467
+        },
+        {
+          "caller": "Jobs",
+          "callee": "STATUS_FLOW.indexOf",
+          "lineNumber": 468
+        },
+        {
+          "caller": "Jobs",
+          "callee": "addEvent",
+          "lineNumber": 471
+        },
+        {
+          "caller": "Jobs",
+          "callee": "String",
+          "lineNumber": 471
+        },
+        {
+          "caller": "Jobs",
+          "callee": "toggleDismiss",
+          "lineNumber": 472
+        },
+        {
+          "caller": "Jobs",
+          "callee": "String",
+          "lineNumber": 472
+        },
+        {
+          "caller": "Jobs",
+          "callee": "dismissed.includes",
+          "lineNumber": 473
+        },
+        {
+          "caller": "Jobs",
+          "callee": "String",
+          "lineNumber": 473
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setPaste",
+          "lineNumber": 489
+        },
+        {
+          "caller": "Jobs",
+          "callee": "setParsed",
+          "lineNumber": 489
+        },
+        {
+          "caller": "Jobs",
+          "callee": "parseJobPosting",
+          "lineNumber": 489
+        },
+        {
+          "caller": "Jobs",
+          "callee": "parsed.skills.join",
+          "lineNumber": 495
+        }
+      ],
+      "metrics": {
+        "importCount": 12,
+        "exportCount": 1,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/NotFound.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 8,
+      "functions": [
+        {
+          "name": "NotFound",
+          "startLine": 3,
+          "endLine": 9,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "NotFound",
+          "line": 3,
+          "isDefault": true
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Quiz.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 120,
+      "nonEmptyLines": 109,
+      "functions": [
+        {
+          "name": "fmt",
+          "startLine": 13,
+          "endLine": 13,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "Quiz",
+          "startLine": 15,
+          "endLine": 120,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Quiz",
+          "line": 15,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "fmt",
+          "callee": "Math.floor",
+          "lineNumber": 13
+        },
+        {
+          "caller": "fmt",
+          "callee": "Math.max",
+          "lineNumber": 13
+        },
+        {
+          "caller": "fmt",
+          "callee": "String(Math.max(0, s) % 60).padStart",
+          "lineNumber": 13
+        },
+        {
+          "caller": "fmt",
+          "callee": "String",
+          "lineNumber": 13
+        },
+        {
+          "caller": "fmt",
+          "callee": "Math.max",
+          "lineNumber": 13
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useC2C",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useState",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useState",
+          "lineNumber": 18
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useState",
+          "lineNumber": 19
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useMemo",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Quiz",
+          "callee": "quizSample",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Quiz",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Quiz",
+          "callee": "todayDay",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Quiz",
+          "callee": "loadQuizBest",
+          "lineNumber": 28
+        },
+        {
+          "caller": "submit",
+          "callee": "questions.map",
+          "lineNumber": 31
+        },
+        {
+          "caller": "submit",
+          "callee": "gradeSet",
+          "lineNumber": 32
+        },
+        {
+          "caller": "submit",
+          "callee": "saveQuizBest",
+          "lineNumber": 33
+        },
+        {
+          "caller": "submit",
+          "callee": "recordDay",
+          "lineNumber": 34
+        },
+        {
+          "caller": "submit",
+          "callee": "setDone",
+          "lineNumber": 35
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useEffect",
+          "lineNumber": 38
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setLeft",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setInterval",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setLeft",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Quiz",
+          "callee": "clearInterval",
+          "lineNumber": 42
+        },
+        {
+          "caller": "Quiz",
+          "callee": "useEffect",
+          "lineNumber": 46
+        },
+        {
+          "caller": "Quiz",
+          "callee": "submit",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Quiz",
+          "callee": "fmt",
+          "lineNumber": 66
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setStarted",
+          "lineNumber": 67
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setPicks",
+          "lineNumber": 67
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setDone",
+          "lineNumber": 67
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setLeft",
+          "lineNumber": 67
+        },
+        {
+          "caller": "Quiz",
+          "callee": "fmt",
+          "lineNumber": 74
+        },
+        {
+          "caller": "Quiz",
+          "callee": "fmt",
+          "lineNumber": 75
+        },
+        {
+          "caller": "Quiz",
+          "callee": "picks.filter",
+          "lineNumber": 77
+        },
+        {
+          "caller": "Quiz",
+          "callee": "questions.map",
+          "lineNumber": 80
+        },
+        {
+          "caller": "Quiz",
+          "callee": "q.opts.map",
+          "lineNumber": 84
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setPicks",
+          "lineNumber": 86
+        },
+        {
+          "caller": "Quiz",
+          "callee": "picks.some",
+          "lineNumber": 94
+        },
+        {
+          "caller": "Quiz",
+          "callee": "picks.some",
+          "lineNumber": 97
+        },
+        {
+          "caller": "Quiz",
+          "callee": "loadQuizBest",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Quiz",
+          "callee": "questions.map",
+          "lineNumber": 106
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setStarted",
+          "lineNumber": 115
+        },
+        {
+          "caller": "Quiz",
+          "callee": "setDone",
+          "lineNumber": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Verify.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 54,
+      "functions": [
+        {
+          "name": "Verify",
+          "startLine": 8,
+          "endLine": 57,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Verify",
+          "line": 8,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Verify",
+          "callee": "useParams",
+          "lineNumber": 9
+        },
+        {
+          "caller": "Verify",
+          "callee": "checkCredentialStatus",
+          "lineNumber": 10
+        },
+        {
+          "caller": "Verify",
+          "callee": "decodeURIComponent",
+          "lineNumber": 10
+        },
+        {
+          "caller": "Verify",
+          "callee": "new Date(res.revoked.at).toLocaleDateString",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Verify",
+          "callee": "new Date(p.at).toLocaleDateString",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Verify",
+          "callee": "(p.skills || []).map",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Workspace.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 150,
+      "functions": [
+        {
+          "name": "statusOf",
+          "startLine": 16,
+          "endLine": 23,
+          "params": [
+            "events",
+            "id"
+          ]
+        },
+        {
+          "name": "SignOff",
+          "startLine": 25,
+          "endLine": 52,
+          "params": []
+        },
+        {
+          "name": "Workspace",
+          "startLine": 54,
+          "endLine": 160,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Workspace",
+          "line": 54,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "statusOf",
+          "callee": "(events || []).filter",
+          "lineNumber": 17
+        },
+        {
+          "caller": "statusOf",
+          "callee": "String",
+          "lineNumber": 17
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 18
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 19
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 20
+        },
+        {
+          "caller": "statusOf",
+          "callee": "mine.some",
+          "lineNumber": 21
+        },
+        {
+          "caller": "SignOff",
+          "callee": "useState",
+          "lineNumber": 26
+        },
+        {
+          "caller": "SignOff",
+          "callee": "useState",
+          "lineNumber": 27
+        },
+        {
+          "caller": "SignOff",
+          "callee": "useState",
+          "lineNumber": 28
+        },
+        {
+          "caller": "sign",
+          "callee": "mentor.trim",
+          "lineNumber": 30
+        },
+        {
+          "caller": "sign",
+          "callee": "addProof",
+          "lineNumber": 31
+        },
+        {
+          "caller": "sign",
+          "callee": "`${mentor.trim()} · ${job.title} · ${note.trim()}`.slice",
+          "lineNumber": 31
+        },
+        {
+          "caller": "sign",
+          "callee": "mentor.trim",
+          "lineNumber": 31
+        },
+        {
+          "caller": "sign",
+          "callee": "note.trim",
+          "lineNumber": 31
+        },
+        {
+          "caller": "sign",
+          "callee": "onDone",
+          "lineNumber": 32
+        },
+        {
+          "caller": "SignOff",
+          "callee": "setMentor",
+          "lineNumber": 37
+        },
+        {
+          "caller": "SignOff",
+          "callee": "setSkill",
+          "lineNumber": 40
+        },
+        {
+          "caller": "SignOff",
+          "callee": "(job.skills || []).map",
+          "lineNumber": 41
+        },
+        {
+          "caller": "SignOff",
+          "callee": "setNote",
+          "lineNumber": 47
+        },
+        {
+          "caller": "SignOff",
+          "callee": "mentor.trim",
+          "lineNumber": 49
+        },
+        {
+          "caller": "Workspace",
+          "callee": "useParams",
+          "lineNumber": 55
+        },
+        {
+          "caller": "Workspace",
+          "callee": "useC2C",
+          "lineNumber": 56
+        },
+        {
+          "caller": "Workspace",
+          "callee": "useState",
+          "lineNumber": 57
+        },
+        {
+          "caller": "Workspace",
+          "callee": "useMemo",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Workspace",
+          "callee": "mergeJobs",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Workspace",
+          "callee": "useMemo",
+          "lineNumber": 59
+        },
+        {
+          "caller": "Workspace",
+          "callee": "loadApplications",
+          "lineNumber": 59
+        },
+        {
+          "caller": "Workspace",
+          "callee": "pool.filter",
+          "lineNumber": 62
+        },
+        {
+          "caller": "Workspace",
+          "callee": "statusOf",
+          "lineNumber": 62
+        },
+        {
+          "caller": "Workspace",
+          "callee": "apps.some",
+          "lineNumber": 62
+        },
+        {
+          "caller": "Workspace",
+          "callee": "String",
+          "lineNumber": 62
+        },
+        {
+          "caller": "Workspace",
+          "callee": "String",
+          "lineNumber": 62
+        },
+        {
+          "caller": "Workspace",
+          "callee": "touched.map",
+          "lineNumber": 73
+        },
+        {
+          "caller": "Workspace",
+          "callee": "statusOf",
+          "lineNumber": 81
+        },
+        {
+          "caller": "Workspace",
+          "callee": "statusOf",
+          "lineNumber": 81
+        },
+        {
+          "caller": "Workspace",
+          "callee": "pool.find",
+          "lineNumber": 93
+        },
+        {
+          "caller": "Workspace",
+          "callee": "String",
+          "lineNumber": 93
+        },
+        {
+          "caller": "Workspace",
+          "callee": "String",
+          "lineNumber": 93
+        },
+        {
+          "caller": "Workspace",
+          "callee": "statusOf",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Workspace",
+          "callee": "FLOW.includes",
+          "lineNumber": 103
+        },
+        {
+          "caller": "Workspace",
+          "callee": "FLOW.indexOf",
+          "lineNumber": 103
+        },
+        {
+          "caller": "Workspace",
+          "callee": "(job.skills || []).flatMap",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Workspace",
+          "callee": "proofsFor(s).filter((p) => p.kind === \"mentor\").map",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Workspace",
+          "callee": "proofsFor(s).filter",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Workspace",
+          "callee": "proofsFor",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Workspace",
+          "callee": "FLOW.map",
+          "lineNumber": 116
+        },
+        {
+          "caller": "Workspace",
+          "callee": "FLOW.indexOf",
+          "lineNumber": 117
+        },
+        {
+          "caller": "Workspace",
+          "callee": "FLOW.indexOf",
+          "lineNumber": 117
+        },
+        {
+          "caller": "Workspace",
+          "callee": "addEvent",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Workspace",
+          "callee": "String",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Workspace",
+          "callee": "addEvent",
+          "lineNumber": 127
+        },
+        {
+          "caller": "Workspace",
+          "callee": "String",
+          "lineNumber": 127
+        },
+        {
+          "caller": "Workspace",
+          "callee": "mentorProofs.map",
+          "lineNumber": 144
+        },
+        {
+          "caller": "Workspace",
+          "callee": "setFlash",
+          "lineNumber": 152
+        },
+        {
+          "caller": "Workspace",
+          "callee": "verifyState",
+          "lineNumber": 152
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/dashboard.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 59,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

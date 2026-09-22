@@ -1,0 +1,1595 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/app/error-boundary.jsx",
+      "type": "file",
+      "name": "error-boundary.jsx",
+      "filePath": "src/app/error-boundary.jsx",
+      "summary": "React class error boundary catching route render failures with retry reload.",
+      "tags": [
+        "error-handling",
+        "routing",
+        "component",
+        "resilience"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/app/shell.jsx",
+      "type": "file",
+      "name": "shell.jsx",
+      "filePath": "src/app/shell.jsx",
+      "summary": "App shell with nav tabs, theme and language toggles, auth state, and readiness ring mounting all routes.",
+      "tags": [
+        "app-shell",
+        "routing",
+        "navigation",
+        "layout"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/app/store.jsx",
+      "type": "file",
+      "name": "store.jsx",
+      "filePath": "src/app/store.jsx",
+      "summary": "Global C2C context provider holding role, resume, events, and job-board state with persistence.",
+      "tags": [
+        "state-management",
+        "context",
+        "provider",
+        "global-store"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/components/landing/Figs.jsx",
+      "type": "file",
+      "name": "Figs.jsx",
+      "filePath": "src/components/landing/Figs.jsx",
+      "summary": "Static illustrative figures for the landing page covering score, quest, and pipeline visuals.",
+      "tags": [
+        "landing",
+        "illustration",
+        "component",
+        "presentational"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/components/landing/FractalMap.jsx",
+      "type": "file",
+      "name": "FractalMap.jsx",
+      "filePath": "src/components/landing/FractalMap.jsx",
+      "summary": "Canvas-rendered animated fractal noise map backdrop for the landing hero.",
+      "tags": [
+        "landing",
+        "canvas",
+        "animation",
+        "generative-art"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/components/landing/LandingHero.jsx",
+      "type": "file",
+      "name": "LandingHero.jsx",
+      "filePath": "src/components/landing/LandingHero.jsx",
+      "summary": "Landing hero section with nav links, palette switcher, and next-step call to action.",
+      "tags": [
+        "landing",
+        "hero",
+        "component",
+        "onboarding"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/components/landing/Sections.jsx",
+      "type": "file",
+      "name": "Sections.jsx",
+      "filePath": "src/components/landing/Sections.jsx",
+      "summary": "Landing page content sections: problem strip, coach figure, clan sim, trio, and boot CTA.",
+      "tags": [
+        "landing",
+        "marketing",
+        "component",
+        "presentational"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/components/ui.jsx",
+      "type": "file",
+      "name": "ui.jsx",
+      "filePath": "src/components/ui.jsx",
+      "summary": "Shared UI primitive library with layout, buttons, charts, and indicators used by every page.",
+      "tags": [
+        "design-system",
+        "component",
+        "shared",
+        "chart"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/app/error-boundary.jsx:RouteErrorBoundary",
+      "type": "class",
+      "name": "RouteErrorBoundary",
+      "filePath": "src/app/error-boundary.jsx",
+      "lineRange": [
+        7,
+        68
+      ],
+      "summary": "Error boundary class capturing render errors and offering a page retry.",
+      "tags": [
+        "error-handling",
+        "component",
+        "resilience"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/app/shell.jsx:ReadinessRing",
+      "type": "function",
+      "name": "ReadinessRing",
+      "filePath": "src/app/shell.jsx",
+      "lineRange": [
+        77,
+        105
+      ],
+      "summary": "Ring gauge visualising the user readiness score in the shell header.",
+      "tags": [
+        "visualization",
+        "component",
+        "progress"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/app/shell.jsx:Brand",
+      "type": "function",
+      "name": "Brand",
+      "filePath": "src/app/shell.jsx",
+      "lineRange": [
+        107,
+        119
+      ],
+      "summary": "Brand mark and title block rendered in the shell header.",
+      "tags": [
+        "branding",
+        "component",
+        "presentational"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/app/shell.jsx:Shell",
+      "type": "function",
+      "name": "Shell",
+      "filePath": "src/app/shell.jsx",
+      "lineRange": [
+        121,
+        415
+      ],
+      "summary": "Root layout with navigation, theme and language controls, auth, and outlet routes.",
+      "tags": [
+        "app-shell",
+        "layout",
+        "routing",
+        "navigation"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/app/store.jsx:C2CProvider",
+      "type": "function",
+      "name": "C2CProvider",
+      "filePath": "src/app/store.jsx",
+      "lineRange": [
+        18,
+        65
+      ],
+      "summary": "Context provider initialising role, resume, events, and job-board state.",
+      "tags": [
+        "state-management",
+        "provider",
+        "context"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/app/store.jsx:useC2C",
+      "type": "function",
+      "name": "useC2C",
+      "filePath": "src/app/store.jsx",
+      "lineRange": [
+        68,
+        72
+      ],
+      "summary": "Hook exposing the global C2C store context to pages and components.",
+      "tags": [
+        "state-management",
+        "hook",
+        "context"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/Figs.jsx:ScoreFig",
+      "type": "function",
+      "name": "ScoreFig",
+      "filePath": "src/components/landing/Figs.jsx",
+      "lineRange": [
+        6,
+        62
+      ],
+      "summary": "Illustrated figure showing a resume score breakdown with fixes.",
+      "tags": [
+        "landing",
+        "illustration",
+        "component"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/components/landing/Figs.jsx:QuestFig",
+      "type": "function",
+      "name": "QuestFig",
+      "filePath": "src/components/landing/Figs.jsx",
+      "lineRange": [
+        64,
+        90
+      ],
+      "summary": "Illustrated figure showing a quest checklist card.",
+      "tags": [
+        "landing",
+        "illustration",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/Figs.jsx:PipelineFig",
+      "type": "function",
+      "name": "PipelineFig",
+      "filePath": "src/components/landing/Figs.jsx",
+      "lineRange": [
+        92,
+        123
+      ],
+      "summary": "Illustrated figure showing the learn-practice-prove pipeline columns.",
+      "tags": [
+        "landing",
+        "illustration",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/FractalMap.jsx:FractalMap",
+      "type": "function",
+      "name": "FractalMap",
+      "filePath": "src/components/landing/FractalMap.jsx",
+      "lineRange": [
+        40,
+        218
+      ],
+      "summary": "Animated canvas map with seeded noise terrain, palettes, and motion guards.",
+      "tags": [
+        "canvas",
+        "animation",
+        "landing",
+        "generative-art"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/components/landing/LandingHero.jsx:NextStep",
+      "type": "function",
+      "name": "NextStep",
+      "filePath": "src/components/landing/LandingHero.jsx",
+      "lineRange": [
+        19,
+        34
+      ],
+      "summary": "Personalised next-step card resolving the CTA from store progress.",
+      "tags": [
+        "landing",
+        "onboarding",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/LandingHero.jsx:LandingHero",
+      "type": "function",
+      "name": "LandingHero",
+      "filePath": "src/components/landing/LandingHero.jsx",
+      "lineRange": [
+        36,
+        134
+      ],
+      "summary": "Hero banner with headline, nav shortcuts, palette picker, and fractal backdrop.",
+      "tags": [
+        "landing",
+        "hero",
+        "component"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/components/landing/Sections.jsx:ProblemStrip",
+      "type": "function",
+      "name": "ProblemStrip",
+      "filePath": "src/components/landing/Sections.jsx",
+      "lineRange": [
+        8,
+        29
+      ],
+      "summary": "Strip listing graduate pain points addressed by the platform.",
+      "tags": [
+        "landing",
+        "marketing",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/Sections.jsx:CoachFig",
+      "type": "function",
+      "name": "CoachFig",
+      "filePath": "src/components/landing/Sections.jsx",
+      "lineRange": [
+        31,
+        58
+      ],
+      "summary": "Figure presenting the AI coach capabilities as chat bubbles.",
+      "tags": [
+        "landing",
+        "marketing",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/Sections.jsx:ClanSim",
+      "type": "function",
+      "name": "ClanSim",
+      "filePath": "src/components/landing/Sections.jsx",
+      "lineRange": [
+        60,
+        90
+      ],
+      "summary": "Simulated clan leaderboard figure for the community section.",
+      "tags": [
+        "landing",
+        "marketing",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/Sections.jsx:Trio",
+      "type": "function",
+      "name": "Trio",
+      "filePath": "src/components/landing/Sections.jsx",
+      "lineRange": [
+        92,
+        104
+      ],
+      "summary": "Three-card value proposition row for students, institutes, and industry.",
+      "tags": [
+        "landing",
+        "marketing",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/landing/Sections.jsx:BootCta",
+      "type": "function",
+      "name": "BootCta",
+      "filePath": "src/components/landing/Sections.jsx",
+      "lineRange": [
+        106,
+        130
+      ],
+      "summary": "Closing boot-camp call-to-action banner with entry button.",
+      "tags": [
+        "landing",
+        "marketing",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:cn",
+      "type": "function",
+      "name": "cn",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        12,
+        14
+      ],
+      "summary": "Class-name merger combining clsx and tailwind-merge inputs.",
+      "tags": [
+        "utility",
+        "styling",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Page",
+      "type": "function",
+      "name": "Page",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        16,
+        35
+      ],
+      "summary": "Page container with consistent max width, padding, and header slot.",
+      "tags": [
+        "layout",
+        "component",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Card",
+      "type": "function",
+      "name": "Card",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        37,
+        43
+      ],
+      "summary": "Elevated card surface used across dashboards and pages.",
+      "tags": [
+        "layout",
+        "component",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:H2",
+      "type": "function",
+      "name": "H2",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        45,
+        47
+      ],
+      "summary": "Standard section heading with shared typography.",
+      "tags": [
+        "typography",
+        "component",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Button",
+      "type": "function",
+      "name": "Button",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        72,
+        77
+      ],
+      "summary": "Themed button built on shared variants and class merger.",
+      "tags": [
+        "component",
+        "interaction",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Field",
+      "type": "function",
+      "name": "Field",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        82,
+        90
+      ],
+      "summary": "Labelled form field wrapper with hint text support.",
+      "tags": [
+        "form",
+        "component",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Meter",
+      "type": "function",
+      "name": "Meter",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        95,
+        116
+      ],
+      "summary": "Animated progress bar with reduced-motion support.",
+      "tags": [
+        "visualization",
+        "component",
+        "progress"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Donut",
+      "type": "function",
+      "name": "Donut",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        121,
+        148
+      ],
+      "summary": "SVG donut chart rendering proportional segments with legend.",
+      "tags": [
+        "chart",
+        "visualization",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Radar",
+      "type": "function",
+      "name": "Radar",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        155,
+        199
+      ],
+      "summary": "SVG radar chart plotting multi-axis skill levels.",
+      "tags": [
+        "chart",
+        "visualization",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Badge",
+      "type": "function",
+      "name": "Badge",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        218,
+        220
+      ],
+      "summary": "Small status badge built on shared badge variants.",
+      "tags": [
+        "component",
+        "presentational",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Chip",
+      "type": "function",
+      "name": "Chip",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        223,
+        225
+      ],
+      "summary": "Compact skill or tag chip for inline lists.",
+      "tags": [
+        "component",
+        "presentational",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Skeleton",
+      "type": "function",
+      "name": "Skeleton",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        228,
+        230
+      ],
+      "summary": "Loading placeholder block with pulse animation.",
+      "tags": [
+        "component",
+        "loading",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Reveal",
+      "type": "function",
+      "name": "Reveal",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        233,
+        248
+      ],
+      "summary": "Scroll-reveal wrapper fading content in on intersection.",
+      "tags": [
+        "animation",
+        "component",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:CountUp",
+      "type": "function",
+      "name": "CountUp",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        251,
+        269
+      ],
+      "summary": "Animated number counter easing toward its target value.",
+      "tags": [
+        "animation",
+        "component",
+        "visualization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Empty",
+      "type": "function",
+      "name": "Empty",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        272,
+        280
+      ],
+      "summary": "Empty-state panel with message and optional action.",
+      "tags": [
+        "component",
+        "presentational",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:ErrorBox",
+      "type": "function",
+      "name": "ErrorBox",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        282,
+        294
+      ],
+      "summary": "Error panel showing failure details with retry affordance.",
+      "tags": [
+        "error-handling",
+        "component",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:StatusBar",
+      "type": "function",
+      "name": "StatusBar",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        299,
+        308
+      ],
+      "summary": "Inline status bar conveying progress or phase state.",
+      "tags": [
+        "component",
+        "presentational",
+        "progress"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:AsciiRule",
+      "type": "function",
+      "name": "AsciiRule",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        311,
+        320
+      ],
+      "summary": "Decorative ASCII divider separating content sections.",
+      "tags": [
+        "component",
+        "presentational",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:Ticket",
+      "type": "function",
+      "name": "Ticket",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        323,
+        341
+      ],
+      "summary": "Ticket-stub card styling for quests and achievements.",
+      "tags": [
+        "component",
+        "presentational",
+        "gamification"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:TermWindow",
+      "type": "function",
+      "name": "TermWindow",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        344,
+        360
+      ],
+      "summary": "Terminal-style window framing code or log output.",
+      "tags": [
+        "component",
+        "presentational",
+        "shared"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:VaidyaLevel",
+      "type": "function",
+      "name": "VaidyaLevel",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        370,
+        395
+      ],
+      "summary": "AYUSH vaidya level stepper showing roadmap stage progress.",
+      "tags": [
+        "ayush",
+        "gamification",
+        "component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/components/ui.jsx:SyllabusTable",
+      "type": "function",
+      "name": "SyllabusTable",
+      "filePath": "src/components/ui.jsx",
+      "lineRange": [
+        398,
+        432
+      ],
+      "summary": "Tabular syllabus view mapping rows to skill chips.",
+      "tags": [
+        "ayush",
+        "component",
+        "data-display"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app/error-boundary.jsx",
+      "target": "class:src/app/error-boundary.jsx:RouteErrorBoundary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/error-boundary.jsx",
+      "target": "class:src/app/error-boundary.jsx:RouteErrorBoundary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "function:src/app/shell.jsx:ReadinessRing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "function:src/app/shell.jsx:Brand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "function:src/app/shell.jsx:Shell",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "function:src/app/shell.jsx:Shell",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "function:src/app/store.jsx:C2CProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "function:src/app/store.jsx:C2CProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Figs.jsx",
+      "target": "function:src/components/landing/Figs.jsx:ScoreFig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Figs.jsx",
+      "target": "function:src/components/landing/Figs.jsx:ScoreFig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Figs.jsx",
+      "target": "function:src/components/landing/Figs.jsx:QuestFig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Figs.jsx",
+      "target": "function:src/components/landing/Figs.jsx:QuestFig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Figs.jsx",
+      "target": "function:src/components/landing/Figs.jsx:PipelineFig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Figs.jsx",
+      "target": "function:src/components/landing/Figs.jsx:PipelineFig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/FractalMap.jsx",
+      "target": "function:src/components/landing/FractalMap.jsx:FractalMap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/FractalMap.jsx",
+      "target": "function:src/components/landing/FractalMap.jsx:FractalMap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/LandingHero.jsx",
+      "target": "function:src/components/landing/LandingHero.jsx:NextStep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/LandingHero.jsx",
+      "target": "function:src/components/landing/LandingHero.jsx:LandingHero",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/LandingHero.jsx",
+      "target": "function:src/components/landing/LandingHero.jsx:LandingHero",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:ProblemStrip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:ProblemStrip",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:CoachFig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:CoachFig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:ClanSim",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:ClanSim",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:Trio",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:Trio",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:BootCta",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "function:src/components/landing/Sections.jsx:BootCta",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:cn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:cn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Page",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Page",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Card",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Card",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:H2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:H2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Button",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Button",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Field",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Field",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Meter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Meter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Donut",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Donut",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Radar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Radar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Badge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Badge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Chip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Chip",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Skeleton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Skeleton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Reveal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Reveal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:CountUp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:CountUp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Empty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Empty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:ErrorBox",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:ErrorBox",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:StatusBar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:StatusBar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:AsciiRule",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:AsciiRule",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:Ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:TermWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:TermWindow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:VaidyaLevel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:VaidyaLevel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:SyllabusTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/components/ui.jsx",
+      "target": "function:src/components/ui.jsx:SyllabusTable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/app/coach-widget.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/app/error-boundary.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/app/store.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/lib/auth.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/lib/i18n.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/lib/score.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/lib/theme.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Ayush.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Faculty.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Home.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Industry.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Institute.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Interview.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Jobs.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Journey.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Match.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/NotFound.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Portfolio.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Profile.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Programs.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Public.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Quests.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Quiz.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Resume.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Verify.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "file:src/pages/Workspace.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "file:src/lib/backend.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "file:src/lib/roles.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "file:src/lib/storage.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "file:src/lib/store.js",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/components/landing/Figs.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/components/landing/LandingHero.jsx",
+      "target": "file:src/app/store.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/components/landing/LandingHero.jsx",
+      "target": "file:src/components/landing/FractalMap.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/components/landing/LandingHero.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/components/landing/Sections.jsx",
+      "target": "file:src/components/ui.jsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "function:src/lib/theme.js:loadTheme",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/shell.jsx",
+      "target": "function:src/lib/theme.js:saveTheme",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "function:src/lib/roles.js:loadRole",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/app/store.jsx",
+      "target": "function:src/lib/roles.js:saveRole",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/components/landing/LandingHero.jsx",
+      "target": "function:src/app/store.jsx:useC2C",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,1357 @@
+{
+  "name": "ayush-portal",
+  "description": "C2C app built with Vite, React, React Router and Tailwind v4 — light minimal UI with dependency-free SVG charts.",
+  "languages": [
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "markdown"
+  ],
+  "frameworks": [
+    "React",
+    "React Router",
+    "Vite",
+    "Tailwind CSS",
+    "Supabase"
+  ],
+  "files": [
+    {
+      "path": ".env",
+      "language": "config",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".env.example",
+      "language": "config",
+      "sizeLines": 11,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".oxlintrc.json",
+      "language": "json",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".tastemaker/reference-board.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".tastemaker/style-lock.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "index.html",
+      "language": "html",
+      "sizeLines": 22,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 41,
+      "fileCategory": "config"
+    },
+    {
+      "path": "public/manifest.webmanifest",
+      "language": "webmanifest",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "public/sw.js",
+      "language": "javascript",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/boards.mjs",
+      "language": "javascript",
+      "sizeLines": 128,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/naukri.mjs",
+      "language": "javascript",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/scrape.mjs",
+      "language": "javascript",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app/coach-widget.jsx",
+      "language": "javascript",
+      "sizeLines": 357,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app/error-boundary.jsx",
+      "language": "javascript",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app/shell.jsx",
+      "language": "javascript",
+      "sizeLines": 415,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app/store.jsx",
+      "language": "javascript",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/ayush/data.js",
+      "language": "javascript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/ayush/proof.js",
+      "language": "javascript",
+      "sizeLines": 97,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/ayush/resumes.js",
+      "language": "javascript",
+      "sizeLines": 140,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/ayush/scoring.js",
+      "language": "javascript",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/ayush/seed.js",
+      "language": "javascript",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/StreakMeter.jsx",
+      "language": "javascript",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/XpMeter.jsx",
+      "language": "javascript",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/Figs.jsx",
+      "language": "javascript",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/FractalMap.jsx",
+      "language": "javascript",
+      "sizeLines": 218,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/LandingHero.jsx",
+      "language": "javascript",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/Sections.jsx",
+      "language": "javascript",
+      "sizeLines": 130,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/ui.jsx",
+      "language": "javascript",
+      "sizeLines": 432,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/ayushSeed.js",
+      "language": "javascript",
+      "sizeLines": 126,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/boardsSeed.js",
+      "language": "javascript",
+      "sizeLines": 736,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/colleges.js",
+      "language": "javascript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/courses.js",
+      "language": "javascript",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/fdps.js",
+      "language": "javascript",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/fixtures.js",
+      "language": "javascript",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/interview.js",
+      "language": "javascript",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/jobs.js",
+      "language": "javascript",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/naukriSeed.js",
+      "language": "javascript",
+      "sizeLines": 290,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/programs.js",
+      "language": "javascript",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/questionnaire.js",
+      "language": "javascript",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/quests.js",
+      "language": "javascript",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/quiz.js",
+      "language": "javascript",
+      "sizeLines": 80,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/seedJobsExtra.js",
+      "language": "javascript",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/taxonomy.js",
+      "language": "javascript",
+      "sizeLines": 307,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/tuning.js",
+      "language": "javascript",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/index.css",
+      "language": "css",
+      "sizeLines": 259,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "src/lib/ai.js",
+      "language": "javascript",
+      "sizeLines": 118,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/aiQuestions.js",
+      "language": "javascript",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/ats.js",
+      "language": "javascript",
+      "sizeLines": 163,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/auth.js",
+      "language": "javascript",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/backend.js",
+      "language": "javascript",
+      "sizeLines": 181,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/coach.js",
+      "language": "javascript",
+      "sizeLines": 216,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/cohort.js",
+      "language": "javascript",
+      "sizeLines": 61,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/dashboard.js",
+      "language": "javascript",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/gemini.js",
+      "language": "javascript",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/i18n.js",
+      "language": "javascript",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/identity.js",
+      "language": "javascript",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/interview.js",
+      "language": "javascript",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/match.js",
+      "language": "javascript",
+      "sizeLines": 159,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/onboarding.js",
+      "language": "javascript",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/parseResume.js",
+      "language": "javascript",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/profile.js",
+      "language": "javascript",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/progress.js",
+      "language": "javascript",
+      "sizeLines": 184,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/questionnaire.js",
+      "language": "javascript",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/quests.js",
+      "language": "javascript",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/roadmapGenerator.js",
+      "language": "javascript",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/roles.js",
+      "language": "javascript",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/score.js",
+      "language": "javascript",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/speech.js",
+      "language": "javascript",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/storage.js",
+      "language": "javascript",
+      "sizeLines": 42,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/store.js",
+      "language": "javascript",
+      "sizeLines": 379,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/streak.js",
+      "language": "javascript",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/supabase.js",
+      "language": "javascript",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/theme.js",
+      "language": "javascript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/verify.js",
+      "language": "javascript",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/xp.js",
+      "language": "javascript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/main.jsx",
+      "language": "javascript",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Ayush.jsx",
+      "language": "javascript",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Faculty.jsx",
+      "language": "javascript",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Home.jsx",
+      "language": "javascript",
+      "sizeLines": 241,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Industry.jsx",
+      "language": "javascript",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Institute.jsx",
+      "language": "javascript",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Interview.jsx",
+      "language": "javascript",
+      "sizeLines": 143,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Jobs.jsx",
+      "language": "javascript",
+      "sizeLines": 504,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Journey.jsx",
+      "language": "javascript",
+      "sizeLines": 436,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Match.jsx",
+      "language": "javascript",
+      "sizeLines": 155,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/NotFound.jsx",
+      "language": "javascript",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Portfolio.jsx",
+      "language": "javascript",
+      "sizeLines": 237,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Profile.jsx",
+      "language": "javascript",
+      "sizeLines": 442,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Programs.jsx",
+      "language": "javascript",
+      "sizeLines": 114,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Public.jsx",
+      "language": "javascript",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Quests.jsx",
+      "language": "javascript",
+      "sizeLines": 293,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Quiz.jsx",
+      "language": "javascript",
+      "sizeLines": 119,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Resume.jsx",
+      "language": "javascript",
+      "sizeLines": 283,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Verify.jsx",
+      "language": "javascript",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Workspace.jsx",
+      "language": "javascript",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/ai.test.js",
+      "language": "javascript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/aiopt.test.js",
+      "language": "javascript",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/aiquestions.test.js",
+      "language": "javascript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/ats.test.js",
+      "language": "javascript",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/ayush.test.js",
+      "language": "javascript",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/ayushPortal.test.js",
+      "language": "javascript",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/ayushProof.test.js",
+      "language": "javascript",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/backend.test.js",
+      "language": "javascript",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/coach.test.js",
+      "language": "javascript",
+      "sizeLines": 124,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/dashboard.test.js",
+      "language": "javascript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/faculty.test.js",
+      "language": "javascript",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/i18n.test.js",
+      "language": "javascript",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/institute.test.js",
+      "language": "javascript",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/interview.test.js",
+      "language": "javascript",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/match.test.js",
+      "language": "javascript",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/naukri.test.js",
+      "language": "javascript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/onboarding.test.js",
+      "language": "javascript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/portfolio.test.js",
+      "language": "javascript",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/profile.test.js",
+      "language": "javascript",
+      "sizeLines": 56,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/programs.test.js",
+      "language": "javascript",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/questionnaire.test.js",
+      "language": "javascript",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/quests.test.js",
+      "language": "javascript",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/quiz.test.js",
+      "language": "javascript",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/recommend.test.js",
+      "language": "javascript",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/score.test.js",
+      "language": "javascript",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/scores.test.js",
+      "language": "javascript",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/sections.test.js",
+      "language": "javascript",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/store.test.js",
+      "language": "javascript",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/streak.test.js",
+      "language": "javascript",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/taxonomy.test.js",
+      "language": "javascript",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/tips.test.js",
+      "language": "javascript",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/tuning.test.js",
+      "language": "javascript",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/verify.test.js",
+      "language": "javascript",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/xp.test.js",
+      "language": "javascript",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "vercel.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "vite.config.js",
+      "language": "javascript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 132,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".env": [],
+    ".env.example": [],
+    ".oxlintrc.json": [],
+    ".tastemaker/reference-board.md": [],
+    ".tastemaker/style-lock.md": [],
+    "README.md": [],
+    "index.html": [],
+    "package.json": [],
+    "public/manifest.webmanifest": [],
+    "public/sw.js": [],
+    "scripts/boards.mjs": [
+      "src/lib/store.js"
+    ],
+    "scripts/naukri.mjs": [],
+    "scripts/scrape.mjs": [],
+    "src/app/coach-widget.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/jobs.js",
+      "src/lib/ai.js",
+      "src/lib/backend.js",
+      "src/lib/coach.js",
+      "src/lib/parseResume.js",
+      "src/lib/profile.js",
+      "src/lib/score.js"
+    ],
+    "src/app/error-boundary.jsx": [],
+    "src/app/shell.jsx": [
+      "src/app/coach-widget.jsx",
+      "src/app/error-boundary.jsx",
+      "src/app/store.jsx",
+      "src/lib/auth.js",
+      "src/lib/i18n.js",
+      "src/lib/score.js",
+      "src/lib/theme.js",
+      "src/pages/Ayush.jsx",
+      "src/pages/Faculty.jsx",
+      "src/pages/Home.jsx",
+      "src/pages/Industry.jsx",
+      "src/pages/Institute.jsx",
+      "src/pages/Interview.jsx",
+      "src/pages/Jobs.jsx",
+      "src/pages/Journey.jsx",
+      "src/pages/Match.jsx",
+      "src/pages/NotFound.jsx",
+      "src/pages/Portfolio.jsx",
+      "src/pages/Profile.jsx",
+      "src/pages/Programs.jsx",
+      "src/pages/Public.jsx",
+      "src/pages/Quests.jsx",
+      "src/pages/Quiz.jsx",
+      "src/pages/Resume.jsx",
+      "src/pages/Verify.jsx",
+      "src/pages/Workspace.jsx"
+    ],
+    "src/app/store.jsx": [
+      "src/lib/backend.js",
+      "src/lib/roles.js",
+      "src/lib/storage.js",
+      "src/lib/store.js"
+    ],
+    "src/ayush/data.js": [],
+    "src/ayush/proof.js": [
+      "src/lib/storage.js"
+    ],
+    "src/ayush/resumes.js": [],
+    "src/ayush/scoring.js": [
+      "src/ayush/proof.js",
+      "src/data/quiz.js",
+      "src/lib/score.js"
+    ],
+    "src/ayush/seed.js": [],
+    "src/components/StreakMeter.jsx": [
+      "src/components/ui.jsx",
+      "src/lib/streak.js"
+    ],
+    "src/components/XpMeter.jsx": [
+      "src/components/ui.jsx",
+      "src/lib/xp.js"
+    ],
+    "src/components/landing/Figs.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/components/landing/FractalMap.jsx": [],
+    "src/components/landing/LandingHero.jsx": [
+      "src/app/store.jsx",
+      "src/components/landing/FractalMap.jsx",
+      "src/components/ui.jsx"
+    ],
+    "src/components/landing/Sections.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/components/ui.jsx": [],
+    "src/data/ayushSeed.js": [],
+    "src/data/boardsSeed.js": [],
+    "src/data/colleges.js": [],
+    "src/data/courses.js": [],
+    "src/data/fdps.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/fixtures.js": [],
+    "src/data/interview.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/jobs.js": [],
+    "src/data/naukriSeed.js": [],
+    "src/data/programs.js": [],
+    "src/data/questionnaire.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/quests.js": [
+      "src/ayush/seed.js"
+    ],
+    "src/data/quiz.js": [
+      "src/ayush/seed.js",
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/data/seedJobsExtra.js": [],
+    "src/data/taxonomy.js": [
+      "src/lib/storage.js"
+    ],
+    "src/data/tuning.js": [
+      "src/lib/storage.js"
+    ],
+    "src/index.css": [],
+    "src/lib/ai.js": [
+      "src/data/tuning.js",
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/aiQuestions.js": [
+      "src/lib/ai.js",
+      "src/lib/gemini.js",
+      "src/lib/onboarding.js"
+    ],
+    "src/lib/ats.js": [
+      "src/lib/score.js"
+    ],
+    "src/lib/auth.js": [
+      "src/lib/supabase.js"
+    ],
+    "src/lib/backend.js": [
+      "src/lib/identity.js",
+      "src/lib/storage.js",
+      "src/lib/supabase.js"
+    ],
+    "src/lib/coach.js": [
+      "src/data/courses.js",
+      "src/lib/store.js"
+    ],
+    "src/lib/cohort.js": [
+      "src/lib/score.js"
+    ],
+    "src/lib/dashboard.js": [],
+    "src/lib/gemini.js": [],
+    "src/lib/i18n.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/identity.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/interview.js": [
+      "src/lib/ats.js"
+    ],
+    "src/lib/match.js": [
+      "src/ayush/proof.js",
+      "src/data/quests.js",
+      "src/data/taxonomy.js",
+      "src/lib/coach.js",
+      "src/lib/progress.js"
+    ],
+    "src/lib/onboarding.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/parseResume.js": [],
+    "src/lib/profile.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/progress.js": [
+      "src/data/quests.js",
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/questionnaire.js": [
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/quests.js": [],
+    "src/lib/roadmapGenerator.js": [
+      "src/data/courses.js",
+      "src/data/quests.js"
+    ],
+    "src/lib/roles.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/score.js": [
+      "src/ayush/seed.js",
+      "src/lib/ats.js"
+    ],
+    "src/lib/speech.js": [],
+    "src/lib/storage.js": [],
+    "src/lib/store.js": [
+      "src/lib/identity.js",
+      "src/lib/profile.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/supabase.js"
+    ],
+    "src/lib/streak.js": [
+      "src/lib/progress.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/supabase.js": [
+      "src/data/colleges.js"
+    ],
+    "src/lib/theme.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/verify.js": [
+      "src/lib/quests.js",
+      "src/lib/storage.js"
+    ],
+    "src/lib/xp.js": [
+      "src/lib/streak.js"
+    ],
+    "src/main.jsx": [
+      "src/app/shell.jsx",
+      "src/app/store.jsx",
+      "src/index.css"
+    ],
+    "src/pages/Ayush.jsx": [
+      "src/app/store.jsx",
+      "src/components/landing/FractalMap.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/lib/progress.js"
+    ],
+    "src/pages/Faculty.jsx": [
+      "src/components/ui.jsx",
+      "src/data/fdps.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Home.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/scoring.js",
+      "src/components/StreakMeter.jsx",
+      "src/components/XpMeter.jsx",
+      "src/components/ui.jsx",
+      "src/data/courses.js",
+      "src/data/jobs.js",
+      "src/lib/onboarding.js",
+      "src/lib/profile.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Industry.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/quiz.js",
+      "src/lib/match.js",
+      "src/lib/questionnaire.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Institute.jsx": [
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/lib/backend.js",
+      "src/lib/cohort.js",
+      "src/lib/dashboard.js"
+    ],
+    "src/pages/Interview.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/questionnaire.js",
+      "src/lib/interview.js",
+      "src/lib/progress.js",
+      "src/lib/questionnaire.js",
+      "src/lib/score.js",
+      "src/lib/speech.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Jobs.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/data/quiz.js",
+      "src/lib/coach.js",
+      "src/lib/dashboard.js",
+      "src/lib/match.js",
+      "src/lib/profile.js",
+      "src/lib/questionnaire.js",
+      "src/lib/score.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Journey.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/resumes.js",
+      "src/components/ui.jsx",
+      "src/data/courses.js",
+      "src/lib/ai.js",
+      "src/lib/aiQuestions.js",
+      "src/lib/interview.js",
+      "src/lib/onboarding.js",
+      "src/lib/parseResume.js",
+      "src/lib/profile.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Match.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/quiz.js",
+      "src/data/taxonomy.js",
+      "src/lib/match.js",
+      "src/lib/questionnaire.js"
+    ],
+    "src/pages/NotFound.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/pages/Portfolio.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/scoring.js",
+      "src/components/ui.jsx",
+      "src/lib/backend.js",
+      "src/lib/identity.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/store.js",
+      "src/lib/verify.js"
+    ],
+    "src/pages/Profile.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/scoring.js",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/quiz.js",
+      "src/data/taxonomy.js",
+      "src/lib/auth.js",
+      "src/lib/identity.js",
+      "src/lib/match.js",
+      "src/lib/onboarding.js",
+      "src/lib/profile.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/streak.js",
+      "src/lib/xp.js"
+    ],
+    "src/pages/Programs.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/programs.js",
+      "src/data/quiz.js",
+      "src/data/taxonomy.js",
+      "src/lib/match.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/Public.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/lib/identity.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js",
+      "src/lib/store.js",
+      "src/lib/verify.js"
+    ],
+    "src/pages/Quests.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/jobs.js",
+      "src/data/quiz.js",
+      "src/lib/progress.js",
+      "src/lib/quests.js",
+      "src/lib/roadmapGenerator.js"
+    ],
+    "src/pages/Quiz.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/quiz.js",
+      "src/lib/identity.js",
+      "src/lib/progress.js",
+      "src/lib/score.js"
+    ],
+    "src/pages/Resume.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/resumes.js",
+      "src/ayush/scoring.js",
+      "src/components/ui.jsx",
+      "src/data/courses.js",
+      "src/lib/parseResume.js",
+      "src/lib/progress.js",
+      "src/lib/score.js",
+      "src/lib/storage.js"
+    ],
+    "src/pages/Verify.jsx": [
+      "src/components/ui.jsx",
+      "src/lib/verify.js"
+    ],
+    "src/pages/Workspace.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/proof.js",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/lib/store.js"
+    ],
+    "tests/ai.test.js": [
+      "src/lib/ai.js"
+    ],
+    "tests/aiopt.test.js": [
+      "src/lib/ai.js",
+      "src/lib/ats.js"
+    ],
+    "tests/aiquestions.test.js": [
+      "src/lib/aiQuestions.js"
+    ],
+    "tests/ats.test.js": [
+      "src/lib/ats.js"
+    ],
+    "tests/ayush.test.js": [
+      "src/ayush/seed.js",
+      "src/data/courses.js",
+      "src/data/fdps.js",
+      "src/data/interview.js",
+      "src/data/questionnaire.js",
+      "src/data/quests.js",
+      "src/data/quiz.js",
+      "src/lib/score.js"
+    ],
+    "tests/ayushPortal.test.js": [
+      "src/ayush/data.js",
+      "src/ayush/resumes.js",
+      "src/ayush/seed.js",
+      "src/lib/score.js"
+    ],
+    "tests/ayushProof.test.js": [],
+    "tests/backend.test.js": [
+      "src/lib/backend.js"
+    ],
+    "tests/coach.test.js": [
+      "src/data/courses.js",
+      "src/lib/coach.js"
+    ],
+    "tests/dashboard.test.js": [
+      "src/lib/dashboard.js"
+    ],
+    "tests/faculty.test.js": [
+      "src/ayush/seed.js",
+      "src/data/fdps.js",
+      "src/lib/store.js"
+    ],
+    "tests/i18n.test.js": [
+      "src/lib/i18n.js"
+    ],
+    "tests/institute.test.js": [
+      "src/lib/cohort.js",
+      "src/lib/score.js"
+    ],
+    "tests/interview.test.js": [
+      "src/lib/interview.js"
+    ],
+    "tests/match.test.js": [
+      "src/data/taxonomy.js",
+      "src/lib/match.js"
+    ],
+    "tests/naukri.test.js": [
+      "scripts/naukri.mjs"
+    ],
+    "tests/onboarding.test.js": [
+      "src/lib/onboarding.js"
+    ],
+    "tests/portfolio.test.js": [
+      "src/lib/identity.js",
+      "src/lib/store.js"
+    ],
+    "tests/profile.test.js": [
+      "src/data/courses.js",
+      "src/lib/profile.js",
+      "src/lib/store.js"
+    ],
+    "tests/programs.test.js": [
+      "src/data/programs.js",
+      "src/data/taxonomy.js",
+      "src/lib/store.js"
+    ],
+    "tests/questionnaire.test.js": [
+      "src/data/questionnaire.js",
+      "src/lib/questionnaire.js"
+    ],
+    "tests/quests.test.js": [
+      "src/lib/quests.js"
+    ],
+    "tests/quiz.test.js": [
+      "src/data/quiz.js"
+    ],
+    "tests/recommend.test.js": [
+      "src/lib/roadmapGenerator.js",
+      "src/lib/store.js"
+    ],
+    "tests/score.test.js": [
+      "src/lib/score.js"
+    ],
+    "tests/scores.test.js": [
+      "src/lib/score.js"
+    ],
+    "tests/sections.test.js": [
+      "src/lib/parseResume.js"
+    ],
+    "tests/store.test.js": [
+      "src/lib/store.js"
+    ],
+    "tests/streak.test.js": [
+      "src/lib/streak.js"
+    ],
+    "tests/taxonomy.test.js": [
+      "src/data/taxonomy.js"
+    ],
+    "tests/tips.test.js": [
+      "src/data/courses.js"
+    ],
+    "tests/tuning.test.js": [
+      "src/data/tuning.js"
+    ],
+    "tests/verify.test.js": [
+      "src/lib/verify.js"
+    ],
+    "tests/xp.test.js": [
+      "src/lib/xp.js"
+    ],
+    "vercel.json": [],
+    "vite.config.js": []
+  }
+}

@@ -1,0 +1,544 @@
+{
+ "nodes": [
+  {
+   "id": "file:src/pages/Home.jsx",
+   "type": "file",
+   "name": "Home.jsx",
+   "filePath": "src/pages/Home.jsx",
+   "summary": "Landing dashboard with score ring, streak and XP meters, stats, skill gaps, courses, and top job matches.",
+   "tags": [
+    "page",
+    "dashboard",
+    "score",
+    "jobs"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:src/pages/Profile.jsx",
+   "type": "file",
+   "name": "Profile.jsx",
+   "filePath": "src/pages/Profile.jsx",
+   "summary": "Multi-step onboarding wizard plus profile card with score, streak, XP, skill gaps, auth, and account actions.",
+   "tags": [
+    "page",
+    "onboarding",
+    "profile",
+    "authentication"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:tests/onboarding.test.js",
+   "type": "file",
+   "name": "onboarding.test.js",
+   "filePath": "tests/onboarding.test.js",
+   "summary": "Tests for onboarding progress weighting, question generation, and AI grade parsing.",
+   "tags": [
+    "test",
+    "onboarding",
+    "questionnaire",
+    "validation",
+    "unit"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:tests/streak.test.js",
+   "type": "file",
+   "name": "streak.test.js",
+   "filePath": "tests/streak.test.js",
+   "summary": "Tests for streak heatmap levels, streak counting, and active-day totals.",
+   "tags": [
+    "test",
+    "streak",
+    "heatmap",
+    "validation",
+    "unit"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:tests/xp.test.js",
+   "type": "file",
+   "name": "xp.test.js",
+   "filePath": "tests/xp.test.js",
+   "summary": "Tests for XP level thresholds and XP collection weights.",
+   "tags": [
+    "test",
+    "xp",
+    "level",
+    "validation"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/pages/Home.jsx:Ring",
+   "type": "function",
+   "name": "Ring",
+   "filePath": "src/pages/Home.jsx",
+   "lineRange": [
+    37,
+    53
+   ],
+   "summary": "Renders an SVG progress ring for the main score.",
+   "tags": [
+    "component",
+    "score",
+    "visualization"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/pages/Home.jsx:Home",
+   "type": "function",
+   "name": "Home",
+   "filePath": "src/pages/Home.jsx",
+   "lineRange": [
+    55,
+    241
+   ],
+   "summary": "Landing dashboard composing score ring, streak and XP meters, gaps, courses, and job matches.",
+   "tags": [
+    "page",
+    "dashboard",
+    "score",
+    "jobs"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:src/pages/Profile.jsx:OptionCard",
+   "type": "function",
+   "name": "OptionCard",
+   "filePath": "src/pages/Profile.jsx",
+   "lineRange": [
+    56,
+    81
+   ],
+   "summary": "Selectable option button used by wizard steps.",
+   "tags": [
+    "component",
+    "onboarding",
+    "form"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/pages/Profile.jsx:ProfileCard",
+   "type": "function",
+   "name": "ProfileCard",
+   "filePath": "src/pages/Profile.jsx",
+   "lineRange": [
+    86,
+    195
+   ],
+   "summary": "Profile summary card with score, streak, XP, skills, and gaps.",
+   "tags": [
+    "component",
+    "profile",
+    "score",
+    "gamification"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/pages/Profile.jsx:Profile",
+   "type": "function",
+   "name": "Profile",
+   "filePath": "src/pages/Profile.jsx",
+   "lineRange": [
+    197,
+    442
+   ],
+   "summary": "Multi-step onboarding wizard with auth, account actions, and profile summary.",
+   "tags": [
+    "page",
+    "onboarding",
+    "profile",
+    "authentication"
+   ],
+   "complexity": "complex"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/pages/Home.jsx:Ring",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/pages/Home.jsx:Home",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/pages/Home.jsx:Home",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/pages/Profile.jsx:OptionCard",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/pages/Profile.jsx:ProfileCard",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/pages/Profile.jsx:Profile",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/pages/Profile.jsx:Profile",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/app/store.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/ayush/scoring.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/components/StreakMeter.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/components/XpMeter.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/components/ui.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/data/courses.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/data/jobs.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/lib/onboarding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/lib/profile.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/lib/progress.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/lib/score.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "file:src/lib/storage.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/app/store.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/ayush/scoring.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/components/ui.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/data/ayushSeed.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/data/quiz.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/data/taxonomy.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/auth.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/identity.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/match.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/onboarding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/profile.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/progress.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/score.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/storage.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/streak.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "file:src/lib/xp.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/onboarding.test.js",
+   "target": "file:src/lib/onboarding.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/streak.test.js",
+   "target": "file:src/lib/streak.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/xp.test.js",
+   "target": "file:src/lib/xp.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/lib/progress.js:completedSkillIdsForRole",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/lib/score.js:calculateMainScore",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/lib/score.js:questPairsToProof",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/ayush/scoring.js:vaidyaLevel",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/lib/onboarding.js:onboardingProgress",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Home.jsx",
+   "target": "function:src/data/courses.js:coursesFor",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/streak.js:currentStreak",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/xp.js:collectXP",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/ayush/scoring.js:vaidyaLevel",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/score.js:calculateMainScore",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/profile.js:loadProfile",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/profile.js:saveProfile",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/auth.js:getUser",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/auth.js:signInWithGoogle",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/auth.js:signOut",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/pages/Profile.jsx",
+   "target": "function:src/lib/onboarding.js:resetOnboarding",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  }
+ ]
+}

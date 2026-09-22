@@ -1,0 +1,4286 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 17,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 17,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 17,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "scripts/boards.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 128,
+      "nonEmptyLines": 115,
+      "functions": [
+        {
+          "name": "split",
+          "startLine": 17,
+          "endLine": 17,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "loadList",
+          "startLine": 19,
+          "endLine": 19,
+          "params": [
+            "f"
+          ]
+        },
+        {
+          "name": "resolve",
+          "startLine": 23,
+          "endLine": 28,
+          "params": [
+            "provider",
+            "want"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 30,
+          "endLine": 34,
+          "params": [
+            "url"
+          ]
+        },
+        {
+          "name": "strip",
+          "startLine": 36,
+          "endLine": 36,
+          "params": []
+        },
+        {
+          "name": "locOf",
+          "startLine": 37,
+          "endLine": 37,
+          "params": [
+            "...parts"
+          ]
+        },
+        {
+          "name": "typeOf",
+          "startLine": 38,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "toShape",
+          "startLine": 40,
+          "endLine": 59,
+          "params": [
+            "prefix",
+            "raw",
+            "company",
+            "map"
+          ]
+        },
+        {
+          "name": "fetchGreenhouse",
+          "startLine": 61,
+          "endLine": 67,
+          "params": []
+        },
+        {
+          "name": "fetchLeverBoard",
+          "startLine": 69,
+          "endLine": 85,
+          "params": []
+        },
+        {
+          "name": "fetchAshby",
+          "startLine": 87,
+          "endLine": 93,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "split",
+          "callee": "String(v || \"\").split(\",\").map((s) => s.trim()).filter",
+          "lineNumber": 17
+        },
+        {
+          "caller": "split",
+          "callee": "String(v || \"\").split(\",\").map",
+          "lineNumber": 17
+        },
+        {
+          "caller": "split",
+          "callee": "String(v || \"\").split",
+          "lineNumber": 17
+        },
+        {
+          "caller": "split",
+          "callee": "String",
+          "lineNumber": 17
+        },
+        {
+          "caller": "split",
+          "callee": "s.trim",
+          "lineNumber": 17
+        },
+        {
+          "caller": "loadList",
+          "callee": "JSON.parse",
+          "lineNumber": 19
+        },
+        {
+          "caller": "loadList",
+          "callee": "readFileSync",
+          "lineNumber": 19
+        },
+        {
+          "caller": "loadList",
+          "callee": "join",
+          "lineNumber": 19
+        },
+        {
+          "caller": "resolve",
+          "callee": "list.find",
+          "lineNumber": 25
+        },
+        {
+          "caller": "resolve",
+          "callee": "c.token.toLowerCase",
+          "lineNumber": 25
+        },
+        {
+          "caller": "resolve",
+          "callee": "want.toLowerCase",
+          "lineNumber": 25
+        },
+        {
+          "caller": "resolve",
+          "callee": "list.find",
+          "lineNumber": 26
+        },
+        {
+          "caller": "resolve",
+          "callee": "c.name.toLowerCase().includes",
+          "lineNumber": 26
+        },
+        {
+          "caller": "resolve",
+          "callee": "c.name.toLowerCase",
+          "lineNumber": 26
+        },
+        {
+          "caller": "resolve",
+          "callee": "want.toLowerCase",
+          "lineNumber": 26
+        },
+        {
+          "caller": "get",
+          "callee": "fetch",
+          "lineNumber": 31
+        },
+        {
+          "caller": "get",
+          "callee": "AbortSignal.timeout",
+          "lineNumber": 31
+        },
+        {
+          "caller": "get",
+          "callee": "res.json",
+          "lineNumber": 33
+        },
+        {
+          "caller": "strip",
+          "callee": "String(s).replace(/<[^>]*>/g, \" \").replace(/\\s+/g, \" \").trim",
+          "lineNumber": 36
+        },
+        {
+          "caller": "strip",
+          "callee": "String(s).replace(/<[^>]*>/g, \" \").replace",
+          "lineNumber": 36
+        },
+        {
+          "caller": "strip",
+          "callee": "String(s).replace",
+          "lineNumber": 36
+        },
+        {
+          "caller": "strip",
+          "callee": "String",
+          "lineNumber": 36
+        },
+        {
+          "caller": "locOf",
+          "callee": "parts.find",
+          "lineNumber": 37
+        },
+        {
+          "caller": "locOf",
+          "callee": "String(p).trim",
+          "lineNumber": 37
+        },
+        {
+          "caller": "locOf",
+          "callee": "String",
+          "lineNumber": 37
+        },
+        {
+          "caller": "typeOf",
+          "callee": "/intern|trainee|apprentice|new grad/i.test",
+          "lineNumber": 38
+        },
+        {
+          "caller": "toShape",
+          "callee": "map",
+          "lineNumber": 41
+        },
+        {
+          "caller": "toShape",
+          "callee": "guessRole",
+          "lineNumber": 44
+        },
+        {
+          "caller": "toShape",
+          "callee": "m.title.trim().slice",
+          "lineNumber": 49
+        },
+        {
+          "caller": "toShape",
+          "callee": "m.title.trim",
+          "lineNumber": 49
+        },
+        {
+          "caller": "toShape",
+          "callee": "String(m.loc || \"Remote\").slice",
+          "lineNumber": 51
+        },
+        {
+          "caller": "toShape",
+          "callee": "String",
+          "lineNumber": 51
+        },
+        {
+          "caller": "toShape",
+          "callee": "typeOf",
+          "lineNumber": 52
+        },
+        {
+          "caller": "toShape",
+          "callee": "extractSkills",
+          "lineNumber": 53
+        },
+        {
+          "caller": "toShape",
+          "callee": "strip(m.desc).slice",
+          "lineNumber": 56
+        },
+        {
+          "caller": "toShape",
+          "callee": "strip",
+          "lineNumber": 56
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "get",
+          "lineNumber": 62
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "encodeURIComponent",
+          "lineNumber": 62
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "(d.jobs || []).slice(0, MAX).map",
+          "lineNumber": 63
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "(d.jobs || []).slice",
+          "lineNumber": 63
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "toShape",
+          "lineNumber": 63
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "locOf",
+          "lineNumber": 64
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "(x.metadata || []).map((m) => m.value).join",
+          "lineNumber": 65
+        },
+        {
+          "caller": "fetchGreenhouse",
+          "callee": "(x.metadata || []).map",
+          "lineNumber": 65
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "get",
+          "lineNumber": 76
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "encodeURIComponent",
+          "lineNumber": 76
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "(Array.isArray(d) ? d : []).slice(0, MAX).map",
+          "lineNumber": 77
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "(Array.isArray(d) ? d : []).slice",
+          "lineNumber": 77
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "Array.isArray",
+          "lineNumber": 77
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "toShape",
+          "lineNumber": 77
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "locOf",
+          "lineNumber": 78
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "(x.categories?.allLocations || []).join",
+          "lineNumber": 78
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "[x.descriptionPlain, (x.lists || []).map((l) => l.content).join(\" \")].join",
+          "lineNumber": 79
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "(x.lists || []).map((l) => l.content).join",
+          "lineNumber": 79
+        },
+        {
+          "caller": "fetchLeverBoard",
+          "callee": "(x.lists || []).map",
+          "lineNumber": 79
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "get",
+          "lineNumber": 88
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "encodeURIComponent",
+          "lineNumber": 88
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "(d.jobs || []).filter((j) => j.isListed !== false).slice(0, MAX).map",
+          "lineNumber": 89
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "(d.jobs || []).filter((j) => j.isListed !== false).slice",
+          "lineNumber": 89
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "(d.jobs || []).filter",
+          "lineNumber": 89
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "toShape",
+          "lineNumber": 89
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "locOf",
+          "lineNumber": 90
+        },
+        {
+          "caller": "fetchAshby",
+          "callee": "(x.secondaryLocations || []).join",
+          "lineNumber": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/colleges.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 13,
+      "functions": [
+        {
+          "name": "recomputeCollegeAvg",
+          "startLine": 8,
+          "endLine": 14,
+          "params": [
+            "rows",
+            "userScore",
+            "collegeName"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "COLLEGES",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "recomputeCollegeAvg",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "recomputeCollegeAvg",
+          "callee": "rows.map((c) =>\n    c.name === collegeName\n      ? { ...c, avg: Math.round((c.avg * c.members + userScore) / (c.members + 1)), members: c.members + 1 }\n      : c\n  ).sort",
+          "lineNumber": 9
+        },
+        {
+          "caller": "recomputeCollegeAvg",
+          "callee": "rows.map",
+          "lineNumber": 9
+        },
+        {
+          "caller": "recomputeCollegeAvg",
+          "callee": "Math.round",
+          "lineNumber": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/auth.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 48,
+      "functions": [
+        {
+          "name": "getUser",
+          "startLine": 5,
+          "endLine": 14,
+          "params": []
+        },
+        {
+          "name": "signInWithGoogle",
+          "startLine": 16,
+          "endLine": 28,
+          "params": []
+        },
+        {
+          "name": "signOut",
+          "startLine": 30,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "onAuthChange",
+          "startLine": 40,
+          "endLine": 49,
+          "params": [
+            "cb"
+          ]
+        },
+        {
+          "name": "authLabel",
+          "startLine": 51,
+          "endLine": 53,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "getUser",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "signInWithGoogle",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "signOut",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "onAuthChange",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "authLabel",
+          "line": 51,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getUser",
+          "callee": "getClient",
+          "lineNumber": 6
+        },
+        {
+          "caller": "getUser",
+          "callee": "sb.auth.getSession",
+          "lineNumber": 9
+        },
+        {
+          "caller": "signInWithGoogle",
+          "callee": "getClient",
+          "lineNumber": 17
+        },
+        {
+          "caller": "signInWithGoogle",
+          "callee": "sb.auth.signInWithOAuth",
+          "lineNumber": 20
+        },
+        {
+          "caller": "signOut",
+          "callee": "getClient",
+          "lineNumber": 31
+        },
+        {
+          "caller": "signOut",
+          "callee": "sb.auth.signOut",
+          "lineNumber": 34
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "getClient().then((sb) => {\n    if (!sb) {\n      cb(null);\n      return;\n    }\n    sb.auth.getSession().then(({ data }) => cb(data?.session?.user || null)).catch(() => cb(null));\n    sb.auth.onAuthStateChange((_evt, session) => cb(session?.user || null));\n  }).catch",
+          "lineNumber": 41
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "getClient().then",
+          "lineNumber": 41
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "getClient",
+          "lineNumber": 41
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "cb",
+          "lineNumber": 43
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "sb.auth.getSession().then(({ data }) => cb(data?.session?.user || null)).catch",
+          "lineNumber": 46
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "sb.auth.getSession().then",
+          "lineNumber": 46
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "sb.auth.getSession",
+          "lineNumber": 46
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "cb",
+          "lineNumber": 46
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "cb",
+          "lineNumber": 46
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "sb.auth.onAuthStateChange",
+          "lineNumber": 47
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "cb",
+          "lineNumber": 47
+        },
+        {
+          "caller": "onAuthChange",
+          "callee": "cb",
+          "lineNumber": 48
+        },
+        {
+          "caller": "authLabel",
+          "callee": "isSupabaseOn",
+          "lineNumber": 52
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/backend.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 181,
+      "nonEmptyLines": 154,
+      "functions": [
+        {
+          "name": "isJobEvent",
+          "startLine": 14,
+          "endLine": 16,
+          "params": [
+            "e"
+          ]
+        },
+        {
+          "name": "isArtifactKind",
+          "startLine": 18,
+          "endLine": 20,
+          "params": [
+            "k"
+          ]
+        },
+        {
+          "name": "normalizeSection",
+          "startLine": 22,
+          "endLine": 25,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "clamp",
+          "startLine": 27,
+          "endLine": 27,
+          "params": [
+            "n",
+            "lo",
+            "hi"
+          ]
+        },
+        {
+          "name": "toAssessmentRow",
+          "startLine": 29,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "toJobEventRow",
+          "startLine": 40,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "toArtifactRow",
+          "startLine": 45,
+          "endLine": 53,
+          "params": []
+        },
+        {
+          "name": "toFeedbackRow",
+          "startLine": 55,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "funnelCounts",
+          "startLine": 65,
+          "endLine": 74,
+          "params": []
+        },
+        {
+          "name": "loadAssessments",
+          "startLine": 83,
+          "endLine": 85,
+          "params": []
+        },
+        {
+          "name": "loadJobEvents",
+          "startLine": 87,
+          "endLine": 89,
+          "params": []
+        },
+        {
+          "name": "loadArtifacts",
+          "startLine": 91,
+          "endLine": 93,
+          "params": []
+        },
+        {
+          "name": "loadFeedback",
+          "startLine": 95,
+          "endLine": 97,
+          "params": []
+        },
+        {
+          "name": "analyticsSummary",
+          "startLine": 100,
+          "endLine": 113,
+          "params": []
+        },
+        {
+          "name": "insert",
+          "startLine": 115,
+          "endLine": 124,
+          "params": [
+            "table",
+            "row"
+          ]
+        },
+        {
+          "name": "saveAssessment",
+          "startLine": 126,
+          "endLine": 131,
+          "params": []
+        },
+        {
+          "name": "saveResumeSections",
+          "startLine": 133,
+          "endLine": 141,
+          "params": []
+        },
+        {
+          "name": "recordJobEvent",
+          "startLine": 143,
+          "endLine": 148,
+          "params": [
+            "jobId",
+            "event"
+          ]
+        },
+        {
+          "name": "saveArtifact",
+          "startLine": 150,
+          "endLine": 155,
+          "params": []
+        },
+        {
+          "name": "submitFeedback",
+          "startLine": 157,
+          "endLine": 162,
+          "params": []
+        },
+        {
+          "name": "select",
+          "startLine": 164,
+          "endLine": 173,
+          "params": [
+            "table"
+          ]
+        },
+        {
+          "name": "loadRemoteAssessments",
+          "startLine": 175,
+          "endLine": 177,
+          "params": []
+        },
+        {
+          "name": "loadRemoteFeedback",
+          "startLine": 179,
+          "endLine": 181,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "JOB_EVENTS",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "ARTIFACT_KINDS",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "RESUME_SECTIONS",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "isJobEvent",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "isArtifactKind",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "normalizeSection",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "toAssessmentRow",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "toJobEventRow",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "toArtifactRow",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "toFeedbackRow",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "funnelCounts",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "loadAssessments",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "loadJobEvents",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "loadArtifacts",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "loadFeedback",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "analyticsSummary",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "saveAssessment",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "saveResumeSections",
+          "line": 133,
+          "isDefault": false
+        },
+        {
+          "name": "recordJobEvent",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "saveArtifact",
+          "line": 150,
+          "isDefault": false
+        },
+        {
+          "name": "submitFeedback",
+          "line": 157,
+          "isDefault": false
+        },
+        {
+          "name": "loadRemoteAssessments",
+          "line": 175,
+          "isDefault": false
+        },
+        {
+          "name": "loadRemoteFeedback",
+          "line": 179,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isJobEvent",
+          "callee": "JOB_EVENTS.includes",
+          "lineNumber": 15
+        },
+        {
+          "caller": "isJobEvent",
+          "callee": "String(e || \"\").toLowerCase",
+          "lineNumber": 15
+        },
+        {
+          "caller": "isJobEvent",
+          "callee": "String",
+          "lineNumber": 15
+        },
+        {
+          "caller": "isArtifactKind",
+          "callee": "ARTIFACT_KINDS.includes",
+          "lineNumber": 19
+        },
+        {
+          "caller": "isArtifactKind",
+          "callee": "String(k || \"\").toLowerCase",
+          "lineNumber": 19
+        },
+        {
+          "caller": "isArtifactKind",
+          "callee": "String",
+          "lineNumber": 19
+        },
+        {
+          "caller": "normalizeSection",
+          "callee": "String(s || \"\").toLowerCase",
+          "lineNumber": 23
+        },
+        {
+          "caller": "normalizeSection",
+          "callee": "String",
+          "lineNumber": 23
+        },
+        {
+          "caller": "normalizeSection",
+          "callee": "RESUME_SECTIONS.includes",
+          "lineNumber": 24
+        },
+        {
+          "caller": "clamp",
+          "callee": "Math.max",
+          "lineNumber": 27
+        },
+        {
+          "caller": "clamp",
+          "callee": "Math.min",
+          "lineNumber": 27
+        },
+        {
+          "caller": "clamp",
+          "callee": "Math.round",
+          "lineNumber": 27
+        },
+        {
+          "caller": "toAssessmentRow",
+          "callee": "clamp",
+          "lineNumber": 33
+        },
+        {
+          "caller": "toAssessmentRow",
+          "callee": "clamp",
+          "lineNumber": 34
+        },
+        {
+          "caller": "toAssessmentRow",
+          "callee": "Array.isArray",
+          "lineNumber": 36
+        },
+        {
+          "caller": "toAssessmentRow",
+          "callee": "p.gaps.map(String).slice",
+          "lineNumber": 36
+        },
+        {
+          "caller": "toAssessmentRow",
+          "callee": "p.gaps.map",
+          "lineNumber": 36
+        },
+        {
+          "caller": "toJobEventRow",
+          "callee": "isJobEvent",
+          "lineNumber": 41
+        },
+        {
+          "caller": "toJobEventRow",
+          "callee": "String",
+          "lineNumber": 42
+        },
+        {
+          "caller": "toJobEventRow",
+          "callee": "String(p.event).toLowerCase",
+          "lineNumber": 42
+        },
+        {
+          "caller": "toJobEventRow",
+          "callee": "String",
+          "lineNumber": 42
+        },
+        {
+          "caller": "toArtifactRow",
+          "callee": "isArtifactKind",
+          "lineNumber": 46
+        },
+        {
+          "caller": "toArtifactRow",
+          "callee": "String",
+          "lineNumber": 49
+        },
+        {
+          "caller": "toArtifactRow",
+          "callee": "String(p.kind).toLowerCase",
+          "lineNumber": 50
+        },
+        {
+          "caller": "toArtifactRow",
+          "callee": "String",
+          "lineNumber": 50
+        },
+        {
+          "caller": "toArtifactRow",
+          "callee": "String(p.body).slice",
+          "lineNumber": 51
+        },
+        {
+          "caller": "toArtifactRow",
+          "callee": "String",
+          "lineNumber": 51
+        },
+        {
+          "caller": "toFeedbackRow",
+          "callee": "clamp",
+          "lineNumber": 59
+        },
+        {
+          "caller": "toFeedbackRow",
+          "callee": "String(p.comment || \"\").slice",
+          "lineNumber": 60
+        },
+        {
+          "caller": "toFeedbackRow",
+          "callee": "String",
+          "lineNumber": 60
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "isJobEvent",
+          "lineNumber": 68
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "latest.set",
+          "lineNumber": 69
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "String",
+          "lineNumber": 69
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "String(e.event).toLowerCase",
+          "lineNumber": 69
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "String",
+          "lineNumber": 69
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "Object.fromEntries",
+          "lineNumber": 71
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "JOB_EVENTS.map",
+          "lineNumber": 71
+        },
+        {
+          "caller": "funnelCounts",
+          "callee": "latest.values",
+          "lineNumber": 72
+        },
+        {
+          "caller": "loadAssessments",
+          "callee": "loadJSON",
+          "lineNumber": 84
+        },
+        {
+          "caller": "loadJobEvents",
+          "callee": "loadJSON",
+          "lineNumber": 88
+        },
+        {
+          "caller": "loadArtifacts",
+          "callee": "loadJSON",
+          "lineNumber": 92
+        },
+        {
+          "caller": "loadFeedback",
+          "callee": "loadJSON",
+          "lineNumber": 96
+        },
+        {
+          "caller": "analyticsSummary",
+          "callee": "(feedback || []).map((f) => f.rating).filter",
+          "lineNumber": 109
+        },
+        {
+          "caller": "analyticsSummary",
+          "callee": "(feedback || []).map",
+          "lineNumber": 109
+        },
+        {
+          "caller": "analyticsSummary",
+          "callee": "Math.round",
+          "lineNumber": 110
+        },
+        {
+          "caller": "analyticsSummary",
+          "callee": "ratings.reduce",
+          "lineNumber": 110
+        },
+        {
+          "caller": "analyticsSummary",
+          "callee": "(feedback || []).filter((f) => (f.comment || \"\").trim()).slice",
+          "lineNumber": 111
+        },
+        {
+          "caller": "analyticsSummary",
+          "callee": "(feedback || []).filter",
+          "lineNumber": 111
+        },
+        {
+          "caller": "analyticsSummary",
+          "callee": "(f.comment || \"\").trim",
+          "lineNumber": 111
+        },
+        {
+          "caller": "insert",
+          "callee": "getClient",
+          "lineNumber": 116
+        },
+        {
+          "caller": "insert",
+          "callee": "sb.from(table).insert",
+          "lineNumber": 119
+        },
+        {
+          "caller": "insert",
+          "callee": "sb.from",
+          "lineNumber": 119
+        },
+        {
+          "caller": "saveAssessment",
+          "callee": "toAssessmentRow",
+          "lineNumber": 127
+        },
+        {
+          "caller": "saveAssessment",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 127
+        },
+        {
+          "caller": "saveAssessment",
+          "callee": "saveJSON",
+          "lineNumber": 129
+        },
+        {
+          "caller": "saveAssessment",
+          "callee": "[row, ...loadAssessments()].slice",
+          "lineNumber": 129
+        },
+        {
+          "caller": "saveAssessment",
+          "callee": "loadAssessments",
+          "lineNumber": 129
+        },
+        {
+          "caller": "saveAssessment",
+          "callee": "insert",
+          "lineNumber": 130
+        },
+        {
+          "caller": "saveResumeSections",
+          "callee": "(sections || [])\n    .map((s) => ({ student: getOrCreateC2CId(), section: normalizeSection(s.section), payload: s.payload || {}, status: s.status === \"skipped\" ? \"skipped\" : \"accepted\" }))\n    .filter",
+          "lineNumber": 134
+        },
+        {
+          "caller": "saveResumeSections",
+          "callee": "(sections || [])\n    .map",
+          "lineNumber": 134
+        },
+        {
+          "caller": "saveResumeSections",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 135
+        },
+        {
+          "caller": "saveResumeSections",
+          "callee": "normalizeSection",
+          "lineNumber": 135
+        },
+        {
+          "caller": "saveResumeSections",
+          "callee": "insert",
+          "lineNumber": 139
+        },
+        {
+          "caller": "recordJobEvent",
+          "callee": "toJobEventRow",
+          "lineNumber": 144
+        },
+        {
+          "caller": "recordJobEvent",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 144
+        },
+        {
+          "caller": "recordJobEvent",
+          "callee": "saveJSON",
+          "lineNumber": 146
+        },
+        {
+          "caller": "recordJobEvent",
+          "callee": "[...loadJobEvents(), { jobId: row.job_id, event: row.event, at: Date.now() }].slice",
+          "lineNumber": 146
+        },
+        {
+          "caller": "recordJobEvent",
+          "callee": "loadJobEvents",
+          "lineNumber": 146
+        },
+        {
+          "caller": "recordJobEvent",
+          "callee": "Date.now",
+          "lineNumber": 146
+        },
+        {
+          "caller": "recordJobEvent",
+          "callee": "insert",
+          "lineNumber": 147
+        },
+        {
+          "caller": "saveArtifact",
+          "callee": "toArtifactRow",
+          "lineNumber": 151
+        },
+        {
+          "caller": "saveArtifact",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 151
+        },
+        {
+          "caller": "saveArtifact",
+          "callee": "saveJSON",
+          "lineNumber": 153
+        },
+        {
+          "caller": "saveArtifact",
+          "callee": "[row, ...loadArtifacts()].slice",
+          "lineNumber": 153
+        },
+        {
+          "caller": "saveArtifact",
+          "callee": "loadArtifacts",
+          "lineNumber": 153
+        },
+        {
+          "caller": "saveArtifact",
+          "callee": "insert",
+          "lineNumber": 154
+        },
+        {
+          "caller": "submitFeedback",
+          "callee": "toFeedbackRow",
+          "lineNumber": 158
+        },
+        {
+          "caller": "submitFeedback",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 158
+        },
+        {
+          "caller": "submitFeedback",
+          "callee": "saveJSON",
+          "lineNumber": 160
+        },
+        {
+          "caller": "submitFeedback",
+          "callee": "[row, ...loadJSON(FKEY, [])].slice",
+          "lineNumber": 160
+        },
+        {
+          "caller": "submitFeedback",
+          "callee": "loadJSON",
+          "lineNumber": 160
+        },
+        {
+          "caller": "submitFeedback",
+          "callee": "insert",
+          "lineNumber": 161
+        },
+        {
+          "caller": "select",
+          "callee": "getClient",
+          "lineNumber": 165
+        },
+        {
+          "caller": "select",
+          "callee": "sb.from(table).select(\"*\").order(\"created_at\", { ascending: false }).limit",
+          "lineNumber": 168
+        },
+        {
+          "caller": "select",
+          "callee": "sb.from(table).select(\"*\").order",
+          "lineNumber": 168
+        },
+        {
+          "caller": "select",
+          "callee": "sb.from(table).select",
+          "lineNumber": 168
+        },
+        {
+          "caller": "select",
+          "callee": "sb.from",
+          "lineNumber": 168
+        },
+        {
+          "caller": "loadRemoteAssessments",
+          "callee": "select",
+          "lineNumber": 176
+        },
+        {
+          "caller": "loadRemoteFeedback",
+          "callee": "select",
+          "lineNumber": 180
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 23,
+        "functionCount": 23,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/i18n.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 77,
+      "functions": [
+        {
+          "name": "loadLang",
+          "startLine": 72,
+          "endLine": 74,
+          "params": []
+        },
+        {
+          "name": "saveLang",
+          "startLine": 76,
+          "endLine": 78,
+          "params": [
+            "lang"
+          ]
+        },
+        {
+          "name": "t",
+          "startLine": 80,
+          "endLine": 82,
+          "params": [
+            "lang",
+            "key"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "LANGS",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "STRINGS",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "loadLang",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "saveLang",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "t",
+          "line": 80,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadLang",
+          "callee": "loadText",
+          "lineNumber": 73
+        },
+        {
+          "caller": "saveLang",
+          "callee": "saveText",
+          "lineNumber": 77
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/identity.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 60,
+      "nonEmptyLines": 50,
+      "functions": [
+        {
+          "name": "getOrCreateC2CId",
+          "startLine": 7,
+          "endLine": 18,
+          "params": []
+        },
+        {
+          "name": "loadNickname",
+          "startLine": 20,
+          "endLine": 22,
+          "params": []
+        },
+        {
+          "name": "saveNickname",
+          "startLine": 24,
+          "endLine": 26,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "loadCerts",
+          "startLine": 33,
+          "endLine": 35,
+          "params": []
+        },
+        {
+          "name": "addCert",
+          "startLine": 37,
+          "endLine": 44,
+          "params": []
+        },
+        {
+          "name": "removeCert",
+          "startLine": 46,
+          "endLine": 50,
+          "params": [
+            "at"
+          ]
+        },
+        {
+          "name": "loadGithub",
+          "startLine": 52,
+          "endLine": 54,
+          "params": []
+        },
+        {
+          "name": "saveGithub",
+          "startLine": 56,
+          "endLine": 60,
+          "params": [
+            "h"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "getOrCreateC2CId",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "loadNickname",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "saveNickname",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "loadCerts",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "addCert",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "removeCert",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "loadGithub",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "saveGithub",
+          "line": 56,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getOrCreateC2CId",
+          "callee": "loadText",
+          "lineNumber": 9
+        },
+        {
+          "caller": "getOrCreateC2CId",
+          "callee": "Array.from({ length: 6 }, () => ALPHA[Math.floor(Math.random() * ALPHA.length)]).join",
+          "lineNumber": 11
+        },
+        {
+          "caller": "getOrCreateC2CId",
+          "callee": "Array.from",
+          "lineNumber": 11
+        },
+        {
+          "caller": "getOrCreateC2CId",
+          "callee": "Math.floor",
+          "lineNumber": 11
+        },
+        {
+          "caller": "getOrCreateC2CId",
+          "callee": "Math.random",
+          "lineNumber": 11
+        },
+        {
+          "caller": "getOrCreateC2CId",
+          "callee": "saveText",
+          "lineNumber": 12
+        },
+        {
+          "caller": "loadNickname",
+          "callee": "loadText",
+          "lineNumber": 21
+        },
+        {
+          "caller": "saveNickname",
+          "callee": "saveText",
+          "lineNumber": 25
+        },
+        {
+          "caller": "saveNickname",
+          "callee": "(n || \"\").trim().slice",
+          "lineNumber": 25
+        },
+        {
+          "caller": "saveNickname",
+          "callee": "(n || \"\").trim",
+          "lineNumber": 25
+        },
+        {
+          "caller": "loadCerts",
+          "callee": "loadJSON",
+          "lineNumber": 34
+        },
+        {
+          "caller": "addCert",
+          "callee": "loadCerts",
+          "lineNumber": 38
+        },
+        {
+          "caller": "addCert",
+          "callee": "(issuer || \"\").trim",
+          "lineNumber": 39
+        },
+        {
+          "caller": "addCert",
+          "callee": "(title || \"\").trim",
+          "lineNumber": 39
+        },
+        {
+          "caller": "addCert",
+          "callee": "(url || \"\").trim",
+          "lineNumber": 40
+        },
+        {
+          "caller": "addCert",
+          "callee": "Date.now",
+          "lineNumber": 40
+        },
+        {
+          "caller": "addCert",
+          "callee": "saveJSON",
+          "lineNumber": 42
+        },
+        {
+          "caller": "removeCert",
+          "callee": "loadCerts().filter",
+          "lineNumber": 47
+        },
+        {
+          "caller": "removeCert",
+          "callee": "loadCerts",
+          "lineNumber": 47
+        },
+        {
+          "caller": "removeCert",
+          "callee": "saveJSON",
+          "lineNumber": 48
+        },
+        {
+          "caller": "loadGithub",
+          "callee": "loadText",
+          "lineNumber": 53
+        },
+        {
+          "caller": "saveGithub",
+          "callee": "(h || \"\").trim().replace",
+          "lineNumber": 57
+        },
+        {
+          "caller": "saveGithub",
+          "callee": "(h || \"\").trim",
+          "lineNumber": 57
+        },
+        {
+          "caller": "saveGithub",
+          "callee": "saveText",
+          "lineNumber": 58
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 8,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/storage.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 42,
+      "nonEmptyLines": 38,
+      "functions": [
+        {
+          "name": "hasLS",
+          "startLine": 3,
+          "endLine": 3,
+          "params": []
+        },
+        {
+          "name": "loadJSON",
+          "startLine": 5,
+          "endLine": 13,
+          "params": [
+            "key",
+            "fb"
+          ]
+        },
+        {
+          "name": "saveJSON",
+          "startLine": 15,
+          "endLine": 23,
+          "params": [
+            "key",
+            "val"
+          ]
+        },
+        {
+          "name": "loadText",
+          "startLine": 25,
+          "endLine": 32,
+          "params": [
+            "key"
+          ]
+        },
+        {
+          "name": "saveText",
+          "startLine": 34,
+          "endLine": 42,
+          "params": [
+            "key",
+            "val"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "loadJSON",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "saveJSON",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "loadText",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "saveText",
+          "line": 34,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadJSON",
+          "callee": "hasLS",
+          "lineNumber": 7
+        },
+        {
+          "caller": "loadJSON",
+          "callee": "JSON.parse",
+          "lineNumber": 8
+        },
+        {
+          "caller": "loadJSON",
+          "callee": "localStorage.getItem",
+          "lineNumber": 8
+        },
+        {
+          "caller": "saveJSON",
+          "callee": "hasLS",
+          "lineNumber": 17
+        },
+        {
+          "caller": "saveJSON",
+          "callee": "localStorage.setItem",
+          "lineNumber": 18
+        },
+        {
+          "caller": "saveJSON",
+          "callee": "JSON.stringify",
+          "lineNumber": 18
+        },
+        {
+          "caller": "loadText",
+          "callee": "hasLS",
+          "lineNumber": 27
+        },
+        {
+          "caller": "loadText",
+          "callee": "localStorage.getItem",
+          "lineNumber": 28
+        },
+        {
+          "caller": "saveText",
+          "callee": "hasLS",
+          "lineNumber": 36
+        },
+        {
+          "caller": "saveText",
+          "callee": "localStorage.setItem",
+          "lineNumber": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/store.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 379,
+      "nonEmptyLines": 336,
+      "functions": [
+        {
+          "name": "toJobShape",
+          "startLine": 11,
+          "endLine": 26,
+          "params": [
+            "r"
+          ]
+        },
+        {
+          "name": "mergeJobs",
+          "startLine": 28,
+          "endLine": 39,
+          "params": [
+            "...lists"
+          ]
+        },
+        {
+          "name": "loadCustomJobs",
+          "startLine": 47,
+          "endLine": 49,
+          "params": []
+        },
+        {
+          "name": "saveCustomJob",
+          "startLine": 51,
+          "endLine": 55,
+          "params": [
+            "job"
+          ]
+        },
+        {
+          "name": "loadApplications",
+          "startLine": 57,
+          "endLine": 59,
+          "params": []
+        },
+        {
+          "name": "countLocalApplications",
+          "startLine": 61,
+          "endLine": 63,
+          "params": [
+            "jobId"
+          ]
+        },
+        {
+          "name": "saveApplicationLocal",
+          "startLine": 65,
+          "endLine": 67,
+          "params": [
+            "app"
+          ]
+        },
+        {
+          "name": "listJobsBoard",
+          "startLine": 71,
+          "endLine": 81,
+          "params": []
+        },
+        {
+          "name": "createJobBoard",
+          "startLine": 83,
+          "endLine": 96,
+          "params": [
+            "p"
+          ]
+        },
+        {
+          "name": "recordApplication",
+          "startLine": 98,
+          "endLine": 111,
+          "params": [
+            "job",
+            "ats"
+          ]
+        },
+        {
+          "name": "countRemoteApplications",
+          "startLine": 113,
+          "endLine": 122,
+          "params": [
+            "jobId"
+          ]
+        },
+        {
+          "name": "listApplicants",
+          "startLine": 126,
+          "endLine": 152,
+          "params": [
+            "jobId"
+          ]
+        },
+        {
+          "name": "loadInterests",
+          "startLine": 156,
+          "endLine": 158,
+          "params": []
+        },
+        {
+          "name": "toggleInterest",
+          "startLine": 160,
+          "endLine": 165,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "recordInterest",
+          "startLine": 167,
+          "endLine": 182,
+          "params": [
+            "fdp"
+          ]
+        },
+        {
+          "name": "loadEnrollments",
+          "startLine": 187,
+          "endLine": 189,
+          "params": []
+        },
+        {
+          "name": "toggleEnrollment",
+          "startLine": 191,
+          "endLine": 196,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "isVerified",
+          "startLine": 200,
+          "endLine": 204,
+          "params": [
+            "skill"
+          ]
+        },
+        {
+          "name": "hasGivenKudos",
+          "startLine": 209,
+          "endLine": 211,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "loadKudosFallback",
+          "startLine": 213,
+          "endLine": 215,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "fetchKudos",
+          "startLine": 217,
+          "endLine": 226,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "giveKudos",
+          "startLine": 228,
+          "endLine": 243,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "loadSharedShowcase",
+          "startLine": 246,
+          "endLine": 258,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "guessRole",
+          "startLine": 275,
+          "endLine": 281,
+          "params": []
+        },
+        {
+          "name": "extractSkills",
+          "startLine": 285,
+          "endLine": 290,
+          "params": []
+        },
+        {
+          "name": "toLiveJobShape",
+          "startLine": 292,
+          "endLine": 308,
+          "params": [
+            "r"
+          ]
+        },
+        {
+          "name": "liveCacheAt",
+          "startLine": 310,
+          "endLine": 312,
+          "params": []
+        },
+        {
+          "name": "stripHtml",
+          "startLine": 315,
+          "endLine": 317,
+          "params": []
+        },
+        {
+          "name": "toArbeitJobShape",
+          "startLine": 319,
+          "endLine": 336,
+          "params": [
+            "r"
+          ]
+        },
+        {
+          "name": "fetchJSON",
+          "startLine": 338,
+          "endLine": 348,
+          "params": [
+            "url"
+          ]
+        },
+        {
+          "name": "listLiveJobs",
+          "startLine": 351,
+          "endLine": 379,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "toJobShape",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "mergeJobs",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "loadCustomJobs",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "saveCustomJob",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "loadApplications",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "countLocalApplications",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "listJobsBoard",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "createJobBoard",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "recordApplication",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "countRemoteApplications",
+          "line": 113,
+          "isDefault": false
+        },
+        {
+          "name": "listApplicants",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "loadInterests",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "toggleInterest",
+          "line": 160,
+          "isDefault": false
+        },
+        {
+          "name": "recordInterest",
+          "line": 167,
+          "isDefault": false
+        },
+        {
+          "name": "loadEnrollments",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "toggleEnrollment",
+          "line": 191,
+          "isDefault": false
+        },
+        {
+          "name": "isVerified",
+          "line": 200,
+          "isDefault": false
+        },
+        {
+          "name": "hasGivenKudos",
+          "line": 209,
+          "isDefault": false
+        },
+        {
+          "name": "loadKudosFallback",
+          "line": 213,
+          "isDefault": false
+        },
+        {
+          "name": "fetchKudos",
+          "line": 217,
+          "isDefault": false
+        },
+        {
+          "name": "giveKudos",
+          "line": 228,
+          "isDefault": false
+        },
+        {
+          "name": "loadSharedShowcase",
+          "line": 246,
+          "isDefault": false
+        },
+        {
+          "name": "guessRole",
+          "line": 275,
+          "isDefault": false
+        },
+        {
+          "name": "extractSkills",
+          "line": 285,
+          "isDefault": false
+        },
+        {
+          "name": "toLiveJobShape",
+          "line": 292,
+          "isDefault": false
+        },
+        {
+          "name": "liveCacheAt",
+          "line": 310,
+          "isDefault": false
+        },
+        {
+          "name": "toArbeitJobShape",
+          "line": 319,
+          "isDefault": false
+        },
+        {
+          "name": "listLiveJobs",
+          "line": 351,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toJobShape",
+          "callee": "Array.isArray",
+          "lineNumber": 20
+        },
+        {
+          "caller": "toJobShape",
+          "callee": "r.required_skills.map",
+          "lineNumber": 20
+        },
+        {
+          "caller": "toJobShape",
+          "callee": "Number",
+          "lineNumber": 21
+        },
+        {
+          "caller": "mergeJobs",
+          "callee": "seen.has",
+          "lineNumber": 33
+        },
+        {
+          "caller": "mergeJobs",
+          "callee": "seen.add",
+          "lineNumber": 34
+        },
+        {
+          "caller": "mergeJobs",
+          "callee": "out.push",
+          "lineNumber": 35
+        },
+        {
+          "caller": "loadCustomJobs",
+          "callee": "loadJSON",
+          "lineNumber": 48
+        },
+        {
+          "caller": "saveCustomJob",
+          "callee": "loadCustomJobs",
+          "lineNumber": 52
+        },
+        {
+          "caller": "saveCustomJob",
+          "callee": "saveJSON",
+          "lineNumber": 53
+        },
+        {
+          "caller": "loadApplications",
+          "callee": "loadJSON",
+          "lineNumber": 58
+        },
+        {
+          "caller": "countLocalApplications",
+          "callee": "loadApplications().filter",
+          "lineNumber": 62
+        },
+        {
+          "caller": "countLocalApplications",
+          "callee": "loadApplications",
+          "lineNumber": 62
+        },
+        {
+          "caller": "saveApplicationLocal",
+          "callee": "saveJSON",
+          "lineNumber": 66
+        },
+        {
+          "caller": "saveApplicationLocal",
+          "callee": "loadApplications",
+          "lineNumber": 66
+        },
+        {
+          "caller": "listJobsBoard",
+          "callee": "getClient",
+          "lineNumber": 72
+        },
+        {
+          "caller": "listJobsBoard",
+          "callee": "sb.from(\"jobs_board\").select(\"*\").order(\"created_at\", { ascending: false }).limit",
+          "lineNumber": 75
+        },
+        {
+          "caller": "listJobsBoard",
+          "callee": "sb.from(\"jobs_board\").select(\"*\").order",
+          "lineNumber": 75
+        },
+        {
+          "caller": "listJobsBoard",
+          "callee": "sb.from(\"jobs_board\").select",
+          "lineNumber": 75
+        },
+        {
+          "caller": "listJobsBoard",
+          "callee": "sb.from",
+          "lineNumber": 75
+        },
+        {
+          "caller": "listJobsBoard",
+          "callee": "data.map(toJobShape).filter",
+          "lineNumber": 77
+        },
+        {
+          "caller": "listJobsBoard",
+          "callee": "data.map",
+          "lineNumber": 77
+        },
+        {
+          "caller": "createJobBoard",
+          "callee": "getClient",
+          "lineNumber": 84
+        },
+        {
+          "caller": "createJobBoard",
+          "callee": "sb.from(\"jobs_board\").insert",
+          "lineNumber": 87
+        },
+        {
+          "caller": "createJobBoard",
+          "callee": "sb.from",
+          "lineNumber": 87
+        },
+        {
+          "caller": "createJobBoard",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 90
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "Math.round",
+          "lineNumber": 99
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "Date.now",
+          "lineNumber": 99
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "saveApplicationLocal",
+          "lineNumber": 100
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "getClient",
+          "lineNumber": 101
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "sb.from(\"applications\").insert",
+          "lineNumber": 104
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "sb.from",
+          "lineNumber": 104
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "String",
+          "lineNumber": 105
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 105
+        },
+        {
+          "caller": "recordApplication",
+          "callee": "Math.round",
+          "lineNumber": 105
+        },
+        {
+          "caller": "countRemoteApplications",
+          "callee": "getClient",
+          "lineNumber": 114
+        },
+        {
+          "caller": "countRemoteApplications",
+          "callee": "sb.from(\"applications\").select(\"id\", { count: \"exact\", head: true }).eq",
+          "lineNumber": 117
+        },
+        {
+          "caller": "countRemoteApplications",
+          "callee": "sb.from(\"applications\").select",
+          "lineNumber": 117
+        },
+        {
+          "caller": "countRemoteApplications",
+          "callee": "sb.from",
+          "lineNumber": 117
+        },
+        {
+          "caller": "countRemoteApplications",
+          "callee": "String",
+          "lineNumber": 117
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "loadApplications().filter",
+          "lineNumber": 129
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "loadApplications",
+          "lineNumber": 129
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "String",
+          "lineNumber": 129
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "String",
+          "lineNumber": 129
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "out.push",
+          "lineNumber": 130
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 130
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "Math.round",
+          "lineNumber": 130
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "getClient",
+          "lineNumber": 135
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "sb.from(\"applications\").select(\"student,ats,main,created_at\").eq(\"job_id\", String(jobId)).order(\"main\", { ascending: false }).limit",
+          "lineNumber": 138
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "sb.from(\"applications\").select(\"student,ats,main,created_at\").eq(\"job_id\", String(jobId)).order",
+          "lineNumber": 138
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "sb.from(\"applications\").select(\"student,ats,main,created_at\").eq",
+          "lineNumber": 138
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "sb.from(\"applications\").select",
+          "lineNumber": 138
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "sb.from",
+          "lineNumber": 138
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "String",
+          "lineNumber": 138
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "out.push",
+          "lineNumber": 141
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "String",
+          "lineNumber": 141
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "Math.round",
+          "lineNumber": 141
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "Date.parse",
+          "lineNumber": 141
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "out\n    .filter((a) => (seen.has(`${a.student}:${a.score}`) ? false : (seen.add(`${a.student}:${a.score}`), true)))\n    .sort",
+          "lineNumber": 149
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "out\n    .filter",
+          "lineNumber": 149
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "seen.has",
+          "lineNumber": 150
+        },
+        {
+          "caller": "listApplicants",
+          "callee": "seen.add",
+          "lineNumber": 150
+        },
+        {
+          "caller": "loadInterests",
+          "callee": "loadJSON",
+          "lineNumber": 157
+        },
+        {
+          "caller": "toggleInterest",
+          "callee": "loadInterests",
+          "lineNumber": 161
+        },
+        {
+          "caller": "toggleInterest",
+          "callee": "ids.includes",
+          "lineNumber": 162
+        },
+        {
+          "caller": "toggleInterest",
+          "callee": "ids.filter",
+          "lineNumber": 162
+        },
+        {
+          "caller": "toggleInterest",
+          "callee": "saveJSON",
+          "lineNumber": 163
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "loadInterests",
+          "lineNumber": 168
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "ids.includes",
+          "lineNumber": 169
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "saveJSON",
+          "lineNumber": 170
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "getClient",
+          "lineNumber": 172
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "sb.from(\"interests\").insert",
+          "lineNumber": 175
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "sb.from",
+          "lineNumber": 175
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "String",
+          "lineNumber": 176
+        },
+        {
+          "caller": "recordInterest",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 176
+        },
+        {
+          "caller": "loadEnrollments",
+          "callee": "loadJSON",
+          "lineNumber": 188
+        },
+        {
+          "caller": "toggleEnrollment",
+          "callee": "loadEnrollments",
+          "lineNumber": 192
+        },
+        {
+          "caller": "toggleEnrollment",
+          "callee": "ids.includes",
+          "lineNumber": 193
+        },
+        {
+          "caller": "toggleEnrollment",
+          "callee": "ids.filter",
+          "lineNumber": 193
+        },
+        {
+          "caller": "toggleEnrollment",
+          "callee": "saveJSON",
+          "lineNumber": 194
+        },
+        {
+          "caller": "isVerified",
+          "callee": "String(skill || \"\").toLowerCase",
+          "lineNumber": 201
+        },
+        {
+          "caller": "isVerified",
+          "callee": "String",
+          "lineNumber": 201
+        },
+        {
+          "caller": "isVerified",
+          "callee": "(earnedSkills || []).map((x) => String(x).toLowerCase()).includes",
+          "lineNumber": 203
+        },
+        {
+          "caller": "isVerified",
+          "callee": "(earnedSkills || []).map",
+          "lineNumber": 203
+        },
+        {
+          "caller": "isVerified",
+          "callee": "String(x).toLowerCase",
+          "lineNumber": 203
+        },
+        {
+          "caller": "isVerified",
+          "callee": "String",
+          "lineNumber": 203
+        },
+        {
+          "caller": "hasGivenKudos",
+          "callee": "loadJSON(KGIVEN, []).includes",
+          "lineNumber": 210
+        },
+        {
+          "caller": "hasGivenKudos",
+          "callee": "loadJSON",
+          "lineNumber": 210
+        },
+        {
+          "caller": "loadKudosFallback",
+          "callee": "loadJSON",
+          "lineNumber": 214
+        },
+        {
+          "caller": "fetchKudos",
+          "callee": "getClient",
+          "lineNumber": 218
+        },
+        {
+          "caller": "fetchKudos",
+          "callee": "sb.from(\"kudos\").select(\"id\", { count: \"exact\", head: true }).eq",
+          "lineNumber": 221
+        },
+        {
+          "caller": "fetchKudos",
+          "callee": "sb.from(\"kudos\").select",
+          "lineNumber": 221
+        },
+        {
+          "caller": "fetchKudos",
+          "callee": "sb.from",
+          "lineNumber": 221
+        },
+        {
+          "caller": "fetchKudos",
+          "callee": "String",
+          "lineNumber": 221
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "hasGivenKudos",
+          "lineNumber": 229
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "loadJSON",
+          "lineNumber": 230
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "saveJSON",
+          "lineNumber": 231
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "loadJSON",
+          "lineNumber": 232
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "saveJSON",
+          "lineNumber": 234
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "getClient",
+          "lineNumber": 235
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "sb.from(\"kudos\").insert",
+          "lineNumber": 238
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "sb.from",
+          "lineNumber": 238
+        },
+        {
+          "caller": "giveKudos",
+          "callee": "String",
+          "lineNumber": 238
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "getClient",
+          "lineNumber": 247
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "sb.from(\"applications\").select(\"ats,main\").eq(\"student\", String(id)).limit",
+          "lineNumber": 250
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "sb.from(\"applications\").select(\"ats,main\").eq",
+          "lineNumber": 250
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "sb.from(\"applications\").select",
+          "lineNumber": 250
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "sb.from",
+          "lineNumber": 250
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "String",
+          "lineNumber": 250
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "fetchKudos",
+          "lineNumber": 251
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "(data || []).map",
+          "lineNumber": 253
+        },
+        {
+          "caller": "loadSharedShowcase",
+          "callee": "Math.max",
+          "lineNumber": 254
+        },
+        {
+          "caller": "guessRole",
+          "callee": "String(text).toLowerCase",
+          "lineNumber": 276
+        },
+        {
+          "caller": "guessRole",
+          "callee": "String",
+          "lineNumber": 276
+        },
+        {
+          "caller": "guessRole",
+          "callee": "hints.some",
+          "lineNumber": 278
+        },
+        {
+          "caller": "guessRole",
+          "callee": "t.includes",
+          "lineNumber": 278
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "String(text).toLowerCase().replace",
+          "lineNumber": 286
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "String(text).toLowerCase",
+          "lineNumber": 286
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "String",
+          "lineNumber": 286
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "vocab.filter",
+          "lineNumber": 287
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "t.includes",
+          "lineNumber": 287
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "String(v).toLowerCase",
+          "lineNumber": 287
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "String",
+          "lineNumber": 287
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "t.includes",
+          "lineNumber": 288
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "out.add",
+          "lineNumber": 288
+        },
+        {
+          "caller": "extractSkills",
+          "callee": "[...out].slice",
+          "lineNumber": 289
+        },
+        {
+          "caller": "toLiveJobShape",
+          "callee": "guessRole",
+          "lineNumber": 294
+        },
+        {
+          "caller": "toLiveJobShape",
+          "callee": "/full/i.test",
+          "lineNumber": 302
+        },
+        {
+          "caller": "toLiveJobShape",
+          "callee": "extractSkills",
+          "lineNumber": 303
+        },
+        {
+          "caller": "liveCacheAt",
+          "callee": "loadJSON",
+          "lineNumber": 311
+        },
+        {
+          "caller": "stripHtml",
+          "callee": "String(s).replace(/<[^>]*>/g, \" \").replace",
+          "lineNumber": 316
+        },
+        {
+          "caller": "stripHtml",
+          "callee": "String(s).replace",
+          "lineNumber": 316
+        },
+        {
+          "caller": "stripHtml",
+          "callee": "String",
+          "lineNumber": 316
+        },
+        {
+          "caller": "toArbeitJobShape",
+          "callee": "(r.tags || []).join",
+          "lineNumber": 320
+        },
+        {
+          "caller": "toArbeitJobShape",
+          "callee": "stripHtml(r.description || \"\").slice",
+          "lineNumber": 320
+        },
+        {
+          "caller": "toArbeitJobShape",
+          "callee": "stripHtml",
+          "lineNumber": 320
+        },
+        {
+          "caller": "toArbeitJobShape",
+          "callee": "guessRole",
+          "lineNumber": 321
+        },
+        {
+          "caller": "toArbeitJobShape",
+          "callee": "(r.job_types || []).join",
+          "lineNumber": 323
+        },
+        {
+          "caller": "toArbeitJobShape",
+          "callee": "/full/i.test",
+          "lineNumber": 330
+        },
+        {
+          "caller": "toArbeitJobShape",
+          "callee": "extractSkills",
+          "lineNumber": 331
+        },
+        {
+          "caller": "fetchJSON",
+          "callee": "setTimeout",
+          "lineNumber": 340
+        },
+        {
+          "caller": "fetchJSON",
+          "callee": "ctrl.abort",
+          "lineNumber": 340
+        },
+        {
+          "caller": "fetchJSON",
+          "callee": "fetch",
+          "lineNumber": 342
+        },
+        {
+          "caller": "fetchJSON",
+          "callee": "res.json",
+          "lineNumber": 344
+        },
+        {
+          "caller": "fetchJSON",
+          "callee": "clearTimeout",
+          "lineNumber": 346
+        },
+        {
+          "caller": "readCache",
+          "callee": "loadJSON",
+          "lineNumber": 352
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "loadJSON",
+          "lineNumber": 354
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "Date.now",
+          "lineNumber": 355
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "queryFromProfile",
+          "lineNumber": 359
+        },
+        {
+          "caller": "rem",
+          "callee": "fetchJSON",
+          "lineNumber": 362
+        },
+        {
+          "caller": "rem",
+          "callee": "encodeURIComponent",
+          "lineNumber": 362
+        },
+        {
+          "caller": "rem",
+          "callee": "(data.jobs || []).map(toLiveJobShape).filter",
+          "lineNumber": 363
+        },
+        {
+          "caller": "rem",
+          "callee": "(data.jobs || []).map",
+          "lineNumber": 363
+        },
+        {
+          "caller": "arb",
+          "callee": "fetchJSON",
+          "lineNumber": 366
+        },
+        {
+          "caller": "arb",
+          "callee": "(data.data || []).slice(0, 30).map(toArbeitJobShape).filter(Boolean)\n        .filter",
+          "lineNumber": 367
+        },
+        {
+          "caller": "arb",
+          "callee": "(data.data || []).slice(0, 30).map(toArbeitJobShape).filter",
+          "lineNumber": 367
+        },
+        {
+          "caller": "arb",
+          "callee": "(data.data || []).slice(0, 30).map",
+          "lineNumber": 367
+        },
+        {
+          "caller": "arb",
+          "callee": "(data.data || []).slice",
+          "lineNumber": 367
+        },
+        {
+          "caller": "arb",
+          "callee": "`${j.title} ${j.skills.join(\" \")}`.toLowerCase().includes",
+          "lineNumber": 368
+        },
+        {
+          "caller": "arb",
+          "callee": "`${j.title} ${j.skills.join(\" \")}`.toLowerCase",
+          "lineNumber": 368
+        },
+        {
+          "caller": "arb",
+          "callee": "j.skills.join",
+          "lineNumber": 368
+        },
+        {
+          "caller": "arb",
+          "callee": "search.toLowerCase",
+          "lineNumber": 368
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "Promise.allSettled",
+          "lineNumber": 370
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "rem",
+          "lineNumber": 370
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "arb",
+          "lineNumber": 370
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "[...(a.status === \"fulfilled\" ? a.value : []), ...(b.status === \"fulfilled\" ? b.value : [])]\n      .filter",
+          "lineNumber": 372
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "seen.has",
+          "lineNumber": 373
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "seen.add",
+          "lineNumber": 373
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "saveJSON",
+          "lineNumber": 374
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "Date.now",
+          "lineNumber": 374
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "readCache",
+          "lineNumber": 375
+        },
+        {
+          "caller": "listLiveJobs",
+          "callee": "readCache",
+          "lineNumber": 377
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 28,
+        "functionCount": 31,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/supabase.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 85,
+      "nonEmptyLines": 78,
+      "functions": [
+        {
+          "name": "isSupabaseOn",
+          "startLine": 11,
+          "endLine": 18,
+          "params": []
+        },
+        {
+          "name": "getClient",
+          "startLine": 20,
+          "endLine": 31,
+          "params": []
+        },
+        {
+          "name": "aggregate",
+          "startLine": 33,
+          "endLine": 44,
+          "params": [
+            "rows"
+          ]
+        },
+        {
+          "name": "mergeBoards",
+          "startLine": 47,
+          "endLine": 62,
+          "params": [
+            "seeds",
+            "remote"
+          ]
+        },
+        {
+          "name": "loadBoard",
+          "startLine": 64,
+          "endLine": 74,
+          "params": []
+        },
+        {
+          "name": "submitScore",
+          "startLine": 76,
+          "endLine": 85,
+          "params": [
+            "collegeName",
+            "score"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "isSupabaseOn",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "getClient",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "mergeBoards",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "loadBoard",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "submitScore",
+          "line": 76,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isSupabaseOn",
+          "callee": "Boolean",
+          "lineNumber": 14
+        },
+        {
+          "caller": "getClient",
+          "callee": "isSupabaseOn",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getClient",
+          "callee": "import",
+          "lineNumber": 24
+        },
+        {
+          "caller": "getClient",
+          "callee": "createClient",
+          "lineNumber": 25
+        },
+        {
+          "caller": "aggregate",
+          "callee": "Math.max",
+          "lineNumber": 37
+        },
+        {
+          "caller": "aggregate",
+          "callee": "Math.min",
+          "lineNumber": 37
+        },
+        {
+          "caller": "aggregate",
+          "callee": "Math.round",
+          "lineNumber": 37
+        },
+        {
+          "caller": "aggregate",
+          "callee": "map.get",
+          "lineNumber": 38
+        },
+        {
+          "caller": "aggregate",
+          "callee": "map.set",
+          "lineNumber": 41
+        },
+        {
+          "caller": "aggregate",
+          "callee": "[...map.values()].map",
+          "lineNumber": 43
+        },
+        {
+          "caller": "aggregate",
+          "callee": "map.values",
+          "lineNumber": 43
+        },
+        {
+          "caller": "aggregate",
+          "callee": "Math.round",
+          "lineNumber": 43
+        },
+        {
+          "caller": "mergeBoards",
+          "callee": "seeds.map",
+          "lineNumber": 49
+        },
+        {
+          "caller": "mergeBoards",
+          "callee": "out.find",
+          "lineNumber": 51
+        },
+        {
+          "caller": "mergeBoards",
+          "callee": "Math.round",
+          "lineNumber": 55
+        },
+        {
+          "caller": "mergeBoards",
+          "callee": "out.push",
+          "lineNumber": 58
+        },
+        {
+          "caller": "mergeBoards",
+          "callee": "out.sort",
+          "lineNumber": 61
+        },
+        {
+          "caller": "loadBoard",
+          "callee": "getClient",
+          "lineNumber": 65
+        },
+        {
+          "caller": "loadBoard",
+          "callee": "sb.from(\"college_scores\").select(\"college_name,score\").limit",
+          "lineNumber": 68
+        },
+        {
+          "caller": "loadBoard",
+          "callee": "sb.from(\"college_scores\").select",
+          "lineNumber": 68
+        },
+        {
+          "caller": "loadBoard",
+          "callee": "sb.from",
+          "lineNumber": 68
+        },
+        {
+          "caller": "loadBoard",
+          "callee": "mergeBoards",
+          "lineNumber": 70
+        },
+        {
+          "caller": "loadBoard",
+          "callee": "aggregate",
+          "lineNumber": 70
+        },
+        {
+          "caller": "submitScore",
+          "callee": "getClient",
+          "lineNumber": 77
+        },
+        {
+          "caller": "submitScore",
+          "callee": "sb.from(\"college_scores\").insert",
+          "lineNumber": 80
+        },
+        {
+          "caller": "submitScore",
+          "callee": "sb.from",
+          "lineNumber": 80
+        },
+        {
+          "caller": "submitScore",
+          "callee": "Math.round",
+          "lineNumber": 80
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/verify.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 83,
+      "nonEmptyLines": 74,
+      "functions": [
+        {
+          "name": "enc",
+          "startLine": 9,
+          "endLine": 9,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "dec",
+          "startLine": 10,
+          "endLine": 17,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "signCredential",
+          "startLine": 19,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "checkCredential",
+          "startLine": 32,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "verifyUrl",
+          "startLine": 45,
+          "endLine": 47,
+          "params": []
+        },
+        {
+          "name": "loadRevocations",
+          "startLine": 54,
+          "endLine": 57,
+          "params": []
+        },
+        {
+          "name": "revokeCredential",
+          "startLine": 59,
+          "endLine": 69,
+          "params": []
+        },
+        {
+          "name": "revocationFor",
+          "startLine": 71,
+          "endLine": 75,
+          "params": []
+        },
+        {
+          "name": "checkCredentialStatus",
+          "startLine": 78,
+          "endLine": 83,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "signCredential",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "checkCredential",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "verifyUrl",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "loadRevocations",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "revokeCredential",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "revocationFor",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "checkCredentialStatus",
+          "line": 78,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "enc",
+          "callee": "btoa(unescape(encodeURIComponent(s))).replace(/\\+/g, \"-\").replace(/\\//g, \"_\").replace",
+          "lineNumber": 9
+        },
+        {
+          "caller": "enc",
+          "callee": "btoa(unescape(encodeURIComponent(s))).replace(/\\+/g, \"-\").replace",
+          "lineNumber": 9
+        },
+        {
+          "caller": "enc",
+          "callee": "btoa(unescape(encodeURIComponent(s))).replace",
+          "lineNumber": 9
+        },
+        {
+          "caller": "enc",
+          "callee": "btoa",
+          "lineNumber": 9
+        },
+        {
+          "caller": "enc",
+          "callee": "unescape",
+          "lineNumber": 9
+        },
+        {
+          "caller": "enc",
+          "callee": "encodeURIComponent",
+          "lineNumber": 9
+        },
+        {
+          "caller": "dec",
+          "callee": "s.replace(/-/g, \"+\").replace",
+          "lineNumber": 12
+        },
+        {
+          "caller": "dec",
+          "callee": "s.replace",
+          "lineNumber": 12
+        },
+        {
+          "caller": "dec",
+          "callee": "decodeURIComponent",
+          "lineNumber": 13
+        },
+        {
+          "caller": "dec",
+          "callee": "escape",
+          "lineNumber": 13
+        },
+        {
+          "caller": "dec",
+          "callee": "atob",
+          "lineNumber": 13
+        },
+        {
+          "caller": "signCredential",
+          "callee": "String",
+          "lineNumber": 21
+        },
+        {
+          "caller": "signCredential",
+          "callee": "String(p.name || \"avsar student\").slice",
+          "lineNumber": 22
+        },
+        {
+          "caller": "signCredential",
+          "callee": "String",
+          "lineNumber": 22
+        },
+        {
+          "caller": "signCredential",
+          "callee": "Math.max",
+          "lineNumber": 23
+        },
+        {
+          "caller": "signCredential",
+          "callee": "Math.min",
+          "lineNumber": 23
+        },
+        {
+          "caller": "signCredential",
+          "callee": "Math.round",
+          "lineNumber": 23
+        },
+        {
+          "caller": "signCredential",
+          "callee": "(p.skills || []).map(String).slice",
+          "lineNumber": 24
+        },
+        {
+          "caller": "signCredential",
+          "callee": "(p.skills || []).map",
+          "lineNumber": 24
+        },
+        {
+          "caller": "signCredential",
+          "callee": "Date.now",
+          "lineNumber": 25
+        },
+        {
+          "caller": "signCredential",
+          "callee": "enc",
+          "lineNumber": 27
+        },
+        {
+          "caller": "signCredential",
+          "callee": "JSON.stringify",
+          "lineNumber": 27
+        },
+        {
+          "caller": "signCredential",
+          "callee": "hashStr(`avsar-v1:${body}`).toString",
+          "lineNumber": 28
+        },
+        {
+          "caller": "signCredential",
+          "callee": "hashStr",
+          "lineNumber": 28
+        },
+        {
+          "caller": "checkCredential",
+          "callee": "String(code || \"\").split",
+          "lineNumber": 33
+        },
+        {
+          "caller": "checkCredential",
+          "callee": "String",
+          "lineNumber": 33
+        },
+        {
+          "caller": "checkCredential",
+          "callee": "hashStr(`avsar-v1:${body}`).toString",
+          "lineNumber": 35
+        },
+        {
+          "caller": "checkCredential",
+          "callee": "hashStr",
+          "lineNumber": 35
+        },
+        {
+          "caller": "checkCredential",
+          "callee": "JSON.parse",
+          "lineNumber": 37
+        },
+        {
+          "caller": "checkCredential",
+          "callee": "dec",
+          "lineNumber": 37
+        },
+        {
+          "caller": "verifyUrl",
+          "callee": "encodeURIComponent",
+          "lineNumber": 46
+        },
+        {
+          "caller": "loadRevocations",
+          "callee": "loadJSON",
+          "lineNumber": 55
+        },
+        {
+          "caller": "loadRevocations",
+          "callee": "Array.isArray",
+          "lineNumber": 56
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "checkCredential",
+          "lineNumber": 60
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "String(code).split",
+          "lineNumber": 62
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "String",
+          "lineNumber": 62
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "loadRevocations",
+          "lineNumber": 63
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "rows.some",
+          "lineNumber": 64
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "rows.find",
+          "lineNumber": 64
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "String(reason || \"revoked by issuer\").slice",
+          "lineNumber": 65
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "String",
+          "lineNumber": 65
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "Date.now",
+          "lineNumber": 65
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "[...rows, entry].slice",
+          "lineNumber": 66
+        },
+        {
+          "caller": "revokeCredential",
+          "callee": "saveJSON",
+          "lineNumber": 67
+        },
+        {
+          "caller": "revocationFor",
+          "callee": "String(code || \"\").split",
+          "lineNumber": 72
+        },
+        {
+          "caller": "revocationFor",
+          "callee": "String",
+          "lineNumber": 72
+        },
+        {
+          "caller": "revocationFor",
+          "callee": "loadRevocations().find",
+          "lineNumber": 74
+        },
+        {
+          "caller": "revocationFor",
+          "callee": "loadRevocations",
+          "lineNumber": 74
+        },
+        {
+          "caller": "checkCredentialStatus",
+          "callee": "checkCredential",
+          "lineNumber": 79
+        },
+        {
+          "caller": "checkCredentialStatus",
+          "callee": "revocationFor",
+          "lineNumber": 81
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 7,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Portfolio.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 238,
+      "nonEmptyLines": 225,
+      "functions": [
+        {
+          "name": "Portfolio",
+          "startLine": 18,
+          "endLine": 238,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Portfolio",
+          "line": 18,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Portfolio",
+          "callee": "useC2C",
+          "lineNumber": 19
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "loadNickname",
+          "lineNumber": 20
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 21
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "loadGithub",
+          "lineNumber": 21
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "loadCerts",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 25
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 27
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "loadKudosFallback",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useState",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 32
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 34
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "earned.filter",
+          "lineNumber": 35
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "getEvidence",
+          "lineNumber": 35
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "found.filter",
+          "lineNumber": 36
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "isVerified",
+          "lineNumber": 36
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "calculateMainScore",
+          "lineNumber": 38
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "loadJSON",
+          "lineNumber": 38
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "questPairsToProof",
+          "lineNumber": 38
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useMemo",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "signCredential",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useRef",
+          "lineNumber": 45
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "vaidyaLevel",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useEffect",
+          "lineNumber": 49
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "(async () => {\n      try {\n        const { toCanvas } = await import(\"qrcode\");\n        if (!live || !qrRef.current) return;\n        await toCanvas(qrRef.current, `${window.location.origin}${verifyUrl(code)}`, { margin: 1, width: 132 });\n      } catch {\n        /* qr stays empty, link still works */\n      }\n    })",
+          "lineNumber": 51
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "import",
+          "lineNumber": 53
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "toCanvas",
+          "lineNumber": 55
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "verifyUrl",
+          "lineNumber": 55
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "useEffect",
+          "lineNumber": 63
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "fetchKudos(id).then((n) => { if (n != null) setKudos(n); }).catch",
+          "lineNumber": 64
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "fetchKudos(id).then",
+          "lineNumber": 64
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "fetchKudos",
+          "lineNumber": 64
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setKudos",
+          "lineNumber": 64
+        },
+        {
+          "caller": "saveIdentity",
+          "callee": "saveNickname",
+          "lineNumber": 68
+        },
+        {
+          "caller": "saveIdentity",
+          "callee": "nick.trim",
+          "lineNumber": 68
+        },
+        {
+          "caller": "saveIdentity",
+          "callee": "saveGithub",
+          "lineNumber": 69
+        },
+        {
+          "caller": "saveIdentity",
+          "callee": "github.trim",
+          "lineNumber": 69
+        },
+        {
+          "caller": "add",
+          "callee": "title.trim",
+          "lineNumber": 73
+        },
+        {
+          "caller": "add",
+          "callee": "setCerts",
+          "lineNumber": 74
+        },
+        {
+          "caller": "add",
+          "callee": "addCert",
+          "lineNumber": 74
+        },
+        {
+          "caller": "add",
+          "callee": "issuer.trim",
+          "lineNumber": 74
+        },
+        {
+          "caller": "add",
+          "callee": "title.trim",
+          "lineNumber": 74
+        },
+        {
+          "caller": "add",
+          "callee": "url.trim",
+          "lineNumber": 74
+        },
+        {
+          "caller": "add",
+          "callee": "setIssuer",
+          "lineNumber": 75
+        },
+        {
+          "caller": "add",
+          "callee": "setTitle",
+          "lineNumber": 75
+        },
+        {
+          "caller": "add",
+          "callee": "setUrl",
+          "lineNumber": 75
+        },
+        {
+          "caller": "rate",
+          "callee": "submitFeedback({ rating: stars, comment: comment.trim() }).catch",
+          "lineNumber": 80
+        },
+        {
+          "caller": "rate",
+          "callee": "submitFeedback",
+          "lineNumber": 80
+        },
+        {
+          "caller": "rate",
+          "callee": "comment.trim",
+          "lineNumber": 80
+        },
+        {
+          "caller": "rate",
+          "callee": "setThanks",
+          "lineNumber": 81
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "checkCredentialStatus",
+          "lineNumber": 86
+        },
+        {
+          "caller": "revokeNow",
+          "callee": "window.prompt",
+          "lineNumber": 88
+        },
+        {
+          "caller": "revokeNow",
+          "callee": "revokeCredential",
+          "lineNumber": 90
+        },
+        {
+          "caller": "revokeNow",
+          "callee": "setRevInfo",
+          "lineNumber": 91
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "verifyUrl",
+          "lineNumber": 118
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setNick",
+          "lineNumber": 139
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setGithub",
+          "lineNumber": 142
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "id.slice",
+          "lineNumber": 144
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "found.filter",
+          "lineNumber": 147
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "isVerified",
+          "lineNumber": 147
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "found.map",
+          "lineNumber": 149
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "isVerified",
+          "lineNumber": 150
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "proofSkills.map",
+          "lineNumber": 159
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "getEvidence",
+          "lineNumber": 162
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "getEvidence",
+          "lineNumber": 162
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "certs.map",
+          "lineNumber": 174
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setCerts",
+          "lineNumber": 181
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "removeCert",
+          "lineNumber": 181
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setTitle",
+          "lineNumber": 190
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setIssuer",
+          "lineNumber": 194
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setUrl",
+          "lineNumber": 197
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "title.trim",
+          "lineNumber": 200
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "[1, 2, 3, 4, 5].map",
+          "lineNumber": 211
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setStars",
+          "lineNumber": 219
+        },
+        {
+          "caller": "Portfolio",
+          "callee": "setComment",
+          "lineNumber": 227
+        }
+      ],
+      "metrics": {
+        "importCount": 10,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Public.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 65,
+      "nonEmptyLines": 61,
+      "functions": [
+        {
+          "name": "Public",
+          "startLine": 15,
+          "endLine": 65,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Public",
+          "line": 15,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Public",
+          "callee": "useParams",
+          "lineNumber": 16
+        },
+        {
+          "caller": "Public",
+          "callee": "useC2C",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Public",
+          "callee": "getOrCreateC2CId",
+          "lineNumber": 18
+        },
+        {
+          "caller": "Public",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 22
+        },
+        {
+          "caller": "Public",
+          "callee": "loadGithub",
+          "lineNumber": 23
+        },
+        {
+          "caller": "Public",
+          "callee": "found.filter",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Public",
+          "callee": "isVerified",
+          "lineNumber": 24
+        },
+        {
+          "caller": "Public",
+          "callee": "calculateMainScore",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Public",
+          "callee": "loadJSON",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Public",
+          "callee": "questPairsToProof",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Public",
+          "callee": "useMemo",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Public",
+          "callee": "signCredential",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Public",
+          "callee": "loadNickname",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Public",
+          "callee": "loadNickname",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Public",
+          "callee": "mine.slice",
+          "lineNumber": 47
+        },
+        {
+          "caller": "Public",
+          "callee": "found.map",
+          "lineNumber": 51
+        },
+        {
+          "caller": "Public",
+          "callee": "isVerified",
+          "lineNumber": 52
+        },
+        {
+          "caller": "Public",
+          "callee": "verifyUrl",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/backend.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 63,
+      "nonEmptyLines": 57,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/i18n.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 25,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/portfolio.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 46,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/store.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 34,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/verify.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 43,
+      "nonEmptyLines": 38,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

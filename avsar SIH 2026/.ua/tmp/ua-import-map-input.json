@@ -1,0 +1,665 @@
+{
+    "projectRoot":  "D:\\CodeProjects\\avsar\\avsar SIH 2026",
+    "files":  [
+                  {
+                      "path":  ".env",
+                      "language":  "config",
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".env.example",
+                      "language":  "config",
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".oxlintrc.json",
+                      "language":  "json",
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".tastemaker/reference-board.md",
+                      "language":  "markdown",
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".tastemaker/style-lock.md",
+                      "language":  "markdown",
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "README.md",
+                      "language":  "markdown",
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "index.html",
+                      "language":  "html",
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "package.json",
+                      "language":  "json",
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "public/manifest.webmanifest",
+                      "language":  "webmanifest",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "public/sw.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "scripts/boards.mjs",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "scripts/naukri.mjs",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "scripts/scrape.mjs",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/app/coach-widget.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/app/error-boundary.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/app/shell.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/app/store.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/ayush/data.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/ayush/proof.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/ayush/resumes.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/ayush/scoring.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/ayush/seed.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/components/StreakMeter.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/components/XpMeter.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/components/landing/Figs.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/components/landing/FractalMap.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/components/landing/LandingHero.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/components/landing/Sections.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/components/ui.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/ayushSeed.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/boardsSeed.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/colleges.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/courses.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/fdps.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/fixtures.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/interview.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/jobs.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/naukriSeed.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/programs.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/questionnaire.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/quests.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/quiz.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/seedJobsExtra.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/taxonomy.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/data/tuning.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/index.css",
+                      "language":  "css",
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "src/lib/ai.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/aiQuestions.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/ats.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/auth.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/backend.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/coach.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/cohort.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/dashboard.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/gemini.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/i18n.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/identity.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/interview.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/match.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/onboarding.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/parseResume.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/profile.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/progress.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/questionnaire.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/quests.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/roadmapGenerator.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/roles.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/score.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/speech.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/storage.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/store.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/streak.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/supabase.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/theme.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/verify.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/lib/xp.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/main.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Ayush.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Faculty.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Home.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Industry.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Institute.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Interview.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Jobs.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Journey.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Match.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/NotFound.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Portfolio.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Profile.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Programs.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Public.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Quests.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Quiz.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Resume.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Verify.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "src/pages/Workspace.jsx",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/ai.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/aiopt.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/aiquestions.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/ats.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/ayush.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/ayushPortal.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/ayushProof.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/backend.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/coach.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/dashboard.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/faculty.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/i18n.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/institute.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/interview.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/match.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/naukri.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/onboarding.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/portfolio.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/profile.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/programs.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/questionnaire.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/quests.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/quiz.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/recommend.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/score.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/scores.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/sections.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/store.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/streak.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/taxonomy.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/tips.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/tuning.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/verify.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "tests/xp.test.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "vercel.json",
+                      "language":  "json",
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "vite.config.js",
+                      "language":  "javascript",
+                      "fileCategory":  "code"
+                  }
+              ]
+}

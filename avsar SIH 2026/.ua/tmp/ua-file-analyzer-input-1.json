@@ -1,0 +1,257 @@
+{
+  "projectRoot": "D:\\CodeProjects\\avsar\\avsar SIH 2026",
+  "batchFiles": [
+    {
+      "path": "src/app/error-boundary.jsx",
+      "language": "javascript",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app/shell.jsx",
+      "language": "javascript",
+      "sizeLines": 415,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app/store.jsx",
+      "language": "javascript",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/Figs.jsx",
+      "language": "javascript",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/FractalMap.jsx",
+      "language": "javascript",
+      "sizeLines": 218,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/LandingHero.jsx",
+      "language": "javascript",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/landing/Sections.jsx",
+      "language": "javascript",
+      "sizeLines": 130,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/components/ui.jsx",
+      "language": "javascript",
+      "sizeLines": 432,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/ayushSeed.js",
+      "language": "javascript",
+      "sizeLines": 126,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/data/jobs.js",
+      "language": "javascript",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/dashboard.js",
+      "language": "javascript",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/roles.js",
+      "language": "javascript",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/lib/theme.js",
+      "language": "javascript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/main.jsx",
+      "language": "javascript",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Ayush.jsx",
+      "language": "javascript",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Institute.jsx",
+      "language": "javascript",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Jobs.jsx",
+      "language": "javascript",
+      "sizeLines": 504,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/NotFound.jsx",
+      "language": "javascript",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Quiz.jsx",
+      "language": "javascript",
+      "sizeLines": 119,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Verify.jsx",
+      "language": "javascript",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/pages/Workspace.jsx",
+      "language": "javascript",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/dashboard.test.js",
+      "language": "javascript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/app/error-boundary.jsx": [],
+    "src/app/shell.jsx": [
+      "src/app/coach-widget.jsx",
+      "src/app/error-boundary.jsx",
+      "src/app/store.jsx",
+      "src/lib/auth.js",
+      "src/lib/i18n.js",
+      "src/lib/score.js",
+      "src/lib/theme.js",
+      "src/pages/Ayush.jsx",
+      "src/pages/Faculty.jsx",
+      "src/pages/Home.jsx",
+      "src/pages/Industry.jsx",
+      "src/pages/Institute.jsx",
+      "src/pages/Interview.jsx",
+      "src/pages/Jobs.jsx",
+      "src/pages/Journey.jsx",
+      "src/pages/Match.jsx",
+      "src/pages/NotFound.jsx",
+      "src/pages/Portfolio.jsx",
+      "src/pages/Profile.jsx",
+      "src/pages/Programs.jsx",
+      "src/pages/Public.jsx",
+      "src/pages/Quests.jsx",
+      "src/pages/Quiz.jsx",
+      "src/pages/Resume.jsx",
+      "src/pages/Verify.jsx",
+      "src/pages/Workspace.jsx"
+    ],
+    "src/app/store.jsx": [
+      "src/lib/backend.js",
+      "src/lib/roles.js",
+      "src/lib/storage.js",
+      "src/lib/store.js"
+    ],
+    "src/components/landing/Figs.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/components/landing/FractalMap.jsx": [],
+    "src/components/landing/LandingHero.jsx": [
+      "src/app/store.jsx",
+      "src/components/landing/FractalMap.jsx",
+      "src/components/ui.jsx"
+    ],
+    "src/components/landing/Sections.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/components/ui.jsx": [],
+    "src/data/ayushSeed.js": [],
+    "src/data/jobs.js": [],
+    "src/lib/dashboard.js": [],
+    "src/lib/roles.js": [
+      "src/lib/storage.js"
+    ],
+    "src/lib/theme.js": [
+      "src/lib/storage.js"
+    ],
+    "src/main.jsx": [
+      "src/app/shell.jsx",
+      "src/app/store.jsx",
+      "src/index.css"
+    ],
+    "src/pages/Ayush.jsx": [
+      "src/app/store.jsx",
+      "src/components/landing/FractalMap.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/lib/progress.js"
+    ],
+    "src/pages/Institute.jsx": [
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/lib/backend.js",
+      "src/lib/cohort.js",
+      "src/lib/dashboard.js"
+    ],
+    "src/pages/Jobs.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/data/quiz.js",
+      "src/lib/coach.js",
+      "src/lib/dashboard.js",
+      "src/lib/match.js",
+      "src/lib/profile.js",
+      "src/lib/questionnaire.js",
+      "src/lib/score.js",
+      "src/lib/store.js"
+    ],
+    "src/pages/NotFound.jsx": [
+      "src/components/ui.jsx"
+    ],
+    "src/pages/Quiz.jsx": [
+      "src/app/store.jsx",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/quiz.js",
+      "src/lib/identity.js",
+      "src/lib/progress.js",
+      "src/lib/score.js"
+    ],
+    "src/pages/Verify.jsx": [
+      "src/components/ui.jsx",
+      "src/lib/verify.js"
+    ],
+    "src/pages/Workspace.jsx": [
+      "src/app/store.jsx",
+      "src/ayush/proof.js",
+      "src/components/ui.jsx",
+      "src/data/ayushSeed.js",
+      "src/data/jobs.js",
+      "src/lib/store.js"
+    ],
+    "tests/dashboard.test.js": [
+      "src/lib/dashboard.js"
+    ]
+  }
+}

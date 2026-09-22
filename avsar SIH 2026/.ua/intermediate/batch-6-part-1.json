@@ -1,0 +1,1316 @@
+{
+ "nodes": [
+  {
+   "id": "file:src/components/StreakMeter.jsx",
+   "type": "file",
+   "name": "StreakMeter.jsx",
+   "filePath": "src/components/StreakMeter.jsx",
+   "summary": "GitHub-style activity heatmap showing daily quest activity, current streak, and total active days.",
+   "tags": [
+    "component",
+    "streak",
+    "heatmap",
+    "activity",
+    "gamification"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/components/XpMeter.jsx",
+   "type": "file",
+   "name": "XpMeter.jsx",
+   "filePath": "src/components/XpMeter.jsx",
+   "summary": "XP progress bar showing level, total XP, and per-source breakdown toward the next level.",
+   "tags": [
+    "component",
+    "xp",
+    "gamification",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/lib/onboarding.js",
+   "type": "file",
+   "name": "onboarding.js",
+   "filePath": "src/lib/onboarding.js",
+   "summary": "Onboarding helpers: weighted progress, profile-derived questions, reset, and AI grade parsing.",
+   "tags": [
+    "utility",
+    "onboarding",
+    "questionnaire",
+    "profile"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/lib/progress.js",
+   "type": "file",
+   "name": "progress.js",
+   "filePath": "src/lib/progress.js",
+   "summary": "LocalStorage-backed quest progress store: completion flags, evidence URLs, daily activity, streaks, badges, and role mastery.",
+   "tags": [
+    "service",
+    "progress",
+    "storage",
+    "streak",
+    "gamification"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/lib/streak.js",
+   "type": "file",
+   "name": "streak.js",
+   "filePath": "src/lib/streak.js",
+   "summary": "Daily activity aggregation: per-day detail and counts, heatmap weeks, streak length, and intensity levels.",
+   "tags": [
+    "utility",
+    "streak",
+    "heatmap",
+    "activity",
+    "analytics"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/lib/xp.js",
+   "type": "file",
+   "name": "xp.js",
+   "filePath": "src/lib/xp.js",
+   "summary": "XP weights, level thresholds, and XP collection from daily activity detail.",
+   "tags": [
+    "utility",
+    "xp",
+    "gamification",
+    "level"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/StreakMeter.jsx:StreakMeter",
+   "type": "function",
+   "name": "StreakMeter",
+   "filePath": "src/components/StreakMeter.jsx",
+   "lineRange": [
+    18,
+    89
+   ],
+   "summary": "Renders a GitHub-style activity heatmap with streak count, active days, and per-day tooltips.",
+   "tags": [
+    "component",
+    "streak",
+    "heatmap",
+    "activity",
+    "gamification"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/components/XpMeter.jsx:XpMeter",
+   "type": "function",
+   "name": "XpMeter",
+   "filePath": "src/components/XpMeter.jsx",
+   "lineRange": [
+    10,
+    58
+   ],
+   "summary": "Renders total XP, level progress bar, and per-source XP breakdown.",
+   "tags": [
+    "component",
+    "xp",
+    "level",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/onboarding.js:onboardingProgress",
+   "type": "function",
+   "name": "onboardingProgress",
+   "filePath": "src/lib/onboarding.js",
+   "lineRange": [
+    10,
+    15
+   ],
+   "summary": "Computes weighted onboarding completion percentage from profile fields.",
+   "tags": [
+    "utility",
+    "onboarding",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/onboarding.js:questionsFromProfile",
+   "type": "function",
+   "name": "questionsFromProfile",
+   "filePath": "src/lib/onboarding.js",
+   "lineRange": [
+    39,
+    54
+   ],
+   "summary": "Builds a short personalized question list from profile skills and resume gaps.",
+   "tags": [
+    "utility",
+    "onboarding",
+    "questionnaire"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/onboarding.js:resetOnboarding",
+   "type": "function",
+   "name": "resetOnboarding",
+   "filePath": "src/lib/onboarding.js",
+   "lineRange": [
+    62,
+    67
+   ],
+   "summary": "Clears onboarding storage keys to restart the wizard.",
+   "tags": [
+    "utility",
+    "onboarding",
+    "reset"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/onboarding.js:parseAiGrade",
+   "type": "function",
+   "name": "parseAiGrade",
+   "filePath": "src/lib/onboarding.js",
+   "lineRange": [
+    70,
+    75
+   ],
+   "summary": "Parses a numeric grade from raw AI output, clamped 0-100.",
+   "tags": [
+    "utility",
+    "parsing",
+    "ai-grading"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:load",
+   "type": "function",
+   "name": "load",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    19,
+    31
+   ],
+   "summary": "Loads progress state from storage, migrating day keys and reseeding when stale.",
+   "tags": [
+    "utility",
+    "storage",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:todayISO",
+   "type": "function",
+   "name": "todayISO",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    37,
+    40
+   ],
+   "summary": "Returns today's date as YYYY-MM-DD.",
+   "tags": [
+    "utility",
+    "date",
+    "formatting"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:yesterdayISO",
+   "type": "function",
+   "name": "yesterdayISO",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    42,
+    46
+   ],
+   "summary": "Returns yesterday's date as YYYY-MM-DD.",
+   "tags": [
+    "utility",
+    "date",
+    "formatting"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:getProgress",
+   "type": "function",
+   "name": "getProgress",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    48,
+    48
+   ],
+   "summary": "Returns the full progress state object.",
+   "tags": [
+    "utility",
+    "progress",
+    "storage"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:questSnapshot",
+   "type": "function",
+   "name": "questSnapshot",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    52,
+    55
+   ],
+   "summary": "Returns the quest completion map for a role branch.",
+   "tags": [
+    "utility",
+    "quest",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:isCourseDone",
+   "type": "function",
+   "name": "isCourseDone",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    57,
+    59
+   ],
+   "summary": "Checks whether a course quest is marked done.",
+   "tags": [
+    "utility",
+    "quest",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:isProjectDone",
+   "type": "function",
+   "name": "isProjectDone",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    61,
+    63
+   ],
+   "summary": "Checks whether a project quest is marked done.",
+   "tags": [
+    "utility",
+    "quest",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:isSkillComplete",
+   "type": "function",
+   "name": "isSkillComplete",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    65,
+    69
+   ],
+   "summary": "Checks whether all quests for a skill are complete with evidence.",
+   "tags": [
+    "utility",
+    "quest",
+    "evidence"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:setQuestDone",
+   "type": "function",
+   "name": "setQuestDone",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    71,
+    81
+   ],
+   "summary": "Marks a quest done or undone and stamps today's activity.",
+   "tags": [
+    "utility",
+    "progress",
+    "quest",
+    "activity"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:getEvidence",
+   "type": "function",
+   "name": "getEvidence",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    84,
+    86
+   ],
+   "summary": "Returns the evidence URL for a skill quest.",
+   "tags": [
+    "utility",
+    "evidence",
+    "quest"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:setEvidence",
+   "type": "function",
+   "name": "setEvidence",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    88,
+    94
+   ],
+   "summary": "Saves a trimmed evidence URL for a skill quest.",
+   "tags": [
+    "utility",
+    "evidence",
+    "quest"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:branchProgress",
+   "type": "function",
+   "name": "branchProgress",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    96,
+    104
+   ],
+   "summary": "Aggregates completion counts for a role branch.",
+   "tags": [
+    "utility",
+    "progress",
+    "analytics"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:recordDay",
+   "type": "function",
+   "name": "recordDay",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    109,
+    114
+   ],
+   "summary": "Records activity under a namespaced day key.",
+   "tags": [
+    "utility",
+    "activity",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:weeklyActive",
+   "type": "function",
+   "name": "weeklyActive",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    116,
+    126
+   ],
+   "summary": "Counts distinct active days in the trailing 7-day window.",
+   "tags": [
+    "utility",
+    "activity",
+    "analytics"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:bumpStreak",
+   "type": "function",
+   "name": "bumpStreak",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    128,
+    145
+   ],
+   "summary": "Updates the day streak and awards 7-day and 30-day badges.",
+   "tags": [
+    "utility",
+    "streak",
+    "badges",
+    "gamification"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:masteryLevel",
+   "type": "function",
+   "name": "masteryLevel",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    148,
+    155
+   ],
+   "summary": "Computes 0-2 mastery level from completion plus evidence.",
+   "tags": [
+    "utility",
+    "mastery",
+    "evidence"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:getStreak",
+   "type": "function",
+   "name": "getStreak",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    157,
+    157
+   ],
+   "summary": "Returns the stored streak object.",
+   "tags": [
+    "utility",
+    "streak",
+    "progress"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:completedSkillIdsForRole",
+   "type": "function",
+   "name": "completedSkillIdsForRole",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    162,
+    180
+   ],
+   "summary": "Lists skill ids with verified evidence for a role.",
+   "tags": [
+    "utility",
+    "progress",
+    "skills",
+    "verification"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/progress.js:clearProgress",
+   "type": "function",
+   "name": "clearProgress",
+   "filePath": "src/lib/progress.js",
+   "lineRange": [
+    182,
+    184
+   ],
+   "summary": "Resets progress state to empty.",
+   "tags": [
+    "utility",
+    "progress",
+    "reset"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/streak.js:dayISO",
+   "type": "function",
+   "name": "dayISO",
+   "filePath": "src/lib/streak.js",
+   "lineRange": [
+    8,
+    11
+   ],
+   "summary": "Formats a timestamp as a YYYY-MM-DD local date.",
+   "tags": [
+    "utility",
+    "date",
+    "formatting"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/streak.js:collectDayDetail",
+   "type": "function",
+   "name": "collectDayDetail",
+   "filePath": "src/lib/streak.js",
+   "lineRange": [
+    21,
+    50
+   ],
+   "summary": "Aggregates per-day activity detail with per-kind counts from progress and job events.",
+   "tags": [
+    "utility",
+    "streak",
+    "activity",
+    "analytics"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/lib/streak.js:collectDayCounts",
+   "type": "function",
+   "name": "collectDayCounts",
+   "filePath": "src/lib/streak.js",
+   "lineRange": [
+    53,
+    70
+   ],
+   "summary": "Aggregates per-day total activity counts.",
+   "tags": [
+    "utility",
+    "activity",
+    "streak"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/streak.js:levelFor",
+   "type": "function",
+   "name": "levelFor",
+   "filePath": "src/lib/streak.js",
+   "lineRange": [
+    73,
+    79
+   ],
+   "summary": "Maps a day count to a 0-4 heatmap intensity level.",
+   "tags": [
+    "utility",
+    "heatmap",
+    "streak"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/streak.js:heatmapWeeks",
+   "type": "function",
+   "name": "heatmapWeeks",
+   "filePath": "src/lib/streak.js",
+   "lineRange": [
+    82,
+    94
+   ],
+   "summary": "Builds week columns of day cells for the heatmap grid.",
+   "tags": [
+    "utility",
+    "heatmap",
+    "streak"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/streak.js:currentStreak",
+   "type": "function",
+   "name": "currentStreak",
+   "filePath": "src/lib/streak.js",
+   "lineRange": [
+    97,
+    106
+   ],
+   "summary": "Counts consecutive active days ending today or yesterday.",
+   "tags": [
+    "utility",
+    "streak",
+    "activity"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/streak.js:totalActive",
+   "type": "function",
+   "name": "totalActive",
+   "filePath": "src/lib/streak.js",
+   "lineRange": [
+    108,
+    110
+   ],
+   "summary": "Counts days with any recorded activity.",
+   "tags": [
+    "utility",
+    "activity",
+    "analytics"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/xp.js:levelFor",
+   "type": "function",
+   "name": "levelFor",
+   "filePath": "src/lib/xp.js",
+   "lineRange": [
+    37,
+    51
+   ],
+   "summary": "Maps total XP to a level via ascending thresholds.",
+   "tags": [
+    "utility",
+    "xp",
+    "level"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/lib/xp.js:collectXP",
+   "type": "function",
+   "name": "collectXP",
+   "filePath": "src/lib/xp.js",
+   "lineRange": [
+    53,
+    64
+   ],
+   "summary": "Sums weighted XP by source and computes level and total.",
+   "tags": [
+    "utility",
+    "xp",
+    "level",
+    "scoring"
+   ],
+   "complexity": "simple"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/components/StreakMeter.jsx:StreakMeter",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/components/StreakMeter.jsx:StreakMeter",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/XpMeter.jsx",
+   "target": "function:src/components/XpMeter.jsx:XpMeter",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/XpMeter.jsx",
+   "target": "function:src/components/XpMeter.jsx:XpMeter",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:onboardingProgress",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:onboardingProgress",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:questionsFromProfile",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:questionsFromProfile",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:resetOnboarding",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:resetOnboarding",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:parseAiGrade",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "function:src/lib/onboarding.js:parseAiGrade",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:load",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:todayISO",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:todayISO",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:yesterdayISO",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:yesterdayISO",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:getProgress",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:getProgress",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:questSnapshot",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:questSnapshot",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:isCourseDone",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:isCourseDone",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:isProjectDone",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:isProjectDone",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:isSkillComplete",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:isSkillComplete",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:setQuestDone",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:setQuestDone",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:getEvidence",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:getEvidence",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:setEvidence",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:setEvidence",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:branchProgress",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:branchProgress",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:recordDay",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:recordDay",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:weeklyActive",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:weeklyActive",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:bumpStreak",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:bumpStreak",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:masteryLevel",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:masteryLevel",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:getStreak",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:getStreak",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:completedSkillIdsForRole",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:completedSkillIdsForRole",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:clearProgress",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/progress.js:clearProgress",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:dayISO",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:dayISO",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:collectDayDetail",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:collectDayDetail",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:collectDayCounts",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:collectDayCounts",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:levelFor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:levelFor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:heatmapWeeks",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:heatmapWeeks",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:currentStreak",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:currentStreak",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:totalActive",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/streak.js:totalActive",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/xp.js",
+   "target": "function:src/lib/xp.js:levelFor",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/xp.js",
+   "target": "function:src/lib/xp.js:levelFor",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/xp.js",
+   "target": "function:src/lib/xp.js:collectXP",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/lib/xp.js",
+   "target": "function:src/lib/xp.js:collectXP",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "file:src/components/ui.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "file:src/lib/streak.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/XpMeter.jsx",
+   "target": "file:src/components/ui.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/XpMeter.jsx",
+   "target": "file:src/lib/xp.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "file:src/lib/storage.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "file:src/data/quests.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "file:src/lib/quests.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "file:src/lib/storage.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "file:src/lib/progress.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "file:src/lib/storage.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/lib/xp.js",
+   "target": "file:src/lib/streak.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/lib/streak.js:collectDayCounts",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/lib/streak.js:collectDayDetail",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/lib/streak.js:heatmapWeeks",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/lib/streak.js:currentStreak",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/lib/streak.js:totalActive",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/StreakMeter.jsx",
+   "target": "function:src/lib/streak.js:dayISO",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/XpMeter.jsx",
+   "target": "function:src/lib/xp.js:collectXP",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "function:src/lib/progress.js:getProgress",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/xp.js",
+   "target": "function:src/lib/streak.js:collectDayDetail",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/progress.js",
+   "target": "function:src/lib/quests.js:isEvidenceUrl",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/lib/onboarding.js",
+   "target": "file:tests/onboarding.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/lib/streak.js",
+   "target": "file:tests/streak.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/lib/xp.js",
+   "target": "file:tests/xp.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  }
+ ]
+}

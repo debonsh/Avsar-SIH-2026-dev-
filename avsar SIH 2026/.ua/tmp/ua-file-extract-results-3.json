@@ -1,0 +1,3777 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 17,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 17,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 17,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/app/coach-widget.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 357,
+      "nonEmptyLines": 337,
+      "functions": [
+        {
+          "name": "loadLog",
+          "startLine": 23,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "inlineMd",
+          "startLine": 34,
+          "endLine": 45,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "ChatText",
+          "startLine": 47,
+          "endLine": 87,
+          "params": []
+        },
+        {
+          "name": "CoachWidget",
+          "startLine": 89,
+          "endLine": 357,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "CoachWidget",
+          "line": 89,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadLog",
+          "callee": "JSON.parse",
+          "lineNumber": 25
+        },
+        {
+          "caller": "loadLog",
+          "callee": "localStorage.getItem",
+          "lineNumber": 25
+        },
+        {
+          "caller": "loadLog",
+          "callee": "Array.isArray",
+          "lineNumber": 26
+        },
+        {
+          "caller": "loadLog",
+          "callee": "v.filter((m) => m && typeof m.text === \"string\").slice",
+          "lineNumber": 26
+        },
+        {
+          "caller": "loadLog",
+          "callee": "v.filter",
+          "lineNumber": 26
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "String(text).split",
+          "lineNumber": 35
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "String",
+          "lineNumber": 35
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "parts.map",
+          "lineNumber": 36
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "p.startsWith",
+          "lineNumber": 37
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "p.endsWith",
+          "lineNumber": 37
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "p.slice",
+          "lineNumber": 38
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "p.startsWith",
+          "lineNumber": 40
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "p.endsWith",
+          "lineNumber": 40
+        },
+        {
+          "caller": "inlineMd",
+          "callee": "p.slice",
+          "lineNumber": 41
+        },
+        {
+          "caller": "ChatText",
+          "callee": "String(text).split",
+          "lineNumber": 48
+        },
+        {
+          "caller": "ChatText",
+          "callee": "String",
+          "lineNumber": 48
+        },
+        {
+          "caller": "flush",
+          "callee": "blocks.push",
+          "lineNumber": 54
+        },
+        {
+          "caller": "flush",
+          "callee": "list.items.map",
+          "lineNumber": 56
+        },
+        {
+          "caller": "flush",
+          "callee": "inlineMd",
+          "lineNumber": 56
+        },
+        {
+          "caller": "ChatText",
+          "callee": "lines.forEach",
+          "lineNumber": 62
+        },
+        {
+          "caller": "ChatText",
+          "callee": "raw.trim",
+          "lineNumber": 63
+        },
+        {
+          "caller": "ChatText",
+          "callee": "line.match",
+          "lineNumber": 64
+        },
+        {
+          "caller": "ChatText",
+          "callee": "line.match",
+          "lineNumber": 65
+        },
+        {
+          "caller": "ChatText",
+          "callee": "line.match",
+          "lineNumber": 66
+        },
+        {
+          "caller": "ChatText",
+          "callee": "flush",
+          "lineNumber": 68
+        },
+        {
+          "caller": "ChatText",
+          "callee": "blocks.push",
+          "lineNumber": 69
+        },
+        {
+          "caller": "ChatText",
+          "callee": "inlineMd",
+          "lineNumber": 69
+        },
+        {
+          "caller": "ChatText",
+          "callee": "Boolean",
+          "lineNumber": 71
+        },
+        {
+          "caller": "ChatText",
+          "callee": "flush",
+          "lineNumber": 74
+        },
+        {
+          "caller": "ChatText",
+          "callee": "list.items.push",
+          "lineNumber": 77
+        },
+        {
+          "caller": "ChatText",
+          "callee": "flush",
+          "lineNumber": 79
+        },
+        {
+          "caller": "ChatText",
+          "callee": "flush",
+          "lineNumber": 81
+        },
+        {
+          "caller": "ChatText",
+          "callee": "blocks.push",
+          "lineNumber": 82
+        },
+        {
+          "caller": "ChatText",
+          "callee": "inlineMd",
+          "lineNumber": 82
+        },
+        {
+          "caller": "ChatText",
+          "callee": "flush",
+          "lineNumber": 85
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useC2C",
+          "lineNumber": 90
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useSearchParams",
+          "lineNumber": 91
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useState",
+          "lineNumber": 92
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useState",
+          "lineNumber": 93
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useState",
+          "lineNumber": 94
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useState",
+          "lineNumber": 95
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useState",
+          "lineNumber": 96
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "localStorage.getItem",
+          "lineNumber": 97
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useRef",
+          "lineNumber": 99
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useRef",
+          "lineNumber": 100
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useMemo",
+          "lineNumber": 102
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "rankRoles",
+          "lineNumber": 104
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "JOBS.filter((j) => j.role === role).slice",
+          "lineNumber": 105
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "JOBS.filter",
+          "lineNumber": 105
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "loadProfile",
+          "lineNumber": 106
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "[p.year, p.lane && `${p.lane} lane`, p.college, p.goal && `goal: ${p.goal}`]\n      .filter(Boolean).join",
+          "lineNumber": 107
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "[p.year, p.lane && `${p.lane} lane`, p.college, p.goal && `goal: ${p.goal}`]\n      .filter",
+          "lineNumber": 107
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "extractContact",
+          "lineNumber": 119
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useEffect",
+          "lineNumber": 123
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "bottomRef.current?.scrollIntoView",
+          "lineNumber": 124
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useEffect",
+          "lineNumber": 127
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "inputRef.current?.focus",
+          "lineNumber": 128
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useEffect",
+          "lineNumber": 131
+        },
+        {
+          "caller": "onKey",
+          "callee": "setOpen",
+          "lineNumber": 133
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "window.addEventListener",
+          "lineNumber": 134
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "window.removeEventListener",
+          "lineNumber": 135
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useEffect",
+          "lineNumber": 139
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "localStorage.setItem",
+          "lineNumber": 140
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useEffect",
+          "lineNumber": 142
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "localStorage.setItem",
+          "lineNumber": 144
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "JSON.stringify",
+          "lineNumber": 144
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "log.slice",
+          "lineNumber": 144
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "useEffect",
+          "lineNumber": 151
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "params.get",
+          "lineNumber": 152
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "setOpen",
+          "lineNumber": 153
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "greet",
+          "lineNumber": 154
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "setParams",
+          "lineNumber": 155
+        },
+        {
+          "caller": "push",
+          "callee": "setLog",
+          "lineNumber": 161
+        },
+        {
+          "caller": "push",
+          "callee": "[...prev, { kind, text, at: Date.now() }].slice",
+          "lineNumber": 161
+        },
+        {
+          "caller": "push",
+          "callee": "Date.now",
+          "lineNumber": 161
+        },
+        {
+          "caller": "greet",
+          "callee": "s.contactName.split",
+          "lineNumber": 166
+        },
+        {
+          "caller": "greet",
+          "callee": "push",
+          "lineNumber": 167
+        },
+        {
+          "caller": "newChat",
+          "callee": "localStorage.removeItem",
+          "lineNumber": 176
+        },
+        {
+          "caller": "newChat",
+          "callee": "setLog",
+          "lineNumber": 177
+        },
+        {
+          "caller": "newChat",
+          "callee": "greet",
+          "lineNumber": 178
+        },
+        {
+          "caller": "run",
+          "callee": "localAnswer",
+          "lineNumber": 182
+        },
+        {
+          "caller": "run",
+          "callee": "push",
+          "lineNumber": 183
+        },
+        {
+          "caller": "run",
+          "callee": "QUICK.find",
+          "lineNumber": 183
+        },
+        {
+          "caller": "run",
+          "callee": "COACH_ACTIONS.find",
+          "lineNumber": 183
+        },
+        {
+          "caller": "run",
+          "callee": "push",
+          "lineNumber": 184
+        },
+        {
+          "caller": "run",
+          "callee": "saveArtifact({ kind: actionId, title: `${actionId} for ${s.roleLabel}`, body: answer }).catch",
+          "lineNumber": 186
+        },
+        {
+          "caller": "run",
+          "callee": "saveArtifact",
+          "lineNumber": 186
+        },
+        {
+          "caller": "run",
+          "callee": "hasAIKey",
+          "lineNumber": 188
+        },
+        {
+          "caller": "run",
+          "callee": "setBusy",
+          "lineNumber": 189
+        },
+        {
+          "caller": "run",
+          "callee": "chat",
+          "lineNumber": 191
+        },
+        {
+          "caller": "run",
+          "callee": "buildPrompt",
+          "lineNumber": 191
+        },
+        {
+          "caller": "run",
+          "callee": "push",
+          "lineNumber": 192
+        },
+        {
+          "caller": "run",
+          "callee": "setBusy",
+          "lineNumber": 196
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "hasAIKey",
+          "lineNumber": 214
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "hasAIKey",
+          "lineNumber": 215
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "setLang",
+          "lineNumber": 229
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "setOpen",
+          "lineNumber": 237
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "[\n                  { label: s.missing[0] ? `Fix my gap: ${s.missing[0]}` : \"Explain my gaps\", id: \"gaps\" },\n                  { label: \"Interview tip for me\", id: \"interview\" },\n                  { label: \"Where should I apply?\", id: \"career\" },\n                ].map",
+          "lineNumber": 249
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "run",
+          "lineNumber": 257
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "log.map",
+          "lineNumber": 265
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "new Intl.DateTimeFormat(\"en-IN\", { hour: \"numeric\", minute: \"2-digit\" }).format",
+          "lineNumber": 285
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "QUICK.map",
+          "lineNumber": 306
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "run",
+          "lineNumber": 311
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "e.preventDefault",
+          "lineNumber": 321
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "question.trim",
+          "lineNumber": 322
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "run",
+          "lineNumber": 323
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "question.trim",
+          "lineNumber": 323
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "setQuestion",
+          "lineNumber": 324
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "setQuestion",
+          "lineNumber": 331
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "question.trim",
+          "lineNumber": 335
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "setOpen",
+          "lineNumber": 346
+        },
+        {
+          "caller": "CoachWidget",
+          "callee": "greet",
+          "lineNumber": 347
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 1,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/courses.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 82,
+      "functions": [
+        {
+          "name": "coursesFor",
+          "startLine": 21,
+          "endLine": 24,
+          "params": [
+            "skill"
+          ]
+        },
+        {
+          "name": "certsFor",
+          "startLine": 27,
+          "endLine": 31,
+          "params": [
+            "skill"
+          ]
+        },
+        {
+          "name": "recommendFor",
+          "startLine": 38,
+          "endLine": 53,
+          "params": [
+            "skill"
+          ]
+        },
+        {
+          "name": "videosFor",
+          "startLine": 57,
+          "endLine": 59,
+          "params": [
+            "skill"
+          ]
+        },
+        {
+          "name": "resumeTips",
+          "startLine": 63,
+          "endLine": 74,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "COURSES",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "coursesFor",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "certsFor",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "recommendFor",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "videosFor",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "resumeTips",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "PROJECT_IDEAS",
+          "line": 76,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "coursesFor",
+          "callee": "skill.toLowerCase",
+          "lineNumber": 22
+        },
+        {
+          "caller": "certsFor",
+          "callee": "coursesFor",
+          "lineNumber": 28
+        },
+        {
+          "caller": "certsFor",
+          "callee": "all.filter",
+          "lineNumber": 29
+        },
+        {
+          "caller": "certsFor",
+          "callee": "COURSES.default.filter",
+          "lineNumber": 30
+        },
+        {
+          "caller": "recommendFor",
+          "callee": "coursesFor",
+          "lineNumber": 39
+        },
+        {
+          "caller": "recommendFor",
+          "callee": "list\n    .map((c, i) => {\n      let s = 0;\n      if (wantCert && c.c) s -= 10;\n      if (wantPractice && (c.kind === \"practice\" || /project/i.test(c.t))) s -= 10;\n      if ((c.hrs ?? 2) > budget) s += 5;\n      return { c, s, i };\n    })\n    .sort((a, b) => (a.s - b.s) || (a.i - b.i))\n    .map",
+          "lineNumber": 43
+        },
+        {
+          "caller": "recommendFor",
+          "callee": "list\n    .map((c, i) => {\n      let s = 0;\n      if (wantCert && c.c) s -= 10;\n      if (wantPractice && (c.kind === \"practice\" || /project/i.test(c.t))) s -= 10;\n      if ((c.hrs ?? 2) > budget) s += 5;\n      return { c, s, i };\n    })\n    .sort",
+          "lineNumber": 43
+        },
+        {
+          "caller": "recommendFor",
+          "callee": "list\n    .map",
+          "lineNumber": 43
+        },
+        {
+          "caller": "recommendFor",
+          "callee": "/project/i.test",
+          "lineNumber": 47
+        },
+        {
+          "caller": "videosFor",
+          "callee": "coursesFor(skill).filter((c) => /youtube\\.com|youtu\\.be/.test(c.u)).slice",
+          "lineNumber": 58
+        },
+        {
+          "caller": "videosFor",
+          "callee": "coursesFor(skill).filter",
+          "lineNumber": 58
+        },
+        {
+          "caller": "videosFor",
+          "callee": "coursesFor",
+          "lineNumber": 58
+        },
+        {
+          "caller": "videosFor",
+          "callee": "/youtube\\.com|youtu\\.be/.test",
+          "lineNumber": 58
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "Object.fromEntries",
+          "lineNumber": 65
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "(result.breakdown || []).map",
+          "lineNumber": 65
+        },
+        {
+          "caller": "has",
+          "callee": "(bd[label]?.why || []).some",
+          "lineNumber": 66
+        },
+        {
+          "caller": "has",
+          "callee": "re.test",
+          "lineNumber": 66
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "has",
+          "lineNumber": 67
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "tips.push",
+          "lineNumber": 67
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "has",
+          "lineNumber": 68
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "tips.push",
+          "lineNumber": 68
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "has",
+          "lineNumber": 69
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "tips.push",
+          "lineNumber": 69
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "has",
+          "lineNumber": 70
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "tips.push",
+          "lineNumber": 70
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "has",
+          "lineNumber": 71
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "tips.push",
+          "lineNumber": 71
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "tips.push",
+          "lineNumber": 72
+        },
+        {
+          "caller": "resumeTips",
+          "callee": "tips.slice",
+          "lineNumber": 73
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/data/tuning.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 31,
+      "functions": [
+        {
+          "name": "getTone",
+          "startLine": 16,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "setTone",
+          "startLine": 21,
+          "endLine": 23,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "getCustom",
+          "startLine": 25,
+          "endLine": 27,
+          "params": []
+        },
+        {
+          "name": "setCustom",
+          "startLine": 29,
+          "endLine": 31,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "systemPreamble",
+          "startLine": 34,
+          "endLine": 38,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TONES",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "DEFAULT_TONE",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "getTone",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "setTone",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "getCustom",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "setCustom",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "systemPreamble",
+          "line": 34,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getTone",
+          "callee": "loadJSON",
+          "lineNumber": 17
+        },
+        {
+          "caller": "getTone",
+          "callee": "TONES.some",
+          "lineNumber": 18
+        },
+        {
+          "caller": "setTone",
+          "callee": "saveJSON",
+          "lineNumber": 22
+        },
+        {
+          "caller": "setTone",
+          "callee": "TONES.some",
+          "lineNumber": 22
+        },
+        {
+          "caller": "getCustom",
+          "callee": "String(loadJSON(CUSTOM_KEY, \"\") || \"\").slice",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getCustom",
+          "callee": "String",
+          "lineNumber": 26
+        },
+        {
+          "caller": "getCustom",
+          "callee": "loadJSON",
+          "lineNumber": 26
+        },
+        {
+          "caller": "setCustom",
+          "callee": "saveJSON",
+          "lineNumber": 30
+        },
+        {
+          "caller": "setCustom",
+          "callee": "String(text || \"\").slice",
+          "lineNumber": 30
+        },
+        {
+          "caller": "setCustom",
+          "callee": "String",
+          "lineNumber": 30
+        },
+        {
+          "caller": "systemPreamble",
+          "callee": "TONES.find",
+          "lineNumber": 35
+        },
+        {
+          "caller": "systemPreamble",
+          "callee": "getTone",
+          "lineNumber": 35
+        },
+        {
+          "caller": "systemPreamble",
+          "callee": "getCustom",
+          "lineNumber": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 7,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/ai.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 118,
+      "nonEmptyLines": 104,
+      "functions": [
+        {
+          "name": "modelFor",
+          "startLine": 23,
+          "endLine": 25,
+          "params": [
+            "task"
+          ]
+        },
+        {
+          "name": "groqKeys",
+          "startLine": 28,
+          "endLine": 31,
+          "params": []
+        },
+        {
+          "name": "hasAIKey",
+          "startLine": 34,
+          "endLine": 36,
+          "params": []
+        },
+        {
+          "name": "postJSON",
+          "startLine": 38,
+          "endLine": 56,
+          "params": [
+            "url",
+            "headers",
+            "body"
+          ]
+        },
+        {
+          "name": "groqChat",
+          "startLine": 58,
+          "endLine": 69,
+          "params": [
+            "prompt",
+            "t"
+          ]
+        },
+        {
+          "name": "geminiChat",
+          "startLine": 71,
+          "endLine": 80,
+          "params": [
+            "prompt",
+            "t"
+          ]
+        },
+        {
+          "name": "chat",
+          "startLine": 83,
+          "endLine": 86,
+          "params": [
+            "prompt"
+          ]
+        },
+        {
+          "name": "readMemo",
+          "startLine": 95,
+          "endLine": 100,
+          "params": []
+        },
+        {
+          "name": "writeMemo",
+          "startLine": 102,
+          "endLine": 106,
+          "params": [
+            "map",
+            "persist"
+          ]
+        },
+        {
+          "name": "memoCall",
+          "startLine": 108,
+          "endLine": 118,
+          "params": [
+            "namespace",
+            "keyText",
+            "fn"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "TASKS",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "modelFor",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "hasAIKey",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "chat",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "memoCall",
+          "line": 108,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "groqKeys",
+          "callee": "raw.split(\",\").map((s) => s.trim()).filter",
+          "lineNumber": 30
+        },
+        {
+          "caller": "groqKeys",
+          "callee": "raw.split(\",\").map",
+          "lineNumber": 30
+        },
+        {
+          "caller": "groqKeys",
+          "callee": "raw.split",
+          "lineNumber": 30
+        },
+        {
+          "caller": "groqKeys",
+          "callee": "s.trim",
+          "lineNumber": 30
+        },
+        {
+          "caller": "hasAIKey",
+          "callee": "groqKeys",
+          "lineNumber": 35
+        },
+        {
+          "caller": "hasAIKey",
+          "callee": "Boolean",
+          "lineNumber": 35
+        },
+        {
+          "caller": "hasAIKey",
+          "callee": "(import.meta.env?.VITE_GEMINI_KEY || \"\").trim",
+          "lineNumber": 35
+        },
+        {
+          "caller": "postJSON",
+          "callee": "setTimeout",
+          "lineNumber": 40
+        },
+        {
+          "caller": "postJSON",
+          "callee": "ctrl.abort",
+          "lineNumber": 40
+        },
+        {
+          "caller": "postJSON",
+          "callee": "fetch",
+          "lineNumber": 42
+        },
+        {
+          "caller": "postJSON",
+          "callee": "JSON.stringify",
+          "lineNumber": 45
+        },
+        {
+          "caller": "postJSON",
+          "callee": "res.json().catch",
+          "lineNumber": 49
+        },
+        {
+          "caller": "postJSON",
+          "callee": "res.json",
+          "lineNumber": 49
+        },
+        {
+          "caller": "postJSON",
+          "callee": "data?.choices?.[0]?.message?.content?.trim",
+          "lineNumber": 50
+        },
+        {
+          "caller": "postJSON",
+          "callee": "clearTimeout",
+          "lineNumber": 54
+        },
+        {
+          "caller": "groqChat",
+          "callee": "systemPreamble",
+          "lineNumber": 59
+        },
+        {
+          "caller": "groqChat",
+          "callee": "groqKeys",
+          "lineNumber": 60
+        },
+        {
+          "caller": "groqChat",
+          "callee": "postJSON(\n      GROQ_URL,\n      { Authorization: `Bearer ${key}` },\n      { model: t.groq, messages: [{ role: \"system\", content: sys }, { role: \"user\", content: prompt }], temperature: t.temp, max_tokens: t.maxTokens }\n    ).catch",
+          "lineNumber": 61
+        },
+        {
+          "caller": "groqChat",
+          "callee": "postJSON",
+          "lineNumber": 61
+        },
+        {
+          "caller": "geminiChat",
+          "callee": "(import.meta.env?.VITE_GEMINI_KEY || \"\").trim",
+          "lineNumber": 72
+        },
+        {
+          "caller": "geminiChat",
+          "callee": "(import.meta.env?.VITE_GEMINI_MODEL || \"gemini-2.0-flash\").trim",
+          "lineNumber": 74
+        },
+        {
+          "caller": "geminiChat",
+          "callee": "postJSON(\n    GEMINI_URL,\n    { Authorization: `Bearer ${key}` },\n    { model, messages: [{ role: \"system\", content: systemPreamble() }, { role: \"user\", content: prompt }], temperature: t.temp, max_tokens: t.maxTokens }\n  ).catch",
+          "lineNumber": 75
+        },
+        {
+          "caller": "geminiChat",
+          "callee": "postJSON",
+          "lineNumber": 75
+        },
+        {
+          "caller": "geminiChat",
+          "callee": "systemPreamble",
+          "lineNumber": 78
+        },
+        {
+          "caller": "chat",
+          "callee": "groqChat",
+          "lineNumber": 85
+        },
+        {
+          "caller": "chat",
+          "callee": "geminiChat",
+          "lineNumber": 85
+        },
+        {
+          "caller": "readMemo",
+          "callee": "loadJSON",
+          "lineNumber": 96
+        },
+        {
+          "caller": "readMemo",
+          "callee": "memFallback.has",
+          "lineNumber": 98
+        },
+        {
+          "caller": "readMemo",
+          "callee": "memFallback.set",
+          "lineNumber": 98
+        },
+        {
+          "caller": "readMemo",
+          "callee": "memFallback.get",
+          "lineNumber": 99
+        },
+        {
+          "caller": "writeMemo",
+          "callee": "Object.keys",
+          "lineNumber": 103
+        },
+        {
+          "caller": "writeMemo",
+          "callee": "keys.slice",
+          "lineNumber": 104
+        },
+        {
+          "caller": "writeMemo",
+          "callee": "Math.max",
+          "lineNumber": 104
+        },
+        {
+          "caller": "writeMemo",
+          "callee": "saveJSON",
+          "lineNumber": 105
+        },
+        {
+          "caller": "memoCall",
+          "callee": "hashStr",
+          "lineNumber": 109
+        },
+        {
+          "caller": "memoCall",
+          "callee": "String",
+          "lineNumber": 109
+        },
+        {
+          "caller": "memoCall",
+          "callee": "readMemo",
+          "lineNumber": 110
+        },
+        {
+          "caller": "memoCall",
+          "callee": "fn",
+          "lineNumber": 112
+        },
+        {
+          "caller": "memoCall",
+          "callee": "writeMemo",
+          "lineNumber": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 5,
+        "functionCount": 10,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/aiQuestions.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 103,
+      "nonEmptyLines": 93,
+      "functions": [
+        {
+          "name": "ctx",
+          "startLine": 8,
+          "endLine": 9,
+          "params": []
+        },
+        {
+          "name": "parseQuizItems",
+          "startLine": 13,
+          "endLine": 31,
+          "params": [
+            "raw"
+          ]
+        },
+        {
+          "name": "parseInterviewItems",
+          "startLine": 33,
+          "endLine": 37,
+          "params": [
+            "raw"
+          ]
+        },
+        {
+          "name": "parseQuestionnaireItems",
+          "startLine": 39,
+          "endLine": 62,
+          "params": [
+            "raw"
+          ]
+        },
+        {
+          "name": "genQuizItems",
+          "startLine": 66,
+          "endLine": 73,
+          "params": [
+            "resumeText"
+          ]
+        },
+        {
+          "name": "genInterviewQs",
+          "startLine": 75,
+          "endLine": 82,
+          "params": [
+            "resumeText"
+          ]
+        },
+        {
+          "name": "gradeAnswerAI",
+          "startLine": 86,
+          "endLine": 94,
+          "params": [
+            "question",
+            "answer"
+          ]
+        },
+        {
+          "name": "genQuestionnaire",
+          "startLine": 96,
+          "endLine": 103,
+          "params": [
+            "resumeText"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parseQuizItems",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "parseInterviewItems",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "parseQuestionnaireItems",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "genQuizItems",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "genInterviewQs",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "gradeAnswerAI",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "genQuestionnaire",
+          "line": 96,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ctx",
+          "callee": "String(resumeText || \"\").slice",
+          "lineNumber": 9
+        },
+        {
+          "caller": "ctx",
+          "callee": "String",
+          "lineNumber": 9
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "JSON.parse",
+          "lineNumber": 16
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "raw.replace(/```json|```/g, \"\").trim",
+          "lineNumber": 16
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "raw.replace",
+          "lineNumber": 16
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "Array.isArray",
+          "lineNumber": 17
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "String((it && it.text) || \"\").trim",
+          "lineNumber": 20
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "String",
+          "lineNumber": 20
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "Array.isArray",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "it.opts.map((o) => String(o).trim()).filter(Boolean).slice",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "it.opts.map((o) => String(o).trim()).filter",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "it.opts.map",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "String(o).trim",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "String",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "Number",
+          "lineNumber": 22
+        },
+        {
+          "caller": "parseQuizItems",
+          "callee": "out.push",
+          "lineNumber": 24
+        },
+        {
+          "caller": "parseInterviewItems",
+          "callee": "parseQuestionSet",
+          "lineNumber": 34
+        },
+        {
+          "caller": "parseInterviewItems",
+          "callee": "set.slice(0, 5).map",
+          "lineNumber": 36
+        },
+        {
+          "caller": "parseInterviewItems",
+          "callee": "set.slice",
+          "lineNumber": 36
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "JSON.parse",
+          "lineNumber": 42
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "raw.replace(/```json|```/g, \"\").trim",
+          "lineNumber": 42
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "raw.replace",
+          "lineNumber": 42
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "Array.isArray",
+          "lineNumber": 43
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "String((it && it.text) || \"\").trim",
+          "lineNumber": 46
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "String",
+          "lineNumber": 46
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "[\"choice\", \"yesno\", \"text\", \"url\"].includes",
+          "lineNumber": 47
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "(Array.isArray(it.options) ? it.options : []).map((o) => String(o).trim()).filter(Boolean).slice",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "(Array.isArray(it.options) ? it.options : []).map((o) => String(o).trim()).filter",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "(Array.isArray(it.options) ? it.options : []).map",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "Array.isArray",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "String(o).trim",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "String",
+          "lineNumber": 51
+        },
+        {
+          "caller": "parseQuestionnaireItems",
+          "callee": "out.push",
+          "lineNumber": 55
+        },
+        {
+          "caller": "genQuizItems",
+          "callee": "ctx",
+          "lineNumber": 68
+        },
+        {
+          "caller": "genQuizItems",
+          "callee": "memoCall",
+          "lineNumber": 71
+        },
+        {
+          "caller": "genQuizItems",
+          "callee": "String(resumeText || \"\").slice",
+          "lineNumber": 71
+        },
+        {
+          "caller": "genQuizItems",
+          "callee": "String",
+          "lineNumber": 71
+        },
+        {
+          "caller": "genQuizItems",
+          "callee": "chat",
+          "lineNumber": 71
+        },
+        {
+          "caller": "genQuizItems",
+          "callee": "parseQuizItems",
+          "lineNumber": 72
+        },
+        {
+          "caller": "genInterviewQs",
+          "callee": "ctx",
+          "lineNumber": 77
+        },
+        {
+          "caller": "genInterviewQs",
+          "callee": "memoCall",
+          "lineNumber": 80
+        },
+        {
+          "caller": "genInterviewQs",
+          "callee": "String(resumeText || \"\").slice",
+          "lineNumber": 80
+        },
+        {
+          "caller": "genInterviewQs",
+          "callee": "String",
+          "lineNumber": 80
+        },
+        {
+          "caller": "genInterviewQs",
+          "callee": "chat",
+          "lineNumber": 80
+        },
+        {
+          "caller": "genInterviewQs",
+          "callee": "parseInterviewItems",
+          "lineNumber": 81
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "String(answer || \"\").trim",
+          "lineNumber": 87
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "String",
+          "lineNumber": 87
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "String(question || \"\").slice",
+          "lineNumber": 89
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "String",
+          "lineNumber": 89
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "String(answer || \"\").slice",
+          "lineNumber": 90
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "String",
+          "lineNumber": 90
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "memoCall",
+          "lineNumber": 92
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "`${question}|${answer}`.slice",
+          "lineNumber": 92
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "chat",
+          "lineNumber": 92
+        },
+        {
+          "caller": "gradeAnswerAI",
+          "callee": "parseAiGrade",
+          "lineNumber": 93
+        },
+        {
+          "caller": "genQuestionnaire",
+          "callee": "ctx",
+          "lineNumber": 98
+        },
+        {
+          "caller": "genQuestionnaire",
+          "callee": "memoCall",
+          "lineNumber": 101
+        },
+        {
+          "caller": "genQuestionnaire",
+          "callee": "String(resumeText || \"\").slice",
+          "lineNumber": 101
+        },
+        {
+          "caller": "genQuestionnaire",
+          "callee": "String",
+          "lineNumber": 101
+        },
+        {
+          "caller": "genQuestionnaire",
+          "callee": "chat",
+          "lineNumber": 101
+        },
+        {
+          "caller": "genQuestionnaire",
+          "callee": "parseQuestionnaireItems",
+          "lineNumber": 102
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 7,
+        "functionCount": 8,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/coach.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 216,
+      "nonEmptyLines": 202,
+      "functions": [
+        {
+          "name": "HI",
+          "startLine": 19,
+          "endLine": 19,
+          "params": [
+            "en",
+            "hi"
+          ]
+        },
+        {
+          "name": "ctx",
+          "startLine": 21,
+          "endLine": 32,
+          "params": []
+        },
+        {
+          "name": "buildPrompt",
+          "startLine": 36,
+          "endLine": 69,
+          "params": [
+            "actionId"
+          ]
+        },
+        {
+          "name": "matchBand",
+          "startLine": 74,
+          "endLine": 80,
+          "params": []
+        },
+        {
+          "name": "matchJob",
+          "startLine": 82,
+          "endLine": 89,
+          "params": []
+        },
+        {
+          "name": "matchWriteup",
+          "startLine": 91,
+          "endLine": 95,
+          "params": []
+        },
+        {
+          "name": "reviewWriteup",
+          "startLine": 97,
+          "endLine": 102,
+          "params": []
+        },
+        {
+          "name": "coverLetter",
+          "startLine": 104,
+          "endLine": 111,
+          "params": []
+        },
+        {
+          "name": "parseJobPosting",
+          "startLine": 114,
+          "endLine": 134,
+          "params": []
+        },
+        {
+          "name": "localAnswer",
+          "startLine": 136,
+          "endLine": 177,
+          "params": [
+            "actionId"
+          ]
+        },
+        {
+          "name": "askAnswer",
+          "startLine": 181,
+          "endLine": 216,
+          "params": [
+            "c"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "COACH_ACTIONS",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "buildPrompt",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "matchBand",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "matchJob",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "matchWriteup",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "reviewWriteup",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "coverLetter",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "parseJobPosting",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "localAnswer",
+          "line": 136,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ctx",
+          "callee": "(s.missing || []).slice",
+          "lineNumber": 22
+        },
+        {
+          "caller": "ctx",
+          "callee": "(s.found || []).slice",
+          "lineNumber": 23
+        },
+        {
+          "caller": "ctx",
+          "callee": "/ayush/i.test",
+          "lineNumber": 27
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "ctx",
+          "lineNumber": 37
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "c.found.join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "c.missing.join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "c.found.join",
+          "lineNumber": 40
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "c.missing.join",
+          "lineNumber": 40
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "(c.resumeText || \"\").slice",
+          "lineNumber": 46
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "(c.resumeText || \"\").slice",
+          "lineNumber": 47
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "(c.resumeText || \"\").slice",
+          "lineNumber": 57
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "(s.question || \"\").slice",
+          "lineNumber": 57
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "(c.resumeText || \"\").slice",
+          "lineNumber": 59
+        },
+        {
+          "caller": "buildPrompt",
+          "callee": "(c.jobSkills || []).join",
+          "lineNumber": 61
+        },
+        {
+          "caller": "matchJob",
+          "callee": "(found || []).map",
+          "lineNumber": 84
+        },
+        {
+          "caller": "matchJob",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 84
+        },
+        {
+          "caller": "matchJob",
+          "callee": "String",
+          "lineNumber": 84
+        },
+        {
+          "caller": "matchJob",
+          "callee": "job.skills.filter",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchJob",
+          "callee": "have.has",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchJob",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchJob",
+          "callee": "String",
+          "lineNumber": 85
+        },
+        {
+          "caller": "matchJob",
+          "callee": "Math.round",
+          "lineNumber": 86
+        },
+        {
+          "caller": "matchJob",
+          "callee": "job.skills.filter",
+          "lineNumber": 87
+        },
+        {
+          "caller": "matchJob",
+          "callee": "have.has",
+          "lineNumber": 87
+        },
+        {
+          "caller": "matchJob",
+          "callee": "String(s).toLowerCase",
+          "lineNumber": 87
+        },
+        {
+          "caller": "matchJob",
+          "callee": "String",
+          "lineNumber": 87
+        },
+        {
+          "caller": "matchJob",
+          "callee": "matchBand",
+          "lineNumber": 88
+        },
+        {
+          "caller": "matchWriteup",
+          "callee": "matchJob",
+          "lineNumber": 92
+        },
+        {
+          "caller": "matchWriteup",
+          "callee": "m.overlap.join",
+          "lineNumber": 94
+        },
+        {
+          "caller": "matchWriteup",
+          "callee": "m.missing.join",
+          "lineNumber": 94
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "ctx",
+          "lineNumber": 98
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "(c.breakdown || []).map((b) => `${b.label}: ${b.pts}/${b.max}`).join",
+          "lineNumber": 100
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "(c.breakdown || []).map",
+          "lineNumber": 100
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "(c.found || []).slice(0, 3).join",
+          "lineNumber": 101
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "(c.found || []).slice",
+          "lineNumber": 101
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "(c.missing || []).slice(0, 3).map((m) => `${m} (free: ${coursesFor(m)[0].t})`).join",
+          "lineNumber": 101
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "(c.missing || []).slice(0, 3).map",
+          "lineNumber": 101
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "(c.missing || []).slice",
+          "lineNumber": 101
+        },
+        {
+          "caller": "reviewWriteup",
+          "callee": "coursesFor",
+          "lineNumber": 101
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "ctx",
+          "lineNumber": 105
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "(c.contactName || \"A C2C student\").trim",
+          "lineNumber": 108
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "(c.found || []).slice(0, 3).join",
+          "lineNumber": 110
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "(c.found || []).slice",
+          "lineNumber": 110
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "(c.missing || []).slice(0, 2).join",
+          "lineNumber": 110
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "(c.missing || []).slice",
+          "lineNumber": 110
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "(c.found || []).slice(0, 2).join",
+          "lineNumber": 110
+        },
+        {
+          "caller": "coverLetter",
+          "callee": "(c.found || []).slice",
+          "lineNumber": 110
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "String(pasted || \"\").replace(/^PASTE:\\s*/i, \"\").trim",
+          "lineNumber": 115
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "String(pasted || \"\").replace",
+          "lineNumber": 115
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "String",
+          "lineNumber": 115
+        },
+        {
+          "caller": "pick",
+          "callee": "(t.match(re) || [])[1]?.trim",
+          "lineNumber": 117
+        },
+        {
+          "caller": "pick",
+          "callee": "t.match",
+          "lineNumber": 117
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "pick",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "(t.match(/ at ([A-Z][\\w& ]{1,40})/) || [])[1]?.trim",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "t.match",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "pick",
+          "lineNumber": 119
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "t.split(\"\\n\")[0].slice",
+          "lineNumber": 119
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "t.split",
+          "lineNumber": 119
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "pick",
+          "lineNumber": 120
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "/remote/i.test",
+          "lineNumber": 120
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "pick",
+          "lineNumber": 121
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "/full-?time/i.test",
+          "lineNumber": 121
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "Date.now",
+          "lineNumber": 123
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "extractSkills",
+          "lineNumber": 129
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "pick",
+          "lineNumber": 131
+        },
+        {
+          "caller": "parseJobPosting",
+          "callee": "t.slice",
+          "lineNumber": 132
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "ctx",
+          "lineNumber": 137
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "coursesFor",
+          "lineNumber": 141
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "c.missing.slice(1).join",
+          "lineNumber": 142
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "c.missing.slice",
+          "lineNumber": 142
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "reviewWriteup",
+          "lineNumber": 158
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "matchWriteup",
+          "lineNumber": 159
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "coverLetter",
+          "lineNumber": 160
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "HI(\n      `BAMS deepen: your path from beej to acharya:\\n1. SHISHIKSHA orientation (6 days, NCISM mandatory): finish the checklist in /quests.\\n2. Rotatory internship: months 1-6 college hospital (OPD/IPD, case sheets), months 7-12 PHC/rural.\\n3. Pick a lane: clinical practice, CCRAS research (SPARK/JRF), or industry GMP/QA.\\n4. Close your top gap (${c.top || \"none detected\"}) with one quest pair plus proof link.\\nReadiness now: ${c.score ?? 0}/100. Target 65+ for Gold.`,\n      `BAMS गहराई: बीज से आचार्य तक:\\n1. शिशिक्षा ओरिएंटेशन (6 दिन, NCISM अनिवार्य): /quests में चेकलिस्ट पूरी करें।\\n2. रोटेटरी इंटर्नशिप: 1-6 महीना कॉलेज अस्पताल (OPD/IPD, केस शीट), 7-12 महीना PHC/ग्रामीण।\\n3. लाइन चुनें: क्लीनिकल प्रैक्टिस, CCRAS रिसर्च (SPARK/JRF), या GMP/QA इंडस्ट्री।\\n4. टॉप गैप (${c.top || \"कोई नहीं\"}) एक क्वेस्ट + प्रूफ लिंक से बंद करें।\\nअभी readiness: ${c.score ?? 0}/100। 65+ Gold के लिए लक्ष्य।`\n    )",
+          "lineNumber": 166
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "HI",
+          "lineNumber": 166
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "askAnswer",
+          "lineNumber": 175
+        },
+        {
+          "caller": "localAnswer",
+          "callee": "ctx",
+          "lineNumber": 175
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String(s.question || \"\").toLowerCase",
+          "lineNumber": 182
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String",
+          "lineNumber": 182
+        },
+        {
+          "caller": "has",
+          "callee": "words.some",
+          "lineNumber": 183
+        },
+        {
+          "caller": "has",
+          "callee": "q.includes",
+          "lineNumber": 183
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "all.find",
+          "lineNumber": 185
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "q.includes",
+          "lineNumber": 185
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String(sk).toLowerCase",
+          "lineNumber": 185
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String",
+          "lineNumber": 185
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "c.found.some",
+          "lineNumber": 187
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String(f).toLowerCase",
+          "lineNumber": 187
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String",
+          "lineNumber": 187
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String(skill).toLowerCase",
+          "lineNumber": 187
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "String",
+          "lineNumber": 187
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "has",
+          "lineNumber": 192
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "c.jobSkills.join",
+          "lineNumber": 194
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "has",
+          "lineNumber": 197
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "has",
+          "lineNumber": 200
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "has",
+          "lineNumber": 203
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "has",
+          "lineNumber": 206
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "has",
+          "lineNumber": 209
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "has",
+          "lineNumber": 212
+        },
+        {
+          "caller": "askAnswer",
+          "callee": "c.missing.join",
+          "lineNumber": 213
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 9,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/gemini.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "parseQuestionSet",
+          "startLine": 7,
+          "endLine": 24,
+          "params": [
+            "raw"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parseQuestionSet",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseQuestionSet",
+          "callee": "raw.replace(/```json|```/g, \"\").trim",
+          "lineNumber": 10
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "raw.replace",
+          "lineNumber": 10
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "JSON.parse",
+          "lineNumber": 11
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "Array.isArray",
+          "lineNumber": 12
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "String((it && it.text) || \"\").trim",
+          "lineNumber": 15
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "String",
+          "lineNumber": 15
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "out.push",
+          "lineNumber": 17
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "String((it && it.dimension) || \"general\").trim().slice",
+          "lineNumber": 17
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "String((it && it.dimension) || \"general\").trim",
+          "lineNumber": 17
+        },
+        {
+          "caller": "parseQuestionSet",
+          "callee": "String",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/parseResume.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 79,
+      "nonEmptyLines": 72,
+      "functions": [
+        {
+          "name": "pdfAdapter",
+          "startLine": 3,
+          "endLine": 15,
+          "params": [
+            "file"
+          ]
+        },
+        {
+          "name": "textAdapter",
+          "startLine": 17,
+          "endLine": 19,
+          "params": [
+            "file"
+          ]
+        },
+        {
+          "name": "parseResumeFile",
+          "startLine": 21,
+          "endLine": 29,
+          "params": [
+            "file"
+          ]
+        },
+        {
+          "name": "extractContact",
+          "startLine": 42,
+          "endLine": 50,
+          "params": []
+        },
+        {
+          "name": "extractSections",
+          "startLine": 52,
+          "endLine": 79,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "parseResumeFile",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "extractContact",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "extractSections",
+          "line": 52,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "pdfAdapter",
+          "callee": "import",
+          "lineNumber": 4
+        },
+        {
+          "caller": "pdfAdapter",
+          "callee": "file.arrayBuffer",
+          "lineNumber": 6
+        },
+        {
+          "caller": "pdfAdapter",
+          "callee": "pdfjs.getDocument",
+          "lineNumber": 7
+        },
+        {
+          "caller": "pdfAdapter",
+          "callee": "Math.min",
+          "lineNumber": 9
+        },
+        {
+          "caller": "pdfAdapter",
+          "callee": "pdf.getPage",
+          "lineNumber": 10
+        },
+        {
+          "caller": "pdfAdapter",
+          "callee": "page.getTextContent",
+          "lineNumber": 11
+        },
+        {
+          "caller": "pdfAdapter",
+          "callee": "tc.items.map((it) => it.str).join",
+          "lineNumber": 12
+        },
+        {
+          "caller": "pdfAdapter",
+          "callee": "tc.items.map",
+          "lineNumber": 12
+        },
+        {
+          "caller": "textAdapter",
+          "callee": "file.text",
+          "lineNumber": 18
+        },
+        {
+          "caller": "parseResumeFile",
+          "callee": "file.name.toLowerCase().endsWith",
+          "lineNumber": 24
+        },
+        {
+          "caller": "parseResumeFile",
+          "callee": "file.name.toLowerCase",
+          "lineNumber": 24
+        },
+        {
+          "caller": "parseResumeFile",
+          "callee": "pdfAdapter",
+          "lineNumber": 24
+        },
+        {
+          "caller": "parseResumeFile",
+          "callee": "textAdapter",
+          "lineNumber": 25
+        },
+        {
+          "caller": "extractContact",
+          "callee": "String",
+          "lineNumber": 43
+        },
+        {
+          "caller": "extractContact",
+          "callee": "t.match",
+          "lineNumber": 44
+        },
+        {
+          "caller": "extractContact",
+          "callee": "t.match",
+          "lineNumber": 45
+        },
+        {
+          "caller": "extractContact",
+          "callee": "[...new Set(t.match(/https?:\\/\\/[^\\s)]*(?:linkedin|github)[^\\s)]*/gi) || [])].slice",
+          "lineNumber": 46
+        },
+        {
+          "caller": "extractContact",
+          "callee": "t.match",
+          "lineNumber": 46
+        },
+        {
+          "caller": "extractContact",
+          "callee": "(t.split(\"\\n\").map((l) => l.trim()).find((l) => l) || \"\").slice",
+          "lineNumber": 47
+        },
+        {
+          "caller": "extractContact",
+          "callee": "t.split(\"\\n\").map((l) => l.trim()).find",
+          "lineNumber": 47
+        },
+        {
+          "caller": "extractContact",
+          "callee": "t.split(\"\\n\").map",
+          "lineNumber": 47
+        },
+        {
+          "caller": "extractContact",
+          "callee": "t.split",
+          "lineNumber": 47
+        },
+        {
+          "caller": "extractContact",
+          "callee": "l.trim",
+          "lineNumber": 47
+        },
+        {
+          "caller": "extractContact",
+          "callee": "/@/.test",
+          "lineNumber": 48
+        },
+        {
+          "caller": "extractContact",
+          "callee": "SKIP_HEADERS.test",
+          "lineNumber": 48
+        },
+        {
+          "caller": "extractContact",
+          "callee": "HEADER_MAP.some",
+          "lineNumber": 48
+        },
+        {
+          "caller": "extractContact",
+          "callee": "first.toLowerCase().includes",
+          "lineNumber": 48
+        },
+        {
+          "caller": "extractContact",
+          "callee": "first.toLowerCase",
+          "lineNumber": 48
+        },
+        {
+          "caller": "extractSections",
+          "callee": "String(text || \"\").split",
+          "lineNumber": 53
+        },
+        {
+          "caller": "extractSections",
+          "callee": "String",
+          "lineNumber": 53
+        },
+        {
+          "caller": "extractSections",
+          "callee": "raw.trim",
+          "lineNumber": 57
+        },
+        {
+          "caller": "extractSections",
+          "callee": "HEADER_MAP.find",
+          "lineNumber": 60
+        },
+        {
+          "caller": "extractSections",
+          "callee": "re.test",
+          "lineNumber": 60
+        },
+        {
+          "caller": "extractSections",
+          "callee": "SKIP_HEADERS.test",
+          "lineNumber": 62
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets[cur].push",
+          "lineNumber": 64
+        },
+        {
+          "caller": "extractSections",
+          "callee": "extractContact",
+          "lineNumber": 67
+        },
+        {
+          "caller": "extractSections",
+          "callee": "out.push",
+          "lineNumber": 69
+        },
+        {
+          "caller": "extractSections",
+          "callee": "[contact.name, contact.email, contact.phone, ...contact.links].filter(Boolean).join",
+          "lineNumber": 69
+        },
+        {
+          "caller": "extractSections",
+          "callee": "[contact.name, contact.email, contact.phone, ...contact.links].filter",
+          "lineNumber": 69
+        },
+        {
+          "caller": "extractSections",
+          "callee": "out.push",
+          "lineNumber": 71
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.experience.slice(0, 30).join",
+          "lineNumber": 71
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.experience.slice",
+          "lineNumber": 71
+        },
+        {
+          "caller": "extractSections",
+          "callee": "out.push",
+          "lineNumber": 72
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.education.slice(0, 15).join",
+          "lineNumber": 72
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.education.slice",
+          "lineNumber": 72
+        },
+        {
+          "caller": "extractSections",
+          "callee": "[...new Set(buckets.skills.join(\",\").split(/[,•\\-|/\\n]/).map((s) => s.trim()).filter((s) => s && s.length < 30))].slice",
+          "lineNumber": 74
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.skills.join(\",\").split(/[,•\\-|/\\n]/).map((s) => s.trim()).filter",
+          "lineNumber": 74
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.skills.join(\",\").split(/[,•\\-|/\\n]/).map",
+          "lineNumber": 74
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.skills.join(\",\").split",
+          "lineNumber": 74
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.skills.join",
+          "lineNumber": 74
+        },
+        {
+          "caller": "extractSections",
+          "callee": "s.trim",
+          "lineNumber": 74
+        },
+        {
+          "caller": "extractSections",
+          "callee": "out.push",
+          "lineNumber": 75
+        },
+        {
+          "caller": "extractSections",
+          "callee": "skills.join",
+          "lineNumber": 75
+        },
+        {
+          "caller": "extractSections",
+          "callee": "out.push",
+          "lineNumber": 77
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.certifications.slice(0, 10).join",
+          "lineNumber": 77
+        },
+        {
+          "caller": "extractSections",
+          "callee": "buckets.certifications.slice",
+          "lineNumber": 77
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/profile.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 63,
+      "functions": [
+        {
+          "name": "loadProfile",
+          "startLine": 17,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "saveProfile",
+          "startLine": 21,
+          "endLine": 25,
+          "params": [
+            "p"
+          ]
+        },
+        {
+          "name": "clearProfile",
+          "startLine": 27,
+          "endLine": 29,
+          "params": []
+        },
+        {
+          "name": "toMarkdown",
+          "startLine": 33,
+          "endLine": 52,
+          "params": []
+        },
+        {
+          "name": "queriesFromProfile",
+          "startLine": 57,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "queryFromProfile",
+          "startLine": 65,
+          "endLine": 71,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PROFILE_QS",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "loadProfile",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "saveProfile",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "clearProfile",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "toMarkdown",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "queriesFromProfile",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "queryFromProfile",
+          "line": 65,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadProfile",
+          "callee": "loadJSON",
+          "lineNumber": 18
+        },
+        {
+          "caller": "saveProfile",
+          "callee": "Date.now",
+          "lineNumber": 22
+        },
+        {
+          "caller": "saveProfile",
+          "callee": "saveJSON",
+          "lineNumber": 23
+        },
+        {
+          "caller": "clearProfile",
+          "callee": "saveJSON",
+          "lineNumber": 28
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "String(p.skills || \"\").trim",
+          "lineNumber": 34
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "String",
+          "lineNumber": 34
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "[\n    `# Avsar Profile`,\n    ``,\n    `- track: ayurveda (BAMS)`,\n    `- has skills: ${skills}`,\n    `- bams year: ${p.year || \"not set\"}`,\n    `- lane: ${p.lane || \"not set\"}`,\n    `- college: ${String(p.college || \"\").trim() || \"not set\"}`,\n    `- goal: ${p.goal || \"not set\"}`,\n    `- location: ${p.loc || \"not set\"}`,\n    `- hours/week: ${p.hours || \"not set\"}`,\n    `- updated: ${p.updatedAt ? new Date(p.updatedAt).toISOString().slice(0, 10) : \"not set\"}`,\n    ``,\n    `## Scrape queries`,\n    ...queriesFromProfile(p).map((q) => `- ${q}`),\n    ``,\n  ].join",
+          "lineNumber": 35
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "String(p.college || \"\").trim",
+          "lineNumber": 42
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "String",
+          "lineNumber": 42
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "new Date(p.updatedAt).toISOString().slice",
+          "lineNumber": 46
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "new Date(p.updatedAt).toISOString",
+          "lineNumber": 46
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "queriesFromProfile(p).map",
+          "lineNumber": 49
+        },
+        {
+          "caller": "toMarkdown",
+          "callee": "queriesFromProfile",
+          "lineNumber": 49
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "String(p.skills || \"\").split(\",\").map((s) => s.trim()).filter(Boolean).slice",
+          "lineNumber": 58
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "String(p.skills || \"\").split(\",\").map((s) => s.trim()).filter",
+          "lineNumber": 58
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "String(p.skills || \"\").split(\",\").map",
+          "lineNumber": 58
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "String(p.skills || \"\").split",
+          "lineNumber": 58
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "String",
+          "lineNumber": 58
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "s.trim",
+          "lineNumber": 58
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "out.push",
+          "lineNumber": 60
+        },
+        {
+          "caller": "queriesFromProfile",
+          "callee": "[...new Set(out)].slice",
+          "lineNumber": 61
+        },
+        {
+          "caller": "queryFromProfile",
+          "callee": "queriesFromProfile",
+          "lineNumber": 66
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 7,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Journey.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 436,
+      "nonEmptyLines": 413,
+      "functions": [
+        {
+          "name": "JourneyBar",
+          "startLine": 31,
+          "endLine": 52,
+          "params": []
+        },
+        {
+          "name": "confettiBurst",
+          "startLine": 55,
+          "endLine": 93,
+          "params": []
+        },
+        {
+          "name": "Journey",
+          "startLine": 95,
+          "endLine": 436,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Journey",
+          "line": 95,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "JourneyBar",
+          "callee": "segs.map",
+          "lineNumber": 44
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "document.createElement",
+          "lineNumber": 56
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "document.body.appendChild",
+          "lineNumber": 58
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "c.getContext",
+          "lineNumber": 59
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Array.from",
+          "lineNumber": 63
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.random",
+          "lineNumber": 64
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.random",
+          "lineNumber": 66
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.random",
+          "lineNumber": 67
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.random",
+          "lineNumber": 68
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.random",
+          "lineNumber": 69
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.random",
+          "lineNumber": 70
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.floor",
+          "lineNumber": 71
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.random",
+          "lineNumber": 71
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "performance.now",
+          "lineNumber": 73
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "(function tick(t) {\n    const el = t - t0;\n    ctx.clearRect(0, 0, c.width, c.height);\n    for (const p of ps) {\n      p.x += p.vx;\n      p.y += p.vy;\n      p.vy += 0.35;\n      p.r += p.vr;\n      ctx.save();\n      ctx.translate(p.x, p.y);\n      ctx.rotate(p.r);\n      ctx.fillStyle = p.col;\n      ctx.globalAlpha = Math.max(0, 1 - el / 1300);\n      ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);\n      ctx.restore();\n    }\n    if (el < 1300) requestAnimationFrame(tick);\n    else c.remove();\n  })",
+          "lineNumber": 74
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "ctx.clearRect",
+          "lineNumber": 76
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "ctx.save",
+          "lineNumber": 82
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "ctx.translate",
+          "lineNumber": 83
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "ctx.rotate",
+          "lineNumber": 84
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "Math.max",
+          "lineNumber": 86
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "ctx.fillRect",
+          "lineNumber": 87
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "ctx.restore",
+          "lineNumber": 88
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "requestAnimationFrame",
+          "lineNumber": 90
+        },
+        {
+          "caller": "confettiBurst",
+          "callee": "c.remove",
+          "lineNumber": 91
+        },
+        {
+          "caller": "Journey",
+          "callee": "useNavigate",
+          "lineNumber": 96
+        },
+        {
+          "caller": "Journey",
+          "callee": "useC2C",
+          "lineNumber": 97
+        },
+        {
+          "caller": "Journey",
+          "callee": "useReducedMotion",
+          "lineNumber": 98
+        },
+        {
+          "caller": "Journey",
+          "callee": "useMemo",
+          "lineNumber": 99
+        },
+        {
+          "caller": "Journey",
+          "callee": "loadProfile",
+          "lineNumber": 99
+        },
+        {
+          "caller": "Journey",
+          "callee": "loadJSON",
+          "lineNumber": 100
+        },
+        {
+          "caller": "Journey",
+          "callee": "normalizeScoreResult",
+          "lineNumber": 102
+        },
+        {
+          "caller": "Journey",
+          "callee": "onboardingProgress",
+          "lineNumber": 104
+        },
+        {
+          "caller": "Journey",
+          "callee": "Boolean",
+          "lineNumber": 105
+        },
+        {
+          "caller": "Journey",
+          "callee": "Boolean",
+          "lineNumber": 106
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 109
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 112
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 113
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 114
+        },
+        {
+          "caller": "Journey",
+          "callee": "[profile.year, profile.lane && `${profile.lane} lane`, profile.college, profile.goal && `goal: ${profile.goal}`]\n    .filter(Boolean).join",
+          "lineNumber": 116
+        },
+        {
+          "caller": "Journey",
+          "callee": "[profile.year, profile.lane && `${profile.lane} lane`, profile.college, profile.goal && `goal: ${profile.goal}`]\n    .filter",
+          "lineNumber": 116
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 120
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 121
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 122
+        },
+        {
+          "caller": "Journey",
+          "callee": "useState",
+          "lineNumber": 123
+        },
+        {
+          "caller": "Journey",
+          "callee": "useRef",
+          "lineNumber": 124
+        },
+        {
+          "caller": "Journey",
+          "callee": "useEffect",
+          "lineNumber": 126
+        },
+        {
+          "caller": "Journey",
+          "callee": "genInterviewQs(resume?.text || \"\", \"ayush\", profileLine).then",
+          "lineNumber": 129
+        },
+        {
+          "caller": "Journey",
+          "callee": "genInterviewQs",
+          "lineNumber": 129
+        },
+        {
+          "caller": "Journey",
+          "callee": "setQs",
+          "lineNumber": 130
+        },
+        {
+          "caller": "Journey",
+          "callee": "ai.slice",
+          "lineNumber": 130
+        },
+        {
+          "caller": "Journey",
+          "callee": "questionsFromProfile",
+          "lineNumber": 130
+        },
+        {
+          "caller": "onFile",
+          "callee": "setText",
+          "lineNumber": 138
+        },
+        {
+          "caller": "onFile",
+          "callee": "parseResumeFile",
+          "lineNumber": 138
+        },
+        {
+          "caller": "onFile",
+          "callee": "setNotice",
+          "lineNumber": 139
+        },
+        {
+          "caller": "onFile",
+          "callee": "setNotice",
+          "lineNumber": 141
+        },
+        {
+          "caller": "score",
+          "callee": "text.trim",
+          "lineNumber": 147
+        },
+        {
+          "caller": "score",
+          "callee": "setNotice",
+          "lineNumber": 148
+        },
+        {
+          "caller": "score",
+          "callee": "saveResume",
+          "lineNumber": 151
+        },
+        {
+          "caller": "score",
+          "callee": "scoreResume",
+          "lineNumber": 151
+        },
+        {
+          "caller": "score",
+          "callee": "recordDay",
+          "lineNumber": 152
+        },
+        {
+          "caller": "score",
+          "callee": "setNotice",
+          "lineNumber": 153
+        },
+        {
+          "caller": "score",
+          "callee": "setTab",
+          "lineNumber": 154
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "answers[i].trim",
+          "lineNumber": 158
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "setGrading",
+          "lineNumber": 159
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "gradeAnswerAI(qs[i], answers[i], profileLine).catch",
+          "lineNumber": 160
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "gradeAnswerAI",
+          "lineNumber": 160
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "Math.max",
+          "lineNumber": 163
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "scoreAnswer",
+          "lineNumber": 163
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "scoreAnswer(answers[i]).tips.slice",
+          "lineNumber": 163
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "scoreAnswer",
+          "lineNumber": 163
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "setGrades",
+          "lineNumber": 164
+        },
+        {
+          "caller": "gradeOne",
+          "callee": "setGrading",
+          "lineNumber": 165
+        },
+        {
+          "caller": "finishInterview",
+          "callee": "grades.filter",
+          "lineNumber": 169
+        },
+        {
+          "caller": "finishInterview",
+          "callee": "done.reduce",
+          "lineNumber": 171
+        },
+        {
+          "caller": "finishInterview",
+          "callee": "saveJSON",
+          "lineNumber": 172
+        },
+        {
+          "caller": "finishInterview",
+          "callee": "Math.round",
+          "lineNumber": 172
+        },
+        {
+          "caller": "finishInterview",
+          "callee": "recordDay",
+          "lineNumber": 173
+        },
+        {
+          "caller": "finishInterview",
+          "callee": "setStage",
+          "lineNumber": 174
+        },
+        {
+          "caller": "startJourney",
+          "callee": "saveJSON",
+          "lineNumber": 178
+        },
+        {
+          "caller": "startJourney",
+          "callee": "Date.now",
+          "lineNumber": 178
+        },
+        {
+          "caller": "startJourney",
+          "callee": "confettiBurst",
+          "lineNumber": 179
+        },
+        {
+          "caller": "startJourney",
+          "callee": "setTimeout",
+          "lineNumber": 180
+        },
+        {
+          "caller": "startJourney",
+          "callee": "navigate",
+          "lineNumber": 180
+        },
+        {
+          "caller": "Journey",
+          "callee": "useMemo",
+          "lineNumber": 183
+        },
+        {
+          "caller": "Journey",
+          "callee": "resumeTips",
+          "lineNumber": 183
+        },
+        {
+          "caller": "Journey",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 184
+        },
+        {
+          "caller": "Journey",
+          "callee": "calculateMainScore",
+          "lineNumber": 185
+        },
+        {
+          "caller": "Journey",
+          "callee": "questPairsToProof",
+          "lineNumber": 185
+        },
+        {
+          "caller": "Journey",
+          "callee": "useMemo",
+          "lineNumber": 186
+        },
+        {
+          "caller": "Journey",
+          "callee": "questionsFromProfile(profile, result).slice",
+          "lineNumber": 186
+        },
+        {
+          "caller": "Journey",
+          "callee": "questionsFromProfile",
+          "lineNumber": 186
+        },
+        {
+          "caller": "Journey",
+          "callee": "grades.filter",
+          "lineNumber": 187
+        },
+        {
+          "caller": "Journey",
+          "callee": "window.confirm",
+          "lineNumber": 205
+        },
+        {
+          "caller": "Journey",
+          "callee": "resetOnboarding",
+          "lineNumber": 205
+        },
+        {
+          "caller": "Journey",
+          "callee": "window.location.reload",
+          "lineNumber": 205
+        },
+        {
+          "caller": "Journey",
+          "callee": "TABS.map",
+          "lineNumber": 224
+        },
+        {
+          "caller": "Journey",
+          "callee": "setTab",
+          "lineNumber": 230
+        },
+        {
+          "caller": "Journey",
+          "callee": "setText",
+          "lineNumber": 249
+        },
+        {
+          "caller": "Journey",
+          "callee": "setText",
+          "lineNumber": 255
+        },
+        {
+          "caller": "Journey",
+          "callee": "view.breakdown.slice(0, 5).map",
+          "lineNumber": 267
+        },
+        {
+          "caller": "Journey",
+          "callee": "view.breakdown.slice",
+          "lineNumber": 267
+        },
+        {
+          "caller": "Journey",
+          "callee": "setStage",
+          "lineNumber": 278
+        },
+        {
+          "caller": "Journey",
+          "callee": "tips.map",
+          "lineNumber": 293
+        },
+        {
+          "caller": "Journey",
+          "callee": "String(i + 1).padStart",
+          "lineNumber": 295
+        },
+        {
+          "caller": "Journey",
+          "callee": "String",
+          "lineNumber": 295
+        },
+        {
+          "caller": "Journey",
+          "callee": "view.missing.filter((s) => SKILL_WHY[s.toLowerCase()]).slice(0, 3).map",
+          "lineNumber": 300
+        },
+        {
+          "caller": "Journey",
+          "callee": "view.missing.filter((s) => SKILL_WHY[s.toLowerCase()]).slice",
+          "lineNumber": 300
+        },
+        {
+          "caller": "Journey",
+          "callee": "view.missing.filter",
+          "lineNumber": 300
+        },
+        {
+          "caller": "Journey",
+          "callee": "s.toLowerCase",
+          "lineNumber": 300
+        },
+        {
+          "caller": "Journey",
+          "callee": "s.toLowerCase",
+          "lineNumber": 301
+        },
+        {
+          "caller": "Journey",
+          "callee": "setStage",
+          "lineNumber": 320
+        },
+        {
+          "caller": "Journey",
+          "callee": "view.missing.slice(0, 4).map",
+          "lineNumber": 323
+        },
+        {
+          "caller": "Journey",
+          "callee": "view.missing.slice",
+          "lineNumber": 323
+        },
+        {
+          "caller": "Journey",
+          "callee": "coursesFor",
+          "lineNumber": 324
+        },
+        {
+          "caller": "Journey",
+          "callee": "previewQs.map",
+          "lineNumber": 347
+        },
+        {
+          "caller": "Journey",
+          "callee": "setStage",
+          "lineNumber": 354
+        },
+        {
+          "caller": "Journey",
+          "callee": "hasAIKey",
+          "lineNumber": 366
+        },
+        {
+          "caller": "Journey",
+          "callee": "hasAIKey",
+          "lineNumber": 366
+        },
+        {
+          "caller": "Journey",
+          "callee": "qs.map",
+          "lineNumber": 372
+        },
+        {
+          "caller": "Journey",
+          "callee": "setAnswers",
+          "lineNumber": 378
+        },
+        {
+          "caller": "Journey",
+          "callee": "gradeOne",
+          "lineNumber": 386
+        },
+        {
+          "caller": "Journey",
+          "callee": "answers[i].trim",
+          "lineNumber": 387
+        },
+        {
+          "caller": "Journey",
+          "callee": "[40, 30, 30].map",
+          "lineNumber": 425
+        }
+      ],
+      "metrics": {
+        "importCount": 13,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/ai.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 30,
+      "nonEmptyLines": 26,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/aiquestions.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 40,
+      "nonEmptyLines": 37,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/coach.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 124,
+      "nonEmptyLines": 108,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/profile.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 56,
+      "nonEmptyLines": 53,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/sections.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 41,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/tips.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 25,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/tuning.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 22,
+      "nonEmptyLines": 19,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

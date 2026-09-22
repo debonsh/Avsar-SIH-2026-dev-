@@ -1,0 +1,111 @@
+[
+  {
+    "order": 1,
+    "title": "Project Overview",
+    "description": "The README defines the ayush-portal C2C app: Vite plus React plus React Router plus Tailwind v4 with a light minimal UI, offline-first localStorage truth, and thin pages backed by tested lib logic. The npm manifest pins the exact scripts (dev, unit tests, build, lint, scrapers) and the React 19 plus Tailwind v4 dependency set, so read both before touching any code.",
+    "nodeIds": [
+      "document:README.md",
+      "config:package.json"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "Application Entry Point",
+    "description": "The Vite HTML shell mounts the #root div and loads src/main.jsx, which wraps the app shell in the global C2C provider. Every route in the tour renders inside this bootstrap chain, so it is the correct mental root for all dependency tracing that follows.",
+    "nodeIds": [
+      "file:src/main.jsx",
+      "file:index.html"
+    ]
+  },
+  {
+    "order": 3,
+    "title": "App Shell & State",
+    "description": "Building on the entry point, the Shell renders nav tabs, theme and language toggles, auth state, and the readiness ring around all routes, while the C2C provider holds role, resume, events, and job-board state with persistence. With 21 plus importers, the store is the single cross-page state contract every page in Steps 7 and 8 consumes.",
+    "nodeIds": [
+      "file:src/app/shell.jsx",
+      "file:src/app/store.jsx"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "Shared UI Primitives",
+    "description": "The shared primitive library (Page, Card, Button, Meter, Badge, Ticket) plus dependency-free SVG Donut and Radar charts is imported by 25 files, more than any other UI module. Pages stay thin by composing these primitives instead of re-implementing layout or visualization, which is why this step precedes all page-level tour stops.",
+    "nodeIds": [
+      "file:src/components/ui.jsx"
+    ],
+    "languageLesson": "Dependency-free SVG charts render proportional segments and multi-axis polygons with plain SVG elements rather than a chart library, keeping the bundle small; values map directly to arc lengths and polygon points."
+  },
+  {
+    "order": 5,
+    "title": "Scoring & Matching Engine",
+    "description": "The scoring hub combines role rubrics and the MAIN score, delegating resume grading to the deterministic five-dimension ATS engine, while the matching engine explains fits with five weighted factors. The ATS plus score pair is bidirectionally coupled, so learn them as one unit; together they drive every ring, gap list, and job ranking seen in later steps.",
+    "nodeIds": [
+      "file:src/lib/score.js",
+      "file:src/lib/ats.js",
+      "file:src/lib/match.js"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "Local-First Persistence",
+    "description": "Safe localStorage accessors underpin everything, the backend module adds local-first writes for assessments, job events, artifacts, and feedback with best-effort Supabase mirroring, and the Supabase adapter bootstraps the client plus college leaderboard sync. This layer is why every screen works with no keys configured, per the Step 1 conventions.",
+    "nodeIds": [
+      "file:src/lib/storage.js",
+      "file:src/lib/backend.js",
+      "file:src/lib/supabase.js"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "Student Journey Pages",
+    "description": "Home is the landing dashboard (score ring, streak and XP meters, skill gaps, courses, top matches), Journey guides onboarding through resume scoring and AI interview practice, and Profile hosts the multi-step wizard plus account actions. These three have the widest fan-out of any pages because they compose the Step 4 primitives with the Step 5 engines over Step 6 state.",
+    "nodeIds": [
+      "file:src/pages/Home.jsx",
+      "file:src/pages/Journey.jsx",
+      "file:src/pages/Profile.jsx"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "Jobs & Verification Flow",
+    "description": "Extending the student flow, the Jobs board pairs skill matching with filters and application tracking, each application advances through the Workspace pipeline with mentor sign-offs on a proof ledger, and Verify resolves hash-signed offline credentials with revocation checks. This is the campus-to-career funnel the whole portal exists to serve.",
+    "nodeIds": [
+      "file:src/pages/Jobs.jsx",
+      "file:src/pages/Workspace.jsx",
+      "file:src/pages/Verify.jsx"
+    ]
+  },
+  {
+    "order": 9,
+    "title": "AYUSH Data Seeds",
+    "description": "The single-source AYUSH module holds the role definition, jobs, skill tree, courses, quiz, interview, questionnaire, and FDP seeds behind a kill switch, mirrored by the ayushSeed content pack, while the taxonomy defines 60 plus skills with half-life, demand, and NSQF metadata plus role requirements. Nearly every engine and page above reads these seeds, so content changes land here rather than in code.",
+    "nodeIds": [
+      "file:src/ayush/seed.js",
+      "file:src/data/ayushSeed.js",
+      "file:src/data/taxonomy.js"
+    ]
+  },
+  {
+    "order": 10,
+    "title": "AI Coaching Layer",
+    "description": "The floating coach widget offers quick actions and resume-aware greetings, the offline-first coach engine answers from local logic with bilingual writeups and cover letters, the Groq/Gemini gateway adds memoized LLM fallback when keys exist, and Interview pairs the evidence questionnaire with STAR grading and voice dictation. The offline-answer-first ordering keeps coaching usable without keys, consistent with Step 6.",
+    "nodeIds": [
+      "file:src/app/coach-widget.jsx",
+      "file:src/lib/coach.js",
+      "file:src/lib/ai.js",
+      "file:src/pages/Interview.jsx"
+    ],
+    "languageLesson": "Offline-first AI degrades gracefully: deterministic local logic answers every query, and remote LLM calls are a memoized enhancement layer that never blocks the response path when keys or network are absent."
+  },
+  {
+    "order": 11,
+    "title": "Build & Offline Delivery",
+    "description": "The Vite config wires React and Tailwind v4 for production builds, the Vercel SPA fallback rewrites every route to index.html so React Router owns navigation, and the zero-dependency service worker caches the app shell with stale-while-revalidate so the demo works offline. Read this capstone last: it explains how the code from Steps 2 through 10 ships and runs in production.",
+    "nodeIds": [
+      "file:vite.config.js",
+      "config:vercel.json",
+      "file:public/sw.js"
+    ],
+    "languageLesson": "Stale-while-revalidate serves the cached app shell instantly while refreshing it in the background, giving offline-capable loads without blocking on the network."
+  }
+]

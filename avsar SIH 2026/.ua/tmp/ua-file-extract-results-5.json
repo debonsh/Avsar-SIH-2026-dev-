@@ -1,0 +1,1380 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 11,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 11,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 11,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "src/ayush/data.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 58,
+      "functions": [
+        {
+          "name": "ayushStats",
+          "startLine": 40,
+          "endLine": 47,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "AYUSH_COLLEGES",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_NOTICES",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_PROGRAMS",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "ayushStats",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_SCHEMES",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "AYUSH_FAQ",
+          "line": 58,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ayushStats",
+          "callee": "String",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/ayush/proof.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 97,
+      "nonEmptyLines": 85,
+      "functions": [
+        {
+          "name": "empty",
+          "startLine": 12,
+          "endLine": 14,
+          "params": []
+        },
+        {
+          "name": "loadLedger",
+          "startLine": 16,
+          "endLine": 20,
+          "params": []
+        },
+        {
+          "name": "persist",
+          "startLine": 22,
+          "endLine": 25,
+          "params": [
+            "ledger"
+          ]
+        },
+        {
+          "name": "addProof",
+          "startLine": 27,
+          "endLine": 40,
+          "params": []
+        },
+        {
+          "name": "removeProof",
+          "startLine": 42,
+          "endLine": 47,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "proofsFor",
+          "startLine": 49,
+          "endLine": 52,
+          "params": []
+        },
+        {
+          "name": "caseCount",
+          "startLine": 54,
+          "endLine": 56,
+          "params": []
+        },
+        {
+          "name": "verifyState",
+          "startLine": 60,
+          "endLine": 74,
+          "params": []
+        },
+        {
+          "name": "skillConfidence",
+          "startLine": 78,
+          "endLine": 89,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "loadLedger",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "addProof",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "removeProof",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "proofsFor",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "caseCount",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "verifyState",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "skillConfidence",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "PROOF_KINDS",
+          "line": 91,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadLedger",
+          "callee": "loadJSON",
+          "lineNumber": 17
+        },
+        {
+          "caller": "loadLedger",
+          "callee": "Array.isArray",
+          "lineNumber": 18
+        },
+        {
+          "caller": "loadLedger",
+          "callee": "empty",
+          "lineNumber": 18
+        },
+        {
+          "caller": "persist",
+          "callee": "saveJSON",
+          "lineNumber": 23
+        },
+        {
+          "caller": "persist",
+          "callee": "ledger.entries.slice",
+          "lineNumber": 23
+        },
+        {
+          "caller": "addProof",
+          "callee": "loadLedger",
+          "lineNumber": 28
+        },
+        {
+          "caller": "addProof",
+          "callee": "Date.now",
+          "lineNumber": 30
+        },
+        {
+          "caller": "addProof",
+          "callee": "Math.floor",
+          "lineNumber": 30
+        },
+        {
+          "caller": "addProof",
+          "callee": "Math.random",
+          "lineNumber": 30
+        },
+        {
+          "caller": "addProof",
+          "callee": "String(skill || \"\").toLowerCase().trim",
+          "lineNumber": 31
+        },
+        {
+          "caller": "addProof",
+          "callee": "String(skill || \"\").toLowerCase",
+          "lineNumber": 31
+        },
+        {
+          "caller": "addProof",
+          "callee": "String",
+          "lineNumber": 31
+        },
+        {
+          "caller": "addProof",
+          "callee": "String(detail || \"\").slice",
+          "lineNumber": 33
+        },
+        {
+          "caller": "addProof",
+          "callee": "String",
+          "lineNumber": 33
+        },
+        {
+          "caller": "addProof",
+          "callee": "Date.now",
+          "lineNumber": 34
+        },
+        {
+          "caller": "addProof",
+          "callee": "ledger.entries.push",
+          "lineNumber": 37
+        },
+        {
+          "caller": "addProof",
+          "callee": "persist",
+          "lineNumber": 38
+        },
+        {
+          "caller": "removeProof",
+          "callee": "loadLedger",
+          "lineNumber": 43
+        },
+        {
+          "caller": "removeProof",
+          "callee": "ledger.entries.filter",
+          "lineNumber": 44
+        },
+        {
+          "caller": "removeProof",
+          "callee": "persist",
+          "lineNumber": 45
+        },
+        {
+          "caller": "proofsFor",
+          "callee": "String(skill || \"\").toLowerCase().trim",
+          "lineNumber": 50
+        },
+        {
+          "caller": "proofsFor",
+          "callee": "String(skill || \"\").toLowerCase",
+          "lineNumber": 50
+        },
+        {
+          "caller": "proofsFor",
+          "callee": "String",
+          "lineNumber": 50
+        },
+        {
+          "caller": "proofsFor",
+          "callee": "loadLedger().entries.filter",
+          "lineNumber": 51
+        },
+        {
+          "caller": "proofsFor",
+          "callee": "loadLedger",
+          "lineNumber": 51
+        },
+        {
+          "caller": "caseCount",
+          "callee": "proofsFor(skill).filter",
+          "lineNumber": 55
+        },
+        {
+          "caller": "caseCount",
+          "callee": "proofsFor",
+          "lineNumber": 55
+        },
+        {
+          "caller": "verifyState",
+          "callee": "proofsFor",
+          "lineNumber": 61
+        },
+        {
+          "caller": "verifyState",
+          "callee": "ps.map",
+          "lineNumber": 62
+        },
+        {
+          "caller": "verifyState",
+          "callee": "kinds.has",
+          "lineNumber": 64
+        },
+        {
+          "caller": "verifyState",
+          "callee": "kinds.has",
+          "lineNumber": 65
+        },
+        {
+          "caller": "verifyState",
+          "callee": "ps.filter",
+          "lineNumber": 66
+        },
+        {
+          "caller": "verifyState",
+          "callee": "String(skill).toLowerCase",
+          "lineNumber": 67
+        },
+        {
+          "caller": "verifyState",
+          "callee": "String",
+          "lineNumber": 67
+        },
+        {
+          "caller": "verifyState",
+          "callee": "kinds.has",
+          "lineNumber": 67
+        },
+        {
+          "caller": "verifyState",
+          "callee": "Number",
+          "lineNumber": 70
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "proofsFor",
+          "lineNumber": 79
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "Number",
+          "lineNumber": 80
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "ps.map",
+          "lineNumber": 82
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "kinds.has",
+          "lineNumber": 83
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "kinds.has",
+          "lineNumber": 84
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "kinds.has",
+          "lineNumber": 85
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "Number",
+          "lineNumber": 86
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "Math.min",
+          "lineNumber": 87
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "ps.filter",
+          "lineNumber": 87
+        },
+        {
+          "caller": "skillConfidence",
+          "callee": "Math.min",
+          "lineNumber": 88
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 8,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/ayush/resumes.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 140,
+      "nonEmptyLines": 112,
+      "exports": [
+        {
+          "name": "AYUSH_RESUMES",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "RESUME_ANATOMY",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "RESUME_BULLETS",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "SKILL_WHY",
+          "line": 128,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/ayush/scoring.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 49,
+      "nonEmptyLines": 46,
+      "functions": [
+        {
+          "name": "vaidyaLevel",
+          "startLine": 9,
+          "endLine": 15,
+          "params": []
+        },
+        {
+          "name": "pathForSkill",
+          "startLine": 18,
+          "endLine": 24,
+          "params": []
+        },
+        {
+          "name": "ayushReadout",
+          "startLine": 27,
+          "endLine": 49,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "vaidyaLevel",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "pathForSkill",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "ayushReadout",
+          "line": 27,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "pathForSkill",
+          "callee": "String(skill || \"\").toLowerCase",
+          "lineNumber": 19
+        },
+        {
+          "caller": "pathForSkill",
+          "callee": "String",
+          "lineNumber": 19
+        },
+        {
+          "caller": "pathForSkill",
+          "callee": "[\"diagnosis\", \"panchakarma\", \"dravyaguna\"].includes",
+          "lineNumber": 20
+        },
+        {
+          "caller": "pathForSkill",
+          "callee": "[\"gmp\", \"pharmacy\", \"pharmacovigilance\", \"research\"].includes",
+          "lineNumber": 21
+        },
+        {
+          "caller": "pathForSkill",
+          "callee": "[\"hims\", \"documentation\", \"shishiksha\", \"sanskrit\"].includes",
+          "lineNumber": 22
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "scoreResume",
+          "lineNumber": 28
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "loadQuizBest",
+          "lineNumber": 29
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "(res.found || []).filter",
+          "lineNumber": 30
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "verifyState",
+          "lineNumber": 30
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "Math.min",
+          "lineNumber": 31
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "calculateMainScore",
+          "lineNumber": 32
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "[...new Set([...(res.found || []), ...(res.missing || [])])].map",
+          "lineNumber": 33
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "(res.found || []).includes",
+          "lineNumber": 35
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "verified.includes",
+          "lineNumber": 36
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "skillConfidence",
+          "lineNumber": 37
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "pathForSkill",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "vaidyaLevel",
+          "lineNumber": 43
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "(res.missing || []).map",
+          "lineNumber": 47
+        },
+        {
+          "caller": "ayushReadout",
+          "callee": "pathForSkill",
+          "lineNumber": 47
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/cohort.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 61,
+      "nonEmptyLines": 55,
+      "functions": [
+        {
+          "name": "mainOf",
+          "startLine": 16,
+          "endLine": 18,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "enrich",
+          "startLine": 20,
+          "endLine": 25,
+          "params": [
+            "rows"
+          ]
+        },
+        {
+          "name": "cohortStats",
+          "startLine": 27,
+          "endLine": 52,
+          "params": [
+            "students"
+          ]
+        },
+        {
+          "name": "q",
+          "startLine": 54,
+          "endLine": 54,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "toCSV",
+          "startLine": 56,
+          "endLine": 61,
+          "params": [
+            "rows"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "COHORT",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "mainOf",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "enrich",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "cohortStats",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "toCSV",
+          "line": 56,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mainOf",
+          "callee": "combineScores",
+          "lineNumber": 17
+        },
+        {
+          "caller": "enrich",
+          "callee": "rows.map",
+          "lineNumber": 21
+        },
+        {
+          "caller": "enrich",
+          "callee": "mainOf",
+          "lineNumber": 22
+        },
+        {
+          "caller": "enrich",
+          "callee": "rankFor",
+          "lineNumber": 23
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "enrich",
+          "lineNumber": 28
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "(byRole[r.role] ??= []).push",
+          "lineNumber": 30
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "Object.entries",
+          "lineNumber": 32
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "Math.round",
+          "lineNumber": 32
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "v.reduce",
+          "lineNumber": 32
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "rows.filter",
+          "lineNumber": 33
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "Object.entries(gaps)\n    .map(([skill, n]) => ({ skill, n }))\n    .sort((a, b) => b.n - a.n || (a.skill < b.skill ? -1 : 1))\n    .slice",
+          "lineNumber": 36
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "Object.entries(gaps)\n    .map(([skill, n]) => ({ skill, n }))\n    .sort",
+          "lineNumber": 36
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "Object.entries(gaps)\n    .map",
+          "lineNumber": 36
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "Object.entries",
+          "lineNumber": 36
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "Math.round",
+          "lineNumber": 43
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "rows.filter",
+          "lineNumber": 46
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "rows.filter",
+          "lineNumber": 47
+        },
+        {
+          "caller": "cohortStats",
+          "callee": "rows.filter",
+          "lineNumber": 49
+        },
+        {
+          "caller": "q",
+          "callee": "/[\",\\n]/.test",
+          "lineNumber": 54
+        },
+        {
+          "caller": "q",
+          "callee": "String",
+          "lineNumber": 54
+        },
+        {
+          "caller": "q",
+          "callee": "String(v).replace",
+          "lineNumber": 54
+        },
+        {
+          "caller": "q",
+          "callee": "String",
+          "lineNumber": 54
+        },
+        {
+          "caller": "q",
+          "callee": "String",
+          "lineNumber": 54
+        },
+        {
+          "caller": "toCSV",
+          "callee": "rows.map",
+          "lineNumber": 57
+        },
+        {
+          "caller": "toCSV",
+          "callee": "[r.name, r.role, r.ats, r.quiz, r.quests, r.main, r.rank, r.applied ? \"Yes\" : \"No\"].map(q).join",
+          "lineNumber": 58
+        },
+        {
+          "caller": "toCSV",
+          "callee": "[r.name, r.role, r.ats, r.quiz, r.quests, r.main, r.rank, r.applied ? \"Yes\" : \"No\"].map",
+          "lineNumber": 58
+        },
+        {
+          "caller": "toCSV",
+          "callee": "[\"name,role,ats,quiz,quests,main,rank,applied\", ...lines].join",
+          "lineNumber": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/lib/score.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 73,
+      "functions": [
+        {
+          "name": "calculateMainScore",
+          "startLine": 33,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "rankFor",
+          "startLine": 41,
+          "endLine": 47,
+          "params": []
+        },
+        {
+          "name": "rankRoles",
+          "startLine": 50,
+          "endLine": 54,
+          "params": []
+        },
+        {
+          "name": "scoreResume",
+          "startLine": 58,
+          "endLine": 60,
+          "params": []
+        },
+        {
+          "name": "normalizeScoreResult",
+          "startLine": 64,
+          "endLine": 71,
+          "params": []
+        },
+        {
+          "name": "questPairsToProof",
+          "startLine": 74,
+          "endLine": 77,
+          "params": []
+        },
+        {
+          "name": "combineScores",
+          "startLine": 79,
+          "endLine": 82,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ROLES",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "calculateMainScore",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "rankFor",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "rankRoles",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "scoreResume",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "normalizeScoreResult",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "questPairsToProof",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "combineScores",
+          "line": 79,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "clamp",
+          "callee": "Math.max",
+          "lineNumber": 34
+        },
+        {
+          "caller": "clamp",
+          "callee": "Math.min",
+          "lineNumber": 34
+        },
+        {
+          "caller": "clamp",
+          "callee": "Math.round",
+          "lineNumber": 34
+        },
+        {
+          "caller": "calculateMainScore",
+          "callee": "clamp",
+          "lineNumber": 35
+        },
+        {
+          "caller": "calculateMainScore",
+          "callee": "clamp",
+          "lineNumber": 35
+        },
+        {
+          "caller": "calculateMainScore",
+          "callee": "clamp",
+          "lineNumber": 35
+        },
+        {
+          "caller": "calculateMainScore",
+          "callee": "Math.round",
+          "lineNumber": 37
+        },
+        {
+          "caller": "calculateMainScore",
+          "callee": "Math.round",
+          "lineNumber": 37
+        },
+        {
+          "caller": "rankRoles",
+          "callee": "Object.keys(ROLES)\n    .map((key) => ({ key, label: ROLES[key].label, total: scoreResume(text, key, earnedSkills).total }))\n    .sort",
+          "lineNumber": 51
+        },
+        {
+          "caller": "rankRoles",
+          "callee": "Object.keys(ROLES)\n    .map",
+          "lineNumber": 51
+        },
+        {
+          "caller": "rankRoles",
+          "callee": "Object.keys",
+          "lineNumber": 51
+        },
+        {
+          "caller": "rankRoles",
+          "callee": "scoreResume",
+          "lineNumber": 52
+        },
+        {
+          "caller": "scoreResume",
+          "callee": "scoreATS",
+          "lineNumber": 59
+        },
+        {
+          "caller": "normalizeScoreResult",
+          "callee": "Number",
+          "lineNumber": 66
+        },
+        {
+          "caller": "normalizeScoreResult",
+          "callee": "Array.isArray",
+          "lineNumber": 67
+        },
+        {
+          "caller": "normalizeScoreResult",
+          "callee": "Array.isArray",
+          "lineNumber": 68
+        },
+        {
+          "caller": "normalizeScoreResult",
+          "callee": "Array.isArray",
+          "lineNumber": 69
+        },
+        {
+          "caller": "questPairsToProof",
+          "callee": "Math.max",
+          "lineNumber": 75
+        },
+        {
+          "caller": "questPairsToProof",
+          "callee": "Math.floor",
+          "lineNumber": 75
+        },
+        {
+          "caller": "questPairsToProof",
+          "callee": "Number",
+          "lineNumber": 75
+        },
+        {
+          "caller": "questPairsToProof",
+          "callee": "Math.min",
+          "lineNumber": 76
+        },
+        {
+          "caller": "combineScores",
+          "callee": "calculateMainScore",
+          "lineNumber": 80
+        },
+        {
+          "caller": "combineScores",
+          "callee": "questPairsToProof",
+          "lineNumber": 80
+        },
+        {
+          "caller": "combineScores",
+          "callee": "rankFor",
+          "lineNumber": 81
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 8,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/pages/Resume.jsx",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 284,
+      "nonEmptyLines": 271,
+      "functions": [
+        {
+          "name": "Resume",
+          "startLine": 18,
+          "endLine": 284,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Resume",
+          "line": 18,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Resume",
+          "callee": "useC2C",
+          "lineNumber": 19
+        },
+        {
+          "caller": "Resume",
+          "callee": "useState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "Resume",
+          "callee": "useState",
+          "lineNumber": 21
+        },
+        {
+          "caller": "Resume",
+          "callee": "normalizeScoreResult",
+          "lineNumber": 26
+        },
+        {
+          "caller": "Resume",
+          "callee": "Boolean",
+          "lineNumber": 27
+        },
+        {
+          "caller": "Resume",
+          "callee": "completedSkillIdsForRole",
+          "lineNumber": 28
+        },
+        {
+          "caller": "Resume",
+          "callee": "questPairsToProof",
+          "lineNumber": 29
+        },
+        {
+          "caller": "Resume",
+          "callee": "loadJSON",
+          "lineNumber": 30
+        },
+        {
+          "caller": "Resume",
+          "callee": "calculateMainScore",
+          "lineNumber": 31
+        },
+        {
+          "caller": "Resume",
+          "callee": "useMemo",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Resume",
+          "callee": "extractSections",
+          "lineNumber": 33
+        },
+        {
+          "caller": "Resume",
+          "callee": "useMemo",
+          "lineNumber": 34
+        },
+        {
+          "caller": "Resume",
+          "callee": "resumeTips",
+          "lineNumber": 34
+        },
+        {
+          "caller": "Resume",
+          "callee": "vaidyaLevel",
+          "lineNumber": 37
+        },
+        {
+          "caller": "onFile",
+          "callee": "setText",
+          "lineNumber": 43
+        },
+        {
+          "caller": "onFile",
+          "callee": "parseResumeFile",
+          "lineNumber": 43
+        },
+        {
+          "caller": "onFile",
+          "callee": "setNotice",
+          "lineNumber": 44
+        },
+        {
+          "caller": "onFile",
+          "callee": "setNotice",
+          "lineNumber": 46
+        },
+        {
+          "caller": "score",
+          "callee": "text.trim",
+          "lineNumber": 52
+        },
+        {
+          "caller": "score",
+          "callee": "setNotice",
+          "lineNumber": 53
+        },
+        {
+          "caller": "score",
+          "callee": "saveResume",
+          "lineNumber": 56
+        },
+        {
+          "caller": "score",
+          "callee": "scoreResume",
+          "lineNumber": 56
+        },
+        {
+          "caller": "score",
+          "callee": "recordDay",
+          "lineNumber": 57
+        },
+        {
+          "caller": "score",
+          "callee": "setNotice",
+          "lineNumber": 58
+        },
+        {
+          "caller": "Resume",
+          "callee": "setText",
+          "lineNumber": 83
+        },
+        {
+          "caller": "Resume",
+          "callee": "setText",
+          "lineNumber": 91
+        },
+        {
+          "caller": "Resume",
+          "callee": "RESUME_ANATOMY.map",
+          "lineNumber": 105
+        },
+        {
+          "caller": "Resume",
+          "callee": "RESUME_BULLETS.map",
+          "lineNumber": 119
+        },
+        {
+          "caller": "Resume",
+          "callee": "rankFor",
+          "lineNumber": 153
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.breakdown.map",
+          "lineNumber": 164
+        },
+        {
+          "caller": "Resume",
+          "callee": "(Array.isArray(d.why) ? d.why : []).map",
+          "lineNumber": 172
+        },
+        {
+          "caller": "Resume",
+          "callee": "Array.isArray",
+          "lineNumber": 172
+        },
+        {
+          "caller": "Resume",
+          "callee": "tips.map",
+          "lineNumber": 187
+        },
+        {
+          "caller": "Resume",
+          "callee": "String(i + 1).padStart",
+          "lineNumber": 190
+        },
+        {
+          "caller": "Resume",
+          "callee": "String",
+          "lineNumber": 190
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.found.map",
+          "lineNumber": 205
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.missing.map",
+          "lineNumber": 213
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.missing.filter",
+          "lineNumber": 216
+        },
+        {
+          "caller": "Resume",
+          "callee": "s.toLowerCase",
+          "lineNumber": 216
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.missing.filter((s) => SKILL_WHY[s.toLowerCase()]).slice(0, 4).map",
+          "lineNumber": 220
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.missing.filter((s) => SKILL_WHY[s.toLowerCase()]).slice",
+          "lineNumber": 220
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.missing.filter",
+          "lineNumber": 220
+        },
+        {
+          "caller": "Resume",
+          "callee": "s.toLowerCase",
+          "lineNumber": 220
+        },
+        {
+          "caller": "Resume",
+          "callee": "s.toLowerCase",
+          "lineNumber": 221
+        },
+        {
+          "caller": "Resume",
+          "callee": "sections.map",
+          "lineNumber": 239
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.missing.slice(0, 3).map",
+          "lineNumber": 249
+        },
+        {
+          "caller": "Resume",
+          "callee": "view.missing.slice",
+          "lineNumber": 249
+        },
+        {
+          "caller": "Resume",
+          "callee": "videosFor",
+          "lineNumber": 250
+        },
+        {
+          "caller": "Resume",
+          "callee": "vids.slice(0, 2).map",
+          "lineNumber": 259
+        },
+        {
+          "caller": "Resume",
+          "callee": "vids.slice",
+          "lineNumber": 259
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/ayushPortal.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 65,
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/institute.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 47,
+      "nonEmptyLines": 42,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/score.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 52,
+      "nonEmptyLines": 44,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/scores.test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 53,
+      "nonEmptyLines": 46,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

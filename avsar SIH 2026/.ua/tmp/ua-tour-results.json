@@ -1,0 +1,1254 @@
+{
+  "scriptCompleted": true,
+  "entryPointCandidates": [
+    {
+      "id": "document:README.md",
+      "score": 5,
+      "name": "README.md",
+      "summary": "Project overview for the C2C app: stack notes, npm/test/build/lint/scraper commands, and thin-page plus localStorage-first conventions."
+    },
+    {
+      "id": "file:src/main.jsx",
+      "score": 5,
+      "name": "main.jsx",
+      "summary": "React entry point mounting the app shell inside the C2C provider."
+    },
+    {
+      "id": "file:index.html",
+      "score": 2,
+      "name": "index.html",
+      "summary": "Vite HTML entry shell mounting #root and loading src/main.jsx, with PWA manifest, Google fonts, and Avsar BAMS internship metadata."
+    },
+    {
+      "id": "file:public/manifest.webmanifest",
+      "score": 2,
+      "name": "manifest.webmanifest",
+      "summary": "PWA manifest naming Avsar as a BAMS internship tracker with standalone display, portrait orientation, warm-paper theme color, and an SVG favicon icon."
+    },
+    {
+      "id": "file:public/sw.js",
+      "score": 2,
+      "name": "sw.js",
+      "summary": "Zero-dependency service worker caching the app shell on install and serving same-origin GETs stale-while-revalidate so the demo works offline."
+    }
+  ],
+  "fanInRanking": [
+    {
+      "id": "file:src/components/ui.jsx",
+      "fanIn": 25,
+      "name": "ui.jsx"
+    },
+    {
+      "id": "file:src/lib/storage.js",
+      "fanIn": 25,
+      "name": "storage.js"
+    },
+    {
+      "id": "file:src/app/store.jsx",
+      "fanIn": 21,
+      "name": "store.jsx"
+    },
+    {
+      "id": "file:src/lib/score.js",
+      "fanIn": 20,
+      "name": "score.js"
+    },
+    {
+      "id": "file:src/lib/store.js",
+      "fanIn": 16,
+      "name": "store.js"
+    },
+    {
+      "id": "file:src/lib/progress.js",
+      "fanIn": 12,
+      "name": "progress.js"
+    },
+    {
+      "id": "file:src/data/quiz.js",
+      "fanIn": 10,
+      "name": "quiz.js"
+    },
+    {
+      "id": "file:src/data/courses.js",
+      "fanIn": 9,
+      "name": "courses.js"
+    },
+    {
+      "id": "file:src/ayush/seed.js",
+      "fanIn": 9,
+      "name": "seed.js"
+    },
+    {
+      "id": "file:src/data/ayushSeed.js",
+      "fanIn": 7,
+      "name": "ayushSeed.js"
+    },
+    {
+      "id": "file:src/lib/identity.js",
+      "fanIn": 7,
+      "name": "identity.js"
+    },
+    {
+      "id": "file:src/lib/profile.js",
+      "fanIn": 7,
+      "name": "profile.js"
+    },
+    {
+      "id": "file:src/lib/quests.js",
+      "fanIn": 7,
+      "name": "quests.js"
+    },
+    {
+      "id": "file:src/data/taxonomy.js",
+      "fanIn": 7,
+      "name": "taxonomy.js"
+    },
+    {
+      "id": "file:src/data/jobs.js",
+      "fanIn": 6,
+      "name": "jobs.js"
+    },
+    {
+      "id": "file:src/lib/match.js",
+      "fanIn": 6,
+      "name": "match.js"
+    },
+    {
+      "id": "file:src/lib/backend.js",
+      "fanIn": 5,
+      "name": "backend.js"
+    },
+    {
+      "id": "file:src/lib/ai.js",
+      "fanIn": 5,
+      "name": "ai.js"
+    },
+    {
+      "id": "file:tests/ayush.test.js",
+      "fanIn": 5,
+      "name": "ayush.test.js"
+    },
+    {
+      "id": "file:src/lib/onboarding.js",
+      "fanIn": 5,
+      "name": "onboarding.js"
+    }
+  ],
+  "fanOutRanking": [
+    {
+      "id": "file:src/app/shell.jsx",
+      "fanOut": 26,
+      "name": "shell.jsx"
+    },
+    {
+      "id": "file:src/pages/Profile.jsx",
+      "fanOut": 16,
+      "name": "Profile.jsx"
+    },
+    {
+      "id": "file:src/pages/Journey.jsx",
+      "fanOut": 13,
+      "name": "Journey.jsx"
+    },
+    {
+      "id": "file:src/pages/Jobs.jsx",
+      "fanOut": 12,
+      "name": "Jobs.jsx"
+    },
+    {
+      "id": "file:src/pages/Home.jsx",
+      "fanOut": 12,
+      "name": "Home.jsx"
+    },
+    {
+      "id": "file:src/pages/Portfolio.jsx",
+      "fanOut": 11,
+      "name": "Portfolio.jsx"
+    },
+    {
+      "id": "file:src/pages/Interview.jsx",
+      "fanOut": 10,
+      "name": "Interview.jsx"
+    },
+    {
+      "id": "file:src/pages/Public.jsx",
+      "fanOut": 9,
+      "name": "Public.jsx"
+    },
+    {
+      "id": "file:src/app/coach-widget.jsx",
+      "fanOut": 9,
+      "name": "coach-widget.jsx"
+    },
+    {
+      "id": "file:src/pages/Resume.jsx",
+      "fanOut": 9,
+      "name": "Resume.jsx"
+    },
+    {
+      "id": "file:tests/ayush.test.js",
+      "fanOut": 8,
+      "name": "ayush.test.js"
+    },
+    {
+      "id": "file:src/pages/Quiz.jsx",
+      "fanOut": 7,
+      "name": "Quiz.jsx"
+    },
+    {
+      "id": "file:src/lib/store.js",
+      "fanOut": 7,
+      "name": "store.js"
+    },
+    {
+      "id": "file:src/pages/Quests.jsx",
+      "fanOut": 7,
+      "name": "Quests.jsx"
+    },
+    {
+      "id": "file:src/pages/Programs.jsx",
+      "fanOut": 7,
+      "name": "Programs.jsx"
+    },
+    {
+      "id": "file:src/pages/Institute.jsx",
+      "fanOut": 6,
+      "name": "Institute.jsx"
+    },
+    {
+      "id": "file:src/pages/Workspace.jsx",
+      "fanOut": 6,
+      "name": "Workspace.jsx"
+    },
+    {
+      "id": "file:src/lib/score.js",
+      "fanOut": 6,
+      "name": "score.js"
+    },
+    {
+      "id": "file:src/pages/Industry.jsx",
+      "fanOut": 6,
+      "name": "Industry.jsx"
+    },
+    {
+      "id": "file:src/lib/match.js",
+      "fanOut": 6,
+      "name": "match.js"
+    }
+  ],
+  "bfsTraversal": {
+    "startNode": "file:src/main.jsx",
+    "order": [
+      "file:src/main.jsx",
+      "file:src/app/shell.jsx",
+      "file:src/app/store.jsx",
+      "file:src/index.css",
+      "file:src/app/coach-widget.jsx",
+      "file:src/app/error-boundary.jsx",
+      "file:src/lib/auth.js",
+      "file:src/lib/i18n.js",
+      "file:src/lib/score.js",
+      "file:src/lib/theme.js",
+      "file:src/pages/Ayush.jsx",
+      "file:src/pages/Faculty.jsx",
+      "file:src/pages/Home.jsx",
+      "file:src/pages/Industry.jsx",
+      "file:src/pages/Institute.jsx",
+      "file:src/pages/Interview.jsx",
+      "file:src/pages/Jobs.jsx",
+      "file:src/pages/Journey.jsx",
+      "file:src/pages/Match.jsx",
+      "file:src/pages/NotFound.jsx",
+      "file:src/pages/Portfolio.jsx",
+      "file:src/pages/Profile.jsx",
+      "file:src/pages/Programs.jsx",
+      "file:src/pages/Public.jsx",
+      "file:src/pages/Quests.jsx",
+      "file:src/pages/Quiz.jsx",
+      "file:src/pages/Resume.jsx",
+      "file:src/pages/Verify.jsx",
+      "file:src/pages/Workspace.jsx",
+      "file:src/lib/backend.js",
+      "file:src/lib/roles.js",
+      "file:src/lib/storage.js",
+      "file:src/lib/store.js",
+      "file:src/components/ui.jsx",
+      "file:src/data/jobs.js",
+      "file:src/lib/ai.js",
+      "file:src/lib/coach.js",
+      "file:src/lib/parseResume.js",
+      "file:src/lib/profile.js",
+      "file:src/lib/supabase.js",
+      "file:src/ayush/seed.js",
+      "file:src/lib/ats.js",
+      "file:src/components/landing/FractalMap.jsx",
+      "file:src/data/ayushSeed.js",
+      "file:src/lib/progress.js",
+      "file:src/data/fdps.js",
+      "file:src/ayush/scoring.js",
+      "file:src/components/StreakMeter.jsx",
+      "file:src/components/XpMeter.jsx",
+      "file:src/data/courses.js",
+      "file:src/lib/onboarding.js",
+      "file:src/data/quiz.js",
+      "file:src/lib/match.js",
+      "file:src/lib/questionnaire.js",
+      "file:src/lib/cohort.js",
+      "file:src/lib/dashboard.js",
+      "file:src/data/questionnaire.js",
+      "file:src/lib/interview.js",
+      "file:src/lib/speech.js",
+      "file:src/ayush/resumes.js",
+      "file:src/lib/aiQuestions.js",
+      "file:src/data/taxonomy.js",
+      "file:src/lib/identity.js",
+      "file:src/lib/verify.js",
+      "file:src/lib/streak.js",
+      "file:src/lib/xp.js",
+      "file:src/data/programs.js",
+      "file:src/lib/quests.js",
+      "file:src/lib/roadmapGenerator.js",
+      "file:src/ayush/proof.js",
+      "file:src/data/tuning.js",
+      "file:src/data/colleges.js",
+      "file:src/data/quests.js",
+      "file:src/lib/gemini.js"
+    ],
+    "depthMap": {
+      "file:src/main.jsx": 0,
+      "file:src/app/shell.jsx": 1,
+      "file:src/app/store.jsx": 1,
+      "file:src/index.css": 1,
+      "file:src/app/coach-widget.jsx": 2,
+      "file:src/app/error-boundary.jsx": 2,
+      "file:src/lib/auth.js": 2,
+      "file:src/lib/i18n.js": 2,
+      "file:src/lib/score.js": 2,
+      "file:src/lib/theme.js": 2,
+      "file:src/pages/Ayush.jsx": 2,
+      "file:src/pages/Faculty.jsx": 2,
+      "file:src/pages/Home.jsx": 2,
+      "file:src/pages/Industry.jsx": 2,
+      "file:src/pages/Institute.jsx": 2,
+      "file:src/pages/Interview.jsx": 2,
+      "file:src/pages/Jobs.jsx": 2,
+      "file:src/pages/Journey.jsx": 2,
+      "file:src/pages/Match.jsx": 2,
+      "file:src/pages/NotFound.jsx": 2,
+      "file:src/pages/Portfolio.jsx": 2,
+      "file:src/pages/Profile.jsx": 2,
+      "file:src/pages/Programs.jsx": 2,
+      "file:src/pages/Public.jsx": 2,
+      "file:src/pages/Quests.jsx": 2,
+      "file:src/pages/Quiz.jsx": 2,
+      "file:src/pages/Resume.jsx": 2,
+      "file:src/pages/Verify.jsx": 2,
+      "file:src/pages/Workspace.jsx": 2,
+      "file:src/lib/backend.js": 2,
+      "file:src/lib/roles.js": 2,
+      "file:src/lib/storage.js": 2,
+      "file:src/lib/store.js": 2,
+      "file:src/components/ui.jsx": 3,
+      "file:src/data/jobs.js": 3,
+      "file:src/lib/ai.js": 3,
+      "file:src/lib/coach.js": 3,
+      "file:src/lib/parseResume.js": 3,
+      "file:src/lib/profile.js": 3,
+      "file:src/lib/supabase.js": 3,
+      "file:src/ayush/seed.js": 3,
+      "file:src/lib/ats.js": 3,
+      "file:src/components/landing/FractalMap.jsx": 3,
+      "file:src/data/ayushSeed.js": 3,
+      "file:src/lib/progress.js": 3,
+      "file:src/data/fdps.js": 3,
+      "file:src/ayush/scoring.js": 3,
+      "file:src/components/StreakMeter.jsx": 3,
+      "file:src/components/XpMeter.jsx": 3,
+      "file:src/data/courses.js": 3,
+      "file:src/lib/onboarding.js": 3,
+      "file:src/data/quiz.js": 3,
+      "file:src/lib/match.js": 3,
+      "file:src/lib/questionnaire.js": 3,
+      "file:src/lib/cohort.js": 3,
+      "file:src/lib/dashboard.js": 3,
+      "file:src/data/questionnaire.js": 3,
+      "file:src/lib/interview.js": 3,
+      "file:src/lib/speech.js": 3,
+      "file:src/ayush/resumes.js": 3,
+      "file:src/lib/aiQuestions.js": 3,
+      "file:src/data/taxonomy.js": 3,
+      "file:src/lib/identity.js": 3,
+      "file:src/lib/verify.js": 3,
+      "file:src/lib/streak.js": 3,
+      "file:src/lib/xp.js": 3,
+      "file:src/data/programs.js": 3,
+      "file:src/lib/quests.js": 3,
+      "file:src/lib/roadmapGenerator.js": 3,
+      "file:src/ayush/proof.js": 3,
+      "file:src/data/tuning.js": 4,
+      "file:src/data/colleges.js": 4,
+      "file:src/data/quests.js": 4,
+      "file:src/lib/gemini.js": 4
+    },
+    "byDepth": {
+      "0": [
+        "file:src/main.jsx"
+      ],
+      "1": [
+        "file:src/app/shell.jsx",
+        "file:src/app/store.jsx",
+        "file:src/index.css"
+      ],
+      "2": [
+        "file:src/app/coach-widget.jsx",
+        "file:src/app/error-boundary.jsx",
+        "file:src/lib/auth.js",
+        "file:src/lib/i18n.js",
+        "file:src/lib/score.js",
+        "file:src/lib/theme.js",
+        "file:src/pages/Ayush.jsx",
+        "file:src/pages/Faculty.jsx",
+        "file:src/pages/Home.jsx",
+        "file:src/pages/Industry.jsx",
+        "file:src/pages/Institute.jsx",
+        "file:src/pages/Interview.jsx",
+        "file:src/pages/Jobs.jsx",
+        "file:src/pages/Journey.jsx",
+        "file:src/pages/Match.jsx",
+        "file:src/pages/NotFound.jsx",
+        "file:src/pages/Portfolio.jsx",
+        "file:src/pages/Profile.jsx",
+        "file:src/pages/Programs.jsx",
+        "file:src/pages/Public.jsx",
+        "file:src/pages/Quests.jsx",
+        "file:src/pages/Quiz.jsx",
+        "file:src/pages/Resume.jsx",
+        "file:src/pages/Verify.jsx",
+        "file:src/pages/Workspace.jsx",
+        "file:src/lib/backend.js",
+        "file:src/lib/roles.js",
+        "file:src/lib/storage.js",
+        "file:src/lib/store.js"
+      ],
+      "3": [
+        "file:src/components/ui.jsx",
+        "file:src/data/jobs.js",
+        "file:src/lib/ai.js",
+        "file:src/lib/coach.js",
+        "file:src/lib/parseResume.js",
+        "file:src/lib/profile.js",
+        "file:src/lib/supabase.js",
+        "file:src/ayush/seed.js",
+        "file:src/lib/ats.js",
+        "file:src/components/landing/FractalMap.jsx",
+        "file:src/data/ayushSeed.js",
+        "file:src/lib/progress.js",
+        "file:src/data/fdps.js",
+        "file:src/ayush/scoring.js",
+        "file:src/components/StreakMeter.jsx",
+        "file:src/components/XpMeter.jsx",
+        "file:src/data/courses.js",
+        "file:src/lib/onboarding.js",
+        "file:src/data/quiz.js",
+        "file:src/lib/match.js",
+        "file:src/lib/questionnaire.js",
+        "file:src/lib/cohort.js",
+        "file:src/lib/dashboard.js",
+        "file:src/data/questionnaire.js",
+        "file:src/lib/interview.js",
+        "file:src/lib/speech.js",
+        "file:src/ayush/resumes.js",
+        "file:src/lib/aiQuestions.js",
+        "file:src/data/taxonomy.js",
+        "file:src/lib/identity.js",
+        "file:src/lib/verify.js",
+        "file:src/lib/streak.js",
+        "file:src/lib/xp.js",
+        "file:src/data/programs.js",
+        "file:src/lib/quests.js",
+        "file:src/lib/roadmapGenerator.js",
+        "file:src/ayush/proof.js"
+      ],
+      "4": [
+        "file:src/data/tuning.js",
+        "file:src/data/colleges.js",
+        "file:src/data/quests.js",
+        "file:src/lib/gemini.js"
+      ]
+    }
+  },
+  "nonCodeFiles": {
+    "documentation": [
+      {
+        "id": "document:README.md",
+        "name": "README.md",
+        "type": "document",
+        "summary": "Project overview for the C2C app: stack notes, npm/test/build/lint/scraper commands, and thin-page plus localStorage-first conventions."
+      },
+      {
+        "id": "document:.tastemaker/reference-board.md",
+        "name": "reference-board.md",
+        "type": "document",
+        "summary": "Design reference board for the app-shell navigation, capturing CoreUI and Duolingo patterns used plus anti-references and a clinic-notice-board direction contract."
+      },
+      {
+        "id": "document:.tastemaker/style-lock.md",
+        "name": "style-lock.md",
+        "type": "document",
+        "summary": "Locked visual style contract for Avsar: Bricolage/Inter/DM Mono type split, warm-paper herb-green palette, shape rules, dark-mode mapping, and leaf-mark identity motif."
+      }
+    ],
+    "infrastructure": [],
+    "data": [],
+    "config": [
+      {
+        "id": "config:.env",
+        "name": ".env",
+        "type": "config",
+        "summary": "Local runtime secrets for the Vite app: Gemini and Groq AI keys plus Supabase URL and anon key. The app runs offline without them."
+      },
+      {
+        "id": "config:.env.example",
+        "name": ".env.example",
+        "type": "config",
+        "summary": "Checked-in template documenting the optional AI and Supabase keys, with links for free Groq and Gemini keys and spare-key support."
+      },
+      {
+        "id": "config:.oxlintrc.json",
+        "name": ".oxlintrc.json",
+        "type": "config",
+        "summary": "Oxlint configuration enabling react and oxc plugins; keeps `npm run lint` clean across the React codebase."
+      },
+      {
+        "id": "config:package.json",
+        "name": "package.json",
+        "type": "config",
+        "summary": "npm manifest for ayush-portal: dev/build/lint/scraper scripts and the Vite plus React 19 plus React Router plus Tailwind v4 dependency set."
+      },
+      {
+        "id": "config:vercel.json",
+        "name": "vercel.json",
+        "type": "config",
+        "summary": "Vercel SPA fallback rewriting every route to /index.html so React Router handles client-side navigation."
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "nodes": [
+        "file:src/lib/ats.js",
+        "file:src/lib/score.js"
+      ],
+      "edgeCount": 2
+    }
+  ],
+  "layers": {
+    "count": 8,
+    "list": [
+      {
+        "id": "layer:ui",
+        "name": "UI Layer",
+        "description": "Route screens in src/pages plus shared presentational components and global styles for the AYUSH C2C portal"
+      },
+      {
+        "id": "layer:app-state",
+        "name": "App Shell & State",
+        "description": "App shell, global C2C context store, coach widget, error boundary, and Vite entry mounting all routes"
+      },
+      {
+        "id": "layer:service",
+        "name": "Service Layer",
+        "description": "Tested pure logic in src/lib: scoring, matching, AI coaching, auth, persistence, and Supabase backend adapters"
+      },
+      {
+        "id": "layer:data",
+        "name": "Data Layer",
+        "description": "Regenerated seed datasets, quiz/quest/interview content, and AYUSH domain scoring data in src/data and src/ayush"
+      },
+      {
+        "id": "layer:test",
+        "name": "Test Layer",
+        "description": "Node test suites covering lib logic, data seeds, and portal flows"
+      },
+      {
+        "id": "layer:config",
+        "name": "Configuration",
+        "description": "Build, deploy, lint, and environment configuration plus the SPA shell and Vite entry config"
+      },
+      {
+        "id": "layer:infrastructure",
+        "name": "Infrastructure & Tooling",
+        "description": "PWA service worker and manifest plus data-seed scraper scripts feeding src/data"
+      },
+      {
+        "id": "layer:documentation",
+        "name": "Documentation",
+        "description": "Project README and tastemaker design reference boards"
+      }
+    ]
+  },
+  "nodeSummaryIndex": {
+    "file:src/app/error-boundary.jsx": {
+      "name": "error-boundary.jsx",
+      "type": "file",
+      "summary": "React class error boundary catching route render failures with retry reload."
+    },
+    "file:src/app/shell.jsx": {
+      "name": "shell.jsx",
+      "type": "file",
+      "summary": "App shell with nav tabs, theme and language toggles, auth state, and readiness ring mounting all routes."
+    },
+    "file:src/app/store.jsx": {
+      "name": "store.jsx",
+      "type": "file",
+      "summary": "Global C2C context provider holding role, resume, events, and job-board state with persistence."
+    },
+    "file:src/components/landing/Figs.jsx": {
+      "name": "Figs.jsx",
+      "type": "file",
+      "summary": "Static illustrative figures for the landing page covering score, quest, and pipeline visuals."
+    },
+    "file:src/components/landing/FractalMap.jsx": {
+      "name": "FractalMap.jsx",
+      "type": "file",
+      "summary": "Canvas-rendered animated fractal noise map backdrop for the landing hero."
+    },
+    "file:src/components/landing/LandingHero.jsx": {
+      "name": "LandingHero.jsx",
+      "type": "file",
+      "summary": "Landing hero section with nav links, palette switcher, and next-step call to action."
+    },
+    "file:src/components/landing/Sections.jsx": {
+      "name": "Sections.jsx",
+      "type": "file",
+      "summary": "Landing page content sections: problem strip, coach figure, clan sim, trio, and boot CTA."
+    },
+    "file:src/components/ui.jsx": {
+      "name": "ui.jsx",
+      "type": "file",
+      "summary": "Shared UI primitive library with layout, buttons, charts, and indicators used by every page."
+    },
+    "file:src/data/ayushSeed.js": {
+      "name": "ayushSeed.js",
+      "type": "file",
+      "summary": "Seed data for the AYUSH vertical: jobs, skill tree, courses, quiz, interview, and questionnaire content."
+    },
+    "file:src/data/jobs.js": {
+      "name": "jobs.js",
+      "type": "file",
+      "summary": "Core job listings plus matchJobs helper ranking jobs by role fit and score eligibility."
+    },
+    "file:src/lib/dashboard.js": {
+      "name": "dashboard.js",
+      "type": "file",
+      "summary": "Pure analytics helpers for donut segments, week trend, recent activity, demand heatmap, and briefing lines."
+    },
+    "file:src/lib/roles.js": {
+      "name": "roles.js",
+      "type": "file",
+      "summary": "App role constants with load and save helpers for the role preference."
+    },
+    "file:src/lib/theme.js": {
+      "name": "theme.js",
+      "type": "file",
+      "summary": "Theme load and save helpers persisting the UI theme via storage."
+    },
+    "file:src/main.jsx": {
+      "name": "main.jsx",
+      "type": "file",
+      "summary": "React entry point mounting the app shell inside the C2C provider."
+    },
+    "file:src/pages/Ayush.jsx": {
+      "name": "Ayush.jsx",
+      "type": "file",
+      "summary": "AYUSH entry page showing the rotatory checklist, progress state, and role entry action."
+    },
+    "file:src/pages/Institute.jsx": {
+      "name": "Institute.jsx",
+      "type": "file",
+      "summary": "Institute analytics dashboard with cohort stats, demand heatmap, assessments, and CSV export."
+    },
+    "file:src/pages/Jobs.jsx": {
+      "name": "Jobs.jsx",
+      "type": "file",
+      "summary": "Jobs board page with skill matching, filters, insights, live jobs, and application tracking."
+    },
+    "file:src/pages/NotFound.jsx": {
+      "name": "NotFound.jsx",
+      "type": "file",
+      "summary": "Fallback 404 page rendered for unknown routes."
+    },
+    "file:src/pages/Quiz.jsx": {
+      "name": "Quiz.jsx",
+      "type": "file",
+      "summary": "Timed daily quiz page with question sampling, grading, best-score persistence, and streak recording."
+    },
+    "file:src/pages/Verify.jsx": {
+      "name": "Verify.jsx",
+      "type": "file",
+      "summary": "Credential verification page resolving a signed credential status and revocation state."
+    },
+    "file:src/pages/Workspace.jsx": {
+      "name": "Workspace.jsx",
+      "type": "file",
+      "summary": "Per-application workspace tracking pipeline status, mentor sign-offs, and the proof ledger."
+    },
+    "file:tests/dashboard.test.js": {
+      "name": "dashboard.test.js",
+      "type": "file",
+      "summary": "Unit tests covering the dashboard analytics helpers."
+    },
+    "file:scripts/boards.mjs": {
+      "name": "boards.mjs",
+      "type": "file",
+      "summary": "Seed script that scrapes Greenhouse, Lever, and Ashby public job boards and normalizes listings into the app job shape."
+    },
+    "file:src/data/colleges.js": {
+      "name": "colleges.js",
+      "type": "file",
+      "summary": "Seed list of AYUSH colleges plus a helper that folds a user score into a college average."
+    },
+    "file:src/lib/auth.js": {
+      "name": "auth.js",
+      "type": "file",
+      "summary": "Supabase Google-OAuth wrapper with current-user lookup, sign-in/out, auth subscription, and backend label."
+    },
+    "file:src/lib/backend.js": {
+      "name": "backend.js",
+      "type": "file",
+      "summary": "Persistence layer for assessments, job events, artifacts, and feedback with local-first writes and Supabase sync."
+    },
+    "file:src/lib/i18n.js": {
+      "name": "i18n.js",
+      "type": "file",
+      "summary": "Lightweight localization with language list, string tables, and load/save/translate helpers."
+    },
+    "file:src/lib/identity.js": {
+      "name": "identity.js",
+      "type": "file",
+      "summary": "Anonymous student identity plus nickname, certificates, and GitHub handle backed by localStorage."
+    },
+    "file:src/lib/storage.js": {
+      "name": "storage.js",
+      "type": "file",
+      "summary": "Safe localStorage JSON and text accessors that no-op outside the browser."
+    },
+    "file:src/lib/store.js": {
+      "name": "store.js",
+      "type": "file",
+      "summary": "Central jobs-domain store covering shaping, boards, applications, interests, enrollments, kudos, and live-job fetching."
+    },
+    "file:src/lib/supabase.js": {
+      "name": "supabase.js",
+      "type": "file",
+      "summary": "Supabase client bootstrap plus college leaderboard aggregation, merging, loading, and score submission."
+    },
+    "file:src/lib/verify.js": {
+      "name": "verify.js",
+      "type": "file",
+      "summary": "Offline credential issuance and checking with hash-signed tokens plus a local revocation list."
+    },
+    "file:src/pages/Portfolio.jsx": {
+      "name": "Portfolio.jsx",
+      "type": "file",
+      "summary": "Personal portfolio screen assembling score, verified skills, certificates, kudos, QR credential, and feedback."
+    },
+    "file:src/pages/Public.jsx": {
+      "name": "Public.jsx",
+      "type": "file",
+      "summary": "Shared read-only portfolio view resolved from the URL id with score and verified skills."
+    },
+    "file:tests/backend.test.js": {
+      "name": "backend.test.js",
+      "type": "file",
+      "summary": "Node tests for backend row builders, funnel counts, and analytics summary."
+    },
+    "file:tests/i18n.test.js": {
+      "name": "i18n.test.js",
+      "type": "file",
+      "summary": "Node tests for language load, save, and translation fallback."
+    },
+    "file:tests/portfolio.test.js": {
+      "name": "portfolio.test.js",
+      "type": "file",
+      "summary": "Node tests for identity and store helpers backing the portfolio screen."
+    },
+    "file:tests/store.test.js": {
+      "name": "store.test.js",
+      "type": "file",
+      "summary": "Node tests for job shaping, merging, and interest toggles."
+    },
+    "file:tests/verify.test.js": {
+      "name": "verify.test.js",
+      "type": "file",
+      "summary": "Node tests for credential signing, checking, and revocation."
+    },
+    "file:src/app/coach-widget.jsx": {
+      "name": "coach-widget.jsx",
+      "type": "file",
+      "summary": "Floating AI career-coach chat widget with quick actions, resume-aware greeting, offline answers plus Groq/Gemini fallback, and a persisted chat log."
+    },
+    "file:src/data/courses.js": {
+      "name": "courses.js",
+      "type": "file",
+      "summary": "Free course catalog keyed by skill with cert filtering, budget-aware recommendations, YouTube video links, and resume-tip rules."
+    },
+    "file:src/data/tuning.js": {
+      "name": "tuning.js",
+      "type": "file",
+      "summary": "AI tone presets with localStorage-backed tone choice and custom instructions, composing the system preamble for all LLM calls."
+    },
+    "file:src/lib/ai.js": {
+      "name": "ai.js",
+      "type": "file",
+      "summary": "Groq/Gemini chat gateway with API-key detection, per-task models, timed fetch, and a localStorage-backed memoization cache."
+    },
+    "file:src/lib/aiQuestions.js": {
+      "name": "aiQuestions.js",
+      "type": "file",
+      "summary": "AI-generated quiz, interview, and questionnaire item builders with tolerant parsers that normalize raw LLM JSON output."
+    },
+    "file:src/lib/coach.js": {
+      "name": "coach.js",
+      "type": "file",
+      "summary": "Offline-first career-coach engine: prompt building, match banding, writeups, cover letters, job-posting parsing, and bilingual answers."
+    },
+    "file:src/lib/gemini.js": {
+      "name": "gemini.js",
+      "type": "file",
+      "summary": "Tolerant parser that normalizes raw Gemini question-set JSON into {text, dimension} items."
+    },
+    "file:src/lib/parseResume.js": {
+      "name": "parseResume.js",
+      "type": "file",
+      "summary": "Resume ingestion from PDF (pdf.js) or text files with contact extraction and experience/education/skills section bucketing."
+    },
+    "file:src/lib/profile.js": {
+      "name": "profile.js",
+      "type": "file",
+      "summary": "AYUSH student profile persistence in localStorage with markdown rendering and job-scrape query builders."
+    },
+    "file:src/pages/Journey.jsx": {
+      "name": "Journey.jsx",
+      "type": "file",
+      "summary": "Guided onboarding journey page: resume upload and scoring, AI interview practice with grading, tips, courses, and a progress-gated roadmap start."
+    },
+    "file:tests/ai.test.js": {
+      "name": "ai.test.js",
+      "type": "file",
+      "summary": "Tests for the AI gateway: task model routing and key detection."
+    },
+    "file:tests/aiquestions.test.js": {
+      "name": "aiquestions.test.js",
+      "type": "file",
+      "summary": "Tests for AI question parsers covering quiz, interview, and questionnaire shapes."
+    },
+    "file:tests/coach.test.js": {
+      "name": "coach.test.js",
+      "type": "file",
+      "summary": "Tests for the coach engine: matching, writeups, cover letters, and job-posting parsing."
+    },
+    "file:tests/profile.test.js": {
+      "name": "profile.test.js",
+      "type": "file",
+      "summary": "Tests for profile persistence, markdown rendering, and query builders."
+    },
+    "file:tests/sections.test.js": {
+      "name": "sections.test.js",
+      "type": "file",
+      "summary": "Tests for resume contact extraction and section bucketing."
+    },
+    "file:tests/tips.test.js": {
+      "name": "tips.test.js",
+      "type": "file",
+      "summary": "Tests for resume-tip derivation from score breakdowns."
+    },
+    "file:tests/tuning.test.js": {
+      "name": "tuning.test.js",
+      "type": "file",
+      "summary": "Tests for AI tone presets and system-preamble composition."
+    },
+    "file:src/ayush/seed.js": {
+      "name": "seed.js",
+      "type": "file",
+      "summary": "Single-source AYUSH data module holding the role definition, jobs, skill tree, courses, quiz, interview, questionnaire, and FDP seeds behind the AYUSH_ENABLED kill switch."
+    },
+    "file:src/data/fdps.js": {
+      "name": "fdps.js",
+      "type": "file",
+      "summary": "Curated faculty-development programs, internships, consultancy, and workshop seeds merged with AYUSH_FDPS, keyed by FDP_KINDS."
+    },
+    "file:src/data/interview.js": {
+      "name": "interview.js",
+      "type": "file",
+      "summary": "Role-keyed interview question bank extending AYUSH_INTERVIEW_QS with clinical scenario prompts."
+    },
+    "file:src/data/quests.js": {
+      "name": "quests.js",
+      "type": "file",
+      "summary": "BAMS skill-tree data combining the AYUSH tree with rotatory-internship and career branches, plus the questFor role lookup."
+    },
+    "file:src/data/quiz.js": {
+      "name": "quiz.js",
+      "type": "file",
+      "summary": "Ayurveda quiz bank with pure grading, seeded sampling via pickForId, and best-score persistence through guarded storage."
+    },
+    "file:src/lib/quests.js": {
+      "name": "quests.js",
+      "type": "file",
+      "summary": "Backend-free quest utilities: FNV-1a string hashing, stable per-ID sampling, and evidence-URL validation."
+    },
+    "file:src/lib/roadmapGenerator.js": {
+      "name": "roadmapGenerator.js",
+      "type": "file",
+      "summary": "Builds demand-ordered week-by-week learning roadmaps from missing skills, pairing each skill with a course link and quest project task."
+    },
+    "file:src/pages/Faculty.jsx": {
+      "name": "Faculty.jsx",
+      "type": "file",
+      "summary": "Faculty page browsing FDPs and workshops with kind filtering and persisted interest toggles synced to the store backend."
+    },
+    "file:src/pages/Quests.jsx": {
+      "name": "Quests.jsx",
+      "type": "file",
+      "summary": "Quests tracker page turning missing skills into a roadmap-driven checklist with completion bar, weekly wins, evidence links, and mastery pips."
+    },
+    "file:tests/ayush.test.js": {
+      "name": "ayush.test.js",
+      "type": "file",
+      "summary": "Tests covering the AYUSH seed data and its derived course, FDP, interview, questionnaire, quest, quiz, and scoring surfaces."
+    },
+    "file:tests/faculty.test.js": {
+      "name": "faculty.test.js",
+      "type": "file",
+      "summary": "Tests for faculty FDP seeds and the interest-toggle store flow used by the Faculty page."
+    },
+    "file:tests/quests.test.js": {
+      "name": "quests.test.js",
+      "type": "file",
+      "summary": "Unit tests for the quest hashing, sampling, and evidence-URL utilities."
+    },
+    "file:tests/quiz.test.js": {
+      "name": "quiz.test.js",
+      "type": "file",
+      "summary": "Tests for quiz grading, sampling, and best-score persistence in the quiz data module."
+    },
+    "file:tests/recommend.test.js": {
+      "name": "recommend.test.js",
+      "type": "file",
+      "summary": "Tests for the demand-ordered roadmap generator and its job-store inputs."
+    },
+    "file:src/ayush/data.js": {
+      "name": "data.js",
+      "type": "file",
+      "summary": "Hand-verified AYUSH portal dataset: BAMS colleges, noticeboard, programs, schemes, and FAQ sourced from NCISM and ministry sites."
+    },
+    "file:src/ayush/proof.js": {
+      "name": "proof.js",
+      "type": "file",
+      "summary": "Clinical proof ledger for BAMS skills: localStorage-backed entries across five verification paths with confidence scoring."
+    },
+    "file:src/ayush/resumes.js": {
+      "name": "resumes.js",
+      "type": "file",
+      "summary": "Sample BAMS resumes plus the resume-writing guide: skim-order anatomy, weak-vs-strong bullets, and per-skill proof advice."
+    },
+    "file:src/ayush/scoring.js": {
+      "name": "scoring.js",
+      "type": "file",
+      "summary": "BAMS scoring overlay reframing the shared ATS engine into vaidya growth levels and per-skill proof paths."
+    },
+    "file:src/lib/cohort.js": {
+      "name": "cohort.js",
+      "type": "file",
+      "summary": "Demo BAMS cohort dataset with enrichment, aggregate stats for the institute view, and CSV export."
+    },
+    "file:src/lib/score.js": {
+      "name": "score.js",
+      "type": "file",
+      "summary": "Shared scoring hub: role rubrics, MAIN score combiner, rank bands, and a thin caller over the ATS engine."
+    },
+    "file:src/pages/Resume.jsx": {
+      "name": "Resume.jsx",
+      "type": "file",
+      "summary": "Resume checker page: text/file input console with a score rail, evidence grid, and BAMS vaidya readout."
+    },
+    "file:tests/ayushPortal.test.js": {
+      "name": "ayushPortal.test.js",
+      "type": "file",
+      "summary": "Node-test suite asserting AYUSH fixtures score with range, portal data shapes hold, and schemes stay student-readable."
+    },
+    "file:tests/institute.test.js": {
+      "name": "institute.test.js",
+      "type": "file",
+      "summary": "Node-test suite for demo cohort stats aggregation and CSV export quoting."
+    },
+    "file:tests/score.test.js": {
+      "name": "score.test.js",
+      "type": "file",
+      "summary": "Node-test suite for resume skill matching, quest-earned skill boosts, caps, and empty-input safety."
+    },
+    "file:tests/scores.test.js": {
+      "name": "scores.test.js",
+      "type": "file",
+      "summary": "Node-test suite for the MAIN combiner weights, quest-proof mapping, clamping, and shape normalization."
+    },
+    "file:src/components/StreakMeter.jsx": {
+      "name": "StreakMeter.jsx",
+      "type": "file",
+      "summary": "GitHub-style activity heatmap showing daily quest activity, current streak, and total active days."
+    },
+    "file:src/components/XpMeter.jsx": {
+      "name": "XpMeter.jsx",
+      "type": "file",
+      "summary": "XP progress bar showing level, total XP, and per-source breakdown toward the next level."
+    },
+    "file:src/lib/onboarding.js": {
+      "name": "onboarding.js",
+      "type": "file",
+      "summary": "Onboarding helpers: weighted progress, profile-derived questions, reset, and AI grade parsing."
+    },
+    "file:src/lib/progress.js": {
+      "name": "progress.js",
+      "type": "file",
+      "summary": "LocalStorage-backed quest progress store: completion flags, evidence URLs, daily activity, streaks, badges, and role mastery."
+    },
+    "file:src/lib/streak.js": {
+      "name": "streak.js",
+      "type": "file",
+      "summary": "Daily activity aggregation: per-day detail and counts, heatmap weeks, streak length, and intensity levels."
+    },
+    "file:src/lib/xp.js": {
+      "name": "xp.js",
+      "type": "file",
+      "summary": "XP weights, level thresholds, and XP collection from daily activity detail."
+    },
+    "file:src/pages/Home.jsx": {
+      "name": "Home.jsx",
+      "type": "file",
+      "summary": "Landing dashboard with score ring, streak and XP meters, stats, skill gaps, courses, and top job matches."
+    },
+    "file:src/pages/Profile.jsx": {
+      "name": "Profile.jsx",
+      "type": "file",
+      "summary": "Multi-step onboarding wizard plus profile card with score, streak, XP, skill gaps, auth, and account actions."
+    },
+    "file:tests/onboarding.test.js": {
+      "name": "onboarding.test.js",
+      "type": "file",
+      "summary": "Tests for onboarding progress weighting, question generation, and AI grade parsing."
+    },
+    "file:tests/streak.test.js": {
+      "name": "streak.test.js",
+      "type": "file",
+      "summary": "Tests for streak heatmap levels, streak counting, and active-day totals."
+    },
+    "file:tests/xp.test.js": {
+      "name": "xp.test.js",
+      "type": "file",
+      "summary": "Tests for XP level thresholds and XP collection weights."
+    },
+    "file:src/data/questionnaire.js": {
+      "name": "questionnaire.js",
+      "type": "file",
+      "summary": "Ayush evidence questionnaire bank extending the shared seed with logbook and posting-link branches that feed the ATS evidence compiler."
+    },
+    "file:src/lib/ats.js": {
+      "name": "ats.js",
+      "type": "file",
+      "summary": "Deterministic ATS resume scoring engine with five explained dimensions, keyword-stuffing caps, and proof-linked project quality."
+    },
+    "file:src/lib/interview.js": {
+      "name": "interview.js",
+      "type": "file",
+      "summary": "Client-side STAR answer micro-scorer giving instant 1-4 grades and targeted tips before any AI grade."
+    },
+    "file:src/lib/questionnaire.js": {
+      "name": "questionnaire.js",
+      "type": "file",
+      "summary": "Branching questionnaire evaluation, answer-to-evidence compilation, and LRU-cached AI question sets with per-role persistence."
+    },
+    "file:src/lib/speech.js": {
+      "name": "speech.js",
+      "type": "file",
+      "summary": "Web Speech API wrapper for voice dictation in mock interviews with timeout handling and graceful degradation."
+    },
+    "file:src/pages/Industry.jsx": {
+      "name": "Industry.jsx",
+      "type": "file",
+      "summary": "Recruiter-facing page for posting vaidya roles to the student feed with live fit scoring and applicant shortlisting."
+    },
+    "file:src/pages/Interview.jsx": {
+      "name": "Interview.jsx",
+      "type": "file",
+      "summary": "Interview prep page pairing the evidence questionnaire with five STAR practice answers, instant grading, and voice dictation."
+    },
+    "file:tests/aiopt.test.js": {
+      "name": "aiopt.test.js",
+      "type": "file",
+      "summary": "Tests for token-optimizing AI helpers covering project-line extraction caps and generation memoization."
+    },
+    "file:tests/ats.test.js": {
+      "name": "ats.test.js",
+      "type": "file",
+      "summary": "ATS engine tests enforcing project-proof beats keyword filler, stuffing caps, determinism, and clinical-verb coverage."
+    },
+    "file:tests/interview.test.js": {
+      "name": "interview.test.js",
+      "type": "file",
+      "summary": "STAR micro-scorer tests covering floor scores, full-STAR answers, tip specificity, and determinism."
+    },
+    "file:tests/questionnaire.test.js": {
+      "name": "questionnaire.test.js",
+      "type": "file",
+      "summary": "Questionnaire tests for showIf branching, bank integrity, and evidence compilation."
+    },
+    "file:src/data/programs.js": {
+      "name": "programs.js",
+      "type": "file",
+      "summary": "Hand-verified catalog of AYUSH learning programs, workshops, mentorships, and challenges tagged by taxonomy skill and effort hours."
+    },
+    "file:src/data/taxonomy.js": {
+      "name": "taxonomy.js",
+      "type": "file",
+      "summary": "Central skill-graph taxonomy: domains, 60+ skills with half-life, demand, and NSQF metadata, role requirements, and the industry skill-proposal workflow."
+    },
+    "file:src/lib/match.js": {
+      "name": "match.js",
+      "type": "file",
+      "summary": "Explainable five-factor matching engine (coverage, proficiency, verified, recency, interest) plus held-profile adapters for views and job posts."
+    },
+    "file:src/pages/Match.jsx": {
+      "name": "Match.jsx",
+      "type": "file",
+      "summary": "How-we-match page rendering the live formula weights, the student's breakdown against ayush-cra, and ranked AYUSH role pathways."
+    },
+    "file:src/pages/Programs.jsx": {
+      "name": "Programs.jsx",
+      "type": "file",
+      "summary": "Programs browser with kind filter, local enrollment toggling, and gap-driven recommendations that close the student's top skill gaps."
+    },
+    "file:tests/match.test.js": {
+      "name": "match.test.js",
+      "type": "file",
+      "summary": "Tests for the matching engine: published weights summing to 1, perfect-match scoring, gap listing, and profile adapters."
+    },
+    "file:tests/programs.test.js": {
+      "name": "programs.test.js",
+      "type": "file",
+      "summary": "Tests that every collaboration kind is represented, programs point at real taxonomy skills over https, and enrollment toggles backend-free."
+    },
+    "file:tests/taxonomy.test.js": {
+      "name": "taxonomy.test.js",
+      "type": "file",
+      "summary": "Tests for the skill taxonomy: domain and skill metadata invariants, alias resolution, decay, gaps, and the proposal workflow."
+    },
+    "config:.env": {
+      "name": ".env",
+      "type": "config",
+      "summary": "Local runtime secrets for the Vite app: Gemini and Groq AI keys plus Supabase URL and anon key. The app runs offline without them."
+    },
+    "config:.env.example": {
+      "name": ".env.example",
+      "type": "config",
+      "summary": "Checked-in template documenting the optional AI and Supabase keys, with links for free Groq and Gemini keys and spare-key support."
+    },
+    "config:.oxlintrc.json": {
+      "name": ".oxlintrc.json",
+      "type": "config",
+      "summary": "Oxlint configuration enabling react and oxc plugins; keeps `npm run lint` clean across the React codebase."
+    },
+    "document:README.md": {
+      "name": "README.md",
+      "type": "document",
+      "summary": "Project overview for the C2C app: stack notes, npm/test/build/lint/scraper commands, and thin-page plus localStorage-first conventions."
+    },
+    "file:index.html": {
+      "name": "index.html",
+      "type": "file",
+      "summary": "Vite HTML entry shell mounting #root and loading src/main.jsx, with PWA manifest, Google fonts, and Avsar BAMS internship metadata."
+    },
+    "config:package.json": {
+      "name": "package.json",
+      "type": "config",
+      "summary": "npm manifest for ayush-portal: dev/build/lint/scraper scripts and the Vite plus React 19 plus React Router plus Tailwind v4 dependency set."
+    },
+    "config:vercel.json": {
+      "name": "vercel.json",
+      "type": "config",
+      "summary": "Vercel SPA fallback rewriting every route to /index.html so React Router handles client-side navigation."
+    },
+    "document:.tastemaker/reference-board.md": {
+      "name": "reference-board.md",
+      "type": "document",
+      "summary": "Design reference board for the app-shell navigation, capturing CoreUI and Duolingo patterns used plus anti-references and a clinic-notice-board direction contract."
+    },
+    "document:.tastemaker/style-lock.md": {
+      "name": "style-lock.md",
+      "type": "document",
+      "summary": "Locked visual style contract for Avsar: Bricolage/Inter/DM Mono type split, warm-paper herb-green palette, shape rules, dark-mode mapping, and leaf-mark identity motif."
+    },
+    "file:public/manifest.webmanifest": {
+      "name": "manifest.webmanifest",
+      "type": "file",
+      "summary": "PWA manifest naming Avsar as a BAMS internship tracker with standalone display, portrait orientation, warm-paper theme color, and an SVG favicon icon."
+    },
+    "file:public/sw.js": {
+      "name": "sw.js",
+      "type": "file",
+      "summary": "Zero-dependency service worker caching the app shell on install and serving same-origin GETs stale-while-revalidate so the demo works offline."
+    },
+    "file:scripts/naukri.mjs": {
+      "name": "naukri.mjs",
+      "type": "file",
+      "summary": "Dependency-free Node importer mapping scraped Naukri JSON into app job seeds with denylist filtering, track hints, skill extraction, and title+company dedup."
+    },
+    "file:scripts/scrape.mjs": {
+      "name": "scrape.mjs",
+      "type": "file",
+      "summary": "Terminal-initiated keyless job scraper hitting Remotive and Arbeitnow JSON APIs and writing a dated markdown shortlist under .scratch/."
+    },
+    "file:src/data/boardsSeed.js": {
+      "name": "boardsSeed.js",
+      "type": "file",
+      "summary": "Large BOARDS_JOBS seed dataset backing the jobs board with pre-shaped listings consumed by the store layer."
+    },
+    "file:src/data/fixtures.js": {
+      "name": "fixtures.js",
+      "type": "file",
+      "summary": "Minimal SAMPLE_RESUME fixture used by tests and resume flows as a canonical example resume."
+    },
+    "file:src/data/naukriSeed.js": {
+      "name": "naukriSeed.js",
+      "type": "file",
+      "summary": "NAUKRI_JOBS seed dataset of normalized Naukri postings generated by the naukri importer script."
+    },
+    "file:src/data/seedJobsExtra.js": {
+      "name": "seedJobsExtra.js",
+      "type": "file",
+      "summary": "Small EXTRA_JOBS seed extension adding extra listings on top of the main jobs datasets."
+    },
+    "file:src/index.css": {
+      "name": "index.css",
+      "type": "file",
+      "summary": "Global Tailwind v4 stylesheet defining theme fonts, dark zinc system palette, and shared keyframes and utilities like cursor blink and notice ticker."
+    },
+    "file:tests/ayushProof.test.js": {
+      "name": "ayushProof.test.js",
+      "type": "file",
+      "summary": "Node test suite for the AYUSH proof ledger and scoring overlay covering case-log accumulation, mentor verification, confidence caps, and vaidya levels."
+    },
+    "file:tests/naukri.test.js": {
+      "name": "naukri.test.js",
+      "type": "file",
+      "summary": "Node test suite for the Naukri importer covering skill mapping, title denylisting, and title+company dedup counting."
+    },
+    "file:vite.config.js": {
+      "name": "vite.config.js",
+      "type": "file",
+      "summary": "Vite build configuration wiring the React and Tailwind v4 plugins for the app."
+    }
+  },
+  "totalNodes": 132,
+  "totalEdges": 366
+}

@@ -1,0 +1,182 @@
+{
+ "projectRoot": "D:\\CodeProjects\\avsar\\avsar SIH 2026",
+ "batchFiles": [
+  {
+   "path": "src/app/coach-widget.jsx",
+   "language": "javascript",
+   "sizeLines": 357,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/courses.js",
+   "language": "javascript",
+   "sizeLines": 89,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/data/tuning.js",
+   "language": "javascript",
+   "sizeLines": 38,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/ai.js",
+   "language": "javascript",
+   "sizeLines": 118,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/aiQuestions.js",
+   "language": "javascript",
+   "sizeLines": 103,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/coach.js",
+   "language": "javascript",
+   "sizeLines": 216,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/gemini.js",
+   "language": "javascript",
+   "sizeLines": 24,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/parseResume.js",
+   "language": "javascript",
+   "sizeLines": 79,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/lib/profile.js",
+   "language": "javascript",
+   "sizeLines": 71,
+   "fileCategory": "code"
+  },
+  {
+   "path": "src/pages/Journey.jsx",
+   "language": "javascript",
+   "sizeLines": 436,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/ai.test.js",
+   "language": "javascript",
+   "sizeLines": 30,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/aiquestions.test.js",
+   "language": "javascript",
+   "sizeLines": 40,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/coach.test.js",
+   "language": "javascript",
+   "sizeLines": 124,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/profile.test.js",
+   "language": "javascript",
+   "sizeLines": 56,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/sections.test.js",
+   "language": "javascript",
+   "sizeLines": 45,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/tips.test.js",
+   "language": "javascript",
+   "sizeLines": 27,
+   "fileCategory": "code"
+  },
+  {
+   "path": "tests/tuning.test.js",
+   "language": "javascript",
+   "sizeLines": 22,
+   "fileCategory": "code"
+  }
+ ],
+ "batchImportData": {
+  "src/app/coach-widget.jsx": [
+   "src/app/store.jsx",
+   "src/components/ui.jsx",
+   "src/data/jobs.js",
+   "src/lib/ai.js",
+   "src/lib/backend.js",
+   "src/lib/coach.js",
+   "src/lib/parseResume.js",
+   "src/lib/profile.js",
+   "src/lib/score.js"
+  ],
+  "src/data/courses.js": [],
+  "src/data/tuning.js": [
+   "src/lib/storage.js"
+  ],
+  "src/lib/ai.js": [
+   "src/data/tuning.js",
+   "src/lib/quests.js",
+   "src/lib/storage.js"
+  ],
+  "src/lib/aiQuestions.js": [
+   "src/lib/ai.js",
+   "src/lib/gemini.js",
+   "src/lib/onboarding.js"
+  ],
+  "src/lib/coach.js": [
+   "src/data/courses.js",
+   "src/lib/store.js"
+  ],
+  "src/lib/gemini.js": [],
+  "src/lib/parseResume.js": [],
+  "src/lib/profile.js": [
+   "src/lib/storage.js"
+  ],
+  "src/pages/Journey.jsx": [
+   "src/app/store.jsx",
+   "src/ayush/resumes.js",
+   "src/components/ui.jsx",
+   "src/data/courses.js",
+   "src/lib/ai.js",
+   "src/lib/aiQuestions.js",
+   "src/lib/interview.js",
+   "src/lib/onboarding.js",
+   "src/lib/parseResume.js",
+   "src/lib/profile.js",
+   "src/lib/progress.js",
+   "src/lib/score.js",
+   "src/lib/storage.js"
+  ],
+  "tests/ai.test.js": [
+   "src/lib/ai.js"
+  ],
+  "tests/aiquestions.test.js": [
+   "src/lib/aiQuestions.js"
+  ],
+  "tests/coach.test.js": [
+   "src/data/courses.js",
+   "src/lib/coach.js"
+  ],
+  "tests/profile.test.js": [
+   "src/data/courses.js",
+   "src/lib/profile.js",
+   "src/lib/store.js"
+  ],
+  "tests/sections.test.js": [
+   "src/lib/parseResume.js"
+  ],
+  "tests/tips.test.js": [
+   "src/data/courses.js"
+  ],
+  "tests/tuning.test.js": [
+   "src/data/tuning.js"
+  ]
+ }
+}
