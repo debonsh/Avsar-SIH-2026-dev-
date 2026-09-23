@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { queriesFromProfile, queryFromProfile, toMarkdown } from "../src/lib/profile.js";
+import { queriesFromProfile, queryFromProfile, toMarkdown, profileQuestions, profileRowFor } from "../src/lib/profile.js";
 import { toArbeitJobShape } from "../src/lib/store.js";
 import { certsFor, coursesFor, recommendFor } from "../src/data/courses.js";
 
@@ -26,6 +26,49 @@ describe("profile interview → md + queries", () => {
   it("india location keeps non-remote jobs", () => {
     assert.equal(queryFromProfile({ loc: "india" }, "data").remote, false);
     assert.equal(queryFromProfile({ loc: "remote" }, "data").remote, true);
+  });
+});
+
+describe("profile is track-aware", () => {
+  it("tech markdown asks for tech answers, never BAMS fields", () => {
+    const md = toMarkdown({ track: "sde", skills: "react, sql", goal: "internship", loc: "remote", hours: "5-8" });
+    assert.match(md, /# Avsar Profile/);
+    assert.match(md, /track: tech/);
+    assert.match(md, /has skills: react, sql/);
+    assert.match(md, /lane: sde/);
+    assert.doesNotMatch(md, /bams year|college/);
+  });
+
+  it("tech queries add the lane term the postings use", () => {
+    assert.deepEqual(queriesFromProfile({ track: "sde", skills: "react, sql" }), ["react", "sql", "developer"]);
+    assert.deepEqual(queriesFromProfile({ track: "data", skills: "python, excel" }), ["python", "excel", "data"]);
+  });
+
+  it("govt prep has no postings term to add, and a missing track falls back to ayush", () => {
+    assert.deepEqual(queriesFromProfile({ track: "govt", skills: "reasoning, quant" }), ["reasoning", "quant"]);
+    assert.deepEqual(queriesFromProfile({ skills: "dravyaguna" }), ["dravyaguna", "ayurveda"]);
+  });
+
+  it("question sets differ per portal and never run out", () => {
+    const ayush = profileQuestions("ayush").map((q) => q.id);
+    const tech = profileQuestions("tech").map((q) => q.id);
+    assert.ok(ayush.includes("year") && ayush.includes("lane") && ayush.includes("college"));
+    assert.ok(tech.includes("track") && tech.includes("skills") && tech.includes("goal"));
+    assert.equal(tech.includes("year"), false);
+    assert.deepEqual(profileQuestions("nonsense"), profileQuestions("ayush"));
+  });
+
+  it("a saved row keeps only its own portal's answers", () => {
+    const stale = { track: "data", skills: "python, sql", year: "3rd year", lane: "clinical", college: "GAC Patna", goal: "internship" };
+    const tech = profileRowFor(stale, "tech");
+    assert.equal(tech.track, "data");
+    assert.equal(tech.skills, "python, sql");
+    assert.equal(tech.year, "");
+    assert.equal(tech.lane, "");
+    assert.equal(tech.college, "");
+    const ayush = profileRowFor(stale, "ayush");
+    assert.equal(ayush.track, "ayush");
+    assert.equal(ayush.year, "3rd year");
   });
 });
 

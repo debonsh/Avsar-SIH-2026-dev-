@@ -1,7 +1,9 @@
-# C2C app
+# Avsar
 
-Vite plus React plus React Router plus Tailwind v4. Light minimal UI, one
-green accent, no chart or animation libraries (charts are dependency-free SVG).
+Two portals, one build: Vaidya (BAMS / ayurveda) and Tech. Pick a side at `/`
+and the app takes on its own theme, nav, seeds, scoring rubric, and question
+bank. Vite plus React plus React Router plus Tailwind v4, no chart or animation
+libraries (charts are dependency-free SVG).
 
 ## Commands (run inside `app/`)
 

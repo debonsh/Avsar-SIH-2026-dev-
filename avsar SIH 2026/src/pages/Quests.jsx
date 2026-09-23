@@ -1,13 +1,14 @@
 // Quests: turn every missing skill into proof. Progress is the reward:
 // a live completion bar, per-week wins, springy checks, mastery pips.
-// BAMS-centric when role=ayush: shishiksha checklist, rotatory tracker.
+// One tree per scoring lane: BAMS checklist on the vaidya portal, the
+// course→project ladder on tech.
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
 import { Check, ExternalLink } from "lucide-react";
 import { Page, Card, Btn, Chip, CountUp, Field, Empty, Meter, inputCls } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import { roadmapGenerator } from "../lib/roadmapGenerator.js";
-import { JOBS } from "../data/jobs.js";
+import { JOBS, TECH_JOBS } from "../data/jobs.js";
 import {
   isCourseDone, isProjectDone, setQuestDone, getEvidence, setEvidence,
   completedSkillIdsForRole, masteryLevel,
@@ -58,7 +59,7 @@ function MasteryPips({ level }) {
   );
 }
 
-// BAMS-specific quest weeks for ayush role
+// BAMS-specific quest weeks for the ayush lane
 const AYUSH_WEEKS = [
   {
     week: 1,
@@ -117,16 +118,20 @@ const AYUSH_WEEKS = [
 ];
 
 export default function Quests() {
-  const { role, resume } = useC2C();
+  const { lane, track, resume } = useAvsar();
   const [, bump] = useState(0);
   const missing = useMemo(() => resume?.result?.missing || [], [resume]);
-  const weeks = useMemo(() => roadmapGenerator(missing, role, JOBS), [missing, role]);
-  const quizBest = loadQuizBest(role);
+  const feed = track === "tech" ? TECH_JOBS : JOBS;
+  const weeks = useMemo(() => roadmapGenerator(missing, lane, feed), [missing, lane, feed]);
+  const quizBest = loadQuizBest(lane);
   const refresh = () => bump((n) => n + 1);
 
-  // Ayush role gets its own BAMS-centric quest track
-  const isAyush = role === "ayush";
+  // Ayush lane gets its own BAMS-centric quest track
+  const isAyush = lane === "ayush";
   const displayWeeks = isAyush ? AYUSH_WEEKS : weeks;
+  const planSub = isAyush
+    ? "Shishiksha to rotatory to proof. Check things off and the bar moves with you."
+    : "One course plus one project makes a verified pair. Check things off and the bar moves with you.";
 
   if (!resume) {
     return (
@@ -154,16 +159,16 @@ export default function Quests() {
 
   const all = displayWeeks.flatMap((w) => w.tasks.map((t) => ({ ...t, week: w.week })));
   const isDone = (t) =>
-    t.link ? isCourseDone(role, t.skill) : isProjectDone(role, t.skill);
+    t.link ? isCourseDone(lane, t.skill) : isProjectDone(lane, t.skill);
   const doneCount = all.filter(isDone).length;
   const pct = Math.round((doneCount / all.length) * 100);
-  const verified = completedSkillIdsForRole(role).length;
+  const verified = completedSkillIdsForRole(lane).length;
   const finished = doneCount === all.length;
 
   return (
     <Page
       title={isAyush ? "BAMS Quests" : "Quests"}
-      sub="Shishiksha to rotatory to proof. Check things off and the bar moves with you."
+      sub={planSub}
     >
       <Card className="mb-4">
         <div className="flex items-end justify-between gap-3">
@@ -196,7 +201,7 @@ export default function Quests() {
         {displayWeeks.map((w) => {
           const total = w.tasks.length;
           const done = w.tasks.filter((t) =>
-            t.link ? isCourseDone(role, t.skill) : isProjectDone(role, t.skill)
+            t.link ? isCourseDone(lane, t.skill) : isProjectDone(lane, t.skill)
           ).length;
           const weekDone = done === total;
           return (
@@ -212,11 +217,11 @@ export default function Quests() {
               <ul className="divide-y divide-zinc-800">
                 {w.tasks.map((t, i) => {
                   const kind = t.link ? "course" : "project";
-                  const doneTask = kind === "course" ? isCourseDone(role, t.skill) : isProjectDone(role, t.skill);
-                  const ev = kind === "project" ? getEvidence(role, t.skill) : "";
-                  const level = masteryLevel(role, t.skill, quizBest);
+                  const doneTask = kind === "course" ? isCourseDone(lane, t.skill) : isProjectDone(lane, t.skill);
+                  const ev = kind === "project" ? getEvidence(lane, t.skill) : "";
+                  const level = masteryLevel(lane, t.skill, quizBest);
                   const toggle = () => {
-                    setQuestDone(role, t.skill, kind, !doneTask);
+                    setQuestDone(lane, t.skill, kind, !doneTask);
                     refresh();
                   };
                   return (
@@ -262,7 +267,7 @@ export default function Quests() {
                                       e.target.setCustomValidity("");
                                       return;
                                     }
-                                    setEvidence(role, t.skill, v);
+                                    setEvidence(lane, t.skill, v);
                                     refresh();
                                   }}
                                 />

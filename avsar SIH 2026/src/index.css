@@ -238,6 +238,87 @@ body {
   border-radius: 6px;
 }
 
+/* [tech] engineering console theme: cool paper, blurple primary.
+   Applied at the shell root so the whole portal renders light —
+   same remap job as .ayush-light, different universe. The zinc/blurple
+   base is already dark, so .tech-dark only sets the floor. */
+.tech-light {
+  --color-ink: #f3f5fa;
+  --color-panel: #ffffff;
+  --color-blurple: #5865f2;
+  --color-blurple-deep: #4752c4;
+  --color-blurple-soft: #4752c4;
+  background: #f3f5fa;
+  color: #18181b;
+}
+.tech-light .bg-ink { background-color: #f3f5fa; }
+.tech-light .bg-zinc-950 { background-color: #ffffff; }
+.tech-light .bg-panel\/95, .tech-light .bg-panel { background-color: rgb(255 255 255 / 0.97); }
+.tech-light .bg-zinc-900 { background-color: #e9ecf3; }
+.tech-light .bg-zinc-800 { background-color: #dee3ee; }
+.tech-light .border-zinc-800 { border-color: #e4e4e7; }
+.tech-light .border-zinc-700 { border-color: #d4d4d8; }
+.tech-light .divide-zinc-800 > * + * { border-color: #e4e4e7; }
+.tech-light .text-zinc-50, .tech-light .text-zinc-100 { color: #18181b; }
+.tech-light .text-zinc-200 { color: #27272a; }
+.tech-light .text-zinc-300 { color: #3f3f46; }
+.tech-light .text-zinc-400 { color: #52525b; }
+.tech-light .text-zinc-500 { color: #636366; }
+.tech-light .text-zinc-600 { color: #71717a; }
+.tech-light [class*="text-blurple-soft"] { color: #4752c4; }
+.tech-light [class*="text-green-300"] { color: #15803d; }
+.tech-light .bg-green-950 { background-color: #f0fdf4; }
+.tech-light .border-green-900 { border-color: #bbf7d0; }
+.tech-light .bg-amber-950 { background-color: #fffbeb; }
+.tech-light .border-amber-900 { border-color: #fde68a; }
+.tech-light [class*="text-amber-300"] { color: #b45309; }
+.tech-light .bg-blue-950 { background-color: #eff6ff; }
+.tech-light .border-blue-900 { border-color: #bfdbfe; }
+.tech-light [class*="text-blue-300"] { color: #1d4ed8; }
+.tech-light .bg-red-950 { background-color: #fef2f2; }
+.tech-light .border-red-900 { border-color: #fecaca; }
+.tech-light [class*="text-red-300"] { color: #b91c1c; }
+.tech-light [class*="text-red-400"] { color: #b91c1c; }
+.tech-light .hover\:bg-red-950:hover { background-color: #fef2f2; }
+.tech-light .hover\:bg-zinc-900:hover { background-color: #e9ecf3; }
+.tech-light .hover\:text-zinc-100:hover { color: #18181b; }
+.tech-light .hover\:border-zinc-600:hover { border-color: #a1a1aa; }
+.tech-light .hover\:border-zinc-500:hover { border-color: #71717a; }
+.tech-light ::selection { background: #5865f2; color: #fff; }
+.tech-light :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid #5865f2;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.tech-dark { --color-ink: #06060b; --color-panel: #0c0c12; background: #06060b; color: #d4d4d8; }
+.tech-dark .app-header { background-color: rgb(6 6 11 / 0.85); }
+.tech-dark .app-tabbar { background-color: rgb(6 6 11 / 0.95); }
+/* light-hardcoded utilities (stone scale, white surfaces) that the shared
+   journey/profile/programs screens use — remapped so tech-dark stays legible. */
+.tech-dark .bg-white { background-color: #0c0c12; }
+.tech-dark .bg-white\/95 { background-color: rgb(12 12 18 / 0.95); }
+.tech-dark .bg-white\/90 { background-color: rgb(12 12 18 / 0.9); }
+.tech-dark .bg-white\/60 { background-color: rgb(12 12 18 / 0.6); }
+.tech-dark .bg-stone-50 { background-color: #101014; }
+.tech-dark .bg-stone-100 { background-color: #17171c; }
+.tech-dark .bg-stone-200 { background-color: #27272a; }
+.tech-dark .border-stone-100 { border-color: #27272a; }
+.tech-dark .border-stone-200 { border-color: #3f3f46; }
+.tech-dark .divide-stone-100 > * + * { border-color: #27272a; }
+.tech-dark .text-stone-400 { color: #a1a1aa; }
+.tech-dark .text-stone-500, .tech-dark .text-stone-600 { color: #d4d4d8; }
+.tech-dark .text-stone-700, .tech-dark .text-stone-800, .tech-dark .text-stone-900 { color: #f4f4f5; }
+.tech-dark .bg-emerald-50 { background-color: rgb(88 101 242 / 0.14); }
+.tech-dark .border-emerald-200 { border-color: rgb(88 101 242 / 0.35); }
+.tech-dark .text-emerald-700, .tech-dark .text-emerald-800 { color: #9aa4ff; }
+.tech-dark .text-emerald-900 { color: #c7d2fe; }
+.tech-dark .hover\:bg-emerald-50:hover { background-color: rgb(88 101 242 / 0.14); }
+.tech-dark .hover\:text-emerald-800:hover { color: #c7d2fe; }
+.tech-dark .hover\:border-emerald-400:hover { border-color: #5865f2; }
+.tech-dark .bg-amber-50 { background-color: rgb(245 158 11 / 0.12); }
+.tech-dark .bg-amber-100 { background-color: rgb(245 158 11 / 0.22); }
+.tech-dark .text-amber-800 { color: #fcd34d; }
+
 /* [app] streak heatmap: GitHub buckets in herb green, both themes. */
 .heat-0 { background-color: #e7e0cd; }
 .heat-1 { background-color: #bfe3cf; }

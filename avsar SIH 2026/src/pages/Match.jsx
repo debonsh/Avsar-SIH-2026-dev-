@@ -3,11 +3,13 @@
 // Recruiters see the same math on the other side — no black box.
 import { useMemo } from "react";
 import { Page, Card, H2, Chip, Meter, Empty, Btn } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import { MATCH_WEIGHTS, matchScore, profileForMatching } from "../lib/match.js";
 import { requiredFor, taxonomyRole, TAXONOMY_ROLES } from "../data/taxonomy.js";
 import { loadQuizBest } from "../data/quiz.js";
+import { ROLES } from "../lib/score.js";
 import { loadQAnswers, compileEvidence } from "../lib/questionnaire.js";
+import { targetRoleFor } from "../lib/track.js";
 
 const FACTORS = [
   { key: "coverage", label: "Skill coverage", what: "fraction of required skills you hold" },
@@ -18,33 +20,37 @@ const FACTORS = [
 ];
 
 export default function Match() {
-  const { role, resume } = useC2C();
-  const target = taxonomyRole("ayush-cra"); // the seeded dream role (Ananya's story)
-  const quizBest = loadQuizBest(role);
+  const { lane, resume } = useAvsar();
+  // the seeded dream role for whichever portal the student is on.
+  const targetId = targetRoleFor(lane);
+  const target = taxonomyRole(targetId);
+  const quizBest = loadQuizBest(lane);
   const found = useMemo(() => resume?.result?.found || [], [resume]);
-  const interests = useMemo(() => compileEvidence(loadQAnswers(role)).claims, [role]);
+  const interests = useMemo(() => compileEvidence(loadQAnswers(lane)).claims, [lane]);
 
   const live = useMemo(() => {
     if (!found.length) return null;
-    const profile = profileForMatching(role, found, quizBest, interests);
-    return matchScore({ required: requiredFor("ayush-cra"), held: profile.skills.map((s) => ({
+    const profile = profileForMatching(lane, found, quizBest, interests);
+    return matchScore({ required: requiredFor(targetId), held: profile.skills.map((s) => ({
       skill: s, level: profile.levels[s], verified: profile.verified.includes(s), lastUsedAt: profile.usedAt[s] || 0,
     })), tags: target.tags, interests });
-  }, [found, role, quizBest, interests, target]);
+  }, [found, lane, quizBest, interests, target, targetId]);
 
   // pathways: every taxonomy role ranked by the same engine — skill mapping
   // to roles, not a hardcoded "recommended" list.
   const pathways = useMemo(() => {
     if (!found.length) return [];
-    const profile = profileForMatching(role, found, quizBest, interests);
+    const profile = profileForMatching(lane, found, quizBest, interests);
     const held = profile.skills.map((s) => ({
       skill: s, level: profile.levels[s], verified: profile.verified.includes(s), lastUsedAt: profile.usedAt[s] || 0,
     }));
+    const wantsAyush = lane === "ayush";
     return Object.entries(TAXONOMY_ROLES)
-      .filter(([, r]) => String(r.domain || "").startsWith("ayush")) // ayush portal: ayush roles only
+      // each portal ranks its own domains: ayush roles on vaidya, the rest on tech.
+      .filter(([, r]) => String(r.domain || "").startsWith("ayush") === wantsAyush)
       .map(([id, r]) => ({ id, ...r, ...matchScore({ required: requiredFor(id), held, tags: r.tags, interests }) }))
       .sort((a, b) => b.score - a.score);
-  }, [found, role, quizBest, interests]);
+  }, [found, lane, quizBest, interests]);
 
   return (
     <Page
@@ -87,7 +93,7 @@ export default function Match() {
         {!live ? (
           <Empty
             title="No skill profile yet"
-            body="Score your resume once and this card computes your real five-factor fit against the Clinical Research Associate role."
+            body={`Score your resume once and this card computes your real five-factor fit against the ${target.label} role.`}
             action={<Btn to="/resume">Score your resume</Btn>}
           />
         ) : (
@@ -131,7 +137,7 @@ export default function Match() {
 
       {pathways.length > 0 && (
         <Card className="mt-4">
-          <H2>Your pathways — ayush roles, same math</H2>
+          <H2>Your pathways — {lane === "ayush" ? "ayush roles" : `${ROLES[lane]?.label || lane} and nearby roles`}, same math</H2>
           <ul className="divide-y divide-zinc-800">
             {pathways.map((p) => (
               <li key={p.id} className="flex items-center justify-between gap-3 py-2.5">

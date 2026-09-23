@@ -1,4 +1,4 @@
-// ponytail: uniqueness without a backend. Same C2C ID → same variant (stable);
+// ponytail: uniqueness without a backend. Same device id → same variant (stable);
 // different IDs → spread across variants. Evaluation uniqueness lives in quiz
 // banks (Slice C samples 10/20 seeded by ID+day); quests stay curated —
 // classrooms assign the same homework, uniqueness matters for tests, not lessons.

@@ -1,2 +1,5 @@
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# Nested backup clone — not part of this repo
+/old backup/Hackathon Practice/

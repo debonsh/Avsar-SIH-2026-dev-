@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Page, Card, H2, Btn, Chip, Empty } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import { QUIZ, gradeSet, quizSample, loadQuizBest, saveQuizBest, todayDay } from "../data/quiz.js";
 import { recordDay } from "../lib/progress.js";
-import { getOrCreateC2CId } from "../lib/identity.js";
+import { getOrCreateDeviceId } from "../lib/identity.js";
 import { ROLES } from "../lib/score.js";
-import { AYUSH_QUIZ } from "../data/ayushSeed.js";
 
 // timed aptitude: 10 questions, 10 minutes, auto-submit at zero.
 // The clock is the point — recruiters read speed + accuracy, not just marks.
@@ -13,24 +12,24 @@ const LIMIT_S = 600;
 const fmt = (s) => `${Math.floor(Math.max(0, s) / 60)}:${String(Math.max(0, s) % 60).padStart(2, "0")}`;
 
 export default function Quiz() {
-  const { role } = useC2C();
+  const { lane } = useAvsar();
   const [started, setStarted] = useState(false);
   const [picks, setPicks] = useState([]);
   const [done, setDone] = useState(null);
   const [left, setLeft] = useState(LIMIT_S);
 
-  // Ayush role uses its own question bank
-  const bank = role === "ayush" ? AYUSH_QUIZ : (QUIZ[role] || []);
+  // one bank per scoring lane: ayush on the vaidya portal, sde/data/marketing/govt on tech.
+  const bank = QUIZ[lane] || [];
   const questions = useMemo(
-    () => (started ? quizSample(role, getOrCreateC2CId(), todayDay(), 10) : []),
-    [started, role]
+    () => (started ? quizSample(lane, getOrCreateDeviceId(), todayDay(), 10) : []),
+    [started, lane]
   );
-  const best = loadQuizBest(role);
+  const best = loadQuizBest(lane);
 
   function submit(answers = picks) {
     const full = questions.map((_, i) => (answers[i] == null ? -1 : answers[i]));
     const g = gradeSet(questions, full);
-    saveQuizBest(role, g.score);
+    saveQuizBest(lane, g.score);
     recordDay("quiz");
     setDone(g);
   }
@@ -48,12 +47,12 @@ export default function Quiz() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- submit reads live picks
   }, [left, started, done]);
 
-  const isAyush = role === "ayush";
+  const isAyush = lane === "ayush";
 
   return (
     <Page
       title={isAyush ? "BAMS Quiz" : "Quiz"}
-      sub={`${ROLES[role]?.label || role}: 10 questions sampled for you today. Best score counts toward your rank.`}
+      sub={`${ROLES[lane]?.label || lane}: 10 questions sampled for you today. Best score counts toward your rank.`}
       actions={best > 0 && <Chip tone="green">Best: {best}/100</Chip>}
     >
       {bank.length === 0 && (
@@ -101,7 +100,7 @@ export default function Quiz() {
       {done && (
         <Card>
           <H2>Result: {done.score}/100 ({done.correct}/{done.total} correct)</H2>
-          <p className="text-sm text-zinc-400">Best for this track: {loadQuizBest(role)}/100. Quiz strength feeds your skill mastery on the Quests page.</p>
+          <p className="text-sm text-zinc-400">Best for this track: {loadQuizBest(lane)}/100. Quiz strength feeds your skill mastery on the Quests page.</p>
           <ol className="mt-4 space-y-3">
             {questions.map((q, qi) => (
               <li key={qi} className="text-sm">

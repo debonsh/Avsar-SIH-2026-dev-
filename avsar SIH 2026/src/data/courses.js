@@ -15,6 +15,24 @@ export const COURSES = {
   shishiksha: [{ t: "Bench-to-Bedside 6-day Module (NCISM)", u: "https://ncismindia.org/", hrs: 6 }],
   anatomy: [{ t: "Rachana Sharira: NCISM modules", u: "https://ncismindia.org/", hrs: 12 }],
   physiology: [{ t: "Kriya Sharira: SWAYAM Ayurveda", u: "https://swayam.gov.in/", hrs: 12 }],
+  // tech portal lanes (sde/data/marketing/govt) — ported from the earlier tech build
+  javascript: [{ t: "freeCodeCamp JS (free cert)", u: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/", c: true }, { t: "Namaste JS — YouTube (free)", u: "https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP" }],
+  react: [{ t: "React Official Tutorial (free)", u: "https://react.dev/learn" }, { t: "NPTEL Modern Web (free cert)", u: "https://swayam.gov.in/", c: true }],
+  node: [{ t: "Node.js Crash Course (free)", u: "https://www.youtube.com/watch?v=fBNz5xF-Kx4" }],
+  python: [{ t: "Python for Everybody — NPTEL (free cert)", u: "https://swayam.gov.in/", c: true, hrs: 20, kind: "cert" }, { t: "freeCodeCamp Python (free cert)", u: "https://www.freecodecamp.org/learn/scientific-computing-with-python/", c: true, hrs: 12, kind: "cert" }],
+  sql: [{ t: "SQLBolt (free, 1 hr)", u: "https://sqlbolt.com/", hrs: 1, kind: "practice" }, { t: "Khan Academy SQL (free)", u: "https://www.khanacademy.org/computing/computer-programming/sql", hrs: 6 }, { t: "HackerRank SQL (free cert)", u: "https://www.hackerrank.com/skills-verification/sql_basic", c: true, hrs: 2, kind: "cert" }],
+  git: [{ t: "Git Handbook — GitHub (free)", u: "https://guides.github.com/introduction/git-handbook/" }],
+  dsa: [{ t: "Striver A2Z DSA (free)", u: "https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" }, { t: "HackerRank Problem Solving (free cert)", u: "https://www.hackerrank.com/skills-verification/problem_solving_basic", c: true }],
+  api: [{ t: "REST APIs — freeCodeCamp (free)", u: "https://www.youtube.com/watch?v=-MTSQjw5DrM" }],
+  "power bi": [{ t: "MS Power BI Guided (free)", u: "https://learn.microsoft.com/en-us/training/paths/power-bi-fundamentals/" }],
+  tableau: [{ t: "Tableau Free Training", u: "https://www.tableau.com/learn/training" }],
+  excel: [{ t: "Excel for Analysts — NPTEL (free cert)", u: "https://swayam.gov.in/", c: true }],
+  seo: [{ t: "Ahrefs SEO Course (free cert)", u: "https://ahrefs.com/academy/seo-training-course", c: true }, { t: "Google Digital Garage (free cert)", u: "https://learndigital.withgoogle.com/digitalgarage", c: true }],
+  content: [{ t: "Google Digital Garage (free cert)", u: "https://learndigital.withgoogle.com/digitalgarage", c: true }],
+  gk: [{ t: "Lucent GK + Affairs (free)", u: "https://www.ssc.gov.in/" }],
+  "current affairs": [{ t: "PIB Daily (free, official)", u: "https://pib.gov.in/" }],
+  reasoning: [{ t: "Reasoning — Indiabix (free)", u: "https://www.indiabix.com/" }],
+  quant: [{ t: "Quant — NPTEL Aptitude (free cert)", u: "https://swayam.gov.in/", c: true }],
   default: [{ t: "SWAYAM Govt Certs (free cert)", u: "https://swayam.gov.in/", c: true }, { t: "NCISM Competency Modules", u: "https://ncismindia.org/" }, { t: "Ministry of Ayush learning resources", u: "https://ayush.gov.in/" }],
 };
 
@@ -59,17 +77,36 @@ export function videosFor(skill) {
 }
 
 // ponytail: Analyzer "resume tips + overall score" as deterministic rules over the
-// ATS breakdown. No AI, no new copy deck — each tip names the failing dimension.
-export function resumeTips(result = {}) {
+// ATS breakdown. No AI, no new copy deck — each tip names the failing dimension,
+// in the language of the portal the student is actually on.
+const TIPS = {
+  ayush: {
+    "Skills Match": [/capped at/, "Skills capped by proof volume — add 1 case log with a link instead of more keywords."],
+    "Keyword Signal": [/repetition capped/, "Keyword repetition detected — cut repeats, add 1 quantified clinical outcome."],
+    "Project Quality": [/0 quantified/, "No numbers on your resume — add 2-3 quantified outcomes (cases, sittings, %)."],
+    "Sections & Recency": [/no dates/, "No dates found — add years to education and postings."],
+    "Format & Contact": [/no contact/, "Contact block incomplete — email + phone + LinkedIn on line 1."],
+    floor: "Foundation stage — 1 herbarium + 1 free cert moves this fastest.",
+  },
+  tech: {
+    "Skills Match": [/capped at/, "Skills capped by proof volume — add 1 project with a link instead of more keywords."],
+    "Keyword Signal": [/repetition capped/, "Keyword repetition detected — cut repeats, add 1 quantified outcome."],
+    "Project Quality": [/0 quantified/, "No numbers on your resume — add 2-3 quantified outcomes (%, time, users)."],
+    "Sections & Recency": [/no dates/, "No dates found — add years to experience and education."],
+    "Format & Contact": [/no contact/, "Contact block incomplete — email + phone + GitHub/LinkedIn on line 1."],
+    floor: "Foundation stage — 1 project + 1 free cert moves this fastest.",
+  },
+};
+
+export function resumeTips(result = {}, lane = "ayush") {
+  const copy = lane === "ayush" ? TIPS.ayush : TIPS.tech;
   const tips = [];
   const bd = Object.fromEntries((result.breakdown || []).map((b) => [b.label, b]));
-  const has = (label, re) => (bd[label]?.why || []).some((w) => re.test(w));
-  if (has("Skills Match", /capped at/)) tips.push("Skills capped by proof volume — add 1 case log with a link instead of more keywords.");
-  if (has("Keyword Signal", /repetition capped/)) tips.push("Keyword repetition detected — cut repeats, add 1 quantified clinical outcome.");
-  if (has("Project Quality", /0 quantified/)) tips.push("No numbers on your resume — add 2-3 quantified outcomes (cases, sittings, %).");
-  if (has("Sections & Recency", /no dates/)) tips.push("No dates found — add years to education and postings.");
-  if (has("Format & Contact", /no contact/)) tips.push("Contact block incomplete — email + phone + LinkedIn on line 1.");
-  if ((result.total ?? 0) > 0 && (result.total ?? 0) < 45) tips.push("Foundation stage — 1 herbarium + 1 free cert moves this fastest.");
+  for (const [label, [re, tip]] of Object.entries(copy)) {
+    if (label === "floor") continue;
+    if ((bd[label]?.why || []).some((w) => re.test(w))) tips.push(tip);
+  }
+  if ((result.total ?? 0) > 0 && (result.total ?? 0) < 45) tips.push(copy.floor);
   return tips.slice(0, 4);
 }
 
@@ -81,6 +118,26 @@ export const PROJECT_IDEAS = {
     "GMP gap note for the college pharmacy unit, 1 page",
     "SHISHIKSHA 6-day orientation checklist, fully signed",
     "Digital e-logbook: 15 cases entered in a spreadsheet template",
+  ],
+  sde: [
+    "Todo API + React frontend, deploy on Vercel, add README with screenshots",
+    "Clone Swiggy homepage in React + Tailwind, push to GitHub",
+    "URL shortener with Node + SQLite, show API docs",
+  ],
+  data: [
+    "IPL dashboard in Excel/PowerBI with 3 insights + charts",
+    "Swiggy orders CSV analysis in Python + 1-page report",
+    "SQL project: 10 queries on e-commerce DB, publish on GitHub",
+  ],
+  marketing: [
+    "Run a 7-day meme page campaign, track reach in a sheet",
+    "SEO audit of your college site, 2-page fix report",
+    "Write 5 LinkedIn posts for a local shop, show engagement",
+  ],
+  govt: [
+    "30-day current-affairs notes + 10 mock tests log",
+    "PYQ analysis sheet: last 5 yrs SSC quant topics",
+    "Daily 50 reasoning Qs tracker for 21 days",
   ],
   default: [
     "20-plant herbarium with latin names + documented uses",

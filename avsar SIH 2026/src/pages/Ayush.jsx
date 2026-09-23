@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { Btn, Reveal, Ticket } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import FractalMap from "../components/landing/FractalMap.jsx";
 import { AYUSH_JOBS, AYUSH_TREE } from "../data/ayushSeed.js";
 import { completedSkillIdsForRole, getEvidence, isCourseDone, isProjectDone } from "../lib/progress.js";
@@ -13,11 +13,12 @@ const ROTATORY = [
 ];
 
 export default function Ayush() {
-  const { setRole } = useC2C();
+  const { setTrack } = useAvsar();
   const nav = useNavigate();
 
   const enter = (to) => {
-    setRole("ayush");
+    // landing here means the vaidya portal: keep the track in sync, then route.
+    setTrack("ayush");
     nav(to);
   };
 

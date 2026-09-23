@@ -87,7 +87,7 @@ export async function chat(prompt, task = "coach") {
 
 // ponytail: memoize expensive generations by input hash — repeat visits cost zero
 // calls. Same seam as the question-set cache, generalized: rewrite, feedback, coach.
-const MEMO_KEY = "c2c-ai-memo";
+const MEMO_KEY = "avsar-ai-memo";
 const MEMO_MAX = 12;
 // ponytail: in-memory fallback when localStorage is absent (node --test, SSR)
 const memFallback = new Map();

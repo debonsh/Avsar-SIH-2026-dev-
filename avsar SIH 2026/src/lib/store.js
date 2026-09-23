@@ -1,7 +1,7 @@
 // ponytail: one home for board IO. Pure mappers (node --test) + local-first writes + best-effort remote.
 // Remote never blocks: null/false means "seeds already showing", callers carry on.
 import { getClient } from "./supabase.js";
-import { getOrCreateC2CId } from "./identity.js";
+import { getOrCreateDeviceId } from "./identity.js";
 import { ROLES } from "./score.js";
 import { loadJSON, saveJSON } from "./storage.js";
 import { queryFromProfile } from "./profile.js";
@@ -40,9 +40,9 @@ export function mergeJobs(...lists) {
 
 // --- local-first (offline-safe) ---
 
-const CKEY = "c2c-custom-jobs";
-const AKEY = "c2c-applications";
-const IKEY = "c2c-interests";
+const CKEY = "avsar-custom-jobs";
+const AKEY = "avsar-applications";
+const IKEY = "avsar-interests";
 
 export function loadCustomJobs() {
   return loadJSON(CKEY, []);
@@ -87,7 +87,7 @@ export async function createJobBoard(p) {
     const { error } = await sb.from("jobs_board").insert({
       title: p.title, company: p.company, location: p.loc, type: p.type,
       role_key: p.role, required_skills: p.skills, min_score: p.minScore,
-      apply_url: p.apply, description: p.description || "", created_by: getOrCreateC2CId(),
+      apply_url: p.apply, description: p.description || "", created_by: getOrCreateDeviceId(),
     });
     return !error;
   } catch {
@@ -102,7 +102,7 @@ export async function recordApplication(job, ats, main = ats) {
   if (!sb) return false;
   try {
     const { error } = await sb.from("applications").insert({
-      job_id: String(job.id), student: getOrCreateC2CId(), ats: app.ats, main: Math.round(main || ats || 0),
+      job_id: String(job.id), student: getOrCreateDeviceId(), ats: app.ats, main: Math.round(main || ats || 0),
     });
     return !error;
   } catch {
@@ -127,7 +127,7 @@ export async function listApplicants(jobId) {
   const out = [];
   try {
     for (const a of loadApplications().filter((x) => String(x.jobId) === String(jobId))) {
-      out.push({ student: `${getOrCreateC2CId()} (this device)`, score: Math.round(a.ats || 0), at: a.at || 0, local: true });
+      out.push({ student: `${getOrCreateDeviceId()} (this device)`, score: Math.round(a.ats || 0), at: a.at || 0, local: true });
     }
   } catch {
     /* local store unreadable */
@@ -173,7 +173,7 @@ export async function recordInterest(fdp) {
   if (!sb) return false;
   try {
     const { error } = await sb.from("interests").insert({
-      fdp_id: String(fdp.id), faculty: getOrCreateC2CId(),
+      fdp_id: String(fdp.id), faculty: getOrCreateDeviceId(),
     });
     return !error;
   } catch {
@@ -182,7 +182,7 @@ export async function recordInterest(fdp) {
 }
 
 // --- program enrollments (student side of the collaboration layer) ---
-const EKEY = "c2c-enrollments";
+const EKEY = "avsar-enrollments";
 
 export function loadEnrollments() {
   return loadJSON(EKEY, []);
@@ -203,8 +203,8 @@ export function isVerified(skill, earnedSkills = [], github = "") {
   return (earnedSkills || []).map((x) => String(x).toLowerCase()).includes(s);
 }
 
-const KGIVEN = "c2c-kudos-given";
-const KCOUNT = "c2c-kudos-fallback";
+const KGIVEN = "avsar-kudos-given";
+const KCOUNT = "avsar-kudos-fallback";
 
 export function hasGivenKudos(id) {
   return loadJSON(KGIVEN, []).includes(id);
@@ -218,7 +218,7 @@ export async function fetchKudos(id) {
   const sb = await getClient();
   if (!sb) return null;
   try {
-    const { count, error } = await sb.from("kudos").select("id", { count: "exact", head: true }).eq("c2c_id", String(id));
+    const { count, error } = await sb.from("kudos").select("id", { count: "exact", head: true }).eq("device_id", String(id));
     return error ? null : count ?? 0;
   } catch {
     return null;
@@ -235,7 +235,7 @@ export async function giveKudos(id) {
   const sb = await getClient();
   if (!sb) return null;
   try {
-    const { error } = await sb.from("kudos").insert({ c2c_id: String(id) });
+    const { error } = await sb.from("kudos").insert({ device_id: String(id) });
     return !error;
   } catch {
     return false;
@@ -262,7 +262,7 @@ export async function loadSharedShowcase(id) {
 // why not a real scraper here: CORS blocks most boards from the browser, ToS bans it,
 // and stage wifi kills headless runs. Terminal-initiated deep runs live in scripts/scrape.mjs.
 
-const LIVE_KEY = "c2c-live-jobs";
+const LIVE_KEY = "avsar-live-jobs";
 const LIVE_TTL = 6 * 3600 * 1000;
 
 const ROLE_HINTS = [

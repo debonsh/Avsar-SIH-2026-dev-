@@ -1,5 +1,5 @@
 // ponytail: google auth is one supabase call + session read. no supabase keys
-// (or offline) → null user, guest c2c id keeps working. auth never gates.
+// (or offline) → null user, guest device id keeps working. auth never gates.
 import { getClient, isSupabaseOn } from "./supabase.js";
 
 export async function getUser() {
@@ -37,15 +37,36 @@ export async function signOut() {
   }
 }
 
+// Subscribe to sign-in/out. Returns an unsubscribe fn so callers can clean up
+// (React effects, hot reload) instead of leaking a listener per mount.
 export function onAuthChange(cb) {
-  getClient().then((sb) => {
-    if (!sb) {
-      cb(null);
-      return;
-    }
-    sb.auth.getSession().then(({ data }) => cb(data?.session?.user || null)).catch(() => cb(null));
-    sb.auth.onAuthStateChange((_evt, session) => cb(session?.user || null));
-  }).catch(() => cb(null));
+  let cancelled = false;
+  let subscription = null;
+  getClient()
+    .then((sb) => {
+      if (cancelled) return;
+      if (!sb) {
+        cb(null);
+        return;
+      }
+      sb.auth
+        .getSession()
+        .then(({ data }) => {
+          if (!cancelled) cb(data?.session?.user || null);
+        })
+        .catch(() => {
+          if (!cancelled) cb(null);
+        });
+      const { data } = sb.auth.onAuthStateChange((_evt, session) => cb(session?.user || null));
+      subscription = data?.subscription || null;
+    })
+    .catch(() => {
+      if (!cancelled) cb(null);
+    });
+  return () => {
+    cancelled = true;
+    subscription?.unsubscribe?.();
+  };
 }
 
 export function authLabel() {

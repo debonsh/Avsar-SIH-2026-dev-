@@ -40,7 +40,7 @@ export function collectDayDetail() {
     for (const [day, n] of Object.entries(p.questDays || {})) add(day, "quest", n);
   } catch { /* private mode */ }
   try {
-    for (const e of loadJSON("c2c-job-events", []) || []) {
+    for (const e of loadJSON("avsar-job-events", []) || []) {
       if (!e || !e.at) continue;
       const ev = String(e.event || "saved").toLowerCase();
       add(dayISO(e.at), ev === "saved" ? "saved" : ev === "applied" ? "applied" : "pipeline", 1);
@@ -62,7 +62,7 @@ export function collectDayCounts() {
     for (const [day, n] of Object.entries(p.questDays || {})) add(day, n);
   } catch { /* private mode */ }
   try {
-    for (const e of loadJSON("c2c-job-events", []) || []) {
+    for (const e of loadJSON("avsar-job-events", []) || []) {
       if (e && e.at) add(dayISO(e.at), 1);
     }
   } catch { /* private mode */ }

@@ -7,11 +7,11 @@ import { useReducedMotion } from "motion/react";
 import CIcon from "@coreui/icons-react";
 import { cilChart, cilBook, cilCompass, cilChatBubble, cilBadge, cilArrowRight } from "@coreui/icons";
 import { Page, Card, H2, Btn, Field, Chip, Meter, Empty, CountUp, inputCls } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import { loadProfile } from "../lib/profile.js";
 import { scoreResume, calculateMainScore, normalizeScoreResult, questPairsToProof } from "../lib/score.js";
-import { parseResumeFile } from "../lib/parseResume.js";
 import { AYUSH_RESUMES, SKILL_WHY } from "../ayush/resumes.js";
+import { TECH_RESUMES } from "../data/techResumes.js";
 import { coursesFor, resumeTips } from "../data/courses.js";
 import { completedSkillIdsForRole } from "../lib/progress.js";
 import { loadJSON, saveJSON } from "../lib/storage.js";
@@ -94,10 +94,12 @@ function confettiBurst() {
 
 export default function Journey() {
   const navigate = useNavigate();
-  const { resume, saveResume } = useC2C();
+  // The journey scores in the portal's own lane: a Tech resume must produce
+  // Tech gaps (which become Tech quests), never Ayush ones.
+  const { lane, resume, saveResume } = useAvsar();
   const reduce = useReducedMotion();
   const profile = useMemo(() => loadProfile() || {}, []);
-  const interviewBest = loadJSON("c2c-interview-best", 0);
+  const interviewBest = loadJSON("avsar-interview-best", 0);
   const result = resume?.result || null;
   const view = normalizeScoreResult(result);
 
@@ -113,8 +115,10 @@ export default function Journey() {
   const [text, setText] = useState(() => resume?.text || "");
   const [notice, setNotice] = useState("");
 
-  const profileLine = [profile.year, profile.lane && `${profile.lane} lane`, profile.college, profile.goal && `goal: ${profile.goal}`]
-    .filter(Boolean).join(", ");
+  const profileLine = lane === "ayush"
+    ? [profile.year, profile.lane && `${profile.lane} lane`, profile.college, profile.goal && `goal: ${profile.goal}`].filter(Boolean).join(", ")
+    : [profile.track, profile.loc, profile.hours && `${profile.hours} hrs/week`, profile.goal && `goal: ${profile.goal}`].filter(Boolean).join(", ");
+  const sampleText = lane === "ayush" ? AYUSH_RESUMES[0].text : TECH_RESUMES[0].text;
 
   // --- interview state ---
   const [qs, setQs] = useState(null);
@@ -126,10 +130,10 @@ export default function Journey() {
   useEffect(() => {
     if (stage !== "interview" || asked.current) return;
     asked.current = true;
-    genInterviewQs(resume?.text || "", "ayush", profileLine).then((ai) => {
+    genInterviewQs(resume?.text || "", lane, profileLine).then((ai) => {
       setQs(ai && ai.length >= 3 ? ai.slice(0, 5) : questionsFromProfile(profile, result));
     });
-  }, [stage, resume, profile, profileLine, result]);
+  }, [stage, resume, profile, profileLine, result, lane]);
 
   async function onFile(e) {
     const f = e.target.files?.[0];
@@ -148,7 +152,7 @@ export default function Journey() {
       setNotice("Paste your resume text or upload a file first.");
       return;
     }
-    saveResume(text, scoreResume(text, "ayush"), "ayush");
+    saveResume(text, scoreResume(text, lane), lane);
     recordDay("resume");
     setNotice("");
     setTab("improve");
@@ -157,7 +161,7 @@ export default function Journey() {
   async function gradeOne(i) {
     if (!answers[i].trim() || grades[i] !== null || grading !== -1) return;
     setGrading(i);
-    const ai = await gradeAnswerAI(qs[i], answers[i], profileLine).catch(() => null);
+    const ai = await gradeAnswerAI(qs[i], answers[i], profileLine, lane).catch(() => null);
     const g = ai !== null && ai !== undefined
       ? { score: ai, ai: true, tips: ai < 3 ? ["Add a concrete example with a number."] : [] }
       : { score: Math.max(0, scoreAnswer(answers[i]).micro - 1), ai: false, tips: scoreAnswer(answers[i]).tips.slice(0, 1) };
@@ -169,20 +173,20 @@ export default function Journey() {
     const done = grades.filter(Boolean);
     if (!done.length) return;
     const avg = done.reduce((a, g) => a + g.score, 0) / done.length;
-    saveJSON("c2c-interview-best", Math.round(avg * 25));
+    saveJSON("avsar-interview-best", Math.round(avg * 25));
     recordDay("interview");
     setStage("congrats");
   }
 
   function startJourney() {
-    saveJSON("c2c-onboarded-v1", Date.now());
+    saveJSON("avsar-onboarded-v1", Date.now());
     if (!reduce) confettiBurst();
     setTimeout(() => navigate("/home"), reduce ? 0 : 900);
   }
 
   const tips = useMemo(() => (result ? resumeTips(result) : []), [result]);
-  const pairs = completedSkillIdsForRole("ayush").length;
-  const main = result ? calculateMainScore(result.total, interviewBest, questPairsToProof(pairs), "ayush") : 0;
+  const pairs = completedSkillIdsForRole(lane).length;
+  const main = result ? calculateMainScore(result.total, interviewBest, questPairsToProof(pairs), lane) : 0;
   const previewQs = useMemo(() => questionsFromProfile(profile, result).slice(0, 3), [profile, result]);
   const gradedCount = grades.filter(Boolean).length;
 
@@ -252,7 +256,7 @@ export default function Journey() {
               {notice && <p className="mt-2 text-sm text-red-500" role="alert">{notice}</p>}
               <div className="mt-3 flex flex-wrap gap-2">
                 <Btn onClick={score}>Score my resume</Btn>
-                <Btn variant="quiet" onClick={() => setText(AYUSH_RESUMES[0].text)}>Use a sample</Btn>
+                <Btn variant="quiet" onClick={() => setText(sampleText)}>Use a sample</Btn>
               </div>
               {result && (
                 <div className="mt-5 border-t border-stone-100 pt-4">
@@ -297,7 +301,7 @@ export default function Journey() {
                       </li>
                     ))}
                   </ol>
-                  {view.missing.filter((s) => SKILL_WHY[s.toLowerCase()]).slice(0, 3).map((s) => {
+                  {lane === "ayush" && view.missing.filter((s) => SKILL_WHY[s.toLowerCase()]).slice(0, 3).map((s) => {
                     const info = SKILL_WHY[s.toLowerCase()];
                     return (
                       <div key={s} className="mt-2 border-l-2 border-amber-400 py-2 pl-3">
@@ -341,7 +345,7 @@ export default function Journey() {
             <Card>
               <H2>Then prove it out loud</H2>
               <p className="text-sm leading-6 text-stone-500">
-                Five questions built from your skills{profile.lane ? `, ${profile.lane} lane` : ""}{profile.goal ? `, and ${profile.goal} goal` : ""}. Finish the interview and your profile hits 100%.
+                Five questions built from your skills{profile.lane && lane === "ayush" ? `, ${profile.lane} lane` : ""}{profile.track && lane !== "ayush" ? `, ${profile.track} track` : ""}{profile.goal ? `, and ${profile.goal} goal` : ""}. Finish the interview and your profile hits 100%.
               </p>
               <ol className="mt-3 space-y-2">
                 {previewQs.map((q, i) => (
@@ -418,7 +422,7 @@ export default function Journey() {
           </div>
           <h2 className="mt-4 font-display text-2xl font-bold text-stone-900">You did it</h2>
           <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-stone-500">
-            Profile, resume, interview — hospitals now see proof, not promises.
+            Profile, resume, interview — {lane === "ayush" ? "hospitals" : "recruiters"} now see proof, not promises.
             {main > 0 && <> Your readiness sits at <strong className="text-emerald-800">{main}/100</strong>.</>}
           </p>
           <div className="mx-auto mt-3 flex max-w-xs items-center gap-1" aria-hidden>

@@ -4,7 +4,7 @@
 // Noto Sans Devanagari body fallback in index.css.
 import { loadText, saveText } from "./storage.js";
 
-const KEY = "c2c-lang";
+const KEY = "avsar-lang";
 export const LANGS = [
   { id: "en", label: "English", short: "EN" },
   { id: "hi", label: "हिंदी", short: "हि" },
@@ -17,6 +17,8 @@ export const STRINGS = {
     "nav.internships": "Internships",
     "nav.quests": "Quests",
     "nav.profile": "Profile",
+    "nav.resume": "Resume",
+    "nav.jobs": "Jobs",
     "nav.more": "More",
     "nav.skip": "Skip to content",
     "theme.toLight": "Switch to light theme",
@@ -35,7 +37,7 @@ export const STRINGS = {
     "more.programs": "Programs",
     "more.workspace": "Workspace",
     "more.ayush": "Ayush home",
-    "footer.tag": "Score your BAMS resume, clear the SHISHIKSHA checklist, and apply to ayurveda internships through one tracked pipeline.",
+    "footer.tag": "Score your AYUSH resume, close skill gaps with quests, and apply to internships through one tracked pipeline.",
     "footer.upskill": "Upskill",
     "footer.career": "Career",
   },
@@ -45,6 +47,8 @@ export const STRINGS = {
     "nav.internships": "इंटर्नशिप",
     "nav.quests": "क्वेस्ट",
     "nav.profile": "प्रोफ़ाइल",
+    "nav.resume": "रेज़्यूमे",
+    "nav.jobs": "नौकरियां",
     "nav.more": "और",
     "nav.skip": "मुख्य सामग्री पर जाएं",
     "theme.toLight": "लाइट थीम पर जाएं",
@@ -63,7 +67,7 @@ export const STRINGS = {
     "more.programs": "प्रोग्राम",
     "more.workspace": "वर्कस्पेस",
     "more.ayush": "आयुष होम",
-    "footer.tag": "अपना BAMS रेज़्यूमे स्कोर करें, SHISHIKSHA चेकलिस्ट पूरी करें, और एक ट्रैक की गई पाइपलाइन से आयुर्वेद इंटर्नशिप के लिए आवेदन करें।",
+    "footer.tag": "अपना AYUSH रेज़्यूमे स्कोर करें, क्वेस्ट से स्किल गैप बंद करें, और एक ट्रैक की गई पाइपलाइन से इंटर्नशिप के लिए आवेदन करें।",
     "footer.upskill": "स्किल बढ़ाएं",
     "footer.career": "करियर",
   },

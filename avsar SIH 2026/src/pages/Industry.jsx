@@ -4,19 +4,25 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router";
 import { Page, Card, H2, Btn, Field, Chip, Empty, inputCls } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import { listApplicants } from "../lib/store.js";
 import { matchJobPost, profileForMatching } from "../lib/match.js";
 import { loadQuizBest } from "../data/quiz.js";
 import { loadQAnswers, compileEvidence } from "../lib/questionnaire.js";
+import { ROLES } from "../lib/score.js";
 
-const AYUSH_TYPS = ["Internship", "Full-time", "Govt", "ministry", "research", "training"];
+const TYPES = {
+  ayush: ["Internship", "Full-time", "Govt", "ministry", "research", "training"],
+  tech: ["Internship", "Full-time", "Govt"],
+};
 
 const blank = { title: "", company: "", role: "ayush", loc: "Remote", type: "Internship", skills: "", minScore: 40, apply: "", description: "" };
 
 export default function Industry() {
-  const { customJobs, addCustomJob, role, resume } = useC2C();
-  const [f, setF] = useState(blank);
+  const { customJobs, addCustomJob, lane, resume } = useAvsar();
+  const isAyush = lane === "ayush";
+  const types = TYPES[lane] || TYPES.ayush;
+  const [f, setF] = useState(() => ({ ...blank, role: lane || "ayush" }));
   const [notice, setNotice] = useState("");
   const [err, setErr] = useState("");
   const [open, setOpen] = useState(null);
@@ -27,11 +33,11 @@ export default function Industry() {
   const engineProfile = useMemo(() => {
     try {
       const found = resume?.result?.found || [];
-      return profileForMatching(role, found, loadQuizBest(role), compileEvidence(loadQAnswers(role)).claims);
+      return profileForMatching(lane, found, loadQuizBest(lane), compileEvidence(loadQAnswers(lane)).claims);
     } catch {
       return { skills: [], levels: {}, verified: [], usedAt: {}, interests: [] };
     }
-  }, [role, resume]);
+  }, [lane, resume]);
   const openJob = customJobs.find((j) => j.id === open) || null;
   const openFit = openJob ? matchJobPost(openJob, engineProfile) : null;
 
@@ -46,7 +52,7 @@ export default function Industry() {
     const skills = f.skills.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean).slice(0, 8);
     const job = {
       id: `custom-${Date.now()}`,
-      role: f.role,
+      role: lane || f.role,
       title: f.title.trim(),
       company: f.company.trim(),
       loc: f.loc.trim() || "Remote",
@@ -57,7 +63,7 @@ export default function Industry() {
       description: f.description.trim(),
     };
     addCustomJob(job);
-    setF(blank);
+    setF({ ...blank, role: lane || "ayush" });
     setErr("");
     setNotice(`posted "${job.title}". it is live in the student feed now.`);
   }
@@ -79,8 +85,12 @@ export default function Industry() {
 
   return (
     <Page
-      title="For Hospitals & Industry"
-      sub="Post internships, rotatory slots, and entry-level vaidya roles with required skills. Students whose scores clear your bar see them as eligible."
+      title={isAyush ? "For Hospitals & Industry" : "Post a role"}
+      sub={
+        isAyush
+          ? "Post internships, rotatory slots, and entry-level vaidya roles with required skills. Students whose scores clear your bar see them as eligible."
+          : "Post internships and entry-level tech roles with required skills. Students whose scores clear your bar see them as eligible."
+      }
       actions={<Btn to="/jobs" variant="quiet">view student feed</Btn>}
     >
       {notice && <p className="mb-4 font-mono text-xs text-blurple-soft">{notice}</p>}
@@ -90,26 +100,26 @@ export default function Industry() {
         <H2>Post an opening</H2>
         <form onSubmit={post} className="grid gap-3 sm:grid-cols-2">
           <Field label="Role title">
-            <input className={inputCls} value={f.title} onChange={set("title")} placeholder="Panchakarma intern" />
+            <input className={inputCls} value={f.title} onChange={set("title")} placeholder={isAyush ? "Panchakarma intern" : "Frontend intern"} />
           </Field>
-          <Field label="Hospital / company">
-            <input className={inputCls} value={f.company} onChange={set("company")} placeholder="NABH Ayurveda Hospital" />
+          <Field label={isAyush ? "Hospital / company" : "Company"}>
+            <input className={inputCls} value={f.company} onChange={set("company")} placeholder={isAyush ? "NABH Ayurveda Hospital" : "ZetaPay (Startup)"} />
           </Field>
           <Field label="Type">
             <select className={inputCls} value={f.type} onChange={set("type")}>
-              {AYUSH_TYPS.map((t) => (
+              {types.map((t) => (
                 <option key={t} value={t}>{t}</option>
               ))}
             </select>
           </Field>
           <Field label="Location">
-            <input className={inputCls} value={f.loc} onChange={set("loc")} placeholder="Kochi / Pan India" />
+            <input className={inputCls} value={f.loc} onChange={set("loc")} placeholder={isAyush ? "Kochi / Pan India" : "Remote / Bangalore"} />
           </Field>
           <Field label="minimum resume score" hint="students below this see the role as locked.">
             <input className={inputCls} type="number" min="0" max="95" value={f.minScore} onChange={set("minScore")} />
           </Field>
           <Field label="Required skills" hint="comma separated. matching is literal against resume skills.">
-            <input className={inputCls} value={f.skills} onChange={set("skills")} placeholder="panchakarma, diagnosis, documentation" />
+            <input className={inputCls} value={f.skills} onChange={set("skills")} placeholder={(ROLES[lane]?.skills || []).slice(0, 3).join(", ") || "skills"} />
           </Field>
           <Field label="apply link">
             <input className={inputCls} value={f.apply} onChange={set("apply")} placeholder="https://..." />

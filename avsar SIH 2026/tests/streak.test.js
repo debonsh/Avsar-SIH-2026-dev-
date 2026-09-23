@@ -31,8 +31,8 @@ describe("currentStreak", () => {
 describe("collectDayCounts", () => {
   it("merges interview map, quest days, and job events", () => {
     const store = {
-      "c2c-progress-v1": JSON.stringify({ interview: { "interview:2026-09-20": 2 }, questDays: { "2026-09-19": 1 }, quests: {}, evidence: {}, streak: {}, }),
-      "c2c-job-events": JSON.stringify([{ jobId: "1", event: "saved", at: new Date("2026-09-20T10:00:00").getTime() }]),
+      "avsar-progress-v1": JSON.stringify({ interview: { "interview:2026-09-20": 2 }, questDays: { "2026-09-19": 1 }, quests: {}, evidence: {}, streak: {}, }),
+      "avsar-job-events": JSON.stringify([{ jobId: "1", event: "saved", at: new Date("2026-09-20T10:00:00").getTime() }]),
     };
     globalThis.localStorage = {
       removeItem: (k) => { delete store[k]; },

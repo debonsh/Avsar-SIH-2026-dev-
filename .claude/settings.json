@@ -74,5 +74,6 @@
       "Bash(graft-dev:*)",
       "Bash(node dist/cli.js:*)"
     ]
-  }
+  },
+  "includeCoAuthoredBy": false
 }

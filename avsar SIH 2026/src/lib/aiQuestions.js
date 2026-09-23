@@ -8,6 +8,27 @@ import { parseAiGrade } from "./onboarding.js";
 const ctx = (resumeText = "", role = "ayush") =>
   `Role: ${role}\nResume (truncated):\n"""\n${String(resumeText || "").slice(0, 1800)}\n"""`;
 
+// One voice per universe: the vaidya portal prompts in clinical terms, the
+// tech portal in engineering terms. A hardcoded BAMS prompt on the tech lane
+// is exactly the live bug this avoids — every generator routes through here.
+export function voiceFor(role = "ayush") {
+  if (role === "ayush") {
+    return {
+      who: "a BAMS (ayurveda) student",
+      probe: "their actual claims, clinical basics (tridosha, dravyaguna, panchakarma, GMP, documentation), and gaps",
+      deep: "2 clinical deep-dives, 2 role-knowledge, 1 behavioral",
+      proof: "clinical exposure, procedures assisted, documentation, projects, skills with evidence",
+    };
+  }
+  const label = { sde: "software developer", data: "data analyst", marketing: "marketing associate", govt: "govt-exam aspirant" }[role] || "engineering student";
+  return {
+    who: `a Tier-2/3 Indian college ${label}`,
+    probe: "their actual claims, engineering basics (code, systems, data, communication), and gaps",
+    deep: "2 technical deep-dives on claimed skills, 2 role-knowledge, 1 behavioral",
+    proof: "shipped work, live links, datasets or campaigns touched, skills with evidence",
+  };
+}
+
 // --- validators (pure, tested) ---
 
 export function parseQuizItems(raw) {
@@ -64,18 +85,20 @@ export function parseQuestionnaireItems(raw) {
 // --- generators (network + parse, memoized) ---
 
 export async function genQuizItems(resumeText, role = "ayush", n = 10) {
-  const prompt = `You write a screening quiz for a BAMS (ayurveda) student targeting "${role}".
+  const v = voiceFor(role);
+  const prompt = `You write a screening quiz for ${v.who} targeting "${role}".
 ${ctx(resumeText, role)}
-Write ${n} multiple-choice questions PERSONALIZED to their resume lines: probe their actual claims, clinical basics (tridosha, dravyaguna, panchakarma, GMP, documentation), and gaps. Mix recall + scenario.
+Write ${n} multiple-choice questions PERSONALIZED to their resume lines: probe ${v.probe}. Mix recall + scenario.
 Return ONLY a JSON array, no prose, no fences: [{"text": "...", "opts": ["a","b","c","d"], "ans": 0}]. ans is the 0-based index of the correct option.`;
   const raw = await memoCall("aigen-quiz", `${role}|${String(resumeText || "").slice(0, 1500)}`, () => chat(prompt, "questions"));
   return parseQuizItems(raw);
 }
 
 export async function genInterviewQs(resumeText, role = "ayush", profileLine = "") {
-  const prompt = `You write interview questions for a BAMS (ayurveda) student targeting "${role}".
+  const v = voiceFor(role);
+  const prompt = `You write interview questions for ${v.who} targeting "${role}".
 ${ctx(resumeText, role)}${profileLine ? `\nStudent profile: ${profileLine}` : ""}
-Write 5 questions PERSONALIZED to their resume AND profile: probe a claimed skill, their lane, their goal, and one resume gap. 2 clinical deep-dives, 2 role-knowledge, 1 behavioral. Short, spoken-style.
+Write 5 questions PERSONALIZED to their resume AND profile: probe a claimed skill, their lane, their goal, and one resume gap. ${v.deep}. Short, spoken-style.
 Return ONLY a JSON array, no prose, no fences: [{"text": "...", "dimension": "skill"}].`;
   const raw = await memoCall("aigen-interview", `${role}|${profileLine}|${String(resumeText || "").slice(0, 1500)}`, () => chat(prompt, "interview"));
   return parseInterviewItems(raw);
@@ -83,20 +106,25 @@ Return ONLY a JSON array, no prose, no fences: [{"text": "...", "dimension": "sk
 
 // AI grade for one interview answer, 0-4. Null when offline — caller falls
 // back to the keyword heuristic, never blocks the student.
-export async function gradeAnswerAI(question, answer, profileLine = "") {
+export async function gradeAnswerAI(question, answer, profileLine = "", role = "ayush") {
   if (!String(answer || "").trim()) return null;
-  const prompt = `You grade a BAMS intern interview answer 0-4 (0 blank/evasive, 1 vague, 2 partial, 3 solid with an example, 4 clinical + quantified).${profileLine ? ` Student: ${profileLine}.` : ""}
+  const v = voiceFor(role);
+  const bar = role === "ayush"
+    ? "0 blank/evasive, 1 vague, 2 partial, 3 solid with an example, 4 clinical + quantified"
+    : "0 blank/evasive, 1 vague, 2 partial, 3 solid with an example, 4 technical + quantified";
+  const prompt = `You grade ${v.who} interview answer 0-4 (${bar}).${profileLine ? ` Student: ${profileLine}.` : ""}
 Question: ${String(question || "").slice(0, 300)}
 Answer: ${String(answer || "").slice(0, 800)}
 Reply with ONLY the single digit 0, 1, 2, 3, or 4.`;
-  const raw = await memoCall("aigrade", `${question}|${answer}`.slice(0, 1500), () => chat(prompt, "feedback"));
+  const raw = await memoCall("aigrade", `${role}|${question}|${answer}`.slice(0, 1500), () => chat(prompt, "feedback"));
   return parseAiGrade(raw);
 }
 
 export async function genQuestionnaire(resumeText, role = "ayush") {
-  const prompt = `You write an evidence questionnaire for a BAMS (ayurveda) student targeting "${role}".
+  const v = voiceFor(role);
+  const prompt = `You write an evidence questionnaire for ${v.who} targeting "${role}".
 ${ctx(resumeText, role)}
-Write 5 items that extract PROOF: clinical exposure, procedures assisted, documentation, projects, skills with evidence. Prefer yesno/text/url types; use choice only with 2-4 real options.
+Write 5 items that extract PROOF: ${v.proof}. Prefer yesno/text/url types; use choice only with 2-4 real options.
 Return ONLY a JSON array, no prose, no fences: [{"text": "...", "type": "yesno|text|url|choice", "options": [...]}]. options only for choice.`;
   const raw = await memoCall("aigen-qnr", `${role}|${String(resumeText || "").slice(0, 1500)}`, () => chat(prompt, "questions"));
   return parseQuestionnaireItems(raw);

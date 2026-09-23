@@ -46,6 +46,19 @@ export function rankFor(score = 0) {
   return "Bronze";
 }
 
+// Tech portal leveling: systematic engineering ladder L0–L5. The vaidya portal
+// keeps its own beej→acharya growth stages (ayush/scoring.js) — the two
+// universes never share level names.
+export function engLevelFor(readiness = 0) {
+  const r = Math.max(0, Math.min(100, Math.round(Number(readiness) || 0)));
+  if (r >= 90) return { id: "L5", label: "L5 · Expert", note: "lead. your proof speaks." };
+  if (r >= 80) return { id: "L4", label: "L4 · Professional", note: "mentor others. target referrals." };
+  if (r >= 65) return { id: "L3", label: "L3 · Associate", note: "job-ready. portfolio plus referrals." };
+  if (r >= 50) return { id: "L2", label: "L2 · Trainee", note: "apply broadly. interview prep next." };
+  if (r >= 30) return { id: "L1", label: "L1 · Intern", note: "eligible for internships. close the top gap." };
+  return { id: "L0", label: "L0 · Explorer", note: "score plus first quest pair." };
+}
+
 // ponytail: career-path finder, score the same text against every role, suggest the best fit
 export function rankRoles(text = "", earnedSkills = []) {
   return Object.keys(ROLES)

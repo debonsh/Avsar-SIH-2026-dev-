@@ -15,6 +15,16 @@ export const COACH_ACTIONS = [
   { id: "addjob", label: "Add job from posting" },
 ];
 
+export const TECH_DEEPEN = { id: "roadmap", label: "Level up (L0–L5)" };
+
+// Portal shortcuts: the vaidya portal deepens via BAMS, the tech portal via
+// the L0–L5 engineering ladder. COACH_ACTIONS stays the full registry (and
+// the tested contract); this is the per-portal view the widget renders.
+export function coachActionsFor(role = "ayush") {
+  if (role === "ayush") return COACH_ACTIONS;
+  return COACH_ACTIONS.map((a) => (a.id === "bams" ? TECH_DEEPEN : a));
+}
+
 // Hindi tone: when lang=hi, preface answers with a Hindi wrapper.
 const HI = (en, hi) => (lang) => (lang === "hi" ? hi : en);
 
@@ -63,6 +73,8 @@ export function buildPrompt(actionId, s = {}) {
       return `${head}\n\nJob: ${c.jobTitle || "best eligible role"} at ${c.jobCompany || "a hiring company"}.\n\nWrite a cover letter grounded ONLY in this resume (no invented numbers), first person, 3 short paragraphs, Dear Hiring Manager to Sincerely. Under 250 words.`;
     case "mentor":
       return `${head}\n\nRecommend one mentorship-style next step: a workshop topic, a guest-lecture question to ask, or a 2-week live-project brief that attacks their top gap (${c.top || "strongest missing skill"}). Concrete and beginner-sized. Under 100 words.`;
+    case "roadmap":
+      return `${head}\n\nLay out their L0–L5 engineering ladder from today's score: what each level means, the one proof that unlocks the next level, and the single cheapest step this week. Under 150 words.`;
     default:
       return head;
   }
@@ -105,7 +117,7 @@ export function coverLetter(s = {}) {
   const c = ctx(s);
   if (!c.score) return "Score your resume first: a cover letter needs real bullets to stand on.";
   const job = c.topJob;
-  const name = (c.contactName || "A C2C student").trim();
+  const name = (c.contactName || "An Avsar student").trim();
   const head = job ? `${job.title} at ${job.company}` : (c.roleLabel || "an internship");
   return `Dear Hiring Manager,\n\nI am applying for ${head}. My resume shows ${(c.found || []).slice(0, 3).join(", ") || "hands-on project work"}, and I am closing ${(c.missing || []).slice(0, 2).join(" and ") || "my remaining gaps"} through verified coursework.\n\nWhat I bring on day one: ${(c.found || []).slice(0, 2).join(", ") || "project experience"} with proof links on my portfolio. I would welcome the chance to discuss the role.\n\nSincerely,\n${name}`;
 }
@@ -136,10 +148,17 @@ export function parseJobPosting(pasted = "") {
 export function localAnswer(actionId, s = {}) {
   const c = ctx(s);
   if (actionId === "gaps") {
-    if (!c.score) return "Score your resume first (My Score: paste, score), then I'll rank your gaps by open-job demand and point each one to a free course.";
-    if (!c.top) return `No gaps detected at resume score ${c.score}, job-ready on paper. Next lift: quiz best plus quest proof pushes readiness past 65 for Gold.`;
+    if (!c.score) return "Score your resume first (Resume: paste, score), then I'll rank your gaps by open-job demand and point each one to a free course.";
+    if (!c.top) {
+      return c.ayush
+        ? `No gaps detected at resume score ${c.score}, job-ready on paper. Next lift: quiz best plus quest proof pushes readiness past 65 for vaidya.`
+        : `No gaps detected at resume score ${c.score}, job-ready on paper. Next lift: quiz best plus quest proof pushes readiness past 65 for L3 Associate.`;
+    }
     const course = coursesFor(c.top)[0];
-    return `Your #1 gap is ${c.top}: it shows up in the most open ${c.roleLabel || ""} roles. Start here: ${course.t} (${course.u}). Close it with one logbook entry plus a proof link, re-score, and watch your score move. Rest of the list: ${c.missing.slice(1).join(", ") || "none"}.`;
+    const closer = c.ayush
+      ? "Close it with one logbook entry plus a proof link, re-score, and watch your score move."
+      : "Close it with one quest pair plus a proof link, re-score, and watch your score move.";
+    return `Your #1 gap is ${c.top}: it shows up in the most open ${c.roleLabel || ""} roles. Start here: ${course.t} (${course.u}). ${closer} Rest of the list: ${c.missing.slice(1).join(", ") || "none"}.`;
   }
   if (actionId === "bullets") {
     if (c.ayush) return `Clinical bullets that clear screening: complaint plus examination in 5 words, intervention with a precise verb, outcome with 1 number. Template: "Assisted ${c.top || "panchakarma"} sittings for N patients, documented M case sheets." Hunt your real numbers (cases seen, sittings assisted, records digitized), paste them in, re-score.`;
@@ -160,7 +179,8 @@ export function localAnswer(actionId, s = {}) {
   if (actionId === "cover") return coverLetter(s);
   if (actionId === "mentor") {
     const gap = c.top || "your top gap";
-    return `Mentorship track for ${gap}: (1) workshop: pick one NCISM or RAV hands-on CME this semester; (2) guest-lecture question: ask one working vaidya "what broke last week and how did you find it"; (3) live posting: assist one ${gap} case series in 2 weekends with a proof link, then re-score. Faculty board (/faculty) lists the real seats; this loop is the warm-up.`;
+    if (c.ayush) return `Mentorship track for ${gap}: (1) workshop: pick one NCISM or RAV hands-on CME this semester; (2) guest-lecture question: ask one working vaidya "what broke last week and how did you find it"; (3) live posting: assist one ${gap} case series in 2 weekends with a proof link, then re-score. Faculty board (/faculty) lists the real seats; this loop is the warm-up.`;
+    return `Mentorship track for ${gap}: (1) workshop: join one Git & GitHub or mock-interview weekend this month; (2) senior question: ask one working engineer "what broke last week and how did you find it"; (3) live brief: ship one ${gap} mini-project in 2 weekends with a proof link, then re-score. Faculty board (/faculty) lists the real seats; this loop is the warm-up.`;
   }
   if (actionId === "bams") {
     if (c.ayush) return HI(
@@ -168,6 +188,13 @@ export function localAnswer(actionId, s = {}) {
       `BAMS गहराई: बीज से आचार्य तक:\n1. शिशिक्षा ओरिएंटेशन (6 दिन, NCISM अनिवार्य): /quests में चेकलिस्ट पूरी करें।\n2. रोटेटरी इंटर्नशिप: 1-6 महीना कॉलेज अस्पताल (OPD/IPD, केस शीट), 7-12 महीना PHC/ग्रामीण।\n3. लाइन चुनें: क्लीनिकल प्रैक्टिस, CCRAS रिसर्च (SPARK/JRF), या GMP/QA इंडस्ट्री।\n4. टॉप गैप (${c.top || "कोई नहीं"}) एक क्वेस्ट + प्रूफ लिंक से बंद करें।\nअभी readiness: ${c.score ?? 0}/100। 65+ Gold के लिए लक्ष्य।`
     )(s.lang);
     return "BAMS deepen is for the Ayush Professional track. Switch your track on /resume to unlock clinical path coaching.";
+  }
+  if (actionId === "roadmap") {
+    if (!c.ayush) {
+      const lvl = c.score >= 65 ? "L3 Associate" : c.score >= 50 ? "L2 Trainee" : c.score >= 30 ? "L1 Intern" : "L0 Explorer";
+      return `Engineering ladder from readiness ${c.score ?? 0}/100 (you read as ${lvl}):\nL0 Explorer → score + first quest pair.\nL1 Intern (30+) → eligible for internships; close ${c.top || "your top gap"}.\nL2 Trainee (50+) → apply broadly; interview prep next.\nL3 Associate (65+) → job-ready; portfolio plus referrals.\nL4 Professional (80+) → mentor others.\nL5 Expert (90+) → lead.\nCheapest step this week: one quest pair in ${c.top || "your top gap"} with a proof link, then re-score. Your board: /quests.`;
+    }
+    return "Level-up roadmap is for the Tech portal. Switch your track on /resume to unlock the L0–L5 ladder coaching.";
   }
   if (actionId === "addjob") {
     return "Paste the job posting as your next message starting with PASTE: (include Company:, Title:, Location: lines if you can). I'll parse it and show a confirm card: nothing saves until you press Confirm.";
@@ -185,8 +212,9 @@ function askAnswer(c, s = {}) {
   const skill = all.find((sk) => sk && q.includes(String(sk).toLowerCase()));
   if (skill) {
     const known = c.found.some((f) => String(f).toLowerCase() === String(skill).toLowerCase());
+    const numbers = c.ayush ? "cases, sittings, records" : "users, %, tests written";
     return known
-      ? `${skill} is on your resume (score ${c.score ?? 0}). To defend it in an interview: one place you used it, one number (cases, sittings, records). Add that line and re-score — numbers lift the result dimension.`
+      ? `${skill} is on your resume (score ${c.score ?? 0}). To defend it in an interview: one place you used it, one number (${numbers}). Add that line and re-score — numbers lift the result dimension.`
       : `${skill} is your gap: it is missing from your resume and postings ask for it. Fastest close: open Quests, finish the ${skill} pair, link one proof, re-score. One pair typically moves readiness.`;
   }
   if (has("intern", "job", "apply", "hospital", "vacan")) {
@@ -198,19 +226,24 @@ function askAnswer(c, s = {}) {
     return `Your resume scores ${c.score ?? 0}. Highest-leverage fix: ${c.top ? `add ${c.top} with one proof link` : "add one number per bullet"}. The Improve tab lists each fix in order.`;
   }
   if (has("interview", "question", "round", "hr")) {
-    return "Clinical rounds test case presentation: complaint, examination, intervention, outcome — with one number. The Interview tab asks 5 questions built from your skills and grades each 0-4.";
+    if (c.ayush) return "Clinical rounds test case presentation: complaint, examination, intervention, outcome — with one number. The Interview tab asks 5 questions built from your skills and grades each 0-4.";
+    return "Tech interviews test STAR plus numbers: open with the Result, keep each answer under 3 sentences, name one tool the role expects. The Interview tab asks 5 questions built from your resume and grades each 0-4.";
   }
   if (has("quest", "learn", "course", "study")) {
     return `Your next quest is ${c.top || "in the quest list"}: one free course plus one proof-sized task. Finish the pair and your readiness moves the same day.`;
   }
   if (has("certificate", "certificat")) {
-    return "Free certs that count: SWAYAM pharma quality (GMP), NPTEL Ayurveda Biology, ABDM digital health basics. Each completed pair with proof lifts score and unlocks postings.";
+    if (c.ayush) return "Free certs that count: SWAYAM pharma quality (GMP), NPTEL Ayurveda Biology, ABDM digital health basics. Each completed pair with proof lifts score and unlocks postings.";
+    return "Free certs that count: freeCodeCamp web design + JavaScript, NPTEL databases/SQL, Google Digital Garage SEO. Each completed pair with proof lifts score and unlocks postings.";
   }
   if (has("stipend", "salary", "pay", "sarkari", "government")) {
-    return "Paid BAMS starts: JRF Pharmacy (Rs.37,000+HRA), SPARK studentship (Rs.50,000), QA/GMP trainee roles (~Rs.10,000/month). Ministry internships pay in certificate. All are in your feed with stipends listed.";
+    if (c.ayush) return "Paid BAMS starts: JRF Pharmacy (Rs.37,000+HRA), SPARK studentship (Rs.50,000), QA/GMP trainee roles (~Rs.10,000/month). Ministry internships pay in certificate. All are in your feed with stipends listed.";
+    return "Paid tech starts: frontend/backend internships (Rs.8,000–25,000/month), data internships, SIH prize tracks. Stipends are listed on each posting in your feed — filter eligible first, then apply.";
   }
   if (has("hello", "hi", "hey", "namaste")) {
     return `Namaste. I can see your score (${c.score ?? 0}), your gaps (${c.missing.join(", ") || "none"}), and your lane. Ask about any of them.`;
   }
+  if (has("roadmap", "ladder", "level up", "l0", "l1", "l2", "l3", "l4", "l5")) return localAnswer("roadmap", s);
+  if (has("bams deepen", "beej", "acharya", "vaidya path")) return localAnswer("bams", s);
   return `Good question. From your data: score ${c.score ?? 0}, biggest gap ${c.top || "none"}, lane ${c.profileLine || "not set"}. Ask about a skill, an internship, or your score — or tap a shortcut and I will go deeper.`;
 }

@@ -1,42 +1,49 @@
-import { useEffect, useState } from "react";
+// Profile is the onboarding engine. Welcome picks the portal; this page asks
+// who you are (role) and then the four questions that portal actually needs:
+// ayush keeps year/lane/college, tech keeps the scoring lane. Professional
+// roles answer nothing more and land on their own desk.
+import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { useNavigate } from "react-router";
 import CIcon from "@coreui/icons-react";
-import { cilSpa, cilChart, cilFire, cilCheckCircle, cilBolt } from "@coreui/icons";
+import { cilSpa, cilChart, cilFire, cilCheckCircle, cilBolt, cilBriefcase } from "@coreui/icons";
 import { Page, Card, H2, Btn, inputCls, Radar } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import { requiredFor, gapVector, skillById } from "../data/taxonomy.js";
 import { profileForMatching } from "../lib/match.js";
 import { loadQuizBest } from "../data/quiz.js";
-import { loadProfile, saveProfile } from "../lib/profile.js";
 import { resetOnboarding } from "../lib/onboarding.js";
-import { calculateMainScore, questPairsToProof } from "../lib/score.js";
+import { profileRowFor } from "../lib/profile.js";
+import { saveProfileRemote } from "../lib/backend.js";
+import { calculateMainScore, questPairsToProof, engLevelFor, ROLES } from "../lib/score.js";
 import { completedSkillIdsForRole } from "../lib/progress.js";
 import { collectDayCounts, currentStreak } from "../lib/streak.js";
 import { collectXP } from "../lib/xp.js";
 import { loadJSON } from "../lib/storage.js";
 import { vaidyaLevel } from "../ayush/scoring.js";
-import { getUser, signInWithGoogle, signOut, onAuthChange, authLabel } from "../lib/auth.js";
-import { getOrCreateC2CId } from "../lib/identity.js";
+import { signInWithGoogle, authLabel } from "../lib/auth.js";
+import { getOrCreateDeviceId } from "../lib/identity.js";
 import { AYUSH_ROLE } from "../data/ayushSeed.js";
+import { roleLabel } from "../lib/roles.js";
+import { TECH_LANES, targetRoleFor, profileMatchesTrack } from "../lib/track.js";
+import { dashboardFor } from "../lib/rbac.js";
 
-// Guided profile flow: 3 questions, one per screen, tap to answer.
-// Finishing routes into the two things the portal is for: internships, then upskilling.
 const GOALS = [
   { id: "internship", label: "Find an internship", hint: "Roles you can apply to right now, ranked by fit." },
   { id: "upskill", label: "Upskill first", hint: "Quests and free courses, jobs when you are ready." },
   { id: "certificate", label: "Earn a certificate", hint: "Free certs that lift your readiness score." },
-  { id: "portfolio", label: "Build proof", hint: "Logbook links and a showcase hospitals open." },
+  { id: "portfolio", label: "Build proof", hint: "Proof links and a showcase recruiters open." },
 ];
 
 const LOCS = [
-  { id: "anywhere", label: "Anywhere", hint: "Includes remote and residential postings." },
+  { id: "anywhere", label: "Anywhere", hint: "Includes remote and on-site postings." },
   { id: "india", label: "In India", hint: "On-site roles across states." },
   { id: "remote", label: "Remote only", hint: "Work-from-hostel friendly roles." },
 ];
 
 const HOURS = [
   { id: "2-4", label: "2 to 4 hrs/week", hint: "One quest at a time." },
-  { id: "5-8", label: "5 to 8 hrs/week", hint: "Steady rotatory-side pace." },
+  { id: "5-8", label: "5 to 8 hrs/week", hint: "Steady pace alongside classes." },
   { id: "9+", label: "9+ hrs/week", hint: "Full sprint mode." },
 ];
 
@@ -49,8 +56,45 @@ const LANES = [
   { id: "exploring", label: "Still exploring", hint: "Matches stay broad." },
 ];
 
-function isComplete(p) {
-  return Boolean(p && p.skills && p.goal && p.loc && p.hours && p.year && p.lane);
+const TECH_HINTS = {
+  sde: "Web, backend, full-stack roles.",
+  data: "Dashboards, SQL, Python, analytics.",
+  marketing: "SEO, content, ads, growth.",
+  govt: "SSC, UPSC, banking prep.",
+};
+
+// one role list per portal: the vaidya portal serves ayush professionals, the
+// tech portal serves the four tech lanes. Both include the professional desks.
+const PORTAL_ROLES = {
+  ayush: ["student", "ayush", "industry", "faculty", "institute"],
+  tech: ["student", "industry", "faculty", "institute"],
+};
+
+const ROLE_HINTS = {
+  student: { ayush: "AYUSH student, intern, or vaidya", tech: "BTech or career switch" },
+  ayush: { ayush: "Practitioner or graduate", tech: "" },
+  industry: { ayush: "Hospitals, ASU pharma, clinics", tech: "Companies hiring tech talent" },
+  faculty: { ayush: "Teaching, FDPs, CMEs", tech: "Teaching, FDPs, workshops" },
+  institute: { ayush: "College placement cell", tech: "College placement cell" },
+};
+
+// only this portal's own answers count as complete — a vaidya profile must not
+// satisfy the tech form, or switching sides would show the wrong card.
+function isComplete(p, track) {
+  if (!profileMatchesTrack(p, track)) return false;
+  if (track === "tech") return Boolean(p.skills && p.track && p.goal && p.loc && p.hours);
+  return Boolean(p.skills && p.goal && p.loc && p.hours && p.year && p.lane);
+}
+
+// Fresh form seeded from this portal's saved answers only; the other portal's
+// fields are dropped rather than carried across.
+function initialForm(stored, track, role) {
+  const p = profileMatchesTrack(stored, track) ? stored : {};
+  const shared = { role, skills: "", goal: "", loc: "", hours: "" };
+  if (track === "tech") {
+    return { ...shared, track: TECH_LANES.includes(p.track) ? p.track : "sde" };
+  }
+  return { ...shared, track: "ayush", year: p.year || "", lane: p.lane || "", college: p.college || "" };
 }
 
 function OptionCard({ selected, onPick, label, hint }) {
@@ -83,23 +127,26 @@ function OptionCard({ selected, onPick, label, hint }) {
 // Duolingo-profile DNA: cover band, avatar initial, name line, one stat row
 // (readiness / streak / quest pairs), then skills + details. Stats read from
 // the same stores as Home, so the two screens never disagree.
-function ProfileCard({ form, resume, onEdit, onClear }) {
+function ProfileCard({ form, resume, track, onEdit, onClear }) {
   const skills = String(form.skills || "").split(",").map((s) => s.trim()).filter(Boolean);
-  const pairs = completedSkillIdsForRole("ayush").length;
-  const interviewBest = loadJSON("c2c-interview-best", 0);
-  const main = resume?.result ? calculateMainScore(resume.result.total, interviewBest, questPairsToProof(pairs), "ayush") : null;
+  const lane = track === "tech" ? form.track || "sde" : "ayush";
+  const isAyush = lane === "ayush";
+  const pairs = completedSkillIdsForRole(lane).length;
+  const interviewBest = loadJSON("avsar-interview-best", 0);
+  const main = resume?.result ? calculateMainScore(resume.result.total, interviewBest, questPairsToProof(pairs), lane) : null;
   const streak = currentStreak(collectDayCounts());
   const xp = collectXP();
-  const vaidya = vaidyaLevel(main || 0);
-  const initial = ((form.college || "").trim()[0] || "V").toUpperCase();
-  // radar + gap vector vs the seeded dream role: assessment → profile → gaps.
-  const quizBest = loadQuizBest("ayush");
-  const prof = profileForMatching("ayush", skills, quizBest);
-  const req = requiredFor("ayush-cra").slice(0, 6);
-  // short axis names: full taxonomy names are legend material, not chart ink.
-  const SHORT = { research: "Trials", documentation: "Case sheets", pharmacovigilance: "ADR reports", diagnosis: "Diagnosis", gmp: "GMP", hims: "HIMS" };
-  const axes = req.map((r) => ({ label: SHORT[r.skill] || r.skill, value: prof.levels[r.skill] || 0, target: r.level }));
-  const gaps = gapVector("ayush-cra", prof.levels).slice(0, 4);
+  const vaidya = isAyush ? vaidyaLevel(main || 0) : null;
+  const initial = ((form.college || form.skills || "").trim()[0] || "A").toUpperCase();
+  // radar + gap vector vs this portal's target role: assessment → profile → gaps.
+  const targetId = targetRoleFor(lane);
+  const targetLabel = lane === "ayush" ? "Clinical Research Associate" : ROLES[lane]?.label || "target role";
+  const quizBest = loadQuizBest(lane);
+  const prof = profileForMatching(lane, skills, quizBest);
+  const req = requiredFor(targetId).slice(0, 6);
+  const SHORT = { research: "Trials", documentation: "Docs", pharmacovigilance: "ADR reports", diagnosis: "Diagnosis", gmp: "GMP", hims: "HIMS", javascript: "JS", communication: "Comms" };
+  const axes = req.map((r) => ({ label: SHORT[r.skill] || skillById(r.skill)?.name || r.skill, value: prof.levels[r.skill] || 0, target: r.level }));
+  const gaps = gapVector(targetId, prof.levels).slice(0, 4);
   const stats = [
     { icon: cilChart, label: "Readiness", value: main === null ? "—" : String(main) },
     { icon: cilFire, label: "Day streak", value: String(streak) },
@@ -109,27 +156,37 @@ function ProfileCard({ form, resume, onEdit, onClear }) {
   return (
     <div className="space-y-4">
       <Card className="overflow-hidden p-0">
-        <div className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-600 px-5 pb-14 pt-5 text-white">
+        <div className={`px-5 pb-14 pt-5 text-white ${isAyush ? "bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-600" : "bg-gradient-to-br from-zinc-900 via-zinc-800 to-blurple"}`}>
           <div className="flex items-center gap-2">
-            <CIcon icon={cilSpa} width={18} height={18} className="shrink-0 text-emerald-100" aria-hidden />
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-100">Avsar vaidya card</p>
+            <CIcon icon={isAyush ? cilSpa : cilBriefcase} width={18} height={18} className="shrink-0" aria-hidden />
+            <p className={`text-[11px] font-bold uppercase tracking-[0.18em] ${isAyush ? "text-emerald-100" : "text-blurple-soft"}`}>
+              {isAyush ? "Avsar vaidya card" : "Avsar tech card"}
+            </p>
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold capitalize">{roleLabel(form.role)}</span>
             {form.lane && <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold capitalize">{form.lane}</span>}
+            {!isAyush && form.track && <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold">{ROLES[form.track]?.label}</span>}
             {form.year && <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold">{form.year}</span>}
-            {main !== null && <span className="rounded-full bg-amber-400 px-2.5 py-0.5 font-mono text-[11px] font-bold text-emerald-950">{vaidya.label}</span>}
+            {main !== null && (
+              <span className={`rounded-full px-2.5 py-0.5 font-mono text-[11px] font-bold ${isAyush ? "bg-amber-400 text-emerald-950" : "bg-blurple-soft text-zinc-950"}`}>
+                {isAyush ? vaidya.label : engLevelFor(main).label}
+              </span>
+            )}
           </div>
         </div>
         <div className="px-5 pb-5">
           <div className="-mt-8 mb-2 flex items-end justify-between gap-3">
-            <span className="flex size-16 items-center justify-center rounded-2xl border-4 border-white bg-emerald-700 font-display text-2xl font-bold text-white" aria-hidden>
+            <span className={`flex size-16 items-center justify-center rounded-2xl border-4 border-white font-display text-2xl font-bold text-white ${isAyush ? "bg-emerald-700" : "bg-blurple"}`} aria-hidden>
               {initial}
             </span>
             <button type="button" onClick={onEdit} className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-xs font-semibold text-stone-600 hover:border-emerald-400 hover:text-emerald-800">
               Edit answers
             </button>
           </div>
-          <h2 className="font-display text-xl font-bold text-stone-900">{form.college?.trim() || "BAMS student"}</h2>
+          <h2 className="font-display text-xl font-bold text-stone-900">
+            {form.college?.trim() || (isAyush ? "BAMS student" : `${ROLES[lane]?.label || "Tech"} student`)}
+          </h2>
           <p className="text-sm text-stone-500">{GOALS.find((g) => g.id === form.goal)?.label || "Goal not set"}</p>
           <dl className="mt-4 grid grid-cols-2 divide-stone-100 rounded-2xl border border-stone-100 bg-stone-50/60 sm:grid-cols-4 sm:divide-x">
             {stats.map((s) => (
@@ -150,10 +207,10 @@ function ProfileCard({ form, resume, onEdit, onClear }) {
           {skills.length > 0 && (
             <div className="mt-4 rounded-2xl border border-stone-100 bg-stone-50/60 p-4">
               <div className="mx-auto w-full max-w-[220px] text-stone-500">
-                <Radar axes={axes} size={210} label="Skill profile vs Clinical Research Associate" />
+                <Radar axes={axes} size={210} label={`Skill profile vs ${targetLabel}`} />
               </div>
               <div className="mt-3 border-t border-stone-200/70 pt-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone-400">Gap vector · Clinical Research Associate</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone-400">Gap vector · {targetLabel}</p>
                 {gaps.length === 0 ? (
                   <p className="mt-1 text-sm text-emerald-800">No gaps — you clear the bar. Open the feed.</p>
                 ) : (
@@ -174,8 +231,8 @@ function ProfileCard({ form, resume, onEdit, onClear }) {
             </div>
           )}
           <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-4">
-            <div><dt className="text-stone-400">Year</dt><dd className="font-semibold text-stone-800">{form.year || "not set"}</dd></div>
-            <div><dt className="text-stone-400">Lane</dt><dd className="font-semibold capitalize text-stone-800">{form.lane || "not set"}</dd></div>
+            <div><dt className="text-stone-400">Role</dt><dd className="font-semibold text-stone-800">{roleLabel(form.role)}</dd></div>
+            <div><dt className="text-stone-400">{isAyush ? "Year" : "Lane"}</dt><dd className="font-semibold capitalize text-stone-800">{isAyush ? form.year || "not set" : ROLES[lane]?.label || lane}</dd></div>
             <div><dt className="text-stone-400">Location</dt><dd className="font-semibold capitalize text-stone-800">{form.loc || "not set"}</dd></div>
             <div><dt className="text-stone-400">Time</dt><dd className="font-semibold text-stone-800">{form.hours ? `${form.hours} hrs/week` : "not set"}</dd></div>
           </dl>
@@ -195,21 +252,31 @@ function ProfileCard({ form, resume, onEdit, onClear }) {
 }
 
 export default function Profile() {
-  const { resume } = useC2C();
-  const stored = loadProfile();
-  const [form, setForm] = useState(() => ({ track: "ayush", skills: "", year: "", lane: "", college: "", goal: "", loc: "", hours: "", ...(stored || {}) }));
-  const [step, setStep] = useState(() => (isComplete(stored) ? "done" : 0));
+  const { track, role, setRole, profile, updateProfile, clearProfileState, resume, user, signOutUser } = useAvsar();
+  const stored = profile;
+  const isTech = track === "tech";
+  const [form, setForm] = useState(() => initialForm(stored, track, role));
+  const [step, setStep] = useState(() => (isComplete(stored, track) ? "done" : 0));
   const reduce = useReducedMotion();
+  const nav = useNavigate();
   const [skills, setSkills] = useState(() =>
-    String(stored?.skills || "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean)
+    profileMatchesTrack(stored, track)
+      ? String(stored?.skills || "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean)
+      : []
   );
-  const [user, setUser] = useState(null);
   const [authMsg, setAuthMsg] = useState("");
 
-  useEffect(() => {
-    getUser().then(setUser).catch(() => {});
-    onAuthChange(setUser);
-  }, []);
+  const roleChoices = PORTAL_ROLES[track] || PORTAL_ROLES.ayush;
+  const isProfessional = ["industry", "faculty", "institute"].includes(form.role);
+  const lane = isTech ? form.track || "sde" : "ayush";
+  const skillPool = isTech ? ROLES[lane]?.skills || [] : AYUSH_ROLE.skills;
+  const stepIds = isProfessional
+    ? ["role"]
+    : isTech
+      ? ["role", "track", "skills", "goal", "availability"]
+      : ["role", "skills", "background", "goal", "availability"];
+  const stepLabels = { role: "Role", track: "Track", skills: "Skills", background: "Background", goal: "Goal", availability: "Availability" };
+  const current = step === "done" ? "done" : stepIds[step];
 
   async function google() {
     const { error } = await signInWithGoogle();
@@ -225,21 +292,43 @@ export default function Profile() {
   }
 
   function saveAll(patch = {}) {
-    const v = saveProfile({ ...form, skills: skills.join(", "), track: "ayush", ...patch });
-    setForm({ ...form, skills: skills.join(", "), track: "ayush", ...patch, updatedAt: v.updatedAt });
-    return v;
+    const next = { ...form, skills: skills.join(", "), ...patch };
+    // write a row this portal actually owns — the other side's fields are cleared.
+    updateProfile(profileRowFor(next, track));
+    setForm(next);
+    return next;
   }
 
   function finish() {
-    saveAll();
+    const row = saveAll();
+    setRole(form.role);
     setStep("done");
+    // signed-in devices mirror their portal identity; guests stay local-only.
+    saveProfileRemote(user, { track, role: form.role, profile: row }).catch(() => {});
+    // professional roles do not live in the student engine — send them to their desk.
+    if (["industry", "faculty", "institute"].includes(form.role)) nav(dashboardFor(track, form.role));
+  }
+
+  function next() {
+    setStep((s) => Math.min(s + 1, stepIds.length - 1));
+  }
+
+  // the pick-order rule: role first, then anything that depends on it.
+  function pickRole(v) {
+    set("role", v);
+    setRole(v);
+    if (["industry", "faculty", "institute"].includes(v)) {
+      updateProfile({ role: v });
+      nav(dashboardFor(track, v));
+      return;
+    }
+    next();
   }
 
   function restart() {
     setStep(0);
   }
 
-  const steps = ["Skills", "Background", "Goal", "Availability"];
   const stepAnim = reduce
     ? {}
     : { initial: { opacity: 0, x: 24 }, animate: { opacity: 1, x: 0 }, transition: { duration: 0.18, ease: "easeOut" } };
@@ -249,29 +338,79 @@ export default function Profile() {
       title={step === "done" ? "Your profile" : "Set up your profile"}
       sub={
         step === "done"
-          ? "This tunes your internship matches and quest order. Stored on this device only."
-          : "Four quick questions tune your internship matches. About a minute."
+          ? "This tunes your matches and quest order. Stored on this device only."
+          : `${isTech ? "Tech" : "Vaidya"} portal · ${stepIds.length} quick questions. About a minute.`
       }
     >
       {step !== "done" && (
         <ol className="mb-5 flex items-center gap-2" aria-label="Setup progress">
-          {steps.map((label, i) => (
-            <li key={label} className="flex flex-1 items-center gap-2">
+          {stepIds.map((id, i) => (
+            <li key={id} className="flex flex-1 items-center gap-2">
               <span className={`h-1.5 flex-1 rounded-full ${i <= step ? "bg-emerald-600" : "bg-stone-200"}`} aria-hidden />
-              <span className="sr-only">{label}{i <= step ? " done" : ""}</span>
+              <span className="sr-only">{stepLabels[id]}{i <= step ? " done" : ""}</span>
             </li>
           ))}
         </ol>
       )}
 
-      {step === 0 && (
-        <motion.div key="step-0" {...stepAnim}>
+      {current === "role" && (
+        <motion.div key="role" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step 1 of 4</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Who is using Avsar?</h2>
+          <p className="mt-1 text-sm leading-6 text-stone-500">This decides the screens you get. You can change it later by editing your profile.</p>
+          <div className="mt-4 space-y-2">
+            {roleChoices.map((r) => (
+              <OptionCard
+                key={r}
+                label={roleLabel(r)}
+                hint={ROLE_HINTS[r]?.[track] || ROLE_HINTS[r]?.tech || ""}
+                selected={form.role === r}
+                onPick={() => pickRole(r)}
+              />
+            ))}
+          </div>
+        </Card>
+        </motion.div>
+      )}
+
+      {current === "track" && (
+        <motion.div key="track" {...stepAnim}>
+        <Card>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Which track are you aiming for?</h2>
+          <p className="mt-1 text-sm leading-6 text-stone-500">This sets your scoring rubric, your quest tree, and the postings you see.</p>
+          <div className="mt-4 space-y-2">
+            {TECH_LANES.map((k) => (
+              <OptionCard
+                key={k}
+                label={ROLES[k]?.label || k}
+                hint={TECH_HINTS[k]}
+                selected={form.track === k}
+                onPick={() => {
+                  set("track", k);
+                  updateProfile({ track: k });
+                  setSkills([]);
+                  next();
+                }}
+              />
+            ))}
+          </div>
+          <button type="button" onClick={() => setStep(0)} className="mt-4 text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+            Back
+          </button>
+        </Card>
+        </motion.div>
+      )}
+
+      {current === "skills" && (
+        <motion.div key="skills" {...stepAnim}>
+        <Card>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Which of these do you already have?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">Tap up to 5. These decide which internships show as eligible.</p>
           <div className="mt-4 flex flex-wrap gap-2">
-            {AYUSH_ROLE.skills.map((s) => {
+            {skillPool.map((s) => {
               const on = skills.includes(s);
               return (
                 <button
@@ -291,7 +430,7 @@ export default function Profile() {
             })}
           </div>
           <div className="mt-5 flex flex-wrap items-center gap-2">
-            <Btn disabled={skills.length === 0} onClick={() => { saveAll(); setStep(1); }}>
+            <Btn disabled={skills.length === 0} onClick={() => { saveAll(); next(); }}>
               Continue{skills.length > 0 ? ` with ${skills.length}` : ""}
             </Btn>
             {!skills.length && <span className="text-xs text-stone-400">Pick at least one to continue</span>}
@@ -300,11 +439,11 @@ export default function Profile() {
         </motion.div>
       )}
 
-      {step === 1 && (
-        <motion.div key="step-1" {...stepAnim}>
+      {current === "background" && (
+        <motion.div key="background" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step 2 of 4</p>
-          <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Where are you in BAMS?</h2>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Where are you in AYUSH?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">Year sets which postings you can touch. Lane sharpens research and industry matches.</p>
           <p className="mb-2 mt-4 text-sm font-semibold text-stone-700">BAMS year</p>
           <div className="flex flex-wrap gap-2">
@@ -346,10 +485,10 @@ export default function Profile() {
             />
           </div>
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <Btn disabled={!form.year || !form.lane} onClick={() => { saveAll(); setStep(2); }}>
+            <Btn disabled={!form.year || !form.lane} onClick={() => { saveAll(); next(); }}>
               Continue
             </Btn>
-            <button type="button" onClick={() => setStep(0)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+            <button type="button" onClick={() => setStep((s) => s - 1)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
               Back
             </button>
             {(!form.year || !form.lane) && <span className="text-xs text-stone-400">Pick a year and a lane</span>}
@@ -358,10 +497,10 @@ export default function Profile() {
         </motion.div>
       )}
 
-      {step === 2 && (
-        <motion.div key="step-2" {...stepAnim}>
+      {current === "goal" && (
+        <motion.div key="goal" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step 3 of 4</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">What do you want most right now?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">This picks your landing screen after setup.</p>
           <div className="mt-4 space-y-2">
@@ -371,21 +510,21 @@ export default function Profile() {
                 label={g.label}
                 hint={g.hint}
                 selected={form.goal === g.id}
-                onPick={() => { set("goal", g.id); saveAll({ goal: g.id }); setStep(3); }}
+                onPick={() => { set("goal", g.id); saveAll({ goal: g.id }); next(); }}
               />
             ))}
           </div>
-          <button type="button" onClick={() => setStep(1)} className="mt-4 text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+          <button type="button" onClick={() => setStep((s) => s - 1)} className="mt-4 text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
             Back
           </button>
         </Card>
         </motion.div>
       )}
 
-      {step === 3 && (
-        <motion.div key="step-3" {...stepAnim}>
+      {current === "availability" && (
+        <motion.div key="availability" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step 4 of 4</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Where, and how much time?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">Filters the feed and sizes your weekly quests.</p>
           <p className="mb-2 mt-4 text-sm font-semibold text-stone-700">Where can you work?</p>
@@ -404,7 +543,7 @@ export default function Profile() {
             <Btn disabled={!form.loc || !form.hours} onClick={finish}>
               Finish setup
             </Btn>
-            <button type="button" onClick={() => setStep(2)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+            <button type="button" onClick={() => setStep((s) => s - 1)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
               Back
             </button>
             {(!form.loc || !form.hours) && <span className="text-xs text-stone-400">Pick one in each group</span>}
@@ -417,18 +556,25 @@ export default function Profile() {
         <ProfileCard
           form={form}
           resume={resume}
+          track={track}
           onEdit={restart}
-          onClear={() => { if (window.confirm("Clear saved profile, resume, and interview answers?")) { resetOnboarding(); window.location.reload(); } }}
+          onClear={() => {
+            if (window.confirm("Clear saved profile, resume, and interview answers?")) {
+              resetOnboarding();
+              clearProfileState();
+              window.location.reload();
+            }
+          }}
         />
       )}
 
       <Card className="mt-4">
         <H2>Account</H2>
-        <p className="font-mono text-xs text-zinc-500">device id: {getOrCreateC2CId()} · {authLabel()}</p>
+        <p className="font-mono text-xs text-zinc-500">device id: {getOrCreateDeviceId()} · {authLabel()}</p>
         {user ? (
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <span className="font-mono text-sm text-zinc-200">{user.email}</span>
-            <Btn variant="quiet" onClick={() => signOut().then(() => setUser(null))}>Sign out</Btn>
+            <Btn variant="quiet" onClick={signOutUser}>Sign out</Btn>
           </div>
         ) : (
           <div className="mt-3">

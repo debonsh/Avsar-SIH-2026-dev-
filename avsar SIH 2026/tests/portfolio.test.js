@@ -34,16 +34,16 @@ test("isVerified: quest-done or github-linked, case-insensitive, else claimed", 
 });
 
 test("kudos: give once offline, no double-count", async () => {
-  assert.equal(hasGivenKudos("C2C-AAAAAA"), false);
-  assert.equal(await giveKudos("C2C-AAAAAA"), null); // offline: remote skipped
-  assert.equal(hasGivenKudos("C2C-AAAAAA"), true);
-  assert.equal(loadKudosFallback("C2C-AAAAAA"), 1);
-  await giveKudos("C2C-AAAAAA");
-  assert.equal(loadKudosFallback("C2C-AAAAAA"), 1);
+  assert.equal(hasGivenKudos("AVSAR-AAAAAA"), false);
+  assert.equal(await giveKudos("AVSAR-AAAAAA"), null); // offline: remote skipped
+  assert.equal(hasGivenKudos("AVSAR-AAAAAA"), true);
+  assert.equal(loadKudosFallback("AVSAR-AAAAAA"), 1);
+  await giveKudos("AVSAR-AAAAAA");
+  assert.equal(loadKudosFallback("AVSAR-AAAAAA"), 1);
 });
 
 test("loadSharedShowcase: offline unknown id → null (honest empty state)", async () => {
-  assert.equal(await loadSharedShowcase("C2C-NOBODY"), null);
+  assert.equal(await loadSharedShowcase("AVSAR-NOBODY"), null);
 });
 
 test("nickname: defaults empty, roundtrips trimmed", () => {

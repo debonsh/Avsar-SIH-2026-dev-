@@ -4,7 +4,7 @@
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import { Btn } from "../ui.jsx";
-import { useC2C } from "../../app/store.jsx";
+import { useAvsar } from "../../app/store.jsx";
 import FractalMap from "./FractalMap.jsx";
 
 const NAV = [
@@ -17,7 +17,7 @@ const NAV = [
 const PALETTES = ["mono", "harbor", "rainbow"];
 
 function NextStep() {
-  const { resume, events } = useC2C();
+  const { resume, events } = useAvsar();
   const step = !resume
     ? { n: "step 1", text: "score your resume", to: "/resume" }
     : (events?.length || 0) === 0

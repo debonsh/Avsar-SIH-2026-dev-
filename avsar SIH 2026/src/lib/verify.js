@@ -48,7 +48,7 @@ export function verifyUrl(code = "") {
 
 // --- revocation ledger: sig → { reason, at }. Revoked codes still verify the
 // signature (the payload is real history) but every view marks them revoked.
-const RKEY = "c2c-revoked-v1";
+const RKEY = "avsar-revoked-v1";
 let memRevoked = null; // node --test has no localStorage; mirror like taxonomy
 
 export function loadRevocations() {

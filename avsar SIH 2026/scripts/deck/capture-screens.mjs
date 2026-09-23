@@ -117,7 +117,7 @@ async function seedResume(page) {
  *
  * Driving the quest UI is unreliable: the proof-link input is uncontrolled and
  * only commits on blur, and the ticks re-render underneath the click. Writing the
- * documented shape of `c2c-progress-v1` is deterministic.
+ * documented shape of `avsar-progress-v1` is deterministic.
  *
  * `hims` and `research` are the only two skills that appear on the seeded resume
  * AND have both a course and a project task, so they are what flips a portfolio
@@ -128,7 +128,7 @@ async function seedQuestProgress(page) {
   await page.goto(BASE, { waitUntil: "networkidle" });
   const seeded = await page.evaluate(({ url }) => {
     const role = "ayush";
-    const PKEY = "c2c-progress-v1";
+    const PKEY = "avsar-progress-v1";
     const prev = JSON.parse(localStorage.getItem(PKEY) || "null") || {};
     const state = {
       quests: { ...(prev.quests || {}) },
@@ -147,11 +147,11 @@ async function seedQuestProgress(page) {
     const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
     state.questDays[today] = skills.length * 2;
     localStorage.setItem(PKEY, JSON.stringify(state));
-    localStorage.setItem("c2c-nick", "Ananya S.");
+    localStorage.setItem("avsar-nick", "Ananya S.");
     // The supported way to mark the resume's skills verified: link a proof folder.
     // (Quest-derived ticks cannot do it — completedSkillIdsForRole returns skill
     // names while getEvidence looks up skill ids, so the two never match.)
-    localStorage.setItem("c2c-github", url);
+    localStorage.setItem("avsar-github", url);
     return skills.length;
   }, { url: PROOF_URL });
   await sleep(300);

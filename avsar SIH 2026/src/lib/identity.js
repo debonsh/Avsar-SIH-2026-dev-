@@ -1,19 +1,19 @@
 // ponytail: stable demo identity, real Auth post-Sept. Slice I owns the UI; Slice B needs the key now.
 import { loadJSON, saveJSON, loadText, saveText } from "./storage.js";
-const ID_KEY = "c2c-id";
-const NICK_KEY = "c2c-nick";
+const ID_KEY = "avsar-id";
+const NICK_KEY = "avsar-nick";
 const ALPHA = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 
-export function getOrCreateC2CId() {
+export function getOrCreateDeviceId() {
   try {
     let v = loadText(ID_KEY);
     if (!v) {
-      v = "C2C-" + Array.from({ length: 6 }, () => ALPHA[Math.floor(Math.random() * ALPHA.length)]).join("");
+      v = "AVSAR-" + Array.from({ length: 6 }, () => ALPHA[Math.floor(Math.random() * ALPHA.length)]).join("");
       saveText(ID_KEY, v);
     }
     return v;
   } catch {
-    return "C2C-DEMO";
+    return "AVSAR-DEMO";
   }
 }
 
@@ -27,8 +27,8 @@ export function saveNickname(n) {
 
 // --- portfolio profile (Slice F): cert log + github handle, local-first ---
 
-const CERTS_KEY = "c2c-certs";
-const GH_KEY = "c2c-github";
+const CERTS_KEY = "avsar-certs";
+const GH_KEY = "avsar-github";
 
 export function loadCerts() {
   return loadJSON(CERTS_KEY, []);

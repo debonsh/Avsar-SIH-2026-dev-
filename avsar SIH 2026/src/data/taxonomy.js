@@ -236,7 +236,7 @@ export function gapVector(roleId = "", held = {}) {
 }
 
 // --- taxonomy evolves with industry: propose → admin approves → resolvable ---
-const PKEY = "c2c-taxonomy-proposals";
+const PKEY = "avsar-taxonomy-proposals";
 // in-memory mirror so node --test (no localStorage) roundtrips like a browser
 let memRows = null;
 

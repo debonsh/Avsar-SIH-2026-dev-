@@ -37,15 +37,15 @@ describe("questionsFromProfile", () => {
 
 describe("resetOnboarding", () => {
   it("wipes loop keys with a stub store", () => {
-    const store = { "c2c-profile-v1": JSON.stringify({ skills: "x" }), "c2c-resume-v1": JSON.stringify({}) };
+    const store = { "avsar-profile-v1": JSON.stringify({ skills: "x" }), "avsar-resume-v1": JSON.stringify({}) };
     globalThis.localStorage = {
       removeItem: (k) => { delete store[k]; },
       getItem: (k) => store[k] ?? null,
       setItem: (k, v) => { store[k] = String(v); },
     };
     resetOnboarding();
-    assert.equal(store["c2c-profile-v1"], undefined);
-    assert.equal(store["c2c-resume-v1"], undefined);
+    assert.equal(store["avsar-profile-v1"], undefined);
+    assert.equal(store["avsar-resume-v1"], undefined);
     delete globalThis.localStorage;
   });
 });

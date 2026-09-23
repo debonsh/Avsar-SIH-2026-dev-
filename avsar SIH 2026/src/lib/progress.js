@@ -4,7 +4,7 @@ import { QUEST_TREE } from "../data/quests.js";
 import { isEvidenceUrl } from "./quests.js";
 import { loadJSON, saveJSON } from "./storage.js";
 
-const KEY = "c2c-progress-v1";
+const KEY = "avsar-progress-v1";
 
 function emptyState() {
   return {

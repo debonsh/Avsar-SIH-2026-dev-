@@ -6,16 +6,17 @@ import { MessageCircle, X } from "lucide-react";
 import CIcon from "@coreui/icons-react";
 import { cilSpa, cilSend, cilPlus } from "@coreui/icons";
 import { Btn, inputCls } from "../components/ui.jsx";
-import { useC2C } from "./store.jsx";
-import { COACH_ACTIONS, buildPrompt, localAnswer } from "../lib/coach.js";
+import { useAvsar } from "./store.jsx";
+import { COACH_ACTIONS, coachActionsFor, buildPrompt, localAnswer } from "../lib/coach.js";
 import { chat, hasAIKey } from "../lib/ai.js";
 import { saveArtifact } from "../lib/backend.js";
 import { extractContact } from "../lib/parseResume.js";
 import { loadProfile } from "../lib/profile.js";
 import { ROLES, rankRoles } from "../lib/score.js";
-import { JOBS } from "../data/jobs.js";
+import { JOBS, TECH_JOBS } from "../data/jobs.js";
 
-const QUICK = COACH_ACTIONS.filter((a) => a.id !== "addjob").slice(0, 5);
+const QUICK_AYUSH = coachActionsFor("ayush").filter((a) => a.id !== "addjob").slice(0, 5);
+const QUICK_TECH = coachActionsFor("tech").filter((a) => a.id !== "addjob").slice(0, 5);
 const LANG_KEY = "avsar-coach-lang";
 
 const LOG_KEY = "avsar-coach-log";
@@ -87,7 +88,9 @@ function ChatText({ text }) {
 }
 
 export function CoachWidget() {
-  const { role, resume } = useC2C();
+  const { track, lane, resume } = useAvsar();
+  const isTech = track === "tech";
+  const QUICK = isTech ? QUICK_TECH : QUICK_AYUSH;
   const [params, setParams] = useSearchParams();
   const [open, setOpen] = useState(false);
   const [log, setLog] = useState(loadLog);
@@ -102,12 +105,17 @@ export function CoachWidget() {
   const s = useMemo(() => {
     const r = resume?.result;
     const fit = resume?.text ? rankRoles(resume.text)[0] : null;
-    const topJob = JOBS.filter((j) => j.role === role).slice(0, 1)[0] || null;
+    const feed = track === "tech" ? TECH_JOBS : JOBS;
+    const topJob = feed.filter((j) => j.role === lane).slice(0, 1)[0] || null;
     const p = loadProfile() || {};
-    const profileLine = [p.year, p.lane && `${p.lane} lane`, p.college, p.goal && `goal: ${p.goal}`]
-      .filter(Boolean).join(", ") || "";
+    // the coach quotes back what this portal actually asked for.
+    const profileLine = (lane === "ayush"
+      ? [p.year, p.lane && `${p.lane} lane`, p.college, p.goal && `goal: ${p.goal}`]
+      : [p.track, p.loc, p.hours && `${p.hours} hrs/week`, p.goal && `goal: ${p.goal}`]
+    ).filter(Boolean).join(", ") || "";
     return {
-      roleLabel: ROLES[role]?.label || role,
+      role: lane,
+      roleLabel: ROLES[lane]?.label || lane,
       score: r?.total || 0,
       breakdown: r?.breakdown || [],
       found: r?.found || [],
@@ -118,7 +126,7 @@ export function CoachWidget() {
       resumeText: resume?.text || "",
       contactName: resume?.text ? extractContact(resume.text).name : "",
     };
-  }, [role, resume, open]);
+  }, [lane, track, resume, open]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -179,7 +187,8 @@ export function CoachWidget() {
   }
 
   async function run(actionId, extra = {}) {
-    const answer = localAnswer(actionId, { ...s, ...extra, lang });
+    // Tech is English-only; the vaidya portal honors the widget's HI toggle.
+    const answer = localAnswer(actionId, { ...s, ...extra, lang: isTech ? "en" : lang });
     push("you", actionId === "ask" ? extra.question : QUICK.find((a) => a.id === actionId)?.label || COACH_ACTIONS.find((a) => a.id === actionId)?.label || "Question");
     push("coach", answer);
     if (actionId === "match" || actionId === "cover" || actionId === "review") {
@@ -204,13 +213,13 @@ export function CoachWidget() {
           role="dialog"
           aria-label="Avsar coach chat"
         >
-          <div className="flex items-center gap-2.5 border-b border-zinc-800 bg-emerald-700 px-4 py-3 text-white">
+          <div className={`flex items-center gap-2.5 border-b border-zinc-800 px-4 py-3 text-white ${isTech ? "bg-blurple" : "bg-emerald-700"}`}>
             <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/20" aria-hidden>
               <CIcon icon={cilSpa} width={17} height={17} />
             </span>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold">Avsar Coach</p>
-              <p className="flex items-center gap-1 text-xs text-emerald-100">
+              <p className={`flex items-center gap-1 text-xs ${isTech ? "text-white/85" : "text-emerald-100"}`}>
                 <span className={`size-1.5 rounded-full ${hasAIKey() ? "bg-amber-300" : "bg-white/60"}`} aria-hidden />
                 {hasAIKey() ? "AI online" : "Offline answers"}{s.missing[0] ? ` · gap: ${s.missing[0]}` : ""}
               </p>
@@ -220,10 +229,11 @@ export function CoachWidget() {
               onClick={newChat}
               aria-label="Start a new chat"
               title="New chat"
-              className="rounded-xl p-1.5 text-emerald-100 hover:bg-white/15 hover:text-white"
+              className={`rounded-xl p-1.5 hover:bg-white/15 hover:text-white ${isTech ? "text-white/85" : "text-emerald-100"}`}
             >
               <CIcon icon={cilPlus} width={16} height={16} />
             </button>
+            {!isTech && (
             <button
               type="button"
               onClick={() => setLang((l) => (l === "en" ? "hi" : "en"))}
@@ -232,11 +242,12 @@ export function CoachWidget() {
             >
               {lang === "en" ? "हिंदी" : "EN"}
             </button>
+            )}
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close coach chat"
-              className="rounded-xl p-1.5 text-emerald-100 hover:bg-white/15 hover:text-white"
+              className={`rounded-xl p-1.5 hover:bg-white/15 hover:text-white ${isTech ? "text-white/85" : "text-emerald-100"}`}
             >
               <X className="size-4" aria-hidden />
             </button>
@@ -265,7 +276,7 @@ export function CoachWidget() {
             {log.map((m, i) => (
               <div key={i} className={m.kind === "you" ? "flex justify-end" : "flex items-end justify-start gap-1.5"}>
                 {m.kind !== "you" && (
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-white" aria-hidden>
+                  <span className={`flex size-6 shrink-0 items-center justify-center rounded-full text-white ${isTech ? "bg-blurple" : "bg-emerald-700"}`} aria-hidden>
                     <CIcon icon={cilSpa} width={13} height={13} />
                   </span>
                 )}
@@ -290,7 +301,7 @@ export function CoachWidget() {
             ))}
             {busy && (
               <div className="flex items-end gap-1.5">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-white" aria-hidden>
+                <span className={`flex size-6 shrink-0 items-center justify-center rounded-full text-white ${isTech ? "bg-blurple" : "bg-emerald-700"}`} aria-hidden>
                   <CIcon icon={cilSpa} width={13} height={13} />
                 </span>
                 <p className="rounded-2xl rounded-bl-md border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-400" role="status">
@@ -329,7 +340,7 @@ export function CoachWidget() {
                 className={inputCls}
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
-                placeholder={busy ? "Thinking..." : lang === "hi" ? "अपने बारे में पूछें..." : "Ask about your resume..."}
+                placeholder={busy ? "Thinking..." : !isTech && lang === "hi" ? "अपने बारे में पूछें..." : "Ask about your resume..."}
                 aria-label="Ask the coach"
               />
               <Btn type="submit" size="icon" disabled={busy || !question.trim()} aria-label="Send message" className="rounded-full">

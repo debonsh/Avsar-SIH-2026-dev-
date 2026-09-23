@@ -3,7 +3,7 @@
 // no flash (class is set on first render from the same loader).
 import { loadJSON, saveJSON } from "./storage.js";
 
-const KEY = "c2c-theme";
+const KEY = "avsar-theme";
 
 export function loadTheme() {
   return loadJSON(KEY, "light") === "dark" ? "dark" : "light";

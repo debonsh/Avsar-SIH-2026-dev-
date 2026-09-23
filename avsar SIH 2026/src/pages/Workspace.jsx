@@ -5,7 +5,7 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router";
 import { Page, Card, H2, Btn, Chip, Field, Empty, inputCls } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import { JOBS } from "../data/jobs.js";
 import { AYUSH_JOBS } from "../data/ayushSeed.js";
 import { mergeJobs, loadApplications } from "../lib/store.js";
@@ -53,7 +53,7 @@ function SignOff({ job, onDone }) {
 
 export default function Workspace() {
   const { jobId } = useParams();
-  const { customJobs, events, addEvent } = useC2C();
+  const { customJobs, events, addEvent } = useAvsar();
   const [flash, setFlash] = useState("");
   const pool = useMemo(() => mergeJobs(customJobs, AYUSH_JOBS, JOBS), [customJobs]);
   const apps = useMemo(() => loadApplications(), []);

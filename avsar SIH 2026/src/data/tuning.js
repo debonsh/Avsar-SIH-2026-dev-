@@ -10,8 +10,8 @@ export const TONES = [
 ];
 
 export const DEFAULT_TONE = "coach";
-const TONE_KEY = "c2c-ai-tone";
-const CUSTOM_KEY = "c2c-ai-custom";
+const TONE_KEY = "avsar-ai-tone";
+const CUSTOM_KEY = "avsar-ai-custom";
 
 export function getTone() {
   const id = loadJSON(TONE_KEY, DEFAULT_TONE);

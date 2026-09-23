@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { signCredential, checkCredential, verifyUrl, revokeCredential, revocationFor, checkCredentialStatus } from "../src/lib/verify.js";
 
 test("sign → check roundtrips with payload intact", () => {
-  const code = signCredential({ id: "C2C-1", name: "Ananya", readiness: 72, skills: ["dravyaguna"] });
+  const code = signCredential({ id: "AVSAR-1", name: "Ananya", readiness: 72, skills: ["dravyaguna"] });
   const res = checkCredential(code);
   assert.equal(res.ok, true);
   assert.equal(res.payload.name, "Ananya");
@@ -13,7 +13,7 @@ test("sign → check roundtrips with payload intact", () => {
 });
 
 test("tampered codes fail loudly", () => {
-  const [body] = signCredential({ id: "C2C-1" }).split(".");
+  const [body] = signCredential({ id: "AVSAR-1" }).split(".");
   assert.equal(checkCredential(`${body}.forged`).ok, false);
   assert.equal(checkCredential("garbage").ok, false);
   assert.equal(checkCredential("").ok, false);
@@ -24,7 +24,7 @@ test("verifyUrl points at the public route", () => {
 });
 
 test("revoked credentials stay visible as revoked, payload intact", () => {
-  const code = signCredential({ id: "C2C-9", name: "Ghost", readiness: 40, skills: ["gmp"] });
+  const code = signCredential({ id: "AVSAR-9", name: "Ghost", readiness: 40, skills: ["gmp"] });
   assert.equal(revocationFor(code), null, "fresh code is clean");
   const entry = revokeCredential(code, "certificate withdrawn by issuer");
   assert.ok(entry && entry.sig, "revocation recorded");
@@ -38,6 +38,6 @@ test("revoked credentials stay visible as revoked, payload intact", () => {
 
 test("cannot revoke a forged or malformed code", () => {
   assert.equal(revokeCredential("garbage"), null);
-  const [body] = signCredential({ id: "C2C-2" }).split(".");
+  const [body] = signCredential({ id: "AVSAR-2" }).split(".");
   assert.equal(revokeCredential(`${body}.forged`), null);
 });

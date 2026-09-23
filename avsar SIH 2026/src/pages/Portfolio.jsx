@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
 import { Page, Card, H2, Btn, Field, Chip, inputCls } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
+import { useAvsar } from "../app/store.jsx";
 import {
-  getOrCreateC2CId, loadNickname, saveNickname, loadGithub, saveGithub,
+  getOrCreateDeviceId, loadNickname, saveNickname, loadGithub, saveGithub,
   loadCerts, addCert, removeCert,
 } from "../lib/identity.js";
 import { isVerified, fetchKudos, loadKudosFallback } from "../lib/store.js";
@@ -16,7 +16,7 @@ import { VaidyaLevel } from "../components/ui.jsx";
 import { vaidyaLevel } from "../ayush/scoring.js";
 
 export default function Portfolio() {
-  const { role, resume } = useC2C();
+  const { lane, resume } = useAvsar();
   const [nick, setNick] = useState(() => loadNickname());
   const [github, setGithub] = useState(() => loadGithub());
   const [certs, setCerts] = useState(() => loadCerts());
@@ -26,16 +26,16 @@ export default function Portfolio() {
   const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
   const [thanks, setThanks] = useState(false);
-  const [kudos, setKudos] = useState(() => loadKudosFallback(getOrCreateC2CId()));
+  const [kudos, setKudos] = useState(() => loadKudosFallback(getOrCreateDeviceId()));
   const [revInfo, setRevInfo] = useState(null);
 
-  const id = getOrCreateC2CId();
+  const id = getOrCreateDeviceId();
   const found = resume?.result?.found || [];
-  const earned = completedSkillIdsForRole(role);
-  const proofSkills = earned.filter((s) => getEvidence(role, s));
+  const earned = completedSkillIdsForRole(lane);
+  const proofSkills = earned.filter((s) => getEvidence(lane, s));
   const verified = found.filter((s) => isVerified(s, earned, github));
   const readiness = resume?.result
-    ? calculateMainScore(resume.result.total, loadJSON("c2c-interview-best", 0), questPairsToProof(earned.length), role)
+    ? calculateMainScore(resume.result.total, loadJSON("avsar-interview-best", 0), questPairsToProof(earned.length), lane)
     : 0;
   const code = useMemo(
     () => signCredential({ id, name: nick || "avsar student", readiness, skills: verified }),
@@ -43,7 +43,7 @@ export default function Portfolio() {
     [id, readiness]
   );
   const qrRef = useRef(null);
-  const isAyush = role === "ayush";
+  const isAyush = lane === "ayush";
   const vaidya = isAyush ? vaidyaLevel(readiness) : null;
 
   useEffect(() => {
@@ -159,7 +159,7 @@ export default function Portfolio() {
                 {proofSkills.map((s) => (
                   <li key={s} className="text-sm">
                     <span className="text-zinc-400">{s}: </span>
-                    <a className="font-medium text-blurple-soft underline" href={getEvidence(role, s)} target="_blank" rel="noreferrer">{getEvidence(role, s)}</a>
+                    <a className="font-medium text-blurple-soft underline" href={getEvidence(lane, s)} target="_blank" rel="noreferrer">{getEvidence(lane, s)}</a>
                   </li>
                 ))}
               </ul>

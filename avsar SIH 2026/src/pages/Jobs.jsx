@@ -2,8 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 import CIcon from "@coreui/icons-react";
 import { cilBriefcase, cilLocationPin, cilClock, cilExternalLink } from "@coreui/icons";
 import { Page, Card, H2, Btn, Field, Chip, Empty, ErrorBox, Donut, DONUT_COLORS_EXPORT, inputCls } from "../components/ui.jsx";
-import { useC2C } from "../app/store.jsx";
-import { JOBS, matchJobs } from "../data/jobs.js";
+import { useAvsar } from "../app/store.jsx";
+import { JOBS, TECH_JOBS, matchJobs } from "../data/jobs.js";
+import { EXTRA_JOBS } from "../data/seedJobsExtra.js";
+import { NAUKRI_JOBS } from "../data/naukriSeed.js";
+import { BOARDS_JOBS } from "../data/boardsSeed.js";
 import { AYUSH_JOBS } from "../data/ayushSeed.js";
 import { mergeJobs, listLiveJobs, recordApplication, saveCustomJob } from "../lib/store.js";
 import { loadProfile } from "../lib/profile.js";
@@ -18,11 +21,11 @@ const STATUS_FLOW = ["saved", "applied", "interview", "offer"];
 
 // job-board card DNA: company mark tile, fit ring, meta rows, skill chips,
 // one primary apply + quiet pipeline steps. Same data, half the noise.
-function FitRing({ score }) {
+function FitRing({ score, isTech }) {
   const r = 14;
   const c = 2 * Math.PI * r;
   const frac = Math.max(0, Math.min(100, score || 0)) / 100;
-  const col = score >= 65 ? "#1e7a4c" : score >= 50 ? "#2563eb" : "#a1a1aa";
+  const col = score >= 65 ? (isTech ? "#5865f2" : "#1e7a4c") : score >= 50 ? "#2563eb" : "#a1a1aa";
   return (
     <span className="relative inline-flex items-center justify-center" role="img" aria-label={`Fit ${score} of 100`}>
       <svg width="44" height="44" viewBox="0 0 44 44" className="-rotate-90" aria-hidden>
@@ -45,7 +48,7 @@ function statusOf(events, id) {
 }
 
 // explainable match, same engine the recruiter sees: score + factor bars + why.
-function EngineFit({ job, profile }) {
+function EngineFit({ job, profile, isTech }) {
   const m = matchJobPost(job, profile);
   if (!m) return null;
   const rows = [
@@ -57,7 +60,7 @@ function EngineFit({ job, profile }) {
   ];
   return (
     <details className="mt-2 rounded-lg border border-stone-200/70 bg-stone-50/70 px-3 py-2">
-      <summary className="cursor-pointer text-xs font-semibold text-emerald-800">
+      <summary className={`cursor-pointer text-xs font-semibold ${isTech ? "text-blurple-soft" : "text-emerald-800"}`}>
         Engine match {m.score}/100 · {m.band} — why this number?
       </summary>
       <ul className="mt-2 space-y-1">
@@ -65,7 +68,7 @@ function EngineFit({ job, profile }) {
           <li key={k} className="flex items-center gap-2 text-[11px]">
             <span className="w-28 shrink-0 text-stone-500">{label} <span className="font-mono tabular-nums">{w}%</span></span>
             <span className="h-1.5 flex-1 rounded-full bg-stone-200">
-              <span className="block h-full rounded-full bg-emerald-600" style={{ width: `${Math.round(m.breakdown[k] * 100)}%` }} />
+              <span className={`block h-full rounded-full ${isTech ? "bg-blurple" : "bg-emerald-600"}`} style={{ width: `${Math.round(m.breakdown[k] * 100)}%` }} />
             </span>
             <span className="w-9 shrink-0 text-right font-mono tabular-nums text-stone-600">{Math.round(m.breakdown[k] * 100)}%</span>
           </li>
@@ -81,7 +84,7 @@ function EngineFit({ job, profile }) {
 }
 
 export default function Jobs() {
-  const { role, resume, events, addEvent, dismissed, toggleDismiss, customJobs, addCustomJob, funnel } = useC2C();
+  const { track, lane, resume, events, addEvent, dismissed, toggleDismiss, customJobs, addCustomJob, funnel } = useAvsar();
   const [kw, setKw] = useState("");
   const [loc, setLoc] = useState("");
   const [type, setType] = useState("all");
@@ -95,21 +98,31 @@ export default function Jobs() {
   const [notice, setNotice] = useState("");
 
   const found = useMemo(() => resume?.result?.found || [], [resume]);
-  const score = resume?.result ? calculateMainScore(resume.result.total, 0, 0, role) : 0;
+  const score = resume?.result ? calculateMainScore(resume.result.total, 0, 0, lane) : 0;
+  const isTech = track === "tech";
   // one held-profile for the explainable engine, shared by every card below
   const engineProfile = useMemo(() => {
     try {
-      return profileForMatching(role, found, loadQuizBest(role), compileEvidence(loadQAnswers(role)).claims);
+      return profileForMatching(lane, found, loadQuizBest(lane), compileEvidence(loadQAnswers(lane)).claims);
     } catch {
       return { skills: found, levels: {}, verified: [], usedAt: {}, interests: [] };
     }
-  }, [role, found]);
+  }, [lane, found]);
 
-  const pool = useMemo(
-    () => matchJobs(role, score, found, mergeJobs(customJobs, AYUSH_JOBS, JOBS, live)),
-    [role, score, found, customJobs, live]
+  // each portal reads its own feeds: no ayurveda posting on a tech feed, and
+  // the reverse. Live/scraped rows land in whichever portal asked for them.
+  const feed = useMemo(
+    () =>
+      isTech
+        ? mergeJobs(customJobs, TECH_JOBS, EXTRA_JOBS, NAUKRI_JOBS, BOARDS_JOBS, live)
+        : mergeJobs(customJobs, AYUSH_JOBS, JOBS, live),
+    [isTech, customJobs, live]
   );
-  // single-track portal: every posting is ayurveda, sort eligible first.
+  const pool = useMemo(
+    () => matchJobs(lane, score, found, feed),
+    [lane, score, found, feed]
+  );
+  // every posting here is this portal's lane, so sort eligible first.
   const sortedPool = useMemo(
     () => [...pool].sort((a, b) => (b.eligible - a.eligible) || ((b.fit?.score || 0) - (a.fit?.score || 0))),
     [pool]
@@ -168,7 +181,7 @@ export default function Jobs() {
 
   function confirmPasted() {
     if (!parsed) return;
-    const job = { ...parsed, role, minScore: 0 };
+    const job = { ...parsed, role: lane, minScore: 0 };
     saveCustomJob(job);
     addCustomJob(job);
     setParsed(null);
@@ -193,7 +206,11 @@ export default function Jobs() {
   return (
     <Page
       title="Internships & Jobs"
-      sub={`${pool.length} curated ayurveda openings · rotatory internships, hospital roles, research, ministry programs. Fit is computed from your resume.`}
+      sub={
+        isTech
+          ? `${pool.length} curated openings · internships first, then fresher roles. Fit is computed from your resume.`
+          : `${pool.length} curated ayurveda openings · rotatory internships, hospital roles, research, ministry programs. Fit is computed from your resume.`
+      }
       actions={<Btn variant="quiet" onClick={refreshLive}>{liveState === "loading" ? "Refreshing..." : "Refresh live roles"}</Btn>}
     >
       <div className="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Opportunity sections">
@@ -204,7 +221,9 @@ export default function Jobs() {
             aria-selected={section === t.id}
             onClick={() => setSection(t.id)}
             className={`min-h-[40px] rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-              section === t.id ? "bg-emerald-700 text-white" : "border border-emerald-200 bg-white text-emerald-900 hover:border-emerald-400"
+              section === t.id
+                ? isTech ? "bg-blurple text-white" : "bg-emerald-700 text-white"
+                : isTech ? "border border-zinc-800 bg-zinc-950 text-zinc-300 hover:border-blurple/60" : "border border-emerald-200 bg-white text-emerald-900 hover:border-emerald-400"
             }`}
           >
             {t.label}
@@ -219,13 +238,13 @@ export default function Jobs() {
         <>
           <section aria-label="Your mission" className="overflow-hidden rounded-2xl border border-emerald-900/10 bg-white shadow-sm">
             <div className="grid gap-0 sm:grid-cols-[auto_1fr]">
-              <div className="flex items-center gap-4 bg-emerald-700 px-6 py-5 text-white">
+              <div className="flex items-center gap-4 bg-emerald-700 px-6 py-5 text-white" style={isTech ? { backgroundColor: "#5865f2" } : undefined}>
                 <p className="font-display text-5xl font-bold tabular-nums leading-none">
                   {resume ? score : "–"}
                 </p>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-emerald-100">Readiness</p>
-                  <p className="mt-0.5 text-xs text-emerald-100">of 100 · unlocks the feed below</p>
+                  <p className={`text-xs font-semibold uppercase tracking-widest ${isTech ? "text-white/80" : "text-emerald-100"}`}>Readiness</p>
+                  <p className={`mt-0.5 text-xs ${isTech ? "text-white/80" : "text-emerald-100"}`}>of 100 · unlocks the feed below</p>
                 </div>
               </div>
               <div className="px-6 py-5">
@@ -243,7 +262,7 @@ export default function Jobs() {
                       {readyRoles.map((j) => (
                         <li key={j.id} className="flex items-center justify-between gap-2 py-1.5 text-sm">
                           <span className="truncate font-medium text-stone-800">{j.title} <span className="font-normal text-stone-500">at {j.company}</span></span>
-                          <button type="button" onClick={() => { setSection(j.type === "Internship" ? "intern" : "jobs"); }} className="shrink-0 text-xs font-semibold text-emerald-700 underline underline-offset-4 hover:text-emerald-900">
+                          <button type="button" onClick={() => { setSection(j.type === "Internship" ? "intern" : "jobs"); }} className={`shrink-0 text-xs font-semibold underline underline-offset-4 ${isTech ? "text-blurple-soft hover:text-blurple" : "text-emerald-700 hover:text-emerald-900"}`}>
                             Open in feed
                           </button>
                         </li>
@@ -375,7 +394,7 @@ export default function Jobs() {
       <Card>
         <div className="grid gap-3 sm:grid-cols-4">
           <Field label="Keyword">
-            <input className={inputCls} value={kw} onChange={(e) => setKw(e.target.value)} placeholder="panchakarma, vaidya" />
+            <input className={inputCls} value={kw} onChange={(e) => setKw(e.target.value)} placeholder={isTech ? "react, sql" : "panchakarma, vaidya"} />
           </Field>
           <Field label="Location">
             <input className={inputCls} value={loc} onChange={(e) => setLoc(e.target.value)} placeholder="kerala, remote" />
@@ -418,7 +437,7 @@ export default function Jobs() {
           return (
             <Card key={j.id} className="overflow-hidden p-0">
               <div className="flex gap-3.5 p-4 sm:p-5">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-700 font-display text-lg font-bold text-white" aria-hidden>
+                <span className={`flex size-12 shrink-0 items-center justify-center rounded-2xl font-display text-lg font-bold text-white ${isTech ? "bg-blurple" : "bg-emerald-700"}`} aria-hidden>
                   {(j.company || "A").trim()[0]}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -438,7 +457,7 @@ export default function Jobs() {
                         </p>
                       )}
                     </div>
-                    {j.fit && <FitRing score={j.fit.score} />}
+                    {j.fit && <FitRing score={j.fit.score} isTech={isTech} />}
                   </div>
                   <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
                     {j.src === "ccras" && <Chip tone="blue">fresh · ccras</Chip>}
@@ -449,15 +468,15 @@ export default function Jobs() {
                   </div>
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {j.skills.map((s) => (
-                      <span key={s} className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${have.has(s.toLowerCase()) ? "bg-emerald-50 text-emerald-800" : "bg-stone-100 text-stone-500"}`}>{s}</span>
+                      <span key={s} className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${have.has(s.toLowerCase()) ? (isTech ? "bg-blurple/15 text-blurple-soft" : "bg-emerald-50 text-emerald-800") : "bg-stone-100 text-stone-500"}`}>{s}</span>
                     ))}
                   </div>
-                  {resume && <EngineFit job={j} profile={engineProfile} />}
+                  {resume && <EngineFit job={j} profile={engineProfile} isTech={isTech} />}
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-2 border-t border-stone-100 bg-stone-50/60 px-4 py-2.5 sm:px-5">
                 {j.apply && j.apply !== "#" && (
-                  <a className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full bg-emerald-700 px-4 text-[13px] font-semibold text-white hover:bg-emerald-800" href={j.apply} target="_blank" rel="noreferrer">
+                  <a className={`inline-flex min-h-[36px] items-center gap-1.5 rounded-full px-4 text-[13px] font-semibold text-white ${isTech ? "bg-blurple hover:bg-blurple-deep" : "bg-emerald-700 hover:bg-emerald-800"}`} href={j.apply} target="_blank" rel="noreferrer">
                     Apply <CIcon icon={cilExternalLink} width={13} height={13} aria-hidden />
                   </a>
                 )}

@@ -27,7 +27,7 @@ export function compileEvidence(answers = {}) {
 }
 
 // AI set cache: keyed by resume hash, LRU-capped — regenerable, never source of truth.
-const QCACHE_KEY = "c2c-qgen-cache";
+const QCACHE_KEY = "avsar-qgen-cache";
 const QCACHE_MAX = 3;
 
 export function qgenKey(text, role, kind) {
@@ -50,9 +50,9 @@ export function saveCachedSet(text, role, kind, items) {
 
 // answers persist per role so scoring can reuse them without re-asking
 export function loadQAnswers(role) {
-  return loadJSON(`c2c-q-${role}`, {});
+  return loadJSON(`avsar-q-${role}`, {});
 }
 
 export function saveQAnswers(role, answers) {
-  saveJSON(`c2c-q-${role}`, answers || {});
+  saveJSON(`avsar-q-${role}`, answers || {});
 }
