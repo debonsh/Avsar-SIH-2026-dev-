@@ -16,9 +16,8 @@ import { calculateMainScore, questPairsToProof, engLevelFor, ROLES } from "../li
 import { completedSkillIdsForRole } from "../lib/progress.js";
 import { loadJSON } from "../lib/storage.js";
 import { onboardingProgress } from "../lib/onboarding.js";
-import { MonoActivityHeatmap } from "../components/MonoActivityHeatmap.jsx";
+import StreakMeter from "../components/StreakMeter.jsx";
 import XpMeter from "../components/XpMeter.jsx";
-import { collectDayCounts } from "../lib/streak.js";
 
 function IconBadge({ icon, tone = "blurple", size = 18 }) {
   const tones = {
@@ -158,7 +157,7 @@ export default function TechHome() {
 
       {/* proof of work */}
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
-        <MonoActivityHeatmap theme="dark" accentColor="purple" compact days={collectDayCounts()} />
+        <StreakMeter />
         <XpMeter />
       </div>
 

@@ -8,7 +8,7 @@ import { useId } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "./ui.jsx";
 import {
-  barRects, sparkPoints, linePath, areaPath, donutArcs, stackedBar,
+  barRects, sparkPoints, linePath, areaPath, smoothPath, donutArcs, stackedBar,
   rankWidth, niceMax, ticks as tickValues, heatLevel, polar,
 } from "../lib/charts.js";
 
@@ -296,6 +296,156 @@ export function HeatGrid({ rows = [], cols = [], label, className, unit = "posti
           </tbody>
         </table>
       </div>
+    </Figure>
+  );
+}
+
+// Rounded area wave over week buckets. The spline (lib smoothPath) reads as a
+// trend where a polyline through sparse weeks would imply a sampling precision
+// that was never there. Gridlines ride currentColor, so the ayush and tech
+// light remaps re-tint them for free instead of stranding dark strokes on paper.
+export function AreaWave({ values = [], labels = [], tone = INK.emerald, unit = "", label, className }) {
+  const reduce = useReducedMotion();
+  const gid = useId().replace(/:/g, "");
+  const W = 560;
+  const H = 150;
+  const PAD = 8;
+  const BASE = H - PAD;
+  const list = (values || []).map((v) => Number(v) || 0);
+  const max = niceMax(Math.max(0, ...list));
+  const n = list.length;
+  const pts = list.map((v, i) => ({
+    x: PAD + (n < 2 ? (W - PAD * 2) / 2 : (i / (n - 1)) * (W - PAD * 2)),
+    y: PAD + (H - PAD * 2 - 14) - (v / max) * (H - PAD * 2 - 14),
+    value: v,
+  }));
+  const line = smoothPath(pts);
+  const fill = line && n > 1
+    ? `${line} L${pts[n - 1].x} ${BASE} L${pts[0].x} ${BASE} Z`
+    : "";
+  const latest = n ? list[n - 1] : 0;
+  const summary = label || `Area wave over ${n} periods, latest ${latest}${unit}, peak ${max}${unit}`;
+  if (!n) return <p className="text-xs text-zinc-500">Nothing to plot yet.</p>;
+  const ends = labels.length > 6
+    ? [labels[0], labels[labels.length - 1]]
+    : labels;
+
+  return (
+    <Figure label={summary} className={className}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="h-36 w-full" aria-hidden>
+        <defs>
+          <linearGradient id={`aw-${gid}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={tone} stopOpacity="0.35" />
+            <stop offset="100%" stopColor={tone} stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {tickValues(max, 3).map((g) => {
+          const y = BASE - (g / max) * (BASE - PAD);
+          return <line key={g} x1={PAD} x2={W - PAD} y1={y} y2={y} stroke="currentColor" strokeOpacity="0.12" strokeDasharray="2 2" />;
+        })}
+        <motion.g
+          initial={reduce ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          {fill && <path d={fill} fill={`url(#aw-${gid})`} />}
+          {line && <path d={line} fill="none" stroke={tone} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />}
+        </motion.g>
+        {n > 0 && (
+          <circle cx={pts[n - 1].x} cy={pts[n - 1].y} r="4" fill={tone} stroke="var(--color-panel, #0c0c12)" strokeWidth="1.5">
+            <title>{`${labels[n - 1] || "latest"}: ${latest}${unit}`}</title>
+          </circle>
+        )}
+      </svg>
+      {ends.length > 0 && (
+        <div className="mt-1 flex justify-between gap-2">
+          {ends.map((l) => (
+            <span key={l} className="truncate font-mono text-[10px] text-zinc-500" title={l}>{l}</span>
+          ))}
+        </div>
+      )}
+    </Figure>
+  );
+}
+
+// Dual stream waves sharing one scale: the top skill against total market
+// volume, so a spike reads as skill momentum or market momentum at a glance.
+// Shared max is the whole point — normalising each wave to itself would make
+// any two shapes look equally loud.
+export function StreamWaves({ waves = [], labels = [], unit = "", label, className }) {
+  const reduce = useReducedMotion();
+  const W = 560;
+  const H = 150;
+  const PAD = 8;
+  const all = (waves || []).flatMap((w) => (w.values || []).map((v) => Number(v) || 0));
+  const max = niceMax(Math.max(0, ...all));
+  const innerW = W - PAD * 2;
+  const innerH = H - PAD * 2 - 14;
+  const rows = (waves || []).map((w, i) => {
+    const list = (w.values || []).map((v) => Number(v) || 0);
+    const m = list.length;
+    return {
+      ...w,
+      list,
+      pts: list.map((v, j) => ({
+        x: PAD + (m < 2 ? innerW / 2 : (j / (m - 1)) * innerW),
+        y: PAD + innerH - (v / max) * innerH,
+        value: v,
+      })),
+      peak: Math.max(0, ...list),
+      tone: w.tone || SERIES_TONES[i % SERIES_TONES.length],
+    };
+  });
+  const summary = label || `Stream waves: ${rows.map((r) => r.name).join(" against ")} across ${labels.length} periods`;
+  if (!rows.length || !rows.some((r) => r.list.length > 1)) {
+    return <p className="text-xs text-zinc-500">Not enough history to draw two waves yet.</p>;
+  }
+
+  return (
+    <Figure label={summary} className={className}>
+      <ul className="mb-2 flex flex-wrap gap-x-4 gap-y-1">
+        {rows.map((r) => (
+          <li key={r.name} className="flex items-baseline gap-1.5 text-xs">
+            <span aria-hidden className="size-2 rounded-full" style={{ background: r.tone }} />
+            <span className="truncate text-zinc-300" title={r.name}>{r.name}</span>
+            <span className="font-mono tabular-nums text-zinc-500">{r.peak}{unit}</span>
+          </li>
+        ))}
+      </ul>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="h-36 w-full" aria-hidden>
+        {[0.25, 0.5, 0.75].map((f) => (
+          <line key={f} x1={PAD} x2={W - PAD} y1={H * f} y2={H * f} stroke="currentColor" strokeOpacity="0.1" strokeDasharray="2 2" />
+        ))}
+        <motion.g
+          initial={reduce ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          {rows.map((r) => (
+            <path
+              key={r.name}
+              d={smoothPath(r.pts)}
+              fill="none"
+              stroke={r.tone}
+              strokeWidth={r === rows[0] ? 2.5 : 1.75}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity={r === rows[0] ? 1 : 0.85}
+              vectorEffect="non-scaling-stroke"
+            >
+              <title>{`${r.name}: peak ${r.peak}${unit}`}</title>
+            </path>
+          ))}
+        </motion.g>
+      </svg>
+      {labels.length > 1 && (
+        <div className="mt-1 flex justify-between gap-2">
+          <span className="truncate font-mono text-[10px] text-zinc-500">{labels[0]}</span>
+          <span className="truncate font-mono text-[10px] text-zinc-500">{labels[labels.length - 1]}</span>
+        </div>
+      )}
     </Figure>
   );
 }

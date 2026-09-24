@@ -85,6 +85,28 @@ export function linePath(points = []) {
   return points.map((p, i) => `${i ? "L" : "M"}${round(p.x)} ${round(p.y)}`).join(" ");
 }
 
+// The same points as a rounded spline: Catmull-Rom control points relaxed into
+// cubic segments, so a weekly series reads as a wave rather than a zigzag.
+// A straight polyline through sparse week buckets implies a precision the
+// sampling never had; the spline says "trend" out loud instead.
+export function smoothPath(points = []) {
+  const list = (points || []).map((p) => ({ x: num(p.x), y: num(p.y) }));
+  if (list.length < 2) return list.length ? `M${round(list[0].x)} ${round(list[0].y)}` : "";
+  let d = `M${round(list[0].x)} ${round(list[0].y)}`;
+  for (let i = 0; i < list.length - 1; i++) {
+    const p0 = list[Math.max(0, i - 1)];
+    const p1 = list[i];
+    const p2 = list[i + 1];
+    const p3 = list[Math.min(list.length - 1, i + 2)];
+    const c1x = round(p1.x + (p2.x - p0.x) / 6);
+    const c1y = round(p1.y + (p2.y - p0.y) / 6);
+    const c2x = round(p2.x - (p3.x - p1.x) / 6);
+    const c2y = round(p2.y - (p3.y - p1.y) / 6);
+    d += ` C${c1x} ${c1y} ${c2x} ${c2y} ${round(p2.x)} ${round(p2.y)}`;
+  }
+  return d;
+}
+
 // The same line closed down to a baseline, for the soft fill beneath it.
 export function areaPath(points = [], baseline = 0) {
   if (points.length < 2) return "";

@@ -182,6 +182,12 @@ body {
   }
 }
 
+/* smooth in-page jumps (chat open, anchors) — motion-safe only, so the
+   reduced-motion path above stays an instant jump. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #27272a transparent;

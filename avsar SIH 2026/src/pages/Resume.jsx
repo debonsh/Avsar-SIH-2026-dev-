@@ -1,5 +1,7 @@
-// Resume score. Operate surface: input console on top, then a 12-col result grid.
-// Score rail left (sticky on desktop), evidence right. Same logic as before.
+// Resume score. Operate surface: input console on top, then a result report:
+// a full-width score strip (the number, the rank, what it is made of), then
+// fixes beside dimensions, skills beside sections, and one video card per
+// gap skill in a row. Same logic as before, stricter grid.
 // The target track is pickable on the tech portal (sde/data/marketing/govt) and
 // fixed to ayush on the vaidya portal; the pick writes profile.track, which is
 // also the lane every other page scores with.
@@ -41,6 +43,12 @@ export default function Resume() {
     if (lane === "ayush" || !text.trim()) return null;
     return rankRoles(text).find((r) => TECH_LANES.includes(r.key) && r.key !== lane) || null;
   }, [lane, text]);
+  // each gap skill that has videos gets exactly one card, so the row below is
+  // one card per skill and never a stack of maybe-nulls.
+  const videoCards = useMemo(() => {
+    if (!result) return [];
+    return view.missing.slice(0, 3).map((s) => ({ skill: s, vids: videosFor(s).slice(0, 2) })).filter((c) => c.vids.length);
+  }, [result, view.missing]);
 
   const isAyush = lane === "ayush";
   const vaidya = isAyush ? vaidyaLevel(main) : null;
@@ -155,12 +163,12 @@ export default function Resume() {
               {BULLETS.map((b, i) => (
                 <figure key={i} className="overflow-hidden rounded-xl border border-stone-200">
                   <blockquote className="border-b border-stone-200 bg-stone-50 px-4 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-500">Instead of this</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-400">Instead of this</p>
                     <p className="mt-1 text-sm leading-6 text-stone-500">{b.weak}</p>
                   </blockquote>
                   <blockquote className={`px-4 py-3 ${isAyush ? "bg-emerald-50/70" : "bg-blurple/10"}`}>
-                    <p className={`text-[11px] font-semibold uppercase tracking-wide ${isAyush ? "text-emerald-700" : "text-blurple-soft"}`}>Write this</p>
-                    <p className="mt-1 text-sm font-medium leading-6 text-stone-800">{b.strong}</p>
+                    <p className={`text-[11px] font-semibold uppercase tracking-wide ${isAyush ? "text-emerald-700" : "text-zinc-100"}`}>Write this</p>
+                    <p className={`mt-1 text-sm font-medium leading-6 ${isAyush ? "text-stone-800" : "text-zinc-100"}`}>{b.strong}</p>
                   </blockquote>
                   <figcaption className="bg-white px-4 py-2.5 text-xs leading-5 text-zinc-500">{b.note}</figcaption>
                 </figure>
@@ -171,32 +179,59 @@ export default function Resume() {
       )}
 
       {result && (
-        <div className="mt-4 grid gap-4 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Card className="lg:sticky lg:top-20">
-              <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Readiness</p>
-              <p className="mt-1 font-display text-6xl font-bold tabular-nums tracking-[-0.03em] text-zinc-50">
-                <CountUp to={main} />
-                <span className="text-xl text-zinc-500">/100</span>
-              </p>
-              {vaidya && (
-                <div className="mt-3">
-                  <VaidyaLevel level={vaidya.id} />
-                  <p className="mt-1 font-mono text-xs text-emerald-400">{vaidya.label} · {vaidya.hi}</p>
-                </div>
-              )}
-              <p className="mt-2">
-                <Chip tone="green">{isAyush ? rankFor(main) : eng.label}</Chip>
-              </p>
-              <p className="mt-2 font-mono text-[11px] tabular-nums leading-5 text-zinc-500">
-                resume score {view.total}/95 · {pairs} quest-verified pair{pairs === 1 ? "" : "s"} · interview {interviewBest}
-              </p>
-              {staleShape && (
-                <p className="mt-2 font-mono text-[11px] leading-5 text-amber-300">
-                  saved score is from an older version: press score again to rebuild the breakdown.
+        <div className="mt-4 space-y-4">
+          {/* score strip: the number, the rank, what it is made of. One row so
+              the verdict lands before any detail. */}
+          <Card>
+            <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">Readiness</p>
+                <p className="mt-1 font-display text-6xl font-bold tabular-nums tracking-[-0.03em] text-zinc-50">
+                  <CountUp to={main} />
+                  <span className="text-xl text-zinc-500">/100</span>
                 </p>
-              )}
-              <div className="mt-5 space-y-4 border-t border-zinc-800 pt-4">
+                <p className="mt-2 flex flex-wrap items-center gap-2">
+                  <Chip tone="green">{isAyush ? rankFor(main) : eng.label}</Chip>
+                  {vaidya && <VaidyaLevel level={vaidya.id} />}
+                </p>
+              </div>
+              <div className="min-w-0">
+                {vaidya && (
+                  <p className="font-mono text-xs text-emerald-400">{vaidya.label} · {vaidya.hi}</p>
+                )}
+                <p className="mt-1 font-mono text-[11px] tabular-nums leading-5 text-zinc-500">
+                  resume score {view.total}/95 · {pairs} quest-verified pair{pairs === 1 ? "" : "s"} · interview {interviewBest}
+                </p>
+                {staleShape && (
+                  <p className="mt-1 font-mono text-[11px] leading-5 text-amber-300">
+                    Saved score is from an older version. Press score again to rebuild the breakdown.
+                  </p>
+                )}
+              </div>
+            </div>
+          </Card>
+
+          {/* fixes beside dimensions: what to do, and where the points are. */}
+          <div className="grid items-start gap-4 lg:grid-cols-2">
+            {tips.length > 0 && (
+              <Card className="h-full">
+                <H2>Fixes that raise this score</H2>
+                <ol className="divide-y divide-zinc-800">
+                  {tips.map((t, i) => (
+                    <li key={i} className="flex items-baseline gap-3 py-2.5 first:pt-0 last:pb-0">
+                      <span className="font-mono text-xs tabular-nums text-blurple-soft">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <p className="text-sm leading-6 text-zinc-200">{t}</p>
+                    </li>
+                  ))}
+                </ol>
+              </Card>
+            )}
+
+            <Card className="h-full">
+              <H2>Dimensions</H2>
+              <div className="space-y-4">
                 {view.breakdown.map((d) => (
                   <div key={d.label}>
                     <div className="mb-1.5 flex items-baseline justify-between gap-2 text-xs">
@@ -215,24 +250,9 @@ export default function Resume() {
             </Card>
           </div>
 
-          <div className="space-y-4 lg:col-span-8">
-            {tips.length > 0 && (
-              <Card>
-                <H2>Fixes that raise this score</H2>
-                <ol className="divide-y divide-zinc-800">
-                  {tips.map((t, i) => (
-                    <li key={i} className="flex items-baseline gap-3 py-2.5 first:pt-0 last:pb-0">
-                      <span className="font-mono text-xs tabular-nums text-blurple-soft">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <p className="text-sm leading-6 text-zinc-200">{t}</p>
-                    </li>
-                  ))}
-                </ol>
-              </Card>
-            )}
-
-            <Card>
+          {/* skills beside sections: what was found, and how it parses. */}
+          <div className="grid items-start gap-4 lg:grid-cols-2">
+            <Card className="h-full">
               <H2>
                 Skills on your resume{" "}
                 <span className="font-mono font-normal tabular-nums text-zinc-500">{view.found.length}</span>
@@ -268,7 +288,7 @@ export default function Resume() {
               )}
             </Card>
 
-            <Card>
+            <Card className="h-full">
               <H2>Sections detected</H2>
               {sections.length > 0 ? (
                 <div className="flex flex-wrap gap-1.5">
@@ -280,39 +300,51 @@ export default function Resume() {
                   Parsers and humans both skim for them.
                 </p>
               )}
+              <H2 className="mt-5">How to read this report</H2>
+              <p className="text-xs leading-5 text-zinc-500">
+                Dimensions run top to bottom by weight. Fixes are ordered by points recoverable.
+                Close one gap in Quests and both the dimension above and the readiness number move.
+              </p>
+              <div className="mt-3">
+                <Btn to="/quests" variant="quiet" size="sm">Turn gaps into quests</Btn>
+              </div>
             </Card>
-
-            {view.missing.slice(0, 3).map((s) => {
-              const vids = videosFor(s);
-              if (!vids.length) return null;
-              return (
-                <Card key={s}>
-                  <div className="flex items-center justify-between gap-2">
-                    <H2 className="mb-0">Start {s} today</H2>
-                    <Btn to="/quests" variant="quiet" size="sm">Make it a quest</Btn>
-                  </div>
-                  <ul className="mt-3 space-y-2">
-                    {vids.slice(0, 2).map((v, i) => (
-                      <li key={i}>
-                        <a
-                          className="group flex items-center gap-2.5 rounded-lg border border-zinc-800 px-3 py-2.5 hover:border-zinc-600"
-                          href={v.u}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <Play className="size-4 shrink-0 text-blurple-soft" aria-hidden />
-                          <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-200 group-hover:text-zinc-50">
-                            {v.t}
-                          </span>
-                          <ExternalLink className="size-3.5 shrink-0 text-zinc-600" aria-hidden />
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              );
-            })}
           </div>
+
+          {/* one card per gap skill with videos: a row, not a stack. */}
+          {videoCards.length > 0 && (
+            <div>
+              <h2 className="mb-3 font-display text-lg font-bold text-zinc-50">Start today</h2>
+              <div className="grid items-start gap-4 md:grid-cols-3">
+                {videoCards.map(({ skill: s, vids }) => (
+                  <Card key={s} className="flex h-full flex-col">
+                    <H2 className="capitalize">Start {s}</H2>
+                    <ul className="space-y-2">
+                      {vids.map((v, i) => (
+                        <li key={i}>
+                          <a
+                            className="group flex items-center gap-2.5 rounded-lg border border-zinc-800 px-3 py-2.5 hover:border-zinc-600"
+                            href={v.u}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Play className="size-4 shrink-0 text-blurple-soft" aria-hidden />
+                            <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-200 group-hover:text-zinc-50">
+                              {v.t}
+                            </span>
+                            <ExternalLink className="size-3.5 shrink-0 text-zinc-600" aria-hidden />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-auto pt-3">
+                      <Btn to="/quests" variant="quiet" size="sm">Make it a quest</Btn>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </Page>

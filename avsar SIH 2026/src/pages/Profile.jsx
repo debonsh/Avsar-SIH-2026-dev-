@@ -251,6 +251,24 @@ function ProfileCard({ form, resume, track, onEdit, onClear }) {
   );
 }
 
+// Picks so far: one mono strip atop the late steps so the form never feels
+// like an interrogation — every answer stays visible until Finish.
+function PicksRecap({ form, skills, isTech }) {
+  const bits = [
+    roleLabel(form.role),
+    isTech ? ROLES[form.track]?.label || form.track : [form.year, form.lane && `${form.lane} lane`].filter(Boolean).join(" "),
+    skills.length ? `${skills.length} skill${skills.length === 1 ? "" : "s"}` : "",
+    GOALS.find((g) => g.id === form.goal)?.label || "",
+    form.loc ? `works ${form.loc}` : "",
+  ].filter(Boolean);
+  if (!bits.length) return null;
+  return (
+    <p className="mb-4 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 font-mono text-[11px] leading-5 text-zinc-500" aria-label="Your answers so far">
+      <span className="text-blurple-soft">so far: </span>{bits.join(" · ")}
+    </p>
+  );
+}
+
 export default function Profile() {
   const { track, role, setRole, profile, updateProfile, clearProfileState, resume, user, signOutUser } = useAvsar();
   const stored = profile;
@@ -396,7 +414,7 @@ export default function Profile() {
               />
             ))}
           </div>
-          <button type="button" onClick={() => setStep(0)} className="mt-4 text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+          <button type="button" onClick={() => setStep(0)} className="mt-4 text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800 inline-flex min-h-[44px] items-center">
             Back
           </button>
         </Card>
@@ -488,7 +506,7 @@ export default function Profile() {
             <Btn disabled={!form.year || !form.lane} onClick={() => { saveAll(); next(); }}>
               Continue
             </Btn>
-            <button type="button" onClick={() => setStep((s) => s - 1)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+            <button type="button" onClick={() => setStep((s) => s - 1)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800 inline-flex min-h-[44px] items-center">
               Back
             </button>
             {(!form.year || !form.lane) && <span className="text-xs text-stone-400">Pick a year and a lane</span>}
@@ -503,6 +521,7 @@ export default function Profile() {
           <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">What do you want most right now?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">This picks your landing screen after setup.</p>
+          <PicksRecap form={form} skills={skills} isTech={isTech} />
           <div className="mt-4 space-y-2">
             {GOALS.map((g) => (
               <OptionCard
@@ -514,7 +533,7 @@ export default function Profile() {
               />
             ))}
           </div>
-          <button type="button" onClick={() => setStep((s) => s - 1)} className="mt-4 text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+          <button type="button" onClick={() => setStep((s) => s - 1)} className="mt-4 text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800 inline-flex min-h-[44px] items-center">
             Back
           </button>
         </Card>
@@ -527,6 +546,7 @@ export default function Profile() {
           <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Where, and how much time?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">Filters the feed and sizes your weekly quests.</p>
+          <PicksRecap form={form} skills={skills} isTech={isTech} />
           <p className="mb-2 mt-4 text-sm font-semibold text-stone-700">Where can you work?</p>
           <div className="space-y-2">
             {LOCS.map((l) => (
@@ -543,7 +563,7 @@ export default function Profile() {
             <Btn disabled={!form.loc || !form.hours} onClick={finish}>
               Finish setup
             </Btn>
-            <button type="button" onClick={() => setStep((s) => s - 1)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800">
+            <button type="button" onClick={() => setStep((s) => s - 1)} className="text-sm font-medium text-stone-500 underline underline-offset-4 hover:text-emerald-800 inline-flex min-h-[44px] items-center">
               Back
             </button>
             {(!form.loc || !form.hours) && <span className="text-xs text-stone-400">Pick one in each group</span>}

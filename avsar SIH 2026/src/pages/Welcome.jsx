@@ -27,7 +27,7 @@ const OPT_STYLE = {
   other: {
     badge: "bg-zinc-800 text-zinc-300",
     ring: "hover:border-zinc-500",
-    glow: "group-hover:bg-zinc-800",
+    glow: "group-hover:bg-zinc-500/10",
   },
 };
 

@@ -20,9 +20,8 @@ import { completedSkillIdsForRole } from "../lib/progress.js";
 import { loadJSON } from "../lib/storage.js";
 import { onboardingProgress } from "../lib/onboarding.js";
 import { vaidyaLevel } from "../ayush/scoring.js";
-import { MonoActivityHeatmap } from "../components/MonoActivityHeatmap.jsx";
+import StreakMeter from "../components/StreakMeter.jsx";
 import XpMeter from "../components/XpMeter.jsx";
-import { collectDayCounts } from "../lib/streak.js";
 
 const TONES = {
   emerald: "bg-emerald-100 text-emerald-800",
@@ -174,7 +173,7 @@ export default function AyushHome() {
 
       {/* proof of work */}
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
-        <MonoActivityHeatmap theme="light" accentColor="green" compact days={collectDayCounts()} />
+        <StreakMeter />
         <XpMeter />
       </div>
 

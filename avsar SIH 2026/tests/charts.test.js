@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  niceMax, ticks, polar, barRects, sparkPoints, linePath, areaPath,
+  niceMax, ticks, polar, barRects, sparkPoints, linePath, areaPath, smoothPath,
   donutArcs, stackedBar, rankWidth, heatLevel, ringFraction, pct, clamp01,
 } from "../src/lib/charts.js";
 
@@ -133,6 +133,18 @@ test("scalar helpers refuse to divide by zero", () => {
   assert.equal(clamp01("x"), 0, "junk is treated as zero, not as NaN");
   assert.equal(ringFraction(5, 0), 1);
   assert.equal(ringFraction(5, 10), 0.5);
+});
+
+test("smoothPath relaxes points into cubic segments without moving them", () => {
+  const pts = [{ x: 0, y: 10 }, { x: 5, y: 0 }, { x: 10, y: 10 }];
+  const d = smoothPath(pts);
+  assert.ok(d.startsWith("M0 10"), "a path starts with a move to the first point");
+  assert.equal((d.match(/C/g) || []).length, 2, "one cubic segment per following point");
+  assert.ok(d.endsWith("10 10"), "segments land exactly on the data points");
+  assert.equal(smoothPath([]), "");
+  assert.equal(smoothPath([{ x: 3, y: 4 }]), "M3 4", "one point cannot curve");
+  const line = smoothPath(sparkPoints([1, 4, 2], { width: 10, height: 10, pad: 0 }));
+  assert.ok(/^M-?[\d.]+ -?[\d.]+( C-?[\d.]+ -?[\d.]+ -?[\d.]+ -?[\d.]+ -?[\d.]+ -?[\d.]+)+$/.test(line), "only moves and cubics, nothing else");
 });
 
 test("polar places angles clockwise from twelve o'clock", () => {

@@ -10,7 +10,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Page, Card, H2, Chip, Badge, Btn, Empty, AsciiRule, cn } from "../components/ui.jsx";
 import { RankBars, Sparkline, INK } from "../components/charts.jsx";
-import { MagneticButton, GlowButton } from "../components/mono-buttons.jsx";
 import { bundledCorpus } from "../lib/corpus.js";
 import { effectiveWeights, corpusStats, postingVolume, WEIGHT_MIN, WEIGHT_MAX } from "../lib/market.js";
 import { routeTo, simulate, rolesForLane } from "../lib/careerGps.js";
@@ -395,18 +394,6 @@ export default function Labs() {
         <RouteWidget lane={lane} />
         <BlindWidget />
         <ReceiptWidget />
-        <Card>
-          <H2>Pointer physics, on purpose</H2>
-          <p className="mb-3 text-xs leading-5 text-zinc-400">
-            Two amicro buttons running the real spring and glow code. Magnetic pull follows the cursor and
-            springs home; glow tracks it with light. Mouse-only theatre — touch and keyboard get the same
-            action with none of it.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <MagneticButton className="bg-blurple">Magnetic action</MagneticButton>
-            <GlowButton glowColor="rgba(88, 101, 242, 0.25)">Glow action</GlowButton>
-          </div>
-        </Card>
       </div>
 
       <Card className="mt-4">

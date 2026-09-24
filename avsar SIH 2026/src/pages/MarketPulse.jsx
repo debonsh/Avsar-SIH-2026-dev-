@@ -7,8 +7,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Page, Card, H2, Chip, Badge, Empty, Btn, CountUp, AsciiRule, Reveal } from "../components/ui.jsx";
 import { cn } from "../components/ui.jsx";
-import { Sparkline, RankBars, Stacked, ShareDonut, HeatGrid, WeightArc, INK } from "../components/charts.jsx";
-import { MonoAreaChart, MonoStreamChart } from "../components/mono-charts.jsx";
+import { Sparkline, RankBars, Stacked, ShareDonut, HeatGrid, WeightArc, AreaWave, StreamWaves, INK } from "../components/charts.jsx";
 import { useAvsar } from "../app/store.jsx";
 import { bundledCorpus, corpusWithLive, portalOf } from "../lib/corpus.js";
 import {
@@ -160,11 +159,11 @@ export default function MarketPulse() {
       name: top.name,
       labels,
       waves: [
-        { name: top.name, values: skillVals },
-        { name: "All postings", values: volume.buckets.slice(-n).map((b) => b.count) },
+        { name: top.name, values: skillVals, tone: view === "tech" ? INK.blurple : INK.emerald },
+        { name: "All postings", values: volume.buckets.slice(-n).map((b) => b.count), tone: INK.sky },
       ],
     };
-  }, [signals.rows, series, volume.buckets]);
+  }, [signals.rows, series, volume.buckets, view]);
 
   // What this student already holds, so demand can be read against supply.
   const held = useMemo(() => {
@@ -289,12 +288,11 @@ export default function MarketPulse() {
           </p>
           {volume.recent || volume.prior ? (
             <>
-              <MonoAreaChart
-                data={volume.buckets.map((b) => ({ label: WEEK_LABEL(b), value: b.count }))}
-                theme={view === "tech" ? "dark" : "light"}
-                title="Posting volume"
-                badge="Weekly"
-                unit="postings"
+              <AreaWave
+                values={volume.buckets.map((b) => b.count)}
+                labels={volume.buckets.map((b) => WEEK_LABEL(b))}
+                tone={view === "tech" ? INK.blurple : INK.emerald}
+                unit=" postings"
                 label={`Weekly posting volume over ${volume.buckets.length} weeks, ${volume.recent} in the most recent four`}
               />
               <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -331,21 +329,19 @@ export default function MarketPulse() {
       </div>
 
       {stream && (
-        <div className="mt-4">
-          <MonoStreamChart
+        <Card className="mt-4">
+          <H2>Demand streams</H2>
+          <p className="mb-3 text-xs leading-5 text-zinc-400">
+            {stream.name} against everything posted. When the two waves rise together it is the market
+            moving; when they split, it is the skill.
+          </p>
+          <StreamWaves
             waves={stream.waves}
             labels={stream.labels}
-            theme={view === "tech" ? "dark" : "light"}
-            title="Demand streams"
-            badge="Skill vs market"
-            unit="postings"
+            unit=" postings"
             label={`${stream.name} weekly postings against total market volume across ${stream.labels.length} weeks`}
           />
-          <p className="mt-2 text-xs leading-5 text-zinc-400">
-            {stream.name} against everything posted. When the two waves rise together it is the market moving;
-            when they split, it is the skill.
-          </p>
-        </div>
+        </Card>
       )}
 
       <Card className="mt-4">
