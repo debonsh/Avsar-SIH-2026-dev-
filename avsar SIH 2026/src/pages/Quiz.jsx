@@ -71,7 +71,7 @@ export default function Quiz() {
         <Card>
           <div className="mb-4 flex items-center justify-between gap-2">
             <p className={`font-mono text-sm font-bold tabular-nums ${left < 60 ? "text-red-400" : "text-zinc-200"}`} role="timer" aria-label={`${fmt(left)} remaining`}>
-              ⏱ {fmt(left)}
+              {fmt(left)} left
             </p>
             <Chip tone={left < 60 ? "red" : "zinc"}>{picks.filter((p) => p != null).length}/{questions.length} answered</Chip>
           </div>
@@ -81,8 +81,8 @@ export default function Quiz() {
                 <p className="text-sm font-medium text-zinc-100">{qi + 1}. {q.q}</p>
                 <div className="mt-2 grid gap-1.5">
                   {q.opts.map((o, oi) => (
-                    <label key={oi} className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm ${picks[qi] === oi ? "border-blurple bg-blurple/10" : "border-zinc-800 hover:border-zinc-600"}`}>
-                      <input type="radio" name={`q${qi}`} className="accent-[#5865F2]" checked={picks[qi] === oi} onChange={() => setPicks((p) => { const n = [...p]; n[qi] = oi; return n; })} />
+                    <label key={oi} className={`flex min-h-[44px] cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm ${picks[qi] === oi ? "border-blurple bg-blurple/10" : "border-zinc-800 hover:border-zinc-600"}`}>
+                      <input type="radio" name={`q${qi}`} className={isAyush ? "accent-[#1e7a4c]" : "accent-[#5865F2]"} checked={picks[qi] === oi} onChange={() => setPicks((p) => { const n = [...p]; n[qi] = oi; return n; })} />
                       {o}
                     </label>
                   ))}

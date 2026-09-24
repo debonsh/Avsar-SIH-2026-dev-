@@ -81,7 +81,7 @@ export default function Resume() {
     >
       <Card>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Target track" hint={isAyush ? undefined : "Scoring switches instantly — the pick is saved to your profile."}>
+          <Field label="Target track" hint={isAyush ? undefined : "Scoring switches instantly. The pick is saved to your profile."}>
             {isAyush ? (
               <p className="flex h-10 items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-900">
                 <Leaf className="size-4" aria-hidden /> Ayush Professional (BAMS)
@@ -95,7 +95,7 @@ export default function Resume() {
             )}
           </Field>
           <Field label="Resume file" hint="PDF or plain text. Parsed on your device.">
-            <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-400 file:mr-3 file:rounded-lg file:border file:border-stone-300 file:bg-stone-100 file:px-3 file:py-1.5 file:text-sm file:text-zinc-200 hover:file:border-zinc-600" />
+            <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-400 file:mr-3 file:rounded-lg file:border file:border-transparent file:bg-blurple file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-white" />
           </Field>
         </div>
         <div className="mt-4">
@@ -155,7 +155,7 @@ export default function Resume() {
               {BULLETS.map((b, i) => (
                 <figure key={i} className="overflow-hidden rounded-xl border border-stone-200">
                   <blockquote className="border-b border-stone-200 bg-stone-50 px-4 py-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-400">Instead of this</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-500">Instead of this</p>
                     <p className="mt-1 text-sm leading-6 text-stone-500">{b.weak}</p>
                   </blockquote>
                   <blockquote className={`px-4 py-3 ${isAyush ? "bg-emerald-50/70" : "bg-blurple/10"}`}>
@@ -276,8 +276,8 @@ export default function Resume() {
                 </div>
               ) : (
                 <p className="text-sm leading-6 text-zinc-400">
-                   No standard sections found. Add headers like Experience, Postings, Skills, Education:
-                   parsers and humans both skim for them.
+                  No standard sections found. Add headers like Experience, Postings, Skills, Education.
+                  Parsers and humans both skim for them.
                 </p>
               )}
             </Card>

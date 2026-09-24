@@ -134,6 +134,12 @@ export function resolveSkill(name = "") {
   return approved || null;
 }
 
+// The id every module keys on. One home, so the matching engine and the market index
+// can never disagree about what "Power BI" or an unknown free-text skill is.
+export function canonSkill(name = "") {
+  return resolveSkill(name)?.id || String(name || "").toLowerCase().trim();
+}
+
 export function skillsByDomain(domainId = "") {
   return SKILLS.filter((s) => s.domain === domainId);
 }

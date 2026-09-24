@@ -9,7 +9,7 @@ import { useAvsar } from "../app/store.jsx";
 import { JOBS } from "../data/jobs.js";
 import { AYUSH_JOBS } from "../data/ayushSeed.js";
 import { mergeJobs, loadApplications } from "../lib/store.js";
-import { addProof, proofsFor, verifyState } from "../ayush/proof.js";
+import { addProof, proofsFor } from "../ayush/proof.js";
 
 const FLOW = ["saved", "applied", "interview", "offer"];
 
@@ -61,7 +61,7 @@ export default function Workspace() {
   if (!jobId) {
     const touched = pool.filter((j) => statusOf(events, j.id) || apps.some((a) => String(a.jobId) === String(j.id)));
     return (
-      <Page title="Workspace" sub="Internship progress, mentor feedback, and completion records — the loop that turns work into verified skills.">
+      <Page title="Workspace" sub="Internship progress, mentor feedback, and completion records. The loop that turns work into verified skills.">
         {touched.length === 0 ? (
           <Empty
             title="No active internship yet"
@@ -126,7 +126,7 @@ export default function Workspace() {
           {!st && <Btn size="sm" onClick={() => addEvent(String(job.id), "saved")}>Save</Btn>}
           {next && <Btn size="sm" onClick={() => addEvent(String(job.id), next)}>Move to {next}</Btn>}
           {job.apply && job.apply !== "#" && (
-            <a className="inline-flex min-h-[32px] items-center text-xs font-semibold text-emerald-700 underline underline-offset-4" href={job.apply} target="_blank" rel="noreferrer">
+            <a className="inline-flex min-h-[44px] items-center text-xs font-semibold text-emerald-700 underline underline-offset-4" href={job.apply} target="_blank" rel="noreferrer">
               Apply page ↗
             </a>
           )}
@@ -136,8 +136,8 @@ export default function Workspace() {
       <Card className="mt-4">
         <H2>Completion record → verified skill</H2>
         <p className="mb-3 text-sm leading-6 text-stone-500">
-          When the internship ends, the mentor signs off. That single signature flips the skill to verified —
-          portfolio badge, match score, and readiness all move.
+          When the internship ends, the mentor signs off. That single signature flips the skill to verified.
+          Portfolio badge, match score, and readiness all move.
         </p>
         {mentorProofs.length > 0 && (
           <ul className="mb-3 space-y-1.5">
@@ -149,7 +149,7 @@ export default function Workspace() {
             ))}
           </ul>
         )}
-        <SignOff job={job} onDone={(s) => setFlash(`${s} is now verified under ${verifyState(s, 0).verified ? "mentor sign-off" : " review"}. Check your portfolio.`)} />
+        <SignOff job={job} onDone={(s) => setFlash(`${s} signed off. Check your portfolio for the verified badge.`)} />
       </Card>
 
       <p className="mt-4 text-sm text-stone-500">

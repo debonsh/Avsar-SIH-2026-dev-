@@ -12,7 +12,9 @@ export const ROLE_HOME = {
 };
 
 // open to everyone: the chooser, public profiles, and email verification links.
-const PUBLIC_SEGMENTS = new Set(["", "u", "verify"]);
+// "labs" is public on purpose: it is the page a judge opens before anyone has onboarded, and
+// a route that needs a profile is a route nobody sees.
+const PUBLIC_SEGMENTS = new Set(["", "u", "verify", "labs"]);
 
 // segment → the roles allowed in it.
 // /profile is identity, not engine: every role opens it (Google connect,
@@ -22,6 +24,9 @@ const ALL_ROLES = ["student", "ayush", "industry", "faculty", "institute"];
 
 const DESK_SEGMENTS = {
   industry: ["industry"],
+  // a second screen on the industry desk. Without its own entry this would fall through to
+  // STUDENT_ROLES and quietly become a student page that no employer could ever open.
+  shortlist: ["industry"],
   faculty: ["faculty"],
   institute: ["institute"],
   profile: ALL_ROLES,

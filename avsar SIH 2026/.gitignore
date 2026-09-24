@@ -28,3 +28,8 @@ dist/
 
 # Env secrets (keep .env.example tracked)
 .env
+
+# Agent / tooling caches (not app code)
+.commandcode/
+.tastemaker/
+.ua/

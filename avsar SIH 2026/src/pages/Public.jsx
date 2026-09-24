@@ -103,15 +103,15 @@ export default function Public() {
       const roleLabel = ROLES[guest.roleKey]?.label || guest.roleKey;
       return (
         <Page title={`Student ${guest.id.slice(0, 8)}`} sub={`Public passport · ${roleLabel} · readiness ${guest.main || guest.score}/100`}>
-          <Card>
-            <H2>Proven skills</H2>
+          <Card tone="light">
+            <H2 tone="light">Proven skills</H2>
             <div className="flex flex-wrap gap-1.5">
               {guest.found.map((s) => <Chip key={s} tone="green">{s}</Chip>)}
               {guest.found.length === 0 && <p className="text-sm text-stone-500">Nothing proven on this passport yet.</p>}
             </div>
             {guest.missing.length > 0 && (
               <>
-                <H2 className="mt-5">Still working on</H2>
+                <H2 tone="light" className="mt-5">Still working on</H2>
                 <div className="flex flex-wrap gap-1.5">
                   {guest.missing.map((s) => <Chip key={s} tone="amber">{s}</Chip>)}
                 </div>
@@ -126,7 +126,7 @@ export default function Public() {
       <Page title="Passport not on this device" sub="Public profiles need the network; offline, only the owner's device can render one.">
         <Empty
           title={guestChecked ? "Ask for their verify link" : "Looking for this passport…"}
-          body="Every student carries a QR-signed credential that recomputes offline. That link — not this page — is the proof."
+          body="Every student carries a QR-signed credential that recomputes offline. That link, not this page, is the proof."
           action={<Btn to="/">Get your own passport</Btn>}
         />
       </Page>
@@ -135,8 +135,8 @@ export default function Public() {
 
   return (
     <Page title={`${loadNickname() || "Avsar student"}`} sub={`Public passport · ${mine.slice(0, 8)} · readiness ${readiness}/100`}>
-      <Card>
-        <H2>Verified skills ({verified.length}/{found.length})</H2>
+      <Card tone="light">
+        <H2 tone="light">Verified skills ({verified.length}/{found.length})</H2>
         <div className="flex flex-wrap gap-1.5">
           {found.map((s) => (
             <Chip key={s} tone={isVerified(s, earned, github) ? "green" : "zinc"}>{s}</Chip>
@@ -145,7 +145,7 @@ export default function Public() {
         </div>
         <KudosBar count={kudos} canGive={false} />
         <p className="mt-4 border-t border-stone-200 pt-3 text-xs leading-5 text-stone-500">
-          Trust this page the way you trust any screenshot — verify instead:
+          Trust this page the way you trust any screenshot. Verify instead:
         </p>
         <Link to={verifyUrl(code)} className="mt-1 inline-block text-sm font-semibold text-emerald-700 underline underline-offset-4">
           Open the signed credential →

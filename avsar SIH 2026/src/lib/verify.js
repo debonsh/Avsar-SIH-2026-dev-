@@ -4,6 +4,7 @@
 // revocation: a revoked sig stays verifiable but renders as REVOKED forever —
 // integrity theater judges remember, and fakes can't quietly disappear.
 import { hashStr } from "./quests.js";
+import { signPayload, verifySigned } from "./sign.js";
 import { loadJSON, saveJSON } from "./storage.js";
 
 const enc = (s) => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
@@ -80,4 +81,59 @@ export function checkCredentialStatus(code = "") {
   if (!res.ok) return res;
   const revoked = revocationFor(code);
   return { ...res, revoked: revoked ? { reason: revoked.reason, at: revoked.at } : null };
+}
+
+// --- v2: the same envelope, carrying a real signature ---------------------------------
+// v1 is left exactly as it is. Every code already printed must keep validating, because a
+// QR shown last semester cannot be reissued, and a scheme that breaks its own history is
+// worse than one that carries two versions. v2 wraps a signed receipt in the same
+// base64url envelope, so a reader cannot tell the versions apart by looking and does not
+// have to: the router below decides.
+
+export const V2_PREFIX = "v2.";
+
+// The envelope, in one place. A page that wants to show a receipt and also link to its
+// verification page must not re-implement the encoding, because the two would drift and a
+// link that fails to resolve looks exactly like a forged receipt.
+export function codeFromReceipt(receipt = {}) {
+  return `${V2_PREFIX}${enc(JSON.stringify(receipt))}`;
+}
+
+export async function signCredentialV2(payload = {}, keypair = null) {
+  const receipt = await signPayload(payload, keypair);
+  return { code: codeFromReceipt(receipt), receipt };
+}
+
+export function isV2(code = "") {
+  return String(code || "").startsWith(V2_PREFIX);
+}
+
+export async function checkCredentialV2(code = "") {
+  const body = String(code || "").slice(V2_PREFIX.length);
+  if (!body) return { ok: false, reason: "empty v2 code", v: 2 };
+  let receipt;
+  try {
+    receipt = JSON.parse(dec(body));
+  } catch {
+    return { ok: false, reason: "unreadable v2 payload", v: 2 };
+  }
+  const res = await verifySigned(receipt);
+  if (!res.ok) return { ok: false, reason: res.reason, v: 2, mode: res.mode };
+  const revoked = revocationFor(code);
+  return {
+    ok: true,
+    payload: receipt.payload,
+    v: 2,
+    mode: res.mode,
+    weak: res.weak,
+    kid: res.kid,
+    revoked: revoked ? { reason: revoked.reason, at: revoked.at } : null,
+  };
+}
+
+// One entry point, so a page never has to know which version it is holding. v1 answers
+// synchronously and v2 does not, which is why every caller awaits this one.
+export async function checkCredentialAny(code = "") {
+  if (!isV2(code)) return checkCredentialStatus(code);
+  return checkCredentialV2(code);
 }

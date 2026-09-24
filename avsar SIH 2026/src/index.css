@@ -18,6 +18,12 @@
 
 /* Type split: Bricolage display headlines, Inter body, DM Mono system24 chrome.
    Square panels, 1px borders (2px on hero), zinc body floor. */
+:root {
+  color-scheme: dark;
+}
+.ayush-light, .tech-light {
+  color-scheme: light;
+}
 body {
   background: #06060b;
   color: #d4d4d8;
@@ -25,6 +31,7 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  touch-action: manipulation;
 }
 
 .font-display {
@@ -135,7 +142,8 @@ body {
 .ayush-light [class*="text-blurple-soft"] { color: #4752c4; }
 .ayush-light [class*="text-emerald-300"], .ayush-light [class*="text-emerald-400"] { color: #047857; }
 .ayush-light [class*="border-emerald-900"] { border-color: #a7f3d0; }
-.ayush-light [class*="text-amber-300"] { color: #b45309; }
+.ayush-light [class*="text-amber-300"], .ayush-light [class*="text-amber-400"] { color: #b45309; }
+.ayush-light [class*="text-red-500"] { color: #b91c1c; }
 .ayush-light [class*="text-sage"] { color: #5f5f43; }
 .ayush-light [class*="border-sage"] { border-color: #c9c9ae; }
 .ayush-light [class*="bg-sage"] { background-color: #f0f0e2; }
@@ -180,6 +188,12 @@ body {
 }
 *::-webkit-scrollbar { width: 8px; height: 8px; }
 *::-webkit-scrollbar-thumb { background: #27272a; border-radius: 8px; }
+/* the near-black bar above is right for the dark floors and wrong on both light ones,
+   where it reads as a black stripe down every scrollable panel */
+.tech-light * { scrollbar-color: #c7ccd9 transparent; }
+.tech-light *::-webkit-scrollbar-thumb { background: #c7ccd9; }
+.ayush-light * { scrollbar-color: #d8d2c0 transparent; }
+.ayush-light *::-webkit-scrollbar-thumb { background: #d8d2c0; }
 
 /* [app] dark theme: the zinc/blurple base is already dark, so this layer only
    remaps the light-hardcoded utilities (stone scale, white surfaces, emerald
@@ -266,18 +280,22 @@ body {
 .tech-light .text-zinc-500 { color: #636366; }
 .tech-light .text-zinc-600 { color: #71717a; }
 .tech-light [class*="text-blurple-soft"] { color: #4752c4; }
+/* text-emerald-400 is the dark-panel accent: bright enough to read on near-black, and
+   almost invisible on white at a 1.9 contrast ratio. It is used in 27 places, so this
+   remap is what keeps every positive number legible in the light theme. */
+.tech-light [class*="text-emerald-300"], .tech-light [class*="text-emerald-400"] { color: #047857; }
 .tech-light [class*="text-green-300"] { color: #15803d; }
 .tech-light .bg-green-950 { background-color: #f0fdf4; }
 .tech-light .border-green-900 { border-color: #bbf7d0; }
 .tech-light .bg-amber-950 { background-color: #fffbeb; }
 .tech-light .border-amber-900 { border-color: #fde68a; }
-.tech-light [class*="text-amber-300"] { color: #b45309; }
+.tech-light [class*="text-amber-300"], .tech-light [class*="text-amber-400"] { color: #b45309; }
 .tech-light .bg-blue-950 { background-color: #eff6ff; }
 .tech-light .border-blue-900 { border-color: #bfdbfe; }
 .tech-light [class*="text-blue-300"] { color: #1d4ed8; }
 .tech-light .bg-red-950 { background-color: #fef2f2; }
 .tech-light .border-red-900 { border-color: #fecaca; }
-.tech-light [class*="text-red-300"] { color: #b91c1c; }
+.tech-light [class*="text-red-300"], .tech-light [class*="text-red-500"] { color: #b91c1c; }
 .tech-light [class*="text-red-400"] { color: #b91c1c; }
 .tech-light .hover\:bg-red-950:hover { background-color: #fef2f2; }
 .tech-light .hover\:bg-zinc-900:hover { background-color: #e9ecf3; }

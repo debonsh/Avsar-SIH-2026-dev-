@@ -103,17 +103,17 @@ function OptionCard({ selected, onPick, label, hint }) {
       type="button"
       onClick={onPick}
       aria-pressed={selected}
-      className={`flex min-h-[56px] w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left transition-all active:scale-[0.99] ${
+      className={`flex min-h-[56px] w-full items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left transition-[scale,background-color,border-color] duration-150 ease-out active:scale-[0.96] ${
         selected
-          ? "border-emerald-600 bg-emerald-50 shadow-sm"
-          : "border-stone-200 bg-white hover:border-emerald-400"
+          ? "border-blurple/40 bg-blurple/10 shadow-sm"
+          : "border-stone-200 bg-white hover:border-zinc-500"
       }`}
     >
       <span>
         <span className="block text-sm font-semibold text-stone-800">{label}</span>
         {hint && <span className="mt-0.5 block text-xs leading-5 text-stone-500">{hint}</span>}
       </span>
-      <span className={`flex size-5 shrink-0 items-center justify-center rounded-full border-2 ${selected ? "border-emerald-600 bg-emerald-600" : "border-stone-300"}`} aria-hidden>
+      <span className={`flex size-5 shrink-0 items-center justify-center rounded-full border-2 ${selected ? "border-blurple bg-blurple" : "border-zinc-600"}`} aria-hidden>
         {selected && (
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M2.5 6.2 5 8.5 9.5 3.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -156,7 +156,7 @@ function ProfileCard({ form, resume, track, onEdit, onClear }) {
   return (
     <div className="space-y-4">
       <Card className="overflow-hidden p-0">
-        <div className={`px-5 pb-14 pt-5 text-white ${isAyush ? "bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-600" : "bg-gradient-to-br from-zinc-900 via-zinc-800 to-blurple"}`}>
+        <div className={`px-5 pb-14 pt-5 text-white ${isAyush ? "bg-emerald-900" : "bg-zinc-900"}`}>
           <div className="flex items-center gap-2">
             <CIcon icon={isAyush ? cilSpa : cilBriefcase} width={18} height={18} className="shrink-0" aria-hidden />
             <p className={`text-[11px] font-bold uppercase tracking-[0.18em] ${isAyush ? "text-emerald-100" : "text-blurple-soft"}`}>
@@ -177,10 +177,10 @@ function ProfileCard({ form, resume, track, onEdit, onClear }) {
         </div>
         <div className="px-5 pb-5">
           <div className="-mt-8 mb-2 flex items-end justify-between gap-3">
-            <span className={`flex size-16 items-center justify-center rounded-2xl border-4 border-white font-display text-2xl font-bold text-white ${isAyush ? "bg-emerald-700" : "bg-blurple"}`} aria-hidden>
+            <span className={`flex size-16 items-center justify-center rounded-xl border-4 border-white font-display text-2xl font-bold text-white ${isAyush ? "bg-emerald-700" : "bg-blurple"}`} aria-hidden>
               {initial}
             </span>
-            <button type="button" onClick={onEdit} className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-xs font-semibold text-stone-600 hover:border-emerald-400 hover:text-emerald-800">
+            <button type="button" onClick={onEdit} className="rounded-full border border-stone-200 bg-white px-4 py-1.5 text-xs font-semibold text-stone-600 hover:border-zinc-500 hover:text-blurple-soft">
               Edit answers
             </button>
           </div>
@@ -188,10 +188,10 @@ function ProfileCard({ form, resume, track, onEdit, onClear }) {
             {form.college?.trim() || (isAyush ? "BAMS student" : `${ROLES[lane]?.label || "Tech"} student`)}
           </h2>
           <p className="text-sm text-stone-500">{GOALS.find((g) => g.id === form.goal)?.label || "Goal not set"}</p>
-          <dl className="mt-4 grid grid-cols-2 divide-stone-100 rounded-2xl border border-stone-100 bg-stone-50/60 sm:grid-cols-4 sm:divide-x">
-            {stats.map((s) => (
+          <dl className="mt-4 grid grid-cols-2 divide-stone-100 rounded-2xl border border-stone-100 bg-stone-50 sm:grid-cols-4 sm:divide-x">
+              {stats.map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-0.5 px-2 py-3">
-                <CIcon icon={s.icon} width={15} height={15} className="text-emerald-700" aria-hidden />
+                <CIcon icon={s.icon} width={15} height={15} className={isAyush ? "text-emerald-700" : "text-blurple-soft"} aria-hidden />
                 <dd className="font-display text-xl font-bold tabular-nums text-stone-900">{s.value}</dd>
                 <dt className="text-[11px] text-stone-500">{s.label}</dt>
               </div>
@@ -205,14 +205,14 @@ function ProfileCard({ form, resume, track, onEdit, onClear }) {
             </div>
           )}
           {skills.length > 0 && (
-            <div className="mt-4 rounded-2xl border border-stone-100 bg-stone-50/60 p-4">
+            <div className="mt-4 rounded-2xl border border-stone-100 bg-stone-50 p-4">
               <div className="mx-auto w-full max-w-[220px] text-stone-500">
                 <Radar axes={axes} size={210} label={`Skill profile vs ${targetLabel}`} />
               </div>
-              <div className="mt-3 border-t border-stone-200/70 pt-3">
+              <div className="mt-3 border-t border-stone-200 pt-3">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone-400">Gap vector · {targetLabel}</p>
                 {gaps.length === 0 ? (
-                  <p className="mt-1 text-sm text-emerald-800">No gaps — you clear the bar. Open the feed.</p>
+                  <p className="mt-1 text-sm text-emerald-800">No gaps. You clear the bar. Open the feed.</p>
                 ) : (
                   <ul className="mt-1.5 space-y-1">
                     {gaps.map((g) => (
@@ -237,11 +237,11 @@ function ProfileCard({ form, resume, track, onEdit, onClear }) {
             <div><dt className="text-stone-400">Time</dt><dd className="font-semibold text-stone-800">{form.hours ? `${form.hours} hrs/week` : "not set"}</dd></div>
           </dl>
           <p className="mt-2 text-xs leading-5 text-stone-500">
-            Profile 40% done. Resume (+30%) and interview (+30%) finish it — and shape your questions.
+            Profile 40% done. Resume (+30%) and interview (+30%) finish it. Both shape your questions.
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            <Btn to="/journey">Continue — add your resume</Btn>
-            <button type="button" onClick={onClear} className="inline-flex min-h-[40px] items-center text-sm font-medium text-stone-400 underline underline-offset-4 hover:text-red-600">
+            <Btn to="/journey">Continue the journey</Btn>
+            <button type="button" onClick={onClear} className="inline-flex min-h-[44px] items-center text-sm font-medium text-stone-400 underline underline-offset-4 hover:text-red-600">
               Clear everything
             </button>
           </div>
@@ -346,7 +346,7 @@ export default function Profile() {
         <ol className="mb-5 flex items-center gap-2" aria-label="Setup progress">
           {stepIds.map((id, i) => (
             <li key={id} className="flex flex-1 items-center gap-2">
-              <span className={`h-1.5 flex-1 rounded-full ${i <= step ? "bg-emerald-600" : "bg-stone-200"}`} aria-hidden />
+              <span className={`h-1.5 flex-1 rounded-full ${i <= step ? "bg-blurple" : "bg-stone-200"}`} aria-hidden />
               <span className="sr-only">{stepLabels[id]}{i <= step ? " done" : ""}</span>
             </li>
           ))}
@@ -356,7 +356,7 @@ export default function Profile() {
       {current === "role" && (
         <motion.div key="role" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Who is using Avsar?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">This decides the screens you get. You can change it later by editing your profile.</p>
           <div className="mt-4 space-y-2">
@@ -377,7 +377,7 @@ export default function Profile() {
       {current === "track" && (
         <motion.div key="track" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Which track are you aiming for?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">This sets your scoring rubric, your quest tree, and the postings you see.</p>
           <div className="mt-4 space-y-2">
@@ -406,7 +406,7 @@ export default function Profile() {
       {current === "skills" && (
         <motion.div key="skills" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Which of these do you already have?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">Tap up to 5. These decide which internships show as eligible.</p>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -418,10 +418,10 @@ export default function Profile() {
                   type="button"
                   onClick={() => toggleSkill(s)}
                   aria-pressed={on}
-                  className={`min-h-[40px] rounded-full border px-4 py-2 text-sm font-medium capitalize transition-all active:scale-[0.97] ${
+                  className={`min-h-[44px] rounded-full border px-4 py-2 text-sm font-medium capitalize transition-[scale,background-color,border-color] duration-150 ease-out active:scale-[0.96] ${
                     on
-                      ? "border-emerald-600 bg-emerald-700 text-white"
-                      : "border-stone-200 bg-white text-stone-600 hover:border-emerald-400"
+                      ? "border-blurple bg-blurple text-white"
+                      : "border-stone-200 bg-white text-stone-600 hover:border-zinc-500"
                   }`}
                 >
                   {s}
@@ -442,7 +442,7 @@ export default function Profile() {
       {current === "background" && (
         <motion.div key="background" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Where are you in AYUSH?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">Year sets which postings you can touch. Lane sharpens research and industry matches.</p>
           <p className="mb-2 mt-4 text-sm font-semibold text-stone-700">BAMS year</p>
@@ -455,10 +455,10 @@ export default function Profile() {
                   type="button"
                   onClick={() => set("year", y)}
                   aria-pressed={on}
-                  className={`min-h-[40px] rounded-full border px-4 py-2 text-sm font-medium transition-all active:scale-[0.97] ${
+                  className={`min-h-[44px] rounded-full border px-4 py-2 text-sm font-medium transition-[scale,background-color,border-color] duration-150 ease-out active:scale-[0.96] ${
                     on
-                      ? "border-emerald-600 bg-emerald-700 text-white"
-                      : "border-stone-200 bg-white text-stone-600 hover:border-emerald-400"
+                      ? "border-blurple bg-blurple text-white"
+                      : "border-stone-200 bg-white text-stone-600 hover:border-zinc-500"
                   }`}
                 >
                   {y}
@@ -500,7 +500,7 @@ export default function Profile() {
       {current === "goal" && (
         <motion.div key="goal" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">What do you want most right now?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">This picks your landing screen after setup.</p>
           <div className="mt-4 space-y-2">
@@ -524,7 +524,7 @@ export default function Profile() {
       {current === "availability" && (
         <motion.div key="availability" {...stepAnim}>
         <Card>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">Step {step + 1} of {stepIds.length}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-blurple-soft">Step {step + 1} of {stepIds.length}</p>
           <h2 className="mt-1 font-display text-xl font-bold text-stone-900">Where, and how much time?</h2>
           <p className="mt-1 text-sm leading-6 text-stone-500">Filters the feed and sizes your weekly quests.</p>
           <p className="mb-2 mt-4 text-sm font-semibold text-stone-700">Where can you work?</p>

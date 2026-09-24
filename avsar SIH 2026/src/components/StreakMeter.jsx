@@ -53,7 +53,7 @@ export default function StreakMeter({ weeks = 16 }) {
       </div>
       {total === 0 ? (
         <p className="text-sm leading-6 text-zinc-400">
-          Tick a quest, finish a quiz, or save an application — today becomes day one.
+          Tick a quest, finish a quiz, or save an application. Today becomes day one.
         </p>
       ) : (
         <div className="overflow-x-auto pb-1" role="img" aria-label={`Activity heatmap, ${contributions} contributions, ${streak} day streak`}>
@@ -68,7 +68,7 @@ export default function StreakMeter({ weeks = 16 }) {
                     <span
                       key={d.date}
                       title={tip(d)}
-                      className={`size-3.5 rounded-[4px] heat-${d.level} transition-transform hover:scale-125 hover:ring-1 hover:ring-emerald-600 ${d.date === today ? "ring-1 ring-emerald-700" : ""}`}
+                      className={`size-3.5 rounded-[4px] heat-${d.level} transition-[scale] duration-150 ease-out [@media(hover:hover)_and_(pointer:fine)]:hover:scale-125 [@media(hover:hover)_and_(pointer:fine)]:hover:ring-1 [@media(hover:hover)_and_(pointer:fine)]:hover:ring-emerald-600 ${d.date === today ? "ring-1 ring-emerald-700" : ""}`}
                     />
                   ))}
                 </div>

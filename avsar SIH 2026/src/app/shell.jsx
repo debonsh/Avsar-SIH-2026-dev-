@@ -9,7 +9,7 @@ import { NavLink, Navigate, Route, Routes, useLocation } from "react-router";
 import CIcon from "@coreui/icons-react";
 import {
   cilSpa, cilHome, cilCompass, cilBriefcase, cilBook, cilUser, cilDescription,
-  cilChevronBottom, cilSun, cilMoon,
+  cilChevronBottom, cilSun, cilMoon, cilPeople,
 } from "@coreui/icons";
 import { motion, useReducedMotion } from "motion/react";
 import { useAvsar } from "./store.jsx";
@@ -35,6 +35,11 @@ import Verify from "../pages/Verify.jsx";
 import Ayush from "../pages/Ayush.jsx";
 import Resume from "../pages/Resume.jsx";
 import Match from "../pages/Match.jsx";
+import MarketPulse from "../pages/MarketPulse.jsx";
+import CareerGps from "../pages/CareerGps.jsx";
+import Challenges from "../pages/Challenges.jsx";
+import Shortlist from "../pages/Shortlist.jsx";
+import Labs from "../pages/Labs.jsx";
 import Programs from "../pages/Programs.jsx";
 import Workspace from "../pages/Workspace.jsx";
 import Public from "../pages/Public.jsx";
@@ -59,6 +64,9 @@ const ENGINE = {
       { to: "/portfolio", key: "more.portfolio" },
       { to: "/ayush", key: "more.ayush" },
       { to: "/match", key: "more.match" },
+      { to: "/market", key: "more.market" },
+      { to: "/gps", key: "more.gps" },
+      { to: "/challenges", key: "more.challenges" },
       { to: "/programs", key: "more.programs" },
       { to: "/workspace", key: "more.workspace" },
     ],
@@ -75,6 +83,9 @@ const ENGINE = {
       { to: "/interview", key: "more.interview" },
       { to: "/portfolio", key: "more.portfolio" },
       { to: "/match", key: "more.match" },
+      { to: "/market", key: "more.market" },
+      { to: "/gps", key: "more.gps" },
+      { to: "/challenges", key: "more.challenges" },
       { to: "/programs", key: "more.programs" },
       { to: "/workspace", key: "more.workspace" },
     ],
@@ -83,6 +94,10 @@ const ENGINE = {
 
 // professional roles get one desk of their own instead of the student engine.
 const DESK = { industry: "/industry", faculty: "/faculty", institute: "/institute" };
+
+// A desk that owns a second screen declares it here. Everything else stays a single-desk
+// role, so this does not open the door to professional roles browsing the student engine.
+const DESK_EXTRA = { industry: [{ to: "/shortlist", key: "more.shortlist", icon: cilPeople }] };
 
 // Readiness ring: the one number a student checks daily, always one tap from scoring.
 // Reason it is a ring, not a pill: progress reads at a glance and costs less header width.
@@ -139,7 +154,7 @@ function Brand({ isTech, light }) {
           <CIcon icon={cilSpa} width={18} height={18} />
         </span>
       )}
-      <span className={`text-base font-bold tracking-tight ${isTech ? (light ? "text-zinc-900" : "text-zinc-50") : light ? "text-zinc-50" : "text-emerald-950"}`}>Avsar</span>
+      <span className={`text-base font-bold tracking-tight ${isTech ? (light ? "text-zinc-900" : "text-zinc-50") : light ? "text-zinc-50" : "text-emerald-800"}`}>Avsar</span>
       <span className={`rounded-full px-1.5 py-0.5 font-mono text-[10px] font-bold ${isTech ? "bg-blurple/15 text-blurple-soft" : "bg-amber-100 text-amber-800"}`}>
         SIH&rsquo;26
       </span>
@@ -185,7 +200,10 @@ export function Shell() {
   const engine = ENGINE[track] || ENGINE.ayush;
   const segments = isStudentFamily
     ? engine.segments
-    : [{ to: DESK[role], key: null, label: roleLabel(role), icon: cilBriefcase }];
+    : [
+        { to: DESK[role], key: null, label: roleLabel(role), icon: cilBriefcase },
+        ...(DESK_EXTRA[role] || []),
+      ];
   const segs = segments.map((s) => ({ ...s, label: (s.key && t(effLang, s.key)) || s.label }));
   const tabs = [...segs, { to: "/profile", key: "nav.profile", label: t(effLang, "nav.profile"), icon: cilUser }];
   const moreLinks = isStudentFamily ? engine.more.map((l) => ({ ...l, label: t(effLang, l.key) || l.label })) : [];
@@ -329,7 +347,7 @@ export function Shell() {
                   isTech ? (techLight ? "border-zinc-200 bg-white" : "border-zinc-800 bg-zinc-950") : "border-stone-200 bg-white"
                 }`}>
                   <div className={`border-b px-3 py-2.5 ${isTech ? (techLight ? "border-zinc-100" : "border-zinc-800") : "border-stone-100"}`}>
-                    <p className={`mb-2 font-mono text-[10px] uppercase tracking-widest ${isTech ? "text-zinc-500" : "text-stone-400"}`}>
+                    <p className={`mb-2 font-mono text-[10px] uppercase tracking-widest ${isTech ? "text-zinc-500" : "text-stone-500"}`}>
                       {roleLabel(role)}
                     </p>
                     {user ? (
@@ -415,6 +433,9 @@ export function Shell() {
           ) : (
           <Routes>
           <Route path="/" element={<Welcome />} />
+          {/* unguarded on purpose: a guarded route redirects to the chooser, and this page
+              exists so someone can judge the product before answering anything */}
+          <Route path="/labs" element={<Labs />} />
           <Route path="/resume" element={guard("/resume", <Resume />)} />
           <Route path="/jobs" element={guard("/jobs", <Jobs />)} />
           <Route path="/quests" element={guard("/quests", <Quests />)} />
@@ -430,6 +451,10 @@ export function Shell() {
           <Route path="/verify/:code" element={<Verify />} />
           <Route path="/ayush" element={guard("/ayush", <Ayush />)} />
           <Route path="/match" element={guard("/match", <Match />)} />
+          <Route path="/market" element={guard("/market", <MarketPulse />)} />
+          <Route path="/gps" element={guard("/gps", <CareerGps />)} />
+          <Route path="/challenges" element={guard("/challenges", <Challenges />)} />
+          <Route path="/shortlist" element={guard("/shortlist", <Shortlist />)} />
           <Route path="/programs" element={guard("/programs", <Programs />)} />
           <Route path="/workspace" element={guard("/workspace", <Workspace />)} />
           <Route path="/workspace/:jobId" element={guard("/workspace", <Workspace />)} />
@@ -446,10 +471,10 @@ export function Shell() {
         <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
           {/* brand row */}
           <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
-            <p className={`flex items-center gap-1.5 text-sm font-semibold ${isTech ? (techLight ? "text-zinc-900" : "text-zinc-100") : "text-emerald-950"}`}>
+            <p className={`flex items-center gap-1.5 text-sm font-semibold ${isTech ? (techLight ? "text-zinc-900" : "text-zinc-100") : "text-emerald-800"}`}>
               {!isTech && <CIcon icon={cilSpa} width={15} height={15} aria-hidden />} Avsar
             </p>
-            <p className={`max-w-xs text-xs leading-5 ${isTech ? (techLight ? "text-zinc-500" : "text-zinc-500") : "text-stone-400"}`}>
+            <p className={`max-w-xs text-xs leading-5 ${isTech ? (techLight ? "text-zinc-500" : "text-zinc-500") : "text-stone-500"}`}>
               {isTech
                 ? "Score your resume, close skill gaps, track applications. Works offline, syncs to Supabase when configured."
                 : t(effLang, "footer.tag")}
@@ -458,7 +483,7 @@ export function Shell() {
           {/* link table: two columns side by side */}
           <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-[1fr_1fr_1fr] sm:gap-x-10">
             <nav aria-label="Product">
-              <p className={`text-[10px] font-semibold uppercase tracking-wide ${isTech ? "text-zinc-500" : "text-stone-400"}`}>
+              <p className={`text-[10px] font-semibold uppercase tracking-wide ${isTech ? "text-zinc-500" : "text-stone-500"}`}>
                 {isTech ? "Product" : t(effLang, "footer.upskill")}
               </p>
               <ul className="mt-1.5 space-y-1 text-[13px]">
@@ -473,7 +498,7 @@ export function Shell() {
               </ul>
             </nav>
             <nav aria-label="Resources">
-              <p className={`text-[10px] font-semibold uppercase tracking-wide ${isTech ? "text-zinc-500" : "text-stone-400"}`}>
+              <p className={`text-[10px] font-semibold uppercase tracking-wide ${isTech ? "text-zinc-500" : "text-stone-500"}`}>
                 {isTech ? "Resources" : t(effLang, "footer.career")}
               </p>
               <ul className="mt-1.5 space-y-1 text-[13px]">
@@ -504,7 +529,7 @@ export function Shell() {
               to={s.to}
               className={({ isActive }) =>
                 `relative flex min-h-[60px] flex-col items-center justify-center gap-0.5 rounded-xl text-[10px] font-semibold transition-colors ${
-                  isActive ? (isTech ? "text-blurple-soft" : "text-emerald-800") : isTech ? (techLight ? "text-zinc-400" : "text-zinc-500") : "text-stone-400"
+                  isActive ? (isTech ? "text-blurple-soft" : "text-emerald-800") : isTech ? (techLight ? "text-zinc-400" : "text-zinc-500") : "text-stone-500"
                 }`
               }
             >

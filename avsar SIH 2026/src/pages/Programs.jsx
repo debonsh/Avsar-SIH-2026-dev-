@@ -55,12 +55,12 @@ export default function Programs() {
     <Page
       title="Programs"
       sub={isTech
-        ? "Tech learning programs, workshops, mentorships, and hackathons — each tagged with the skill gap it closes. Providers are hand-verified; links never AI-invented."
-        : "Industry learning programs, workshops, mentorships, and innovation challenges — each tagged with the skill gap it closes. Providers are hand-verified; links never AI-invented."}
+        ? "Tech learning programs, workshops, mentorships, and hackathons. Each one is tagged with the skill gap it closes. Providers are hand-verified, links never AI-invented."
+        : "Industry learning programs, workshops, mentorships, and innovation challenges. Each one is tagged with the skill gap it closes. Providers are hand-verified, links never AI-invented."}
     >
       {recIds.length > 0 && (
-        <Card className={isTech ? "border-blurple/40" : "border-emerald-200"}>
-          <H2>Closes your gaps first</H2>
+        <Card tone={isTech ? "dark" : "light"} className={isTech ? "border-blurple/40" : "border-emerald-200"}>
+          <H2 tone={isTech ? "dark" : "light"}>Closes your gaps first</H2>
           <ul className="space-y-2">
             {recIds.map((id) => {
               const p = ALL.find((x) => x.id === id);
@@ -85,7 +85,7 @@ export default function Programs() {
             role="tab"
             aria-selected={kind === k}
             onClick={() => setKind(k)}
-            className={`min-h-[40px] rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            className={`min-h-[44px] rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               kind === k
                 ? isTech ? "bg-blurple text-white" : "bg-emerald-700 text-white"
                 : isTech ? "border border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-zinc-700" : "border border-emerald-200 bg-white text-emerald-900 hover:border-emerald-400"
@@ -99,7 +99,7 @@ export default function Programs() {
       {list.length === 0 && <Empty title="Nothing here yet" body="No programs of this kind are listed right now." />}
       <div className="space-y-3">
         {list.map((p) => (
-          <Card key={p.id}>
+          <Card tone={isTech ? "dark" : "light"} key={p.id}>
             <div className="flex flex-wrap items-start justify-between gap-2">
               <div className="min-w-0">
                 <h3 className={`text-[15px] font-bold ${isTech ? "text-zinc-100" : "text-stone-900"}`}>{p.title}</h3>
@@ -116,9 +116,9 @@ export default function Programs() {
             </div>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <Btn size="sm" variant={enrolled.includes(p.id) ? "quiet" : "primary"} onClick={() => toggle(p.id)}>
-                {enrolled.includes(p.id) ? "Enrolled ✓ — tap to leave" : "Enroll"}
+                {enrolled.includes(p.id) ? "Enrolled ✓ (tap to leave)" : "Enroll"}
               </Btn>
-              <a className={`inline-flex min-h-[32px] items-center text-xs font-semibold underline underline-offset-4 ${isTech ? "text-blurple-soft" : "text-emerald-700"}`} href={p.url} target="_blank" rel="noreferrer">
+              <a className={`inline-flex min-h-[44px] items-center text-xs font-semibold underline underline-offset-4 ${isTech ? "text-blurple-soft" : "text-emerald-700"}`} href={p.url} target="_blank" rel="noreferrer">
                 Provider site ↗
               </a>
             </div>

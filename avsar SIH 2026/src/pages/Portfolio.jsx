@@ -11,9 +11,73 @@ import { completedSkillIdsForRole, getEvidence } from "../lib/progress.js";
 import { submitFeedback } from "../lib/backend.js";
 import { calculateMainScore, questPairsToProof } from "../lib/score.js";
 import { loadJSON } from "../lib/storage.js";
-import { signCredential, verifyUrl, checkCredentialStatus, revokeCredential } from "../lib/verify.js";
+import { signCredential, verifyUrl, checkCredentialStatus, revokeCredential, codeFromReceipt } from "../lib/verify.js";
+import { ReceiptCard } from "../components/Receipt.jsx";
+import { loadSubmissions } from "../lib/challenges.js";
+import { loadIssuerKey, signPayload } from "../lib/sign.js";
 import { VaidyaLevel } from "../components/ui.jsx";
 import { vaidyaLevel } from "../ayush/scoring.js";
+
+// Proof-of-skill receipts for the active lane. Signing involves a keypair and is async, so it
+// runs in an effect rather than during render; what a recruiter receives is exactly what is
+// shown here, including the part about what a signature does not prove.
+function ProofReceipts({ lane }) {
+  const [receipts, setReceipts] = useState([]);
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      const passed = loadSubmissions().filter((s) => s.grade?.passed && s.lane === lane).slice(-3).reverse();
+      if (!passed.length) {
+        if (alive) setReceipts([]);
+        return;
+      }
+      const key = await loadIssuerKey();
+      const rows = await Promise.all(
+        passed.map(async (s) => ({
+          submission: s,
+          receipt: await signPayload(
+            { submissionId: s.id, challengeId: s.challengeId, skill: s.skill, score: s.grade.score, passed: true, lane: s.lane },
+            key
+          ),
+        }))
+      );
+      if (alive) setReceipts(rows);
+    })().catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [lane]);
+
+  if (!receipts.length) return null;
+  return (
+    <div className="mt-4">
+      <Card>
+        <H2>Proof of skill ({receipts.length})</H2>
+        <p className="text-xs leading-5 text-zinc-400">
+          Challenges you passed, with the grade reasoning and a signature over it. Each link opens a page that checks the
+          signature offline, with no account and nothing uploaded.
+        </p>
+      </Card>
+      <div className="mt-3 grid gap-3">
+        {receipts.map(({ submission, receipt }) => (
+          <ReceiptCard
+            key={submission.id}
+            receipt={receipt}
+            title={String(submission.skill || "challenge")}
+            note={`graded ${submission.grade.score}/100 · submitted as handle ${submission.blindId}`}
+            qrValue={`${window.location.origin}${verifyUrl(codeFromReceipt(receipt))}`}
+            action={
+              <Link to={verifyUrl(codeFromReceipt(receipt))} className="font-mono text-[11px] text-blurple-soft underline underline-offset-4">
+                check this receipt
+              </Link>
+            }
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Portfolio() {
   const { lane, resume } = useAvsar();
@@ -111,7 +175,7 @@ export default function Portfolio() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <canvas ref={qrRef} width="132" height="132" className="border border-zinc-800 bg-white p-1" aria-label="QR code to verification page" />
+            <canvas ref={qrRef} width="132" height="132" className="border border-zinc-800 bg-white p-1" role="img" aria-label="QR code to verification page" />
             <div className="max-w-[180px]">
               <p className="font-mono text-[11px] uppercase tracking-wide text-zinc-500">passport qr</p>
               <p className="mt-1 text-xs leading-5 text-zinc-400">scan to verify. signature recomputes offline.</p>
@@ -119,7 +183,7 @@ export default function Portfolio() {
                 open verify page →
               </Link>
               {rev ? (
-                <p className="mt-2 rounded-lg border border-red-900 bg-red-950 px-2 py-1.5 font-mono text-[11px] text-red-300">
+                <p className="mt-2 border-l-2 border-red-400 py-1 pl-2 font-mono text-[11px] text-red-300">
                   REVOKED · {rev.reason}
                 </p>
               ) : (
@@ -131,6 +195,7 @@ export default function Portfolio() {
           </div>
         </div>
       </Card>
+      <ProofReceipts lane={lane} />
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <Card>
           <H2>Identity</H2>
@@ -178,7 +243,7 @@ export default function Portfolio() {
                     <span className="text-zinc-400"> · {c.issuer}</span>
                     {c.url && <> · <a className="font-medium text-blurple-soft underline" href={c.url} target="_blank" rel="noreferrer">view</a></>}
                   </span>
-                  <button type="button" className="shrink-0 text-xs font-medium text-red-700 underline" onClick={() => setCerts(removeCert(i))}>
+                  <button type="button" className="shrink-0 text-xs font-medium text-red-400 underline" onClick={() => setCerts(removeCert(i))}>
                     Remove
                   </button>
                 </li>

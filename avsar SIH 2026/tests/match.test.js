@@ -99,6 +99,62 @@ test("Ananya seed story: CRA role lands in the high-80s band", () => {
   assert.ok(m.gaps.some((g) => g.skill === "pharmacovigilance"), "her one famous gap");
 });
 
+test("market weights are opt-in: all-ones weights reproduce the published score exactly", () => {
+  const required = [{ skill: "diagnosis", level: 3 }, { skill: "documentation", level: 3 }];
+  const now = Date.now();
+  const held = [
+    { skill: "diagnosis", level: 4, verified: true, lastUsedAt: now },
+    { skill: "documentation", level: 2, verified: false, lastUsedAt: now },
+  ];
+  const base = matchScore({ required, held, tags: ["clinical"], interests: ["clinical"], now });
+  const ones = matchScore({ required, held, tags: ["clinical"], interests: ["clinical"], now, weights: new Map([["diagnosis", 1], ["documentation", 1]]) });
+  assert.equal(ones.score, base.score, "the market must never move a score it has no evidence for");
+  assert.equal(ones.band, base.band);
+  assert.deepEqual(ones.breakdown, base.breakdown);
+  assert.deepEqual(ones.gaps, base.gaps);
+  assert.deepEqual(ones.why, base.why, "no market line when nothing shifted");
+  assert.deepEqual(ones.matched, base.matched.map((m) => ({ ...m, weight: 1 })), "the only difference is the introspection field");
+});
+
+test("market weights move a score: the scarcer skill you hold counts for more", () => {
+  const required = [{ skill: "react", level: 3 }, { skill: "sql", level: 3 }];
+  const now = Date.now();
+  const held = [{ skill: "react", level: 3, verified: true, lastUsedAt: now }];
+  const reactScarce = matchScore({ required, held, now, weights: new Map([["react", 1.5], ["sql", 0.6]]) });
+  const reactCommon = matchScore({ required, held, now, weights: new Map([["react", 0.6], ["sql", 1.5]]) });
+  const unweighted = matchScore({ required, held, now });
+  assert.ok(reactScarce.score > unweighted.score, "holding the in-demand half of the posting pays");
+  assert.ok(reactCommon.score < unweighted.score, "holding the half nobody asks for pays less");
+  assert.equal(reactScarce.matched.find((m) => m.skill === "react").weight, 1.5);
+  assert.ok(reactScarce.why.some((line) => line.startsWith("market weights applied")), "the derivation is visible");
+  assert.ok(!unweighted.why.some((line) => line.includes("market")), "and absent when no market was used");
+});
+
+test("a missing skill still reads as a gap under market weights", () => {
+  const required = [{ skill: "react", level: 3 }, { skill: "sql", level: 3 }];
+  const m = matchScore({ required, held: [{ skill: "react", level: 3 }], weights: new Map([["react", 1.5], ["sql", 1.5]]) });
+  assert.equal(m.gaps.length, 1);
+  assert.equal(m.gaps[0].skill, "sql");
+  assert.equal(m.breakdown.coverage, 0.5, "an unheld skill cannot be lifted by its weight");
+});
+
+test("matchJobPost takes a prepared market and reports whether it applied", () => {
+  const job = { title: "CRA Intern", skills: ["research", "documentation"], role: "ayush" };
+  const profile = { skills: ["research"], levels: { research: 3 }, verified: ["research"], interests: [] };
+  const bare = matchJobPost(job, profile);
+  assert.equal("market" in bare, false, "no market passed, no market reported");
+
+  const weighted = matchJobPost(job, profile, { weights: new Map([["research", 1.5], ["documentation", 0.6]]), sample: { total: 12, dated: 8 }, lane: "ayush" });
+  assert.equal(weighted.market.applied, true);
+  assert.equal(weighted.market.sample.total, 12);
+  assert.equal(weighted.market.lane, "ayush");
+  assert.ok(weighted.score > bare.score);
+
+  const empty = matchJobPost(job, profile, { weights: new Map(), sample: { total: 2 } });
+  assert.equal(empty.market.applied, false, "a corpus too thin to weight anything says so");
+  assert.equal(empty.score, bare.score);
+});
+
 test("profileForMatching folds local signals without a backend", () => {
   // no localStorage in node: mastery/proof read empty, so resume skills are L2 claimed
   const p = profileForMatching("ayush", ["Diagnosis", "GCP", "unknown-thing"], 90, ["research"]);

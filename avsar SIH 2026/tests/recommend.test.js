@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { orderMissingByDemand, jobDemand, roadmapGenerator } from "../src/lib/roadmapGenerator.js";
-import { guessRole, extractSkills, toLiveJobShape } from "../src/lib/store.js";
+import { guessRole, extractSkills, toLiveJobShape, laneOfRole } from "../src/lib/store.js";
 
 const JOBS = [
   { skills: ["react", "javascript", "git"] },
@@ -39,6 +39,7 @@ test("guessRole maps titles to tracks, drops the unmappable", () => {
   assert.equal(guessRole("Senior React Developer"), "sde");
   assert.equal(guessRole("Data Analyst, SQL"), "data");
   assert.equal(guessRole("SEO Content Writer"), "marketing");
+  assert.equal(guessRole("Panchakarma Therapist (BAMS)"), "ayush", "the ayush lane is reachable");
   assert.equal(guessRole("Office Assistant"), null);
 });
 
@@ -48,11 +49,31 @@ test("extractSkills finds vocab hits incl. github→git alias", () => {
 });
 
 test("toLiveJobShape builds a feed card, drops junk rows", () => {
-  const j = toLiveJobShape({ id: 9, title: "Frontend Engineer", company_name: "Acme", url: "https://x", job_type: "full_time", category: "Software Development", description: "React and git daily." });
+  const j = toLiveJobShape({ id: 9, title: "Frontend Engineer", company_name: "Acme", url: "https://x", job_type: "full_time", category: "Software Development", description: "React and git daily.", publication_date: "2026-09-21T12:55:11", salary: "$70k - $90k" });
   assert.equal(j.id, "live-9");
   assert.equal(j.role, "sde");
   assert.equal(j.type, "Full-time");
   assert.equal(j.live, true);
   assert.ok(j.skills.includes("react"));
   assert.equal(toLiveJobShape({ title: "Office Assistant" }), null);
+});
+
+test("live rows carry the lane and the date the feed already sent", () => {
+  const tech = toLiveJobShape({ id: 1, title: "Frontend Engineer", category: "Software", description: "react", publication_date: "2026-09-21T12:55:11", salary: "$70k - $90k" });
+  assert.equal(tech.lane, "tech");
+  assert.equal(tech.src, "remotive");
+  assert.equal(tech.salary, "$70k - $90k");
+  assert.match(tech.postedAt, /^2026-09-21T/);
+
+  const ayur = toLiveJobShape({ id: 2, title: "Ayurveda Panchakarma Therapist", category: "Health", description: "panchakarma therapy" });
+  assert.equal(ayur.role, "ayush");
+  assert.equal(ayur.lane, "ayush", "an ayurveda posting is never tagged tech");
+
+  const undated = toLiveJobShape({ id: 3, title: "Frontend Engineer", category: "Software", description: "react" });
+  assert.equal("postedAt" in undated, false, "no date in, no date claimed out");
+});
+
+test("laneOfRole keeps the two portals apart", () => {
+  assert.equal(laneOfRole("ayush"), "ayush");
+  for (const r of ["sde", "data", "marketing", "govt", ""]) assert.equal(laneOfRole(r), "tech", r);
 });

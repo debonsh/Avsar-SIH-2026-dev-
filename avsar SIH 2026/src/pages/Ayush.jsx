@@ -38,7 +38,7 @@ export default function Ayush() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#f6f3ea]/30 via-transparent to-[#f6f3ea]/60" />
         </div>
         <div className="relative mx-auto w-full max-w-5xl px-3 py-5 sm:px-6 sm:py-14">
-          <div className="rounded-2xl border border-emerald-900/10 bg-white/90 shadow-sm backdrop-blur-sm">
+          <div className="rounded-xl border border-emerald-900/10 bg-white/90 shadow-sm backdrop-blur-sm">
             <div className="px-4 py-6 text-center sm:px-8 sm:py-12">
               <p className="inline-block rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-800 sm:px-3 sm:py-1 sm:text-[11px]">
                 Ministry of Ayush · BAMS · NCISM aligned
@@ -129,7 +129,7 @@ export default function Ayush() {
 
       <section className="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6 sm:pb-24" aria-label="Ananya">
         <Reveal>
-          <div className="rounded-2xl border border-emerald-900/10 bg-white px-6 py-10 text-center shadow-sm">
+          <div className="rounded-xl border border-emerald-900/10 bg-white px-6 py-10 text-center shadow-sm">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-emerald-700">
               Ananya · BAMS final year
             </p>

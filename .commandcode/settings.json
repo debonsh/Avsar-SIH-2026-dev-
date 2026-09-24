@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "mcp__graft__graft_repo_map",
-      "mcp__graft__graft_find_code"
+      "mcp__graft__graft_find_code",
+      "Shell(mkdir:*)",
+      "Shell(cp:*)",
+      "Shell(node --test tests/dates.test.js)",
+      "Shell(node --check scripts/boards.mjs)",
+      "Shell(node -e  import('./src/lib/dates.js').then(({toIso}) => { console.log('greenhouse updated_at ', toIso('2026-09-14T10:22:00-04:00')); console.log('lever createdAt (ms) ', toIso(1757000000000)); console.log('ashby publishedAt ', toIso('2026-09-10T18:00:00.000Z')); console.log('naukri relative ', toIso('3 days ago', Date.parse('2026-09-23T12:00:00Z'))); console.log('missing ', toIso(undefined) === null ? 'null (key omitted)' : 'LEAK'); }); )",
+      "Shell(node -e \" const probe = async (name, url) => { try { const r = await fetch(url, { signal: AbortSignal.timeout(8000) }); const body = r.ok ? await r.json() : null; const n = Array.isArray(body) ? body.length : (body?.jobs?.length ?? body?.data?.length ?? 0); console.log(name.padEnd(12), r.status, 'items:', n); } catch (e) { console.log(name.padEnd(12), 'FAILED', e.message); } }; await probe('greenhouse', 'https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true'); await probe('lever', 'https://api.lever.co/v0/postings/lever?mode=json&limit=5'); await probe('ashby', 'https://api.ashbyhq.com/posting-api/job-board/linear'); await probe('remotive', 'https://remotive.com/api/remote-jobs?limit=3'); await probe('arbeitnow', 'https://www.arbeitnow.com/api/job-board-api'); \")",
+      "Shell(awk:*)"
     ],
     "deny": [],
     "defaultMode": "default"

@@ -83,7 +83,7 @@ export function questionsFromProfile(p = {}, resume = {}) {
 export const ROUTER_QS = [
   {
     id: "who",
-    q: "AYUSH or Tech — where do you belong?",
+    q: "AYUSH or Tech: where do you belong?",
     opts: [
       { id: "ayush", label: "AYUSH / Vaidya", hint: "BAMS·BSMS students, clinic, rotations, herbal pharma, research.", track: "ayush" },
       { id: "tech", label: "Tech / engineering / data", hint: "Code, dashboards, campaigns, govt prep.", track: "tech" },

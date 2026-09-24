@@ -1,9 +1,11 @@
 // Avsar 2026 front door. One question, one tap, one portal: pick a side and
 // land straight on that portal's own home (AyushHome / TechHome at /home).
 // The pick is one string in localStorage; Profile can switch it later.
-// Pre-portal the app owns a dark floor, always — this page is a dark hero.
+// Voice is GOV-clean: flat panel, one headline, measured type. No orbs, no
+// entrance motion. The choice cards are the single loud moment because the
+// tap IS the product. Dial ENERGY 1 / RHYTHM 2 / MOTION 1.
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Sprout, Cpu, Compass, ArrowRight, ArrowUpRight, Target, Flame, Briefcase } from "lucide-react";
 import { Page, Btn } from "../components/ui.jsx";
 import { useAvsar } from "../app/store.jsx";
@@ -13,7 +15,7 @@ import { dashboardFor } from "../lib/rbac.js";
 
 const OPT_STYLE = {
   ayush: {
-    badge: "bg-emerald-500/15 text-emerald-300",
+    badge: "bg-emerald-100 text-emerald-800",
     ring: "hover:border-emerald-500/60",
     glow: "group-hover:bg-emerald-500/10",
   },
@@ -37,7 +39,7 @@ export default function Welcome() {
   const [who, setWho] = useState(null);
   const rec = who ? recommendTrack({ who }) : null;
 
-  // One tap assigns the portal AND lands on its home — no confirm screen, no
+  // One tap assigns the portal AND lands on its home: no confirm screen, no
   // detour. Each home funnels unfinished setup (profile %, journey) itself.
   // A portal pick is a student-side choice: a lingering professional desk role
   // would bounce every engine route back to the desk, so it resets to student.
@@ -50,51 +52,48 @@ export default function Welcome() {
 
   return (
     <Page title="" sub="">
-      {/* hero: dual-universe gradient, dot grid, mono status strip */}
-      <section className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 px-5 py-8 sm:px-8 sm:py-10">
-        <div className="bg-dither mask-hero-fade pointer-events-none absolute inset-0" aria-hidden />
-        <div className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-emerald-500/20 blur-3xl" aria-hidden />
-        <div className="pointer-events-none absolute -bottom-24 -right-24 size-72 rounded-full bg-blurple/25 blur-3xl" aria-hidden />
-        <div className="relative">
-          <p className="flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
-            <span>Avsar 2026 // SIH 26044 · Ministry of Ayush</span>
-            <span className="text-blurple-soft">internships · upskilling · gamified</span>
-          </p>
-          <h1 className="mt-4 max-w-xl text-balance font-display text-3xl font-bold leading-[1.05] tracking-tight text-zinc-50 sm:text-5xl">
-            Internships find you when your skills prove it.
-          </h1>
-          <p className="mt-3 max-w-lg text-pretty text-sm leading-6 text-zinc-400 sm:text-[15px]">
-            Score your resume, close gaps with quests, streaks, and XP — then
-            apply to match-scored internships with proof, not promises. Vaidya
-            (AYUSH) or Tech: pick a side, one tap sets it all.
-          </p>
-          {/* the loop: assess → upskill → intern */}
-          <div className="mt-5 grid gap-2 sm:grid-cols-3">
-            {[
-              { icon: Target, title: "Assess", body: "Resume score + quiz → skill passport" },
-              { icon: Flame, title: "Upskill", body: "Quests, streaks, XP close the gaps" },
-              { icon: Briefcase, title: "Intern", body: "Match-scored roles, apply + track" },
-            ].map((s) => (
-              <div key={s.title} className="flex items-center gap-2.5 rounded-xl border border-zinc-800/80 bg-zinc-950/60 px-3 py-2.5">
-                <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-zinc-300" aria-hidden>
-                  <s.icon className="size-4" />
+      {/* hero: flat panel, mono status strip, one headline. The loop below is
+          numbered in mono because those are lesson stages, not decoration. */}
+      <section className="rounded-xl border border-zinc-800 bg-zinc-950 px-5 py-8 sm:px-8 sm:py-10">
+        <p className="flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+          <span>Avsar 2026 // SIH 2026</span>
+          <span className="text-blurple-soft">internships · upskilling · gamified</span>
+        </p>
+        <h1 className="mt-4 max-w-xl text-balance font-display text-3xl font-bold leading-[1.05] tracking-tight text-zinc-50 sm:text-5xl">
+          Internships find you when your skills prove it.
+        </h1>
+        <p className="mt-3 max-w-lg text-pretty text-sm leading-6 text-zinc-400 sm:text-[15px]">
+          Score your resume, close gaps with quests, streaks, and XP, then
+          apply to match-scored internships with proof, not promises. Vaidya
+          (AYUSH) or Tech: pick a side, one tap sets it all.
+        </p>
+        <div className="mt-5 grid gap-2 sm:grid-cols-3">
+          {[
+            { n: "01", icon: Target, title: "Assess", body: (<>Resume score + quiz <ArrowRight className="inline size-3 align-middle" aria-hidden /> skill passport</>) },
+            { n: "02", icon: Flame, title: "Upskill", body: "Quests, streaks, XP close the gaps" },
+            { n: "03", icon: Briefcase, title: "Intern", body: "Match-scored roles, apply + track" },
+          ].map((s) => (
+            <div key={s.title} className="flex items-center gap-2.5 px-1 py-1.5">
+              <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-zinc-300" aria-hidden>
+                <s.icon className="size-4" />
+              </span>
+              <span>
+                <span className="block text-xs font-bold text-zinc-100">
+                  <span className="mr-1.5 font-mono font-medium tabular-nums text-zinc-500">{s.n}</span>{s.title}
                 </span>
-                <span>
-                  <span className="block text-xs font-bold text-zinc-100">{s.title}</span>
-                  <span className="block text-[11px] leading-4 text-zinc-500">{s.body}</span>
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest" aria-hidden>
-            <span className="flex items-center gap-1.5 text-emerald-300">
-              <span className="size-1.5 rounded-full bg-emerald-400" /> Vaidya
-            </span>
-            <span className="h-px w-8 bg-zinc-800" />
-            <span className="flex items-center gap-1.5 text-blurple-soft">
-              <span className="size-1.5 rounded-full bg-blurple" /> Tech
-            </span>
-          </div>
+                <span className="block text-[11px] leading-4 text-zinc-500">{s.body}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-widest" aria-hidden>
+          <span className="flex items-center gap-1.5 text-zinc-400">
+            <span className="size-1.5 rounded-full bg-emerald-500" /> Vaidya
+          </span>
+          <span className="h-px w-8 bg-zinc-800" />
+          <span className="flex items-center gap-1.5 text-blurple-soft">
+            <span className="size-1.5 rounded-full bg-blurple" /> Tech
+          </span>
         </div>
       </section>
 
@@ -112,9 +111,9 @@ export default function Welcome() {
 
       {/* the one question */}
       <p className="mb-3 mt-8 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
-        <span className="text-blurple-soft">01</span> — who are you?
+        <span className="text-blurple-soft">01</span> // who are you?
       </p>
-      <h2 className="font-display text-xl font-bold tracking-tight text-zinc-50 sm:text-2xl">
+      <h2 className="text-balance font-display text-2xl font-bold tracking-tight text-zinc-50 sm:text-3xl">
         {ROUTER_QS[0].q}
       </h2>
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -128,15 +127,15 @@ export default function Welcome() {
               type="button"
               onClick={() => (o.track ? go(o.track) : setWho(o.track ? null : o.id))}
               aria-pressed={active}
-              className={`group relative flex min-h-[148px] flex-col overflow-hidden rounded-xl border bg-zinc-950 p-4 text-left transition-all active:scale-[0.99] ${
+              className={`group relative flex min-h-[168px] flex-col overflow-hidden rounded-xl border bg-zinc-950 p-5 text-left transition-colors ${
                 active ? "border-blurple bg-blurple/10" : `border-zinc-800 ${st.ring}`
               }`}
             >
               <span className={`pointer-events-none absolute inset-0 transition-colors ${st.glow}`} aria-hidden />
-              <span className={`relative inline-flex size-9 items-center justify-center rounded-xl ${st.badge}`} aria-hidden>
-                <Icon className="size-[18px]" />
+              <span className={`relative inline-flex size-10 items-center justify-center rounded-xl ${st.badge}`} aria-hidden>
+                <Icon className="size-5" />
               </span>
-              <span className="relative mt-3 block text-sm font-bold text-zinc-100">{o.label}</span>
+              <span className="relative mt-3 block text-[15px] font-bold text-zinc-100">{o.label}</span>
               {o.hint && <span className="relative mt-1 block text-xs leading-5 text-zinc-500">{o.hint}</span>}
               <span className="relative mt-auto inline-flex items-center gap-1 pt-3 text-xs font-semibold text-zinc-400 transition-colors group-hover:text-zinc-100">
                 Enter <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
@@ -148,7 +147,7 @@ export default function Welcome() {
 
       {rec && rec.track === "undecided" && (
         <div className="mt-4 rounded-xl border border-dashed border-zinc-700 bg-zinc-950 p-4">
-          <p className="text-sm text-zinc-300">Exploring? Compare both homes first — pick the one that pulls you.</p>
+          <p className="text-sm text-zinc-300">Exploring? Compare both homes first, pick the one that pulls you.</p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {TRACKS.map((t) => (
               <button
@@ -168,9 +167,19 @@ export default function Welcome() {
         </div>
       )}
 
-      <p className="mt-6 text-xs leading-5 text-zinc-600">
+      <p className="mt-6 text-xs leading-5 text-zinc-500">
         Nothing to install, nothing to sign in to. Answers stay on this device until you
         connect a Google account for backup.
+      </p>
+
+      {/* The nav is suppressed before onboarding, so the judge page needs a door of its own.
+          It is the only link here that does not ask a question first. */}
+      <p className="mt-3 text-xs leading-5 text-zinc-500">
+        Judging this, or just want the argument before the questionnaire?{" "}
+        <Link to="/labs" className="text-blurple-soft underline underline-offset-4">
+          Open the ninety second tour
+        </Link>
+        , which needs no profile and no network.
       </p>
     </Page>
   );

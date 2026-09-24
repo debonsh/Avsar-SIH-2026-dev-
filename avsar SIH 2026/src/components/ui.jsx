@@ -1,7 +1,9 @@
-// Avsar UI primitives — shadcn pattern (cva variants + Slot + clsx/tailwind-merge).
-// Professional light theme, herb-green accent, soft rounded panels.
-// Typeset roles: Archivo display, Inter body, system mono for measurement only.
-import { useEffect, useRef, useState } from "react";
+// Avsar UI primitives. Dark zinc panels, blurple reserved for action and
+// progress; mono type only for measurement (scores, counts, urls).
+// Dials: ENERGY 2 / RHYTHM 2 / MOTION 1. Palette: zinc neutrals plus blurple;
+// green, amber, red, and blue read as status only, never decoration.
+// Type roles: Archivo display, Inter body, system mono for measurement only.
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
@@ -34,20 +36,39 @@ export function Page({ title, sub, actions, children }) {
   );
 }
 
-export function Card({ className = "", children, ...rest }) {
+// Card is the default work panel. Dark fits the dense queue screens; light
+// exists for the stone-ink callers (Public, Programs non-tech). The theme is
+// set where the ink lives, so contrast holds on both.
+export function Card({ tone = "dark", className = "", children, ...rest }) {
   return (
-    <section className={cn("rounded-xl border border-zinc-800 bg-zinc-950 p-5", className)} {...rest}>
+    <section
+      className={cn(
+        "rounded-xl border p-5",
+        tone === "light" ? "border-stone-200 bg-white" : "border-zinc-800 bg-zinc-950",
+        className
+      )}
+      {...rest}
+    >
       {children}
     </section>
   );
 }
 
-export function H2({ children, className = "" }) {
-  return <h2 className={cn("mb-3 text-sm font-semibold text-zinc-100", className)}>{children}</h2>;
+// H2 follows its Card: zinc ink on dark panels, stone ink on light ones.
+// A heading is only as readable as the panel behind it.
+export function H2({ tone = "dark", children, className = "" }) {
+  return (
+    <h2 className={cn("mb-3 text-sm font-semibold", tone === "light" ? "text-stone-900" : "text-zinc-100", className)}>
+      {children}
+    </h2>
+  );
 }
 
+// Radius: lg on controls so they read apart from xl panels. Base height 44px
+// meets the tap target; sm stays small for dense rows only. One blurple
+// focus ring on every variant because keyboard users tab these daily.
 const buttonVariants = cva(
-  "inline-flex min-h-[40px] items-center justify-center gap-1.5 whitespace-nowrap rounded-xl text-sm font-medium transition-colors active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap rounded-lg text-sm font-medium transition-[scale,background-color,border-color] duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blurple active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -61,7 +82,7 @@ const buttonVariants = cva(
         sm: "h-8 min-h-0 px-3 text-xs",
         md: "h-10 px-4 py-2",
         lg: "h-11 px-6",
-        icon: "size-10 min-h-0",
+        icon: "size-11 min-h-0",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },
@@ -76,7 +97,7 @@ export function Button({ to, asChild, variant, size, className, ...rest }) {
   return <button type="button" className={cls} {...rest} />;
 }
 
-// Legacy alias — every page already imports Btn.
+// Btn stays because 20+ screens already import it; same voice as Button.
 export const Btn = Button;
 
 export function Field({ label, children, hint }) {
@@ -89,8 +110,9 @@ export function Field({ label, children, hint }) {
   );
 }
 
+// Inputs sit on dark panels, so the ring and border answer in blurple.
 export const inputCls =
-  "flex h-10 w-full rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 hover:border-zinc-700";
+  "flex h-10 w-full rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 hover:border-zinc-700 focus:border-blurple focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-blurple";
 
 export function Meter({ value, max }) {
   const reduce = useReducedMotion();
@@ -109,13 +131,24 @@ export function Meter({ value, max }) {
         initial={reduce ? { scaleX: frac } : { scaleX: 0 }}
         whileInView={{ scaleX: frac }}
         viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       />
     </div>
   );
 }
 
-const DONUT_COLORS = ["#1e7a4c", "#d6cfae", "#c77b21", "#166038", "#a1a1aa", "#78716c"];
+// Series tokens shared with Radar: emerald marks the held value, amber the
+// target, zinc fills the rest. One token set so charts never invent a palette.
+const SERIES = {
+  emerald: "#1e7a4c",
+  emeraldDeep: "#166038",
+  amber: "#c77b21",
+  tan: "#d6cfae",
+  zincSoft: "#a1a1aa",
+  zincMute: "#78716c",
+};
+
+const DONUT_COLORS = [SERIES.emerald, SERIES.tan, SERIES.amber, SERIES.emeraldDeep, SERIES.zincSoft, SERIES.zincMute];
 
 // Zero-dependency donut, segments fade in with a stagger.
 export function Donut({ segs = [], size = 120, thick = 16, label = "Distribution" }) {
@@ -140,18 +173,19 @@ export function Donut({ segs = [], size = 120, thick = 16, label = "Distribution
           initial={reduce ? { opacity: 1 } : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.4, ease: "easeOut", delay: i * 0.08 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: i * 0.08 }}
         />
       ))}
     </svg>
   );
 }
 
+// Legacy alias: Jobs.jsx already imports this name for its legend dots.
 export const DONUT_COLORS_EXPORT = DONUT_COLORS;
 
 // Zero-dependency radar: skill profile (emerald, filled) vs target role
 // (amber, dashed). axes: [{ label, value, target }] on a shared 0–max scale.
-// Theme-safe: grid uses currentColor at low opacity, series use brand hexes.
+// Grid uses currentColor at low opacity so the panel theme shows through.
 export function Radar({ axes = [], max = 5, size = 280, className = "h-auto w-full", label = "Skill radar" }) {
   const cx = size / 2;
   const cy = size / 2;
@@ -165,8 +199,8 @@ export function Radar({ axes = [], max = 5, size = 280, className = "h-auto w-fu
   };
   const poly = (key) => axes.map((a, i) => pt(i, a[key]).join(",")).join(" ");
   const rings = [1, 2, 3, 4, 5].filter((x) => x <= max);
-  // long axis names ("Pharmacovigilance") would cross the polygons and the
-  // frame edge — truncate once here so no caller can collide.
+  // Long axis names ("Pharmacovigilance") would cross the polygons and the
+  // frame edge, so labels truncate while <title> keeps the full name for AT.
   const short = (s) => {
     const t = String(s || "");
     return t.length > 12 ? `${t.slice(0, 11)}…` : t;
@@ -184,22 +218,27 @@ export function Radar({ axes = [], max = 5, size = 280, className = "h-auto w-fu
         const [x, y] = pt(i, max);
         return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="currentColor" strokeOpacity="0.14" />;
       })}
-      <polygon points={poly("target")} fill="#c77b21" fillOpacity="0.08" stroke="#c77b21" strokeWidth="1.5" strokeDasharray="5 3" />
-      <polygon points={poly("value")} fill="#1e7a4c" fillOpacity="0.22" stroke="#1e7a4c" strokeWidth="2" strokeLinejoin="round" />
+      <polygon points={poly("target")} fill={SERIES.amber} fillOpacity="0.08" stroke={SERIES.amber} strokeWidth="1.5" strokeDasharray="5 3" />
+      <polygon points={poly("value")} fill={SERIES.emerald} fillOpacity="0.22" stroke={SERIES.emerald} strokeWidth="2" strokeLinejoin="round" />
       {axes.map((a, i) => {
         const [x, y] = pt(i, max * 1.16);
         return (
-          <text key={a.label} x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="currentColor" fillOpacity="0.75">
-            {short(a.label)}
-          </text>
+          <g key={a.label}>
+            <title>{`${a.label}: ${a.value} of ${max}, target ${a.target}`}</title>
+            <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="currentColor" fillOpacity="0.75">
+              {short(a.label)}
+            </text>
+          </g>
         );
       })}
     </svg>
   );
 }
 
+// Badges are status tags with counts, never decoration: full radius sets them
+// apart from lg controls and xl panels, mono fits the numbers they carry.
 const badgeVariants = cva(
-  "inline-flex items-center rounded-xl border px-2 py-0.5 font-mono text-xs font-medium tabular-nums",
+  "inline-flex items-center rounded-full border px-2 py-0.5 font-mono text-xs font-medium tabular-nums",
   {
     variants: {
       tone: {
@@ -219,7 +258,7 @@ export function Badge({ tone, className, ...rest }) {
   return <span className={cn(badgeVariants({ tone }), className)} {...rest} />;
 }
 
-// Legacy alias.
+// Chip stays because 20+ screens already import it; same voice as Badge.
 export function Chip({ children, tone = "zinc" }) {
   return <Badge tone={tone}>{children}</Badge>;
 }
@@ -230,6 +269,8 @@ export function Skeleton({ className, ...rest }) {
 }
 
 // One scroll reveal for section entrances: transform + opacity, ease-out, once.
+// Dial is MOTION 1, so callers reserve this for the hero and the first proof
+// section; everything else renders static. Static when reduced motion.
 export function Reveal({ children, delay = 0, className, ...rest }) {
   const reduce = useReducedMotion();
   if (reduce) return <div className={className} {...rest}>{children}</div>;
@@ -239,30 +280,33 @@ export function Reveal({ children, delay = 0, className, ...rest }) {
       initial={{ opacity: 0, transform: "translateY(14px)" }}
       whileInView={{ opacity: 1, transform: "translateY(0px)" }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.45, ease: "easeOut", delay }}
+      transition={{ duration: 0.3, ease: "easeOut", delay }}
       {...rest}
     >
       {children}
     </motion.div>
   );
 }
-
 // Animated integer for scores and stats. Static text when reduced motion.
 export function CountUp({ to, className }) {
   const reduce = useReducedMotion();
-  const ref = useRef(null);
   const [val, setVal] = useState(reduce ? to : 0);
   useEffect(() => {
     if (reduce) return;
     const controls = animate(0, to, {
-      duration: 0.6,
+      duration: 0.3,
       ease: "easeOut",
       onUpdate: (v) => setVal(Math.round(v)),
     });
     return () => controls.stop();
   }, [to, reduce]);
+  // Under reduced motion the value must come straight from props, not from state
+  // seeded at mount. The corpus grows when live feeds land, and a readout frozen at
+  // its pre-fetch number ends up printing a different total from the sentence below
+  // it. A stat that contradicts its own prose is worse than an unanimated one.
+  if (reduce) return <span className={cn("tabular-nums", className)}>{to}</span>;
   return (
-    <span ref={ref} className={cn("tabular-nums", className)}>
+    <span className={cn("tabular-nums", className)}>
       {val}
     </span>
   );
@@ -281,7 +325,7 @@ export function Empty({ title, body, action }) {
 
 export function ErrorBox({ message, onRetry }) {
   return (
-    <div className="border border-red-900 bg-red-950 px-5 py-4 text-sm text-red-200" role="alert">
+    <div className="rounded-xl border border-red-900 bg-red-950 px-5 py-4 text-sm text-red-300" role="alert">
       <p className="font-semibold">Something failed to load</p>
       <p className="mt-1 text-pretty">{message}</p>
       {onRetry && (
@@ -293,25 +337,28 @@ export function ErrorBox({ message, onRetry }) {
   );
 }
 
-// --- system24: sharp 1px chrome, mono labels, square corners. Landing + figs only. ---
+// System figures for landing only: sharp 1px chrome, mono for measurement,
+// square corners would fight the app radius, so these stay figure frames.
 
-// Thin mono status strip: `left … right`, 1px top/bottom borders via parent.
+// Thin mono status strip: `left … right`. Kept mono because both slots carry
+// readings (routes, versions, counts), never prose.
 export function StatusBar({ left, right, className = "" }) {
   return (
     <div className={cn("flex flex-wrap items-center justify-between gap-2 px-4 py-2", className)}>
-      <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-600">{left}</span>
+      <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-400">{left}</span>
       {right && (
-        <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-600">{right}</span>
+        <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-400">{right}</span>
       )}
     </div>
   );
 }
 
-// ASCII divider: `// label ─────`. One line, no gradients.
+// ASCII divider: `// label ─────`. The slashes are the motif; the label is
+// prose, so sans semibold at AA-passing zinc.
 export function AsciiRule({ label = "", className = "" }) {
   return (
     <div className={cn("flex items-center gap-2", className)} aria-hidden>
-      <span className="shrink-0 font-mono text-[11px] uppercase tracking-widest text-zinc-600">
+      <span className="shrink-0 text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
         {"//"} {label}
       </span>
       <span className="h-px flex-1 bg-zinc-800" />
@@ -319,17 +366,19 @@ export function AsciiRule({ label = "", className = "" }) {
   );
 }
 
-// Square 1px panel with optional mono header row. The landing fig frame.
+// Ticket is the landing figure frame, one level above Card, hence the
+// stronger border. The header is prose, so sans; status is state, not action,
+// so zinc instead of the blurple accent.
 export function Ticket({ label, status, className = "", children, ...rest }) {
   return (
-    <section className={cn("rounded-xl border border-zinc-800 bg-zinc-950", className)} {...rest}>
+    <section className={cn("rounded-xl border border-zinc-700 bg-zinc-950", className)} {...rest}>
       {(label || status) && (
         <div className="flex items-center justify-between gap-4 border-b border-zinc-800 px-4 py-2">
-          <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
             {label}
           </span>
           {status && (
-            <span className="font-mono text-[11px] uppercase tracking-widest text-blurple-soft">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-zinc-300">
               {status}
             </span>
           )}
@@ -340,16 +389,18 @@ export function Ticket({ label, status, className = "", children, ...rest }) {
   );
 }
 
-// Terminal window: square frame, `> _` header, mono body. For coach/CLI previews.
+// Terminal window for coach and CLI previews. Mono throughout because the
+// body is literal terminal text; the url pill is fully round so it reads as
+// an inner control inside the xl frame.
 export function TermWindow({ url, children, className = "" }) {
   return (
     <div className={cn("overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950", className)}>
       <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-2">
-        <span className="font-mono text-[11px] text-zinc-600" aria-hidden>
+        <span className="font-mono text-[11px] text-zinc-400" aria-hidden>
           {">"} _
         </span>
         {url && (
-          <span className="mx-auto hidden bg-zinc-900 px-3 py-0.5 font-mono text-[11px] text-zinc-500 sm:block">
+          <span className="mx-auto hidden rounded-full bg-zinc-900 px-3 py-0.5 font-mono text-[11px] text-zinc-400 sm:block">
             {url}
           </span>
         )}
@@ -359,14 +410,8 @@ export function TermWindow({ url, children, className = "" }) {
   );
 }
 
-// --- ayush tokens + components (added for SIH 26044) ---
-
-export const SAGE = "text-emerald-400";
-export const GOLD = "text-amber-300";
-export const SAGE_BG = "border-emerald-900 bg-emerald-950";
-export const GOLD_BG = "border-amber-900 bg-amber-950";
-
-// beej → ankur → paudha → vaidya → acharya growth display
+// Growth display, beej to acharya. Read-only indicator, so one role="img"
+// label instead of five tab stops; the dots stay hidden from AT.
 export function VaidyaLevel({ level, className = "" }) {
   const stages = [
     { id: "beej", label: "बीज", hi: "seed" },
@@ -376,48 +421,56 @@ export function VaidyaLevel({ level, className = "" }) {
     { id: "acharya", label: "आचार्य", hi: "acharya" },
   ];
   const idx = stages.findIndex((s) => s.id === level);
+  const current = idx >= 0 ? stages[idx] : null;
   return (
-    <div className={`flex items-center gap-1.5 ${className}`}>
+    <div
+      role="img"
+      aria-label={current ? `Growth stage ${idx + 1} of 5: ${current.label} (${current.hi})` : "Growth stage unset"}
+      className={`flex items-center gap-1.5 ${className}`}
+    >
       {stages.map((s, i) => (
         <span
           key={s.id}
+          aria-hidden
           className={`inline-flex size-6 items-center justify-center rounded-full border text-[10px] font-mono ${
             i <= idx ? "border-emerald-500 bg-emerald-600 text-white" : "border-zinc-700 text-zinc-500"
           }`}
-          title={s.hi}
         >
           {i + 1}
         </span>
       ))}
-      <span className="ml-1 font-mono text-xs text-emerald-400">{idx >= 0 ? stages[idx].label : ""}</span>
+      <span aria-hidden className="ml-1 font-mono text-xs text-emerald-400">{current ? current.label : ""}</span>
     </div>
   );
 }
 
-// BAMS semester syllabus table
-export function SyllabusTable({ data = [] }) {
-  if (!data.length) return null;
+// BAMS semester syllabus table. Empty input renders Empty, never nothing:
+// a missing table reads as a failed load. Header is prose, so sans; cells
+// carrying counts stay mono tabular.
+export function SyllabusTable({ data = [], action }) {
+  if (!data.length)
+    return <Empty title="No syllabus rows yet" body="Syllabus rows for this lane have not been added yet." action={action} />;
   return (
-    <div className="overflow-x-auto border border-zinc-800">
+    <div className="overflow-x-auto rounded-xl border border-zinc-800">
       <table className="w-full min-w-[560px] text-left text-sm">
         <thead>
-          <tr className="border-b border-zinc-800 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
-            <th className="px-4 py-2 font-medium">Semester</th>
-            <th className="px-4 py-2 font-medium">Focus</th>
-            <th className="px-4 py-2 font-medium">Skills</th>
-            <th className="px-4 py-2 text-right font-medium">Courses</th>
-            <th className="px-4 py-2 text-right font-medium">Quests</th>
+          <tr className="border-b border-zinc-800 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+            <th scope="col" className="px-4 py-2 font-semibold">Semester</th>
+            <th scope="col" className="px-4 py-2 font-semibold">Focus</th>
+            <th scope="col" className="px-4 py-2 font-semibold">Skills</th>
+            <th scope="col" className="px-4 py-2 text-right font-semibold">Courses</th>
+            <th scope="col" className="px-4 py-2 text-right font-semibold">Quests</th>
           </tr>
         </thead>
         <tbody>
           {data.map((row) => (
-            <tr key={row.sem} className="border-t border-zinc-800 first:border-t-0 hover:bg-zinc-900">
+            <tr key={row.sem} className="border-t border-zinc-800 first:border-t-0">
               <td className="px-4 py-2.5 font-mono text-zinc-100">{row.sem}</td>
               <td className="px-4 py-2.5 text-zinc-300">{row.label}</td>
               <td className="px-4 py-2.5">
                 <div className="flex flex-wrap gap-1">
                   {row.skills.map((s) => (
-                    <span key={s} className="inline-block rounded-xl border border-zinc-700 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-300">{s}</span>
+                    <span key={s} className="inline-block rounded-md border border-zinc-700 bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-300">{s}</span>
                   ))}
                 </div>
               </td>

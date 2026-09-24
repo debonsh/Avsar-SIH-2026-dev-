@@ -38,12 +38,12 @@ function JourneyBar({ progress }) {
     <div className="mb-5">
       <div className="mb-1.5 flex items-baseline justify-between">
         <p className="text-xs font-semibold text-stone-500">Your Avsar profile</p>
-        <p className="font-mono text-xs font-bold tabular-nums text-emerald-800">{progress.total}% complete</p>
+        <p className="font-mono text-xs font-bold tabular-nums text-blurple-soft">{progress.total}% complete</p>
       </div>
       <div className="flex gap-1" role="progressbar" aria-valuenow={progress.total} aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion">
         {segs.map((s) => (
           <span key={s.label} title={`${s.label} ${s.v}/${s.w}`} className="h-2 overflow-hidden rounded-full bg-stone-200" style={{ flex: s.w }}>
-            <span className={`block h-full rounded-full ${s.v > 0 ? "bg-emerald-600" : ""}`} style={{ width: s.v > 0 ? "100%" : "0%" }} />
+            <span className={`block h-full rounded-full ${s.v > 0 ? "bg-blurple" : ""}`} style={{ width: s.v > 0 ? "100%" : "0%" }} />
           </span>
         ))}
       </div>
@@ -197,7 +197,7 @@ export default function Journey() {
         stage === "resume"
           ? "Add your resume, see your score, close the gaps."
           : stage === "interview"
-            ? "Five questions from YOUR data — your skills, lane, goal, and resume gaps."
+            ? "Five questions from your data: your skills, lane, goal, and resume gaps."
             : "Your first loop is complete. This is where it pays off."
       }
     >
@@ -215,9 +215,9 @@ export default function Journey() {
       )}
 
       {!profile.skills && (
-        <Card className="mb-4 border-amber-300 bg-amber-50">
+        <Card tone="light" className="mb-4 border-amber-300 bg-amber-50">
           <p className="text-sm text-stone-700">
-            Finish your <Btn to="/profile" variant="quiet" size="sm">profile first</Btn> — it is worth 40% and shapes your interview questions.
+            Finish your <Btn to="/profile" size="sm">profile first</Btn>. It is worth 40% and shapes your interview questions.
           </p>
         </Card>
       )}
@@ -232,8 +232,8 @@ export default function Journey() {
                 role="tab"
                 aria-selected={tab === t.id}
                 onClick={() => setTab(t.id)}
-                className={`flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-lg px-2 text-sm font-semibold transition-colors ${
-                  tab === t.id ? "bg-emerald-700 text-white" : "text-stone-500 hover:bg-emerald-50"
+                className={`flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-lg px-2 text-sm font-semibold transition-colors ${
+                  tab === t.id ? "bg-blurple text-white" : "text-stone-500 hover:bg-emerald-50"
                 }`}
               >
                 <CIcon icon={t.icon} width={15} height={15} aria-hidden />
@@ -246,7 +246,7 @@ export default function Journey() {
             <Card>
               <H2>Paste your resume, get a number</H2>
               <Field label="Resume file" hint="PDF or text. Parsed on your device.">
-                <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-400 file:mr-3 file:rounded-lg file:border file:border-stone-300 file:bg-stone-100 file:px-3 file:py-1.5 file:text-sm" />
+                <input type="file" accept=".pdf,.txt,.md" onChange={onFile} className="text-sm text-zinc-400 file:mr-3 file:rounded-lg file:border file:border-transparent file:bg-blurple file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-white" />
               </Field>
               <div className="mt-3">
                 <Field label="Resume text">
@@ -290,13 +290,13 @@ export default function Journey() {
             <Card>
               <H2>Fixes that raise this score</H2>
               {!result ? (
-                <Empty title="Score first" body="Tab back to Score and press the button — fixes appear here." />
+                <Empty title="Score first" body="Tab back to Score and press the button. Fixes appear here." />
               ) : (
                 <>
                   <ol className="divide-y divide-stone-100">
                     {tips.map((t, i) => (
                       <li key={i} className="flex gap-3 py-2.5">
-                        <span className="font-mono text-xs tabular-nums text-emerald-700">{String(i + 1).padStart(2, "0")}</span>
+                        <span className="font-mono text-xs tabular-nums text-blurple-soft">{String(i + 1).padStart(2, "0")}</span>
                         <p className="text-sm leading-6 text-stone-700">{t}</p>
                       </li>
                     ))}
@@ -310,6 +310,14 @@ export default function Journey() {
                       </div>
                     );
                   })}
+                  {/* The list above says what to fix. The route is where the student finds out what
+                      fixing it is worth, so the loop ends on a destination rather than a to-do list. */}
+                  <div className="mt-4 border-t border-stone-100 pt-4">
+                    <Btn to="/gps" variant="quiet" size="sm">Turn these gaps into a route</Btn>
+                    <p className="mt-2 text-xs leading-5 text-stone-500">
+                      Career GPS ranks these by how many postings each one actually unlocks, and names the course hours it takes.
+                    </p>
+                  </div>
                 </>
               )}
             </Card>
@@ -350,13 +358,13 @@ export default function Journey() {
               <ol className="mt-3 space-y-2">
                 {previewQs.map((q, i) => (
                   <li key={i} className="rounded-xl bg-stone-50 px-4 py-3 text-sm leading-6 text-stone-700">
-                    <span className="font-mono text-xs text-emerald-700">{i + 1}. </span>{q}
+                    <span className="font-mono text-xs text-blurple-soft">{i + 1}. </span>{q}
                   </li>
                 ))}
               </ol>
               <div className="mt-4">
                 <Btn onClick={() => setStage("interview")} disabled={!result}>Start my interview</Btn>
-                {!result && <p className="mt-2 text-xs text-stone-400">Score your resume first — questions come from it.</p>}
+                {!result && <p className="mt-2 text-xs text-stone-400">Score your resume first. Questions come from it.</p>}
               </div>
             </Card>
           )}
@@ -389,13 +397,13 @@ export default function Journey() {
                         type="button"
                         onClick={() => gradeOne(i)}
                         disabled={!answers[i].trim() || grading !== -1}
-                        className="text-xs font-semibold text-emerald-700 underline underline-offset-4 disabled:text-stone-300"
+                        className="text-xs font-semibold text-blurple-soft underline underline-offset-4 disabled:text-zinc-600"
                       >
                         {grading === i ? "Grading…" : "Grade this answer"}
                       </button>
                     ) : (
                       <span className="text-xs text-stone-500">
-                        {grades[i].score}/4{grades[i].ai ? " · AI" : " · offline"}{grades[i].tips[0] ? ` — ${grades[i].tips[0]}` : " — strong."}
+                        {grades[i].score}/4{grades[i].ai ? " · AI" : " · offline"}{grades[i].tips[0] ? `: ${grades[i].tips[0]}` : ". Strong."}
                       </span>
                     )}
                   </div>
@@ -417,17 +425,17 @@ export default function Journey() {
           <p className="mx-auto inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-amber-800">
             <CIcon icon={cilBadge} width={14} height={14} /> First loop complete
           </p>
-          <div className="mx-auto mt-4 flex size-20 items-center justify-center rounded-full bg-emerald-700 font-display text-2xl font-bold text-white">
+          <div className="mx-auto mt-4 flex size-20 items-center justify-center rounded-full bg-blurple font-display text-2xl font-bold text-white">
             100
           </div>
           <h2 className="mt-4 font-display text-2xl font-bold text-stone-900">You did it</h2>
           <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-stone-500">
-            Profile, resume, interview — {lane === "ayush" ? "hospitals" : "recruiters"} now see proof, not promises.
-            {main > 0 && <> Your readiness sits at <strong className="text-emerald-800">{main}/100</strong>.</>}
+            Profile, resume, interview. {lane === "ayush" ? "Hospitals" : "Recruiters"} now see proof, not promises.
+            {main > 0 && <> Your readiness sits at <strong className="text-blurple-soft">{main}/100</strong>.</>}
           </p>
           <div className="mx-auto mt-3 flex max-w-xs items-center gap-1" aria-hidden>
             {[40, 30, 30].map((w, i) => (
-              <span key={i} className="h-2 rounded-full bg-emerald-600" style={{ flex: w }} />
+              <span key={i} className="h-2 rounded-full bg-blurple" style={{ flex: w }} />
             ))}
           </div>
           <div className="mt-6">

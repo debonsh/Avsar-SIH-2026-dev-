@@ -1,12 +1,17 @@
 // boards import: Greenhouse + Lever + Ashby company boards → app/src/data/boardsSeed.js.
 // ponytail: keyless JSON APIs only (same as JobSync's registry), node has no CORS limits.
 // Company directories vendored under scripts/vendor/ (from JobSync's built-in lists).
-// usage: npm run boards -- --gh=stripe --lever=lever --ashby=linear,ashby [--max=40]
-//        npm run boards -- --gh=Stripe, Figma   (names resolve via vendor lists)
+// usage: npm run boards [--gh=a,b] [--lever=a,b] [--ashby=a,b] [--max=40]
+//        no flags = DEFAULT_TOKENS below, so a bare run is broad instead of reproducing
+//        whichever two companies were passed by hand last time.
+// postedAt: each provider already returns its own posted date (Greenhouse updated_at,
+// Lever createdAt, Ashby publishedAt) and all three used to be thrown away, which left
+// every staleness and trend claim in the app unprovable.
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { guessRole, extractSkills } from "../src/lib/store.js";
+import { guessRole, extractSkills, laneOfRole } from "../src/lib/store.js";
+import { toIso } from "../src/lib/dates.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const args = Object.fromEntries(process.argv.slice(2).map((a) => {
@@ -35,6 +40,9 @@ async function get(url, ms = 20000) {
 
 const strip = (s = "") => String(s).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 const locOf = (...parts) => parts.find((p) => p && String(p).trim()) || "Remote";
+// Ashby sends secondaryLocations as objects, and the old join() wrote "[object Object]"
+// straight into the seed (that string is still baked into boardsSeed.js at line 540).
+const locName = (l) => (typeof l === "string" ? l : l?.location || l?.address?.addressLocality || "");
 const typeOf = (t = "") => /intern|trainee|apprentice|new grad/i.test(t) ? "Internship" : "Full-time";
 
 function toShape(prefix, raw, company, map) {
@@ -43,9 +51,11 @@ function toShape(prefix, raw, company, map) {
   const text = `${m.title} ${m.desc}`;
   const role = guessRole(text);
   if (!role) return null; // ponytail: unmapped → dropped, same rule as live feed
+  const postedAt = toIso(m.postedAt);
   return {
     id: `${prefix}-${m.id}`,
     role,
+    lane: laneOfRole(role), // derived from the role, so an ayush title can never be mislabelled
     title: m.title.trim().slice(0, 120),
     company,
     loc: String(m.loc || "Remote").slice(0, 60),
@@ -55,6 +65,7 @@ function toShape(prefix, raw, company, map) {
     apply: m.url || "#",
     description: strip(m.desc).slice(0, 600),
     src: prefix,
+    ...(postedAt ? { postedAt } : {}),
   };
 }
 
@@ -63,6 +74,7 @@ async function fetchGreenhouse({ name, token }) {
   return (d.jobs || []).slice(0, MAX).map((j) => toShape("gh", j, name, (x) => ({
     id: x.id, title: x.title, loc: locOf(x.location?.name), url: x.absolute_url,
     desc: x.content || "", employment: (x.metadata || []).map((m) => m.value).join(" "),
+    postedAt: x.updated_at,
   })));
 }
 
@@ -78,6 +90,7 @@ async function fetchLeverBoard({ name, token, host }) {
         id: x.id, title: x.text, loc: locOf((x.categories?.allLocations || []).join("/"), x.categories?.location),
         url: x.hostedUrl, desc: [x.descriptionPlain, (x.lists || []).map((l) => l.content).join(" ")].join(" "),
         employment: x.categories?.commitment,
+        postedAt: x.createdAt, // epoch ms
       })));
     } catch (e) { lastErr = e; }
   }
@@ -87,19 +100,35 @@ async function fetchLeverBoard({ name, token, host }) {
 async function fetchAshby({ name, token }) {
   const d = await get(`https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(token)}`);
   return (d.jobs || []).filter((j) => j.isListed !== false).slice(0, MAX).map((j) => toShape("ashby", j, name, (x) => ({
-    id: x.id, title: x.title, loc: locOf(x.locationName, (x.secondaryLocations || []).join("/")),
+    id: x.id, title: x.title, loc: locOf(x.locationName, (x.secondaryLocations || []).map(locName).filter(Boolean).join("/")),
     url: x.jobUrl, desc: x.descriptionPlain || x.descriptionHtml || "", employment: x.employmentType,
+    postedAt: x.publishedAt,
   })));
 }
 
+// A bare run used to be a usage error, so what shipped was whatever two companies were
+// passed by hand: 49 postings from Stripe and Linear, Lever at zero. Market signals
+// computed from two companies are not a market, so a bare run now spreads wider.
+const DEFAULT_TOKENS = {
+  gh: ["stripe", "figma", "databricks", "gitlab", "cloudflare", "discord", "reddit", "robinhood"],
+  lever: ["lever", "gopuff", "kraken", "matchgroup", "plaid"],
+  ashby: ["linear", "openai", "ramp", "notion", "vanta", "posthog"],
+};
+const targetsFor = (provider, flag) => {
+  const given = split(args[flag]);
+  return (given.length ? given : DEFAULT_TOKENS[provider]).map((w) => ({
+    p: provider, c: resolve(provider, w), fn: { gh: fetchGreenhouse, lever: fetchLeverBoard, ashby: fetchAshby }[provider],
+  }));
+};
+
 const TARGETS = [
-  ...split(args.gh).map((w) => ({ p: "gh", c: resolve("gh", w), fn: fetchGreenhouse })),
-  ...split(args.lever).map((w) => ({ p: "lever", c: resolve("lever", w), fn: fetchLeverBoard })),
-  ...split(args.ashby).map((w) => ({ p: "ashby", c: resolve("ashby", w), fn: fetchAshby })),
+  ...targetsFor("gh", "gh"),
+  ...targetsFor("lever", "lever"),
+  ...targetsFor("ashby", "ashby"),
 ];
 
-if (!TARGETS.length) {
-  console.log("usage: npm run boards -- --gh=stripe --lever=lever --ashby=linear,ashby [--max=40]");
+if (TARGETS.every((t) => !t.c.token)) {
+  console.log("usage: npm run boards [--gh=a,b] [--lever=a,b] [--ashby=a,b] [--max=40]");
   process.exit(1);
 }
 
@@ -120,6 +149,13 @@ for (const t of TARGETS) {
   } catch (e) {
     console.error(`${t.p}/${t.c.name}: FAILED (${e.message})`);
   }
+}
+
+// never clobber a good seed with an empty one: a dead network or a bad token list
+// would otherwise silently halve the corpus the whole app reads.
+if (!jobs.length) {
+  console.error("boards: 0 postings kept, leaving src/data/boardsSeed.js untouched.");
+  process.exit(1);
 }
 
 const names = TARGETS.map((t) => `${t.p}:${t.c.name}`).join(", ");

@@ -3,15 +3,14 @@ import CIcon from "@coreui/icons-react";
 import { cilBriefcase, cilLocationPin, cilClock, cilExternalLink } from "@coreui/icons";
 import { Page, Card, H2, Btn, Field, Chip, Empty, ErrorBox, Donut, DONUT_COLORS_EXPORT, inputCls } from "../components/ui.jsx";
 import { useAvsar } from "../app/store.jsx";
-import { JOBS, TECH_JOBS, matchJobs } from "../data/jobs.js";
-import { EXTRA_JOBS } from "../data/seedJobsExtra.js";
-import { NAUKRI_JOBS } from "../data/naukriSeed.js";
-import { BOARDS_JOBS } from "../data/boardsSeed.js";
-import { AYUSH_JOBS } from "../data/ayushSeed.js";
-import { mergeJobs, listLiveJobs, recordApplication, saveCustomJob } from "../lib/store.js";
+import { matchJobs } from "../data/jobs.js";
+import { listLiveJobs, recordApplication, saveCustomJob } from "../lib/store.js";
 import { loadProfile } from "../lib/profile.js";
 import { matchBand, parseJobPosting } from "../lib/coach.js";
-import { matchJobPost, profileForMatching } from "../lib/match.js";
+import { MATCH_WEIGHTS, matchJobPost, profileForMatching } from "../lib/match.js";
+import { effectiveWeights, laneOfJob, staleJobs } from "../lib/market.js";
+import { corpusWithLive, portalOf } from "../lib/corpus.js";
+import { loadText } from "../lib/storage.js";
 import { loadQuizBest } from "../data/quiz.js";
 import { loadQAnswers, compileEvidence } from "../lib/questionnaire.js";
 import { donutSegments, weekTrend, recentActivity, briefing, demandHeatmap } from "../lib/dashboard.js";
@@ -48,25 +47,27 @@ function statusOf(events, id) {
 }
 
 // explainable match, same engine the recruiter sees: score + factor bars + why.
-function EngineFit({ job, profile, isTech }) {
-  const m = matchJobPost(job, profile);
+function EngineFit({ job, profile, isTech, market }) {
+  const m = matchJobPost(job, profile, market);
   if (!m) return null;
+  // the factor weights come from the engine, never re-typed here: a page-local copy
+  // of the formula is how a published number quietly stops being true.
   const rows = [
-    ["coverage", "Skill coverage", 45],
-    ["proficiency", "Proficiency fit", 25],
-    ["verified", "Verified ratio", 15],
-    ["recency", "Recency", 10],
-    ["interest", "Interests", 5],
+    ["coverage", "Skill coverage"],
+    ["proficiency", "Proficiency fit"],
+    ["verified", "Verified ratio"],
+    ["recency", "Recency"],
+    ["interest", "Interests"],
   ];
   return (
     <details className="mt-2 rounded-lg border border-stone-200/70 bg-stone-50/70 px-3 py-2">
       <summary className={`cursor-pointer text-xs font-semibold ${isTech ? "text-blurple-soft" : "text-emerald-800"}`}>
-        Engine match {m.score}/100 · {m.band} — why this number?
+        Engine match: {m.score}/100 · {m.band}. Why this number?
       </summary>
       <ul className="mt-2 space-y-1">
-        {rows.map(([k, label, w]) => (
+        {rows.map(([k, label]) => (
           <li key={k} className="flex items-center gap-2 text-[11px]">
-            <span className="w-28 shrink-0 text-stone-500">{label} <span className="font-mono tabular-nums">{w}%</span></span>
+            <span className="w-28 shrink-0 text-stone-500">{label} <span className="font-mono tabular-nums">{Math.round(MATCH_WEIGHTS[k] * 100)}%</span></span>
             <span className="h-1.5 flex-1 rounded-full bg-stone-200">
               <span className={`block h-full rounded-full ${isTech ? "bg-blurple" : "bg-emerald-600"}`} style={{ width: `${Math.round(m.breakdown[k] * 100)}%` }} />
             </span>
@@ -91,6 +92,10 @@ export default function Jobs() {
   const [section, setSection] = useState("intern"); // intern | jobs — internships first, jobs second
   const [eligibleOnly, setEligibleOnly] = useState(false);
   const [showDismissed, setShowDismissed] = useState(false);
+  // Stale postings are hidden by default but never deleted from the feed, and the count is
+  // shown either way: a student deserves to know how much of what they are looking at may
+  // already be closed. Undated postings are a third group, because unknown is not old.
+  const [showStale, setShowStale] = useState(false);
   const [live, setLive] = useState([]);
   const [liveState, setLiveState] = useState("idle");
   const [paste, setPaste] = useState("");
@@ -109,23 +114,43 @@ export default function Jobs() {
     }
   }, [lane, found]);
 
-  // each portal reads its own feeds: no ayurveda posting on a tech feed, and
-  // the reverse. Live/scraped rows land in whichever portal asked for them.
-  const feed = useMemo(
-    () =>
-      isTech
-        ? mergeJobs(customJobs, TECH_JOBS, EXTRA_JOBS, NAUKRI_JOBS, BOARDS_JOBS, live)
-        : mergeJobs(customJobs, AYUSH_JOBS, JOBS, live),
-    [isTech, customJobs, live]
-  );
+  // each portal reads its own feeds: no ayurveda posting on a tech feed, and the reverse.
+  // lib/corpus.js owns which seeds belong to which portal, so this page and /market can
+  // never drift into disagreeing about what the corpus is.
+  const portal = portalOf(track, lane);
+  const feed = useMemo(() => corpusWithLive(portal, live.filter((j) => laneOfJob(j) === portal), customJobs), [portal, live, customJobs]);
   const pool = useMemo(
     () => matchJobs(lane, score, found, feed),
     [lane, score, found, feed]
   );
+
+  // the market is computed once for the whole portal corpus, not per card, and the fit
+  // every card shows comes from the same engine call the recruiter side makes.
+  const market = useMemo(() => effectiveWeights(feed, { lane: portal }), [feed, portal]);
+  const marketOn = loadText("avsar-market-mode", "on") !== "off";
+  // memoized so the per-card fit pass below is not rebuilt on every render
+  const marketFor = useMemo(
+    () => (marketOn && market.weights.size && found.length
+      ? { weights: market.weights, sample: market.sample, lane: portal, at: market.at }
+      : null),
+    [marketOn, market.weights, market.sample, market.at, portal, found.length]
+  );
+  const poolWithFit = useMemo(
+    () => pool.map((j) => {
+      try {
+        const fit = matchJobPost(j, engineProfile, marketFor);
+        return fit ? { ...j, fit } : j;
+      } catch {
+        return j;
+      }
+    }),
+    [pool, engineProfile, marketFor]
+  );
+
   // every posting here is this portal's lane, so sort eligible first.
   const sortedPool = useMemo(
-    () => [...pool].sort((a, b) => (b.eligible - a.eligible) || ((b.fit?.score || 0) - (a.fit?.score || 0))),
-    [pool]
+    () => [...poolWithFit].sort((a, b) => (b.eligible - a.eligible) || ((b.fit?.score || 0) - (a.fit?.score || 0))),
+    [poolWithFit]
   );
 
   const byId = useMemo(() => Object.fromEntries(sortedPool.map((j) => [String(j.id), j])), [sortedPool]);
@@ -139,6 +164,12 @@ export default function Jobs() {
     if (loc && !(j.loc || "").toLowerCase().includes(loc.toLowerCase())) return false;
     return true;
   });
+
+  // One timestamp per mount. Staleness is a thirty day judgement, so re-reading the clock on
+  // every render would only make a posting flicker between groups for no gain.
+  const [shownAt] = useState(() => Date.now());
+  const { fresh, stale, undated } = useMemo(() => staleJobs(filtered, shownAt, 30), [filtered, shownAt]);
+  const visible = showStale ? filtered : [...fresh, ...undated];
 
   const segs = useMemo(
     () => donutSegments([["Saved", funnel.saved], ["Applied", funnel.applied], ["Interview", funnel.interview], ["Offer", funnel.offer], ["Rejected", funnel.rejected]]),
@@ -157,7 +188,7 @@ export default function Jobs() {
   async function refreshLive() {
     setLiveState("loading");
     try {
-      const jobs = await listLiveJobs(true, loadProfile() || {});
+      const jobs = await listLiveJobs(true, loadProfile() || {}, lane);
       setLive(jobs);
       setLiveState("done");
     } catch {
@@ -166,8 +197,8 @@ export default function Jobs() {
   }
 
   useEffect(() => {
-    listLiveJobs(false).then(setLive).catch(() => {});
-  }, []);
+    listLiveJobs(false, loadProfile() || {}, lane).then(setLive).catch(() => {});
+  }, [lane]);
 
   async function markApplied(job) {
     try {
@@ -220,7 +251,7 @@ export default function Jobs() {
             role="tab"
             aria-selected={section === t.id}
             onClick={() => setSection(t.id)}
-            className={`min-h-[40px] rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            className={`min-h-[44px] rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               section === t.id
                 ? isTech ? "bg-blurple text-white" : "bg-emerald-700 text-white"
                 : isTech ? "border border-zinc-800 bg-zinc-950 text-zinc-300 hover:border-blurple/60" : "border border-emerald-200 bg-white text-emerald-900 hover:border-emerald-400"
@@ -236,7 +267,7 @@ export default function Jobs() {
 
       {section === "insights" ? (
         <>
-          <section aria-label="Your mission" className="overflow-hidden rounded-2xl border border-emerald-900/10 bg-white shadow-sm">
+          <section aria-label="Your mission" className="overflow-hidden rounded-xl border border-emerald-900/10 bg-white shadow-sm">
             <div className="grid gap-0 sm:grid-cols-[auto_1fr]">
               <div className="flex items-center gap-4 bg-emerald-700 px-6 py-5 text-white" style={isTech ? { backgroundColor: "#5865f2" } : undefined}>
                 <p className="font-display text-5xl font-bold tabular-nums leading-none">
@@ -291,7 +322,7 @@ export default function Jobs() {
             {closing.length === 0 ? (
               <p className="mt-2 text-sm leading-6 text-zinc-400">No dated deadlines in the feed right now. Ministry and CCRAS cycles post quarterly.</p>
             ) : (
-              <ol className="mt-2 divide-y divide-stone-200/70 rounded-2xl border border-stone-200/70 bg-white/60">
+              <ol className="mt-2 divide-y divide-stone-200/70 rounded-xl border border-stone-200/70 bg-white/60">
                 {closing.map((j) => (
                   <li key={j.id} className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
                     <span className="min-w-0 truncate font-medium text-stone-800">{j.title} <span className="font-normal text-stone-500">· {j.company}</span></span>
@@ -346,7 +377,7 @@ export default function Jobs() {
             <ul className="mt-3 space-y-1 border-t border-zinc-100 pt-2.5">
               {recent.slice(0, 3).map((r, i) => (
                 <li key={i} className="truncate text-[11px] text-zinc-400">
-                  <span className="capitalize text-zinc-700">{r.event}</span>: {r.title}{r.company ? ` at ${r.company}` : ""}
+                  <span className="capitalize text-zinc-300">{r.event}</span>: {r.title}{r.company ? ` at ${r.company}` : ""}
                 </li>
               ))}
             </ul>
@@ -368,13 +399,14 @@ export default function Jobs() {
                 <Chip tone={h.have ? "green" : "amber"}>{h.have ? "have" : "gap"}</Chip>
               </li>
             ))}
-            {heat.length === 0 && <li className="text-xs text-zinc-500">no postings in the feed yet.</li>}
+            {heat.length === 0 && <li className="text-xs text-zinc-500">No postings in the feed yet.</li>}
           </ul>
         </Card>
         <Card>
           <H2>How fit is computed</H2>
           <p className="text-xs leading-5 text-zinc-400">
-            fit = share of required skills found on your resume. no black box:
+            Fit = the same five-factor engine score the recruiter sees:
+            45% coverage, 25% proficiency, 15% verified, 10% recency, 5% interests. No black box:
           </p>
           <ul className="mt-2 space-y-1 font-mono text-xs tabular-nums text-zinc-400">
             <li><span className="text-zinc-200">80+</span> strong fit</li>
@@ -384,7 +416,14 @@ export default function Jobs() {
             <li><span className="text-zinc-200">below</span> poor fit</li>
           </ul>
           <p className="mt-2 text-xs leading-5 text-zinc-400">
-            eligibility is separate: your readiness must clear the role bar. close one gap to move both numbers.
+            A card marked <span className="text-zinc-200">market</span> was scored with live demand: a required skill most
+            of the corpus asks for counts for more than one nobody lists.
+          </p>
+          <div className="mt-2">
+            <Btn to="/market" size="sm" variant="quiet">See every shift on market pulse</Btn>
+          </div>
+          <p className="mt-2 text-xs leading-5 text-zinc-400">
+            Eligibility is separate: your readiness must clear the role bar. Close one gap to move both numbers.
           </p>
         </Card>
       </div>
@@ -410,7 +449,7 @@ export default function Jobs() {
               <option value="training">Training</option>
             </select>
           </Field>
-          <div className="flex items-end gap-4 pb-2 text-sm text-zinc-700">
+          <div className="flex items-end gap-4 pb-2 text-sm text-zinc-300">
             <label className="inline-flex items-center gap-1.5"><input type="checkbox" checked={eligibleOnly} onChange={(e) => setEligibleOnly(e.target.checked)} /> Eligible only</label>
             <label className="inline-flex items-center gap-1.5"><input type="checkbox" checked={showDismissed} onChange={(e) => setShowDismissed(e.target.checked)} /> Show dismissed</label>
           </div>
@@ -420,8 +459,23 @@ export default function Jobs() {
       {notice && <p className="mt-3 text-sm text-blurple-soft">{notice}</p>}
 
       <p className="mt-4 px-1 font-mono text-xs tabular-nums text-stone-500" role="status">
-        {filtered.length} role{filtered.length === 1 ? "" : "s"} · {filtered.filter((j) => j.eligible).length} eligible for you
+        {visible.length} role{visible.length === 1 ? "" : "s"} shown · {visible.filter((j) => j.eligible).length} eligible for you
+        {stale.length > 0 && !showStale ? ` · ${stale.length} older than 30 days hidden` : ""}
       </p>
+
+      {stale.length > 0 && (
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-amber-900 bg-amber-950/40 px-3 py-2.5">
+          <p className="text-xs leading-5 text-amber-200">
+            {showStale
+              ? `Showing ${stale.length} posting${stale.length === 1 ? "" : "s"} older than 30 days. Some of these are probably closed.`
+              : `${stale.length} posting${stale.length === 1 ? " has" : "s have"} been open for more than 30 days and may already be closed. They are hidden, not deleted.`}
+            {undated.length > 0 && !showStale ? ` ${undated.length} more carr${undated.length === 1 ? "ies" : "y"} no date at all and ${undated.length === 1 ? "is" : "are"} still shown, because unknown is not the same as old.` : ""}
+          </p>
+          <Btn size="sm" variant="quiet" onClick={() => setShowStale((v) => !v)}>
+            {showStale ? "Hide the stale group" : `Show ${stale.length} anyway`}
+          </Btn>
+        </div>
+      )}
 
       {!resume && (
         <div className="mt-4">
@@ -430,14 +484,14 @@ export default function Jobs() {
       )}
 
       <div className="mt-4 space-y-3">
-        {filtered.map((j) => {
+        {visible.map((j) => {
           const st = statusOf(events, j.id);
           const isAyushJob = j.role === "ayush" || j.kind === "ministry" || j.kind === "research" || j.kind === "training";
           const have = new Set(found.map((f) => f.toLowerCase()));
           return (
             <Card key={j.id} className="overflow-hidden p-0">
               <div className="flex gap-3.5 p-4 sm:p-5">
-                <span className={`flex size-12 shrink-0 items-center justify-center rounded-2xl font-display text-lg font-bold text-white ${isTech ? "bg-blurple" : "bg-emerald-700"}`} aria-hidden>
+                <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl font-display text-lg font-bold text-white ${isTech ? "bg-blurple" : "bg-emerald-700"}`} aria-hidden>
                   {(j.company || "A").trim()[0]}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -462,6 +516,7 @@ export default function Jobs() {
                   <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
                     {j.src === "ccras" && <Chip tone="blue">fresh · ccras</Chip>}
                     {j.fit && <Chip tone={j.fit.score >= 65 ? "green" : j.fit.score >= 50 ? "blue" : "zinc"}>{matchBand(j.fit.score)}</Chip>}
+                    {j.fit?.market?.applied && <Chip tone="green">market</Chip>}
                     {j.eligible ? <Chip tone="green">eligible</Chip> : <Chip tone="amber">needs {j.minScore}+</Chip>}
                     {isAyushJob && <Chip tone="green">ayush</Chip>}
                     {st && <Chip tone="blue">{st}</Chip>}
@@ -471,12 +526,12 @@ export default function Jobs() {
                       <span key={s} className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${have.has(s.toLowerCase()) ? (isTech ? "bg-blurple/15 text-blurple-soft" : "bg-emerald-50 text-emerald-800") : "bg-stone-100 text-stone-500"}`}>{s}</span>
                     ))}
                   </div>
-                  {resume && <EngineFit job={j} profile={engineProfile} isTech={isTech} />}
+                  {resume && <EngineFit job={j} profile={engineProfile} isTech={isTech} market={marketFor} />}
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-2 border-t border-stone-100 bg-stone-50/60 px-4 py-2.5 sm:px-5">
                 {j.apply && j.apply !== "#" && (
-                  <a className={`inline-flex min-h-[36px] items-center gap-1.5 rounded-full px-4 text-[13px] font-semibold text-white ${isTech ? "bg-blurple hover:bg-blurple-deep" : "bg-emerald-700 hover:bg-emerald-800"}`} href={j.apply} target="_blank" rel="noreferrer">
+                  <a className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-4 text-[13px] font-semibold text-white ${isTech ? "bg-blurple hover:bg-blurple-deep" : "bg-emerald-700 hover:bg-emerald-800"}`} href={j.apply} target="_blank" rel="noreferrer">
                     Apply <CIcon icon={cilExternalLink} width={13} height={13} aria-hidden />
                   </a>
                 )}
@@ -488,7 +543,7 @@ export default function Jobs() {
                   </Btn>
                 )}
                 {st !== "rejected" && <Btn variant="dangerQuiet" size="sm" onClick={() => addEvent(String(j.id), "rejected")}>Rejected</Btn>}
-                <button type="button" onClick={() => toggleDismiss(String(j.id))} className="ml-auto text-xs font-medium text-stone-400 underline underline-offset-4 hover:text-stone-600">
+                <button type="button" onClick={() => toggleDismiss(String(j.id))} className="ml-auto text-xs font-medium text-stone-500 underline underline-offset-4 hover:text-stone-700">
                   {dismissed.includes(String(j.id)) ? "Restore" : "Dismiss"}
                 </button>
               </div>
@@ -496,7 +551,7 @@ export default function Jobs() {
           );
         })}
       </div>
-      {filtered.length === 0 && (
+      {visible.length === 0 && (
         <div className="mt-4">
           <Empty title="No roles match those filters" body="Loosen a filter, or paste a posting below to add it to your feed." />
         </div>

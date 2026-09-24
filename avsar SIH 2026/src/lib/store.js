@@ -5,8 +5,16 @@ import { getOrCreateDeviceId } from "./identity.js";
 import { ROLES } from "./score.js";
 import { loadJSON, saveJSON } from "./storage.js";
 import { queryFromProfile } from "./profile.js";
+import { toIso } from "./dates.js";
 
 // --- pure (tested) ---
+
+// Which portal a posting belongs to. The ayush lane is a single rubric, so every
+// other role key is tech. Explicit when the source declared it, inferred otherwise,
+// because most of the bundled corpus predates the lane tag.
+export function laneOfRole(role = "") {
+  return role === "ayush" ? "ayush" : "tech";
+}
 
 export function toJobShape(r) {
   if (!r) return null;
@@ -265,7 +273,11 @@ export async function loadSharedShowcase(id) {
 const LIVE_KEY = "avsar-live-jobs";
 const LIVE_TTL = 6 * 3600 * 1000;
 
+// ayush hints stay deliberately narrow: an ambiguous term like "clinical research"
+// would pull ordinary biotech postings into an ayurveda student's feed, so only
+// unmistakable Indian-medicine words are listed.
 const ROLE_HINTS = [
+  ["ayush", ["ayurved", "ayush", "panchakarma", "bams", "vaidya", "siddha", "unani", "homeopath", "naturopath"]],
   ["data", ["data", "analyst", "sql", "tableau", "power bi", "scientist", "machine learning", " ai ", "ml "]],
   ["marketing", ["marketing", "seo", "content", "social", "growth", "copywrit", "brand", " ads"]],
   ["sde", ["develop", "engineer", "software", "frontend", "backend", "full-stack", "full stack", "web", "react", "node", "javascript", "python", "mobile", "devops", " qa", "qa "]],
@@ -293,9 +305,11 @@ export function toLiveJobShape(r, i = 0) {
   const text = `${r.title || ""} ${r.category || ""} ${r.description || ""}`;
   const role = guessRole(text);
   if (!role || !r.title) return null;
+  const postedAt = toIso(r.publication_date);
   return {
     id: `live-${r.id ?? i}`,
     role,
+    lane: laneOfRole(role),
     title: r.title,
     company: r.company_name || "Remote co",
     loc: "Remote",
@@ -303,6 +317,9 @@ export function toLiveJobShape(r, i = 0) {
     skills: extractSkills(text),
     minScore: 45,
     apply: r.url || "#",
+    src: "remotive",
+    salary: r.salary || "",
+    ...(postedAt ? { postedAt } : {}),
     live: true,
   };
 }
@@ -321,9 +338,11 @@ export function toArbeitJobShape(r, i = 0) {
   const role = guessRole(text);
   if (!role || !r.title) return null;
   const types = (r.job_types || []).join(" ");
+  const postedAt = toIso(r.created_at); // arbeitnow sends epoch seconds
   return {
     id: `arbeit-${r.slug ?? i}`,
     role,
+    lane: laneOfRole(role),
     title: r.title,
     company: r.company_name || "Remote co",
     loc: r.remote ? "Remote" : (r.location || "Remote"),
@@ -331,6 +350,8 @@ export function toArbeitJobShape(r, i = 0) {
     skills: extractSkills(text),
     minScore: 45,
     apply: r.url || "#",
+    src: "arbeitnow",
+    ...(postedAt ? { postedAt } : {}),
     live: true,
   };
 }
@@ -347,16 +368,19 @@ async function fetchJSON(url, ms = 8000) {
   }
 }
 
-// profile-aware: her top skill becomes the Remotive search, remote flag filters on-device
-export async function listLiveJobs(force = false, profile = null) {
-  const readCache = () => loadJSON(LIVE_KEY, {}).jobs || [];
+// profile-aware: her top skill becomes the Remotive search, remote flag filters on-device.
+// lane-aware: the cached payload is stamped with its lane, because an ayurveda student
+// must never be served the cached tech result set (or vice versa) while offline.
+export async function listLiveJobs(force = false, profile = null, lane = "tech") {
+  const cached = loadJSON(LIVE_KEY, {});
+  const cachedLane = cached.lane || "tech"; // payloads written before lanes existed are all tech
+  const readCache = () => (cachedLane === lane ? cached.jobs || [] : []);
   if (!force) {
-    const c = loadJSON(LIVE_KEY, null);
-    if (c && Date.now() - c.at < LIVE_TTL && c.jobs?.length) return c.jobs;
+    if (cachedLane === lane && Date.now() - (cached.at || 0) < LIVE_TTL && cached.jobs?.length) return cached.jobs;
   }
   let search = "";
   try {
-    const q = queryFromProfile(profile || {}, "developer");
+    const q = queryFromProfile(profile || {}, lane === "ayush" ? "ayurveda" : "developer");
     search = q.search;
     const rem = async () => {
       const data = await fetchJSON(`https://remotive.com/api/remote-jobs?limit=20${search ? `&search=${encodeURIComponent(search)}` : ""}`);
@@ -371,7 +395,7 @@ export async function listLiveJobs(force = false, profile = null) {
     const seen = new Set();
     const jobs = [...(a.status === "fulfilled" ? a.value : []), ...(b.status === "fulfilled" ? b.value : [])]
       .filter((j) => (seen.has(j.id) ? false : (seen.add(j.id), true)));
-    if (jobs.length) saveJSON(LIVE_KEY, { at: Date.now(), jobs });
+    if (jobs.length) saveJSON(LIVE_KEY, { at: Date.now(), lane, jobs });
     return jobs.length ? jobs : readCache();
   } catch {
     return readCache();

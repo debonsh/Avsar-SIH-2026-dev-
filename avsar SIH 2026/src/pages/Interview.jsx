@@ -139,13 +139,13 @@ export default function Interview() {
   }
 
   return (
-    <Page title="Interview" sub="Prove your experience first, then practice answers with grading. AI reads your resume when a key is set — otherwise the offline bank does.">
+    <Page title="Interview" sub="Prove your experience first, then practice answers with grading. AI reads your resume when a key is set. Otherwise the offline bank does.">
       <Card>
         <div className="mb-3 flex items-center justify-between gap-2">
           <H2 className="mb-0">Evidence questionnaire ({ROLES[lane]?.label || lane})</H2>
           <Chip tone={qnr?.source === "ai" ? "green" : "amber"}>{qnr?.source === "ai" ? "AI questions" : "offline bank"}</Chip>
         </div>
-        {!qnrLoading ? (
+        {qnrLoading ? (
           <Empty title="Reading your resume" body="Writing evidence questions from your lines…" />
         ) : (
         <div className="grid gap-3 sm:grid-cols-2">
@@ -221,7 +221,7 @@ export default function Interview() {
                 </button>
               ) : (
                 <span className="text-xs text-zinc-400">
-                  {grades[i].score}/4{grades[i].ai ? " · AI" : " · offline"}{grades[i].tips[0] ? ` — ${grades[i].tips[0]}` : " — strong."}
+                        {grades[i].score}/4{grades[i].ai ? " · AI" : " · offline"}{grades[i].tips[0] ? `: ${grades[i].tips[0]}` : ". Strong."}
                 </span>
               )}
             </div>

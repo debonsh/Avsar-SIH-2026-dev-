@@ -24,15 +24,15 @@ function QuestCheck({ done, onToggle, label }) {
       aria-checked={done}
       aria-label={label}
       onClick={onToggle}
-      className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border transition-colors ${
+      className={`relative mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border transition-colors before:absolute before:-inset-2.5 before:content-[''] ${
         done ? "border-blurple bg-blurple" : "border-zinc-700 hover:border-zinc-500"
       }`}
     >
       {done && (
         <motion.span
           key="on"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 600, damping: 22 }}
           className="flex"
         >

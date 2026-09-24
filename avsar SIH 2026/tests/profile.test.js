@@ -79,6 +79,12 @@ describe("arbeitnow mapper", () => {
     assert.ok(j.skills.includes("react"));
     assert.equal(toArbeitJobShape({ title: "Truck Driver", description: "drive trucks" }), null);
   });
+  it("converts arbeitnow's epoch-seconds created_at into an ISO postedAt", () => {
+    const j = toArbeitJobShape({ slug: "y", title: "Frontend Developer", company_name: "Acme", tags: ["react"], job_types: ["full_time"], remote: true, url: "https://x", description: "react", created_at: 1790188233 });
+    assert.equal(j.postedAt, "2026-09-23T18:30:33.000Z");
+    assert.equal(j.src, "arbeitnow");
+    assert.equal(j.lane, "tech");
+  });
 });
 
 describe("free certs", () => {
