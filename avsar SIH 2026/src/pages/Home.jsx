@@ -6,6 +6,8 @@ import AyushHome from "./AyushHome.jsx";
 import TechHome from "./TechHome.jsx";
 
 export default function Home() {
-  const { lane } = useAvsar();
-  return lane === "ayush" ? <AyushHome /> : <TechHome />;
+  // Dispatch on portal track, never on scoring lane: an ayush explorer
+  // (lane "exploring") belongs on the vaidya board, not the tech console.
+  const { track } = useAvsar();
+  return track === "ayush" ? <AyushHome /> : <TechHome />;
 }
