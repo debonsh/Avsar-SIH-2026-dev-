@@ -76,9 +76,12 @@ export default function Resume() {
       setNotice("Paste your resume text or upload a file first.");
       return;
     }
-    saveResume(text, scoreResume(text, lane), lane);
+    const scored = scoreResume(text, lane);
+    saveResume(text, scored, lane);
     recordDay("resume");
-    setNotice("");
+    // short pastes score 0 with no dimensions: say so instead of showing
+    // an empty report card.
+    setNotice(scored.msg || "");
   }
 
   return (
@@ -231,6 +234,12 @@ export default function Resume() {
 
             <Card className="h-full">
               <H2>Dimensions</H2>
+              {view.breakdown.length === 0 ? (
+                <Empty
+                  title="No breakdown"
+                  body="Too little text to split into dimensions. Paste your full resume (or use a sample) and score again."
+                />
+              ) : (
               <div className="space-y-4">
                 {view.breakdown.map((d) => (
                   <div key={d.label}>
@@ -247,6 +256,7 @@ export default function Resume() {
                   </div>
                 ))}
               </div>
+              )}
             </Card>
           </div>
 

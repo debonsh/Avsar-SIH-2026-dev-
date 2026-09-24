@@ -152,9 +152,10 @@ export default function Journey() {
       setNotice("Paste your resume text or upload a file first.");
       return;
     }
-    saveResume(text, scoreResume(text, lane), lane);
+    const scored = scoreResume(text, lane);
+    saveResume(text, scored, lane);
     recordDay("resume");
-    setNotice("");
+    setNotice(scored.msg || "");
     setTab("improve");
   }
 
@@ -268,7 +269,10 @@ export default function Journey() {
                     resume {view.total}/95 · interview {interviewBest} · {pairs} quest pair{pairs === 1 ? "" : "s"}
                   </p>
                   <div className="mt-3 space-y-3">
-                    {view.breakdown.slice(0, 5).map((d) => (
+                    {view.breakdown.length === 0 ? (
+                      <Empty title="No breakdown" body="Too little text to split into dimensions. Paste your full resume (or use a sample) and score again." />
+                    ) : (
+                    view.breakdown.slice(0, 5).map((d) => (
                       <div key={d.label}>
                         <div className="mb-1 flex justify-between text-xs">
                           <span className="font-medium text-stone-700">{d.label}</span>
@@ -276,7 +280,8 @@ export default function Journey() {
                         </div>
                         <Meter value={d.pts} max={d.max} />
                       </div>
-                    ))}
+                    ))
+                    )}
                   </div>
                   <div className="mt-4">
                     <Btn onClick={() => setStage("interview")}>Continue to interview (+30%)</Btn>
